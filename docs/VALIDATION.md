@@ -156,3 +156,22 @@
 正式 0.1.8 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 9。系統最近使用列表已選到澄境瀏覽器卡片，查看 `qa/v018-production-recents.png` 確認頂端實際 App 圖示有清楚留白；卡片內網頁快照不是本次網路功能驗收依據。
 
 APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.8-Android.apk`，來源與目的地 SHA-256 同為 `075511f8dded12d77de78c1ed85ea1d4a3a480f118aeee42a87db9ed8c03980c`（`qa/v018-copy-verification.json`）。只確認本機資料夾複製完成，未確認 Google Drive 雲端上傳。
+
+
+## 0.1.9 選單與設定設計
+
+- 根據實機回饋撤回原選單的視覺驗收；問題包含有無副文字與長名稱換行所造成的不同列高，以及設定缺少分類。以澄境筆記的現有 SettingsView、SettingsJumpNav 與設定 CSS 為來源，重新安排資訊層級。
+- 主選單用四等寬快捷入口、分組表面與統一 64 dp 操作列。長名稱只保留一行省略，不再撐高某一列。設定分外觀／瀏覽／AI，主題與網址列位置以等寬選項呈現；AI 保留原有金鑰、模型與自訂名稱操作。
+- 初版使用滑動面板時，實際截圖發現高度限制施加到視窗而非內容，造成頂端位置錯誤；切換短／長設定內容也出現外框跳動。改用同一個原生 Dialog 面板，根據系統可用區域固定主選單／設定外框，標題與分類保持原位，只讓內容捲動。
+- `MenuDesignTest` 的分組選單操作測試已通過（`qa/menu-design-unified.log`）：以長名稱驗證相同列高／寬度、四個快捷入口等寬、外觀與 AI 面板相同位置及高度、設定保存、子頁返回正確來源、書籤匯入入口仍可達。
+- 已查看 `qa/v019-unified-screenshots/05-menu-dark (1).png`、`02-appearance-dark (1).png`、`03-ai-settings (1).png`，確認深色分組層次、長名稱省略、外框與分類位置。舊的高度診斷截圖屬失敗迭代，不作交付證據。
+
+最終選單回歸：API 36 模擬器啟用挖孔螢幕模式，4 組通過（`qa/v019-final-regression.log`），包含選單尺寸／返回、鍵盤開啟時的金鑰輸入保存與移除、模型選擇、天眼預覽／例外／復原，以及網址列位置與全選；僅使用隔離 QA 套件與虛構測試金鑰，未呼叫付費 AI。測試後已恢復模擬器原本的螢幕設定。
+
+新增核心版本對照：目前版從實際 WebView 提供者取得，Google WebView／Chrome 使用其完整套件版本，其他提供者以系統預設 UA 的 Chromium 版本辨識，與使用者的自訂 UA 分開。透過 [Google 官方 VersionHistory API](https://developer.chrome.com/docs/web-platform/versionhistory/guide) 查詢 webview/stable；舊系統若由 Chrome 提供核心，改查 android/stable。以四段數字比較，快取 6 小時並顯示查詢時間，查詢失敗保留舊結果並明確提示。只開啟系統／商店的更新頁，不自行替換核心。
+
+核心對照的 Android 實際網路測試通過（`qa/engine-version-final.log`），驗證真實目前版本、官方正式版回應、手動重新檢查完成，以及偽裝成 Chrome/999 的自訂 UA 不影響這個版本欄位。已查看 `qa/v019-engine-versions-final.png`；本機當次觀察為 151.0.7922.199，官方 WebView 正式版為 154.0.8037.22，此為當次查詢結果，不寫死在 App。單元測試合計 33 項通過，包含數字版本排序與拒絕不同平台／非正式版資料。
+
+特殊元件處理方式見 `SPECIAL-ELEMENTS.md`；此次回答與文件說明 DOM 的邊界，未加入一般資源請求攔截或局部畫面遮罩。
+
+正式 0.1.9 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 10。已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.9-Android.apk`，來源／目的地 SHA-256 同為 `66f95827aa8c41d34185a1efb3ac26a353a4a58c8f90649c62fd426164c3cec1`（`qa/v019-copy-verification.json`）。只確認本機資料夾複製完成，未確認 Google Drive 雲端上傳，也未宣稱使用者實體手機已驗收。
