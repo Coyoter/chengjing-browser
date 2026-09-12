@@ -115,3 +115,12 @@
 刷新畫面補驗：`PullRefreshTest` 再以 Android 原生輸入事件持續拉動並截圖，2 組通過（`qa/pull-refresh-visual.log`）。已查看 `qa/v015-final-screenshots/ChengJing-0.1.5-QA/12-pull-refresh-bottom (1).png`，確認翡翠色刷新箭頭位於網頁區，上方天眼與下方網址列保持原位。
 
 正式 0.1.5 APK 已驗證 package `tw.techtarian.browser`、versionCode 6、原本簽章不變，並完成模擬器覆蓋安裝與版本讀回。已複製至 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.5-Android.apk`，來源／目的地 SHA-256 同為 `c5646b4247da23a296852ed781ed838f0b111be13c1a89709b914be054ac27bb`（`qa/v015-copy-verification.json`）。此項只驗證指定本機資料夾，未確認 Google Drive 桌面程式的雲端上傳狀態。
+
+
+## 0.1.6 圖示留白
+
+- 僅修改 Android 自適應圖示前景：圓環與指南針以中心等比例縮至 78%，背景與首頁品牌圖保持既有尺寸。
+- 使用既有 `BrowserPolishTest#compactSymmetricChromeAndBrand`，在 API 36 模擬器的隔離 QA 套件執行，1 組通過（`qa/icon-spacing-release.log`）。
+- 從 Android PackageManager 取得已安裝 APK 圖示並以系統 Drawable 繪製；已查看實際圖像 `design/icon-adaptive-preview.png`，確認圓環四周明顯留白及中心位置。不同手機可使用不同外框遮罩；未操作使用者實體手機。
+- 正式 APK 使用原本簽章與套件 `tw.techtarian.browser`，versionCode 7／0.1.6；模擬器覆蓋安裝與版本讀回成功。
+- 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.6-Android.apk`，來源／目的地 SHA-256 同為 `14fdd25204e5c020febcdfb24a5c13c692daa29f0df8a049e8256072254b3843`（`qa/icon-spacing-copy.json`）。僅確認指定本機資料夾複製，未確認 Google Drive 雲端上傳。

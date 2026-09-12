@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-1. 安裝 `release/ChengJing-Browser-0.1.5-Android.apk`，Android 9 或以上。
+1. 安裝 `release/ChengJing-Browser-0.1.6-Android.apk`，Android 9 或以上。
 2. 開啟網站，按工具列「天眼」，直接進入選取模式。
 3. 點中元件。若只選到文字或小叉叉，按「選取外面一層」。
 4. 按「預覽移除」，確認文章仍正常後按頂部「儲存」。按 × 會取消未儲存的預覽。
@@ -76,3 +76,8 @@ python3 scripts/build-private.py
 - **下拉重新整理**：網頁在頂端時往下拉，放開即刷新；拉動不足會取消。從頁面中段開始的捲動不會在途中突然變成刷新。天眼選取時停用下拉刷新，保留未儲存的修改。網址列刷新按鈕仍可使用。
 
 下拉刷新採 AndroidX SwipeRefreshLayout，參考 [Android 官方手勢文件](https://developer.android.com/develop/ui/views/touch-and-input/swipe/add-swipe-interface)。
+
+
+## 0.1.6：App 圖示留白
+
+Android 自適應圖示內的圓環與指南針以中心等比例縮至 78%，保留墨綠底色與原本造型；讓系統裁切後的圖案四周仍有留白。
