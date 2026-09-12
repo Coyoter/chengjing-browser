@@ -28,6 +28,10 @@ class FavoriteStore(context:Context){
         return (0 until array.length()).map{Favorite.from(array.getJSONObject(it))}.sortedByDescending{it.updated}
     }
     fun get(id:String)=all().find{it.id==id}
+    fun forPage(url:String):Favorite?{
+        val address=url.toHttpUrlOrNull()?:return null
+        return all().firstOrNull{it.url.toHttpUrlOrNull()==address}
+    }
     private fun write(rows:List<Favorite>){check(prefs.edit().putString("items",JSONArray(rows.map{it.json()}).toString()).commit()){ "收藏儲存失敗" }}
     @Synchronized fun save(url:String,title:String,y:Double,progress:Double,updateId:String?=null,forceNew:Boolean=false):Favorite{
         val rows=all()

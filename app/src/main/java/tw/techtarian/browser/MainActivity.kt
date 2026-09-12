@@ -17,6 +17,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.*
 import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -29,6 +30,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -73,6 +76,10 @@ class MainActivity:ComponentActivity(){
     private val files=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->controller.fileCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result.resultCode,result.data));controller.fileCallback=null}
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState);enableEdgeToEdge()
+        @Suppress("DEPRECATION")
+        val taskIcon=if(android.os.Build.VERSION.SDK_INT>=33)android.app.ActivityManager.TaskDescription.Builder().setLabel("澄境瀏覽器").setIcon(R.mipmap.ic_launcher).build()
+            else android.app.ActivityManager.TaskDescription("澄境瀏覽器",R.mipmap.ic_launcher)
+        setTaskDescription(taskIcon)
         store=BrowserStore(this);controller=BrowserController(this,store)
         bookmarkSync=BookmarkSync(this,store.bookmarkStore)
         bookmarkSync.launchConsent={consent.launch(it)}
@@ -101,6 +108,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     val activity=c.context as MainActivity
     val active=c.active
     c.revision
+    val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
     var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
     var editingAddress by remember{mutableStateOf(false)}
     val cs=if(dark)Dark else Light
@@ -143,7 +151,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                                 Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text("天眼",fontWeight=FontWeight.SemiBold)
                                 if(c.site.rules.isNotEmpty()){Spacer(Modifier.width(6.dp));Text("${c.site.rules.size}",fontSize=12.sp)}
                             }
-                            Tool(if(active?.favoriteId!=null)Icons.Outlined.Star else Icons.Outlined.StarOutline,if(active?.favoriteId!=null)"更新收藏進度"else"快速收藏",c.domain.isNotEmpty()){
+                            Tool(if(pageFavorite!=null)Icons.Filled.Star else Icons.Outlined.StarOutline,if(active?.favoriteId!=null||pageFavorite!=null)"更新收藏進度"else"快速收藏",c.domain.isNotEmpty(),modifier=Modifier.testTag("quick-favorite").semantics{stateDescription=if(pageFavorite!=null)"已收藏"else"尚未收藏"}){
                                 focus.clearFocus()
                                 scope.launch{if(c.saveFavorite()!=null)c.notice="已保存收藏與閱讀位置"}
                             }
@@ -184,8 +192,8 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         }
         if(c.sheet in setOf("bookmarks","favorites"))LibraryScreen(c)
         if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites")){
-            ModalBottomSheet(onDismissRequest={c.sheet=""},sheetState=rememberModalBottomSheetState(skipPartiallyExpanded=true),containerColor=cs.surface,dragHandle={BottomSheetDefaults.DragHandle()},modifier=Modifier.fillMaxWidth()){
-                Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(start=24.dp,end=24.dp,bottom=28.dp).navigationBarsPadding(),verticalArrangement=Arrangement.spacedBy(16.dp)){
+            ModalBottomSheet(onDismissRequest={c.sheet=""},sheetState=rememberModalBottomSheetState(skipPartiallyExpanded=true),containerColor=cs.surface,dragHandle=if(c.sheet=="menu")null else ({BottomSheetDefaults.DragHandle(Modifier.testTag("sheet-drag-handle"))}),modifier=Modifier.fillMaxWidth()){
+                Column(Modifier.fillMaxWidth().then(if(c.sheet=="menu")Modifier.statusBarsPadding()else Modifier).verticalScroll(rememberScrollState()).padding(start=24.dp,end=24.dp,top=if(c.sheet=="menu")16.dp else 0.dp,bottom=28.dp).navigationBarsPadding(),verticalArrangement=Arrangement.spacedBy(16.dp)){
                     when(c.sheet){
                         "menu"->{
                             SheetTitle("澄境瀏覽器","讓網頁回到你喜歡的樣子。")
@@ -287,7 +295,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         }
     }
 }
-@Composable private fun Tool(icon:ImageVector,label:String,enabled:Boolean=true,onClick:()->Unit){IconButton(onClick=onClick,enabled=enabled,modifier=Modifier.size(48.dp)){Icon(icon,label,Modifier.size(22.dp))}}
+@Composable private fun Tool(icon:ImageVector,label:String,enabled:Boolean=true,modifier:Modifier=Modifier,onClick:()->Unit){IconButton(onClick=onClick,enabled=enabled,modifier=modifier.size(48.dp)){Icon(icon,label,Modifier.size(22.dp))}}
 @Composable private fun SheetTitle(title:String,subtitle:String=""){Column(verticalArrangement=Arrangement.spacedBy(8.dp)){Text(title,fontSize=24.sp,fontWeight=FontWeight.SemiBold);if(subtitle.isNotEmpty())Text(subtitle,fontSize=14.sp,lineHeight=22.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)}}
 @Composable private fun MenuRow(icon:ImageVector,title:String,subtitle:String="",action:()->Unit){Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).clickable(onClick=action).padding(vertical=12.dp),verticalAlignment=Alignment.CenterVertically){Icon(icon,null,Modifier.size(22.dp),tint=MaterialTheme.colorScheme.primary);Spacer(Modifier.width(16.dp));Column(Modifier.weight(1f)){Text(title,fontSize=16.sp);if(subtitle.isNotEmpty())Text(subtitle,fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Icon(Icons.AutoMirrored.Outlined.KeyboardArrowRight,null,Modifier.size(18.dp),tint=MaterialTheme.colorScheme.onSurfaceVariant)}}
 @Composable private fun SwitchRow(title:String,description:String,checked:Boolean,onChange:(Boolean)->Unit){Row(verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f).padding(end=12.dp)){Text(title,fontSize=16.sp);Text(description,fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Switch(checked,onChange)}}

@@ -139,3 +139,20 @@
 最終 API 36／release 隔離套件共 8 組操作回歸全部通過（`qa/exception-final-regression.log`）：例外與同網域／其他網域分頁、快速收藏、Chrome 真實 HTML 檔案匯入、原有選取／動態元件與自訂程式，以及上下網址列的下拉刷新。
 
 正式 0.1.7 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 8。已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.7-Android.apk`，來源與目的地 SHA-256 同為 `d57b0839b00b866c4df8950e988813427e8d51e627400e9e4e6367795872a65b`（`qa/v017-copy-verification.json`）。只確認本機資料夾複製完成，未確認 Google Drive 雲端上傳。
+
+
+## 0.1.8 收藏星號、選單鏡頭區域與圖示
+
+- 根據目前網址查找已儲存收藏（使用 HttpUrl 正規化後比較），不再用分頁的進度連結 ID 當成已收藏狀態。未保存為空心，已保存為 Filled.Star 實心；原有更新閱讀進度的行為保留。
+- 加入 WebView 原生歷史更新回呼，讓 pushState／上一頁／下一頁的網址同步到星號與網址列；維持既有本機收藏資料。
+- 主選單不顯示拖曳橫槓，內容上方消耗系統狀態列空間並保留 16 dp 內距。其他面板維持原本提示。
+- 自適應圖示前景由 78% 改為 60%，相容／首頁圖示前景縮至 90%；已查看 PackageManager 實際繪製圖示，更新 `design/icon-adaptive-preview.png` 與 `design/icon-preview.png`。最近工作項目明確指定目前的圖示資源，依 [Android TaskDescription 官方 API](https://developer.android.com/reference/android/app/ActivityManager.TaskDescription) 分別相容 API 28–32 與 33 以上。
+- `FavoriteAppearanceTest` 在 API 36 的隔離 QA 套件通過兩組測試（`qa/favorite-appearance-final.log`）：空心→實心、直接另開同一網址、重建 Activity、真實點擊切換章節並更新同一筆、返回／前進及刪除；主選單無拖曳橫槓且標題位於狀態列／鏡頭區域下方。
+- 測試期間啟用模擬器 hole cutout 系統覆蓋設定，結束後已恢復停用。已查看 `qa/v018-screenshots/03-menu-with-cutout.png`，標題未與系統區域重疊。第一次測試使用純程式的 history.pushState 建立紀錄，返回階段未通過；改用真實點擊頁面章節按鈕後，整個狀態流程通過。
+- QA 最近使用畫面的截圖包含測試宿主，不把它當成正式 App 圖示的證據；正式安裝後另行查看系統最近使用畫面。不同手機的外框裁切仍可能不同，未宣稱使用者實體手機已驗收。
+
+既有功能回歸：例外切換後的連結、輸入網址、新分頁與真實 Google 搜尋，以及收藏更新／重開／恢復位置，共兩組通過（`qa/v018-regression.log`）。加上本次收藏狀態與挖孔選單兩組，四組操作測試通過。
+
+正式 0.1.8 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 9。系統最近使用列表已選到澄境瀏覽器卡片，查看 `qa/v018-production-recents.png` 確認頂端實際 App 圖示有清楚留白；卡片內網頁快照不是本次網路功能驗收依據。
+
+APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.8-Android.apk`，來源與目的地 SHA-256 同為 `075511f8dded12d77de78c1ed85ea1d4a3a480f118aeee42a87db9ed8c03980c`（`qa/v018-copy-verification.json`）。只確認本機資料夾複製完成，未確認 Google Drive 雲端上傳。

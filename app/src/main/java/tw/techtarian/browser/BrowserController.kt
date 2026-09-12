@@ -206,6 +206,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(activeId==tab.id){eye=false;selection=null;draft=null;dirty=false;if(sheet=="selection")sheet=""}
                 persistTabs()
             }
+            override fun doUpdateVisitedHistory(view:WebView,url:String,isReload:Boolean){
+                if(url.startsWith("http://")||url.startsWith("https://")){
+                    tab.url=url;tab.canBack=view.canGoBack();tab.canForward=view.canGoForward();persistTabs()
+                }
+            }
             override fun onPageFinished(view:WebView,url:String) {
                 tab.refreshContainer.isRefreshing=false
                 tab.canBack=view.canGoBack();tab.canForward=view.canGoForward()
