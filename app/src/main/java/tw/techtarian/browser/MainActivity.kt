@@ -143,7 +143,10 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                                 Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text("天眼",fontWeight=FontWeight.SemiBold)
                                 if(c.site.rules.isNotEmpty()){Spacer(Modifier.width(6.dp));Text("${c.site.rules.size}",fontSize=12.sp)}
                             }
-                            Tool(if(c.isException)Icons.Outlined.Shield else Icons.Outlined.ShieldMoon,"切換網站例外",c.domain.isNotEmpty()){c.exception()}
+                            Tool(if(active?.favoriteId!=null)Icons.Outlined.Star else Icons.Outlined.StarOutline,if(active?.favoriteId!=null)"更新收藏進度"else"快速收藏",c.domain.isNotEmpty()){
+                                focus.clearFocus()
+                                scope.launch{if(c.saveFavorite()!=null)c.notice="已保存收藏與閱讀位置"}
+                            }
                             Box(Modifier.size(48.dp)){
                                 Tool(Icons.Outlined.MoreHoriz,"瀏覽器選單"){focus.clearFocus();active?.blockedUnread=false;c.sheet="menu"}
                                 if(active?.blockedUnread==true)Box(Modifier.size(5.dp).testTag("blocking-indicator").align(Alignment.TopEnd).offset(x=(-8).dp,y=8.dp).background(cs.primary,CircleShape))
@@ -193,12 +196,14 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                                 scope.launch{if(c.saveFavorite()!=null){c.notice="已保存收藏與閱讀位置";c.sheet=""}}
                             }
                             MenuRow(Icons.Outlined.BookmarkBorder,"書籤"){c.sheet="bookmarks"}
-                            MenuRow(Icons.Outlined.FileDownload,"匯入 Chrome 書籤","選擇 Chrome 匯出的 HTML 檔"){c.sheet="";activity.importBookmarks()}
                             if(c.domain.isNotEmpty())MenuRow(Icons.Outlined.BookmarkAdd,"加入書籤"){val count=store.bookmarkStore.add(active!!.url,active.title);c.revision++;c.notice=if(count>0)"已加入書籤的未分類資料夾"else"這個頁面已在書籤裡";c.sheet=""}
                             MenuRow(Icons.Outlined.History,"瀏覽紀錄"){c.sheet="history"}
                             MenuRow(Icons.Outlined.ManageSearch,"尋找頁面文字"){c.sheet="find"}
                             if(c.domain.isNotEmpty())MenuRow(Icons.Outlined.Computer,if(active?.desktop==true)"切換手機版網站"else"切換電腦版網站"){
                                 c.toggleDesktop();c.sheet=""
+                            }
+                            if(c.domain.isNotEmpty())MenuRow(Icons.Outlined.Shield,if(c.isException)"恢復套用天眼規則"else"暫時顯示原始網站",if(c.isException)"重新套用此網域的設定"else"暫停此網域的天眼設定"){
+                                c.sheet="";c.exception()
                             }
                             if(c.domain.isNotEmpty())MenuRow(Icons.Outlined.Visibility,"天眼設定"){c.sheet="eye"}
                             MenuRow(Icons.Outlined.Tune,"所有網域規則"){c.sheet="domains"}

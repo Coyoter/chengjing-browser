@@ -32,6 +32,7 @@ class BrowserTab(val id: Int, val web: SelectionWebView) {
     var canForward by mutableStateOf(false)
     var desktop by mutableStateOf(false)
     var documentScript: ScriptHandler? = null
+    var documentConfig: String? = null
     var blockedUrl by mutableStateOf("")
     var favoriteId by mutableStateOf<String?>(null)
     var favoriteRestore:Favorite?=null
@@ -68,13 +69,26 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     val isSupported: Boolean get() = WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER) && WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)
 
     fun config(): String = JSONObject().put("sites", JSONArray(store.all().map { it.json() })).put("exceptions", JSONArray(exceptions)).toString()
-    fun refreshScripts() {
+    fun refreshScripts(targetTabs:List<BrowserTab> = tabs.toList(),applyToPage:Boolean=true) {
+        val configuration=config()
+        val documentStart=WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)
+        val source=if(documentStart)script.replace("__CJ_CONFIG__",configuration)else ""
         tabs.forEach { tab ->
-            tab.documentScript?.remove()
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)) tab.documentScript = WebViewCompat.addDocumentStartJavaScript(tab.web, script.replace("__CJ_CONFIG__", config()), setOf("*"))
-            if (tab.url.isNotEmpty()) tab.web.evaluateJavascript("window.__chengjingEye?.configure(${config()})", null)
+            if(documentStart && tab.documentConfig!=configuration){
+                tab.documentScript?.remove()
+                tab.documentScript=WebViewCompat.addDocumentStartJavaScript(tab.web,source,setOf("*"))
+                tab.documentConfig=configuration
+            }
+            if(applyToPage && tab in targetTabs && tab.url.isNotEmpty())tab.web.evaluateJavascript("window.__chengjingEye?.configure($configuration)",null)
         }
         revision++
+    }
+    private fun reloadSite(domain:String){
+        val affected=tabs.filter{Domains.scope(it.url)==domain}
+        // Retire the old document instead of reconfiguring its DOM immediately before unloading it.
+        affected.forEach{it.web.selecting=false;it.refreshContainer.isEnabled=true;it.refreshContainer.isRefreshing=false;it.web.stopLoading();it.error=""}
+        refreshScripts(affected,applyToPage=false)
+        affected.forEach{it.pendingUrl=it.url;it.web.reload()}
     }
     fun persistTabs() = store.saveTabs(tabs.map { it.url },tabs.map{it.favoriteId})
     fun currentUserAgent(desktop:Boolean=false):String{
@@ -283,7 +297,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             } else false
         }
         tabs.add(tab);activeId=tab.id
-        refreshScripts()
+        refreshScripts(listOf(tab),applyToPage=false)
         if(url.isNotEmpty()){tab.pendingUrl=url;web.loadUrl(url)}
         persistTabs();return tab
     }
@@ -325,7 +339,12 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         active?.refreshContainer?.isEnabled=false;active?.refreshContainer?.isRefreshing=false
         active?.web?.evaluateJavascript("window.__chengjingEye?.enable(true)",null)
     }
-    fun stopEye(){active?.web?.selecting=false;active?.refreshContainer?.isEnabled=true;eye=false;selection=null;draft=null;dirty=false;active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config()})",null)}
+    fun stopEye(applyToPage:Boolean=true){
+        val wasSelecting=eye || active?.web?.selecting==true || draft!=null
+        active?.web?.selecting=false;active?.refreshContainer?.isEnabled=true
+        eye=false;selection=null;draft=null;dirty=false
+        if(wasSelecting && applyToPage)active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config()})",null)
+    }
     fun parentSelection(){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.parent()",null)}
     fun chooseSelector(selector:String){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.select(${JSONObject.quote(selector)})",null)}
     suspend fun js(expression:String):String = suspendCancellableCoroutine { c ->
@@ -353,13 +372,18 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun undoDraft(){draft?.let{previewSite(it.copy(rules=it.rules.dropLast(1)))};selection=null;sheet=""}
     fun saveDraft(){val d=draft?:return;saveSite(d);stopEye();notice="已儲存，將套用 ${d.domain} 及其子網域"}
-    fun saveSite(site:SiteRules,reload:Boolean=false){store.save(site);refreshScripts();if(reload)tabs.filter{Domains.scope(it.url)==site.domain}.forEach{it.web.reload()};revision++}
+    fun saveSite(site:SiteRules,reload:Boolean=false){
+        store.save(site)
+        if(reload)reloadSite(site.domain)else refreshScripts(tabs.filter{Domains.scope(it.url)==site.domain})
+        revision++
+    }
     fun exception(){
         val d=domain;if(d.isEmpty())return
-        stopEye();if(d in exceptions)exceptions.remove(d)else exceptions.add(d)
-        refreshScripts();tabs.filter{Domains.scope(it.url)==d}.forEach{it.web.reload()}
+        stopEye(applyToPage=false)
+        if(d in exceptions)exceptions.remove(d)else exceptions.add(d)
+        reloadSite(d)
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
-    fun restoreRules(domain:String){if(store.undo(domain)){refreshScripts();tabs.filter{Domains.scope(it.url)==domain}.forEach{it.web.reload()};notice="已復原上一次儲存"}}
+    fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice="已復原上一次儲存"}}
     fun destroy(){fileCallback?.onReceiveValue(null);tabs.forEach{(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear()}
 }

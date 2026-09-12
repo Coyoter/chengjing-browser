@@ -3,7 +3,7 @@
 </style></head><body>
 <header><strong>澄境・天眼練習場</strong><span>本機示範網頁</span></header>
 <div id="sponsor-banner" class="sponsor-banner">一般資訊橫幅 · 你可以選擇保留</div>
-<main><small>慢一點，看清楚</small><h1>一段不被打斷的閱讀。</h1><p>這是一個只存在手機裡的練習網頁。下方的浮動元件，正在擋住一部分內容。</p><p>點工具列的「天眼」，開啟後點選元件。若只選到文字，按「選取外面一層」，直到框住整塊元件，再預覽移除。</p><blockquote>網頁的主角，應該是你想看的內容。</blockquote><article><h2>移除之後呢？</h2><p>儲存規則，再前往第二頁。雖然元件內容不同，只要結構相同，它依然不會打擾你。</p><p><a id="next-page" href="/second">前往同網域第二頁 →</a></p><p>也可以點工具列上的盾牌，暫時看回原始網站。所有規則都還在，不必重新設定。</p></article><div id="dynamic-slot"></div></main>
+<main><small>慢一點，看清楚</small><h1>一段不被打斷的閱讀。</h1><p>這是一個只存在手機裡的練習網頁。下方的浮動元件，正在擋住一部分內容。</p><p>點工具列的「天眼」，開啟後點選元件。若只選到文字，按「選取外面一層」，直到框住整塊元件，再預覽移除。</p><blockquote>網頁的主角，應該是你想看的內容。</blockquote><article><h2>移除之後呢？</h2><p>儲存規則，再前往第二頁。雖然元件內容不同，只要結構相同，它依然不會打擾你。</p><p><a id="next-page" href="/second">前往同網域第二頁 →</a></p><p>也可以點選單中的「暫時顯示原始網站」，暫時看回原始網站。所有規則都還在，不必重新設定。</p></article><div id="dynamic-slot"></div></main>
 <div id="hidden-campaign" class="hidden-campaign">原本隱藏的提示容器</div>
 <aside id="sponsor-overlay" class="sponsor-overlay"><button id="close-ad" aria-label="關閉元件" onclick="this.closest('aside').remove()">×</button><small style="color:#afd3c2">示範浮動元件</small><p id="ad-copy">這個浮動區塊正在擋住閱讀內容。</p><small style="color:#afd3c2">試著用天眼，移除整個綠色區塊。</small></aside>
 <script>if(location.pathname.includes('second')){document.querySelector('h1').textContent='新的內容，一樣清爽。';document.querySelector('#ad-copy').textContent='換了內容的元件，仍然是相同結構。';document.title='第二頁 · 天眼練習場';}setTimeout(()=>{let n=document.createElement('div');n.id='late-promo';n.style.cssText='padding:20px;background:#e6eee8;border-radius:12px;margin:20px 0';n.textContent='延後載入的提示元件，也能被天眼選取。';document.querySelector('#dynamic-slot').append(n)},2000);</script>

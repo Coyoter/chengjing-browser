@@ -27,7 +27,9 @@ class BookmarkImportJourneyTest {
     private fun openImport(){
         ui.runOnIdle{c.sheet=""}
         ui.onNodeWithContentDescription("瀏覽器選單").performClick()
-        ui.onNodeWithText("匯入 Chrome 書籤",substring=false).performScrollTo().performClick()
+        ui.onNodeWithText("匯入 Chrome 書籤",substring=false).assertDoesNotExist()
+        ui.onNodeWithText("書籤",substring=false).performScrollTo().performClick()
+        ui.onNodeWithContentDescription("匯入 Chrome 書籤").performClick()
         assertTrue(device.wait(Until.hasObject(By.pkg("com.google.android.documentsui")),10000))
     }
     private fun pick(filename:String){

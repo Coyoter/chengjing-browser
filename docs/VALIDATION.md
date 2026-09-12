@@ -124,3 +124,18 @@
 - 從 Android PackageManager 取得已安裝 APK 圖示並以系統 Drawable 繪製；已查看實際圖像 `design/icon-adaptive-preview.png`，確認圓環四周明顯留白及中心位置。不同手機可使用不同外框遮罩；未操作使用者實體手機。
 - 正式 APK 使用原本簽章與套件 `tw.techtarian.browser`，versionCode 7／0.1.6；模擬器覆蓋安裝與版本讀回成功。
 - 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.6-Android.apk`，來源／目的地 SHA-256 同為 `14fdd25204e5c020febcdfb24a5c13c692daa29f0df8a049e8256072254b3843`（`qa/icon-spacing-copy.json`）。僅確認指定本機資料夾複製，未確認 Google Drive 雲端上傳。
+
+
+## 0.1.7 快速收藏、匯入入口與例外切換
+
+- 天眼右側改為快速收藏／更新收藏進度，維持原觸控位置；例外切換移到主選單。Chrome 書籤匯入僅保留在書籤頁右上角。
+- 確認的缺陷：原先 `exception()` 先 `stopEye()`，接著對所有分頁 `configure()`，最後才重載同網域。即使沒有正在選取，舊文件仍在卸載前重套兩次；不相關網域的現有頁面也收到套用要求。
+- 以本機延遲資源網頁記錄卸載前的 configure 次數，原始 0.1.6 controller 在同一測試下讀到 2，預期不重寫待卸載文件的檢查失敗（`qa/exception-baseline.log`）。這是重複改寫缺陷的重現，並非宣稱已重現使用者實體手機的整個瀏覽器失聯。
+- 修正分離「下一份文件的設定」與「目前頁面的套用」；例外切換先結束原生選取、停止舊載入與刷新指示，僅重新載入同網域。設定沒變時不重新註冊文件腳本；未進入天眼時一般導覽不再向舊文件多送一次停用與套用。其他網域現有 DOM 不受此次切換影響，但後續導航仍會使用最新設定。
+- 官方 `addDocumentStartJavaScript` 說明腳本在後續載入的新文件開始時執行，且執行期間會阻擋該文件載入；因此不能把更新未來文件設定與重新操作即將卸載的 DOM 當成同一件事。[Android 官方文件](https://developer.android.com/reference/androidx/webkit/WebViewCompat#addDocumentStartJavaScript(android.webkit.WebView,java.lang.String,java.util.Set))。
+- `ExceptionRecoveryTest` 使用隔離 QA 套件與僅測試期間存在的本機 HTTP 伺服器。修正版兩組測試通過（`qa/exception-fixed.log`）：六次例外切換、選取中快速切換、連結、網址輸入、新分頁、公開 Example Domain 與真實 Google 搜尋；快速收藏新增及更新同一筆、書籤匯入入口位置也通過。後續回歸另加入同網域背景分頁的同步切換，並確認其他網域的頁面不重載、不重套。
+- 已查看 `qa/exception-screenshots/02-quick-favorite.png`，星號位於天眼右側；測試確認再次點擊只更新原收藏的閱讀位置。實體手機的原失聯症狀仍待使用者更新後確認，不能把模擬器通過視為該手機已完成驗收。
+
+最終 API 36／release 隔離套件共 8 組操作回歸全部通過（`qa/exception-final-regression.log`）：例外與同網域／其他網域分頁、快速收藏、Chrome 真實 HTML 檔案匯入、原有選取／動態元件與自訂程式，以及上下網址列的下拉刷新。
+
+正式 0.1.7 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 8。已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.7-Android.apk`，來源與目的地 SHA-256 同為 `d57b0839b00b866c4df8950e988813427e8d51e627400e9e4e6367795872a65b`（`qa/v017-copy-verification.json`）。只確認本機資料夾複製完成，未確認 Google Drive 雲端上傳。
