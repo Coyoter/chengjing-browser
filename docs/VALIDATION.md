@@ -16,7 +16,7 @@
 
 ## 未完成／未驗證
 
-- Google 專案與 Drive API 已設定，但政策同意待使用者回覆，Android OAuth 客戶端與真人帳戶授權、真實 Drive 跨裝置同步尚未完成。
+- Google 已完成原生帳戶授權、真實 Drive 讀回與兩份邏輯裝置快照合併；尚未使用兩支實體 Android 手機驗證跨機同步。
 - OpenRouter 付費模型的真實 AI 推論尚未呼叫；沒有使用者提供的 API Key。已通過的是清單連線、加密與規則處理，不是模型推論。
 - Chrome HTML 解析與匯入結果已通過；Android 系統檔案挑選器的手動選檔尚未實機驗證。
 - 跨網域 iframe 整塊選取已實作，尚未完成 release APK 的專門操作測試；封閉 Shadow DOM／Canvas 內部不可逐一選取。
@@ -32,3 +32,20 @@
 - `qa/release-build-final.log`：安裝包建置。
 
 正式版最後另加入 `singleTask`，讓外部連結交給既有瀏覽器而非開啟重複的 Activity；該 Manifest 修改後重新建置、驗證簽章與安裝版本，沒有把它冒稱成前一輪 UI 測試的內容。
+
+
+## 0.1.1 Google 真實同步驗證
+
+2026-09-12 18:55–18:56，正式簽章的 0.1.1 release APK，Android API 36 模擬器，Google 帳戶 `coyoter@coyoter.com`。
+
+- 使用者明確同意 Google API 資料政策後，完成 Google 品牌、Android OAuth 客戶端、自用測試名單與唯一 `drive.appdata` 範圍設定，均經 Console 寫入讀回。
+- 原生 Google 帳戶選擇與同意畫面成功，沒有嵌入或輸出 access token。
+- `GoogleDriveLiveTest` 通過：原生 UI 授權、首次同步、新增隔離測試書籤後自動上傳並讀回、第二份獨立裝置快照寫入真實 Drive 後由原生 App 合併、雙方的測試書籤刪除並同步，以及 Activity 重建後靜默授權與 Drive 回讀。
+- 第二個裝置採不同 device ID、不同 Drive 檔案的邏輯裝置，使用正式 `BookmarkDrive` 網路程式，並非第二支實體手機。不將這項結果描述為實體雙機測試。
+- 測試開始與結束的可見書籤 ID 集合相同；測試只操作自己建立的兩筆書籤。刪除紀錄留在 appDataFolder，維持正常防復活行為。
+- `qa/google-live-result.log`：真實測試通過，69.896 秒。
+- `qa/google-live-evidence.log`：四段實際成功事件，不含 token。
+- `qa/google-live-screenshots/`：連結、合併兩筆測試書籤、重新開啟後完成同步。
+- 18 個本機單元測試通過，含新增的有上限資料讀取測試；將 API 33 的 `InputStream.readNBytes` 改成適用 Android 9+ 的讀取方式。API 36 上的真實 Drive 網路驗證亦使用此新方式。
+- 同步將帳戶識別在合併資料前綁定，防止上傳中斷後錯把另一個帳戶的資料混入；等待 Google 同意畫面時不會重複發起授權。
+- `GoogleDriveLiveTest` / `GoogleSetupProbe` 後續預設略過，只能透過 `liveGoogle=true` / `probeGoogle=true` 明確啟用，避免一般測試觸碰真實 Google 資料。

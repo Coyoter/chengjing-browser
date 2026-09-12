@@ -29,7 +29,7 @@ class BookmarkDrive(private val token:String){
             check(r.isSuccessful){when(r.code){401,403->"Google 授權已過期或尚未完成，請重新連結";429->"Google Drive 暫時限制請求，請稍後重試";else->"書籤同步未完成（${r.code}），本機資料已保留"}}
             val content=r.body?:error("Google Drive 沒有回傳資料")
             require(content.contentLength()<=12_000_000){"雲端資料超過大小限制"}
-            val bytes=content.byteStream().readNBytes(12_000_001);require(bytes.size<=12_000_000){"雲端資料過大"};return String(bytes,Charsets.UTF_8)
+            val bytes=content.byteStream().readBounded(12_000_001);require(bytes.size<=12_000_000){"雲端資料過大"};return String(bytes,Charsets.UTF_8)
         }
     }
     fun account():Pair<String,String>{
@@ -75,7 +75,7 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
     fun changed(){activity.controller.revision++;if(connected){pending?.cancel();pending=tasks.launch{delay(1400);authorize(false)}}}
     fun resume(){if(connected&&!busy)authorize(false)}
     fun authorize(interactive:Boolean=true){
-        if(authorizing||busy)return
+        if(authorizing||busy||consentEpoch!=null)return
         val version=epoch;authorizing=true;busy=true;status="正在連結 Google…"
         val request=AuthorizationRequest.builder().setRequestedScopes(listOf(Scope(SCOPE))).build()
         Identity.getAuthorizationClient(activity).authorize(request).addOnSuccessListener{result->
@@ -111,6 +111,8 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
                     val files=withContext(Dispatchers.IO){drive.files()}
                     val remote=withContext(Dispatchers.IO){BookmarkFormat.merge(*files.map{drive.read(it.getString("id"))}.toTypedArray())}
                     check(version==epoch){"連線已取消"}
+                    // Bind before merging: an upload failure must never let another account inherit remote data.
+                    store.accountId=id;store.accountLabel=label
                     // Re-read local records after network awaits: edits made during sync are preserved.
                     store.mergeRemote(remote)
                     val upload=store.all()

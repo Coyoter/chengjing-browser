@@ -1,0 +1,9 @@
+{
+  "project": "chengjing-browser-private",
+  "package": "tw.techtarian.browser",
+  "releaseClientId": "782775870942-5vhh7eo398ultdnk3tcqcc6c4eaecol9.apps.googleusercontent.com",
+  "releaseCertificateSha1": "4B:60:AD:7B:7A:D1:00:61:27:FA:28:CE:7D:EC:DA:2D:69:D3:36:97",
+  "scope": "https://www.googleapis.com/auth/drive.appdata",
+  "audience": "external-testing",
+  "testUser": "coyoter@coyoter.com"
+}

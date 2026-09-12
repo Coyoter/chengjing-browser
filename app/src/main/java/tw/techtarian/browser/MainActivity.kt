@@ -47,7 +47,7 @@ class MainActivity:ComponentActivity(){
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
             val result=runCatching{
-                val data=contentResolver.openInputStream(uri)?.use{it.readNBytes(8_000_001)}?:error("無法開啟書籤檔案")
+                val data=contentResolver.openInputStream(uri)?.use{it.readBounded(8_000_001)}?:error("無法開啟書籤檔案")
                 require(data.size<=8_000_000){"書籤檔案超過 8 MB，請分批匯入"}
                 val rows=BookmarkFormat.parseHtml(String(data,Charsets.UTF_8));require(rows.isNotEmpty()){ "檔案中找不到 HTTP / HTTPS 書籤" };rows
             }
@@ -174,7 +174,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                             MenuRow(Icons.Outlined.Settings,"外觀與 AI 設定"){c.sheet="settings"}
                             MenuRow(Icons.Outlined.Science,"天眼練習場"){c.navigate("https://practice.chengjing.invalid/")}
                             if(active?.blockedUrl?.isNotEmpty()==true)MenuRow(Icons.Outlined.OpenInNew,"查看被攔下的跳轉"){c.sheet="blocked"}
-                            Text("0.1.0 · Android 預覽版",fontSize=12.sp,color=cs.onSurfaceVariant)
+                            Text("${BuildConfig.VERSION_NAME} · Android 自用版",fontSize=12.sp,color=cs.onSurfaceVariant)
                         }
                         "tabs"->{SheetTitle("分頁","${c.tabs.size} 個開啟中的頁面")
                             c.tabs.toList().forEach{tab->Row(verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f).clip(RoundedCornerShape(12.dp)).clickable{c.switchTab(tab.id)}.padding(vertical=12.dp)){Text(tab.title,maxLines=1,overflow=TextOverflow.Ellipsis,fontWeight=if(tab.id==c.activeId)FontWeight.Bold else FontWeight.Normal);Text(Domains.scope(tab.url).ifEmpty{"澄境首頁"},fontSize=12.sp,color=cs.onSurfaceVariant)};Tool(Icons.Outlined.Close,"關閉 ${tab.title}"){c.closeTab(tab.id)}}}

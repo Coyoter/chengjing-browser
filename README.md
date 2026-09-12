@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-1. 安裝 `release/ChengJing-Browser-0.1.0-Android.apk`，Android 9 或以上。
+1. 安裝 `release/ChengJing-Browser-0.1.1-Android.apk`，Android 9 或以上。
 2. 開啟網站，按底部「天眼」→「開啟天眼・選取元件」。
 3. 點中元件。若只選到文字或小叉叉，按「選取外面一層」。
 4. 按「預覽移除」，確認文章仍正常後按頂部「儲存」。按 × 會取消未儲存的預覽。
@@ -21,7 +21,7 @@
 - 可按網域開啟跳轉／彈窗防護，另外支援自訂 CSS、JavaScript 與恢復捲動。
 - OpenRouter 金鑰使用 Android Keystore AES-GCM 加密。預設 DeepSeek、Gemini、GPT，支援更新模型清單及手動指定。
 - AI 僅在使用者要求時取得結構摘要，回傳有範圍限制的元件規則；先驗證、預覽再儲存。AI 不會直接寫任意 JavaScript。
-- Chrome 書籤 HTML 匯入與匯出、資料夾、搜尋、編輯、去重；Google Drive 書籤同步程式已接入。
+- Chrome 書籤 HTML 匯入與匯出、資料夾、搜尋、編輯、去重；Google Drive 書籤同步已接入並完成真實雲端讀回。
 
 ## 目前限制
 
@@ -31,7 +31,7 @@
 - 元件的 ID／class／層級若真的改變，規則可能需要重選；位置型選擇器在兄弟節點重新排序時可能不準。不能保證所有網站永不失效。
 - 隱藏元件不等於停止該網站所有程式或資源下載。跳轉防護是另一個網域選項，不是萬能的惡意網站沙箱；伺服器正常轉址仍保留。
 - 自訂 JavaScript 在每次文件載入後執行；網站 CSP 可能限制它。例外會停止注入並重新載入，無法撤銷程式之前已送出的網路操作。
-- **Google Cloud 專案與 Drive API 已建立；OAuth 設定與真實帳戶同步尚未完成**，請見 [Google 設定](docs/GOOGLE-SETUP.md)。不會把授權畫面或模擬資料測試當作真實同步通過。
+- **Google 登入與真實 Drive 書籤同步已驗證**：目前自用測試名單為 `coyoter@coyoter.com`。已驗證原生授權、真實上傳／讀回、第二份裝置快照合併、刪除與 App 重開後再次同步。第二裝置是同一模擬器內獨立的邏輯裝置快照，尚未使用兩支實體手機。詳見 [Google 設定](docs/GOOGLE-SETUP.md)。
 - **OpenRouter 真實模型呼叫未驗證**：尚未輸入自用 API Key。已驗證規則解析與危險／無效輸出拒絕流程。
 
 Chrome 書籤匯入採 [Chrome 官方 HTML 匯出](https://support.google.com/chrome/answer/96816)；亦可使用 [Google 匯出資料](https://support.google.com/chrome/answer/10248834) 中的書籤 HTML。Google Drive 只申請 [drive.appdata](https://developers.google.com/workspace/drive/api/guides/appdata)。
