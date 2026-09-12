@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -108,21 +109,15 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         Surface(Modifier.fillMaxSize(),color=cs.background){
             Box(Modifier.fillMaxSize().safeDrawingPadding().imePadding()){
                 Column(Modifier.fillMaxSize()){
-                    Row(Modifier.fillMaxWidth().padding(horizontal=8.dp,vertical=6.dp),verticalAlignment=Alignment.CenterVertically){
-                        Surface(Modifier.weight(1f),shape=RoundedCornerShape(26.dp),color=cs.surface){
-                            Row(verticalAlignment=Alignment.CenterVertically){
-                                Tool(if(active?.url?.startsWith("https:")==true)Icons.Outlined.Lock else if(active?.url.isNullOrEmpty())Icons.Outlined.Search else Icons.Outlined.WarningAmber,"網站資訊"){
-                                    c.notice=if(active?.url?.startsWith("https:")==true)"HTTPS 加密連線 · ${c.domain}"else if(c.domain.isEmpty())"輸入網址或搜尋關鍵字"else"HTTP 連線未加密 · ${c.domain}"
-                                }
-                                TextField(value=address,onValueChange={address=it;editingAddress=true},modifier=Modifier.weight(1f),singleLine=true,placeholder={Text("搜尋或輸入網址",fontSize=14.sp)},textStyle=LocalTextStyle.current.copy(fontSize=14.sp),colors=TextFieldDefaults.colors(focusedContainerColor=Color.Transparent,unfocusedContainerColor=Color.Transparent,focusedIndicatorColor=Color.Transparent,unfocusedIndicatorColor=Color.Transparent),keyboardOptions=KeyboardOptions(imeAction=ImeAction.Go),keyboardActions=KeyboardActions(onGo={c.navigate(address);editingAddress=false;focus.clearFocus()}))
-                                if(editingAddress)Tool(Icons.AutoMirrored.Outlined.ArrowForward,"前往"){c.navigate(address);editingAddress=false;focus.clearFocus()}
-                                else Tool(if((active?.progress?:100)<100)Icons.Outlined.Close else Icons.Outlined.Refresh,if((active?.progress?:100)<100)"停止載入"else"重新整理"){if((active?.progress?:100)<100)active?.web?.stopLoading()else c.reload()}
-                            }
-                        }
-                        Box(Modifier.size(48.dp).clickable{c.sheet="tabs"},contentAlignment=Alignment.Center){
-                            Box(Modifier.size(24.dp).border(1.7.dp,cs.onSurface,RoundedCornerShape(6.dp)),contentAlignment=Alignment.Center){Text("${c.tabs.size}",fontSize=12.sp,fontWeight=FontWeight.SemiBold)}
-                        }
-                    }
+                    BrowserAddressBar(
+                        address=address,onAddress={address=it},editing=editingAddress,onFocus={editingAddress=it},
+                        loading=(active?.progress?:100)<100,secure=active?.url?.startsWith("https:")==true,
+                        blank=active?.url.isNullOrEmpty(),tabs=c.tabs.size,
+                        onGo={c.navigate(address);editingAddress=false;focus.clearFocus()},
+                        onSecurity={c.notice=if(active?.url?.startsWith("https:")==true)"HTTPS 加密連線 · ${c.domain}"else if(c.domain.isEmpty())"輸入網址或搜尋關鍵字"else"HTTP 連線未加密 · ${c.domain}"},
+                        onReload={if((active?.progress?:100)<100)active?.web?.stopLoading()else c.reload()},
+                        onTabs={focus.clearFocus();c.sheet="tabs"},
+                    )
                     if((active?.progress?:100)<100)LinearProgressIndicator(progress={(active?.progress?:0)/100f},modifier=Modifier.fillMaxWidth().height(2.dp),trackColor=Color.Transparent)
                     if(c.eye) {
                         Row(Modifier.fillMaxWidth().background(cs.primaryContainer).padding(horizontal=12.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
@@ -143,7 +138,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         Row(Modifier.fillMaxWidth().height(64.dp).padding(horizontal=8.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically){
                             Tool(Icons.AutoMirrored.Outlined.ArrowBack,"上一頁",active?.canBack==true){c.stopEye();active?.web?.goBack()}
                             Tool(Icons.AutoMirrored.Outlined.ArrowForward,"下一頁",active?.canForward==true){c.stopEye();active?.web?.goForward()}
-                            FilledTonalButton(onClick={if(c.eye)c.sheet="eye"else if(c.domain.isNotEmpty())c.sheet="eye"else c.notice="先開啟網站，再使用天眼"},contentPadding=PaddingValues(horizontal=18.dp,vertical=10.dp)){
+                            FilledTonalButton(onClick={focus.clearFocus();c.beginEye()},contentPadding=PaddingValues(horizontal=18.dp,vertical=10.dp)){
                                 Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text("天眼",fontWeight=FontWeight.SemiBold)
                                 if(c.site.rules.isNotEmpty()){Spacer(Modifier.width(6.dp));Text("${c.site.rules.size}",fontSize=12.sp)}
                             }
@@ -169,6 +164,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                             if(c.domain.isNotEmpty())MenuRow(Icons.Outlined.Computer,if(active?.desktop==true)"切換手機版網站"else"切換電腦版網站"){
                                 active?.let{it.desktop=!it.desktop;it.web.settings.userAgentString=if(it.desktop)it.web.settings.userAgentString.replace("; wv","").replace(" Mobile","").replace("Android", "X11; Linux x86_64")else android.webkit.WebSettings.getDefaultUserAgent(c.context);it.web.reload()};c.sheet=""
                             }
+                            if(c.domain.isNotEmpty())MenuRow(Icons.Outlined.Visibility,"天眼設定"){c.sheet="eye"}
                             MenuRow(Icons.Outlined.Tune,"所有網域規則"){c.sheet="domains"}
                             MenuRow(Icons.Outlined.CloudSync,"Google 書籤同步"){c.sheet="sync"}
                             MenuRow(Icons.Outlined.Settings,"外觀與 AI 設定"){c.sheet="settings"}
@@ -214,7 +210,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
 @Composable private fun Home(c:BrowserController,store:BrowserStore){
     val cs=MaterialTheme.colorScheme
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal=28.dp,vertical=38.dp)){
-        Row(verticalAlignment=Alignment.CenterVertically){Surface(shape=RoundedCornerShape(18.dp),color=cs.primary,modifier=Modifier.size(56.dp)){Box(contentAlignment=Alignment.Center){Icon(Icons.Outlined.Visibility,null,Modifier.size(31.dp),tint=cs.onPrimary)}};Spacer(Modifier.width(12.dp));Column{Text("澄境瀏覽器",fontWeight=FontWeight.SemiBold,fontSize=17.sp);Text("CHENGJING BROWSER",fontSize=9.sp,letterSpacing=1.6.sp,color=cs.onSurfaceVariant)}}
+        Row(verticalAlignment=Alignment.CenterVertically){Image(painterResource(R.drawable.ic_launcher),"澄境瀏覽器",modifier=Modifier.size(56.dp));Spacer(Modifier.width(12.dp));Column{Text("澄境瀏覽器",fontWeight=FontWeight.SemiBold,fontSize=17.sp);Text("CHENGJING BROWSER",fontSize=9.sp,letterSpacing=1.6.sp,color=cs.onSurfaceVariant)}}
         Spacer(Modifier.height(44.dp))
         Text("把目光，\n留給喜歡的事。",fontSize=35.sp,lineHeight=47.sp,fontWeight=FontWeight.Light,letterSpacing=(-1).sp)
         Spacer(Modifier.height(18.dp))

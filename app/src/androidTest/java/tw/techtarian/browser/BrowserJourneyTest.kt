@@ -26,7 +26,7 @@ class BrowserJourneyTest{
     @Test fun selectionPersistenceException(){
         main{c.newTab()};shot("01-home-light")
         ui.onNodeWithText("進入練習場").performScrollTo().performClick();ready();shot("02-practice-before")
-        ui.onNodeWithText("天眼",useUnmergedTree=true).performClick();ui.onNodeWithText("開啟天眼・選取元件").performClick();until{eval("window.__chengjingEye.status().enabled")=="true"};shot("03-outlines")
+        ui.onNodeWithText("天眼",useUnmergedTree=true).performClick();until{eval("window.__chengjingEye.status().enabled")=="true"};assertEquals("",c.sheet);shot("03-outlines")
         tap("#sponsor-overlay");until{c.selection!=null}
         while(c.selection!!.selector!="#sponsor-overlay"){val old=c.selection!!.selector;ui.onNodeWithText("選取外面一層").performScrollTo().performClick();until{c.selection?.selector!=old}}
         shot("04-selected")

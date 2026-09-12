@@ -85,6 +85,18 @@
     if(!el || own.has(el) || el===document.body || el===document.documentElement) return;
     selected=el; reportSelection();
   }
+  function pickAt(x,y) {
+    if(!enabled)return;
+    const viewport=window.visualViewport;
+    const px=(viewport?.offsetLeft||0)+x*(viewport?.width||innerWidth);
+    const py=(viewport?.offsetTop||0)+y*(viewport?.height||innerHeight);
+    // Hide our own visual layer for hit testing. This dispatches NO mouse/touch events.
+    if(overlay)overlay.style.display='none';
+    let element=document.elementFromPoint(px,py);
+    while(element?.shadowRoot){const child=element.shadowRoot.elementFromPoint(px,py);if(!child||child===element)break;element=child;}
+    if(overlay)overlay.style.display='';
+    select(element);
+  }
   function intercept(e) {
     if(!enabled || e.composedPath().some(n=>own.has(n))) return;
     const el=e.composedPath().find(n=>n instanceof Element && !own.has(n));
@@ -155,7 +167,7 @@
   }
   const api={
     configure(value){config=value;preview=null;apply();},
-    enable:setEnabled,
+    enable:setEnabled,pickAt,
     parent(){if(selected?.parentElement && selected.parentElement!==document.body)select(selected.parentElement);},
     select(s){try{select(query(s)[0]);}catch(_){}},
     inspect:safe,

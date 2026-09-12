@@ -20,7 +20,7 @@ import org.json.JSONObject
 import kotlin.coroutines.resume
 
 data class Selection(val selector: String, val label: String, val count: Int, val width: Int, val height: Int, val canParent: Boolean, val frame: Boolean)
-class BrowserTab(val id: Int, val web: WebView) {
+class BrowserTab(val id: Int, val web: SelectionWebView) {
     var url by mutableStateOf("")
     var title by mutableStateOf("新分頁")
     var progress by mutableIntStateOf(100)
@@ -71,7 +71,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun newTab(url: String = ""): BrowserTab? {
         if(tabs.size>=20){notice="目前最多可開啟 20 個分頁，請先關閉不用的分頁";return null}
         stopEye()
-        val web=WebView(context)
+        val web=SelectionWebView(context)
         val tab=BrowserTab(nextId++,web)
         web.setBackgroundColor(android.graphics.Color.WHITE)
         WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG)
@@ -105,10 +105,13 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         web.webViewClient=object:WebViewClient(){
             override fun shouldInterceptRequest(view:WebView,request:WebResourceRequest):WebResourceResponse? {
+                // POST navigations skip shouldOverrideUrlLoading. HTTP 204 keeps the existing document.
+                if(web.selecting && request.isForMainFrame) return WebResourceResponse("text/plain","UTF-8",204,"No Content",emptyMap(),java.io.ByteArrayInputStream(byteArrayOf()))
                 if(request.url.host=="practice.chengjing.invalid" && request.isForMainFrame) return WebResourceResponse("text/html","UTF-8",context.assets.open("practice.html"))
                 return null
             }
             override fun shouldOverrideUrlLoading(view:WebView, request:WebResourceRequest):Boolean {
+                if(web.selecting) return true
                 val u=request.url.toString()
                 if(request.url.scheme !in listOf("https","http")) {
                     if(request.isForMainFrame){notice="已阻止網站開啟其他 App";blockedCount++}
@@ -122,6 +125,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 return false
             }
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
+                if(web.selecting){view.stopLoading();return}
                 tab.url=url;tab.error="";tab.blockedUrl=""
                 if(activeId==tab.id){eye=false;selection=null;draft=null;dirty=false;if(sheet=="selection")sheet=""}
                 persistTabs()
@@ -133,6 +137,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config()),null)
             }
             override fun onReceivedError(view:WebView,request:WebResourceRequest,error:WebResourceError) {
+                if(web.selecting)return
                 if(request.isForMainFrame){tab.error="網頁暫時無法開啟，請確認網路或網址後重試。";tab.progress=100}
             }
             override fun onReceivedSslError(view:WebView,handler:SslErrorHandler,error:android.net.http.SslError){handler.cancel();tab.error="這個網站的安全憑證無效，已停止連線。"}
@@ -144,6 +149,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onProgressChanged(view:WebView,value:Int){tab.progress=value}
             override fun onReceivedTitle(view:WebView,title:String?){tab.title=title?.take(180)?:tab.url}
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {
+                if(web.selecting) return false
                 val scope=Domains.scope(tab.url)
                 if(!isUserGesture || (scope !in exceptions && store.get(scope).guard)) {blockedCount++;notice="已攔下新視窗；需要登入視窗時，可暫停此網域的跳轉防護";return false}
                 val child=newTab() ?: return false
@@ -152,6 +158,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onPermissionRequest(request:PermissionRequest){request.deny();notice="此版本尚未開放網站使用相機與麥克風"}
             override fun onGeolocationPermissionsShowPrompt(origin:String,callback:GeolocationPermissions.Callback){callback.invoke(origin,false,false);notice="此版本尚未開放網站定位"}
             override fun onShowFileChooser(webView:WebView,callback:ValueCallback<Array<Uri>>,params:FileChooserParams):Boolean {
+                if(web.selecting){callback.onReceiveValue(null);return true}
                 fileCallback?.onReceiveValue(null);fileCallback=callback
                 runCatching { chooseFiles?.invoke(params.createIntent()) ?: error("檔案選擇器不可用") }.onFailure {fileCallback?.onReceiveValue(null);fileCallback=null;notice="無法開啟檔案選擇器"};return true
             }
@@ -159,6 +166,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onHideCustomView(){exitFullscreen()}
         }
         web.setDownloadListener { url, userAgent, disposition, mime, _ ->
+            if(web.selecting)return@setDownloadListener
             if(!url.startsWith("https://")&&!url.startsWith("http://")){notice="此類型的下載尚未支援";return@setDownloadListener}
             val name=URLUtil.guessFileName(url,disposition,mime)
             android.app.AlertDialog.Builder(context).setTitle("下載檔案？").setMessage(name).setNegativeButton("取消",null).setPositiveButton("下載") { _,_->
@@ -201,10 +209,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(domain.isEmpty()){notice="先開啟一個網站，再使用天眼";return}
         if(isException){notice="目前正在顯示原始網站，請先結束例外";return}
         if(!isSupported){notice="請先在 Play 商店更新 Android System WebView，才能啟用完整天眼";return}
-        draft=site;dirty=false;eye=true;selection=null;sheet=""
+        if(!eye){draft=site;dirty=false}
+        eye=true;selection=null;sheet="";active?.web?.selecting=true
         active?.web?.evaluateJavascript("window.__chengjingEye?.enable(true)",null)
     }
-    fun stopEye(){eye=false;selection=null;draft=null;dirty=false;active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config()})",null)}
+    fun stopEye(){active?.web?.selecting=false;eye=false;selection=null;draft=null;dirty=false;active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config()})",null)}
     fun parentSelection(){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.parent()",null)}
     fun chooseSelector(selector:String){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.select(${JSONObject.quote(selector)})",null)}
     suspend fun js(expression:String):String = suspendCancellableCoroutine { c ->
