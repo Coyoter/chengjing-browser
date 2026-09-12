@@ -17,6 +17,7 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
@@ -32,17 +33,20 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable internal fun BrowserAddressBar(
-    address:String,onAddress:(String)->Unit,editing:Boolean,onFocus:(Boolean)->Unit,
+    address:TextFieldValue,onAddress:(TextFieldValue)->Unit,editing:Boolean,onFocus:(Boolean)->Unit,
     loading:Boolean,secure:Boolean,blank:Boolean,tabs:Int,certificateWarning:Boolean=false,
     onGo:()->Unit,onSecurity:()->Unit,onReload:()->Unit,onTabs:()->Unit,
 ){
     val colors=MaterialTheme.colorScheme
+    LaunchedEffect(editing){if(editing)onAddress(address.copy(selection=TextRange(0,address.text.length)))}
     Row(Modifier.fillMaxWidth().testTag("browser-topbar").padding(horizontal=8.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
         // Visual capsule is 44 dp. The centered controls retain a 48 dp touch target.
         Box(Modifier.weight(1f).height(48.dp),contentAlignment=Alignment.Center){
@@ -64,7 +68,7 @@ import androidx.compose.ui.unit.sp
                     keyboardOptions=KeyboardOptions(imeAction=ImeAction.Go),
                     keyboardActions=KeyboardActions(onGo={onGo()}),
                     decorationBox={inner->Box(Modifier.fillMaxSize(),contentAlignment=Alignment.CenterStart){
-                        if(address.isEmpty())Text("搜尋或輸入網址",color=colors.onSurfaceVariant,fontSize=14.sp,lineHeight=20.sp,
+                        if(address.text.isEmpty())Text("搜尋或輸入網址",color=colors.onSurfaceVariant,fontSize=14.sp,lineHeight=20.sp,
                             style=TextStyle(platformStyle=PlatformTextStyle(includeFontPadding=false)))
                         inner()
                     }},

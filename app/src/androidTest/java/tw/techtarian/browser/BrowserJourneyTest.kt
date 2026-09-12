@@ -53,7 +53,7 @@ class BrowserJourneyTest{
     @Test fun themesBookmarksAndPublicWebsite(){
         main{c.newTab();c.sheet="settings"};ui.onNodeWithText("深色",useUnmergedTree=true).performClick();shot("08-settings-dark");main{c.sheet=""};shot("09-home-dark")
         main{c.sheet="settings"};ui.onNodeWithText("淺色",useUnmergedTree=true).performClick()
-        val rows=BookmarkFormat.parseHtml("<DL><DT><H3>閱讀</H3><DL><DT><A HREF='https://example.com/'>測試書籤</A></DL></DL>");main{c.store.bookmarkStore.importRows(rows);c.sheet="bookmarks"};ui.onAllNodesWithText("測試書籤")[0].assertExists();shot("10-bookmarks")
+        val rows=BookmarkFormat.parseHtml("<DL><DT><H3>閱讀</H3><DL><DT><A HREF='https://example.com/'>測試書籤</A></DL></DL>");main{c.store.bookmarkStore.importRows(rows);c.sheet="bookmarks"};ui.onNode(hasText("閱讀",substring=false) and hasAnyAncestor(hasTestTag("library-screen"))).performClick();ui.onAllNodesWithText("測試書籤")[0].assertExists();shot("10-bookmarks")
         main{c.sheet="sync"};ui.onNodeWithText("使用 Google 帳戶連結").assertExists();shot("11-google-sync")
         reloadReady{c.sheet="";c.navigate("https://example.com/")};assertEquals("\"Example Domain\"",eval("document.querySelector('h1').textContent"));shot("12-public-website")
     }

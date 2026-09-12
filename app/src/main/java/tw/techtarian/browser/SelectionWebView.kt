@@ -8,6 +8,8 @@ import android.widget.OverScroller
 
 /** Picking is a browser gesture, never a click/touch delivered to a website or its iframes. */
 class SelectionWebView(context: Context) : WebView(context) {
+    var touchSequence=0L
+        private set
     @Volatile var selecting = false
         set(value) {
             if (field != value) pickerScroller.forceFinished(true)
@@ -41,6 +43,7 @@ class SelectionWebView(context: Context) : WebView(context) {
     }).apply { setIsLongpressEnabled(false); setOnDoubleTapListener(null) }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        if(event.actionMasked==MotionEvent.ACTION_DOWN)touchSequence++
         if (!selecting) return super.dispatchTouchEvent(event)
         pickerGestures.onTouchEvent(event)
         return true

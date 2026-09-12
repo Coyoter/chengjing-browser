@@ -77,6 +77,11 @@ class BookmarkStore(context:Context){
         val changes=if(existing.isEmpty())listOf(Bookmark(Bookmark.id(url,""),url,title,"",now))else existing.map{it.copy(updated=now,deleted=true)}
         replace(BookmarkFormat.merge(all(),changes));onChange?.invoke()
     }
+    @Synchronized fun add(url:String,title:String,folder:String=""):Int{
+        require(url.toHttpUrlOrNull()!=null)
+        val clean=folder.trim().take(2000)
+        return importRows(listOf(Bookmark(Bookmark.id(url,clean),url,title.ifBlank{url}.take(2000),clean,tick())))
+    }
     @Synchronized fun remove(id:String){replace(all().map{if(it.id==id)it.copy(deleted=true,updated=tick())else it});onChange?.invoke()}
     @Synchronized fun edit(id:String,title:String,folder:String){
         val entry=all().find{it.id==id}?:return;val now=tick();val newId=Bookmark.id(entry.url,folder.take(2000))

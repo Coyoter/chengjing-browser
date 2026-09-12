@@ -21,6 +21,7 @@ import kotlin.coroutines.resume
 
 data class Selection(val selector: String, val label: String, val count: Int, val width: Int, val height: Int, val canParent: Boolean, val frame: Boolean)
 class BrowserTab(val id: Int, val web: SelectionWebView) {
+    val refreshContainer = RefreshWebContainer(web.context, web)
     var url by mutableStateOf("")
     var title by mutableStateOf("新分頁")
     var progress by mutableIntStateOf(100)
@@ -32,9 +33,16 @@ class BrowserTab(val id: Int, val web: SelectionWebView) {
     var desktop by mutableStateOf(false)
     var documentScript: ScriptHandler? = null
     var blockedUrl by mutableStateOf("")
+    var favoriteId by mutableStateOf<String?>(null)
+    var favoriteRestore:Favorite?=null
+    var favoriteRestoreTouchSequence=0L
+    var blockedTotal by mutableIntStateOf(0)
+    var blockedUnread by mutableStateOf(false)
+    val blockedEvents=mutableStateListOf<BlockedEvent>()
 }
 
 class BrowserController(val context: Context, val store: BrowserStore) {
+    val favorites=FavoriteStore(context)
     val tabs = mutableStateListOf<BrowserTab>()
     var activeId by mutableIntStateOf(0)
     val active: BrowserTab? get() = tabs.find { it.id == activeId }
@@ -68,18 +76,59 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         revision++
     }
-    fun persistTabs() = store.saveTabs(tabs.map { it.url })
-    fun restoreTabs() { val saved=store.tabs(); if(saved.isEmpty())newTab() else saved.forEach { newTab(it) } }
+    fun persistTabs() = store.saveTabs(tabs.map { it.url },tabs.map{it.favoriteId})
+    fun currentUserAgent(desktop:Boolean=false):String{
+        val original=WebSettings.getDefaultUserAgent(context)
+        return when{
+            desktop->BrowserUserAgent.desktop(original)
+            store.userAgentMode=="webview"->original
+            store.userAgentMode=="custom"&&store.customUserAgent.isNotBlank()->store.customUserAgent
+            else->BrowserUserAgent.mobile(original)
+        }
+    }
+    fun setUserAgent(mode:String,custom:String){
+        require(mode in setOf("chrome","webview","custom"))
+        if(mode=="custom")require(custom.isNotBlank()&&custom.length<=1024&&custom.all{it.code in 32..126}){"請使用單行英文字母、數字與符號，最多 1,024 字"}
+        store.userAgentMode=mode;store.customUserAgent=custom.trim()
+        active?.desktop=false
+        tabs.forEach{it.web.settings.userAgentString=currentUserAgent(it.desktop)}
+        revision++;reload()
+    }
+    private fun recordBlocked(tab:BrowserTab,kind:String,url:String=""){
+        blockedCount++;tab.blockedTotal++;tab.blockedUnread=true
+        tab.blockedEvents.add(0,BlockedEvent(kind,url.take(4000)))
+        if(tab.blockedEvents.size>30)tab.blockedEvents.removeAt(tab.blockedEvents.lastIndex)
+    }
+    fun toggleDesktop(){
+        active?.let{tab->
+            tab.desktop=!tab.desktop
+            tab.web.settings.userAgentString=currentUserAgent(tab.desktop)
+            reload()
+        }
+    }
+    fun restoreTabs() {
+        val saved=store.tabs();val links=store.tabFavoriteLinks()
+        if(saved.isEmpty())newTab()else saved.forEachIndexed{i,url->
+            val link=links.getOrNull(i)?.takeIf{it.first==url}?.second?.let{favorites.get(it)}
+            newTab(url)?.favoriteId=link?.takeIf{Domains.scope(it.url)==Domains.scope(url)}?.id
+        }
+        persistTabs()
+    }
     @SuppressLint("SetJavaScriptEnabled")
     fun newTab(url: String = ""): BrowserTab? {
         if(tabs.size>=20){notice="目前最多可開啟 20 個分頁，請先關閉不用的分頁";return null}
         stopEye()
         val web=SelectionWebView(context)
         val tab=BrowserTab(nextId++,web)
+        tab.refreshContainer.setOnRefreshListener {
+            if (web.selecting || tab !in tabs) tab.refreshContainer.isRefreshing=false
+            else { tab.error=""; web.reload() }
+        }
         web.setBackgroundColor(android.graphics.Color.WHITE)
         WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG)
         web.settings.apply {
             javaScriptEnabled=true;domStorageEnabled=true;databaseEnabled=true
+            userAgentString=currentUserAgent()
             allowFileAccess=false;allowContentAccess=false
             mixedContentMode=WebSettings.MIXED_CONTENT_NEVER_ALLOW
             setSupportMultipleWindows(true);javaScriptCanOpenWindowsAutomatically=true
@@ -122,13 +171,13 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(web.selecting) return true
                 val u=request.url.toString()
                 if(request.url.scheme !in listOf("https","http")) {
-                    if(request.isForMainFrame){notice="已阻止網站開啟其他 App";blockedCount++}
+                    if(request.isForMainFrame)recordBlocked(tab,"外部 App 跳轉",u)
                     return true
                 }
                 if(!request.isForMainFrame)return false
                 val scope=Domains.scope(tab.url)
                 if(scope !in exceptions && store.get(scope).guard && !request.hasGesture() && !request.isRedirect && tab.url.isNotEmpty()) {
-                    tab.blockedUrl=u;blockedCount++;notice="已阻止一次未經點擊的跳轉";return true
+                    tab.blockedUrl=u;recordBlocked(tab,"自動跳轉",u);return true
                 }
                 tab.pendingUrl=u
                 return false
@@ -136,21 +185,39 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
                 if(web.selecting){view.stopLoading();return}
                 tab.url=url;tab.pendingUrl=url;tab.error="";tab.blockedUrl=""
+                tab.favoriteId?.let{id->
+                    if(favorites.get(id)?.let{Domains.scope(it.url)!=Domains.scope(url)}!=false){tab.favoriteId=null;tab.favoriteRestore=null}
+                }
                 tab.certificateWarning=CertificateWarnings.session.messageFor(url)
                 if(activeId==tab.id){eye=false;selection=null;draft=null;dirty=false;if(sheet=="selection")sheet=""}
                 persistTabs()
             }
             override fun onPageFinished(view:WebView,url:String) {
+                tab.refreshContainer.isRefreshing=false
                 tab.canBack=view.canGoBack();tab.canForward=view.canGoForward()
                 tab.pendingUrl=""
                 tab.certificateWarning=CertificateWarnings.session.messageFor(tab.url)
+                tab.favoriteRestore?.let{favorite->
+                    tab.favoriteRestore=null
+                    val touches=tab.favoriteRestoreTouchSequence
+                    var attempts=0
+                    val restore=object:Runnable{
+                        override fun run(){
+                            if(tab !in tabs || tab.favoriteId!=favorite.id || web.touchSequence!=touches || web.selecting)return
+                            if(!web.isAttachedToWindow||web.width==0||web.height==0){if(attempts++<30)mainHandler.postDelayed(this,100);return}
+                            val code="if(location.href===${JSONObject.quote(favorite.url)}){window.scrollTo(0,${favorite.scrollY})}"
+                            web.evaluateJavascript(code,null)
+                        }
+                    }
+                    mainHandler.postDelayed(restore,350)
+                }
                 if(tab.error.isEmpty()) store.visit(url,tab.title)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
                 if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config()),null)
             }
             override fun onReceivedError(view:WebView,request:WebResourceRequest,error:WebResourceError) {
                 if(web.selecting)return
-                if(request.isForMainFrame){tab.error=if(error.errorCode==ERROR_FAILED_SSL_HANDSHAKE)"這個網站無法完成加密連線，請稍後重試。"else"網頁暫時無法開啟，請確認網路或網址後重試。";tab.progress=100}
+                if(request.isForMainFrame){tab.refreshContainer.isRefreshing=false;tab.error=if(error.errorCode==ERROR_FAILED_SSL_HANDSHAKE)"這個網站無法完成加密連線，請稍後重試。"else"網頁暫時無法開啟，請確認網路或網址後重試。";tab.progress=100}
             }
             @SuppressLint("WebViewClientOnReceivedSslError")
             override fun onReceivedSslError(view:WebView,handler:SslErrorHandler,error:android.net.http.SslError){
@@ -171,6 +238,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 handler.proceed()
             }
             override fun onRenderProcessGone(view:WebView,detail:RenderProcessGoneDetail):Boolean {
+                tab.refreshContainer.isRefreshing=false
                 tab.error="網頁程序已停止，請關閉這個分頁後重新開啟。";return true
             }
         }
@@ -180,7 +248,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {
                 if(web.selecting) return false
                 val scope=Domains.scope(tab.url)
-                if(!isUserGesture || (scope !in exceptions && store.get(scope).guard)) {blockedCount++;notice="已攔下新視窗；需要登入視窗時，可暫停此網域的跳轉防護";return false}
+                if(!isUserGesture || (scope !in exceptions && store.get(scope).guard)) {recordBlocked(tab,"新視窗／彈窗");return false}
                 val child=newTab() ?: return false
                 (resultMsg.obj as WebView.WebViewTransport).webView=child.web;resultMsg.sendToTarget();return true
             }
@@ -220,16 +288,30 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         persistTabs();return tab
     }
     fun exitFullscreen(){fullScreenView=null;fullScreenCallback?.onCustomViewHidden();fullScreenCallback=null}
-    fun navigate(input:String) {
+    fun navigate(input:String,fromFavorite:Favorite?=null) {
         val url=Domains.address(input);if(url.isEmpty())return
-        stopEye();sheet="";active?.error="";active?.pendingUrl=url;active?.web?.loadUrl(url)
+        stopEye();sheet="";active?.error="";active?.favoriteId=fromFavorite?.id;active?.favoriteRestore=fromFavorite;active?.favoriteRestoreTouchSequence=active?.web?.touchSequence?:0L;active?.pendingUrl=url;active?.web?.loadUrl(url)
+    }
+    fun openFavorite(favorite:Favorite){navigate(favorite.url,favorite)}
+    fun removeFavorite(id:String){favorites.remove(id);tabs.filter{it.favoriteId==id}.forEach{it.favoriteId=null;it.favoriteRestore=null};revision++;persistTabs()}
+    suspend fun saveFavorite(forceNew:Boolean=false):Favorite?{
+        val tab=active?:return null
+        if(domain.isEmpty()){notice="先開啟網頁，再加入收藏";return null}
+        val expected=tab.web.url
+        val raw=js("JSON.stringify({url:location.href,title:document.title,y:scrollY,progress:scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)})")
+        if(activeId!=tab.id || tab.web.url!=expected){notice="頁面已變更，請再試一次";return null}
+        return runCatching{
+            val data=JSONObject(org.json.JSONTokener(raw).nextValue() as String)
+            val favorite=favorites.save(data.getString("url"),data.optString("title",tab.title),data.optDouble("y",0.0),data.optDouble("progress",0.0),tab.favoriteId,forceNew)
+            tab.favoriteId=favorite.id;revision++;persistTabs();favorite
+        }.onFailure{notice="收藏未完成：${it.localizedMessage}"}.getOrNull()
     }
     fun reload(){stopEye();active?.web?.reload()}
     fun switchTab(id:Int){stopEye();activeId=id;sheet=""}
     fun closeTab(id:Int){
         if(id==activeId)stopEye()
         val tab=tabs.find{it.id==id}?:return
-        (tab.web.parent as? ViewGroup)?.removeView(tab.web);tab.web.destroy();tabs.remove(tab)
+        (tab.refreshContainer.parent as? ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer.removeAllViews();tab.web.destroy();tabs.remove(tab)
         if(activeId==id)activeId=tabs.lastOrNull()?.id?:0
         if(tabs.isEmpty())newTab()
         persistTabs()
@@ -240,9 +322,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(!isSupported){notice="請先在 Play 商店更新 Android System WebView，才能啟用完整天眼";return}
         if(!eye){draft=site;dirty=false}
         eye=true;selection=null;sheet="";active?.web?.selecting=true
+        active?.refreshContainer?.isEnabled=false;active?.refreshContainer?.isRefreshing=false
         active?.web?.evaluateJavascript("window.__chengjingEye?.enable(true)",null)
     }
-    fun stopEye(){active?.web?.selecting=false;eye=false;selection=null;draft=null;dirty=false;active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config()})",null)}
+    fun stopEye(){active?.web?.selecting=false;active?.refreshContainer?.isEnabled=true;eye=false;selection=null;draft=null;dirty=false;active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config()})",null)}
     fun parentSelection(){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.parent()",null)}
     fun chooseSelector(selector:String){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.select(${JSONObject.quote(selector)})",null)}
     suspend fun js(expression:String):String = suspendCancellableCoroutine { c ->
@@ -278,5 +361,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
     fun restoreRules(domain:String){if(store.undo(domain)){refreshScripts();tabs.filter{Domains.scope(it.url)==domain}.forEach{it.web.reload()};notice="已復原上一次儲存"}}
-    fun destroy(){fileCallback?.onReceiveValue(null);tabs.forEach{(it.web.parent as? ViewGroup)?.removeView(it.web);it.web.destroy()};tabs.clear()}
+    fun destroy(){fileCallback?.onReceiveValue(null);tabs.forEach{(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear()}
 }

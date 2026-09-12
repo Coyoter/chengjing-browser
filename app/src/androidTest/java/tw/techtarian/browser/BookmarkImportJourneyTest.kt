@@ -69,6 +69,8 @@ class BookmarkImportJourneyTest {
         assertEquals(2,rows.size)
         assertEquals("閱讀 / 科技",rows.single{it.title=="山與海 & 科技"}.folder)
         assertEquals("閱讀",rows.single{it.title=="稍後閱讀"}.folder)
+        ui.onNode(hasText("閱讀",substring=false) and hasAnyAncestor(hasTestTag("library-screen"))).performClick()
+        ui.onNode(hasText("科技",substring=false) and hasAnyAncestor(hasTestTag("library-screen"))).performClick()
         val matches=ui.onAllNodesWithText("山與海 & 科技",substring=false)
         matches[matches.fetchSemanticsNodes().lastIndex].performScrollTo().assertIsDisplayed()
         screenshot("11-imported-bookmarks")

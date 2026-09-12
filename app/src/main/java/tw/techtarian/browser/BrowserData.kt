@@ -84,6 +84,15 @@ class BrowserStore(context: Context) {
     var model: String
         get() = prefs.getString("model", "deepseek/deepseek-v4.1-flash") ?: "deepseek/deepseek-v4.1-flash"
         set(value) { prefs.edit().putString("model", value.trim()).apply() }
+    var userAgentMode:String
+        get()=prefs.getString("user-agent-mode","chrome")?:"chrome"
+        set(value){prefs.edit().putString("user-agent-mode",value).apply()}
+    var customUserAgent:String
+        get()=prefs.getString("custom-user-agent","").orEmpty()
+        set(value){prefs.edit().putString("custom-user-agent",value).apply()}
+    var addressAtBottom:Boolean
+        get()=prefs.getBoolean("address-at-bottom",false)
+        set(value){prefs.edit().putBoolean("address-at-bottom",value).apply()}
     fun all(): List<SiteRules> = prefs.all.keys.filter { it.startsWith("site:") }.mapNotNull { key ->
         runCatching { SiteRules.from(JSONObject(prefs.getString(key, "{}")!!)) }.getOrNull()
     }
@@ -112,8 +121,15 @@ class BrowserStore(context: Context) {
         prefs.edit().putString("history", JSONArray(items.map { JSONObject().put("url", it.first).put("title", it.second) }).toString()).apply()
     }
     fun clearHistory() { prefs.edit().remove("history").apply() }
-    fun saveTabs(urls: List<String>) { prefs.edit().putString("tabs", JSONArray(urls).toString()).apply() }
+    fun saveTabs(urls: List<String>,favoriteIds:List<String?> = emptyList()) {
+        val links=JSONArray(urls.mapIndexed{i,url->JSONObject().put("url",url).put("id",favoriteIds.getOrNull(i)?:JSONObject.NULL)})
+        prefs.edit().putString("tabs",JSONArray(urls).toString()).putString("tab-favorite-links",links.toString()).apply()
+    }
     fun tabs(): List<String> = runCatching { val a = JSONArray(prefs.getString("tabs", "[]")); (0 until a.length()).map { a.getString(it) }.filter { it.isEmpty() || it.toHttpUrlOrNull() != null }.take(20) }.getOrDefault(emptyList())
+    fun tabFavoriteLinks():List<Pair<String,String?>> = runCatching{
+        val rows=JSONArray(prefs.getString("tab-favorite-links","[]"))
+        (0 until rows.length()).map{val j=rows.getJSONObject(it);j.optString("url") to if(j.isNull("id"))null else j.optString("id").takeIf{it.isNotEmpty()}}
+    }.getOrDefault(emptyList())
 
     private fun key(): SecretKey {
         val ks = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }

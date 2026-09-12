@@ -96,3 +96,22 @@
 [Android 官方 API 文件](https://developer.android.com/reference/android/webkit/WebViewClient#onReceivedSslError(android.webkit.WebView,android.webkit.SslErrorHandler,android.net.http.SslError)) 說明此回呼僅處理可恢復憑證錯誤，官方一般建議取消；本版繼續載入是使用者特別要求的自用行為，不將它描述為 Chrome 的標準安全策略。
 
 正式 0.1.4 APK 已以原本套件與簽章覆蓋安裝並讀回 versionCode 5；已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.4-Android.apk`，來源／目的地 SHA-256 一致（`qa/certificate-copy.json`）。
+
+
+## 0.1.5 書籤層級、閱讀收藏與瀏覽操作
+
+- 書籤依既有 folder 路徑建立顯示樹，不重寫書籤 ID、同步快照或刪除記錄。以 2,000 筆測試書籤驗證根層收合、巢狀導覽、延遲列表與跨資料夾搜尋。真實 DocumentsUI 匯入測試涵蓋巢狀路徑、去重與取消。
+- 收藏使用獨立本機儲存，保存章節網址、頁內位置與命名；驗證更新同一筆、從下一章更新、重開 App 後仍連到同一筆收藏、重新開啟收藏恢復捲動，且書籤資料未改變。恢復位置會等待 WebView 掛入畫面，若使用者已開始操作則取消延遲捲動。
+- 網址列第一次觸控進入時全選，直接輸入取代原網址，包含下方位置。設定上下配置後重建 Activity 仍保留；天眼按鈕直接進入選取。
+- 彈窗／自動跳轉只更新小點和紀錄，不發出 Snackbar；實際觸控原本通知後方的測試按鈕仍可成功。主選單可查看本分頁計數與記錄。
+- User-Agent 實際於 navigator.userAgent 讀回 Chrome 手機、原始 WebView 與自訂三種模式，確認儲存。觀察到測試裝置原始 UA 有 WebView 標記，且 Chrome 與 WebView 引擎版本不同；這些是可能影響網站呈現的因素，未取得使用者私密網站，不能判定其根因已修復。未強制更改網頁配色或注入全域排版 CSS。
+- 下拉刷新透過原生 SwipeRefreshLayout 包住 WebView。以真正穿過父容器的觸控驗證頂端刷新、兩種網址列位置、短拉取消、從中段到頂端不刷新、天眼未儲存草稿不受影響。以 performance.timeOrigin 確認是否真的重載；完成／失敗／手動停止會結束刷新指示器。
+- 下拉測試第一次的中段情境在 JS 已捲動、原生畫面尚未反映時過早送出手勢。改為等原生 WebView 確實可向上捲動後再送出，兩項測試通過，證據 `qa/pull-refresh-final.log`。
+- 本次 QA 使用 API 36 模擬器上的隔離套件 `tw.techtarian.browser.qa`，不清除自用版帳戶與書籤；不代表使用者實體手機已完成驗收。收藏目前不納入 Google 同步。
+
+
+最終回歸：31 項單元測試與 11 組 release 設定的 Android 畫面操作全部通過（`qa/v015-final-regression.log`）。涵蓋本次 7 項功能、Chrome HTML 匯入，以及原本天眼觸控／跳轉隔離、數字視覺置中與主題；未操作使用者實體手機。畫面存於 `qa/v015-final-screenshots/`。
+
+刷新畫面補驗：`PullRefreshTest` 再以 Android 原生輸入事件持續拉動並截圖，2 組通過（`qa/pull-refresh-visual.log`）。已查看 `qa/v015-final-screenshots/ChengJing-0.1.5-QA/12-pull-refresh-bottom (1).png`，確認翡翠色刷新箭頭位於網頁區，上方天眼與下方網址列保持原位。
+
+正式 0.1.5 APK 已驗證 package `tw.techtarian.browser`、versionCode 6、原本簽章不變，並完成模擬器覆蓋安裝與版本讀回。已複製至 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.5-Android.apk`，來源／目的地 SHA-256 同為 `c5646b4247da23a296852ed781ed838f0b111be13c1a89709b914be054ac27bb`（`qa/v015-copy-verification.json`）。此項只驗證指定本機資料夾，未確認 Google Drive 桌面程式的雲端上傳狀態。
