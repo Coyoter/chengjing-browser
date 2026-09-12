@@ -1,7 +1,6 @@
 package tw.techtarian.browser
 
 import androidx.compose.foundation.*
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.luminance
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -42,12 +40,8 @@ import kotlinx.coroutines.launch
             WindowCompat.getInsetsController(window,view).isAppearanceLightStatusBars=colors.background.luminance()>.5f
             WindowCompat.getInsetsController(window,view).isAppearanceLightNavigationBars=colors.background.luminance()>.5f
         }}
-        BoxWithConstraints(Modifier.fillMaxSize().safeDrawingPadding().imePadding()){
-            val panelHeight=maxHeight*.92f
-            Box(Modifier.matchParentSize().pointerInput(Unit){detectTapGestures{c.sheet=""}})
-            Surface(Modifier.align(Alignment.BottomCenter).padding(horizontal=12.dp).padding(bottom=8.dp).widthIn(max=560.dp).fillMaxWidth().heightIn(max=panelHeight).then(if(c.sheet in setOf("menu","settings"))Modifier.height(panelHeight)else Modifier).testTag("browser-panel").pointerInput(Unit){detectTapGestures{}},shape=RoundedCornerShape(26.dp),color=colors.background){
-                Column(Modifier.fillMaxWidth().heightIn(max=panelHeight),content=content)
-            }
+        Surface(Modifier.fillMaxSize().testTag("browser-panel"),color=colors.background){
+            Column(Modifier.fillMaxSize().safeDrawingPadding().imePadding(),content=content)
         }
     }
 }

@@ -175,3 +175,15 @@ APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser
 特殊元件處理方式見 `SPECIAL-ELEMENTS.md`；此次回答與文件說明 DOM 的邊界，未加入一般資源請求攔截或局部畫面遮罩。
 
 正式 0.1.9 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 10。已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.9-Android.apk`，來源／目的地 SHA-256 同為 `66f95827aa8c41d34185a1efb3ac26a353a4a58c8f90649c62fd426164c3cec1`（`qa/v019-copy-verification.json`）。只確認本機資料夾複製完成，未確認 Google Drive 雲端上傳，也未宣稱使用者實體手機已驗收。
+
+
+## 0.1.10 全螢幕選單與核心更新確認
+
+- 使用者指出 0.1.9 面板的外圍留白與部分高度仍不舒服，改成全螢幕 Dialog 頁面。Surface 覆蓋整個視窗，只有內容消耗 safeDrawing／IME insets；移除外層左右 12 dp、底部 8 dp、560 dp 上限、92% 高度及浮動圓角。
+- 保留分類、64 dp 操作列、快捷入口，以及返回／關閉；不改動書籤、收藏、網站規則或瀏覽行為。
+- 目前 ADB 僅連接 emulator-5554，沒有使用者的實體手機。實際 WebView 提供者為 com.google.android.webview 152.0.7977.87。開啟 Google Play 官方頁面後，讀到「Remove updates」而無更新按鈕（`qa/webview-store-current.xml`），因此未能透過該裝置的官方商店升到 154。使用者已表示手機 WebView 無法更換就維持現狀，故不更改系統信任、提供者驗證或偽裝版本。
+- Android 對可用 WebView 提供者及簽章有系統限制，詳見 [Chromium 官方提供者說明](https://chromium.googlesource.com/chromium/src/+/main/android_webview/docs/webview-providers.md)。澄境 APK 的版本不代表它內嵌該版 Chromium。
+
+全螢幕回歸：API 36 模擬器以挖孔螢幕模式通過既有兩組選單測試（`qa/fullscreen-menu-tests.log`）。確認面板 x/y 為 0、寬高等於整個螢幕，標題避開系統列與鏡頭；保留長名稱的統一列高、快捷入口等寬、淺／深色與分類、返回與關閉、鍵盤中的金鑰保存／移除及模型選擇。已查看 `qa/v0110-screenshots/05-menu-dark.png` 確認背景鋪滿四邊且不露出網站。測試後已停用臨時挖孔模擬設定。
+
+正式 0.1.10 APK 已以原本套件與簽章覆蓋安裝至模擬器，讀回 versionCode 11。更新後系統 WebView 仍為 152.0.7977.87（`qa/v0110-webview-state.txt`）；本次沒有升級至 154。APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.10-Android.apk`，來源／目的地 SHA-256 同為 `ebbf021baaa347afc7388393434a02f3f36484ddbd893f318b9628020d3ec04b`（`qa/v0110-copy-verification.json`）。僅確認本機資料夾複製，不宣稱 Google Drive 雲端上傳或使用者實體手機驗收已完成。

@@ -16,7 +16,7 @@ class MenuDesignTest {
     private fun until(check:()->Boolean){val end=System.currentTimeMillis()+15000;while(System.currentTimeMillis()<end){if(runCatching(check).getOrDefault(false))return;Thread.sleep(100)};assertTrue(check())}
     private fun shot(name:String){
         ui.waitForIdle();Thread.sleep(400)
-        val values=android.content.ContentValues().apply{put(android.provider.MediaStore.Images.Media.DISPLAY_NAME,"$name.png");put(android.provider.MediaStore.Images.Media.MIME_TYPE,"image/png");put(android.provider.MediaStore.Images.Media.RELATIVE_PATH,"Pictures/ChengJing-0.1.9-QA")}
+        val values=android.content.ContentValues().apply{put(android.provider.MediaStore.Images.Media.DISPLAY_NAME,"$name.png");put(android.provider.MediaStore.Images.Media.MIME_TYPE,"image/png");put(android.provider.MediaStore.Images.Media.RELATIVE_PATH,"Pictures/ChengJing-0.1.10-QA")}
         val uri=ui.activity.contentResolver.insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)!!
         ui.activity.contentResolver.openOutputStream(uri)!!.use{InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot().compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)}
     }
@@ -36,9 +36,11 @@ class MenuDesignTest {
         val widths=listOf("新增分頁","收藏","書籤","瀏覽紀錄").map{ui.onNodeWithTag("menu-shortcut:$it").fetchSemanticsNode().boundsInRoot.width}
         assertTrue(widths.max()-widths.min()<=1f)
         val panel=ui.onNodeWithTag("browser-panel").fetchSemanticsNode().boundsInWindow
-        shot("00-panel-height-diagnostic")
-        android.util.Log.i("CJMenuDesign","panel=$panel header="+ui.onNodeWithTag("panel-header").fetchSemanticsNode().boundsInWindow+" screen="+ui.activity.resources.displayMetrics.heightPixels)
-        assertTrue("Panel should leave room above",ui.onNodeWithTag("panel-header").fetchSemanticsNode().boundsInWindow.top>ui.activity.resources.displayMetrics.heightPixels*.08f)
+        assertEquals(0f,panel.left,1f);assertEquals(0f,panel.top,1f)
+        assertEquals(ui.activity.resources.displayMetrics.widthPixels.toFloat(),panel.width,1f)
+        assertEquals(ui.activity.resources.displayMetrics.heightPixels.toFloat(),panel.height,1f)
+        val insets=androidx.core.view.ViewCompat.getRootWindowInsets(ui.activity.window.decorView)!!.getInsets(androidx.core.view.WindowInsetsCompat.Type.statusBars() or androidx.core.view.WindowInsetsCompat.Type.displayCutout())
+        assertTrue("Header must clear camera and status bar",ui.onNodeWithTag("panel-header").fetchSemanticsNode().boundsInWindow.top>=insets.top)
         ui.onNodeWithTag("sheet-drag-handle").assertDoesNotExist();shot("01-menu-light-long-title")
         ui.onNodeWithText("設定",substring=false).performScrollTo().performClick();ui.waitForIdle()
         val settingsWidth=ui.onNodeWithTag("browser-panel").fetchSemanticsNode().boundsInWindow.width
