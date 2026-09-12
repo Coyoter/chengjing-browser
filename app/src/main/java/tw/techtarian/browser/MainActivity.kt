@@ -147,6 +147,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         onSecurity={c.notice=when{active?.certificateWarning?.isNotEmpty()==true->active.certificateWarning;active?.error?.isNotEmpty()==true->active.error;active?.url?.startsWith("https:")==true->"HTTPS 加密連線 · ${c.domain}";c.domain.isEmpty()->"輸入網址或搜尋關鍵字";else->"HTTP 連線未加密 · ${c.domain}"}},
                         onReload={if((active?.progress?:100)<100){active?.web?.stopLoading();active?.refreshContainer?.isRefreshing=false}else c.reload()},
                         onTabs={focus.clearFocus();c.sheet="tabs"},
+                        onNewTab={focus.clearFocus();editingAddress=false;c.newTab()},
                     )
         }
         val controlsBar:@Composable ()->Unit = {

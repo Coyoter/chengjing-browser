@@ -37,13 +37,14 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.LineHeightStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable internal fun BrowserAddressBar(
     address:TextFieldValue,onAddress:(TextFieldValue)->Unit,editing:Boolean,onFocus:(Boolean)->Unit,
     loading:Boolean,secure:Boolean,blank:Boolean,tabs:Int,certificateWarning:Boolean=false,
-    onGo:()->Unit,onSecurity:()->Unit,onReload:()->Unit,onTabs:()->Unit,
+    onGo:()->Unit,onSecurity:()->Unit,onReload:()->Unit,onTabs:()->Unit,onNewTab:()->Unit,
 ){
     val colors=MaterialTheme.colorScheme
     LaunchedEffect(editing){if(editing)onAddress(address.copy(selection=TextRange(0,address.text.length)))}
@@ -68,7 +69,7 @@ import androidx.compose.ui.unit.sp
                     keyboardOptions=KeyboardOptions(imeAction=ImeAction.Go),
                     keyboardActions=KeyboardActions(onGo={onGo()}),
                     decorationBox={inner->Box(Modifier.fillMaxSize(),contentAlignment=Alignment.CenterStart){
-                        if(address.text.isEmpty())Text("搜尋或輸入網址",color=colors.onSurfaceVariant,fontSize=14.sp,lineHeight=20.sp,
+                        if(address.text.isEmpty())Text("搜尋或輸入網址",color=colors.onSurfaceVariant,fontSize=14.sp,lineHeight=20.sp,maxLines=1,overflow=TextOverflow.Ellipsis,
                             style=TextStyle(platformStyle=PlatformTextStyle(includeFontPadding=false)))
                         inner()
                     }},
@@ -80,6 +81,9 @@ import androidx.compose.ui.unit.sp
             }
         }
         Spacer(Modifier.width(4.dp))
+        IconButton(onClick=onNewTab,modifier=Modifier.size(48.dp).testTag("new-tab-button")){
+            Icon(Icons.Outlined.Add,"新增分頁",Modifier.size(24.dp))
+        }
         TabCountButton(tabs,onTabs)
     }
 }

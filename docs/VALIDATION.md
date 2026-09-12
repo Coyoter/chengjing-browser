@@ -187,3 +187,11 @@ APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser
 全螢幕回歸：API 36 模擬器以挖孔螢幕模式通過既有兩組選單測試（`qa/fullscreen-menu-tests.log`）。確認面板 x/y 為 0、寬高等於整個螢幕，標題避開系統列與鏡頭；保留長名稱的統一列高、快捷入口等寬、淺／深色與分類、返回與關閉、鍵盤中的金鑰保存／移除及模型選擇。已查看 `qa/v0110-screenshots/05-menu-dark.png` 確認背景鋪滿四邊且不露出網站。測試後已停用臨時挖孔模擬設定。
 
 正式 0.1.10 APK 已以原本套件與簽章覆蓋安裝至模擬器，讀回 versionCode 11。更新後系統 WebView 仍為 152.0.7977.87（`qa/v0110-webview-state.txt`）；本次沒有升級至 154。APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.10-Android.apk`，來源／目的地 SHA-256 同為 `ebbf021baaa347afc7388393434a02f3f36484ddbd893f318b9628020d3ec04b`（`qa/v0110-copy-verification.json`）。僅確認本機資料夾複製，不宣稱 Google Drive 雲端上傳或使用者實體手機驗收已完成。
+
+
+## 0.1.11 網址列新增分頁按鈕
+
+- 在網址列與分頁數字中間加入獨立＋按鈕，沿用現有 newTab 行為；點擊會結束網址編輯、建立空白分頁並切換過去，原分頁保留。上下網址列配置共用元件。
+- 以既有 BrowserOptionsTest 擴充兩種位置的實際觸控，確認新分頁數字增加、原頁保留、新頁空白；量測＋位於網址列與分頁框之間且垂直置中。原有數字光學置中、淺／深色與 44 dp 網址列檢查亦通過。兩組 release 隔離 QA 操作測試通過（`qa/new-tab-button-tests.log`）。
+- 已查看 `qa/v0111-screenshots/13-bottom-address-plus.png`，確認實際位置與間距。沒有使用實體手機進行本次驗收。
+- 正式 0.1.11 APK 已用原本套件與簽章覆蓋安裝至模擬器，讀回 versionCode 12；複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.11-Android.apk`，來源／目的地 SHA-256 同為 `ec47d3dd374808a408ff28fcc8a204ed4cb01eabd413659caef08b6a9564f1c3`（`qa/v0111-copy-verification.json`）。只確認指定本機資料夾複製，未確認 Google Drive 雲端上傳。

@@ -20,7 +20,7 @@ class BrowserOptionsTest {
     private fun eval(script:String):String{val latch=CountDownLatch(1);var raw="";main{c.active!!.web.evaluateJavascript(script){raw=it;latch.countDown()}};check(latch.await(8,TimeUnit.SECONDS));return raw}
     private fun until(check:()->Boolean){val end=System.currentTimeMillis()+16000;while(System.currentTimeMillis()<end){if(runCatching(check).getOrDefault(false))return;Thread.sleep(120)};assertTrue("Condition timed out",check())}
     private fun open(){main{c.newTab("https://practice.chengjing.invalid/")};until{c.active!!.url.startsWith("https://practice.chengjing.invalid")&&eval("document.readyState")=="\"complete\""};ui.waitForIdle()}
-    private fun shot(name:String){ui.waitForIdle();Thread.sleep(500);val values=android.content.ContentValues().apply{put(android.provider.MediaStore.Images.Media.DISPLAY_NAME,"$name.png");put(android.provider.MediaStore.Images.Media.MIME_TYPE,"image/png");put(android.provider.MediaStore.Images.Media.RELATIVE_PATH,"Pictures/ChengJing-0.1.5-QA")};val uri=ui.activity.contentResolver.insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)!!;ui.activity.contentResolver.openOutputStream(uri)!!.use{InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot().compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)}}
+    private fun shot(name:String){ui.waitForIdle();Thread.sleep(500);val values=android.content.ContentValues().apply{put(android.provider.MediaStore.Images.Media.DISPLAY_NAME,"$name.png");put(android.provider.MediaStore.Images.Media.MIME_TYPE,"image/png");put(android.provider.MediaStore.Images.Media.RELATIVE_PATH,"Pictures/ChengJing-0.1.11-QA")};val uri=ui.activity.contentResolver.insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)!!;ui.activity.contentResolver.openOutputStream(uri)!!.use{InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot().compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)}}
     @Before fun isolated(){org.junit.Assume.assumeTrue(ui.activity.packageName.endsWith(".qa"))}
     @Test fun popupBlockingOnlyAddsAnIndicatorAndThePageRemainsClickable(){
         open();main{c.notice="";c.saveSite(c.site.copy(guard=true))}
@@ -54,7 +54,25 @@ class BrowserOptionsTest {
         main{c.setUserAgent("chrome","");c.sheet=""}
     }
     @Test fun addressBarCanMoveBelowAndKeepsSelectAll(){
-        open();main{c.sheet="settings"}
+        open()
+        fun checkNewTab(){
+            ui.waitForIdle()
+            val address=ui.onNodeWithTag("address-capsule",useUnmergedTree=true).fetchSemanticsNode().boundsInRoot
+            val plus=ui.onNodeWithTag("new-tab-button").fetchSemanticsNode().boundsInRoot
+            val tabs=ui.onNodeWithTag("tab-switcher").fetchSemanticsNode().boundsInRoot
+            assertTrue(address.right<=plus.left);assertTrue(plus.right<=tabs.left)
+            assertEquals(address.center.y,plus.center.y,1f);assertEquals(tabs.center.y,plus.center.y,1f)
+            val original=c.active!!;val url=original.url;val before=c.tabs.size
+            ui.onNodeWithTag("new-tab-button").performTouchInput{click()}
+            until{c.tabs.size==before+1};ui.waitForIdle()
+            val created=c.active!!
+            assertNotEquals(original.id,created.id);assertEquals("",created.url)
+            assertTrue(c.tabs.contains(original));assertEquals(url,original.url)
+            ui.onNodeWithContentDescription("分頁，${before+1} 個").assertExists()
+            main{c.switchTab(original.id);c.closeTab(created.id)}
+        }
+        checkNewTab();shot("12-top-address-plus")
+        main{c.sheet="settings"}
         ui.onNodeWithText("網址列在下方").performScrollTo().performClick();main{c.sheet=""};ui.waitForIdle()
         val field=ui.onNodeWithTag("address-capsule",useUnmergedTree=true).fetchSemanticsNode().boundsInRoot
         val controls=ui.onNodeWithTag("browser-controls",useUnmergedTree=true).fetchSemanticsNode().boundsInRoot
@@ -72,5 +90,6 @@ class BrowserOptionsTest {
         val after=ui.onNodeWithTag("address-capsule",useUnmergedTree=true).fetchSemanticsNode().boundsInRoot
         val top=ui.onNodeWithTag("browser-controls",useUnmergedTree=true).fetchSemanticsNode().boundsInRoot
         assertTrue(after.top>top.bottom)
+        checkNewTab();shot("13-bottom-address-plus")
     }
 }
