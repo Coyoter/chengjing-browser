@@ -77,3 +77,22 @@
 - Google 網頁一鍵 GMS 登入未加入；App 原生同步授權和網站登入狀態分開。詳見 `docs/GOOGLE-WEB-LOGIN.md`。
 
 正式 0.1.3 APK 已以原本套件 `tw.techtarian.browser`、versionCode 4 及同一簽章建立並覆蓋安裝。已複製至 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.3-Android.apk`，來源／目的地 SHA-256 一致（`qa/import-optical-copy.json`）。
+
+
+## 0.1.4 憑證異常保留網頁
+
+- 修正 `onReceivedSslError` 把任何資源憑證錯誤都轉為整頁故障的行為。
+- 按使用者明確自用指示，僅 WebView 的可恢復憑證錯誤使用 `proceed()` 繼續載入，同時記錄異常；不把這種連線當成憑證驗證成功，不改動 Google Drive／OpenRouter 的原生 HTTP 用戶端。
+- 網址列顯示警示圖示，點擊可見來源與原因。修正通知清空時會取消自己的 Snackbar，讓點擊後的內容能正常顯示。
+- 程序內記錄主頁與異常資源關係，涵蓋 WebView 快取的略過決策。背景分頁的提示透過主執行緒更新，不等待該 WebView 掛到畫面；切換到不相關的正常網站會回到正常狀態。
+- 本機自簽 TLS 測試伺服器搭配 Android API 36 模擬器，release 設定的隔離套件通過 2 組實際測試：異常主文件載入／重新整理／Activity 重建／點擊警示，以及有效 HTTPS 主頁載入異常憑證圖片、快取圖片在另一個有效網站載入後的警示、正常網站恢復正常。
+- 圖片測試確認 `naturalWidth > 0`，不是只確認網頁未被替換。5 個憑證警示資料測試也通過。
+- 證據：`qa/certificate-release-final.log`、`qa/certificate-final-screenshots/`、單元測試 `CertificateWarningsTest`。
+- 測試只使用隔離 QA 套件與本機自簽憑證；沒有更改手機／電腦的系統信任根。測試伺服器與 adb reverse 在測試後關閉。
+- TLS 實際連線測試後續需明確帶 `tlsFixture=true` 才會執行，避免一般測試依賴本機伺服器。
+
+可重現：執行 `python3 scripts/test-tls-server.py`，設定 `adb reverse tcp:18743 tcp:18743`，再以 `-PqaInstall=true -Pandroid.testInstrumentationRunnerArguments.tlsFixture=true` 執行 `CertificateContinuationTest`。測試完成後關閉伺服器並移除該 reverse。
+
+[Android 官方 API 文件](https://developer.android.com/reference/android/webkit/WebViewClient#onReceivedSslError(android.webkit.WebView,android.webkit.SslErrorHandler,android.net.http.SslError)) 說明此回呼僅處理可恢復憑證錯誤，官方一般建議取消；本版繼續載入是使用者特別要求的自用行為，不將它描述為 Chrome 的標準安全策略。
+
+正式 0.1.4 APK 已以原本套件與簽章覆蓋安裝並讀回 versionCode 5；已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.4-Android.apk`，來源／目的地 SHA-256 一致（`qa/certificate-copy.json`）。

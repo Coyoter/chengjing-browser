@@ -25,6 +25,8 @@ class BrowserTab(val id: Int, val web: SelectionWebView) {
     var title by mutableStateOf("新分頁")
     var progress by mutableIntStateOf(100)
     var error by mutableStateOf("")
+    var certificateWarning by mutableStateOf("")
+    @Volatile var pendingUrl = ""
     var canBack by mutableStateOf(false)
     var canForward by mutableStateOf(false)
     var desktop by mutableStateOf(false)
@@ -50,6 +52,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     var fullScreenView by mutableStateOf<android.view.View?>(null)
     private var fullScreenCallback: WebChromeClient.CustomViewCallback? = null
     private var nextId = 1
+    private val mainHandler=android.os.Handler(android.os.Looper.getMainLooper())
     private val script = context.assets.open("skyeye.js").bufferedReader().readText()
     val domain: String get() = Domains.scope(active?.url.orEmpty())
     val site: SiteRules get() { revision; return store.get(domain) }
@@ -105,6 +108,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         web.webViewClient=object:WebViewClient(){
             override fun shouldInterceptRequest(view:WebView,request:WebResourceRequest):WebResourceResponse? {
+                val page=if(request.isForMainFrame)request.url.toString()else tab.pendingUrl.ifBlank{tab.url}
+                CertificateWarnings.session.carryKnownResource(page,request.url.toString())
+                if(CertificateWarnings.session.messageFor(page).isNotEmpty())mainHandler.post{
+                    if(tab in tabs)tab.certificateWarning=CertificateWarnings.session.messageFor(tab.url.ifBlank{tab.pendingUrl})
+                }
                 // POST navigations skip shouldOverrideUrlLoading. HTTP 204 keeps the existing document.
                 if(web.selecting && request.isForMainFrame) return WebResourceResponse("text/plain","UTF-8",204,"No Content",emptyMap(),java.io.ByteArrayInputStream(byteArrayOf()))
                 if(request.url.host=="practice.chengjing.invalid" && request.isForMainFrame) return WebResourceResponse("text/html","UTF-8",context.assets.open("practice.html"))
@@ -122,25 +130,46 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(scope !in exceptions && store.get(scope).guard && !request.hasGesture() && !request.isRedirect && tab.url.isNotEmpty()) {
                     tab.blockedUrl=u;blockedCount++;notice="已阻止一次未經點擊的跳轉";return true
                 }
+                tab.pendingUrl=u
                 return false
             }
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
                 if(web.selecting){view.stopLoading();return}
-                tab.url=url;tab.error="";tab.blockedUrl=""
+                tab.url=url;tab.pendingUrl=url;tab.error="";tab.blockedUrl=""
+                tab.certificateWarning=CertificateWarnings.session.messageFor(url)
                 if(activeId==tab.id){eye=false;selection=null;draft=null;dirty=false;if(sheet=="selection")sheet=""}
                 persistTabs()
             }
             override fun onPageFinished(view:WebView,url:String) {
                 tab.canBack=view.canGoBack();tab.canForward=view.canGoForward()
+                tab.pendingUrl=""
+                tab.certificateWarning=CertificateWarnings.session.messageFor(tab.url)
                 if(tab.error.isEmpty()) store.visit(url,tab.title)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
                 if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config()),null)
             }
             override fun onReceivedError(view:WebView,request:WebResourceRequest,error:WebResourceError) {
                 if(web.selecting)return
-                if(request.isForMainFrame){tab.error="網頁暫時無法開啟，請確認網路或網址後重試。";tab.progress=100}
+                if(request.isForMainFrame){tab.error=if(error.errorCode==ERROR_FAILED_SSL_HANDSHAKE)"這個網站無法完成加密連線，請稍後重試。"else"網頁暫時無法開啟，請確認網路或網址後重試。";tab.progress=100}
             }
-            override fun onReceivedSslError(view:WebView,handler:SslErrorHandler,error:android.net.http.SslError){handler.cancel();tab.error="這個網站的安全憑證無效，已停止連線。"}
+            @SuppressLint("WebViewClientOnReceivedSslError")
+            override fun onReceivedSslError(view:WebView,handler:SslErrorHandler,error:android.net.http.SslError){
+                val reason=when(error.primaryError){
+                    android.net.http.SslError.SSL_EXPIRED->"憑證已過期"
+                    android.net.http.SslError.SSL_NOTYETVALID->"憑證尚未生效"
+                    android.net.http.SslError.SSL_IDMISMATCH->"憑證網域不符"
+                    android.net.http.SslError.SSL_UNTRUSTED->"憑證來源不受信任"
+                    android.net.http.SslError.SSL_DATE_INVALID->"憑證日期異常"
+                    else->"憑證驗證未通過"
+                }
+                val page=tab.pendingUrl.ifBlank{tab.url.ifBlank{view.url.orEmpty()}}
+                CertificateWarnings.session.record(page,error.url,reason)
+                tabs.forEach{it.certificateWarning=CertificateWarnings.session.messageFor(it.url.ifBlank{it.pendingUrl})}
+                tab.certificateWarning=CertificateWarnings.session.messageFor(page.ifBlank{error.url})
+                // Explicit personal-browser preference: continue recoverable certificate errors,
+                // with a persistent warning. Google Drive / OpenRouter clients keep strict TLS.
+                handler.proceed()
+            }
             override fun onRenderProcessGone(view:WebView,detail:RenderProcessGoneDetail):Boolean {
                 tab.error="網頁程序已停止，請關閉這個分頁後重新開啟。";return true
             }
@@ -187,13 +216,13 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         tabs.add(tab);activeId=tab.id
         refreshScripts()
-        if(url.isNotEmpty())web.loadUrl(url)
+        if(url.isNotEmpty()){tab.pendingUrl=url;web.loadUrl(url)}
         persistTabs();return tab
     }
     fun exitFullscreen(){fullScreenView=null;fullScreenCallback?.onCustomViewHidden();fullScreenCallback=null}
     fun navigate(input:String) {
         val url=Domains.address(input);if(url.isEmpty())return
-        stopEye();sheet="";active?.error="";active?.web?.loadUrl(url)
+        stopEye();sheet="";active?.error="";active?.pendingUrl=url;active?.web?.loadUrl(url)
     }
     fun reload(){stopEye();active?.web?.reload()}
     fun switchTab(id:Int){stopEye();activeId=id;sheet=""}

@@ -37,6 +37,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.collectLatest
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -99,7 +101,12 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     var editingAddress by remember{mutableStateOf(false)}
     val cs=if(dark)Dark else Light
     SideEffect{WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightStatusBars=!dark;WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightNavigationBars=!dark}
-    LaunchedEffect(c.notice){if(c.notice.isNotEmpty()){val message=c.notice;c.notice="";snackbar.showSnackbar(message)}}
+    LaunchedEffect(c){
+        snapshotFlow{c.notice}.filter{it.isNotEmpty()}.collectLatest{message->
+            c.notice=""
+            snackbar.showSnackbar(message)
+        }
+    }
     BackHandler {
         when{
             c.fullScreenView!=null->c.exitFullscreen()
@@ -116,10 +123,11 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                 Column(Modifier.fillMaxSize()){
                     BrowserAddressBar(
                         address=address,onAddress={address=it},editing=editingAddress,onFocus={editingAddress=it},
-                        loading=(active?.progress?:100)<100,secure=active?.url?.startsWith("https:")==true,
+                        loading=(active?.progress?:100)<100,secure=active?.url?.startsWith("https:")==true&&active.error.isEmpty()&&active.certificateWarning.isEmpty(),
+                        certificateWarning=active?.certificateWarning?.isNotEmpty()==true,
                         blank=active?.url.isNullOrEmpty(),tabs=c.tabs.size,
                         onGo={c.navigate(address);editingAddress=false;focus.clearFocus()},
-                        onSecurity={c.notice=if(active?.url?.startsWith("https:")==true)"HTTPS 加密連線 · ${c.domain}"else if(c.domain.isEmpty())"輸入網址或搜尋關鍵字"else"HTTP 連線未加密 · ${c.domain}"},
+                        onSecurity={c.notice=when{active?.certificateWarning?.isNotEmpty()==true->active.certificateWarning;active?.error?.isNotEmpty()==true->active.error;active?.url?.startsWith("https:")==true->"HTTPS 加密連線 · ${c.domain}";c.domain.isEmpty()->"輸入網址或搜尋關鍵字";else->"HTTP 連線未加密 · ${c.domain}"}},
                         onReload={if((active?.progress?:100)<100)active?.web?.stopLoading()else c.reload()},
                         onTabs={focus.clearFocus();c.sheet="tabs"},
                     )
