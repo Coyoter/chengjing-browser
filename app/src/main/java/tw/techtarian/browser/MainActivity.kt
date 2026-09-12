@@ -53,7 +53,12 @@ class MainActivity:ComponentActivity(){
                 val rows=BookmarkFormat.parseHtml(String(data,Charsets.UTF_8));require(rows.isNotEmpty()){ "檔案中找不到 HTTP / HTTPS 書籤" };rows
             }
             kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main){result.onSuccess{rows->
-                android.app.AlertDialog.Builder(this@MainActivity).setTitle("匯入 ${rows.size} 個書籤？").setMessage("會保留資料夾；已存在的書籤不會重複新增。").setNegativeButton("取消",null).setPositiveButton("匯入"){_,_->val count=store.bookmarkStore.importRows(rows);controller.revision++;controller.notice="已匯入 $count 個書籤"}.show()
+                android.app.AlertDialog.Builder(this@MainActivity).setTitle("匯入 ${rows.size} 個書籤？").setMessage("會保留資料夾；已存在的書籤不會重複新增。").setNegativeButton("取消",null).setPositiveButton("匯入"){_,_->
+                    runCatching{store.bookmarkStore.importRows(rows)}.onSuccess{count->
+                        controller.revision++;controller.sheet="bookmarks"
+                        controller.notice=if(count>0)"已匯入 $count 個書籤"else"這些書籤已經匯入，不會重複新增"
+                    }.onFailure{controller.notice="匯入未完成，請稍後再試"}
+                }.show()
             }.onFailure{controller.notice=it.localizedMessage?:"匯入未完成"}}
         }
     }
@@ -158,6 +163,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                             SheetTitle("澄境瀏覽器","讓網頁回到你喜歡的樣子。")
                             MenuRow(Icons.Outlined.Add,"新增分頁"){c.newTab();c.sheet=""}
                             MenuRow(Icons.Outlined.BookmarkBorder,"書籤"){c.sheet="bookmarks"}
+                            MenuRow(Icons.Outlined.FileDownload,"匯入 Chrome 書籤","選擇 Chrome 匯出的 HTML 檔"){c.sheet="";activity.importBookmarks()}
                             if(c.domain.isNotEmpty())MenuRow(Icons.Outlined.BookmarkAdd,"收藏／取消收藏這一頁"){store.bookmark(active!!.url,active.title);c.notice="書籤已更新";c.sheet=""}
                             MenuRow(Icons.Outlined.History,"瀏覽紀錄"){c.sheet="history"}
                             MenuRow(Icons.Outlined.ManageSearch,"尋找頁面文字"){c.sheet="find"}

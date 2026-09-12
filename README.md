@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-1. 安裝 `release/ChengJing-Browser-0.1.2-Android.apk`，Android 9 或以上。
+1. 安裝 `release/ChengJing-Browser-0.1.3-Android.apk`，Android 9 或以上。
 2. 開啟網站，按底部「天眼」，直接進入選取模式。
 3. 點中元件。若只選到文字或小叉叉，按「選取外面一層」。
 4. 按「預覽移除」，確認文章仍正常後按頂部「儲存」。按 × 會取消未儲存的預覽。
@@ -23,7 +23,7 @@
 - 可按網域開啟跳轉／彈窗防護，另外支援自訂 CSS、JavaScript 與恢復捲動。
 - OpenRouter 金鑰使用 Android Keystore AES-GCM 加密。預設 DeepSeek、Gemini、GPT，支援更新模型清單及手動指定。
 - AI 僅在使用者要求時取得結構摘要，回傳有範圍限制的元件規則；先驗證、預覽再儲存。AI 不會直接寫任意 JavaScript。
-- Chrome 書籤 HTML 匯入與匯出、資料夾、搜尋、編輯、去重；Google Drive 書籤同步已接入並完成真實雲端讀回。
+- 主選單「匯入 Chrome 書籤」可選取 HTML；保留資料夾、去重，完成後直接顯示書籤。支援匯出、搜尋與編輯；Google Drive 書籤同步已接入並完成真實雲端讀回。
 
 ## 目前限制
 
@@ -49,3 +49,10 @@ python3 scripts/build-private.py
 ```
 
 `signing/` 是本機自用簽章，權限 600，不納入版本控制。請保留它，未來同一個 App 更新需要相同簽章。請不要把這個資料夾公開分享。OpenRouter 的金鑰和 Google access token 不放進原始碼。
+
+
+## 0.1.3 補充
+
+- 單一數字「1」按實際筆畫濃淡的橫向重心校正；不只使用字形外框。垂直位置維持，其他數字沿用原本排版。
+- Chrome 書籤匯入入口在主選單，不必先進書籤頁。先使用 Chrome 的書籤匯出功能取得 HTML，再在澄境選取該檔案；某些 Android 檔案選擇器選中檔案後還需按「選取／Select」。匯入成功會直接顯示書籤。
+- Google 書籤同步使用原生 GMS；這不代表 google.com、YouTube 等網頁也已登入。網頁的原生一鍵登入尚未加入，見 [Google 網頁登入調查](docs/GOOGLE-WEB-LOGIN.md)。

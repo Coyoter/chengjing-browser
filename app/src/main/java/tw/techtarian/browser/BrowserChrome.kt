@@ -3,6 +3,7 @@ package tw.techtarian.browser
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
+import android.graphics.Bitmap
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,6 +16,7 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
@@ -24,6 +26,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -77,18 +80,43 @@ import androidx.compose.ui.unit.sp
 
 @Composable internal fun TabCountButton(count:Int,onClick:()->Unit){
     val color=MaterialTheme.colorScheme.onSurface
+    val density=LocalDensity.current
+    val numeral=remember(count,density.density,density.fontScale){
+        with(density){TabNumeral(count.toString(),12.sp.toPx(),16.dp.toPx())}
+    }
     Box(Modifier.size(48.dp).testTag("tab-switcher").semantics{contentDescription="分頁，$count 個"}.clickable(role=Role.Button,onClick=onClick),contentAlignment=Alignment.Center){
         Canvas(Modifier.size(24.dp).testTag("tab-count-badge")){
             val stroke=1.5.dp.toPx()
             drawRoundRect(color,topLeft=androidx.compose.ui.geometry.Offset(stroke/2,stroke/2),
                 size=androidx.compose.ui.geometry.Size(size.width-stroke,size.height-stroke),cornerRadius=CornerRadius(5.dp.toPx()),style=Stroke(stroke))
-            val value=count.toString()
-            val paint=Paint(Paint.ANTI_ALIAS_FLAG).apply{this.color=color.toArgb();textSize=12.sp.toPx();typeface=Typeface.create("sans-serif-medium",Typeface.NORMAL)}
-            val ink=Rect();paint.getTextBounds(value,0,value.length,ink)
-            val fit=minOf(1f,16.dp.toPx()/ink.width().coerceAtLeast(1),16.dp.toPx()/ink.height().coerceAtLeast(1))
-            if(fit<1f){paint.textSize*=fit;paint.getTextBounds(value,0,value.length,ink)}
-            // Center the actual numeral ink, not the font's ascender/descender padding.
-            drawContext.canvas.nativeCanvas.drawText(value,center.x-(ink.left+ink.right)/2f,center.y-(ink.top+ink.bottom)/2f,paint)
+            numeral.paint.color=color.toArgb()
+            drawContext.canvas.nativeCanvas.drawText(numeral.value,center.x-numeral.horizontalCenter,
+                center.y-(numeral.ink.top+numeral.ink.bottom)/2f,numeral.paint)
         }
+    }
+}
+
+/** The flag on "1" widens its bounds to the left while most of its ink remains on the right. */
+private class TabNumeral(val value:String,textSize:Float,maxInk:Float){
+    val paint=Paint(Paint.ANTI_ALIAS_FLAG).apply{this.textSize=textSize;typeface=Typeface.create("sans-serif-medium",Typeface.NORMAL)}
+    val ink=Rect()
+    val horizontalCenter:Float
+    init{
+        paint.getTextBounds(value,0,value.length,ink)
+        val fit=minOf(1f,maxInk/ink.width().coerceAtLeast(1),maxInk/ink.height().coerceAtLeast(1))
+        if(fit<1f){paint.textSize*=fit;paint.getTextBounds(value,0,value.length,ink)}
+        horizontalCenter=if(value=="1")opticalCenter()else(ink.left+ink.right)/2f
+    }
+    private fun opticalCenter():Float{
+        val padding=2
+        val bitmap=Bitmap.createBitmap(ink.width().coerceAtLeast(1)+padding*2,ink.height().coerceAtLeast(1)+padding*2,Bitmap.Config.ARGB_8888)
+        paint.color=android.graphics.Color.WHITE
+        android.graphics.Canvas(bitmap).drawText(value,(padding-ink.left).toFloat(),(padding-ink.top).toFloat(),paint)
+        val pixels=IntArray(bitmap.width*bitmap.height)
+        bitmap.getPixels(pixels,0,bitmap.width,0,0,bitmap.width,bitmap.height)
+        var mass=0.0;var moment=0.0
+        for(i in pixels.indices){val alpha=android.graphics.Color.alpha(pixels[i]);mass+=alpha;moment+=((i%bitmap.width)+.5)*alpha}
+        bitmap.recycle()
+        return if(mass>0)(moment/mass-padding+ink.left).toFloat()else(ink.left+ink.right)/2f
     }
 }

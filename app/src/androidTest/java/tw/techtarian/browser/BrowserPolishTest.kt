@@ -28,7 +28,7 @@ class BrowserPolishTest {
         main{val time=SystemClock.uptimeMillis();c.active!!.web.dispatchTouchEvent(MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,x,y,0));c.active!!.web.dispatchTouchEvent(MotionEvent.obtain(time,time+70,MotionEvent.ACTION_UP,x,y,0))}
     }
     private fun save(name:String,bitmap:Bitmap){
-        val values=android.content.ContentValues().apply{put(android.provider.MediaStore.Images.Media.DISPLAY_NAME,"$name.png");put(android.provider.MediaStore.Images.Media.MIME_TYPE,"image/png");put(android.provider.MediaStore.Images.Media.RELATIVE_PATH,"Pictures/ChengJing-0.1.2-QA")}
+        val values=android.content.ContentValues().apply{put(android.provider.MediaStore.Images.Media.DISPLAY_NAME,"$name.png");put(android.provider.MediaStore.Images.Media.MIME_TYPE,"image/png");put(android.provider.MediaStore.Images.Media.RELATIVE_PATH,"Pictures/ChengJing-0.1.3-QA")}
         val uri=ui.activity.contentResolver.insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)!!
         ui.activity.contentResolver.openOutputStream(uri)!!.use{bitmap.compress(Bitmap.CompressFormat.PNG,100,it)}
     }
@@ -79,14 +79,16 @@ class BrowserPolishTest {
         val bitmap=ui.onNodeWithTag("tab-count-badge",useUnmergedTree=true).captureToImage().asAndroidBitmap()
         save(label,bitmap)
         val margin=(bitmap.width*0.20).toInt();val background=bitmap.getPixel(bitmap.width/2,margin)
-        var left=bitmap.width;var top=bitmap.height;var right=-1;var bottom=-1
+        var left=bitmap.width;var top=bitmap.height;var right=-1;var bottom=-1;var mass=0.0;var moment=0.0
         for(y in margin until bitmap.height-margin)for(x in margin until bitmap.width-margin){
             val p=bitmap.getPixel(x,y)
             val difference=abs(android.graphics.Color.red(p)-android.graphics.Color.red(background))+abs(android.graphics.Color.green(p)-android.graphics.Color.green(background))+abs(android.graphics.Color.blue(p)-android.graphics.Color.blue(background))
             if(difference>200){left=minOf(left,x);right=maxOf(right,x);top=minOf(top,y);bottom=maxOf(bottom,y)}
+            if(difference>30){mass+=difference;moment+=(x+.5)*difference}
         }
         assertTrue("Numeral should be visible",right>=left)
-        assertEquals("Horizontal ink center",bitmap.width/2f,(left+right+1)/2f,1f)
+        if(label.contains("tab-one"))assertEquals("Optical center for one",bitmap.width/2f,(moment/mass).toFloat(),1f)
+        else assertEquals("Horizontal ink center",bitmap.width/2f,(left+right+1)/2f,1f)
         assertEquals("Vertical ink center",bitmap.height/2f,(top+bottom+1)/2f,1f)
     }
     @Test fun compactSymmetricChromeAndBrand(){
@@ -110,6 +112,8 @@ class BrowserPolishTest {
         glyphCentered("05-tab-twelve")
         main{c.sheet="settings"};ui.onNodeWithText("深色",useUnmergedTree=true).performClick();main{c.sheet=""}
         glyphCentered("06-tab-twelve-dark");shot("07-home-dark-compact")
+        main{for(tab in c.tabs.toList().dropLast(1))c.closeTab(tab.id)}
+        glyphCentered("09-tab-one-dark");shot("10-optical-one-dark")
         val icon=ui.activity.packageManager.getApplicationIcon(ui.activity.packageName)
         val bitmap=Bitmap.createBitmap(432,432,Bitmap.Config.ARGB_8888);icon.setBounds(0,0,432,432);icon.draw(Canvas(bitmap));save("08-installed-adaptive-icon",bitmap)
     }

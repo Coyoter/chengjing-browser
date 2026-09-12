@@ -18,7 +18,7 @@
 
 - Google 已完成原生帳戶授權、真實 Drive 讀回與兩份邏輯裝置快照合併；尚未使用兩支實體 Android 手機驗證跨機同步。
 - OpenRouter 付費模型的真實 AI 推論尚未呼叫；沒有使用者提供的 API Key。已通過的是清單連線、加密與規則處理，不是模型推論。
-- Chrome HTML 解析與匯入結果已通過；Android 系統檔案挑選器的手動選檔尚未實機驗證。
+- 0.1.3 已用 Android 模擬器的系統檔案挑選器完成真實 HTML 選檔、匯入、去重及取消操作；使用者實體手機的個別檔案管理器尚未驗證。
 - iframe 整塊選取已通過 0.1.2 的原生操作測試；跨網域內部、封閉 Shadow DOM／Canvas 內部不可逐一選取。
 - 沒有實體 Android 手機連線；上述裝置證據來自 Android 官方模擬器。
 - 網站全部權限、Chrome 全功能相容、DRM、惡意網站刻意對抗、所有廣告系統均沒有完整涵蓋。
@@ -63,3 +63,17 @@
 - 證據：`qa/polish-release-tests.log`、`qa/polish-final-screenshots/`，正式安裝包另以原本套件名和同一簽章建立。
 
 正式 0.1.2 APK 已驗證為 `tw.techtarian.browser`、versionCode 3，原簽章不變，並於模擬器覆蓋安裝成功。已複製至 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.2-Android.apk`；來源與目的地的 SHA-256 完全一致，證據為 `qa/polish-copy-verification.json`。此項只代表指定本機資料夾的複製完成，不推定 Google Drive 桌面同步程序已上傳。
+
+
+## 0.1.3 視覺重心與 Chrome 書籤匯入
+
+使用者指出「1」看起來偏右後，撤回以字形外框中心作為該數字視覺驗收的依據。放大截圖的外框約 x=466–905、字形外框約 x=662–721，主要筆畫的橫向重量中心更靠右。JPEG 與放大比例使數值只適用該張圖的比較，不換算為實體手機上的精確偏移。
+
+- 針對單一「1」以透明遮罩中實際筆畫 alpha 加權計算橫向重心，垂直排版保持原樣。以實際顯示像素驗證淺／深色的「1」重心與框中心誤差小於 1 px，兩位數排版仍通過原本的幾何置中驗證。
+- 主選單加入「匯入 Chrome 書籤」，副文字說明需 Chrome 匯出的 HTML。匯入完成直接開啟書籤，重複匯入會顯示不重複新增的訊息。
+- `BookmarkImportJourneyTest` 在隔離 QA 套件中建立測試 HTML，透過真正的 Android DocumentsUI 開啟檔案、按 Select、確認匯入，驗證兩筆書籤、巢狀資料夾、HTML 特殊字元、重複匯入與取消選檔。測試結束恢復原本的可見書籤 ID 集合。
+- Release 設定的隔離套件於 API 36 模擬器通過 3 組測試：視覺重心／工具列、天眼操作回歸、系統檔案匯入流程。沒有使用自用套件的 Google 帳戶／書籤資料。
+- 證據：`qa/import-optical-release-tests.log`、`qa/import-optical-final/`。
+- Google 網頁一鍵 GMS 登入未加入；App 原生同步授權和網站登入狀態分開。詳見 `docs/GOOGLE-WEB-LOGIN.md`。
+
+正式 0.1.3 APK 已以原本套件 `tw.techtarian.browser`、versionCode 4 及同一簽章建立並覆蓋安裝。已複製至 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.3-Android.apk`，來源／目的地 SHA-256 一致（`qa/import-optical-copy.json`）。
