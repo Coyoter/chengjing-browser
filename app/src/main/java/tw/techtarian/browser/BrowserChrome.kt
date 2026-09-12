@@ -48,7 +48,7 @@ import androidx.compose.ui.unit.sp
 ){
     val colors=MaterialTheme.colorScheme
     LaunchedEffect(editing){if(editing)onAddress(address.copy(selection=TextRange(0,address.text.length)))}
-    Row(Modifier.fillMaxWidth().testTag("browser-topbar").padding(horizontal=8.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
+    Row(Modifier.fillMaxWidth().testTag("browser-topbar").padding(horizontal=24.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
         // Visual capsule is 44 dp. The centered controls retain a 48 dp touch target.
         Box(Modifier.weight(1f).height(48.dp),contentAlignment=Alignment.Center){
             Surface(Modifier.fillMaxWidth().height(44.dp).testTag("address-capsule"),shape=RoundedCornerShape(22.dp),color=colors.surface){}

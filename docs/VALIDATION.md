@@ -195,3 +195,10 @@ APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser
 - 以既有 BrowserOptionsTest 擴充兩種位置的實際觸控，確認新分頁數字增加、原頁保留、新頁空白；量測＋位於網址列與分頁框之間且垂直置中。原有數字光學置中、淺／深色與 44 dp 網址列檢查亦通過。兩組 release 隔離 QA 操作測試通過（`qa/new-tab-button-tests.log`）。
 - 已查看 `qa/v0111-screenshots/13-bottom-address-plus.png`，確認實際位置與間距。沒有使用實體手機進行本次驗收。
 - 正式 0.1.11 APK 已用原本套件與簽章覆蓋安裝至模擬器，讀回 versionCode 12；複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.11-Android.apk`，來源／目的地 SHA-256 同為 `ec47d3dd374808a408ff28fcc8a204ed4cb01eabd413659caef08b6a9564f1c3`（`qa/v0111-copy-verification.json`）。只確認指定本機資料夾複製，未確認 Google Drive 雲端上傳。
+
+
+## 0.1.12 網址列左右內縮
+
+- 僅將網址列、＋、分頁數字共同 Row 的左右內距，由 8 dp 調整為 24 dp，上下配置皆套用，為手機圓角留出更大邊界。
+- 既有 release 隔離 QA 操作測試通過（`qa/address-inset-tests.log`），包含上下位置的實際新增分頁、原分頁保留、分頁數更新、網址全選與輸入、位置持久化及三個元件中心線檢查。已查看 `qa/v0112-screenshots/13-bottom-address-plus.png`，確認兩側留白增加。使用者實體手機的 R 角裁切情況尚未直接驗證。
+- 正式 0.1.12 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 13。複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.12-Android.apk`，來源／目的地 SHA-256 同為 `6d49a26cd222eebc316676c7fc47d9bc5796f7767fdfdc838b8089077fdf6135`（`qa/v0112-copy-verification.json`）。只確認本機資料夾複製，未確認 Google Drive 雲端上傳。
