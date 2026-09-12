@@ -1,0 +1,15 @@
+.gradle/
+**/build/
+local.properties
+signing/
+*.jks
+*.keystore
+qa/node_modules/
+qa/results/
+
+.kotlin/
+release/
+qa/*.log
+qa/latest/
+qa/screenshots/
+qa/screenshots-final/
