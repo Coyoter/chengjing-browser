@@ -259,12 +259,6 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         Spacer(Modifier.height(18.dp))
         Text("照常瀏覽。遇到干擾時，\n打開天眼，讓畫面回到你的步調。",fontSize=15.sp,lineHeight=25.sp,color=cs.onSurfaceVariant)
         Spacer(Modifier.height(32.dp))
-        Surface(shape=RoundedCornerShape(20.dp),color=cs.surface){Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(12.dp)){
-            Row(verticalAlignment=Alignment.CenterVertically){Icon(Icons.Outlined.TouchApp,null,tint=cs.primary);Spacer(Modifier.width(10.dp));Text("先試一次天眼",fontWeight=FontWeight.SemiBold)}
-            Text("點中元件、預覽移除、儲存。\n下次來到同一個網域，畫面依然清爽。",fontSize=14.sp,lineHeight=23.sp,color=cs.onSurfaceVariant)
-            TextButton(onClick={c.navigate("https://practice.chengjing.invalid/")},contentPadding=PaddingValues(0.dp)){Text("進入練習場");Spacer(Modifier.width(10.dp));Icon(Icons.AutoMirrored.Outlined.ArrowForward,null,Modifier.size(18.dp))}
-        }}
-        Spacer(Modifier.height(26.dp))
         Text("快速前往",fontSize=12.sp,color=cs.onSurfaceVariant);Spacer(Modifier.height(10.dp))
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)){
             AssistChip(onClick={c.navigate("https://www.google.com")},label={Text("Google")},leadingIcon={Icon(Icons.Outlined.Search,null,Modifier.size(16.dp))})

@@ -213,3 +213,10 @@ APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser
 - 已查看 `qa/v0113-edit-preview.png`，確認名稱／網址／資料夾三個欄位對齊且間距一致；錯誤提示只在需要時顯示，不保留空白提示列。首次 UI 測試誤把欄位標籤納入網址值比較，後改用 EditableText 讀取實際欄位值；該次失敗不代表網址未預填。
 
 正式 0.1.13 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 14。已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.13-Android.apk`，來源／目的地 SHA-256 同為 `e664ffa75bb690695ef876dbe31b1a2c679152f7ddc43ec2c878d8106c2d30fd`（`qa/v0113-copy-verification.json`）。只確認本機資料夾複製，未確認 Google Drive 雲端上傳或使用者實體手機驗收。
+
+
+## 0.1.14 移除首頁教學卡
+
+- 移除首頁「先試一次天眼」整張卡片（含說明與練習場按鈕）及其後方 26 dp 間距，快速入口與收藏區域自然上移。設定中的練習場仍存在，原選取流程測試改用本機練習頁作為直接測試起點。
+- 既有 release 隔離 QA 的首頁／工具列顯示測試通過（`qa/home-cleanup-tests.log`）。已查看 `qa/v0114-home-dark.png`，確認教學卡消失，快速前往直接銜接簡介；亦保存淺色畫面。未操作使用者實體手機。
+- 正式 0.1.14 APK 已以原本套件與簽章覆蓋安裝至模擬器，讀回 versionCode 15；複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.14-Android.apk`，來源／目的地 SHA-256 同為 `8b50d903f39cea02d10fa40552f46a4b3215573f6b910cd4aad9cbaea5029d18`（`qa/v0114-copy-verification.json`）。只確認本機資料夾複製，未確認 Google Drive 雲端上傳。

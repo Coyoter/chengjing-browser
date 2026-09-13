@@ -25,7 +25,7 @@ class BrowserJourneyTest{
     @Before fun clean(){main{c.store.save(SiteRules(Domains.scope("https://practice.chengjing.invalid/")));c.exceptions.clear();c.refreshScripts()}}
     @Test fun selectionPersistenceException(){
         main{c.newTab()};shot("01-home-light")
-        ui.onNodeWithText("進入練習場").performScrollTo().performClick();ready();shot("02-practice-before")
+        main{c.navigate("https://practice.chengjing.invalid/")};ready();shot("02-practice-before")
         ui.onNodeWithText("天眼",useUnmergedTree=true).performClick();until{eval("window.__chengjingEye.status().enabled")=="true"};assertEquals("",c.sheet);shot("03-outlines")
         tap("#sponsor-overlay");until{c.selection!=null}
         while(c.selection!!.selector!="#sponsor-overlay"){val old=c.selection!!.selector;ui.onNodeWithText("選取外面一層").performScrollTo().performClick();until{c.selection?.selector!=old}}
