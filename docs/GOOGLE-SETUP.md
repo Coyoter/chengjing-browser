@@ -1,4 +1,6 @@
-# 自用版 Google Drive 登入設定
+# Google Drive 登入設定
+
+目前 OAuth 仍為既有測試設定；公開發行需另完成 Google Audience／品牌及 Play 簽章配置。下列為已完成的測試環境紀錄。
 
 Google Cloud 設定已完成並讀回確認（2026-09-12）：
 

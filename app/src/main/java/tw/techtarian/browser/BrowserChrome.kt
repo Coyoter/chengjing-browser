@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable internal fun BrowserAddressBar(
     address:TextFieldValue,onAddress:(TextFieldValue)->Unit,editing:Boolean,onFocus:(Boolean)->Unit,
-    loading:Boolean,secure:Boolean,blank:Boolean,tabs:Int,certificateWarning:Boolean=false,
+    loading:Boolean,secure:Boolean,blank:Boolean,tabs:Int,certificateWarning:Boolean=false,certificateException:Boolean=false,
     onGo:()->Unit,onSecurity:()->Unit,onReload:()->Unit,onTabs:()->Unit,onNewTab:()->Unit,
 ){
     val colors=MaterialTheme.colorScheme
@@ -54,9 +54,9 @@ import androidx.compose.ui.unit.sp
             Surface(Modifier.fillMaxWidth().height(44.dp).testTag("address-capsule"),shape=RoundedCornerShape(22.dp),color=colors.surface){}
             Row(Modifier.fillMaxWidth().height(48.dp),verticalAlignment=Alignment.CenterVertically){
                 IconButton(onClick=onSecurity,modifier=Modifier.size(48.dp)){
-                    Icon(if(certificateWarning)Icons.Outlined.WarningAmber else if(secure)Icons.Outlined.Lock else if(blank)Icons.Outlined.Search else Icons.Outlined.WarningAmber,
-                        if(certificateWarning)"憑證異常，點擊查看"else"網站資訊",Modifier.size(20.dp),
-                        tint=if(certificateWarning)colors.error else colors.onSurface)
+                    Icon(if(certificateWarning||certificateException)Icons.Outlined.WarningAmber else if(secure)Icons.Outlined.Lock else if(blank)Icons.Outlined.Search else Icons.Outlined.WarningAmber,
+                        if(certificateException)"憑證例外已開啟，點擊查看"else if(certificateWarning)"憑證異常，點擊查看"else"網站資訊",Modifier.size(20.dp),
+                        tint=if(certificateWarning||certificateException)colors.error else colors.onSurface)
                 }
                 BasicTextField(
                     value=address,onValueChange=onAddress,

@@ -47,13 +47,13 @@ import kotlinx.coroutines.launch
 }
 
 internal fun panelTitle(page:String)=when(page){
-    "menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
+    "connection"->"網站連線";"privacy"->"隱私與資料";"menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
     "rules"->"移除規則";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別"
     "inventory"->"結構清單";"sync"->"Google 書籤同步";"history"->"瀏覽紀錄";"domains"->"網域規則"
     "find"->"尋找頁面文字";"blocked"->"攔截紀錄";else->"澄境瀏覽器"
 }
 internal fun panelParent(page:String)=when(page){
-    "menu","selection"->"";"rules","code","ai","inventory"->"eye";"user-agent","sync"->"settings";else->"menu"
+    "menu","selection","connection"->"";"rules","code","ai","inventory"->"eye";"user-agent","sync"->"settings";else->"menu"
 }
 @Composable internal fun PanelHeader(c:BrowserController,onBack:()->Unit){
     val colors=MaterialTheme.colorScheme

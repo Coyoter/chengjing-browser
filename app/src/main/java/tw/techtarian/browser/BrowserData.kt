@@ -78,6 +78,14 @@ data class AiProposal(val explanation: String, val result: SiteRules, val added:
 
 class BrowserStore(context: Context) {
     private val prefs = context.getSharedPreferences("browser-v1", Context.MODE_PRIVATE)
+    fun certificateException(url:String):Boolean = CertificateExceptions.site(url)?.let{site->prefs.getStringSet("certificate-exceptions",emptySet()).orEmpty().any{CertificateExceptions.site(it)==site}}?:false
+    fun setCertificateException(url:String,enabled:Boolean){
+        val origin=requireNotNull(CertificateExceptions.site(url)){"只有 HTTPS 網站可設定憑證例外"}
+        val values=prefs.getStringSet("certificate-exceptions",emptySet()).orEmpty().toMutableSet()
+        values.removeAll{CertificateExceptions.site(it)==origin}
+        if(enabled)values.add(origin)
+        check(prefs.edit().putStringSet("certificate-exceptions",values).commit()){"設定儲存失敗"}
+    }
     var theme: String
         get() = prefs.getString("theme", "system") ?: "system"
         set(value) { prefs.edit().putString("theme", value).apply() }

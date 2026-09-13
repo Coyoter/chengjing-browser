@@ -133,6 +133,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(tabs.size>=20){notice="目前最多可開啟 20 個分頁，請先關閉不用的分頁";return null}
         stopEye()
         val web=SelectionWebView(context)
+        // Discard WebView trust decisions from older versions; only saved site choices apply.
+        web.clearSslPreferences()
         val tab=BrowserTab(nextId++,web)
         tab.refreshContainer.setOnRefreshListener {
             if (web.selecting || tab !in tabs) tab.refreshContainer.isRefreshing=false
@@ -252,9 +254,15 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 CertificateWarnings.session.record(page,error.url,reason)
                 tabs.forEach{it.certificateWarning=CertificateWarnings.session.messageFor(it.url.ifBlank{it.pendingUrl})}
                 tab.certificateWarning=CertificateWarnings.session.messageFor(page.ifBlank{error.url})
-                // Explicit personal-browser preference: continue recoverable certificate errors,
-                // with a persistent warning. Google Drive / OpenRouter clients keep strict TLS.
-                handler.proceed()
+                if(store.certificateException(error.url))handler.proceed()
+                else {
+                    handler.cancel()
+                    if(CertificateExceptions.sameDocument(page,error.url)){
+                        // A failed first navigation may never receive onPageStarted. Keep its URL accessible.
+                        tab.url=page;persistTabs()
+                        tab.error="這個網站的憑證未通過驗證，連線已停止。可點網址列的連線圖示查看原因與網站例外設定。";tab.progress=100;tab.refreshContainer.isRefreshing=false
+                    }
+                }
             }
             override fun onRenderProcessGone(view:WebView,detail:RenderProcessGoneDetail):Boolean {
                 tab.refreshContainer.isRefreshing=false
@@ -325,7 +333,18 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             tab.favoriteId=favorite.id;revision++;persistTabs();favorite
         }.onFailure{notice="收藏未完成：${it.localizedMessage}"}.getOrNull()
     }
-    fun reload(){stopEye();active?.web?.reload()}
+    fun setCertificateException(origin:String,enabled:Boolean){
+        store.setCertificateException(origin,enabled)
+        tabs.forEach{it.web.clearSslPreferences()}
+        revision++;sheet="";reload()
+    }
+    fun reload(){
+        stopEye();active?.let{tab->
+            val retry=tab.error.isNotEmpty()&&tab.url.isNotEmpty()
+            tab.error=""
+            if(retry){tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}else tab.web.reload()
+        }
+    }
     fun switchTab(id:Int){stopEye();activeId=id;sheet=""}
     fun closeTab(id:Int){
         if(id==activeId)stopEye()

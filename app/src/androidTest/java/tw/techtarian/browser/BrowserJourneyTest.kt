@@ -27,26 +27,26 @@ class BrowserJourneyTest{
         main{c.newTab()};shot("01-home-light")
         main{c.navigate("https://practice.chengjing.invalid/")};ready();shot("02-practice-before")
         ui.onNodeWithText("天眼",useUnmergedTree=true).performClick();until{eval("window.__chengjingEye.status().enabled")=="true"};assertEquals("",c.sheet);shot("03-outlines")
-        tap("#sponsor-overlay");until{c.selection!=null}
-        while(c.selection!!.selector!="#sponsor-overlay"){val old=c.selection!!.selector;ui.onNodeWithText("選取外面一層").performScrollTo().performClick();until{c.selection?.selector!=old}}
+        tap("#sample-overlay");until{c.selection!=null}
+        while(c.selection!!.selector!="#sample-overlay"){val old=c.selection!!.selector;ui.onNodeWithText("選取外面一層").performScrollTo().performClick();until{c.selection?.selector!=old}}
         shot("04-selected")
-        ui.onNodeWithText("預覽移除").performScrollTo().performClick();until{eval("getComputedStyle(document.querySelector('#sponsor-overlay')).display")=="\"none\""};shot("05-preview")
+        ui.onNodeWithText("預覽移除").performScrollTo().performClick();until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")=="\"none\""};shot("05-preview")
         ui.onNodeWithText("儲存",useUnmergedTree=true).performClick();until{c.site.rules.isNotEmpty()}
-        reloadReady{c.navigate("https://practice.chengjing.invalid/second")};until{eval("getComputedStyle(document.querySelector('#sponsor-overlay')).display")=="\"none\""};assertEquals("\"換了內容的元件，仍然是相同結構。\"",eval("document.querySelector('#ad-copy').textContent"));shot("06-next-page")
-        reloadReady{c.exception()};until{eval("getComputedStyle(document.querySelector('#sponsor-overlay')).display")!="\"none\""};shot("07-exception")
-        reloadReady{c.exception()};until{eval("getComputedStyle(document.querySelector('#sponsor-overlay')).display")=="\"none\""};assertEquals(1,BrowserStore(ui.activity).get(c.domain).rules.size)
-        reloadReady{c.reload()};until{eval("getComputedStyle(document.querySelector('#sponsor-overlay')).display")=="\"none\""}
-        reloadReady{c.restoreRules(c.domain)};until{eval("getComputedStyle(document.querySelector('#sponsor-overlay')).display")!="\"none\""}
+        reloadReady{c.navigate("https://practice.chengjing.invalid/second")};until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")=="\"none\""};assertEquals("\"換了內容的元件，仍然是相同結構。\"",eval("document.querySelector('#panel-copy').textContent"));shot("06-next-page")
+        reloadReady{c.exception()};until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")!="\"none\""};shot("07-exception")
+        reloadReady{c.exception()};until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")=="\"none\""};assertEquals(1,BrowserStore(ui.activity).get(c.domain).rules.size)
+        reloadReady{c.reload()};until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")=="\"none\""}
+        reloadReady{c.restoreRules(c.domain)};until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")!="\"none\""}
     }
     @Test fun dynamicShadowPrivacyAndCode(){
         reloadReady{c.navigate("https://practice.chengjing.invalid/")}
-        eval("document.body.insertAdjacentHTML('beforeend','<div id=shadow-host></div><input id=private-field value=TOP_SECRET>');document.querySelector('#shadow-host').attachShadow({mode:'open'}).innerHTML='<div id=shadow-promo>SHADOW</div>'")
-        main{c.beginEye()};eval("window.__chengjingEye.select('#shadow-host >>> #shadow-promo')");until{c.selection!=null}
+        eval("document.body.insertAdjacentHTML('beforeend','<div id=shadow-host></div><input id=private-field value=TOP_SECRET>');document.querySelector('#shadow-host').attachShadow({mode:'open'}).innerHTML='<div id=shadow-panel>SHADOW</div>'")
+        main{c.beginEye()};eval("window.__chengjingEye.select('#shadow-host >>> #shadow-panel')");until{c.selection!=null}
         val latch=CountDownLatch(1);main{ui.activity.lifecycleScope.launch{c.removeSelected();latch.countDown()}};assertTrue(latch.await(8,TimeUnit.SECONDS))
-        until{eval("getComputedStyle(document.querySelector('#shadow-host').shadowRoot.querySelector('#shadow-promo')).display")=="\"none\""}
-        main{c.stopEye()};until{eval("getComputedStyle(document.querySelector('#shadow-host').shadowRoot.querySelector('#shadow-promo')).display")!="\"none\""};assertFalse(eval("window.__chengjingEye.snapshot()").contains("TOP_SECRET"))
-        main{c.saveSite(c.site.copy(rules=listOf(ElementRule("#late-promo"))))};until{eval("getComputedStyle(document.querySelector('#late-promo')).display")=="\"none\""}
-        eval("document.querySelector('#late-promo').remove();let n=document.createElement('div');n.id='late-promo';n.textContent='DIFFERENT CONTENT';document.body.append(n)");until{eval("getComputedStyle(document.querySelector('#late-promo')).display")=="\"none\""}
+        until{eval("getComputedStyle(document.querySelector('#shadow-host').shadowRoot.querySelector('#shadow-panel')).display")=="\"none\""}
+        main{c.stopEye()};until{eval("getComputedStyle(document.querySelector('#shadow-host').shadowRoot.querySelector('#shadow-panel')).display")!="\"none\""};assertFalse(eval("window.__chengjingEye.snapshot()").contains("TOP_SECRET"))
+        main{c.saveSite(c.site.copy(rules=listOf(ElementRule("#late-panel"))))};until{eval("getComputedStyle(document.querySelector('#late-panel')).display")=="\"none\""}
+        eval("document.querySelector('#late-panel').remove();let n=document.createElement('div');n.id='late-panel';n.textContent='DIFFERENT CONTENT';document.body.append(n)");until{eval("getComputedStyle(document.querySelector('#late-panel')).display")=="\"none\""}
         main{c.saveSite(c.site.copy(css="h1{color:rgb(255, 0, 0)!important}",js="document.body.dataset.custom='ran'"),true)};ready();until{eval("document.body.dataset.custom")=="\"ran\""};assertEquals("\"rgb(255, 0, 0)\"",eval("getComputedStyle(document.querySelector('h1')).color"))
         reloadReady{c.exception()};assertEquals("null",eval("document.body.dataset.custom"))
     }

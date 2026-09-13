@@ -23,6 +23,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -102,6 +104,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     var theme by remember{mutableStateOf(store.theme)}
     var addressAtBottom by remember{mutableStateOf(store.addressAtBottom)}
     var settingsCategory by remember{mutableStateOf("appearance")}
+    var codeFocus by remember{mutableStateOf("")}
     val panelTrail=remember{mutableStateListOf<String>()}
     LaunchedEffect(c.sheet){
         val page=c.sheet
@@ -142,9 +145,10 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         address=address,onAddress={address=it},editing=editingAddress,onFocus={editingAddress=it},
                         loading=(active?.progress?:100)<100,secure=active?.url?.startsWith("https:")==true&&active.error.isEmpty()&&active.certificateWarning.isEmpty(),
                         certificateWarning=active?.certificateWarning?.isNotEmpty()==true,
+                        certificateException=c.store.certificateException(active?.url.orEmpty()),
                         blank=active?.url.isNullOrEmpty(),tabs=c.tabs.size,
                         onGo={c.navigate(address.text);editingAddress=false;focus.clearFocus()},
-                        onSecurity={c.notice=when{active?.certificateWarning?.isNotEmpty()==true->active.certificateWarning;active?.error?.isNotEmpty()==true->active.error;active?.url?.startsWith("https:")==true->"HTTPS 加密連線 · ${c.domain}";c.domain.isEmpty()->"輸入網址或搜尋關鍵字";else->"HTTP 連線未加密 · ${c.domain}"}},
+                        onSecurity={focus.clearFocus();c.sheet="connection"},
                         onReload={if((active?.progress?:100)<100){active?.web?.stopLoading();active?.refreshContainer?.isRefreshing=false}else c.reload()},
                         onTabs={focus.clearFocus();c.sheet="tabs"},
                         onNewTab={focus.clearFocus();editingAddress=false;c.newTab()},
@@ -182,6 +186,14 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                             if(c.dirty)TextButton(onClick={c.saveDraft()}){Text("儲存")}
                             Tool(Icons.Outlined.Close,"離開天眼"){c.stopEye()}
                         }
+                        Row(Modifier.fillMaxWidth().background(cs.primaryContainer).padding(horizontal=12.dp),horizontalArrangement=Arrangement.spacedBy(8.dp)){
+                            TextButton(onClick={codeFocus="css";c.sheet="code"},modifier=Modifier.weight(1f).height(48.dp)){
+                                Icon(Icons.Outlined.Palette,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("新增 CSS")
+                            }
+                            TextButton(onClick={codeFocus="js";c.sheet="code"},modifier=Modifier.weight(1f).height(48.dp)){
+                                Icon(Icons.Outlined.Code,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("新增 JS")
+                            }
+                        }
                     } else if(c.isException) {
                         Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text("例外中 · 原始網站",Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text("恢復規則")}}
                     }
@@ -207,6 +219,8 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         Column(Modifier.fillMaxWidth().weight(1f,fill=false).testTag("panel-content").verticalScroll(rememberScrollState()).padding(start=20.dp,end=20.dp,top=4.dp,bottom=24.dp).navigationBarsPadding(),verticalArrangement=Arrangement.spacedBy(20.dp)){
                     when(c.sheet){
                         "menu"->BrowserMainMenu(c)
+                        "connection"->ConnectionPanel(c)
+                        "privacy"->PrivacyPanel(c)
                         "tabs"->{SheetTitle("分頁","${c.tabs.size} 個開啟中的頁面")
                             c.tabs.toList().forEach{tab->Row(verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f).clip(RoundedCornerShape(12.dp)).clickable{c.switchTab(tab.id)}.padding(vertical=12.dp)){Text(tab.title,maxLines=1,overflow=TextOverflow.Ellipsis,fontWeight=if(tab.id==c.activeId)FontWeight.Bold else FontWeight.Normal);Text(Domains.scope(tab.url).ifEmpty{"澄境首頁"},fontSize=12.sp,color=cs.onSurfaceVariant)};Tool(Icons.Outlined.Close,"關閉 ${tab.title}"){c.closeTab(tab.id)}}}
                             Button(onClick={c.newTab();c.sheet=""},Modifier.fillMaxWidth()){Text("新增分頁")}
@@ -214,7 +228,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         "eye"->EyePanel(c)
                         "selection"->SelectionPanel(c)
                         "rules"->RulePanel(c)
-                        "code"->CodePanel(c)
+                        "code"->CodePanel(c,codeFocus)
                         "ai"->AiPanel(c,store){settingsCategory="ai";c.sheet="settings"}
                         "settings"->SettingsPanel(settingsCategory,store,theme,{theme=it;store.theme=it},c,addressAtBottom,{addressAtBottom=it;store.addressAtBottom=it})
                         "user-agent"->UserAgentPanel(c)
@@ -255,9 +269,9 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal=28.dp,vertical=38.dp)){
         Row(verticalAlignment=Alignment.CenterVertically){Image(painterResource(R.drawable.ic_launcher),"澄境瀏覽器",modifier=Modifier.size(56.dp));Spacer(Modifier.width(12.dp));Column{Text("澄境瀏覽器",fontWeight=FontWeight.SemiBold,fontSize=17.sp);Text("CHENGJING BROWSER",fontSize=9.sp,letterSpacing=1.6.sp,color=cs.onSurfaceVariant)}}
         Spacer(Modifier.height(44.dp))
-        Text("把目光，\n留給喜歡的事。",fontSize=35.sp,lineHeight=47.sp,fontWeight=FontWeight.Light,letterSpacing=(-1).sp)
+        Text("網頁，\n依你的習慣調整。",fontSize=35.sp,lineHeight=47.sp,fontWeight=FontWeight.Light,letterSpacing=(-1).sp)
         Spacer(Modifier.height(18.dp))
-        Text("照常瀏覽。遇到干擾時，\n打開天眼，讓畫面回到你的步調。",fontSize=15.sp,lineHeight=25.sp,color=cs.onSurfaceVariant)
+        Text("照常瀏覽，也能打開天眼，\n新增樣式、程式碼或調整元件。",fontSize=15.sp,lineHeight=25.sp,color=cs.onSurfaceVariant)
         Spacer(Modifier.height(32.dp))
         Text("快速前往",fontSize=12.sp,color=cs.onSurfaceVariant);Spacer(Modifier.height(10.dp))
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)){
@@ -319,13 +333,21 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     SwitchRow("恢復頁面捲動","移除蓋版後仍無法捲動時，才開啟。",site.unlockScroll){c.saveSite(site.copy(unlockScroll=it))}
     Text("規則保存在本機。網域的結構如果改版，可以重新選取或請 AI 調整。",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
-@Composable private fun CodePanel(c:BrowserController){
-    var css by remember{mutableStateOf(c.site.css)};var js by remember{mutableStateOf(c.site.js)}
-    SheetTitle("自訂程式碼",c.domain)
-    Text("只會在這個網域及子網域執行。程式碼可以讀取與修改頁面，請只貼入你信任的內容。例外模式會停止套用並重新載入。",fontSize=13.sp,lineHeight=21.sp)
-    OutlinedTextField(css,{css=it},label={Text("CSS 樣式")},placeholder={Text(".annoying-banner { display: none !important; }")},modifier=Modifier.fillMaxWidth(),minLines=4,maxLines=7)
-    OutlinedTextField(js,{js=it},label={Text("JavaScript")},placeholder={Text("// 網頁載入後執行一次")},modifier=Modifier.fillMaxWidth(),minLines=4,maxLines=7)
-    Button(onClick={runCatching{c.saveSite(c.site.copy(css=css,js=js),reload=true)}.onSuccess{c.sheet="";c.notice="已儲存並重新載入"}.onFailure{c.notice="儲存失敗，程式碼請限制在 50,000 字內"}},Modifier.fillMaxWidth()){Text("儲存並套用")}
+@Composable private fun CodePanel(c:BrowserController,initialFocus:String){
+    val original=remember{c.draft?:c.site};val tabId=remember{c.activeId};val includeDraft=remember{c.dirty}
+    var css by remember{mutableStateOf(original.css)};var js by remember{mutableStateOf(original.js)};var error by remember{mutableStateOf("")}
+    val cssFocus=remember{FocusRequester()};val jsFocus=remember{FocusRequester()}
+    LaunchedEffect(Unit){when(initialFocus){"css"->cssFocus.requestFocus();"js"->jsFocus.requestFocus()}}
+    SheetTitle("自訂程式碼",original.domain)
+    Text("程式碼會套用到此網域及子網域。JavaScript 可讀取頁面並發出網路請求，請只使用信任的內容。例外模式會暫停套用。",fontSize=13.sp,lineHeight=21.sp)
+    if(includeDraft)Text("儲存時會一併保留目前天眼預覽的元件修改。",fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
+    OutlinedTextField(css,{css=it;error=""},label={Text("CSS 樣式")},placeholder={Text("main { line-height: 1.8; }")},modifier=Modifier.fillMaxWidth().testTag("custom-css-input").focusRequester(cssFocus),minLines=4,maxLines=7)
+    OutlinedTextField(js,{js=it;error=""},label={Text("JavaScript")},placeholder={Text("// 新增或調整頁面內容；每次載入後執行一次")},modifier=Modifier.fillMaxWidth().testTag("custom-js-input").focusRequester(jsFocus),minLines=4,maxLines=7)
+    if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,fontSize=12.sp)
+    Button(onClick={
+        if(c.activeId!=tabId||c.domain!=original.domain){error="頁面已變更，請關閉後重新開啟編輯器"}
+        else runCatching{c.saveSite(original.copy(css=css,js=js),reload=true)}.onSuccess{c.sheet="";c.notice="已儲存並重新載入"}.onFailure{error="儲存失敗：${it.localizedMessage}"}
+    },Modifier.fillMaxWidth()){Text("儲存並套用")}
 }
 @Composable private fun InventoryPanel(c:BrowserController){
     var elements by remember{mutableStateOf<List<JSONObject>>(emptyList())};var loading by remember{mutableStateOf(true)}
@@ -363,9 +385,10 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                 MenuRow(Icons.Outlined.History,"瀏覽紀錄"){c.sheet="history"}
             }
             MenuGroup("使用說明"){
-                MenuRow(Icons.Outlined.Science,"天眼練習場","試試選取元件、移除與恢復"){c.navigate("https://practice.chengjing.invalid/")}
+                MenuRow(Icons.Outlined.PrivacyTip,"隱私與資料","資料用途、保存與刪除方式"){c.sheet="privacy"}
+                MenuRow(Icons.Outlined.Science,"天眼練習場","練習調整元件、新增 CSS 與 JS"){c.navigate("https://practice.chengjing.invalid/")}
             }
-            Text("澄境瀏覽器 ${BuildConfig.VERSION_NAME} · Android 自用版",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("澄境瀏覽器 ${BuildConfig.VERSION_NAME} · Android 版",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         }
         "ai"->{
             SettingsGroup("OpenRouter 連線"){
@@ -397,14 +420,15 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
 }
 @Composable private fun AiPanel(c:BrowserController,store:BrowserStore,onSettings:()->Unit){
     val scope=rememberCoroutineScope()
-    var problem by remember{mutableStateOf("")};var busy by remember{mutableStateOf(false)};var proposal by remember{mutableStateOf<AiProposal?>(null)};var error by remember{mutableStateOf("")};var previewing by remember{mutableStateOf(false)}
+    var problem by remember{mutableStateOf("")};var busy by remember{mutableStateOf(false)};var proposal by remember{mutableStateOf<AiProposal?>(null)};var error by remember{mutableStateOf("")};var previewing by remember{mutableStateOf(false)};var consent by remember{mutableStateOf(false)}
     val original=remember{c.draft?:c.site};val domain=remember{c.domain};val tabId=remember{c.activeId}
     SheetTitle("讓天眼再看仔細一點",domain)
-    Text("例如：蓋版廣告消失了，但網頁不能捲動；或是移除後，連文章也一起不見了。",fontSize=14.sp,lineHeight=22.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text("例如：調整浮動面板後，網頁不能捲動；或是修改後，文章版面也受到影響。",fontSize=14.sp,lineHeight=22.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     OutlinedTextField(problem,{problem=it},label={Text("你遇到了什麼問題？")},modifier=Modifier.fillMaxWidth(),minLines=3,maxLines=5)
-    Text("將傳送：網域、元件標籤／類別／位置、目前規則與上述問題。不含文章內文、表單值、Cookie 或網址參數。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text("按下分析會將網域、元件標籤／類別／位置、目前規則與你輸入的問題，傳送給 OpenRouter 與所選模型供應商，以檢查天眼設定。不主動擷取文章內文、表單值、Cookie 或網址參數；請勿在問題中填入密碼或私人資料。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Row(verticalAlignment=Alignment.CenterVertically){Checkbox(consent,{consent=it});Text("我同意傳送上述資料供本次分析",fontSize=13.sp)}
     if(!store.hasKey())Button(onClick=onSettings,Modifier.fillMaxWidth()){Text("先加入 OpenRouter API Key")}
-    else Button(enabled=!busy&&problem.isNotBlank(),onClick={busy=true;error="";proposal=null;scope.launch{
+    else Button(enabled=!busy&&consent&&problem.isNotBlank(),onClick={busy=true;error="";proposal=null;scope.launch{
         runCatching{
             val raw=c.js("window.__chengjingEye?.snapshot()")
             val structure=if(raw=="null")error("網頁尚未準備好")else JSONArray("[$raw]").getString(0)
