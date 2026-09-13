@@ -21,6 +21,21 @@ data class Bookmark(val id:String,val url:String,val title:String,val folder:Str
     }
 }
 object BookmarkFormat {
+    fun editedUrl(value:String):String {
+        val url=value.trim()
+        require(url.isNotEmpty()){ "請輸入書籤網址" }
+        require(url.length<=16000){ "網址最多 16,000 字" }
+        require(Regex("^https?://",RegexOption.IGNORE_CASE).containsMatchIn(url) && url.none{it.isISOControl()}){ "請輸入以 https:// 或 http:// 開頭的網址" }
+        val normalized=requireNotNull(url.toHttpUrlOrNull()){ "網址格式不正確" }.toString()
+        require(normalized.length<=16000){ "網址編碼後超過 16,000 字，請縮短網址" }
+        return normalized
+    }
+    fun editChanges(entry:Bookmark,title:String,folder:String,url:String,now:Long):List<Bookmark>{
+        val parsed=editedUrl(url)
+        val target=if(url.trim()==entry.url)entry.url else parsed
+        val targetFolder=folder.take(2000)
+        return listOf(entry.copy(deleted=true,updated=now),entry.copy(id=Bookmark.id(target,targetFolder),url=target,title=title.ifBlank{target}.take(2000),folder=targetFolder,updated=now+1,deleted=false))
+    }
     fun merge(vararg sources:List<Bookmark>):List<Bookmark> = sources.flatMap{it}.groupBy{it.id}.values.map { rows ->
         rows.maxWith(compareBy<Bookmark>{it.updated}.thenBy{it.deleted}.thenBy{it.title})
     }.sortedBy{it.id}
@@ -83,9 +98,9 @@ class BookmarkStore(context:Context){
         return importRows(listOf(Bookmark(Bookmark.id(url,clean),url,title.ifBlank{url}.take(2000),clean,tick())))
     }
     @Synchronized fun remove(id:String){replace(all().map{if(it.id==id)it.copy(deleted=true,updated=tick())else it});onChange?.invoke()}
-    @Synchronized fun edit(id:String,title:String,folder:String){
-        val entry=all().find{it.id==id}?:return;val now=tick();val newId=Bookmark.id(entry.url,folder.take(2000))
-        val changes=listOf(entry.copy(deleted=true,updated=now),entry.copy(id=newId,title=title.ifBlank{entry.url}.take(2000),folder=folder.take(2000),updated=now+1,deleted=false))
+    @Synchronized fun edit(id:String,title:String,folder:String,url:String?=null){
+        val entry=all().find{it.id==id&&!it.deleted}?:return
+        val changes=BookmarkFormat.editChanges(entry,title,folder,url?:entry.url,tick())
         replace(BookmarkFormat.merge(all(),changes));onChange?.invoke()
     }
     @Synchronized fun importRows(rows:List<Bookmark>):Int{

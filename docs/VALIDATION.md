@@ -202,3 +202,14 @@ APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser
 - 僅將網址列、＋、分頁數字共同 Row 的左右內距，由 8 dp 調整為 24 dp，上下配置皆套用，為手機圓角留出更大邊界。
 - 既有 release 隔離 QA 操作測試通過（`qa/address-inset-tests.log`），包含上下位置的實際新增分頁、原分頁保留、分頁數更新、網址全選與輸入、位置持久化及三個元件中心線檢查。已查看 `qa/v0112-screenshots/13-bottom-address-plus.png`，確認兩側留白增加。使用者實體手機的 R 角裁切情況尚未直接驗證。
 - 正式 0.1.12 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 13。複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.12-Android.apk`，來源／目的地 SHA-256 同為 `6d49a26cd222eebc316676c7fc47d9bc5796f7767fdfdc838b8089077fdf6135`（`qa/v0112-copy-verification.json`）。只確認本機資料夾複製，未確認 Google Drive 雲端上傳。
+
+
+## 0.1.13 書籤網址編輯
+
+- 編輯視窗新增預填完整網址的欄位，保留名稱與資料夾，可直接修改、儲存或取消；鍵盤使用 URI 類型，文字區可捲動。網址只接受完整 HTTP／HTTPS，拒絕空白、無效格式、控制字元、腳本協定與超長網址，並驗證編碼後長度，避免寫入無法讀回的資料。
+- URL 改變時，原 ID 保留刪除記錄，以新 URL 與資料夾計算新 ID；同資料夾相同 URL 會依既有規則合併。僅編輯標題時保留原網址字串與 ID，避免不必要的網址正規化。寫入仍為既有單次快照與 onChange 通知，Google 同步格式保持 schema 1。
+- 單元測試合計 37 項通過，新增網址更改／舊快照不復活、重複網址合併、僅改標題保留 ID，以及非法和編碼後過長網址拒絕。亦驗證快照及 HTML 匯出可讀回新網址。
+- Android API 36 的 release 隔離 QA 操作測試通過（`qa/bookmark-url-delivery.log`）：原值預填、取消保留原資料、無效／空網址禁止儲存、鍵盤開啟時修改及保存、其他書籤保持原狀、重新讀取保存結果、合併舊快照，以及點擊後實際載入新 URL（含查詢參數與 fragment）。未操作使用者真實書籤，也未重跑真實 Google 雲端上傳。
+- 已查看 `qa/v0113-edit-preview.png`，確認名稱／網址／資料夾三個欄位對齊且間距一致；錯誤提示只在需要時顯示，不保留空白提示列。首次 UI 測試誤把欄位標籤納入網址值比較，後改用 EditableText 讀取實際欄位值；該次失敗不代表網址未預填。
+
+正式 0.1.13 APK 已以原本套件與簽章在模擬器覆蓋安裝，讀回 versionCode 14。已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser-0.1.13-Android.apk`，來源／目的地 SHA-256 同為 `e664ffa75bb690695ef876dbe31b1a2c679152f7ddc43ec2c878d8106c2d30fd`（`qa/v0113-copy-verification.json`）。只確認本機資料夾複製，未確認 Google Drive 雲端上傳或使用者實體手機驗收。

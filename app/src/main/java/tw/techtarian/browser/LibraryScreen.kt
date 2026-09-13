@@ -1,6 +1,9 @@
 package tw.techtarian.browser
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +22,7 @@ import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,6 +48,8 @@ import java.util.Date
     var editingFavorite by remember{mutableStateOf<Favorite?>(null)}
     var editTitle by remember{mutableStateOf("")}
     var editFolder by remember{mutableStateOf("")}
+    var editUrl by remember{mutableStateOf("")}
+    var editError by remember{mutableStateOf("")}
     val scope=rememberCoroutineScope()
     val snackbar=remember{SnackbarHostState()}
     LaunchedEffect(c){snapshotFlow{c.notice}.filter{it.isNotEmpty()}.collectLatest{message->c.notice="";snackbar.showSnackbar(message)}}
@@ -95,7 +101,7 @@ import java.util.Date
                                         Text("${Domains.scope(favorite.url)} · 本頁 ${(favorite.progress*100).toInt()}%",fontSize=12.sp,color=colors.onSurfaceVariant)
                                         Text(DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(Date(favorite.updated)),fontSize=11.sp,color=colors.onSurfaceVariant)
                                     }
-                                    IconButton(onClick={editingFavorite=favorite;editTitle=favorite.title}){Icon(Icons.Outlined.Edit,"重新命名收藏 ${favorite.title}",Modifier.size(19.dp))}
+                                    IconButton(onClick={editingFavorite=favorite;editTitle=favorite.title;editError=""}){Icon(Icons.Outlined.Edit,"重新命名收藏 ${favorite.title}",Modifier.size(19.dp))}
                                     IconButton(onClick={c.removeFavorite(favorite.id)}){Icon(Icons.Outlined.Close,"刪除收藏 ${favorite.title}",Modifier.size(19.dp))}
                                 }
                             }
@@ -116,7 +122,7 @@ import java.util.Date
                                         Text(bookmark.title,fontSize=15.sp,maxLines=2,overflow=TextOverflow.Ellipsis)
                                         Text(if(query.isNotBlank())bookmark.folder.ifEmpty{"未分類"}+" · "+Domains.scope(bookmark.url)else Domains.scope(bookmark.url),fontSize=12.sp,maxLines=2,overflow=TextOverflow.Ellipsis,color=colors.onSurfaceVariant)
                                     }
-                                    IconButton(onClick={editingBook=bookmark;editTitle=bookmark.title;editFolder=bookmark.folder}){Icon(Icons.Outlined.Edit,"編輯書籤 ${bookmark.title}",Modifier.size(19.dp))}
+                                    IconButton(onClick={editingBook=bookmark;editTitle=bookmark.title;editFolder=bookmark.folder;editUrl=bookmark.url;editError=""}){Icon(Icons.Outlined.Edit,"編輯書籤 ${bookmark.title}",Modifier.size(19.dp))}
                                     IconButton(onClick={c.store.bookmarkStore.remove(bookmark.id);c.revision++}){Icon(Icons.Outlined.Close,"刪除書籤 ${bookmark.title}",Modifier.size(19.dp))}
                                 }
                             }
@@ -136,13 +142,20 @@ import java.util.Date
             }
         }
         if(editingBook!=null||editingFavorite!=null){
-            AlertDialog(onDismissRequest={editingBook=null;editingFavorite=null},title={Text(if(editingBook!=null)"編輯書籤"else"命名收藏")},text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)){
-                OutlinedTextField(editTitle,{editTitle=it},label={Text("名稱")},singleLine=true)
-                if(editingBook!=null)OutlinedTextField(editFolder,{editFolder=it},label={Text("資料夾")},placeholder={Text("閱讀 / 科技")},supportingText={Text("用「 / 」分隔資料夾層級")})
-            }},confirmButton={TextButton(enabled=editTitle.isNotBlank(),onClick={
-                editingBook?.let{c.store.bookmarkStore.edit(it.id,editTitle,editFolder)}
-                editingFavorite?.let{c.favorites.rename(it.id,editTitle)}
-                editingBook=null;editingFavorite=null;c.revision++
+            val urlError=if(editingBook!=null)runCatching{BookmarkFormat.editedUrl(editUrl)}.exceptionOrNull()?.localizedMessage else null
+            AlertDialog(onDismissRequest={editingBook=null;editingFavorite=null},title={Text(if(editingBook!=null)"編輯書籤"else"命名收藏")},text={Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)){
+                OutlinedTextField(editTitle,{editTitle=it;editError=""},modifier=Modifier.fillMaxWidth().testTag("bookmark-edit-title"),label={Text("名稱")},singleLine=true)
+                if(editingBook!=null){
+                    OutlinedTextField(editUrl,{editUrl=it;editError=""},modifier=Modifier.fillMaxWidth().testTag("bookmark-edit-url"),label={Text("網址")},singleLine=true,keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Uri,autoCorrectEnabled=false),isError=urlError!=null,supportingText=if(urlError!=null)({Text(urlError)})else null)
+                    OutlinedTextField(editFolder,{editFolder=it;editError=""},modifier=Modifier.fillMaxWidth().testTag("bookmark-edit-folder"),label={Text("資料夾")},placeholder={Text("閱讀 / 科技")},supportingText={Text("用「 / 」分隔資料夾層級")})
+                }
+                if(editError.isNotEmpty())Text(editError,color=colors.error,fontSize=12.sp)
+            }},confirmButton={TextButton(enabled=editTitle.isNotBlank()&&urlError==null,onClick={
+                runCatching{
+                    editingBook?.let{c.store.bookmarkStore.edit(it.id,editTitle,editFolder,editUrl)}
+                    editingFavorite?.let{c.favorites.rename(it.id,editTitle)}
+                }.onSuccess{editingBook=null;editingFavorite=null;c.revision++}
+                    .onFailure{editError=it.localizedMessage?:"儲存失敗，請再試一次"}
             }){Text("儲存")}},dismissButton={TextButton(onClick={editingBook=null;editingFavorite=null}){Text("取消")}})
         }
     }

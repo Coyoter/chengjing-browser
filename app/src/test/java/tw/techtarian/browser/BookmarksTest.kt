@@ -11,4 +11,29 @@ class BookmarksTest {
     @Test fun tie(){val e=BookmarkFormat.parseHtml(html,100).first();assertTrue(BookmarkFormat.merge(listOf(e),listOf(e.copy(deleted=true))).single().deleted)}
     @Test fun snapshot(){val rows=BookmarkFormat.parseHtml(html,100);assertEquals(rows,BookmarkFormat.readSnapshot(BookmarkFormat.snapshot(rows)))}
     @Test(expected=IllegalArgumentException::class) fun otherApp(){BookmarkFormat.readSnapshot("""{"schema":1,"app":"chengjing-notes","bookmarks":[]}""")}
+    @Test fun editingUrlRetiresTheOldSyncIdentity(){
+        val old=Bookmark(Bookmark.id("https://example.com/old","閱讀"),"https://example.com/old","原名稱","閱讀",10)
+        val changed=BookmarkFormat.editChanges(old,"新名稱","閱讀"," https://example.com/new?q=1#chapter ",20)
+        val saved=BookmarkFormat.readSnapshot(BookmarkFormat.snapshot(BookmarkFormat.merge(listOf(old),changed)))
+        assertTrue(saved.single{it.id==old.id}.deleted)
+        val current=saved.single{!it.deleted}
+        assertEquals("https://example.com/new?q=1#chapter",current.url)
+        assertEquals(Bookmark.id(current.url,current.folder),current.id)
+        assertEquals(listOf(current),BookmarkFormat.merge(saved,listOf(old)).filterNot{it.deleted})
+        assertEquals(current.url,BookmarkFormat.parseHtml(BookmarkFormat.html(saved)).single().url)
+    }
+    @Test fun editingIntoAnExistingUrlDoesNotDuplicateIt(){
+        val old=Bookmark(Bookmark.id("https://example.com/old","閱讀"),"https://example.com/old","原名稱","閱讀",10)
+        val existing=old.copy(id=Bookmark.id("https://example.com/new","閱讀"),url="https://example.com/new",updated=11)
+        val result=BookmarkFormat.merge(listOf(old,existing),BookmarkFormat.editChanges(old,"合併名稱","閱讀",existing.url,20))
+        assertEquals(1,result.count{!it.deleted});assertEquals("合併名稱",result.single{!it.deleted}.title)
+    }
+    @Test fun editingTitleOnlyKeepsTheOriginalUrlIdentity(){
+        val old=Bookmark(Bookmark.id("https://example.com",""),"https://example.com","原名稱","",10)
+        val saved=BookmarkFormat.merge(listOf(old),BookmarkFormat.editChanges(old,"新名稱","",old.url,20)).single()
+        assertEquals(old.id,saved.id);assertEquals(old.url,saved.url);assertFalse(saved.deleted)
+    }
+    @Test fun editedUrlsRejectEmptyInvalidAndScriptValues(){
+        listOf("","example.com","https://","javascript:alert(1)","file:///sdcard/file","https://example.com/\nnext","https://example.com/"+"a".repeat(16000),"https://example.com/"+"澄".repeat(2000)).forEach{assertTrue(it.take(30),runCatching{BookmarkFormat.editedUrl(it)}.isFailure)}
+    }
 }
