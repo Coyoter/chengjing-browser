@@ -2,11 +2,11 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前版本為 **1.1.0（versionCode 17）候選版**。Google Play 尚未提交、尚未上架；不是已通過審核的版本。公開發行前的未完成事項及已確認風險見 [Google Play 檢查](docs/PLAY-READINESS.md)。完整原始碼仍保存在本機，未建立公開程式碼庫。
+目前版本為 **1.2.0（versionCode 18）候選版**。Google Play 尚未提交、尚未上架；不是已通過審核的版本。公開發行前的未完成事項及已確認風險見 [Google Play 檢查](docs/PLAY-READINESS.md)。完整原始碼仍保存在本機，未建立公開程式碼庫。
 
 ## 安裝與使用
 
-安裝 `release/ChengJing-Browser-1.1.0-Android.apk`，需要 Android 9 或以上。沿用原本的應用程式套件名稱與簽章，可作為既有安裝的更新；更新不會主動清除書籤、收藏或網站設定。
+安裝 `release/ChengJing-Browser-1.2.0-Android.apk`，需要 Android 9 或以上。沿用原本的應用程式套件名稱與簽章，可作為既有安裝的更新；更新不會主動清除書籤、收藏或網站設定。
 
 - 打開網站後點「天眼」，直接進入元件選取。點選元件後可新增 CSS／JS／HTML、編輯內部 HTML、移除元件或請 AI 檢查。網站 AI 入口不依賴選取。
 - 點選元件後，可向外選一層、預覽移除並儲存。選取期間網站不會收到觸控，也不能因此跳轉或開新視窗。
@@ -39,3 +39,5 @@ python3 scripts/build-private.py
 `signing/` 存放本機發行簽章，不納入版本控制或原始碼壓縮檔。請保留它，既有 APK 更新需要相同簽章。不要公開或傳送私鑰與密碼；API Key 與 Google access token 不放進原始碼。
 
 [驗證紀錄](docs/VALIDATION.md) · [特殊元件限制](docs/SPECIAL-ELEMENTS.md) · [Android 套件登記](docs/ANDROID-REGISTRATION.md)
+
+1.2.0 加入選用 Gemma 4 E2B 本機 AI（另下載約 2.59 GB）、影片沉浸式全螢幕、儲存連結小圖示，以及網址列本機歷史建議。54 項 JVM 測試、release lint、簽章與原生函式庫 16 KB 對齊檢查通過。本機模型完成原生下載、SHA-256 驗證及真實分析套用；全螢幕的 Android 視窗與返回退出、圖示及搜尋建議完成隔離模擬器測試，未代表實體手機影片解碼驗收。

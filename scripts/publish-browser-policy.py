@@ -24,7 +24,7 @@ def upsert(slug,parent,title,content):
 policy=(root/'app/src/main/assets/privacy.txt').read_text()
 privacy='\n'.join('<p>'+html.escape(p).replace('\n','<br>')+'</p>' for p in policy.split('\n\n') if p.strip())
 (root/'store/privacy.html').write_text(privacy)
-parent=upsert('chengjing-browser',0,'澄境瀏覽器｜自帶天眼開發者工具', '<p>澄境瀏覽器將日常瀏覽與天眼開發者工具放在一起。查看網頁結構，加入 CSS、JavaScript 與 HTML，依自己的習慣調整網頁。</p><p>提供書籤資料夾、閱讀收藏、選用 Google Drive 書籤與天眼設定同步，以及 OpenRouter AI 協助。目前正在準備 Google Play 發行。</p><p><a href="https://techtarian.com/chengjing-browser/privacy/">隱私權政策與資料刪除方式</a></p><p>開發者：Coyoter。聯絡信箱：admin@techtarian.com</p>')
+parent=upsert('chengjing-browser',0,'澄境瀏覽器｜自帶天眼開發者工具', '<p>澄境瀏覽器將日常瀏覽與天眼開發者工具放在一起。查看網頁結構，加入 CSS、JavaScript 與 HTML，依自己的習慣調整網頁。</p><p>提供書籤資料夾、閱讀收藏、選用 Google Drive 書籤與天眼設定同步，以及可選的 Gemma 4 本機與 OpenRouter 雲端 AI 協助。目前正在準備 Google Play 發行。</p><p><a href="https://techtarian.com/chengjing-browser/privacy/">隱私權政策與資料刪除方式</a></p><p>開發者：Coyoter。聯絡信箱：admin@techtarian.com</p>')
 child=upsert('privacy',parent['id'],'澄境瀏覽器隱私權政策',privacy)
 proof={'product':{'id':parent['id'],'url':parent['link']},'privacy':{'id':child['id'],'url':child['link']},'status':'published, REST content read back'}
 (root/'qa/browser-policy-publication.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2))

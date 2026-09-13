@@ -43,7 +43,9 @@ class BrowserTab(val id: Int, val web: SelectionWebView) {
 }
 
 class BrowserController(val context: Context, val store: BrowserStore) {
-    internal var developerSuggestion:suspend (String,String,SiteRules,String?)->DeveloperProposal = {problem,structure,current,selected->OpenRouter().develop(store.readKey(),store.model,problem,structure,current,selected)}
+    internal var developerSuggestion:suspend (String,String,SiteRules,String?)->DeveloperProposal = {problem,structure,current,selected->if(store.aiProvider=="gemma")gemma.develop(problem,structure,current,selected)else OpenRouter().develop(store.readKey(),store.model,problem,structure,current,selected)}
+    val gemma=GemmaLocal(context.applicationContext)
+    val icons=SiteIcons(context.applicationContext)
     val favorites=FavoriteStore(context)
     val tabs = mutableStateListOf<BrowserTab>()
     var activeId by mutableIntStateOf(0)
@@ -279,6 +281,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         web.webChromeClient=object:WebChromeClient(){
             override fun onProgressChanged(view:WebView,value:Int){tab.progress=value}
+            override fun onReceivedIcon(view:WebView,icon:Bitmap?){if(icon!=null)view.url?.let{icons.remember(it,icon)}}
             override fun onReceivedTitle(view:WebView,title:String?){tab.title=title?.take(180)?:tab.url}
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {
                 if(web.selecting) return false
@@ -294,7 +297,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 fileCallback?.onReceiveValue(null);fileCallback=callback
                 runCatching { chooseFiles?.invoke(params.createIntent()) ?: error("檔案選擇器不可用") }.onFailure {fileCallback?.onReceiveValue(null);fileCallback=null;notice="無法開啟檔案選擇器"};return true
             }
-            override fun onShowCustomView(view:android.view.View,callback:CustomViewCallback){fullScreenView=view;fullScreenCallback=callback}
+            override fun onShowCustomView(view:android.view.View,callback:CustomViewCallback){if(fullScreenView!=null){callback.onCustomViewHidden();return};stopEye();sheet="";(context as? android.app.Activity)?.let{activity->activity.currentFocus?.clearFocus();(activity.getSystemService(Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager).hideSoftInputFromWindow(activity.window.decorView.windowToken,0)};fullScreenView=view;fullScreenCallback=callback}
             override fun onHideCustomView(){exitFullscreen()}
         }
         web.setDownloadListener { url, userAgent, disposition, mime, _ ->
@@ -322,9 +325,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(url.isNotEmpty()){tab.pendingUrl=url;web.loadUrl(url)}
         persistTabs();return tab
     }
-    fun exitFullscreen(){fullScreenView=null;fullScreenCallback?.onCustomViewHidden();fullScreenCallback=null}
+    fun exitFullscreen(){val callback=fullScreenCallback;fullScreenCallback=null;fullScreenView=null;callback?.onCustomViewHidden()}
     fun navigate(input:String,fromFavorite:Favorite?=null) {
         val url=Domains.address(input);if(url.isEmpty())return
+        store.recordSearch(input,url);revision++
         stopEye();sheet="";active?.error="";active?.favoriteId=fromFavorite?.id;active?.favoriteRestore=fromFavorite;active?.favoriteRestoreTouchSequence=active?.web?.touchSequence?:0L;active?.pendingUrl=url;active?.web?.loadUrl(url)
     }
     fun openFavorite(favorite:Favorite){navigate(favorite.url,favorite)}
@@ -422,5 +426,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice="已復原上一次儲存"}}
-    fun destroy(){fileCallback?.onReceiveValue(null);tabs.forEach{(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear()}
+    fun destroy(){exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);tabs.forEach{(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear()}
 }

@@ -93,7 +93,7 @@ import java.util.Date
                             if(rows.isEmpty())item{EmptyLibrary(if(query.isBlank())"還沒有收藏"else"找不到符合的收藏",if(query.isBlank())"閱讀時從選單收藏，不需要選資料夾。"else"換個名稱或網址試試。")}
                             items(rows,key={it.id}){favorite->
                                 Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).clickable{c.openFavorite(favorite)}.padding(vertical=14.dp),verticalAlignment=Alignment.CenterVertically){
-                                    Surface(shape=RoundedCornerShape(16.dp),color=colors.primaryContainer,modifier=Modifier.size(50.dp)){Box(contentAlignment=Alignment.Center){Icon(Icons.Outlined.AutoStories,null,tint=colors.primary)}}
+                                    SiteIcon(c,favorite.url,44.dp)
                                     Spacer(Modifier.width(14.dp))
                                     Column(Modifier.weight(1f)){
                                         Text(favorite.title,fontSize=16.sp,fontWeight=FontWeight.Medium,maxLines=2,overflow=TextOverflow.Ellipsis)
@@ -118,6 +118,8 @@ import java.util.Date
                             if(rootUnfiled)item(key="unfiled"){FolderRow("未分類",tree.root.bookmarks.size){path=null}}
                             items(rows,key={it.id}){bookmark->
                                 Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).padding(vertical=6.dp),verticalAlignment=Alignment.CenterVertically){
+                                    SiteIcon(c,bookmark.url)
+                                    Spacer(Modifier.width(12.dp))
                                     Column(Modifier.weight(1f).clickable{c.navigate(bookmark.url)}.padding(vertical=12.dp)){
                                         Text(bookmark.title,fontSize=15.sp,maxLines=2,overflow=TextOverflow.Ellipsis)
                                         Text(if(query.isNotBlank())bookmark.folder.ifEmpty{"未分類"}+" · "+Domains.scope(bookmark.url)else Domains.scope(bookmark.url),fontSize=12.sp,maxLines=2,overflow=TextOverflow.Ellipsis,color=colors.onSurfaceVariant)

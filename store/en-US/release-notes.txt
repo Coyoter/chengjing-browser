@@ -1,0 +1,2 @@
+Added optional on-device Gemma 4 E2B without an API key.
+Immersive fullscreen video, website icons for saved links, and local address-bar history suggestions.

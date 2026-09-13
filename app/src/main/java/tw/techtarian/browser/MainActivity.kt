@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -115,12 +116,15 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     val scope=rememberCoroutineScope()
     val snackbar=remember{SnackbarHostState()}
     val focus=LocalFocusManager.current
+    val keyboard=LocalSoftwareKeyboardController.current
     val activity=c.context as MainActivity
     val active=c.active
     c.revision
     val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
     var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
     var editingAddress by remember{mutableStateOf(false)}
+    val suggestionRows=remember(address.text,c.revision,editingAddress){if(editingAddress)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
+    LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
     val cs=if(dark)Dark else Light
     SideEffect{WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightStatusBars=!dark;WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightNavigationBars=!dark}
     LaunchedEffect(c){
@@ -178,6 +182,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             Box(Modifier.fillMaxSize().safeDrawingPadding().imePadding()){
                 Column(Modifier.fillMaxSize()){
                     if(addressAtBottom)controlsBar()else addressBar()
+                    if(!addressAtBottom&&editingAddress)AddressSuggestionPanel(c,suggestionRows){c.navigate(it);editingAddress=false;focus.clearFocus()}
                     if(!addressAtBottom&&(active?.progress?:100)<100)LinearProgressIndicator(progress={(active?.progress?:0)/100f},modifier=Modifier.fillMaxWidth().height(2.dp),trackColor=Color.Transparent)
                     if(c.eye) {
                         Row(Modifier.fillMaxWidth().background(cs.primaryContainer).padding(horizontal=12.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
@@ -198,6 +203,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         else active?.let{tab->key(tab.id){AndroidView(factory={(tab.refreshContainer.parent as? android.view.ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer},update={it.setColorSchemeColors(cs.primary.toArgb());it.setProgressBackgroundColorSchemeColor(cs.surface.toArgb())},modifier=Modifier.fillMaxSize().testTag("web-content"))}}
                     }
                     if(addressAtBottom){
+                        if(editingAddress)AddressSuggestionPanel(c,suggestionRows){c.navigate(it);editingAddress=false;focus.clearFocus()}
                         if((active?.progress?:100)<100)LinearProgressIndicator(progress={(active?.progress?:0)/100f},modifier=Modifier.fillMaxWidth().height(2.dp),trackColor=Color.Transparent)
                         addressBar()
                     }else controlsBar()
@@ -258,7 +264,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                     }
             }
         }
-        c.fullScreenView?.let{view->androidx.compose.ui.window.Dialog(onDismissRequest={c.exitFullscreen()},properties=androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth=false)){AndroidView(factory={(view.parent as? android.view.ViewGroup)?.removeView(view);view},modifier=Modifier.fillMaxSize())}}
+        c.fullScreenView?.let{view->VideoFullscreen(c,view)}
     }
 }
 
@@ -280,7 +286,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         val recentFavorites=remember(favoriteRevision){c.favorites.all().take(3)}
         if(recentFavorites.isNotEmpty()){
             Spacer(Modifier.height(18.dp));Text("繼續閱讀",fontSize=12.sp,color=cs.onSurfaceVariant)
-            recentFavorites.forEach{favorite->Row(Modifier.fillMaxWidth().clickable{c.openFavorite(favorite)}.padding(vertical=12.dp),verticalAlignment=Alignment.CenterVertically){Icon(Icons.Outlined.StarOutline,null,Modifier.size(18.dp),tint=cs.primary);Spacer(Modifier.width(10.dp));Text(favorite.title,Modifier.weight(1f),fontSize=14.sp,maxLines=1,overflow=TextOverflow.Ellipsis)}}
+            recentFavorites.forEach{favorite->Row(Modifier.fillMaxWidth().clickable{c.openFavorite(favorite)}.padding(vertical=12.dp),verticalAlignment=Alignment.CenterVertically){SiteIcon(c,favorite.url,28.dp);Spacer(Modifier.width(10.dp));Text(favorite.title,Modifier.weight(1f),fontSize=14.sp,maxLines=1,overflow=TextOverflow.Ellipsis)}}
         }
         Row(horizontalArrangement=Arrangement.spacedBy(8.dp)){
             TextButton(onClick={c.sheet="bookmarks"}){Icon(Icons.Outlined.Folder,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("書籤資料夾")}
@@ -395,6 +401,8 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             Text("澄境瀏覽器 ${BuildConfig.VERSION_NAME} · Android 版",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         }
         "ai"->{
+            AiProviderPanel(c)
+            if(store.aiProvider=="gemma")GemmaSetupPanel(c)else{
             SettingsGroup("OpenRouter 連線"){
                 Row(verticalAlignment=Alignment.CenterVertically){
                     Icon(if(hasKey)Icons.Outlined.VerifiedUser else Icons.Outlined.Key,null,tint=MaterialTheme.colorScheme.primary,modifier=Modifier.size(22.dp));Spacer(Modifier.width(12.dp))
@@ -418,6 +426,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                 TextButton(enabled=!loading,onClick={loading=true;scope.launch{runCatching{OpenRouter().models()}.onSuccess{models=it;c.notice="已取得各系列最新可用的一般文字模型"}.onFailure{c.notice="無法更新模型，現有選項仍可使用"};loading=false}}){Text(if(loading)"更新中…"else"更新最新模型清單")}
             }
             Text("按下分析才會呼叫 OpenRouter，費用依所選模型計算。金鑰不會交給網站；送出的資料會由 OpenRouter 與模型供應商處理。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            }
         }
     }
     EngineVersionPanel(c)

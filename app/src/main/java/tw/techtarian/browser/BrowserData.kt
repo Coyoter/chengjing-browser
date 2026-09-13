@@ -93,6 +93,9 @@ class BrowserStore(context: Context) {
         if(enabled)values.add(origin)
         check(prefs.edit().putStringSet("certificate-exceptions",values).commit()){"設定儲存失敗"}
     }
+    var aiProvider:String
+        get()=prefs.getString("ai-provider",if(hasKey())"openrouter"else"gemma").orEmpty()
+        set(value){require(value in setOf("gemma","openrouter"));prefs.edit().putString("ai-provider",value).apply()}
     var theme: String
         get() = prefs.getString("theme", "system") ?: "system"
         set(value) { prefs.edit().putString("theme", value).apply() }
@@ -152,7 +155,14 @@ class BrowserStore(context: Context) {
         val items = (listOf(url to title) + history().filterNot { it.first == url }).take(250)
         prefs.edit().putString("history", JSONArray(items.map { JSONObject().put("url", it.first).put("title", it.second) }).toString()).apply()
     }
-    fun clearHistory() { prefs.edit().remove("history").apply() }
+    fun searches():List<String> = runCatching{val a=JSONArray(prefs.getString("searches","[]"));(0 until a.length()).map{a.getString(it)}}.getOrDefault(emptyList())
+    fun recordSearch(input:String,resolved:String){
+        val query=input.trim()
+        if(query.isEmpty()||query.startsWith("http://",true)||query.startsWith("https://",true)||!resolved.startsWith("https://www.google.com/search?q="))return
+        val rows=(listOf(query)+searches().filterNot{it.equals(query,true)}).take(100)
+        prefs.edit().putString("searches",JSONArray(rows).toString()).apply()
+    }
+    fun clearHistory() { prefs.edit().remove("history").remove("searches").apply() }
     fun saveTabs(urls: List<String>,favoriteIds:List<String?> = emptyList()) {
         val links=JSONArray(urls.mapIndexed{i,url->JSONObject().put("url",url).put("id",favoriteIds.getOrNull(i)?:JSONObject.NULL)})
         prefs.edit().putString("tabs",JSONArray(urls).toString()).putString("tab-favorite-links",links.toString()).apply()
