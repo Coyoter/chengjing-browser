@@ -1,0 +1,14 @@
+ChengJing Browser brings everyday browsing and webpage customization together.
+
+Sky Eye developer tools visualize the current page's DOM structure. Select an element to add CSS, JavaScript or HTML, edit its inner HTML, or remove the element from your own view. Save domain settings and restore the original site or the previous saved settings whenever needed. These changes affect your browser, not the website's server source code.
+
+Optional AI assistance
+Describe changes for the website, or ask AI to focus on one selected element. Review the proposed changes and apply them with one tap. AI uses a limited structural snapshot of the current page, your saved customization code and your request; it does not inspect every page of the website. An OpenRouter API key is required and provider fees may apply. Consent is requested before each analysis. AI suggestions may be incorrect.
+
+Everyday browsing
+Tabs, in-page search, pull to refresh, bookmark folders, editable bookmark URLs, Chrome HTML bookmark import and export, a separate reading collection, optional Google Drive sync for bookmarks and Sky Eye website settings, light and dark themes, and top or bottom address-bar layouts.
+
+Data and compatibility
+Most browser data is stored locally. Optional Google sync uses only this app's private Drive app-data space. In-app privacy information explains data use and deletion. The browser uses your device's Android System WebView; engine updates come from its provider. Some sites and embedded elements have compatibility or access restrictions. Saved customizations may need adjustment when a site changes. Custom JavaScript has webpage-code capabilities; use code you understand.
+
+The app interface is currently in Traditional Chinese.

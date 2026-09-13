@@ -43,6 +43,7 @@ class BrowserTab(val id: Int, val web: SelectionWebView) {
 }
 
 class BrowserController(val context: Context, val store: BrowserStore) {
+    internal var developerSuggestion:suspend (String,String,SiteRules,String?)->DeveloperProposal = {problem,structure,current,selected->OpenRouter().develop(store.readKey(),store.model,problem,structure,current,selected)}
     val favorites=FavoriteStore(context)
     val tabs = mutableStateListOf<BrowserTab>()
     var activeId by mutableIntStateOf(0)
@@ -54,6 +55,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     var dirty by mutableStateOf(false)
     var notice by mutableStateOf("")
     var sheet by mutableStateOf("")
+    var aiElement by mutableStateOf<Selection?>(null)
+    var editingHtml by mutableStateOf(false)
     var blockedCount by mutableIntStateOf(0)
     val exceptions = mutableStateListOf<String>()
     var fileCallback: ValueCallback<Array<Uri>>? = null
@@ -68,7 +71,12 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     val isException: Boolean get() = domain in exceptions
     val isSupported: Boolean get() = WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER) && WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)
 
-    fun config(): String = JSONObject().put("sites", JSONArray(store.all().map { it.json() })).put("exceptions", JSONArray(exceptions)).toString()
+    fun config(page:String?=null): String {
+        val host=page?.let{Uri.parse(it).host.orEmpty()}
+        val sites=store.all().filter{host==null||Domains.matches(host,it.domain)}
+        val bypass=exceptions.filter{host==null||Domains.matches(host,it)}
+        return JSONObject().put("sites",JSONArray(sites.map{it.json()})).put("exceptions",JSONArray(bypass)).toString()
+    }
     fun refreshScripts(targetTabs:List<BrowserTab> = tabs.toList(),applyToPage:Boolean=true) {
         val configuration=config()
         val documentStart=WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)
@@ -79,7 +87,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 tab.documentScript=WebViewCompat.addDocumentStartJavaScript(tab.web,source,setOf("*"))
                 tab.documentConfig=configuration
             }
-            if(applyToPage && tab in targetTabs && tab.url.isNotEmpty())tab.web.evaluateJavascript("window.__chengjingEye?.configure($configuration)",null)
+            if(applyToPage && tab in targetTabs && tab.url.isNotEmpty())tab.web.evaluateJavascript("window.__chengjingEye?.configure(${config(tab.url)})",null)
         }
         revision++
     }
@@ -234,7 +242,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 }
                 if(tab.error.isEmpty()) store.visit(url,tab.title)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
-                if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config()),null)
+                if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config(tab.url)),null)
             }
             override fun onReceivedError(view:WebView,request:WebResourceRequest,error:WebResourceError) {
                 if(web.selecting)return
@@ -367,7 +375,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         val wasSelecting=eye || active?.web?.selecting==true || draft!=null
         active?.web?.selecting=false;active?.refreshContainer?.isEnabled=true
         eye=false;selection=null;draft=null;dirty=false
-        if(wasSelecting && applyToPage)active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config()})",null)
+        if(wasSelecting && applyToPage)active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false);window.__chengjingEye?.configure(${config(active?.url.orEmpty())})",null)
     }
     fun parentSelection(){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.parent()",null)}
     fun chooseSelector(selector:String){sheet="";active?.web?.evaluateJavascript("window.__chengjingEye?.select(${JSONObject.quote(selector)})",null)}
@@ -386,6 +394,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         return null
     }
+    suspend fun validateCode(value:SiteRules){
+        val source=JSONArray(listOf(value.js)+value.edits.map{it.js}).toString()
+        val result=js("(()=>{try{for(const code of $source){new Function('element',code);}return {valid:true};}catch(e){return {valid:false,error:String(e)};}})()")
+        val parsed=JSONObject(result);check(parsed.optBoolean("valid")){"JavaScript 語法有誤：${parsed.optString("error")}"}
+    }
     fun previewSite(value:SiteRules){draft=value;dirty=true;active?.web?.evaluateJavascript("window.__chengjingEye?.preview(${value.json()})",null)}
     suspend fun removeSelected():Boolean {
         val s=selection?:return false
@@ -395,7 +408,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         selection=null;sheet="";notice="已預覽移除；確認後按「儲存」";return true
     }
     fun undoDraft(){draft?.let{previewSite(it.copy(rules=it.rules.dropLast(1)))};selection=null;sheet=""}
-    fun saveDraft(){val d=draft?:return;saveSite(d);stopEye();notice="已儲存，將套用 ${d.domain} 及其子網域"}
+    fun saveDraft(){val d=draft?:return;saveSite(d,reload=true);stopEye();notice="已儲存，將套用 ${d.domain} 及其子網域"}
     fun saveSite(site:SiteRules,reload:Boolean=false){
         store.save(site)
         if(reload)reloadSite(site.domain)else refreshScripts(tabs.filter{Domains.scope(it.url)==site.domain})

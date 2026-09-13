@@ -30,7 +30,7 @@ class BrowserJourneyTest{
         tap("#sample-overlay");until{c.selection!=null}
         while(c.selection!!.selector!="#sample-overlay"){val old=c.selection!!.selector;ui.onNodeWithText("選取外面一層").performScrollTo().performClick();until{c.selection?.selector!=old}}
         shot("04-selected")
-        ui.onNodeWithText("預覽移除").performScrollTo().performClick();until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")=="\"none\""};shot("05-preview")
+        ui.onNodeWithText("移除此網站元件").performScrollTo().performClick();until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")=="\"none\""};shot("05-preview")
         ui.onNodeWithText("儲存",useUnmergedTree=true).performClick();until{c.site.rules.isNotEmpty()}
         reloadReady{c.navigate("https://practice.chengjing.invalid/second")};until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")=="\"none\""};assertEquals("\"換了內容的元件，仍然是相同結構。\"",eval("document.querySelector('#panel-copy').textContent"));shot("06-next-page")
         reloadReady{c.exception()};until{eval("getComputedStyle(document.querySelector('#sample-overlay')).display")!="\"none\""};shot("07-exception")

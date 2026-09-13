@@ -38,15 +38,17 @@ data class SiteRules(
     val js: String = "",
     val unlockScroll: Boolean = false,
     val guard: Boolean = false,
+    val html:String = "",
+    val edits:List<PageEdit> = emptyList(),
 ) {
     fun json() = JSONObject().put("domain", domain).put("rules", JSONArray(rules.map { it.json() }))
-        .put("css", css).put("js", js).put("unlockScroll", unlockScroll).put("guard", guard)
+        .put("css", css).put("js", js).put("unlockScroll", unlockScroll).put("guard", guard).put("html",html).put("edits",JSONArray(edits.map{it.json()}))
     companion object {
         fun from(j: JSONObject): SiteRules {
             val a = j.optJSONArray("rules") ?: JSONArray()
             return SiteRules(j.getString("domain"), (0 until a.length()).map {
                 val r = a.getJSONObject(it); ElementRule(r.getString("selector"), r.optString("label", "網站元件"))
-            }, j.optString("css"), j.optString("js"), j.optBoolean("unlockScroll"), j.optBoolean("guard"))
+            }, j.optString("css"), j.optString("js"), j.optBoolean("unlockScroll"), j.optBoolean("guard"), j.optString("html"),j.optJSONArray("edits")?.let{e->(0 until e.length()).map{PageEdit.from(e.getJSONObject(it))}}?:emptyList())
         }
     }
 }
@@ -77,6 +79,11 @@ object RuleValidation {
 data class AiProposal(val explanation: String, val result: SiteRules, val added: List<String>, val removed: List<String>)
 
 class BrowserStore(context: Context) {
+    var onSiteChange:(()->Unit)?=null
+    var syncSiteSettings:Boolean
+        get()=prefs.getBoolean("sync-site-settings",false)
+        set(value){check(prefs.edit().putBoolean("sync-site-settings",value).commit())}
+
     private val prefs = context.getSharedPreferences("browser-v1", Context.MODE_PRIVATE)
     fun certificateException(url:String):Boolean = CertificateExceptions.site(url)?.let{site->prefs.getStringSet("certificate-exceptions",emptySet()).orEmpty().any{CertificateExceptions.site(it)==site}}?:false
     fun setCertificateException(url:String,enabled:Boolean){
@@ -108,14 +115,31 @@ class BrowserStore(context: Context) {
     fun save(site: SiteRules) {
         require(site.domain.isNotEmpty())
         require(site.rules.all { RuleValidation.selectorError(it.selector) == null })
-        require(site.css.length <= 50000 && site.js.length <= 50000 && site.rules.size <= 100)
-        check(prefs.edit().putString("previous:${site.domain}", get(site.domain).json().toString()).putString("site:${site.domain}", site.json().toString()).commit()) { "手機儲存失敗，規則尚未儲存" }
+        require(site.css.length <= 50000 && site.js.length <= 50000 && site.html.length<=64000 && site.rules.size <= 100 && site.edits.size<=100)
+        site.edits.forEach{it.validate()}
+        check(prefs.edit().putString("previous:${site.domain}", get(site.domain).json().toString()).putString("site:${site.domain}", site.json().toString()).putLong("site-clock:${site.domain}",maxOf(System.currentTimeMillis(),prefs.getLong("site-clock:${site.domain}",0)+1)).commit()) { "手機儲存失敗，規則尚未儲存" }
+        onSiteChange?.invoke()
     }
     fun hasPrevious(domain: String) = prefs.contains("previous:$domain")
     fun undo(domain: String): Boolean {
         val previous = prefs.getString("previous:$domain", null) ?: return false
-        check(prefs.edit().putString("site:$domain", previous).remove("previous:$domain").commit())
+        check(prefs.edit().putString("site:$domain", previous).remove("previous:$domain").putLong("site-clock:$domain",maxOf(System.currentTimeMillis(),prefs.getLong("site-clock:$domain",0)+1)).commit())
+        onSiteChange?.invoke()
         return true
+    }
+    fun siteRecords():List<SiteSettingsRecord> = all().map{SiteSettingsRecord(it,prefs.getLong("site-clock:${it.domain}",1))}
+    fun mergeSiteRecords(remote:List<SiteSettingsRecord>):Set<String>{
+        val before=siteRecords().associateBy{it.settings.domain};val merged=SiteSettingsFormat.merge(before.values.toList(),remote)
+        val edit=prefs.edit();val changed=mutableSetOf<String>()
+        merged.forEach{record->
+            val d=record.settings.domain;val old=before[d]
+            if(old!=record){
+                if(old?.settings!=record.settings){edit.putString("previous:$d",(old?.settings?:SiteRules(d)).json().toString());changed.add(d)}
+                edit.putString("site:$d",record.settings.json().toString()).putLong("site-clock:$d",record.modified)
+            }
+        }
+        check(edit.commit()){ "網站設定合併未完成，本機資料已保留" }
+        return changed
     }
     val bookmarkStore = BookmarkStore(context)
     fun bookmark(url: String, title: String) { bookmarkStore.toggle(url, title) }

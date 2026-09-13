@@ -234,3 +234,17 @@ APK 已複製到 `/Volumes/外接硬碟/Google Drive/安裝包/ChengJing-Browser
 - Google Play 尚未送審／上架。具體未完成事項見 PLAY-READINESS.md；平台安全審查風險不等於已被判定違法。
 
 原始測試證據：qa/certificate-host-final.log、qa/certificate-process-restart.log、qa/build-1.0.0.log、qa/ChengJing-1.0.0-QA/。這些本機 QA 檔不納入公開原始碼或商店素材。
+
+## 1.1.0：天眼開發者工具與網站設定同步
+
+- 元件操作依使用者指定分為新增 CSS／JS／HTML、移除此元件、編輯內部 HTML、元件 AI；網站 AI 可在未選元件時開啟。圖片截圖確認使用相同分組、列高與留白。
+- 新增持久化 PageEdit。元件 CSS 使用屬性宣告，JS 取得 element，HTML 追加或替換元件內部；每次載入／動態加入的原網站元件只執行一次，避免因自身插入內容造成無限重複。HTML 的 script 不自動執行。
+- AI 以結構化提案回傳 CSS／JS／HTML 與元件操作；元件範圍強制核對選擇器，網站範圍可提出整體修改。套用前檢查目前分頁、文件、設定是否仍相同，以及選擇器與 JS 語法。可一鍵保存、重載及復原上一份設定。
+- 實際 OpenRouter／DeepSeek v4.1 Flash 呼叫成功（網站與元件兩種合成需求）。把兩份真實回覆當成固定測試資料，在 Android 驗證建議檢視、一鍵套用與復原；這段 UI 測試回放回覆，沒有把假的網路請求當成真實呼叫。另確認 data_collection=deny 路由可接受。
+- Google 同步加入可選天眼設定；每個網站完整設定依修改時間合併，同時保留空設定作為清除記錄。同時異動使用穩定指紋收斂；本機新修改超越已接收的遠端時鐘。使用分裝置 Drive 快照，讀回一致才回報完成。
+- 真實 Google Drive 測試使用獨立 QA 標籤，兩個合成裝置快照完成新增、讀回、較新空設定勝出與再寫入驗證；最後將兩份 QA 快照清空，未改寫使用者的原有資料。沒有把同一模擬器的邏輯裝置測試稱為兩支實體手機。
+- 51 個 JVM 測試通過；核心 9 個模擬器操作案例通過，新增的同步儲存、同步開關及跨網站設定隔離也通過。跨網站測試故意覆寫頁面 Array.prototype.filter，確認即時重新設定沒有洩露另一網站的自訂程式碼。
+- 發行設定 lint 無 Error／Fatal；存在既有與風格類 Warning，未宣稱全部零警告。APK 與 AAB 簽署完成，沿用既有 app 簽章；APK 已覆蓋安裝於模擬器。arm64-v8a 及 x86_64 原生程式庫 PT_LOAD 對齊 16 KB，APK zipalign -P 16 檢查通過。
+- 更新公開隱私頁、Google OAuth 品牌與正式發布狀態，唯一 OAuth 權限仍為非機密 drive.appdata。商店素材、繁中／英文文案及全球發行範圍已準備。Google Play 仍停在建立頁的法律聲明，尚未建立／上傳／送審，不能宣稱上架完成。
+
+本機證據：qa/developer-release-tests.log、qa/site-sync-tests.log、qa/site-sync-live.log、qa/site-sync-ui.log、qa/developer-scope-isolation.log、qa/build-1.1.0-final.log、qa/native-alignment-1.1.0.json。公開展示素材在 store/assets/；尚無使用者實體手機驗收。

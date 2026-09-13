@@ -1,6 +1,6 @@
 # Google Drive 登入設定
 
-目前 OAuth 仍為既有測試設定；公開發行需另完成 Google Audience／品牌及 Play 簽章配置。下列為已完成的測試環境紀錄。
+2026-09-13：OAuth 已切換為正式環境（UI 顯示「實際運作中」），品牌首頁與隱私政策已設定，唯一範圍 drive.appdata 列在「非機密範圍」。下列保留初期測試環境紀錄；測試名單限制已不代表目前發布狀態。最終 Play App Signing 簽章仍須核對 Android OAuth 用戶端。
 
 Google Cloud 設定已完成並讀回確認（2026-09-12）：
 

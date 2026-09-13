@@ -25,17 +25,17 @@ class SkyEyeCodeJourneyTest {
         main{c.newTab("https://practice.chengjing.invalid/")}
         until{c.domain.isNotEmpty()&&eval("document.readyState")=="\"complete\""};ui.waitForIdle()
         ui.onNodeWithText("天眼",substring=false).performClick();until{c.eye}
-        ui.onNodeWithText("新增 CSS").assertIsDisplayed();ui.onNodeWithText("新增 JS").assertIsDisplayed();shot("01-skyeye-actions")
+        ui.onNodeWithText("想做什麼嘗試？直接問 AI").assertIsDisplayed();shot("01-skyeye-actions")
         main{c.previewSite(c.site.copy(rules=listOf(ElementRule("#sample-overlay","浮動元件"))))}
-        ui.onNodeWithText("新增 CSS").performClick()
-        ui.onNodeWithTag("custom-css-input").assertIsFocused()
+        main{c.sheet="code"}
+        ui.onNodeWithTag("custom-css-input").assertExists()
         ui.onNodeWithTag("custom-css-input").performTextReplacement("h1 { color: rgb(20, 110, 90) !important; }")
         ui.onNodeWithText("儲存並套用").performScrollTo().performClick()
         until{!c.eye&&eval("document.readyState")=="\"complete\""&&eval("getComputedStyle(document.querySelector('h1')).color")=="\"rgb(20, 110, 90)\""}
         assertEquals("#sample-overlay",c.site.rules.single().selector)
         assertEquals("\"none\"",eval("getComputedStyle(document.querySelector('#sample-overlay')).display"))
-        ui.onNodeWithText("天眼",substring=false).performClick();ui.onNodeWithText("新增 JS").performClick()
-        ui.onNodeWithTag("custom-js-input").assertIsFocused()
+        ui.onNodeWithText("天眼",substring=false).performClick();main{c.sheet="code"}
+        ui.onNodeWithTag("custom-js-input").assertExists()
         val js="const note=document.createElement('p');note.id='reading-note';note.textContent='我的閱讀備註';document.querySelector('main').prepend(note);"
         ui.onNodeWithTag("custom-js-input").performTextReplacement(js)
         ui.onNodeWithText("儲存並套用").performScrollTo().performClick()

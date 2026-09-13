@@ -134,7 +134,7 @@ import java.util.Date
                             }){Icon(Icons.Outlined.BookmarkAdd,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("加入目前網頁")}
                             Spacer(Modifier.weight(1f))
                             TextButton(onClick={(c.context as MainActivity).exportBookmarks()}){Text("匯出")}
-                            IconButton(onClick={c.sheet="sync"}){Icon(Icons.Outlined.CloudSync,"Google 書籤同步")}
+                            IconButton(onClick={c.sheet="sync"}){Icon(Icons.Outlined.CloudSync,"Google 同步")}
                         }
                     }
                 }

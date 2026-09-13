@@ -186,13 +186,8 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                             if(c.dirty)TextButton(onClick={c.saveDraft()}){Text("儲存")}
                             Tool(Icons.Outlined.Close,"離開天眼"){c.stopEye()}
                         }
-                        Row(Modifier.fillMaxWidth().background(cs.primaryContainer).padding(horizontal=12.dp),horizontalArrangement=Arrangement.spacedBy(8.dp)){
-                            TextButton(onClick={codeFocus="css";c.sheet="code"},modifier=Modifier.weight(1f).height(48.dp)){
-                                Icon(Icons.Outlined.Palette,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("新增 CSS")
-                            }
-                            TextButton(onClick={codeFocus="js";c.sheet="code"},modifier=Modifier.weight(1f).height(48.dp)){
-                                Icon(Icons.Outlined.Code,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("新增 JS")
-                            }
+                        TextButton(onClick={c.aiElement=null;c.sheet="develop-ai"},modifier=Modifier.fillMaxWidth().height(48.dp).background(cs.primaryContainer)){
+                            Icon(Icons.Outlined.AutoAwesome,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text("想做什麼嘗試？直接問 AI")
                         }
                     } else if(c.isException) {
                         Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text("例外中 · 原始網站",Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text("恢復規則")}}
@@ -221,15 +216,18 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         "menu"->BrowserMainMenu(c)
                         "connection"->ConnectionPanel(c)
                         "privacy"->PrivacyPanel(c)
+                        "legal"->LicensePanel(c)
                         "tabs"->{SheetTitle("分頁","${c.tabs.size} 個開啟中的頁面")
                             c.tabs.toList().forEach{tab->Row(verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f).clip(RoundedCornerShape(12.dp)).clickable{c.switchTab(tab.id)}.padding(vertical=12.dp)){Text(tab.title,maxLines=1,overflow=TextOverflow.Ellipsis,fontWeight=if(tab.id==c.activeId)FontWeight.Bold else FontWeight.Normal);Text(Domains.scope(tab.url).ifEmpty{"澄境首頁"},fontSize=12.sp,color=cs.onSurfaceVariant)};Tool(Icons.Outlined.Close,"關閉 ${tab.title}"){c.closeTab(tab.id)}}}
                             Button(onClick={c.newTab();c.sheet=""},Modifier.fillMaxWidth()){Text("新增分頁")}
                         }
                         "eye"->EyePanel(c)
                         "selection"->SelectionPanel(c)
+                        "element-editor"->ElementEditor(c)
+                        "develop-ai"->DeveloperAiPanel(c){settingsCategory="ai";c.sheet="settings"}
                         "rules"->RulePanel(c)
                         "code"->CodePanel(c,codeFocus)
-                        "ai"->AiPanel(c,store){settingsCategory="ai";c.sheet="settings"}
+                        "ai"->DeveloperAiPanel(c){settingsCategory="ai";c.sheet="settings"}
                         "settings"->SettingsPanel(settingsCategory,store,theme,{theme=it;store.theme=it},c,addressAtBottom,{addressAtBottom=it;store.addressAtBottom=it})
                         "user-agent"->UserAgentPanel(c)
                         "inventory"->InventoryPanel(c)
@@ -300,11 +298,11 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     SheetTitle("天眼",c.domain)
     Button(onClick={if(c.eye)c.sheet=""else c.beginEye()},enabled=!c.isException,modifier=Modifier.fillMaxWidth().height(50.dp)){Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(10.dp));Text(if(c.eye)"繼續選取元件"else"開啟天眼・選取元件")}
     if(c.eye && c.dirty)Row(horizontalArrangement=Arrangement.spacedBy(8.dp)){OutlinedButton(onClick={c.undoDraft()},Modifier.weight(1f)){Text("撤回上一個")};Button(onClick={c.saveDraft();c.sheet=""},Modifier.weight(1f)){Text("儲存規則")}}
-    MenuGroup("元件與規則"){
+    WebsiteAiEntry(c)
+    MenuGroup("元件與程式碼"){
         MenuRow(Icons.Outlined.Layers,"結構清單","查看浮動、隱藏與內嵌元件"){if(!c.eye)c.beginEye();if(c.eye)c.sheet="inventory"}
-        MenuRow(Icons.Outlined.Tune,"已儲存的移除規則","${c.site.rules.size} 條 · 適用此網域與子網域"){c.sheet="rules"}
-        MenuRow(Icons.Outlined.AutoAwesome,"請 AI 幫忙","檢查並修正移除方式"){c.sheet="ai"}
-        MenuRow(Icons.Outlined.Code,"自訂 CSS / JavaScript"){c.sheet="code"}
+        MenuRow(Icons.Outlined.Tune,"已儲存的網站修改","${c.site.rules.size+c.site.edits.size} 項 · 適用此網域與子網域"){c.sheet="rules"}
+        MenuRow(Icons.Outlined.Code,"網站 CSS / JS / HTML"){c.sheet="code"}
     }
     MenuGroup("網站行為"){
         SwitchRow("防止跳轉與彈窗","登入流程受影響時可關閉。",c.site.guard){c.saveSite(c.site.copy(guard=it));c.notice="網域防護設定已儲存"}
@@ -315,14 +313,17 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
 @Composable private fun SelectionPanel(c:BrowserController){
     val selection=c.selection?:return
     val scope=rememberCoroutineScope()
-    SheetTitle("選中一個元件",selection.label)
-    Text("${selection.width} × ${selection.height} · 目前符合 ${selection.count} 個元件",fontSize=13.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-    if(selection.frame)Text("這是內嵌頁面。移除會處理整個框架；跨網域的內部結構無法在此逐一選取。",fontSize=13.sp)
-    if(selection.count>1)Text("這條規則會一起移除 ${selection.count} 個相同結構的元件。",color=MaterialTheme.colorScheme.error,fontSize=13.sp)
-    Text("先預覽，再決定是否儲存。內容換掉，只要結構仍符合，規則會繼續套用。",fontSize=14.sp,lineHeight=22.sp)
-    Button(onClick={scope.launch{c.removeSelected()}},Modifier.fillMaxWidth().height(50.dp)){Icon(Icons.Outlined.VisibilityOff,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text("預覽移除")}
+    WebsiteAiEntry(c)
+    Text("所選元件 · ${selection.label}",fontSize=16.sp,fontWeight=FontWeight.Medium)
+    Text("${selection.width} × ${selection.height} · 此選擇器目前符合 ${selection.count} 個元件",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    if(selection.frame)Text("內嵌頁面可調整外框；跨來源的內部內容無法在此存取。",fontSize=12.sp)
+    MenuGroup("想怎麼修改這個元件？"){
+        MenuRow(Icons.Outlined.Code,"新增自訂 CSS / JS / HTML","加入樣式、互動或頁面內容"){c.editingHtml=false;c.sheet="element-editor"}
+        MenuRow(Icons.Outlined.VisibilityOff,"移除此網站元件","先預覽，再選擇是否儲存"){scope.launch{c.removeSelected()}}
+        MenuRow(Icons.Outlined.Edit,"修改這段代碼","編輯元件內部 HTML"){c.editingHtml=true;c.sheet="element-editor"}
+        MenuRow(Icons.Outlined.AutoAwesome,"我這樣改對嗎？請 AI 檢查","僅針對所選元件提出修改"){c.aiElement=selection;c.sheet="develop-ai"}
+    }
     if(selection.canParent)OutlinedButton(onClick={c.parentSelection()},Modifier.fillMaxWidth()){Text("選取外面一層")}
-    TextButton(onClick={c.sheet="ai"},Modifier.fillMaxWidth()){Text("這樣移除對嗎？請 AI 檢查")}
     TextButton(onClick={c.selection=null;c.sheet=""},Modifier.fillMaxWidth()){Text("改選其他元件")}
 }
 @Composable private fun RulePanel(c:BrowserController){
@@ -330,12 +331,13 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     SheetTitle("移除規則",c.domain)
     if(site.rules.isEmpty())Text("目前沒有移除規則。開啟天眼，點選不想看到的元件。")
     site.rules.forEach{rule->Row(verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f)){Text(rule.label,fontSize=14.sp);Text(rule.selector,fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Tool(Icons.AutoMirrored.Outlined.Undo,"恢復 ${rule.label}"){c.saveSite(c.site.copy(rules=c.site.rules.filterNot{it.selector==rule.selector}));c.notice="已恢復這個元件"}}}
+    site.edits.forEach{edit->MenuRow(Icons.Outlined.Code,if(edit.mode=="replace")"編輯 HTML"else"自訂元件程式碼",edit.selector){c.saveSite(c.site.copy(edits=c.site.edits.filterNot{it.id==edit.id}),reload=true);c.notice="已恢復這項修改"}}
     SwitchRow("恢復頁面捲動","移除蓋版後仍無法捲動時，才開啟。",site.unlockScroll){c.saveSite(site.copy(unlockScroll=it))}
     Text("規則保存在本機。網域的結構如果改版，可以重新選取或請 AI 調整。",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
 @Composable private fun CodePanel(c:BrowserController,initialFocus:String){
     val original=remember{c.draft?:c.site};val tabId=remember{c.activeId};val includeDraft=remember{c.dirty}
-    var css by remember{mutableStateOf(original.css)};var js by remember{mutableStateOf(original.js)};var error by remember{mutableStateOf("")}
+    var css by remember{mutableStateOf(original.css)};var js by remember{mutableStateOf(original.js)};var html by remember{mutableStateOf(original.html)};var error by remember{mutableStateOf("")}
     val cssFocus=remember{FocusRequester()};val jsFocus=remember{FocusRequester()}
     LaunchedEffect(Unit){when(initialFocus){"css"->cssFocus.requestFocus();"js"->jsFocus.requestFocus()}}
     SheetTitle("自訂程式碼",original.domain)
@@ -343,10 +345,11 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     if(includeDraft)Text("儲存時會一併保留目前天眼預覽的元件修改。",fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
     OutlinedTextField(css,{css=it;error=""},label={Text("CSS 樣式")},placeholder={Text("main { line-height: 1.8; }")},modifier=Modifier.fillMaxWidth().testTag("custom-css-input").focusRequester(cssFocus),minLines=4,maxLines=7)
     OutlinedTextField(js,{js=it;error=""},label={Text("JavaScript")},placeholder={Text("// 新增或調整頁面內容；每次載入後執行一次")},modifier=Modifier.fillMaxWidth().testTag("custom-js-input").focusRequester(jsFocus),minLines=4,maxLines=7)
+    CodeInput("網站新增 HTML（放在頁面最後方）",html,{html=it},"custom-html-input","<p>我的閱讀提示</p>")
     if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,fontSize=12.sp)
     Button(onClick={
         if(c.activeId!=tabId||c.domain!=original.domain){error="頁面已變更，請關閉後重新開啟編輯器"}
-        else runCatching{c.saveSite(original.copy(css=css,js=js),reload=true)}.onSuccess{c.sheet="";c.notice="已儲存並重新載入"}.onFailure{error="儲存失敗：${it.localizedMessage}"}
+        else runCatching{c.saveSite(original.copy(css=css,js=js,html=html),reload=true)}.onSuccess{c.sheet="";c.notice="已儲存並重新載入"}.onFailure{error="儲存失敗：${it.localizedMessage}"}
     },Modifier.fillMaxWidth()){Text("儲存並套用")}
 }
 @Composable private fun InventoryPanel(c:BrowserController){
@@ -380,11 +383,12 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                 MenuRow(Icons.Outlined.Language,"瀏覽器識別（User-Agent）",when(store.userAgentMode){"webview"->"原始 Android WebView";"custom"->"自訂識別";else->"Chrome 手機版"}){c.sheet="user-agent"}
             }
             MenuGroup("資料與同步"){
-                MenuRow(Icons.Outlined.CloudSync,"Google 書籤同步"){c.sheet="sync"}
+                MenuRow(Icons.Outlined.CloudSync,"Google 同步"){c.sheet="sync"}
                 MenuRow(Icons.Outlined.Folder,"書籤資料夾"){c.sheet="bookmarks"}
                 MenuRow(Icons.Outlined.History,"瀏覽紀錄"){c.sheet="history"}
             }
             MenuGroup("使用說明"){
+                MenuRow(Icons.Outlined.Info,"第三方授權"){c.sheet="legal"}
                 MenuRow(Icons.Outlined.PrivacyTip,"隱私與資料","資料用途、保存與刪除方式"){c.sheet="privacy"}
                 MenuRow(Icons.Outlined.Science,"天眼練習場","練習調整元件、新增 CSS 與 JS"){c.navigate("https://practice.chengjing.invalid/")}
             }
@@ -418,41 +422,10 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     }
     EngineVersionPanel(c)
 }
-@Composable private fun AiPanel(c:BrowserController,store:BrowserStore,onSettings:()->Unit){
-    val scope=rememberCoroutineScope()
-    var problem by remember{mutableStateOf("")};var busy by remember{mutableStateOf(false)};var proposal by remember{mutableStateOf<AiProposal?>(null)};var error by remember{mutableStateOf("")};var previewing by remember{mutableStateOf(false)};var consent by remember{mutableStateOf(false)}
-    val original=remember{c.draft?:c.site};val domain=remember{c.domain};val tabId=remember{c.activeId}
-    SheetTitle("讓天眼再看仔細一點",domain)
-    Text("例如：調整浮動面板後，網頁不能捲動；或是修改後，文章版面也受到影響。",fontSize=14.sp,lineHeight=22.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-    OutlinedTextField(problem,{problem=it},label={Text("你遇到了什麼問題？")},modifier=Modifier.fillMaxWidth(),minLines=3,maxLines=5)
-    Text("按下分析會將網域、元件標籤／類別／位置、目前規則與你輸入的問題，傳送給 OpenRouter 與所選模型供應商，以檢查天眼設定。不主動擷取文章內文、表單值、Cookie 或網址參數；請勿在問題中填入密碼或私人資料。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-    Row(verticalAlignment=Alignment.CenterVertically){Checkbox(consent,{consent=it});Text("我同意傳送上述資料供本次分析",fontSize=13.sp)}
-    if(!store.hasKey())Button(onClick=onSettings,Modifier.fillMaxWidth()){Text("先加入 OpenRouter API Key")}
-    else Button(enabled=!busy&&consent&&problem.isNotBlank(),onClick={busy=true;error="";proposal=null;scope.launch{
-        runCatching{
-            val raw=c.js("window.__chengjingEye?.snapshot()")
-            val structure=if(raw=="null")error("網頁尚未準備好")else JSONArray("[$raw]").getString(0)
-            OpenRouter().suggest(store.readKey(),store.model,problem,structure,original)
-        }.onSuccess{if(c.activeId==tabId&&c.domain==domain)proposal=it else error="頁面已變更，請重新分析"}.onFailure{error=it.localizedMessage?:"AI 分析未完成，規則未變更"};busy=false
-    }},modifier=Modifier.fillMaxWidth()){if(busy){CircularProgressIndicator(Modifier.size(18.dp),strokeWidth=2.dp);Spacer(Modifier.width(10.dp))};Text(if(busy)"正在檢查結構…"else"傳送結構並分析")}
-    if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,fontSize=13.sp)
-    proposal?.let{p->
-        HorizontalDivider();Text("AI 的判斷",fontWeight=FontWeight.SemiBold);Text(p.explanation,fontSize=14.sp,lineHeight=22.sp)
-        Text("新增 ${p.added.size} 條 · 恢復 ${p.removed.size} 條${if(p.result.unlockScroll)" · 恢復捲動"else""}",fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
-        p.added.forEach{Text("移除：$it",fontSize=11.sp)};p.removed.forEach{Text("恢復：$it",fontSize=11.sp)}
-        if(!previewing)Button(onClick={scope.launch{
-            if(c.activeId!=tabId||c.domain!=domain){error="頁面已變更，請重新分析";return@launch}
-            val validation=c.validateSelectors(p.added)
-            if(validation!=null)error=validation else {c.previewSite(p.result);previewing=true;c.eye=true;c.active?.web?.evaluateJavascript("window.__chengjingEye?.enable(false)",null);c.notice="已套用 AI 預覽；確認頁面後可儲存或取消";c.sheet=""}
-        }},Modifier.fillMaxWidth()){Text("一鍵預覽 AI 修正")}
-        Text("AI 建議會先在目前頁面預覽。確認後按天眼列的「儲存」；不合適就按 × 取消。",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-    }
-}
-
 @Composable private fun SyncPanel(c:BrowserController,store:BrowserStore){
     val sync=(c.context as MainActivity).bookmarkSync
     c.revision
-    SheetTitle("Google 書籤同步","把書籤帶到下一支手機。")
+    SheetTitle("Google 同步","把書籤與天眼設定帶到下一支手機。")
     Surface(modifier=Modifier.fillMaxWidth(),color=MaterialTheme.colorScheme.primaryContainer,shape=RoundedCornerShape(18.dp)){
         Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
             Icon(Icons.Outlined.CloudDone,null,tint=MaterialTheme.colorScheme.primary)
@@ -461,14 +434,23 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             if(store.bookmarkStore.lastSync>0)Text("上次完成："+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(java.util.Date(store.bookmarkStore.lastSync)),fontSize=12.sp)
         }
     }
-    Text("只同步書籤、資料夾與刪除紀錄。使用 Google Drive 的應用程式專用隱藏空間，不會取得你其他檔案的存取權。",fontSize=14.sp,lineHeight=23.sp)
+    Text("書籤、資料夾與刪除紀錄會存入 Google Drive 的應用程式專用隱藏空間，不會取得你其他檔案的存取權。",fontSize=14.sp,lineHeight=23.sp)
+    var siteSync by remember{mutableStateOf(store.syncSiteSettings)}
+    SettingsGroup("天眼網站設定"){
+        Text("開啟後，網域、元件規則、自訂 CSS／JS／HTML 及網站行為設定會同步至你自己的 Google Drive。程式碼可能包含私人內容，請先確認沒有密碼或金鑰。",fontSize=13.sp,lineHeight=21.sp)
+        Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){
+            Text("同步天眼網站設定",Modifier.weight(1f),fontSize=15.sp)
+            Switch(siteSync,{value->store.syncSiteSettings=value;siteSync=value;if(sync.connected)sync.changed()},enabled=!sync.busy,modifier=Modifier.testTag("sync-site-settings"))
+        }
+        Text("同一網站以較新的完整設定為準；已清除的設定也會保留刪除狀態。其他裝置收到後，在下次載入網站時套用。暫時例外與憑證例外只留在本機。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    }
     Text("連結後，這支手機的書籤會與你選擇的 Google 帳戶合併。App 開啟時以及修改書籤後自動同步；離線時先留在手機，下次連線再同步。",fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     Button(enabled=!sync.busy,onClick={sync.authorize(true)},modifier=Modifier.fillMaxWidth().height(50.dp)){
         if(sync.busy){CircularProgressIndicator(Modifier.size(18.dp),strokeWidth=2.dp);Spacer(Modifier.width(10.dp))}
         Text(if(sync.busy)"處理中…"else if(sync.connected)"立即同步"else"使用 Google 帳戶連結")
     }
     if(sync.connected)TextButton(onClick={sync.disconnect()},Modifier.fillMaxWidth()){Text("停止同步並登出")}
-    Text("登出會保留本機與雲端書籤。此版本將本機書籤綁定首次同步的 Google 帳戶，避免切換帳戶時混入別人的資料。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text("登出會保留本機與雲端資料。此版本將本機書籤綁定首次同步的 Google 帳戶，避免切換帳戶時混入別人的資料。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
 
 @Composable private fun UserAgentPanel(c:BrowserController){

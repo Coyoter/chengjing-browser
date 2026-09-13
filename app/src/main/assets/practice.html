@@ -3,7 +3,7 @@
 </style></head><body>
 <header><strong>澄境・天眼練習場</strong><span>本機示範網頁</span></header>
 <div id="notice-banner" class="notice-banner">一般資訊橫幅 · 你可以選擇保留</div>
-<main><small>慢一點，看清楚</small><h1>把網頁調成習慣的樣子。</h1><p>這是手機裡的練習網頁。你可以調整元件，也能加入自己的樣式與頁面內容。</p><p>點工具列的「天眼」，開啟後點選元件。若只選到文字，按「選取外面一層」，直到框住整塊元件，再預覽移除。</p><blockquote>網頁的主角，應該是你想看的內容。</blockquote><article><h2>新增一點自己的東西</h2><p>打開天眼，選「新增 CSS」就能調整樣式。例如讓段落更寬鬆：</p><pre style="white-space:pre-wrap">main { line-height: 2; }</pre><p>選「新增 JS」，可以在頁面加入閱讀提醒：</p><pre style="white-space:pre-wrap">if (!document.getElementById("my-note")) {
+<main><small>慢一點，看清楚</small><h1>把網頁調成習慣的樣子。</h1><p>這是手機裡的練習網頁。你可以調整元件，也能加入自己的樣式與頁面內容。</p><p>點工具列的「天眼」，開啟後點選元件。若只選到文字，按「選取外面一層」，直到框住整塊元件，再預覽移除。</p><blockquote>網頁的主角，應該是你想看的內容。</blockquote><article id="reading-card"><h2>新增一點自己的東西</h2><p>打開天眼，選「新增 CSS」就能調整樣式。例如讓段落更寬鬆：</p><pre style="white-space:pre-wrap">main { line-height: 2; }</pre><p>選「新增 JS」，可以在頁面加入閱讀提醒：</p><pre style="white-space:pre-wrap">if (!document.getElementById("my-note")) {
   const note = document.createElement("p");
   note.id = "my-note";
   note.textContent = "記得休息一下";

@@ -1,0 +1,15 @@
+{
+  "explanation": "在 #reading-card 這個 article 內以「附加（append）」方式加入一段純文字的閱讀提示，因此原有內容完全保留，不會被覆蓋。字色使用深綠（#1b5e20，Material 深綠 900），直接寫在行內 style 上，避免用 CSS 規則指定 #reading-card 而連帶改到卡片內原有文字的顏色。提示使用 <p role=\"note\">，對螢幕閱讀器較易辨識為補充說明；同時加上適度的上方間距與略小的字級，讓它與正文有視覺區隔。整段為純文字與行內樣式，沒有外部連線、字型或圖片請求。限制：目前只能依你提供的 DOM 結構（article 內有 2 個子節點）判斷，無法實際在瀏覽器執行驗證；若卡片內已有結尾區塊，提示會出現在其後。",
+  "edits": [
+    {
+      "selector": "#reading-card",
+      "mode": "append",
+      "html": "<p role=\"note\" style=\"color:#1b5e20; margin:0.75em 0 0; font-size:0.95em; line-height:1.5;\">記得休息一下</p>",
+      "css": "",
+      "js": ""
+    }
+  ],
+  "hide": [],
+  "restoreSelectors": [],
+  "restoreEditIds": []
+}

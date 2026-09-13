@@ -3,13 +3,41 @@
   'use strict';
   if (window !== window.top) return;
   if (window.__chengjingEye) { window.__chengjingEye.configure(__CJ_CONFIG__); return; }
-  let config = __CJ_CONFIG__, enabled = false, selected = null, preview = null, raf = 0;
+  // Scope native configuration before website scripts run. Retain trusted intrinsics for reconfiguration.
+  const keep=Function.prototype.call.bind(Array.prototype.filter);
+  const ends=Function.prototype.call.bind(String.prototype.endsWith);
+  const scopeConfig=value=>({sites:keep(value.sites||[],s=>location.hostname===s.domain||ends(location.hostname,'.'+s.domain)),exceptions:keep(value.exceptions||[],d=>location.hostname===d||ends(location.hostname,'.'+d))});
+  let config = scopeConfig(__CJ_CONFIG__), enabled = false, selected = null, preview = null, raf = 0;
   let overlay, label, outlineStyle, observer, selectedBox;
   const marker = 'data-cj-removed';
+  let editsReady=false,globalHtmlApplied=false;
+  const appliedEdits=new WeakMap(),generated=new WeakSet();
+  function insertMarkup(target,html,replace){
+    const template=document.createElement('template');template.innerHTML=html;
+    template.content.querySelectorAll('*').forEach(n=>generated.add(n));
+    if(replace)target.replaceChildren(template.content);else target.append(template.content);
+  }
+  function applyEdits(site){
+    if(!editsReady||!site)return;
+    if(site.html&&!globalHtmlApplied&&document.body){globalHtmlApplied=true;insertMarkup(document.body,site.html,false);}
+    for(const edit of site.edits||[]){
+      try{
+        if(!safe(edit.selector).valid)continue;
+        query(edit.selector).filter(el=>!generated.has(el)).slice(0,200).forEach(element=>{
+          const done=appliedEdits.get(element)||new Set();
+          if(done.has(edit.id))return;
+          done.add(edit.id);appliedEdits.set(element,done);
+          if(edit.css)element.style.cssText+=';'+edit.css;
+          if(edit.html||edit.mode==='replace')insertMarkup(element,edit.html||'',edit.mode==='replace');
+          if(edit.js){try{new Function('element',edit.js)(element);}catch(e){send({type:'codeError',message:String(e).slice(0,200)});}}
+        });
+      }catch(e){send({type:'codeError',message:String(e).slice(0,200)});}
+    }
+  }
   const own = new WeakSet(), injected = new WeakMap(), observed = new WeakSet();
   const channel = window.ChengJingSelection;
   const send = data => { try { channel?.postMessage(JSON.stringify(data)); } catch (_) {} };
-  const matchesDomain = (host, domain) => host === domain || host.endsWith('.' + domain);
+  const matchesDomain = (host, domain) => host === domain || ends(host,'.' + domain);
   const current = () => {
     const host = location.hostname;
     if (config.exceptions?.some(d => matchesDomain(host,d))) return null;
@@ -129,6 +157,7 @@
   function apply() {
     raf=0; if(!document.documentElement)return;
     const site=current(), hidden=new Set();
+    applyEdits(site);
     if(site) for(const rule of site.rules||[]) {
       try { if(safe(rule.selector).valid) query(rule.selector).forEach(n=>hidden.add(n)); }catch(_){}
     }
@@ -159,20 +188,23 @@
       return {...d,hidden:s.display==='none'||s.visibility==='hidden',fixed:s.position==='fixed'||s.position==='sticky',width:Math.round(r.width),height:Math.round(r.height)};
     }).filter(d=>d.fixed||d.hidden||d.tag==='iframe').slice(0,80);
   }
-  function snapshot() {
-    const structural=roots().flatMap(r=>Array.from(r.querySelectorAll(r===document?'body *':'*'))).filter(el=>!own.has(el)&&!['SCRIPT','STYLE','LINK','META','NOSCRIPT','INPUT','TEXTAREA','OPTION'].includes(el.tagName)).slice(0,350).map(el=>{
+  function snapshot(scope) {
+    let target=null;try{if(scope)target=query(scope)[0];}catch(_){}
+    if(scope&&!target)throw new Error("所選元件已不存在");
+    const structural=roots().flatMap(r=>Array.from(r.querySelectorAll(r===document?'body *':'*'))).filter(el=>!own.has(el)&&!['SCRIPT','STYLE','LINK','META','NOSCRIPT','INPUT','TEXTAREA','OPTION'].includes(el.tagName)).filter(el=>!target||el===target||target.contains(el)).slice(0,350).map(el=>{
       const s=getComputedStyle(el);return {...describe(el),position:s.position,display:s.display,children:el.children.length};
     });
-    return JSON.stringify({selected:selected?describe(selected):null,elements:structural,notice:'Structure only; no text, input values, cookies or page URL.'});
+    return JSON.stringify({selected:target?describe(target):null,elements:structural,notice:'Structure only; no text, input values, cookies or page URL.'});
   }
   const api={
-    configure(value){config=value;preview=null;apply();},
+    configure(value){config=scopeConfig(value);preview=null;apply();},
     enable:setEnabled,pickAt,
     parent(){if(selected?.parentElement && selected.parentElement!==document.body)select(selected.parentElement);},
     select(s){try{select(query(s)[0]);}catch(_){}},
     inspect:safe,
     preview(value){preview=value;apply();return {applied:true};},
     inventory,snapshot,
+    innerHTML(s){const el=query(s)[0];if(!el)throw new Error("找不到元件");if(el.innerHTML.length>64000)throw new Error("元件過大，請選擇更小範圍");return el.innerHTML;},
     status(){return {enabled,removed:document.querySelectorAll('['+marker+']').length,domain:current()?.domain||'',selected:selected?describe(selected):null};}
   };
   Object.defineProperty(window,'__chengjingEye',{value:api,configurable:false,writable:false});
@@ -181,7 +213,7 @@
   document.addEventListener('submit',e=>{if(enabled){e.preventDefault();e.stopImmediatePropagation();}},true);
   window.addEventListener('scroll',()=>{if(enabled){drawSelected();drawFrames();}},{passive:true,capture:true});
   window.addEventListener('resize',schedule);
-  const ready=()=>{apply();const site=current();if(site?.js){try{(0,eval)(site.js);}catch(e){send({type:'codeError',message:String(e).slice(0,200)});}}};
+  const ready=()=>{editsReady=true;apply();const site=current();if(site?.js){try{(0,eval)(site.js);}catch(e){send({type:'codeError',message:String(e).slice(0,200)});}}};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();
   apply();
 })();

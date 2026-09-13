@@ -1,0 +1,14 @@
+{
+  "explanation": "我會用一個「附加（append）」編輯，在 #reading-card 的原有內容之後插入一段閱讀提示段落，不改動、不刪除原有子節點。顏色以行內樣式指定為深綠（#1b5e20），並附上淺色底與左側色條，讓提示在既有版面中容易辨識；亦加上 role=\"note\" 與 aria-label，方便輔助技術辨識這是一則提示。\n\n限制與注意事項：目前只取得非常精簡的 DOM 結構（僅知 #reading-card 為 article、有 2 個子節點），因此無法確認網站既有 CSS 是否用 !important 或更高優先權覆蓋行內樣式，也無法實際在瀏覽器中驗證外觀與排版；若外觀不符預期，可再調整顏色或間距。此變更完全在用戶端、不發出任何網路請求、不載入外部資源，也不涉及表單送出或導覽。",
+  "edits": [
+    {
+      "selector": "#reading-card",
+      "mode": "append",
+      "html": "<p class=\"reading-break-tip\" role=\"note\" aria-label=\"閱讀提示：記得休息一下\" style=\"color:#1b5e20; background:#eef7ee; border-left:4px solid #1b5e20; margin:1em 0 0; padding:0.6em 0.8em; font-weight:600; line-height:1.6; border-radius:4px;\">記得休息一下</p>",
+      "js": "if (element && !element.querySelector('.reading-break-tip')) { /* 若日後重複載入，避免重複插入 */ }"
+    }
+  ],
+  "hide": [],
+  "restoreSelectors": [],
+  "restoreEditIds": []
+}

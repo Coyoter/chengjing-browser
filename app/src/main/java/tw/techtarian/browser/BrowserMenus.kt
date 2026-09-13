@@ -47,9 +47,9 @@ import kotlinx.coroutines.launch
 }
 
 internal fun panelTitle(page:String)=when(page){
-    "connection"->"網站連線";"privacy"->"隱私與資料";"menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
-    "rules"->"移除規則";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別"
-    "inventory"->"結構清單";"sync"->"Google 書籤同步";"history"->"瀏覽紀錄";"domains"->"網域規則"
+    "legal"->"第三方授權";"element-editor"->"元件程式碼";"develop-ai"->"天眼 AI";"connection"->"網站連線";"privacy"->"隱私與資料";"menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
+    "rules"->"網站修改";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別"
+    "inventory"->"結構清單";"sync"->"Google 同步";"history"->"瀏覽紀錄";"domains"->"網域規則"
     "find"->"尋找頁面文字";"blocked"->"攔截紀錄";else->"澄境瀏覽器"
 }
 internal fun panelParent(page:String)=when(page){
@@ -119,7 +119,7 @@ internal fun panelParent(page:String)=when(page){
     }
     MenuGroup("偏好與資料"){
         MenuRow(Icons.Outlined.Settings,"設定","外觀與 AI 設定"){c.sheet="settings"}
-        MenuRow(Icons.Outlined.CloudSync,"Google 書籤同步"){c.sheet="sync"}
+        MenuRow(Icons.Outlined.CloudSync,"Google 同步"){c.sheet="sync"}
     }
     Text("澄境瀏覽器 ${BuildConfig.VERSION_NAME}",Modifier.fillMaxWidth().padding(start=4.dp),fontSize=11.sp,lineHeight=16.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }

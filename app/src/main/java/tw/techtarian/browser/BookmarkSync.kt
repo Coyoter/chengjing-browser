@@ -36,22 +36,23 @@ class BookmarkDrive(private val token:String){
         val j=JSONObject(request("https://www.googleapis.com/drive/v3/about?fields=user(permissionId,displayName,emailAddress)")).getJSONObject("user")
         return j.getString("permissionId") to j.optString("emailAddress",j.optString("displayName","Google 帳戶"))
     }
-    fun files():List<JSONObject>{
+    fun files(tag:String=appTag):List<JSONObject>{
         val result=mutableListOf<JSONObject>();var cursor=""
         do{
-            val url="https://www.googleapis.com/drive/v3/files".toHttpUrl().newBuilder().addQueryParameter("spaces","appDataFolder").addQueryParameter("q","trashed=false and appProperties has { key='app' and value='$appTag' }").addQueryParameter("fields","files(id,appProperties),nextPageToken").addQueryParameter("pageSize","100").apply{if(cursor.isNotEmpty())addQueryParameter("pageToken",cursor)}.build().toString()
+            val url="https://www.googleapis.com/drive/v3/files".toHttpUrl().newBuilder().addQueryParameter("spaces","appDataFolder").addQueryParameter("q","trashed=false and appProperties has { key='app' and value='$tag' }").addQueryParameter("fields","files(id,appProperties),nextPageToken").addQueryParameter("pageSize","100").apply{if(cursor.isNotEmpty())addQueryParameter("pageToken",cursor)}.build().toString()
             val j=JSONObject(request(url));val rows=j.getJSONArray("files");for(i in 0 until rows.length())result.add(rows.getJSONObject(i));cursor=j.optString("nextPageToken")
             require(result.size<=200){"同步裝置快照過多，請聯絡支援"}
         }while(cursor.isNotEmpty())
         return result
     }
     fun read(id:String)=BookmarkFormat.readSnapshot(request("https://www.googleapis.com/drive/v3/files/$id?alt=media"))
-    fun write(device:String,id:String?,rows:List<Bookmark>):String{
-        val raw=BookmarkFormat.snapshot(rows)
+    fun write(device:String,id:String?,rows:List<Bookmark>):String = writeRaw(device,id,BookmarkFormat.snapshot(rows))
+    fun readRaw(id:String)=request("https://www.googleapis.com/drive/v3/files/$id?alt=media")
+    fun writeRaw(device:String,id:String?,raw:String,tag:String=appTag):String{
         val response=if(id!=null)request("https://www.googleapis.com/upload/drive/v3/files/$id?uploadType=media","PATCH",raw.toRequestBody("application/json; charset=UTF-8".toMediaType()))
         else{
             val boundary="cj_browser_bookmarks_v1"
-            val metadata=JSONObject().put("name","ChengJing-Browser-Bookmarks-$device.json").put("parents",JSONArray().put("appDataFolder")).put("appProperties",JSONObject().put("app",appTag).put("device",device))
+            val metadata=JSONObject().put("name","ChengJing-Browser-$tag-$device.json").put("parents",JSONArray().put("appDataFolder")).put("appProperties",JSONObject().put("app",tag).put("device",device))
             val multipart="--$boundary\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n$metadata\r\n--$boundary\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n$raw\r\n--$boundary--\r\n"
             request("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id","POST",multipart.toRequestBody("multipart/related; boundary=$boundary".toMediaType()))
         }
@@ -71,7 +72,7 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
     private var consentEpoch:Int?=null
     private var currentDrive:BookmarkDrive?=null
     companion object{const val SCOPE="https://www.googleapis.com/auth/drive.appdata"}
-    init{store.onChange={changed()}}
+    init{store.onChange={changed()};activity.controller.store.onSiteChange={if(activity.controller.store.syncSiteSettings)changed()}}
     fun changed(){activity.controller.revision++;if(connected){pending?.cancel();pending=tasks.launch{delay(1400);authorize(false)}}}
     fun resume(){if(connected&&!busy)authorize(false)}
     fun authorize(interactive:Boolean=true){
@@ -123,8 +124,29 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
                     val verified=withContext(Dispatchers.IO){drive.read(fileId)}
                     check(BookmarkFormat.snapshot(verified)==BookmarkFormat.snapshot(upload)){"雲端寫入回讀不一致，請重試"}
                     check(version==epoch){"連線已取消"}
+                    val browserStore=activity.controller.store
+                    var siteCount:Int?=null
+                    var sitesChangedWhileUploading=false
+                    if(browserStore.syncSiteSettings){
+                        status="正在同步天眼網站設定…"
+                        val siteFiles=withContext(Dispatchers.IO){drive.files(SiteSettingsFormat.TAG)}
+                        val siteRemote=withContext(Dispatchers.IO){SiteSettingsFormat.merge(*siteFiles.map{SiteSettingsFormat.read(drive.readRaw(it.getString("id")))}.toTypedArray())}
+                        check(version==epoch){"連線已取消"}
+                        val changed=browserStore.mergeSiteRecords(siteRemote)
+                        if(changed.isNotEmpty())activity.controller.refreshScripts(emptyList(),applyToPage=false)
+                        val siteUpload=SiteSettingsFormat.write(browserStore.siteRecords())
+                        val siteOwn=siteFiles.find{it.optJSONObject("appProperties")?.optString("device")==store.deviceId}?.getString("id")
+                        val siteFileId=withContext(Dispatchers.IO){drive.writeRaw(store.deviceId,siteOwn,siteUpload,SiteSettingsFormat.TAG)}
+                        check(version==epoch){"連線已取消"}
+                        val siteVerified=withContext(Dispatchers.IO){SiteSettingsFormat.write(SiteSettingsFormat.read(drive.readRaw(siteFileId)))}
+                        check(version==epoch){"連線已取消"}
+                        check(siteVerified==siteUpload){"天眼設定寫入回讀不一致，請重試"}
+                        sitesChangedWhileUploading=SiteSettingsFormat.write(browserStore.siteRecords())!=siteUpload
+                        siteCount=browserStore.all().count{it.rules.isNotEmpty()||it.edits.isNotEmpty()||it.css.isNotBlank()||it.js.isNotBlank()||it.html.isNotBlank()||it.guard||it.unlockScroll}
+                    }
                     store.accountId=id;store.accountLabel=label;store.connected=true;connected=true;store.lastSync=System.currentTimeMillis()
-                    status="已同步 ${store.visible().size} 個書籤";activity.controller.revision++
+                    status="已同步 ${store.visible().size} 個書籤"+(siteCount?.let{"、$it 個網站設定；重新載入頁面後套用"}?:"");activity.controller.revision++
+                    if(sitesChangedWhileUploading)changed()
                     if(BookmarkFormat.snapshot(store.all())!=BookmarkFormat.snapshot(upload))changed()
                 }catch(e:Exception){if(version==epoch){status=e.localizedMessage?:"同步未完成，本機書籤已保留"}}
                 finally{if(version==epoch){busy=false;currentDrive=null}}
@@ -132,5 +154,5 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
         }
     }
     fun disconnect(){epoch++;consentEpoch=null;currentDrive?.cancel();currentDrive=null;pending?.cancel();store.connected=false;connected=false;busy=false;authorizing=false;status="已停止同步，本機與雲端書籤均保留"}
-    fun destroy(){epoch++;currentDrive?.cancel();tasks.cancel();store.onChange=null}
+    fun destroy(){epoch++;currentDrive?.cancel();tasks.cancel();store.onChange=null;activity.controller.store.onSiteChange=null}
 }
