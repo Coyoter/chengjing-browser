@@ -1,0 +1,10 @@
+{
+  "name": "chengjing-browser-policy",
+  "compatibility_date": "2026-09-13",
+  "assets": {
+    "directory": "./public-policy"
+  },
+  "observability": {
+    "enabled": false
+  }
+}

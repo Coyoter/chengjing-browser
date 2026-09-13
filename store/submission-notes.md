@@ -9,7 +9,7 @@
 開發者：Coyoter
 公開支援：admin@techtarian.com
 首頁：https://techtarian.com/chengjing-browser/
-隱私及資料刪除方式：https://techtarian.com/chengjing-browser/privacy/
+隱私及資料刪除方式：https://chengjing-browser-policy.coyoter.workers.dev/
 
 ## 審核操作方式
 
@@ -41,3 +41,5 @@
 正式 App Signing 與套件登記、資料安全表送出、IARC 分級與目標對象、上傳素材、正式發行送審。簽章與 Google 同步須以最終 Play 配送簽章核對，不能直接把本機簽章測試當成 Play 配送已驗證。
 
 1.2.0 的 Gemma 分析只在裝置處理，不傳送提示或網站結構至雲端；模型下载來自 Hugging Face，需說明網路請求。網站圖示直連網站根目錄，網址列建議完全由本機歷史產生。
+
+Console 已儲存五類可選收集資料：電子郵件、使用者 ID、網站瀏覽資訊、其他使用者原創內容及同步裝置 ID。非暫時處理，用途為 App 功能；電子郵件與使用者 ID 另用於帳戶管理。依使用者主動選用與明確同意的傳輸例外，未列為分享。內容填妥但目標對象被登入資料前置條件阻擋，因此資料安全表僅保存草稿，尚未正式送審。
