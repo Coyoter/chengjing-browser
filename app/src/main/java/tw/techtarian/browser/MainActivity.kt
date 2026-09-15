@@ -439,6 +439,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
             Icon(Icons.Outlined.CloudDone,null,tint=MaterialTheme.colorScheme.primary)
             Text(sync.status,fontWeight=FontWeight.SemiBold)
+            if(sync.details.isNotBlank())Text(sync.details,fontSize=11.sp,color=MaterialTheme.colorScheme.error,lineHeight=17.sp)
             if(sync.connected)Text(store.bookmarkStore.accountLabel,fontSize=13.sp)
             if(store.bookmarkStore.lastSync>0)Text("上次完成："+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(java.util.Date(store.bookmarkStore.lastSync)),fontSize=12.sp)
         }

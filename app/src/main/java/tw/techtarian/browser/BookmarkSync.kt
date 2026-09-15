@@ -5,6 +5,8 @@ import androidx.compose.runtime.*
 import com.google.android.gms.auth.api.identity.AuthorizationRequest
 import com.google.android.gms.auth.api.identity.AuthorizationResult
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.common.api.Scope
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
@@ -26,7 +28,11 @@ class BookmarkDrive(private val token:String){
     fun cancel(){client.dispatcher.cancelAll()}
     private fun request(url:String,method:String="GET",body:RequestBody?=null):String{
         client.newCall(Request.Builder().url(url).header("Authorization","Bearer $token").method(method,body).build()).execute().use{r->
-            check(r.isSuccessful){when(r.code){401,403->"Google 授權已過期或尚未完成，請重新連結";429->"Google Drive 暫時限制請求，請稍後重試";else->"書籤同步未完成（${r.code}），本機資料已保留"}}
+            check(r.isSuccessful){when(r.code){
+                401,403->throw SyncHttpException(r.code,"Google 授權已過期或尚未完成，請重新連結")
+                429->throw SyncHttpException(r.code,"Google Drive 請求受速率限制")
+                else->throw SyncHttpException(r.code,"書籤同步未完成（HTTP ${r.code}），本機資料已保留")
+            }}
             val content=r.body?:error("Google Drive 沒有回傳資料")
             require(content.contentLength()<=12_000_000){"雲端資料超過大小限制"}
             val bytes=content.byteStream().readBounded(12_000_001);require(bytes.size<=12_000_000){"雲端資料過大"};return String(bytes,Charsets.UTF_8)
@@ -60,6 +66,7 @@ class BookmarkDrive(private val token:String){
     }
 }
 class BookmarkSync(private val activity:MainActivity,private val store:BookmarkStore){
+    var details by mutableStateOf("")
     var status by mutableStateOf(if(store.connected)"等待同步"else"尚未連結 Google")
     var busy by mutableStateOf(false)
     var connected by mutableStateOf(store.connected)
@@ -75,6 +82,21 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
     init{store.onChange={changed()};activity.controller.store.onSiteChange={if(activity.controller.store.syncSiteSettings)changed()}}
     fun changed(){activity.controller.revision++;if(connected){pending?.cancel();pending=tasks.launch{delay(1400);authorize(false)}}}
     fun resume(){if(connected&&!busy)authorize(false)}
+    private fun apiStatusText(code:Int):String=when(code){
+        12501->"使用者在授權畫面取消（12501）"
+        CommonStatusCodes.CANCELED->"使用者在授權畫面取消（12501）"
+        CommonStatusCodes.SIGN_IN_REQUIRED->"需要重新登入 Google 帳戶"
+        CommonStatusCodes.NETWORK_ERROR->"網路暫時中斷，請稍後重試"
+        CommonStatusCodes.DEVELOPER_ERROR->"Google 登入設定與本機版本不一致"
+        10->"Google 驗證流程設定有問題（10）"
+        7->"網路連線不穩定或 Google Play 服務未就緒（7）"
+        else->"授權流程失敗（錯誤碼 $code）"
+    }
+    private fun fail(msg:String,code:Int?=null,detail:String?=null,lock:Boolean=false){
+        if(code!=null&&detail!=null)details="code=$code, $detail"
+        else details=detail.orEmpty()
+        status=if(lock) "同步被中斷" else msg
+    }
     fun authorize(interactive:Boolean=true){
         if(authorizing||busy||consentEpoch!=null)return
         val version=epoch;authorizing=true;busy=true;status="正在連結 Google…"
@@ -88,14 +110,28 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
                 else status="需要重新確認 Google 授權，請按立即同步"
             }else accept(result,version)
         }.addOnFailureListener{error->
-            if(version==epoch){busy=false;authorizing=false;status=if(error is com.google.android.gms.common.api.ApiException && error.statusCode==10)"Google 登入設定尚未啟用（開發者設定），本機書籤仍可使用"else"Google 連線未完成，請稍後重試"}
+            if(version!=epoch)return@addOnFailureListener
+            busy=false;authorizing=false
+            if(error is ApiException){
+                val message=apiStatusText(error.statusCode)
+                fail(message,error.statusCode,error.toString(),lock=false)
+            }else{
+                fail("Google 連線未完成，請稍後重試",detail=error.localizedMessage)
+            }
         }
     }
     fun consent(data:android.content.Intent?){
         val version=consentEpoch?:return
         consentEpoch=null
         if(version!=epoch)return
-        runCatching{Identity.getAuthorizationClient(activity).getAuthorizationResultFromIntent(data)}.onSuccess{accept(it,version)}.onFailure{busy=false;status="已取消連結；本機書籤保持不變"}
+        if(data==null){busy=false;fail("授權回傳資料遺失；請重新授權");return}
+        runCatching{Identity.getAuthorizationClient(activity).getAuthorizationResultFromIntent(data)}.onSuccess{accept(it,version)}.onFailure{
+            if(it is ApiException){
+                fail(apiStatusText(it.statusCode),it.statusCode,it.toString())
+            }else{
+                fail("已取消連結；本機書籤保持不變",detail=it.localizedMessage)
+            }
+        }
     }
     private fun accept(result:AuthorizationResult,version:Int){
         val token=result.accessToken
@@ -146,9 +182,14 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
                     }
                     store.accountId=id;store.accountLabel=label;store.connected=true;connected=true;store.lastSync=System.currentTimeMillis()
                     status="已同步 ${store.visible().size} 個書籤"+(siteCount?.let{"、$it 個網站設定；重新載入頁面後套用"}?:"");activity.controller.revision++
+                    details=""
                     if(sitesChangedWhileUploading)changed()
                     if(BookmarkFormat.snapshot(store.all())!=BookmarkFormat.snapshot(upload))changed()
-                }catch(e:Exception){if(version==epoch){status=e.localizedMessage?:"同步未完成，本機書籤已保留"}}
+                }catch(e:Exception){if(version==epoch){
+                    if(e is SyncHttpException)fail(e.userMessage,e.code, "HTTP ${e.code}: ${e.userMessage}")
+                    else if(e is ApiException)fail(apiStatusText(e.statusCode),e.statusCode,e.toString())
+                    else fail(e.localizedMessage?:"同步未完成，本機書籤已保留",detail=e.toString())
+                }}
                 finally{if(version==epoch){busy=false;currentDrive=null}}
             }
         }
@@ -156,3 +197,5 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
     fun disconnect(){epoch++;consentEpoch=null;currentDrive?.cancel();currentDrive=null;pending?.cancel();store.connected=false;connected=false;busy=false;authorizing=false;status="已停止同步，本機與雲端書籤均保留"}
     fun destroy(){epoch++;currentDrive?.cancel();tasks.cancel();store.onChange=null;activity.controller.store.onSiteChange=null}
 }
+
+private class SyncHttpException(val code:Int,val userMessage:String):IllegalStateException("HTTP $code: $userMessage")

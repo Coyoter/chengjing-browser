@@ -13,3 +13,7 @@ qa/*.log
 qa/latest/
 qa/screenshots/
 qa/screenshots-final/
+.DS_Store
+**/.DS_Store
+.wrangler/
+qa/
