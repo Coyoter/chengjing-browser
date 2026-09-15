@@ -78,4 +78,12 @@ class FavoriteStoreSyncTest {
         transmit(a,b)
         assertEquals(2,b.all().size)
     }
+    @Test fun unlinkedSaveUsesNewestFavoriteButExplicitLinkWins(){
+        val older=Favorite("a-older","Title","Title","https://example.com/same",100.0,.1,10)
+        val newer=older.copy(id="z-newer",updated=20)
+        a.mergeRemote(listOf(older,newer))
+        assertEquals(newer.id,a.save(older.url,"Title",300.0,.3).id)
+        assertEquals(older.id,a.save(older.url,"Title",400.0,.4,updateId=older.id).id)
+        assertEquals(2,a.all().size)
+    }
 }
