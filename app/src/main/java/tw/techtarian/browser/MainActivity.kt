@@ -57,6 +57,7 @@ class MainActivity:ComponentActivity(){
     lateinit var bookmarkSync:BookmarkSync
     private lateinit var store:BrowserStore
     private var browserReady=false
+    internal val imageDownloads=BrowserImageDownloads(this){message->if(::controller.isInitialized)controller.notice=message}
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
@@ -186,24 +187,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                     )
         }
         val controlsBar:@Composable ()->Unit = {
-            Surface(color=cs.surface){
-                        Row(Modifier.fillMaxWidth().testTag("browser-controls").height(64.dp).padding(horizontal=8.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically){
-                            Tool(Icons.AutoMirrored.Outlined.ArrowBack,"上一頁",active?.canBack==true){c.stopEye();active?.web?.goBack()}
-                            Tool(Icons.AutoMirrored.Outlined.ArrowForward,"下一頁",active?.canForward==true){c.stopEye();active?.web?.goForward()}
-                            FilledTonalButton(onClick={focus.clearFocus();c.beginEye()},contentPadding=PaddingValues(horizontal=18.dp,vertical=10.dp)){
-                                Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text("天眼",fontWeight=FontWeight.SemiBold)
-                                if(c.site.rules.isNotEmpty()){Spacer(Modifier.width(6.dp));Text("${c.site.rules.size}",fontSize=12.sp)}
-                            }
-                            Tool(if(pageFavorite!=null)Icons.Filled.Star else Icons.Outlined.StarOutline,if(active?.favoriteId!=null||pageFavorite!=null)"更新收藏進度"else"快速收藏",c.domain.isNotEmpty(),modifier=Modifier.testTag("quick-favorite").semantics{stateDescription=if(pageFavorite!=null)"已收藏"else"尚未收藏"}){
-                                focus.clearFocus()
-                                scope.launch{if(c.saveFavorite()!=null)c.notice="已保存收藏與閱讀位置"}
-                            }
-                            Box(Modifier.size(48.dp)){
-                                Tool(Icons.Outlined.MoreHoriz,"瀏覽器選單"){focus.clearFocus();active?.blockedUnread=false;c.sheet="menu"}
-                                if(active?.blockedUnread==true)Box(Modifier.size(5.dp).testTag("blocking-indicator").align(Alignment.TopEnd).offset(x=(-8).dp,y=8.dp).background(cs.primary,CircleShape))
-                            }
-                        }
-                    }
+            BrowserControls(c){focus.clearFocus();editingAddress=false;keyboard?.hide()}
         }
         Surface(Modifier.fillMaxSize(),color=cs.background){
             Box(Modifier.fillMaxSize().safeDrawingPadding().imePadding()){

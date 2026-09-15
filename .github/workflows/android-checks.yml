@@ -16,6 +16,11 @@ jobs:
   android:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    env:
+      # avdmanager and emulator must use the same directory on hosted runners.
+      ANDROID_USER_HOME: ${{ runner.temp }}/android-user
+      ANDROID_EMULATOR_HOME: ${{ runner.temp }}/android-user
+      ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
     steps:
       - name: Check out the exact revision
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
@@ -29,6 +34,7 @@ jobs:
           cache: gradle
       - name: Install Android build tools
         run: |
+          mkdir -p "$ANDROID_USER_HOME" "$ANDROID_AVD_HOME"
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
           echo "$ANDROID_HOME/emulator" >> "$GITHUB_PATH"
@@ -40,13 +46,22 @@ jobs:
         run: |
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
+          EMULATOR="$ANDROID_HOME/emulator/emulator"
           "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
-          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --package "system-images;android-35;google_apis;x86_64"
+          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-35;google_apis;x86_64"
+          "$AVDMANAGER" list avd
+          "$EMULATOR" -list-avds | tee "$RUNNER_TEMP/avd-list.txt"
+          grep -Fx chengjing-qa "$RUNNER_TEMP/avd-list.txt"
+          test -d "$ANDROID_AVD_HOME/chengjing-qa.avd"
           sudo chmod a+rw /dev/kvm
-          "$ANDROID_HOME/emulator/emulator" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
-          timeout 180 adb wait-for-device
+          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          EMULATOR_PID=$!
+          sleep 3
+          if ! kill -0 "$EMULATOR_PID" 2>/dev/null; then cat "$RUNNER_TEMP/emulator.log"; exit 1; fi
+          if ! timeout 180 adb wait-for-device; then cat "$RUNNER_TEMP/emulator.log"; exit 1; fi
           for i in $(seq 1 180); do
             if [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ]; then break; fi
+            if ! kill -0 "$EMULATOR_PID" 2>/dev/null; then cat "$RUNNER_TEMP/emulator.log"; exit 1; fi
             sleep 1
           done
           test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1
@@ -57,7 +72,7 @@ jobs:
       - name: Run focused on-device regressions
         run: |
           ./gradlew --no-daemon --stacktrace -PqaInstall=true \
-            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest \
+            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest \
             connectedDebugAndroidTest
       - name: Collect launch previews and emulator diagnostics
         if: always()
@@ -68,6 +83,7 @@ jobs:
             adb logcat -d -t 1000 > validation/emulator-logcat.txt || true
           fi
           if [ -f "$RUNNER_TEMP/emulator.log" ]; then cp "$RUNNER_TEMP/emulator.log" validation/; fi
+          if [ -f "$RUNNER_TEMP/avd-list.txt" ]; then cp "$RUNNER_TEMP/avd-list.txt" validation/; fi
       - name: Save validation reports and QA-only APK
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
