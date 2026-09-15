@@ -36,7 +36,8 @@ class AiSettingsRegressionTest{
         ui.onNodeWithTag("openrouter-api-key").assertExists()
         ui.onNodeWithText("Gemma 4 · 手機本機").performScrollTo().performClick()
         ui.onNodeWithTag("openrouter-api-key").assertDoesNotExist()
-        ui.onNodeWithTag("download-gemma").assertExists()
+        // This heading exists whether or not the optional local model has been downloaded.
+        ui.onNodeWithText("Gemma 4 E2B").assertExists()
         ui.onNodeWithText("OpenRouter · 雲端模型").performScrollTo().performClick()
         ui.onNodeWithTag("openrouter-api-key").assertExists()
     }
