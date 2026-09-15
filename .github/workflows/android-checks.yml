@@ -29,7 +29,10 @@ jobs:
           cache: gradle
       - name: Install Android build tools
         run: |
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36" "build-tools;36.0.0"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+          echo "$ANDROID_HOME/emulator" >> "$GITHUB_PATH"
+          "$ANDROID_HOME/platform-tools/adb" version
       - name: Compile QA app and instrumentation, run unit tests and lint
         run: |
           ./gradlew --no-daemon --stacktrace -PqaInstall=true testDebugUnitTest assembleDebug assembleDebugAndroidTest lintDebug
@@ -74,6 +77,7 @@ jobs:
           if-no-files-found: warn
           path: |
             app/build/reports/
+            app/build/test-results/
             app/build/outputs/androidTest-results/
             app/build/outputs/apk/debug/*.apk
             validation/
