@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="browser_launch_background">#F1EEE7</color>
+    <color name="browser_launch_accent">#147A64</color>
+    <bool name="browser_launch_light_bars">true</bool>
+    <style name="AppTheme.Starting" parent="AppTheme">
+        <item name="android:windowBackground">@color/browser_launch_background</item>
+        <item name="android:statusBarColor">@color/browser_launch_background</item>
+        <item name="android:navigationBarColor">@color/browser_launch_background</item>
+        <item name="android:windowLightStatusBar">@bool/browser_launch_light_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/browser_launch_light_bars</item>
+    </style>
+</resources>
