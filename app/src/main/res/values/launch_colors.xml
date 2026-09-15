@@ -1,0 +1,4 @@
+<resources>
+    <color name="browser_launch_background">#F1EEE7</color>
+    <bool name="browser_launch_light_bars">true</bool>
+</resources>

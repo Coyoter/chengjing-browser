@@ -1,0 +1,4 @@
+<resources>
+    <color name="browser_launch_background">#0F1513</color>
+    <bool name="browser_launch_light_bars">false</bool>
+</resources>
