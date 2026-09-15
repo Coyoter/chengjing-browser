@@ -38,7 +38,9 @@ data class Favorite(
 
         internal fun nextUpdated(previous:Long,now:Long=System.currentTimeMillis()):Long{
             require(previous>=0 && previous<Long.MAX_VALUE){"收藏更新時間格式錯誤"}
-            return maxOf(now,previous+1)
+            val next=maxOf(now,previous+1)
+            require(next<Long.MAX_VALUE){"收藏更新時間格式錯誤"}
+            return next
         }
 
         fun capture(previous:Favorite?,url:String,pageTitle:String,scrollY:Double,progress:Double,now:Long=System.currentTimeMillis()):Favorite{
@@ -74,12 +76,14 @@ class FavoriteStore(context:Context,preferenceName:String="favorites-v1"){
     }
     private fun write(rows:List<Favorite>){
         check(prefs.edit().putString("items",JSONArray(rows.sortedBy{it.id}.map{it.json()}).toString()).commit()){
-            "收藏儲存失敗，本機資料未覆寫"
+            "收藏儲存失敗，請重試"
         }
     }
     @Synchronized fun save(url:String,title:String,y:Double,progress:Double,updateId:String?=null,forceNew:Boolean=false):Favorite{
         val rows=records()
-        val visible=rows.filterNot{it.deleted}
+        // Preserve the old UI behavior: without an explicit link, update the newest
+        // favorite for this URL, not the lexicographically first UUID in a snapshot.
+        val visible=rows.filterNot{it.deleted}.sortedWith(compareByDescending<Favorite>{it.updated}.thenBy{it.id})
         val previous=if(forceNew)null else visible.find{it.id==updateId}?:visible.find{it.url==url}
         val item=Favorite.capture(previous,url,title,y,progress)
         write(rows.filterNot{it.id==item.id}+item)
