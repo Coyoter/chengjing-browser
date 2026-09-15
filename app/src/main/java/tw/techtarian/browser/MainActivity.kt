@@ -55,6 +55,7 @@ class MainActivity:ComponentActivity(){
     lateinit var controller:BrowserController
     lateinit var bookmarkSync:BookmarkSync
     private lateinit var store:BrowserStore
+    private var browserReady=false
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
@@ -87,14 +88,19 @@ class MainActivity:ComponentActivity(){
         bookmarkSync=BookmarkSync(this,store.bookmarkStore)
         bookmarkSync.launchConsent={consent.launch(it)}
         controller.chooseFiles={files.launch(it)}
-        val incoming=intent?.dataString
-        if(incoming?.startsWith("https://")==true||incoming?.startsWith("http://")==true)controller.newTab(incoming) else controller.restoreTabs()
-        setContent { BrowserApp(controller,store) }
+        showBrowserLaunch(this,store.theme){
+            // WebView creation happens after the native launch surface's first frame.
+            val incoming=intent?.dataString
+            if(incoming?.startsWith("https://")==true||incoming?.startsWith("http://")==true)controller.newTab(incoming) else controller.restoreTabs()
+            setContent { BrowserApp(controller,store) }
+            browserReady=true
+            if(lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED))bookmarkSync.resume()
+        }
     }
-    override fun onNewIntent(intent:Intent){super.onNewIntent(intent);intent.dataString?.let{if(it.startsWith("https://")||it.startsWith("http://"))controller.newTab(it)}}
-    override fun onPause(){super.onPause();android.webkit.CookieManager.getInstance().flush();controller.persistTabs()}
-    override fun onResume(){super.onResume();if(::bookmarkSync.isInitialized)bookmarkSync.resume()}
-    override fun onDestroy(){bookmarkSync.destroy();controller.destroy();super.onDestroy()}
+    override fun onNewIntent(intent:Intent){super.onNewIntent(intent);setIntent(intent);if(browserReady)intent.dataString?.let{if(it.startsWith("https://")||it.startsWith("http://"))controller.newTab(it)}}
+    override fun onPause(){super.onPause();if(browserReady){android.webkit.CookieManager.getInstance().flush();controller.persistTabs()}}
+    override fun onResume(){super.onResume();if(browserReady&&::bookmarkSync.isInitialized)bookmarkSync.resume()}
+    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
 private val Light=lightColorScheme(primary=Color(0xFF147A64),onPrimary=Color(0xFFFFFDF7),secondaryContainer=Color(0xFFD9F0E9),onSecondaryContainer=Color(0xFF124D3F),primaryContainer=Color(0xFFD9F0E9),onPrimaryContainer=Color(0xFF124D3F),background=Color(0xFFF1EEE7),onBackground=Color(0xFF1D2925),surface=Color(0xFFFBFAF6),onSurface=Color(0xFF1D2925),surfaceVariant=Color(0xFFEAE6DC),onSurfaceVariant=Color(0xFF59665F),outline=Color(0xFF8A958B),outlineVariant=Color(0xFFD0CBC0),error=Color(0xFFB43D38))
@@ -186,7 +192,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                     if(!addressAtBottom&&(active?.progress?:100)<100)LinearProgressIndicator(progress={(active?.progress?:0)/100f},modifier=Modifier.fillMaxWidth().height(2.dp),trackColor=Color.Transparent)
                     if(c.eye) {
                         Row(Modifier.fillMaxWidth().background(cs.primaryContainer).padding(horizontal=12.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
-                            Icon(Icons.Outlined.Visibility,null,tint=cs.primary,modifier=Modifier.size(18.dp));Spacer(Modifier.width(8.dp))
+                            Icon(Icons.Outlined.Visibility,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp))
                             Text(if(c.dirty)"${c.draft?.rules?.size?:0} 條規則 · 尚未儲存"else"天眼已開啟 · 點選網站元件",Modifier.weight(1f),fontSize=12.sp,color=cs.onPrimaryContainer)
                             if(c.dirty)TextButton(onClick={c.saveDraft()}){Text("儲存")}
                             Tool(Icons.Outlined.Close,"離開天眼"){c.stopEye()}
@@ -408,7 +414,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                     Icon(if(hasKey)Icons.Outlined.VerifiedUser else Icons.Outlined.Key,null,tint=MaterialTheme.colorScheme.primary,modifier=Modifier.size(22.dp));Spacer(Modifier.width(12.dp))
                     Column(Modifier.weight(1f)){Text(if(hasKey)"金鑰已儲存"else"連結你的 AI",fontSize=15.sp,fontWeight=FontWeight.Medium);Text(if(hasKey)"已加密保存在這支手機"else"讓 AI 協助檢查天眼規則",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)}
                 }
-                OutlinedTextField(key,{key=it},label={Text(if(hasKey)"輸入新的 API Key 以替換"else"API Key")},visualTransformation=PasswordVisualTransformation(),singleLine=true,modifier=Modifier.fillMaxWidth())
+                OutlinedTextField(key,{key=it},label={Text(if(hasKey)"輸入新的 API Key 以替換"else"API Key")},visualTransformation=PasswordVisualTransformation(),singleLine=true,modifier=Modifier.fillMaxWidth().testTag("openrouter-api-key"))
                 if(key.isNotEmpty())Button(onClick={runCatching{store.saveKey(key)}.onSuccess{key="";hasKey=true;c.notice="API Key 已加密儲存"}.onFailure{c.notice="金鑰儲存失敗：${it.localizedMessage}"}},Modifier.fillMaxWidth()){Text("儲存 API Key")}
                 if(hasKey)TextButton(onClick={store.saveKey("");hasKey=false;c.notice="API Key 已移除"}){Text("移除已儲存的 API Key")}
             }
@@ -434,7 +440,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
 @Composable private fun SyncPanel(c:BrowserController,store:BrowserStore){
     val sync=(c.context as MainActivity).bookmarkSync
     c.revision
-    SheetTitle("Google 同步","把書籤與天眼設定帶到下一支手機。")
+    SheetTitle("Google 同步","把書籤、收藏進度與天眼設定帶到下一支手機。")
     Surface(modifier=Modifier.fillMaxWidth(),color=MaterialTheme.colorScheme.primaryContainer,shape=RoundedCornerShape(18.dp)){
         Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
             Icon(Icons.Outlined.CloudDone,null,tint=MaterialTheme.colorScheme.primary)
@@ -444,7 +450,11 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             if(store.bookmarkStore.lastSync>0)Text("上次完成："+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(java.util.Date(store.bookmarkStore.lastSync)),fontSize=12.sp)
         }
     }
-    Text("書籤、資料夾與刪除紀錄會存入 Google Drive 的應用程式專用隱藏空間，不會取得你其他檔案的存取權。",fontSize=14.sp,lineHeight=23.sp)
+    Text("書籤、資料夾、收藏網址、收藏名稱、已儲存的閱讀位置與刪除紀錄會存入 Google Drive 的應用程式專用隱藏空間，不會取得你其他檔案的存取權。",fontSize=14.sp,lineHeight=23.sp)
+    SettingsGroup("收藏與閱讀進度"){
+        Text("連結 Google 後自動同步收藏，不需要另外開啟。點選星號保存的頁面、捲動位置與閱讀百分比，都會帶到其他已更新的裝置。",fontSize=13.sp,lineHeight=21.sp)
+        Text("同一收藏採用最後儲存的狀態；往回重讀也能同步。刪除紀錄會保留，避免離線裝置把舊收藏加回來。瀏覽紀錄、Cookie、API Key 與本機模型不會同步。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    }
     var siteSync by remember{mutableStateOf(store.syncSiteSettings)}
     SettingsGroup("天眼網站設定"){
         Text("開啟後，網域、元件規則、自訂 CSS／JS／HTML 及網站行為設定會同步至你自己的 Google Drive。程式碼可能包含私人內容，請先確認沒有密碼或金鑰。",fontSize=13.sp,lineHeight=21.sp)
@@ -454,13 +464,13 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         }
         Text("同一網站以較新的完整設定為準；已清除的設定也會保留刪除狀態。其他裝置收到後，在下次載入網站時套用。暫時例外與憑證例外只留在本機。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     }
-    Text("連結後，這支手機的書籤會與你選擇的 Google 帳戶合併。App 開啟時以及修改書籤後自動同步；離線時先留在手機，下次連線再同步。",fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text("連結後，這支手機的書籤與收藏會與你選擇的 Google 帳戶合併。App 開啟時，以及新增、改名、刪除收藏或儲存閱讀進度後自動同步；離線時先留在手機，下次連線再同步。",fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     Button(enabled=!sync.busy,onClick={sync.authorize(true)},modifier=Modifier.fillMaxWidth().height(50.dp)){
         if(sync.busy){CircularProgressIndicator(Modifier.size(18.dp),strokeWidth=2.dp);Spacer(Modifier.width(10.dp))}
         Text(if(sync.busy)"處理中…"else if(sync.connected)"立即同步"else"使用 Google 帳戶連結")
     }
     if(sync.connected)TextButton(onClick={sync.disconnect()},Modifier.fillMaxWidth()){Text("停止同步並登出")}
-    Text("登出會保留本機與雲端資料。此版本將本機書籤綁定首次同步的 Google 帳戶，避免切換帳戶時混入別人的資料。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text("登出會保留本機與雲端資料。本機書籤、收藏與網站設定沿用首次同步的 Google 帳戶，避免切換帳戶時混入別人的資料。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
 
 @Composable private fun UserAgentPanel(c:BrowserController){
