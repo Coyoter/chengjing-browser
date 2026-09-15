@@ -1,0 +1,79 @@
+name: Android checks
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out the exact revision
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Set up Java 17
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+      - name: Install Android build tools
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36" "build-tools;36.0.0"
+      - name: Compile QA app and instrumentation, run unit tests and lint
+        run: |
+          ./gradlew --no-daemon --stacktrace -PqaInstall=true testDebugUnitTest assembleDebug assembleDebugAndroidTest lintDebug
+      - name: Prepare an isolated Android emulator
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
+          "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
+          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --package "system-images;android-35;google_apis;x86_64"
+          sudo chmod a+rw /dev/kvm
+          "$ANDROID_HOME/emulator/emulator" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          timeout 180 adb wait-for-device
+          for i in $(seq 1 180); do
+            if [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ]; then break; fi
+            sleep 1
+          done
+          test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1
+          adb shell settings put global window_animation_scale 0
+          adb shell settings put global transition_animation_scale 0
+          adb shell settings put global animator_duration_scale 0
+          adb shell input keyevent 82
+      - name: Run focused on-device regressions
+        run: |
+          ./gradlew --no-daemon --stacktrace -PqaInstall=true \
+            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest \
+            connectedDebugAndroidTest
+      - name: Collect launch previews and emulator diagnostics
+        if: always()
+        run: |
+          mkdir -p validation
+          if adb get-state >/dev/null 2>&1; then
+            adb pull /sdcard/Android/data/tw.techtarian.browser.qa/files/launch-previews validation/ || true
+            adb logcat -d -t 1000 > validation/emulator-logcat.txt || true
+          fi
+          if [ -f "$RUNNER_TEMP/emulator.log" ]; then cp "$RUNNER_TEMP/emulator.log" validation/; fi
+      - name: Save validation reports and QA-only APK
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: android-validation-${{ github.run_id }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            app/build/reports/
+            app/build/outputs/androidTest-results/
+            app/build/outputs/apk/debug/*.apk
+            validation/
