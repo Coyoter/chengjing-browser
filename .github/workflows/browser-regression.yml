@@ -1,0 +1,57 @@
+name: Browser regression checks
+
+on:
+  push:
+    branches: [fix/ai-favorites-launch-20260915]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browser-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+      - name: Install Android SDK components
+        run: |
+          test -n "$ANDROID_HOME"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-36' 'build-tools;36.0.0'
+      - name: Unit tests, lint, and compile isolated QA application and UI tests
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace -PqaInstall=true :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest
+      - name: Save test and lint reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-regression-reports
+          path: |
+            app/build/reports/tests/
+            app/build/test-results/
+            app/build/reports/lint-results-debug.*
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Save QA-only debug APKs
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-qa-debug-apks
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/androidTest/debug/*.apk
+          retention-days: 7
+# This workflow does not use signing secrets, publish Releases, or claim to run UI/device tests.

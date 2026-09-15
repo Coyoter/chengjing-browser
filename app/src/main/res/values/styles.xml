@@ -1,9 +1,11 @@
 <resources>
-    <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+    <style name="AppTheme.Base" parent="android:style/Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">sans</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">@bool/browser_launch_light_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/browser_launch_light_bars</item>
         <item name="android:colorAccent">#147A64</item>
         <item name="android:windowActionModeOverlay">true</item>
-        <item name="android:windowBackground">#F1EEE7</item>
+        <item name="android:windowBackground">@color/browser_launch_background</item>
     </style>
+    <style name="AppTheme" parent="AppTheme.Base" />
 </resources>
