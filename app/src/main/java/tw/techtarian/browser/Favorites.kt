@@ -12,7 +12,7 @@ data class Favorite(val id:String,val title:String,val pageTitle:String,val url:
         fun from(j:JSONObject):Favorite{
             val url=j.getString("url");require(url.toHttpUrlOrNull()!=null){"收藏網址格式不正確"}
             val id=j.getString("id");require(id.isNotBlank()&&id.length<=256){"收藏識別碼格式不正確"}
-            val updated=j.getLong("updated");require(updated>=0&&updated<Long.MAX_VALUE){"收藏時間格式不正確"}
+            val updated=j.getLong("updated");require(updated>=0&&updated<Long.MAX_VALUE-1){"收藏時間格式不正確"}
             return Favorite(id,j.getString("title"),j.optString("pageTitle",j.getString("title")),url,j.optDouble("scrollY",0.0).takeIf{it.isFinite()}?.coerceAtLeast(0.0)?:0.0,j.optDouble("progress",0.0).takeIf{it.isFinite()}?.coerceIn(0.0,1.0)?:0.0,updated,j.optBoolean("deleted",false))
         }
         fun capture(previous:Favorite?,url:String,pageTitle:String,scrollY:Double,progress:Double,now:Long=System.currentTimeMillis()):Favorite{
@@ -33,7 +33,7 @@ object FavoriteFormat{
     private val conflictOrder=compareBy<Favorite>({it.updated},{it.deleted},{it.url},{it.title},{it.pageTitle},{it.scrollY},{it.progress})
 
     fun nextTimestamp(previous:Long,now:Long=System.currentTimeMillis()):Long{
-        require(previous>=0&&previous<Long.MAX_VALUE-1){"收藏時間超出範圍"}
+        require(previous>=0&&previous<Long.MAX_VALUE-2&&now<Long.MAX_VALUE-1){"收藏時間超出範圍"}
         return maxOf(now,previous+1)
     }
     // The entire newer record wins, not the maximum progress: reading backwards is valid.
@@ -84,7 +84,8 @@ class FavoriteStore(context:Context){
     private fun nextTime(rows:List<Favorite>)=FavoriteFormat.nextTimestamp(rows.maxOfOrNull{it.updated}?:0)
     @Synchronized fun save(url:String,title:String,y:Double,progress:Double,updateId:String?=null,forceNew:Boolean=false):Favorite{
         val rows=records()
-        val visible=rows.filterNot{it.deleted}
+        // Preserve the existing most-recent-favorite behavior when the URL has several saved copies.
+        val visible=rows.filterNot{it.deleted}.sortedWith(compareByDescending<Favorite>{it.updated}.thenBy{it.id})
         val previous=if(forceNew)null else visible.find{it.id==updateId}?:visible.find{it.url==url}
         val item=Favorite.capture(previous,url,title,y,progress,nextTime(rows))
         write(rows.filterNot{it.id==item.id}+item)

@@ -90,7 +90,7 @@ class MainActivity:ComponentActivity(){
         bookmarkSync=BookmarkSync(this,store.bookmarkStore)
         bookmarkSync.launchConsent={consent.launch(it)}
         controller.chooseFiles={files.launch(it)}
-        val systemDark=resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK==android.content.res.Configuration.UI_MODE_NIGHT_YES
+        val systemDark=(resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES
         val dark=store.theme=="dark"||(store.theme=="system"&&systemDark)
         val launch=BrowserLaunchSurface(this,dark)
         WindowCompat.getInsetsController(window,window.decorView).apply{
@@ -472,7 +472,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         }
     }
     Text("書籤、資料夾、收藏及刪除紀錄會存入 Google Drive 的應用程式專用隱藏空間，不會取得你其他檔案的存取權。",fontSize=14.sp,lineHeight=23.sp)
-    SettingsGroup("收藏與閱讀进度"){
+    SettingsGroup("收藏與閱讀進度"){
         Text("收藏的名稱、目前閱讀網址、頁面標題、捲動位置與閱讀百分比會一起同步。請在每支裝置更新至支援收藏同步的版本。",fontSize=13.sp,lineHeight=21.sp)
         Text("同一收藏以最近儲存的完整紀錄為準；重新命名與刪除也會同步，不會強迫保留最高閱讀百分比。正在開啟的頁面不會被強制跳轉，下次從收藏開啟時使用同步後的位置。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     }

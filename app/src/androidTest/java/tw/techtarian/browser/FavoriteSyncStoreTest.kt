@@ -92,4 +92,14 @@ class FavoriteSyncStoreTest {
         assertNotEquals(first.id,second.id)
         assertEquals(2,store.all().size)
     }
+    @Test fun savingWithoutAnIdUpdatesTheMostRecentCopyNotAlphabeticalId(){
+        val older=Favorite("a","第一份","頁面","https://example.com/",100.0,.2,100)
+        val newer=older.copy(id="z",title="第二份",updated=200)
+        store.mergeRemote(listOf(older,newer))
+        val saved=store.save(newer.url,newer.pageTitle,500.0,.9)
+        assertEquals(newer.id,saved.id)
+        assertEquals(newer.title,saved.title)
+        assertEquals(older,store.get(older.id))
+        assertEquals(2,store.all().size)
+    }
 }
