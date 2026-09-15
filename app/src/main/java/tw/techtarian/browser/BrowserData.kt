@@ -4,6 +4,9 @@ import android.content.Context
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONArray
 import org.json.JSONObject
@@ -85,6 +88,12 @@ class BrowserStore(context: Context) {
         set(value){check(prefs.edit().putBoolean("sync-site-settings",value).commit())}
 
     private val prefs = context.getSharedPreferences("browser-v1", Context.MODE_PRIVATE)
+    // SettingsPanel, not just its child radio buttons, must observe provider changes.
+    // Persist the explicit choice independently of whether a key is present.
+    private var selectedAiProvider by mutableStateOf(
+        prefs.getString("ai-provider", null)?.takeIf { it in setOf("gemma", "openrouter") }
+            ?: if (hasKey()) "openrouter" else "gemma"
+    )
     fun certificateException(url:String):Boolean = CertificateExceptions.site(url)?.let{site->prefs.getStringSet("certificate-exceptions",emptySet()).orEmpty().any{CertificateExceptions.site(it)==site}}?:false
     fun setCertificateException(url:String,enabled:Boolean){
         val origin=requireNotNull(CertificateExceptions.site(url)){"只有 HTTPS 網站可設定憑證例外"}
@@ -94,8 +103,12 @@ class BrowserStore(context: Context) {
         check(prefs.edit().putStringSet("certificate-exceptions",values).commit()){"設定儲存失敗"}
     }
     var aiProvider:String
-        get()=prefs.getString("ai-provider",if(hasKey())"openrouter"else"gemma").orEmpty()
-        set(value){require(value in setOf("gemma","openrouter"));prefs.edit().putString("ai-provider",value).apply()}
+        get()=selectedAiProvider
+        set(value){
+            require(value in setOf("gemma","openrouter"))
+            prefs.edit().putString("ai-provider",value).apply()
+            selectedAiProvider=value
+        }
     var theme: String
         get() = prefs.getString("theme", "system") ?: "system"
         set(value) { prefs.edit().putString("theme", value).apply() }
