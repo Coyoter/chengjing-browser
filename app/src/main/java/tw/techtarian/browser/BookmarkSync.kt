@@ -31,7 +31,7 @@ class BookmarkDrive(private val token:String){
             check(r.isSuccessful){when(r.code){
                 401,403->throw SyncHttpException(r.code,"Google 授權已過期或尚未完成，請重新連結")
                 429->throw SyncHttpException(r.code,"Google Drive 請求受速率限制")
-                else->throw SyncHttpException(r.code,"書籤同步未完成（HTTP ${r.code}），本機資料已保留")
+                else->throw SyncHttpException(r.code,"同步未完成（HTTP ${r.code}），本機資料已保留")
             }}
             val content=r.body?:error("Google Drive 沒有回傳資料")
             require(content.contentLength()<=12_000_000){"雲端資料超過大小限制"}
@@ -78,8 +78,13 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
     private var authorizing=false
     private var consentEpoch:Int?=null
     private var currentDrive:BookmarkDrive?=null
+    private val favorites get()=activity.controller.favorites
     companion object{const val SCOPE="https://www.googleapis.com/auth/drive.appdata"}
-    init{store.onChange={changed()};activity.controller.store.onSiteChange={if(activity.controller.store.syncSiteSettings)changed()}}
+    init{
+        store.onChange={changed()}
+        favorites.onChange={changed()}
+        activity.controller.store.onSiteChange={if(activity.controller.store.syncSiteSettings)changed()}
+    }
     fun changed(){activity.controller.revision++;if(connected){pending?.cancel();pending=tasks.launch{delay(1400);authorize(false)}}}
     fun resume(){if(connected&&!busy)authorize(false)}
     private fun apiStatusText(code:Int):String=when(code){
@@ -129,7 +134,7 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
             if(it is ApiException){
                 fail(apiStatusText(it.statusCode),it.statusCode,it.toString())
             }else{
-                fail("已取消連結；本機書籤保持不變",detail=it.localizedMessage)
+                fail("已取消連結；本機資料保持不變",detail=it.localizedMessage)
             }
         }
     }
@@ -144,7 +149,7 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
                     currentDrive=drive
                     val (id,label)=withContext(Dispatchers.IO){drive.account()}
                     check(version==epoch){"連線已取消"}
-                    check(store.accountId.isEmpty()||store.accountId==id){"此手機的書籤已綁定另一個 Google 帳戶；請使用原本帳戶，避免混入其他人的資料"}
+                    check(store.accountId.isEmpty()||store.accountId==id){"此手機的資料已綁定另一個 Google 帳戶；請使用原本帳戶，避免混入其他人的資料"}
                     val files=withContext(Dispatchers.IO){drive.files()}
                     val remote=withContext(Dispatchers.IO){BookmarkFormat.merge(*files.map{drive.read(it.getString("id"))}.toTypedArray())}
                     check(version==epoch){"連線已取消"}
@@ -160,6 +165,23 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
                     val verified=withContext(Dispatchers.IO){drive.read(fileId)}
                     check(BookmarkFormat.snapshot(verified)==BookmarkFormat.snapshot(upload)){"雲端寫入回讀不一致，請重試"}
                     check(version==epoch){"連線已取消"}
+
+                    // Favorites include the current URL, custom title, scroll position, and deletion state.
+                    // Use a separate namespace so older bookmark-only clients cannot erase them.
+                    status="正在同步收藏與閱讀進度…"
+                    val favoriteFiles=withContext(Dispatchers.IO){drive.files(FavoriteFormat.TAG)}
+                    val favoriteRemote=withContext(Dispatchers.IO){FavoriteFormat.merge(*favoriteFiles.map{FavoriteFormat.read(drive.readRaw(it.getString("id")))}.toTypedArray())}
+                    check(version==epoch){"連線已取消"}
+                    if(favorites.mergeRemote(favoriteRemote))activity.controller.revision++
+                    val favoriteUpload=favorites.records()
+                    val favoriteRaw=FavoriteFormat.snapshot(favoriteUpload)
+                    val favoriteOwn=favoriteFiles.find{it.optJSONObject("appProperties")?.optString("device")==store.deviceId}?.getString("id")
+                    val favoriteFileId=withContext(Dispatchers.IO){drive.writeRaw(store.deviceId,favoriteOwn,favoriteRaw,FavoriteFormat.TAG)}
+                    check(version==epoch){"連線已取消"}
+                    val favoriteVerified=withContext(Dispatchers.IO){FavoriteFormat.read(drive.readRaw(favoriteFileId))}
+                    check(version==epoch){"連線已取消"}
+                    check(favoriteVerified==favoriteUpload){"收藏與閱讀進度寫入回讀不一致，請重試"}
+
                     val browserStore=activity.controller.store
                     var siteCount:Int?=null
                     var sitesChangedWhileUploading=false
@@ -181,21 +203,22 @@ class BookmarkSync(private val activity:MainActivity,private val store:BookmarkS
                         siteCount=browserStore.all().count{it.rules.isNotEmpty()||it.edits.isNotEmpty()||it.css.isNotBlank()||it.js.isNotBlank()||it.html.isNotBlank()||it.guard||it.unlockScroll}
                     }
                     store.accountId=id;store.accountLabel=label;store.connected=true;connected=true;store.lastSync=System.currentTimeMillis()
-                    status="已同步 ${store.visible().size} 個書籤"+(siteCount?.let{"、$it 個網站設定；重新載入頁面後套用"}?:"");activity.controller.revision++
+                    status="已同步 ${store.visible().size} 個書籤、${favorites.all().size} 個收藏與閱讀進度"+(siteCount?.let{"、$it 個網站設定；重新載入頁面後套用"}?:"");activity.controller.revision++
                     details=""
-                    if(sitesChangedWhileUploading)changed()
-                    if(BookmarkFormat.snapshot(store.all())!=BookmarkFormat.snapshot(upload))changed()
+                    // A user may save/delete a favorite while any network request is in flight.
+                    // Do not replace those local edits with the older verified upload.
+                    if(sitesChangedWhileUploading||favorites.records()!=favoriteUpload||BookmarkFormat.snapshot(store.all())!=BookmarkFormat.snapshot(upload))changed()
                 }catch(e:Exception){if(version==epoch){
                     if(e is SyncHttpException)fail(e.userMessage,e.code, "HTTP ${e.code}: ${e.userMessage}")
                     else if(e is ApiException)fail(apiStatusText(e.statusCode),e.statusCode,e.toString())
-                    else fail(e.localizedMessage?:"同步未完成，本機書籤已保留",detail=e.toString())
+                    else fail(e.localizedMessage?:"同步未完成，本機資料已保留",detail=e.toString())
                 }}
                 finally{if(version==epoch){busy=false;currentDrive=null}}
             }
         }
     }
-    fun disconnect(){epoch++;consentEpoch=null;currentDrive?.cancel();currentDrive=null;pending?.cancel();store.connected=false;connected=false;busy=false;authorizing=false;status="已停止同步，本機與雲端書籤均保留"}
-    fun destroy(){epoch++;currentDrive?.cancel();tasks.cancel();store.onChange=null;activity.controller.store.onSiteChange=null}
+    fun disconnect(){epoch++;consentEpoch=null;currentDrive?.cancel();currentDrive=null;pending?.cancel();store.connected=false;connected=false;busy=false;authorizing=false;status="已停止同步，本機與雲端書籤、收藏均保留"}
+    fun destroy(){epoch++;currentDrive?.cancel();tasks.cancel();store.onChange=null;favorites.onChange=null;activity.controller.store.onSiteChange=null}
 }
 
 private class SyncHttpException(val code:Int,val userMessage:String):IllegalStateException("HTTP $code: $userMessage")
