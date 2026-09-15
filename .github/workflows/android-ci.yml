@@ -1,8 +1,6 @@
 name: Android regression checks
 
 on:
-  push:
-    branches: [fix/ai-favorites-startup]
   pull_request:
     branches: [main]
 
@@ -28,6 +26,7 @@ jobs:
           cache: gradle
       - uses: android-actions/setup-android@v3
         with:
+          packages: platform-tools
           log-accepted-android-sdk-licenses: false
       - name: Install compile SDK
         run: sdkmanager 'platforms;android-36' 'build-tools;36.0.0'
