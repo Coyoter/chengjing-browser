@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -29,11 +30,14 @@ jobs:
           cache: gradle
       - name: Configure shared Android tool directories
         run: |
-          # Resolve runner paths at step runtime, not during workflow validation.
           mkdir -p "$RUNNER_TEMP/android-user" "$RUNNER_TEMP/android-avd"
           echo "ANDROID_USER_HOME=$RUNNER_TEMP/android-user" >> "$GITHUB_ENV"
           echo "ANDROID_EMULATOR_HOME=$RUNNER_TEMP/android-user" >> "$GITHUB_ENV"
           echo "ANDROID_AVD_HOME=$RUNNER_TEMP/android-avd" >> "$GITHUB_ENV"
+          # Disposable runner only: .NET is not used by this Android project.
+          # The prior emulator failed with 7,028 MB free against a 7,373 MB partition.
+          sudo rm -rf /usr/share/dotnet
+          df -h "$RUNNER_TEMP"
       - name: Install Android build tools
         run: |
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
@@ -50,12 +54,18 @@ jobs:
           EMULATOR="$ANDROID_HOME/emulator/emulator"
           "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
           printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-35;google_apis;x86_64"
-          "$AVDMANAGER" list avd
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          path = Path(os.environ['ANDROID_AVD_HOME']) / 'chengjing-qa.avd/config.ini'
+          values = {'disk.dataPartition.size': '2G', 'hw.ramSize': '2048', 'hw.cpu.ncore': '2', 'hw.lcd.width': '720', 'hw.lcd.height': '1280', 'hw.lcd.density': '320'}
+          lines = [line for line in path.read_text().splitlines() if line.split('=',1)[0].strip() not in values]
+          path.write_text('\n'.join(lines + [f'{key}={value}' for key,value in values.items()]) + '\n')
+          PY
           "$EMULATOR" -list-avds | tee "$RUNNER_TEMP/avd-list.txt"
           grep -Fx chengjing-qa "$RUNNER_TEMP/avd-list.txt"
-          test -d "$ANDROID_AVD_HOME/chengjing-qa.avd"
           sudo chmod a+rw /dev/kvm
-          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
           EMULATOR_PID=$!
           sleep 3
           if ! kill -0 "$EMULATOR_PID" 2>/dev/null; then cat "$RUNNER_TEMP/emulator.log"; exit 1; fi

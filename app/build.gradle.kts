@@ -10,8 +10,8 @@ android {
         applicationId = if (project.findProperty("qaInstall") == "true") "tw.techtarian.browser.qa" else "tw.techtarian.browser"
         minSdk = 28
         targetSdk = 36
-        versionCode = 18
-        versionName = "1.2.0"
+        versionCode = 19
+        versionName = "1.3.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     testBuildType = (project.findProperty("testBuildType") as? String) ?: "debug"
@@ -20,7 +20,7 @@ android {
     packaging { resources.excludes += "/META-INF/{AL2.0,LGPL2.1}" }
     signingConfigs {
         create("release") {
-            storeFile = rootProject.file("signing/browser.jks")
+            storeFile = rootProject.file(System.getenv("CHENGJING_BROWSER_KEYSTORE_PATH") ?: "signing/browser.jks")
             storePassword = System.getenv("CHENGJING_BROWSER_STORE_PASSWORD")
             keyAlias = "chengjing-browser"
             keyPassword = System.getenv("CHENGJING_BROWSER_STORE_PASSWORD")
