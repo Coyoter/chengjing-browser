@@ -129,8 +129,19 @@ class BrowserCollectionsTest {
         ui.onNodeWithTag("private-tab-group").performClick()
         ui.runOnIdle{assertTrue(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
         ui.onNodeWithTag("tab-card:${privateTab.id}").assertExists()
+        assertPrivateDialogIsSecure()
         ui.onNodeWithTag("normal-tab-group").performClick()
         ui.runOnIdle{assertFalse(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
+    }
+    private fun assertPrivateDialogIsSecure(){
+        if(android.os.Build.VERSION.SDK_INT<29)return
+        ui.runOnIdle{
+            val dialogs=android.view.inspector.WindowInspector.getGlobalWindowViews()
+                .filter{it!==ui.activity.window.decorView&&it.isShown}
+                .mapNotNull{it.layoutParams as? WindowManager.LayoutParams}
+            assertTrue("Expected the tab overview Dialog window",dialogs.isNotEmpty())
+            assertTrue("Private tab titles must be protected in the Dialog too",dialogs.all{it.flags and WindowManager.LayoutParams.FLAG_SECURE!=0})
+        }
     }
     @Test fun recreationDoesNotRestorePrivateTabs(){
         assumeTrue(PrivateSession.supported())

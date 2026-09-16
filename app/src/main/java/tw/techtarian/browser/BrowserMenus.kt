@@ -34,7 +34,9 @@ import kotlinx.coroutines.launch
 
 @Composable internal fun BrowserPanel(c:BrowserController,content:@Composable ColumnScope.()->Unit){
     val colors=MaterialTheme.colorScheme
-    Dialog(onDismissRequest={c.sheet=""},properties=DialogProperties(usePlatformDefaultWidth=false,decorFitsSystemWindows=false)){
+    val privateWindow=c.incognito||(c.sheet=="tabs"&&c.tabGroupPrivate)
+    Dialog(onDismissRequest={c.sheet=""},properties=DialogProperties(usePlatformDefaultWidth=false,decorFitsSystemWindows=false,
+        securePolicy=if(privateWindow)androidx.compose.ui.window.SecureFlagPolicy.SecureOn else androidx.compose.ui.window.SecureFlagPolicy.SecureOff)){
         val view=LocalView.current
         SideEffect{(view.parent as? DialogWindowProvider)?.window?.let{window->
             WindowCompat.getInsetsController(window,view).isAppearanceLightStatusBars=colors.background.luminance()>.5f
