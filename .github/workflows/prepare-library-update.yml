@@ -1,0 +1,25 @@
+name: Prepare reviewed library update
+on:
+  push:
+    branches: [feature/library-private-tabs-1.4.0]
+    paths: [.maintenance/apply-library-update.py]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/feature/library-private-tabs-1.4.0'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          fetch-depth: 0
+      - name: Apply exact-match edits and remove the temporary helper
+        run: |
+          python3 .maintenance/apply-library-update.py
+          git rm .maintenance/apply-library-update.py
+          git add app README.md
+          git diff --cached --check
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Integrate isolated private tabs, downloads, history and card overview'
+          git push origin HEAD:feature/library-private-tabs-1.4.0
+# This temporary branch-only preparation workflow is removed before merging.
