@@ -34,8 +34,7 @@ jobs:
           echo "ANDROID_USER_HOME=$RUNNER_TEMP/android-user" >> "$GITHUB_ENV"
           echo "ANDROID_EMULATOR_HOME=$RUNNER_TEMP/android-user" >> "$GITHUB_ENV"
           echo "ANDROID_AVD_HOME=$RUNNER_TEMP/android-avd" >> "$GITHUB_ENV"
-          # Disposable runner only: .NET is not used by this Android project.
-          # The prior emulator failed with 7,028 MB free against a 7,373 MB partition.
+          # Only the disposable Android runner; .NET is not used by this project.
           sudo rm -rf /usr/share/dotnet
           df -h "$RUNNER_TEMP"
       - name: Install Android build tools
@@ -83,12 +82,13 @@ jobs:
       - name: Run focused on-device regressions
         run: |
           ./gradlew --no-daemon --stacktrace -PqaInstall=true \
-            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest \
+            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.CollectionsPrivacyTest \
             connectedDebugAndroidTest
-      - name: Collect launch previews and emulator diagnostics
+      - name: Collect source, previews and emulator diagnostics
         if: always()
         run: |
           mkdir -p validation
+          git archive --format=zip HEAD -o validation/source-reviewed.zip
           if adb get-state >/dev/null 2>&1; then
             adb pull /sdcard/Android/data/tw.techtarian.browser.qa/files/launch-previews validation/ || true
             adb pull /data/local/tmp/chengjing-ui validation/ || true
