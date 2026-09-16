@@ -3,6 +3,8 @@ package tw.techtarian.browser
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -47,8 +49,9 @@ import androidx.compose.ui.unit.sp
     if(tabs.isEmpty())CollectionEmpty(if(privateGroup)"開啟一段無痕瀏覽"else"還沒有一般分頁",if(privateGroup)"與一般分頁使用不同的登入狀態；網站與網路供應商仍可能辨識你的活動。"else"新增分頁，讓接下來的閱讀有自己的位置。")
     LazyVerticalGrid(GridCells.Adaptive(150.dp),Modifier.weight(1f).fillMaxWidth().testTag("tab-grid"),contentPadding=PaddingValues(20.dp),horizontalArrangement=Arrangement.spacedBy(14.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         items(tabs,key={it.id}){tab->
-            Surface(onClick={c.switchTab(tab.id)},modifier=Modifier.fillMaxWidth().testTag("tab-card-${tab.id}"),shape=RoundedCornerShape(20.dp),
-                color=colors.surface,border=if(tab.id==c.activeId)BorderStroke(1.5.dp,colors.primary)else BorderStroke(1.dp,colors.outlineVariant.copy(alpha=.5f))) {
+            val current=tab.id==c.activeId
+            Surface(onClick={c.switchTab(tab.id)},modifier=Modifier.fillMaxWidth().testTag("tab-card-${tab.id}").semantics{selected=current},shape=RoundedCornerShape(20.dp),
+                color=colors.surface,border=if(current)BorderStroke(1.5.dp,colors.primary)else BorderStroke(1.dp,colors.outlineVariant.copy(alpha=.5f))) {
                 Column {
                     Box(Modifier.fillMaxWidth().aspectRatio(1.3f).background(colors.surfaceVariant.copy(alpha=.55f))) {
                         val preview=tab.preview
@@ -57,13 +60,14 @@ import androidx.compose.ui.unit.sp
                             Icon(if(tab.incognito)Icons.Outlined.PrivacyTip else Icons.Outlined.Language,null,Modifier.size(30.dp),tint=colors.primary.copy(alpha=.6f))
                             Text(if(tab.incognito)"私密頁面"else if(tab.url.isEmpty())"澄境首頁"else Domains.scope(tab.url),fontSize=11.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=colors.onSurfaceVariant)
                         }
-                        Surface(Modifier.align(Alignment.TopEnd).padding(6.dp),shape=RoundedCornerShape(50),color=colors.surface.copy(alpha=.95f)){
-                            IconButton(onClick={c.closeTab(tab.id)},modifier=Modifier.size(40.dp)){Icon(Icons.Outlined.Close,"關閉分頁 ${tab.id}",Modifier.size(19.dp))}
+                        Surface(Modifier.align(Alignment.TopEnd).padding(4.dp),shape=RoundedCornerShape(50),color=colors.surface.copy(alpha=.95f)){
+                            IconButton(onClick={c.closeTab(tab.id)},modifier=Modifier.size(48.dp)){Icon(Icons.Outlined.Close,"關閉分頁 ${tab.id}",Modifier.size(19.dp))}
                         }
                     }
                     Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
                         Text(tab.title.ifBlank{"新分頁"},minLines=2,maxLines=2,overflow=TextOverflow.Ellipsis,fontSize=14.sp,lineHeight=20.sp,fontWeight=FontWeight.Medium)
-                        Text(if(tab.id==c.activeId)"目前分頁"else Domains.scope(tab.url).ifBlank{"新分頁"},fontSize=11.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=if(tab.id==c.activeId)colors.primary else colors.onSurfaceVariant)
+                        val site=Domains.scope(tab.url).ifBlank{"澄境首頁"}
+                        Text(if(current)"目前分頁 · $site"else site,fontSize=11.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=if(current)colors.primary else colors.onSurfaceVariant)
                     }
                 }
             }
@@ -79,7 +83,7 @@ import androidx.compose.ui.unit.sp
 }
 
 @Composable internal fun IncognitoHome() {
-    Column(Modifier.fillMaxSize().padding(28.dp),verticalArrangement=Arrangement.spacedBy(20.dp)) {
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(28.dp),verticalArrangement=Arrangement.spacedBy(20.dp)) {
         Spacer(Modifier.height(30.dp))
         Icon(Icons.Outlined.PrivacyTip,null,Modifier.size(42.dp),tint=MaterialTheme.colorScheme.primary)
         Text("此刻，只留在此刻。",fontSize=29.sp,lineHeight=40.sp,fontWeight=FontWeight.Light)
