@@ -55,7 +55,7 @@ import androidx.compose.ui.unit.sp
                 Column {
                     Box(Modifier.fillMaxWidth().aspectRatio(1.3f).background(colors.surfaceVariant.copy(alpha=.55f))) {
                         val preview=tab.preview
-                        if(!tab.incognito&&preview!=null&&!preview.isRecycled)Image(preview.asImageBitmap(),null,Modifier.fillMaxSize(),contentScale=ContentScale.Crop)
+                        if(!tab.incognito&&preview!=null&&!preview.isRecycled)Image(preview.asImageBitmap(),null,Modifier.fillMaxSize(),contentScale=ContentScale.Crop,alignment=Alignment.TopCenter)
                         else Column(Modifier.align(Alignment.Center).padding(12.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(8.dp)) {
                             Icon(if(tab.incognito)Icons.Outlined.PrivacyTip else Icons.Outlined.Language,null,Modifier.size(30.dp),tint=colors.primary.copy(alpha=.6f))
                             Text(if(tab.incognito)"私密頁面"else if(tab.url.isEmpty())"澄境首頁"else Domains.scope(tab.url),fontSize=11.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=colors.onSurfaceVariant)
