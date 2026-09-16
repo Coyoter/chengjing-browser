@@ -4,6 +4,9 @@ import android.content.Context
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONArray
 import org.json.JSONObject
@@ -93,9 +96,19 @@ class BrowserStore(context: Context) {
         if(enabled)values.add(origin)
         check(prefs.edit().putStringSet("certificate-exceptions",values).commit()){"設定儲存失敗"}
     }
+    // SharedPreferences alone cannot invalidate the parent settings composition.
+    // Both the provider selector and its settings fields observe this single state.
+    private var providerState by mutableStateOf(
+        prefs.getString("ai-provider",null)?.takeIf{it in setOf("gemma","openrouter")}
+            ?: if(hasKey())"openrouter"else"gemma"
+    )
     var aiProvider:String
-        get()=prefs.getString("ai-provider",if(hasKey())"openrouter"else"gemma").orEmpty()
-        set(value){require(value in setOf("gemma","openrouter"));prefs.edit().putString("ai-provider",value).apply()}
+        get()=providerState
+        set(value){
+            require(value in setOf("gemma","openrouter"))
+            prefs.edit().putString("ai-provider",value).apply()
+            providerState=value
+        }
     var theme: String
         get() = prefs.getString("theme", "system") ?: "system"
         set(value) { prefs.edit().putString("theme", value).apply() }

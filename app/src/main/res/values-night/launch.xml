@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="browser_launch_background">#0F1513</color>
+    <color name="browser_launch_accent">#69DFC0</color>
+    <bool name="browser_launch_light_bars">false</bool>
+</resources>

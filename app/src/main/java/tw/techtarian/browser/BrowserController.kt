@@ -313,13 +313,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 }.onFailure {notice="下載未完成：${it.localizedMessage}"}
             }.show()
         }
-        web.setOnLongClickListener {
-            val hit=web.hitTestResult
-            val link=hit.extra
-            if(!eye && hit.type in listOf(WebView.HitTestResult.SRC_ANCHOR_TYPE,WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) && link!=null) {
-                android.app.AlertDialog.Builder(context).setItems(arrayOf("在新分頁開啟","複製連結")) {_,which->if(which==0)newTab(link)else{(context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager).setPrimaryClip(android.content.ClipData.newPlainText("連結",link))}}.show();true
-            } else false
-        }
+        PageContextMenu(this,tab).install()
         tabs.add(tab);activeId=tab.id
         refreshScripts(listOf(tab),applyToPage=false)
         if(url.isNotEmpty()){tab.pendingUrl=url;web.loadUrl(url)}

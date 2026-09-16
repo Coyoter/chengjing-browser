@@ -1,0 +1,113 @@
+name: Android release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - app/build.gradle.kts
+      - .github/workflows/android-release.yml
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to publish; must exactly match app/build.gradle.kts
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-release-main
+  cancel-in-progress: false
+
+jobs:
+  signing:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Check version and signing inputs without exposing secrets
+        id: check
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+          KEYSTORE: ${{ secrets.CHENGJING_BROWSER_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.CHENGJING_BROWSER_STORE_PASSWORD }}
+        run: |
+          python3 - <<'PY'
+          import os, re, sys
+          from pathlib import Path
+          version = re.search(r'versionName\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', Path('app/build.gradle.kts').read_text()).group(1)
+          requested = os.environ.get('REQUESTED_VERSION', '')
+          if requested and requested != version:
+              sys.exit('Requested version differs from the checked-out source.')
+          missing = [name for name, env in [('CHENGJING_BROWSER_KEYSTORE_BASE64', 'KEYSTORE'), ('CHENGJING_BROWSER_STORE_PASSWORD', 'STORE_PASSWORD')] if not os.environ.get(env)]
+          if missing:
+              for name in missing:
+                  print('::error::Missing Actions Secret: ' + name)
+              sys.exit('Original signing identity required. No APK/AAB or Release was published.')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('version=' + version + '\n')
+          print('Required signing inputs are present; values were not displayed.')
+          PY
+  validate:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/android-checks.yml
+    permissions:
+      contents: read
+    # No signing secrets are passed to the QA build or emulator tests.
+  release:
+    needs: [signing, validate]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      EXPECTED_VERSION: ${{ needs.signing.outputs.version }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+      - name: Install release build tools
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-36' 'build-tools;36.0.0'
+      - name: Build and verify original-signature APK and AAB
+        env:
+          KEYSTORE_BASE64: ${{ secrets.CHENGJING_BROWSER_KEYSTORE_BASE64 }}
+          CHENGJING_BROWSER_STORE_PASSWORD: ${{ secrets.CHENGJING_BROWSER_STORE_PASSWORD }}
+        run: |
+          export CHENGJING_BROWSER_KEYSTORE_PATH="$RUNNER_TEMP/chengjing-browser-release.jks"
+          python3 - <<'PY'
+          import base64, os
+          data = base64.b64decode(os.environ['KEYSTORE_BASE64'], validate=True)
+          if not data:
+              raise SystemExit('Empty keystore.')
+          fd = os.open(os.environ['CHENGJING_BROWSER_KEYSTORE_PATH'], os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+          with os.fdopen(fd, 'wb') as stream:
+              stream.write(data)
+          PY
+          python3 scripts/build-private.py
+      - name: Remove temporary signing identity
+        if: always()
+        run: rm -f "$RUNNER_TEMP/chengjing-browser-release.jks"
+      - name: Preserve verified release packages
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: signed-release-${{ needs.signing.outputs.version }}-${{ github.sha }}
+          path: release/${{ needs.signing.outputs.version }}/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Publish only after all checks and remote digest verification
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish-release.py
