@@ -2,7 +2,11 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前原始碼版本為 **1.3.1（versionCode 20）**：AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.3.1 更新說明](docs/releases/1.3.1.md) · [簽章與發布流程](docs/RELEASING.md)
+目前原始碼版本為 **1.4.0（versionCode 21）**：AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.4.0 更新說明](docs/releases/1.4.0.md) · [簽章與發布流程](docs/RELEASING.md)
+
+## 1.4.0 瀏覽工具
+
+三點選單新增下載清單、可搜尋的歷史記錄與無痕入口。分頁總覽使用一般／無痕兩組卡片，第一層工具列保持 1.3.1 設計。無痕不保存歷史或重開資料，隔離 Cookie 與網站儲存，結束工作階段後清理；手動下載／書籤／收藏仍保留。需要支援 MULTI_PROFILE 與 DELETE_BROWSING_DATA 的 WebView；這不是匿名網路。詳見 [版本範圍與驗證](docs/releases/1.4.0.md)。
 
 ## 安裝與使用
 

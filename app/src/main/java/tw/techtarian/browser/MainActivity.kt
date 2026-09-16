@@ -114,7 +114,7 @@ class MainActivity:ComponentActivity(){
     override fun onNewIntent(intent:Intent){
         super.onNewIntent(intent)
         setIntent(intent)
-        if(browserReady)intent.dataString?.let{if(it.startsWith("https://")||it.startsWith("http://"))controller.newTab(it)}
+        if(browserReady)intent.dataString?.let{if(it.startsWith("https://")||it.startsWith("http://"))controller.newTab(it,incognito=false)}
     }
     override fun onPause(){
         super.onPause()
@@ -151,7 +151,11 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
     var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
     var editingAddress by remember{mutableStateOf(false)}
-    val suggestionRows=remember(address.text,c.revision,editingAddress){if(editingAddress)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
+    val suggestionRows=remember(address.text,c.revision,editingAddress,c.privateMode){if(editingAddress&&!c.privateMode)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
+    SideEffect{
+        if(c.privateMode||(c.sheet=="tabs"&&c.tabCollection))activity.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+        else activity.window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+    }
     LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
     val cs=if(dark)Dark else Light
     SideEffect{WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightStatusBars=!dark;WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightNavigationBars=!dark}
@@ -178,11 +182,11 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         loading=(active?.progress?:100)<100,secure=active?.url?.startsWith("https:")==true&&active.error.isEmpty()&&active.certificateWarning.isEmpty(),
                         certificateWarning=active?.certificateWarning?.isNotEmpty()==true,
                         certificateException=c.store.certificateException(active?.url.orEmpty()),
-                        blank=active?.url.isNullOrEmpty(),tabs=c.tabs.size,
+                        blank=active?.url.isNullOrEmpty(),tabs=c.visibleTabCount,
                         onGo={c.navigate(address.text);editingAddress=false;focus.clearFocus()},
                         onSecurity={focus.clearFocus();c.sheet="connection"},
                         onReload={if((active?.progress?:100)<100){active?.web?.stopLoading();active?.refreshContainer?.isRefreshing=false}else c.reload()},
-                        onTabs={focus.clearFocus();c.sheet="tabs"},
+                        onTabs={focus.clearFocus();c.showTabs()},
                         onNewTab={focus.clearFocus();editingAddress=false;c.newTab()},
                     )
         }
@@ -208,8 +212,9 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                     } else if(c.isException) {
                         Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text("例外中 · 原始網站",Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text("恢復規則")}}
                     }
+                    if(c.privateMode)PrivateModeStrip()
                     Box(Modifier.weight(1f).fillMaxWidth()){
-                        if(active?.url.isNullOrEmpty())Home(c,store)
+                        if(active?.url.isNullOrEmpty()){if(c.privateMode)PrivateStartPage()else Home(c,store)}
                         else if(active?.error?.isNotEmpty()==true)Column(Modifier.fillMaxSize().padding(32.dp),verticalArrangement=Arrangement.Center,horizontalAlignment=Alignment.CenterHorizontally){Icon(Icons.Outlined.CloudOff,null,Modifier.size(48.dp),tint=cs.primary);Spacer(Modifier.height(24.dp));Text("暫時連不上這個網站",style=MaterialTheme.typography.titleLarge);Spacer(Modifier.height(12.dp));Text(active.error,color=cs.onSurfaceVariant);Spacer(Modifier.height(20.dp));Button(onClick={c.reload()}){Text("重新載入")}}
                         else active?.let{tab->key(tab.id){AndroidView(factory={(tab.refreshContainer.parent as? android.view.ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer},update={it.setColorSchemeColors(cs.primary.toArgb());it.setProgressBackgroundColorSchemeColor(cs.surface.toArgb())},modifier=Modifier.fillMaxSize().testTag("web-content"))}}
                     }
@@ -223,7 +228,10 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             }
         }
         if(c.sheet in setOf("bookmarks","favorites"))LibraryScreen(c)
-        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites")){
+        if(c.sheet=="tabs")TabOverview(c)
+        if(c.sheet=="downloads")DownloadsScreen(c)
+        if(c.sheet=="history")HistoryScreen(c)
+        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites","tabs","downloads","history")){
             BrowserPanel(c){
                     PanelHeader(c){c.sheet=panelTrail.dropLast(1).lastOrNull()?:panelParent(c.sheet)}
                     if(c.sheet=="settings")SettingsCategories(settingsCategory){settingsCategory=it}
@@ -234,10 +242,6 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         "connection"->ConnectionPanel(c)
                         "privacy"->PrivacyPanel(c)
                         "legal"->LicensePanel(c)
-                        "tabs"->{SheetTitle("分頁","${c.tabs.size} 個開啟中的頁面")
-                            c.tabs.toList().forEach{tab->Row(verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f).clip(RoundedCornerShape(12.dp)).clickable{c.switchTab(tab.id)}.padding(vertical=12.dp)){Text(tab.title,maxLines=1,overflow=TextOverflow.Ellipsis,fontWeight=if(tab.id==c.activeId)FontWeight.Bold else FontWeight.Normal);Text(Domains.scope(tab.url).ifEmpty{"澄境首頁"},fontSize=12.sp,color=cs.onSurfaceVariant)};Tool(Icons.Outlined.Close,"關閉 ${tab.title}"){c.closeTab(tab.id)}}}
-                            Button(onClick={c.newTab();c.sheet=""},Modifier.fillMaxWidth()){Text("新增分頁")}
-                        }
                         "eye"->EyePanel(c)
                         "selection"->SelectionPanel(c)
                         "element-editor"->ElementEditor(c)
@@ -249,12 +253,6 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         "user-agent"->UserAgentPanel(c)
                         "inventory"->InventoryPanel(c)
                         "sync"->SyncPanel(c,store)
-                        "history"->{SheetTitle("瀏覽紀錄","最近 250 個頁面，只留在這支手機。")
-                            val entries=store.history()
-                            if(entries.isEmpty())Text("這裡還沒有內容。",color=cs.onSurfaceVariant)
-                            entries.forEach{(url,title)->Column(Modifier.fillMaxWidth().clickable{c.navigate(url)}.padding(vertical=10.dp)){Text(title,maxLines=1,overflow=TextOverflow.Ellipsis);Text(Domains.scope(url),fontSize=12.sp,color=cs.onSurfaceVariant)}}
-                            if(entries.isNotEmpty())TextButton(onClick={store.clearHistory();c.sheet=""}){Text("清除瀏覽紀錄")}
-                        }
                         "domains"->{SheetTitle("網域規則","你的選擇，留在你的手機。")
                             val sites=store.all();if(sites.isEmpty())Text("尚未儲存任何網域規則。")
                             sites.forEach{site->MenuRow(Icons.Outlined.Language,site.domain,"${site.rules.size} 條元件規則${if(site.guard)" · 跳轉防護"else""}"){c.navigate(if(site.domain=="practice.chengjing.invalid")"https://${site.domain}/"else"https://${site.domain}")}}

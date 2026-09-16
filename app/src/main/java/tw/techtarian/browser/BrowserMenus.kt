@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 
 @Composable internal fun BrowserPanel(c:BrowserController,content:@Composable ColumnScope.()->Unit){
     val colors=MaterialTheme.colorScheme
-    Dialog(onDismissRequest={c.sheet=""},properties=DialogProperties(usePlatformDefaultWidth=false,decorFitsSystemWindows=false)){
+    Dialog(onDismissRequest={c.sheet=""},properties=DialogProperties(usePlatformDefaultWidth=false,decorFitsSystemWindows=false,securePolicy=if(c.privateMode||(c.sheet=="tabs"&&c.tabCollection))androidx.compose.ui.window.SecureFlagPolicy.SecureOn else androidx.compose.ui.window.SecureFlagPolicy.Inherit)){
         val view=LocalView.current
         SideEffect{(view.parent as? DialogWindowProvider)?.window?.let{window->
             WindowCompat.getInsetsController(window,view).isAppearanceLightStatusBars=colors.background.luminance()>.5f
@@ -49,8 +49,8 @@ import kotlinx.coroutines.launch
 internal fun panelTitle(page:String)=when(page){
     "legal"->"第三方授權";"element-editor"->"元件程式碼";"develop-ai"->"天眼 AI";"connection"->"網站連線";"privacy"->"隱私與資料";"menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
     "rules"->"網站修改";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別"
-    "inventory"->"結構清單";"sync"->"Google 同步";"history"->"瀏覽紀錄";"domains"->"網域規則"
-    "find"->"尋找頁面文字";"blocked"->"攔截紀錄";else->"澄境瀏覽器"
+    "inventory"->"結構清單";"sync"->"Google 同步";"history"->"歷史記錄";"domains"->"網域規則"
+    "find"->"尋找頁面文字";"blocked"->"攔截紀錄";"downloads"->"下載";else->"澄境瀏覽器"
 }
 internal fun panelParent(page:String)=when(page){
     "menu","selection","connection"->"";"rules","code","ai","inventory"->"eye";"user-agent","sync"->"settings";else->"menu"
@@ -101,7 +101,12 @@ internal fun panelParent(page:String)=when(page){
         Shortcut(Icons.Outlined.Add,"新增分頁",Modifier.weight(1f)){c.newTab();c.sheet=""}
         Shortcut(Icons.Outlined.StarOutline,"收藏",Modifier.weight(1f)){c.sheet="favorites"}
         Shortcut(Icons.Outlined.BookmarkBorder,"書籤",Modifier.weight(1f)){c.sheet="bookmarks"}
-        Shortcut(Icons.Outlined.History,"瀏覽紀錄",Modifier.weight(1f)){c.sheet="history"}
+        Shortcut(Icons.Outlined.Tab,"所有分頁",Modifier.weight(1f)){c.showTabs()}
+    }
+    MenuGroup("瀏覽工具"){
+        MenuRow(Icons.Outlined.Download,"下載","查看澄境瀏覽器的下載項目"){c.sheet="downloads"}
+        MenuRow(Icons.Outlined.History,"歷史記錄","搜尋與管理瀏覽足跡"){c.sheet="history"}
+        MenuRow(Icons.Outlined.VisibilityOff,"新增無痕分頁","與一般分頁分開的瀏覽空間",navigation=false){c.sheet="";c.newTab(incognito=true)}
     }
     if(c.domain.isNotEmpty())MenuGroup("目前頁面"){
         MenuRow(Icons.Outlined.Star,if(tab?.favoriteId!=null)"更新收藏進度"else"收藏目前頁面",tab?.favoriteId?.let{c.favorites.get(it)?.title}.orEmpty(),navigation=false){scope.launch{if(c.saveFavorite()!=null){c.notice="已保存收藏與閱讀位置";c.sheet=""}}}

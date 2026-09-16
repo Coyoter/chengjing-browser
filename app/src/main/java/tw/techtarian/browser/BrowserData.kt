@@ -163,10 +163,17 @@ class BrowserStore(context: Context) {
     fun history(): List<Pair<String,String>> = runCatching {
         val a = JSONArray(prefs.getString("history", "[]")); (0 until a.length()).map { a.getJSONObject(it).getString("url") to a.getJSONObject(it).getString("title") }
     }.getOrDefault(emptyList())
+    fun historyEntries():List<HistoryEntry> = runCatching{
+        val a=JSONArray(prefs.getString("history","[]"))
+        (0 until a.length()).map{val j=a.getJSONObject(it);HistoryEntry(j.getString("url"),j.optString("title"),j.optLong("visited",0))}
+    }.getOrDefault(emptyList())
     fun visit(url: String, title: String) {
-        if (!url.startsWith("http")) return
-        val items = (listOf(url to title) + history().filterNot { it.first == url }).take(250)
-        prefs.edit().putString("history", JSONArray(items.map { JSONObject().put("url", it.first).put("title", it.second) }).toString()).apply()
+        if (url.toHttpUrlOrNull()==null) return
+        val items=(listOf(HistoryEntry(url,title,System.currentTimeMillis()))+historyEntries().filterNot{it.url==url}).take(250)
+        prefs.edit().putString("history",JSONArray(items.map{it.json()}).toString()).apply()
+    }
+    fun removeHistory(url:String){
+        prefs.edit().putString("history",JSONArray(historyEntries().filterNot{it.url==url}.map{it.json()}).toString()).apply()
     }
     fun searches():List<String> = runCatching{val a=JSONArray(prefs.getString("searches","[]"));(0 until a.length()).map{a.getString(it)}}.getOrDefault(emptyList())
     fun recordSearch(input:String,resolved:String){
