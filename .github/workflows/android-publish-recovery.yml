@@ -1,0 +1,94 @@
+name: Publish verified 1.3.0 artifacts
+
+on:
+  push:
+    branches: [fix/release-draft-lookup-20260916]
+    paths:
+      - scripts/publish-release.py
+      - scripts/test_publish_release.py
+      - .github/workflows/android-publish-recovery.yml
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: android-release-main
+  cancel-in-progress: false
+
+jobs:
+  publish-existing:
+    if: github.repository == 'Coyoter/chengjing-browser' && github.ref == 'refs/heads/fix/release-draft-lookup-20260916'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_VERSION: '1.3.0'
+      BUILD_SHA: cd891241e4d844c080a3d449395143e14be86624
+      ARTIFACT_NAME: signed-release-1.3.0-cd891241e4d844c080a3d449395143e14be86624
+    steps:
+      - name: Check out corrected publication script
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Test draft lookup and non-overwriting publication
+        run: python3 scripts/test_publish_release.py
+      - name: Verify original build and regression checks before reusing artifacts
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          repo = 'Coyoter/chengjing-browser'
+          def api(path):
+              return json.loads(subprocess.check_output(['gh', 'api', f'repos/{repo}/{path}'], text=True))
+          def require(condition, message):
+              if not condition:
+                  raise SystemExit(message)
+          run = api('actions/runs/35049568524')
+          require(run['status'] == 'completed' and run['head_sha'] == os.environ['BUILD_SHA'] and run['head_branch'] == 'main', 'Unexpected build source or incomplete run.')
+          require(run['path'] == '.github/workflows/android-release.yml', 'Not the approved release workflow.')
+          jobs = api('actions/runs/35049568524/jobs?per_page=100')['jobs']
+          by_name = {job['name']: job for job in jobs}
+          require(by_name['signing']['conclusion'] == 'success', 'Signing inputs did not pass.')
+          require(by_name['validate / android']['conclusion'] == 'success', 'QA regression checks did not pass.')
+          steps = {step['name']: step.get('conclusion') for step in by_name['release']['steps']}
+          require(steps.get('Build and verify original-signature APK and AAB') == 'success', 'Signed release packages did not pass verification.')
+          require(steps.get('Preserve verified release packages') == 'success', 'Signed packages were not preserved.')
+          artifacts = api('actions/runs/35049568524/artifacts?per_page=100')['artifacts']
+          selected = [a for a in artifacts if a['name'] == os.environ['ARTIFACT_NAME']]
+          require(len(selected) == 1, 'Ambiguous signed artifact.')
+          artifact = selected[0]
+          require(artifact['id'] == 10428299043 and not artifact['expired'], 'Original signed artifact unavailable.')
+          require(artifact['digest'] == 'sha256:3075ccc69d75ad7bbf3bba32634b759b6ce2cdc2c328b445a2d362a24840e72b', 'Artifact digest differs from the verified build.')
+          require(api('git/ref/heads/main')['object']['sha'] == os.environ['BUILD_SHA'], 'main has changed; stop rather than publish stale packages.')
+          print('Original main commit, QA checks, signed build and exact artifact verified.')
+          PY
+      - name: Check out the exact application source without changing main or tags
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          ref: cd891241e4d844c080a3d449395143e14be86624
+          path: source
+          persist-credentials: false
+      - name: Restore already-built signed APK and AAB
+        run: |
+          gh run download 35049568524 --repo Coyoter/chengjing-browser --name "$ARTIFACT_NAME" --dir source/release/1.3.0
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          root = Path('source/release/1.3.0')
+          expected = {
+              'ChengJing-Browser-1.3.0-Android.apk': 'fbb1adc21cb66c000452fdb6a0d03d763a3bc4ece67b8b66ba755c603f41be42',
+              'ChengJing-Browser-1.3.0-GooglePlay.aab': '195f67ced12b2dc048a521b35d63f36b11116b95e8d91d8fe902b7c98c47ed54',
+              'ChengJing-Browser-1.3.0-Source.zip': 'd10f95c8df5908043ad9543347fff8b17398cd95c893703708dc593565c685eb',
+              'ChengJing-Browser-1.3.0-BUILD.json': 'fecfdb18b6a4428798bcb9fcbc7375522150391e9c00fed50bfa5db570445989',
+          }
+          for name, digest in expected.items():
+              path = root / name
+              if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+                  raise SystemExit('Signed package mismatch: ' + name)
+          print('Restored package hashes match the original verified files.')
+          PY
+      - name: Upload to the existing draft by ID and publish only after remote digest checks
+        run: |
+          export CHENGJING_RELEASE_SOURCE_ROOT="$GITHUB_WORKSPACE/source"
+          python3 scripts/publish-release.py
+# Publication recovery only: no rebuilding, no signing secrets, no tag movement.
