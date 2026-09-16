@@ -6,10 +6,12 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.os.SystemClock
+import android.os.ParcelFileDescriptor
 import android.util.Base64
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import androidx.compose.ui.test.*
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
@@ -22,6 +24,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
@@ -50,19 +53,77 @@ class PageActionsTest {
         assertNull(send.component)
         assertNull(PageSharing.chooser("about:blank","首頁"))
     }
-    @Test fun toolbarShareIsVisibleAndDisabledOnTheHomePage(){
+    @Test fun shareDoesNotAppearOnTheFirstLayerOrBlankPageMenu(){
         ui.runOnIdle{c.newTab()}
-        ui.onNodeWithTag("share-current-page").assertIsDisplayed().assertIsNotEnabled()
-        ui.onNodeWithContentDescription("瀏覽器選單").assertIsDisplayed()
+        assertOriginalToolbar()
+        ui.onNodeWithContentDescription("瀏覽器選單").performClick()
+        ui.onNodeWithTag("menu-row:分享").assertDoesNotExist()
+        ui.onNodeWithContentDescription("關閉選單").performClick()
+        assertOriginalToolbar()
     }
-    @Test fun toolbarInvokesAndroidChooserWithoutSendingToARealRecipient(){
+    @Test fun onlyOverflowMenuInvokesAndroidChooserWithoutSendingToARealRecipient(){
         fixture(false)
+        assertOriginalToolbar()
+        ui.onNodeWithTag("menu-row:分享").assertDoesNotExist()
         val monitor=instrumentation.addMonitor(IntentFilter(Intent.ACTION_CHOOSER),Instrumentation.ActivityResult(Activity.RESULT_CANCELED,null),true)
         try{
-            ui.onNodeWithTag("share-current-page").assertIsEnabled().performClick()
+            ui.onNodeWithContentDescription("瀏覽器選單").performClick()
+            ui.onNodeWithTag("menu-row:分享").performScrollTo().assertIsDisplayed()
+            screenshot("overflow-share")
+            ui.onNodeWithTag("menu-row:分享").performClick()
             ui.waitUntil(5000){monitor.hits>0}
             assertEquals(1,monitor.hits)
+            ui.onNodeWithTag("browser-panel").assertDoesNotExist()
+            assertOriginalToolbar()
         }finally{instrumentation.removeMonitor(monitor)}
+    }
+    @Test fun originalToolbarSurvivesBothThemesAndAddressPositions(){
+        var originalTheme="system"
+        var originalBottom=false
+        ui.runOnIdle{
+            originalTheme=c.store.theme
+            originalBottom=c.store.addressAtBottom
+            c.newTab()
+        }
+        try{
+            for(theme in listOf("light","dark"))for(bottom in listOf(false,true)){
+                ui.runOnIdle{c.store.theme=theme;c.store.addressAtBottom=bottom}
+                ui.activityRule.scenario.recreate()
+                assertOriginalToolbar()
+                val controls=ui.onNodeWithTag("browser-controls").fetchSemanticsNode().boundsInRoot
+                val address=ui.onNodeWithTag("browser-topbar").fetchSemanticsNode().boundsInRoot
+                assertEquals("Toolbar/address order must stay unchanged",bottom,controls.center.y<address.center.y)
+                screenshot("toolbar-$theme-${if(bottom)"top"else"bottom"}")
+            }
+        }finally{
+            ui.runOnIdle{c.store.theme=originalTheme;c.store.addressAtBottom=originalBottom}
+        }
+    }
+    private fun assertOriginalToolbar(){
+        ui.onNodeWithTag("browser-controls").assertIsDisplayed().assertHeightIsEqualTo(64.dp)
+        ui.onNodeWithTag("share-current-page").assertDoesNotExist()
+        ui.onNodeWithContentDescription("分享目前網頁").assertDoesNotExist()
+        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(5)
+        val eye=ui.onNode(hasText("天眼") and hasAnyAncestor(hasTestTag("browser-controls")))
+            .assertIsDisplayed().fetchSemanticsNode().boundsInRoot
+        assertTrue("Sky Eye must be the original horizontal capsule, not a round 48dp button",eye.width>eye.height*1.5f)
+        ui.onNodeWithTag("quick-favorite").assertIsDisplayed()
+        ui.onNodeWithContentDescription("瀏覽器選單").assertIsDisplayed()
+    }
+    private fun screenshot(name:String){
+        require(name.matches(Regex("[a-z-]+")))
+        ui.waitForIdle()
+        val image=instrumentation.uiAutomation.takeScreenshot()
+        assertNotNull("Screenshot capture failed",image)
+        val file=File(ui.activity.getExternalFilesDir(null),"$name.png")
+        try{file.outputStream().use{assertTrue(image!!.compress(Bitmap.CompressFormat.PNG,100,it))}}
+        finally{image?.recycle()}
+        // Gradle uninstalls the QA app after tests. Keep only synthetic QA images in a
+        // shell-owned temporary directory so the CI artifact step can retrieve them.
+        val command="mkdir -p /data/local/tmp/chengjing-ui && cp '${file.absolutePath}' '/data/local/tmp/chengjing-ui/$name.png' && echo copied"
+        val output=ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(command))
+            .bufferedReader().use{it.readText()}
+        assertTrue("Screenshot was not preserved for visual review",output.contains("copied"))
     }
     @Test fun plainImageLongPressOffersDownload(){checkImageMenu(false)}
     @Test fun linkedImageDownloadsItsSourceNotItsAnchor(){checkImageMenu(true)}

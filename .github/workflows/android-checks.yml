@@ -91,6 +91,7 @@ jobs:
           mkdir -p validation
           if adb get-state >/dev/null 2>&1; then
             adb pull /sdcard/Android/data/tw.techtarian.browser.qa/files/launch-previews validation/ || true
+            adb pull /data/local/tmp/chengjing-ui validation/ || true
             adb logcat -d -t 1000 > validation/emulator-logcat.txt || true
           fi
           if [ -f "$RUNNER_TEMP/emulator.log" ]; then cp "$RUNNER_TEMP/emulator.log" validation/; fi
