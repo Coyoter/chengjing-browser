@@ -51,8 +51,8 @@ jobs:
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
           EMULATOR="$ANDROID_HOME/emulator/emulator"
-          "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
-          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-35;google_apis;x86_64"
+          "$SDKMANAGER" "emulator" "system-images;android-36;google_apis;x86_64"
+          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-36;google_apis;x86_64"
           python3 - <<'PY'
           import os
           from pathlib import Path
@@ -79,6 +79,8 @@ jobs:
           adb shell settings put global transition_animation_scale 0
           adb shell settings put global animator_duration_scale 0
           adb shell input keyevent 82
+          mkdir -p validation
+          adb shell dumpsys webviewupdate | tee validation/webview-provider.txt
       - name: Run focused on-device regressions
         run: |
           ./gradlew --no-daemon --stacktrace -PqaInstall=true \
