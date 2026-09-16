@@ -48,7 +48,7 @@ internal class PageContextMenu(
     private val download:(String,String,String)->Unit={url,page,agent->
         val host=controller.context as? MainActivity
         if(host==null)controller.notice="此畫面無法啟動圖片下載"
-        else host.imageDownloads.download(url,page,agent)
+        else controller.downloadFor(tab,url,page,agent)
         Unit
     },
 ) {
