@@ -3,6 +3,7 @@ package tw.techtarian.browser
 import android.app.DownloadManager
 import android.os.ParcelFileDescriptor
 import android.view.WindowManager
+import android.webkit.CookieManager
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import org.junit.After
@@ -25,6 +26,9 @@ class CollectionsPrivacyTest {
         ui.runOnIdle{ui.activity.bookmarkSync.disconnect();c.closePrivateTabs();c.sheet="";c.tabs.toList().forEach{c.closeTab(it.id)}}
     }
     @After fun finish(){ui.runOnIdle{c.closePrivateTabs();c.sheet="";c.updatePrivacyWindow()}}
+    private fun requirePrivateSupport(){
+        ui.runOnIdle{assertTrue("The validation WebView must exercise profile isolation and deletion, not skip privacy tests",c.privateSession.supported)}
+    }
     @Test fun menuExposesCollectionsWithoutChangingFirstLayer(){
         ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(5)
         ui.onNodeWithTag("share-current-page").assertDoesNotExist()
@@ -36,6 +40,7 @@ class CollectionsPrivacyTest {
     }
     @Test fun historyHasSearchAndIndividualRemoval(){
         ui.runOnIdle{c.store.visit("https://history.example/one","測試文章甲");c.store.visit("https://history.example/two","測試文章乙");c.revision++;c.sheet="history"}
+        screenshot("history-list")
         ui.onNodeWithText("搜尋歷史記錄").performTextInput("文章甲")
         ui.onNodeWithText("測試文章甲").assertIsDisplayed()
         ui.onNodeWithText("測試文章乙").assertDoesNotExist()
@@ -51,7 +56,7 @@ class CollectionsPrivacyTest {
         }
     }
     @Test fun privatePagesNeverEnterPersistentHistorySearchOrTabRecovery(){
-        ui.runOnIdle{assumeTrue(c.privateSession.supported)}
+        requirePrivateSupport()
         val privateTab=AtomicReference<BrowserTab>()
         val oldHistory=AtomicReference<List<Pair<String,String>>>()
         val oldSearch=AtomicReference<List<String>>()
@@ -65,30 +70,35 @@ class CollectionsPrivacyTest {
             c.openTabOverview();assertNull(privateTab.get().preview)
             assertTrue(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)
         }
-        val normal=c.tabs.first{!it.incognito}
+        val normal=AtomicReference<BrowserTab>()
+        ui.runOnIdle{normal.set(c.tabs.first{!it.incognito})}
         ui.onNodeWithTag("tab-group-false").performClick()
-        ui.onNodeWithTag("tab-card-${normal.id}").assertExists()
+        ui.onNodeWithTag("tab-card-${normal.get().id}").assertExists()
         ui.onNodeWithTag("tab-card-${privateTab.get().id}").assertDoesNotExist()
         ui.onNodeWithTag("tab-group-true").performClick()
-        ui.onNodeWithTag("tab-card-${normal.id}").assertDoesNotExist()
+        ui.onNodeWithTag("tab-card-${normal.get().id}").assertDoesNotExist()
         ui.onNodeWithTag("tab-card-${privateTab.get().id}").assertExists()
     }
     @Test fun cookiesAndLocalStorageAreSeparateAndClosingPrivateKeepsNormalLogin(){
-        ui.runOnIdle{assumeTrue(c.privateSession.supported)}
+        requirePrivateSupport()
         val normal=AtomicReference<BrowserTab>();val privateTab=AtomicReference<BrowserTab>()
+        val oldCookies=AtomicReference<CookieManager>()
         ui.runOnIdle{normal.set(c.newTab(incognito=false)!!)}
         load(normal.get(),origin,"一般測試")
         eval(normal.get(),"document.cookie='normalLogin=kept; path=/';localStorage.setItem('state','normal');true")
-        ui.runOnIdle{privateTab.set(c.newTab(incognito=true)!!)}
+        ui.runOnIdle{privateTab.set(c.newTab(incognito=true)!!);oldCookies.set(c.cookiesFor(privateTab.get()))}
         load(privateTab.get(),origin,"無痕測試")
         assertEquals("false",eval(privateTab.get(),"document.cookie.includes('normalLogin')"))
         assertEquals("null",eval(privateTab.get(),"localStorage.getItem('state')"))
         eval(privateTab.get(),"document.cookie='privateLogin=temporary; path=/';localStorage.setItem('state','private');true")
         assertEquals("false",eval(normal.get(),"document.cookie.includes('privateLogin')"))
         assertEquals("\"normal\"",eval(normal.get(),"localStorage.getItem('state')"))
-        ui.runOnIdle{c.closePrivateTabs()}
+        ui.runOnIdle{assertTrue(oldCookies.get().getCookie(origin).orEmpty().contains("privateLogin"));c.closePrivateTabs()}
         ui.waitUntil(15000){!c.privateSession.clearing}
+        // A fresh random profile alone does not prove cleanup: check the old cookie store too.
+        ui.runOnIdle{assertFalse(oldCookies.get().getCookie(origin).orEmpty().contains("privateLogin"))}
         assertEquals("true",eval(normal.get(),"document.cookie.includes('normalLogin')"))
+        assertEquals("\"normal\"",eval(normal.get(),"localStorage.getItem('state')"))
         ui.runOnIdle{privateTab.set(c.newTab(incognito=true)!!)}
         load(privateTab.get(),origin,"新的無痕工作階段")
         assertEquals("false",eval(privateTab.get(),"document.cookie.includes('privateLogin')"))
