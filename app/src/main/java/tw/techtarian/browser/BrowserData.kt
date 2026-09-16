@@ -175,6 +175,10 @@ class BrowserStore(context: Context) {
         val rows=(listOf(query)+searches().filterNot{it.equals(query,true)}).take(100)
         prefs.edit().putString("searches",JSONArray(rows).toString()).apply()
     }
+    fun removeHistory(url:String) {
+        val rows=history().filterNot{it.first==url}
+        prefs.edit().putString("history",JSONArray(rows.map{JSONObject().put("url",it.first).put("title",it.second)}).toString()).apply()
+    }
     fun clearHistory() { prefs.edit().remove("history").remove("searches").apply() }
     fun saveTabs(urls: List<String>,favoriteIds:List<String?> = emptyList()) {
         val links=JSONArray(urls.mapIndexed{i,url->JSONObject().put("url",url).put("id",favoriteIds.getOrNull(i)?:JSONObject.NULL)})

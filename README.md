@@ -2,7 +2,7 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前原始碼版本為 **1.3.1（versionCode 20）**：AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.3.1 更新說明](docs/releases/1.3.1.md) · [簽章與發布流程](docs/RELEASING.md)
+目前原始碼版本為 **1.4.0（versionCode 21）**：AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.4.0 更新說明](docs/releases/1.4.0.md) · [簽章與發布流程](docs/RELEASING.md)
 
 ## 安裝與使用
 
@@ -48,3 +48,7 @@ python3 scripts/build-private.py
 Google OAuth 已切換為正式環境，僅使用非機密的 drive.appdata 範圍；最終 Play App Signing 簽章仍須對應 Android OAuth 用戶端。OpenRouter／DeepSeek 已用合成頁面結構完成網站與元件範圍的真實呼叫。Google Drive 網站設定也完成兩份合成裝置快照的真實寫入、讀回及刪除合併測試。測試是在隔離 Android 模擬器完成，尚未代替使用者的實體手機驗收。
 
 1.2.0 加入選用 Gemma 4 E2B 本機 AI（另下載約 2.59 GB）、影片沉浸式全螢幕、儲存連結小圖示，以及網址列本機歷史建議。54 項 JVM 測試、release lint、簽章與原生函式庫 16 KB 對齊檢查通過。本機模型完成原生下載、SHA-256 驗證及真實分析套用；全螢幕的 Android 視窗與返回退出、圖示及搜尋建議完成隔離模擬器測試，未代表實體手機影片解碼驗收。
+
+## 1.4.0 瀏覽工具
+
+三點選單加入下載、歷史記錄與無痕分頁；一般／無痕双分頁集與卡片預覽保持第一層工具列不變。無痕需支援 WebView 資料隔離與清理；主動保存的檔案、書籤及收藏仍保留，詳見更新說明。
