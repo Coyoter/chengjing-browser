@@ -24,7 +24,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.io.ByteArrayOutputStream
-import java.io.File
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
@@ -113,17 +112,18 @@ class PageActionsTest {
     private fun screenshot(name:String){
         require(name.matches(Regex("[a-z-]+")))
         ui.waitForIdle()
-        val image=instrumentation.uiAutomation.takeScreenshot()
-        assertNotNull("Screenshot capture failed",image)
-        val file=File(ui.activity.getExternalFilesDir(null),"$name.png")
-        try{file.outputStream().use{assertTrue(image!!.compress(Bitmap.CompressFormat.PNG,100,it))}}
-        finally{image?.recycle()}
-        // Gradle uninstalls the QA app after tests. Keep only synthetic QA images in a
-        // shell-owned temporary directory so the CI artifact step can retrieve them.
-        val command="mkdir -p /data/local/tmp/chengjing-ui && cp '${file.absolutePath}' '/data/local/tmp/chengjing-ui/$name.png' && echo copied"
-        val output=ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(command))
-            .bufferedReader().use{it.readText()}
-        assertTrue("Screenshot was not preserved for visual review",output.contains("copied"))
+        fun shell(command:String)=ParcelFileDescriptor.AutoCloseInputStream(
+            instrumentation.uiAutomation.executeShellCommand(command)
+        ).bufferedReader().use{it.readText()}
+        val directory="/data/local/tmp/chengjing-ui"
+        val path="$directory/$name.png"
+        // executeShellCommand does not parse shell operators such as &&.
+        // Use individual commands and capture directly as the shell UID, avoiding
+        // scoped-storage copies and retaining screenshots after QA app uninstall.
+        shell("mkdir -p $directory")
+        shell("screencap -p $path")
+        val bytes=shell("stat -c %s $path").trim().toLongOrNull()?:0L
+        assertTrue("Screenshot was not preserved for visual review: $path ($bytes bytes)",bytes>0L)
     }
     @Test fun plainImageLongPressOffersDownload(){checkImageMenu(false)}
     @Test fun linkedImageDownloadsItsSourceNotItsAnchor(){checkImageMenu(true)}
