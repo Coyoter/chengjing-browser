@@ -210,7 +210,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             @Suppress("DEPRECATION")
             web.settings.saveFormData=false
             web.importantForAutofill=android.view.View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
-            if(android.os.Build.VERSION.SDK_INT>=29)web.importantForContentCapture=android.view.View.IMPORTANT_FOR_CONTENT_CAPTURE_NO_EXCLUDE_DESCENDANTS
+            if(android.os.Build.VERSION.SDK_INT>=30)web.importantForContentCapture=android.view.View.IMPORTANT_FOR_CONTENT_CAPTURE_NO_EXCLUDE_DESCENDANTS
         }
         cookiesFor(tab).setAcceptThirdPartyCookies(web,false)
         if(WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) {
