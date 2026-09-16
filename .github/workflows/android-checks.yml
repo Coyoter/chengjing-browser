@@ -35,7 +35,6 @@ jobs:
           echo "ANDROID_EMULATOR_HOME=$RUNNER_TEMP/android-user" >> "$GITHUB_ENV"
           echo "ANDROID_AVD_HOME=$RUNNER_TEMP/android-avd" >> "$GITHUB_ENV"
           # Disposable runner only: .NET is not used by this Android project.
-          # The prior emulator failed with 7,028 MB free against a 7,373 MB partition.
           sudo rm -rf /usr/share/dotnet
           df -h "$RUNNER_TEMP"
       - name: Install Android build tools
@@ -52,8 +51,8 @@ jobs:
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
           EMULATOR="$ANDROID_HOME/emulator/emulator"
-          "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
-          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-35;google_apis;x86_64"
+          "$SDKMANAGER" "emulator" "system-images;android-36;google_apis;x86_64"
+          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-36;google_apis;x86_64"
           python3 - <<'PY'
           import os
           from pathlib import Path
@@ -76,6 +75,7 @@ jobs:
             sleep 1
           done
           test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1
+          adb shell dumpsys webviewupdate | tee "$RUNNER_TEMP/webview-provider.txt"
           adb shell settings put global window_animation_scale 0
           adb shell settings put global transition_animation_scale 0
           adb shell settings put global animator_duration_scale 0
@@ -83,8 +83,23 @@ jobs:
       - name: Run focused on-device regressions
         run: |
           ./gradlew --no-daemon --stacktrace -PqaInstall=true \
-            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest \
+            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.BrowserCollectionsTest \
             connectedDebugAndroidTest
+      - name: Require actual incognito isolation tests, not skipped assumptions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          names = {'cookiesAndLocalStorageAreIsolatedAndLastPrivateTabClearsSession', 'recreationDoesNotRestorePrivateTabs', 'privateOverviewProtectsWindowWhileNormalPageRemainsActive'}
+          seen = set()
+          for path in Path('app/build/outputs/androidTest-results').rglob('TEST-*.xml'):
+              for case in ET.parse(path).getroot().iter('testcase'):
+                  if case.get('name') in names:
+                      assert not list(case.findall('skipped')) and not list(case.findall('failure')) and not list(case.findall('error')), 'Private browsing case did not run successfully: ' + case.get('name')
+                      seen.add(case.get('name'))
+          assert seen == names, 'Missing mandatory incognito tests: ' + str(names - seen)
+          print('All mandatory profile isolation, cleanup, and private-window tests executed successfully.')
+          PY
       - name: Collect launch previews and emulator diagnostics
         if: always()
         run: |
@@ -92,10 +107,11 @@ jobs:
           if adb get-state >/dev/null 2>&1; then
             adb pull /sdcard/Android/data/tw.techtarian.browser.qa/files/launch-previews validation/ || true
             adb pull /data/local/tmp/chengjing-ui validation/ || true
-            adb logcat -d -t 1000 > validation/emulator-logcat.txt || true
+            adb logcat -d -t 3000 > validation/emulator-logcat.txt || true
           fi
-          if [ -f "$RUNNER_TEMP/emulator.log" ]; then cp "$RUNNER_TEMP/emulator.log" validation/; fi
-          if [ -f "$RUNNER_TEMP/avd-list.txt" ]; then cp "$RUNNER_TEMP/avd-list.txt" validation/; fi
+          for name in emulator.log avd-list.txt webview-provider.txt; do
+            if [ -f "$RUNNER_TEMP/$name" ]; then cp "$RUNNER_TEMP/$name" validation/; fi
+          done
       - name: Save validation reports and QA-only APK
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

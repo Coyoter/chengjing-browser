@@ -48,7 +48,7 @@ internal class PageContextMenu(
     private val download:(String,String,String)->Unit={url,page,agent->
         val host=controller.context as? MainActivity
         if(host==null)controller.notice="此畫面無法啟動圖片下載"
-        else host.imageDownloads.download(url,page,agent)
+        else host.imageDownloads.download(url,page,agent,tab)
         Unit
     },
 ) {
@@ -96,7 +96,7 @@ internal class PageContextMenu(
         if(!valid(page,request))return
         val entries=mutableListOf<Pair<String,()->Unit>>()
         target.link?.let{link->
-            PageActionPolicy.shareUrl(link)?.let{safe->entries.add("在新分頁開啟" to {controller.newTab(safe)})}
+            PageActionPolicy.shareUrl(link)?.let{safe->entries.add("在新分頁開啟" to {controller.newTab(safe,incognito=tab.incognito)})}
             entries.add("複製連結" to {copy(link,"連結")})
         }
         if(target.isImage){
@@ -106,7 +106,7 @@ internal class PageContextMenu(
                 else download(image,page,web.settings.userAgentString)
             })
             target.image?.let{image->
-                PageActionPolicy.shareUrl(image)?.let{url->entries.add("在新分頁開啟圖片" to {controller.newTab(url)})}
+                PageActionPolicy.shareUrl(image)?.let{url->entries.add("在新分頁開啟圖片" to {controller.newTab(url,incognito=tab.incognito)})}
                 entries.add("複製圖片連結" to {copy(image,"圖片連結")})
             }
         }

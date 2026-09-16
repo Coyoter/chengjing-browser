@@ -160,14 +160,11 @@ class BrowserStore(context: Context) {
     val bookmarkStore = BookmarkStore(context)
     fun bookmark(url: String, title: String) { bookmarkStore.toggle(url, title) }
     fun bookmarks(): List<Pair<String,String>> = bookmarkStore.visible().map { it.url to it.title }
-    fun history(): List<Pair<String,String>> = runCatching {
-        val a = JSONArray(prefs.getString("history", "[]")); (0 until a.length()).map { a.getJSONObject(it).getString("url") to a.getJSONObject(it).getString("title") }
-    }.getOrDefault(emptyList())
-    fun visit(url: String, title: String) {
-        if (!url.startsWith("http")) return
-        val items = (listOf(url to title) + history().filterNot { it.first == url }).take(250)
-        prefs.edit().putString("history", JSONArray(items.map { JSONObject().put("url", it.first).put("title", it.second) }).toString()).apply()
-    }
+    private val historyStore=BrowserHistory(context)
+    internal fun historyEntries()=historyStore.entries()
+    internal fun removeHistory(url:String)=historyStore.remove(url)
+    fun history():List<Pair<String,String>> = historyStore.entries().map{it.url to it.title}
+    fun visit(url:String,title:String)=historyStore.visit(url,title)
     fun searches():List<String> = runCatching{val a=JSONArray(prefs.getString("searches","[]"));(0 until a.length()).map{a.getString(it)}}.getOrDefault(emptyList())
     fun recordSearch(input:String,resolved:String){
         val query=input.trim()

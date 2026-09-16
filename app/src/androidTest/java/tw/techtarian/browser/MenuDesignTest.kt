@@ -33,7 +33,7 @@ class MenuDesignTest {
         val bookmark=ui.onNodeWithTag("menu-row:加入書籤").fetchSemanticsNode().boundsInRoot
         assertEquals(bookmark.width,favorite.width,.5f);assertEquals(bookmark.height,favorite.height,.5f)
         assertEquals(64*ui.activity.resources.displayMetrics.density,favorite.height,1f)
-        val widths=listOf("新增分頁","收藏","書籤","瀏覽紀錄").map{ui.onNodeWithTag("menu-shortcut:$it").fetchSemanticsNode().boundsInRoot.width}
+        val widths=listOf("新增分頁","收藏","書籤").map{ui.onNodeWithTag("menu-shortcut:$it").fetchSemanticsNode().boundsInRoot.width}
         assertTrue(widths.max()-widths.min()<=1f)
         val panel=ui.onNodeWithTag("browser-panel").fetchSemanticsNode().boundsInWindow
         assertEquals(0f,panel.left,1f);assertEquals(0f,panel.top,1f)

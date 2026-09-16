@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
     Text(primary?:page.ifBlank{"尚未開啟網站"},fontSize=16.sp)
     if(tab?.certificateWarning?.isNotBlank()==true)Text(tab.certificateWarning,color=MaterialTheme.colorScheme.error,fontSize=13.sp,lineHeight=20.sp)
     else Text(if(primary!=null)"目前使用 HTTPS 加密連線。"else if(page.startsWith("http://"))"HTTP 連線未加密，沒有可驗證的網站憑證。"else"先開啟網站，即可查看連線資訊。",fontSize=13.sp)
-    val origins=(listOfNotNull(primary)+CertificateWarnings.session.originsFor(page)).distinct()
+    val origins=(listOfNotNull(primary)+tab?.warnings?.originsFor(page).orEmpty()).distinct()
     origins.forEach{origin->
         val enabled=c.store.certificateException(origin)
         SettingsGroup(if(origin==primary)"目前網站"else"頁面使用的其他來源"){
