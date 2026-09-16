@@ -151,12 +151,12 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
     var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
     var editingAddress by remember{mutableStateOf(false)}
-    val suggestionRows=remember(address.text,c.revision,editingAddress){if(editingAddress&&!c.incognito)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
+    val suggestionRows=remember(address.text,c.revision,editingAddress,c.incognito){if(editingAddress&&!c.incognito)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
     LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
     val cs=if(dark)Dark else Light
+    val protectPrivateWindow=c.incognito||(c.sheet=="tabs"&&c.tabGroupPrivate)
     SideEffect{
-        val protect=c.incognito||(c.sheet=="tabs"&&c.tabGroupPrivate)
-        if(protect)activity.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+        if(protectPrivateWindow)activity.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
         else activity.window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
     }
     SideEffect{WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightStatusBars=!dark;WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightNavigationBars=!dark}

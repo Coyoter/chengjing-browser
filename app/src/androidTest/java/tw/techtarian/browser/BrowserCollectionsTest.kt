@@ -119,6 +119,19 @@ class BrowserCollectionsTest {
         assertFalse(eval(fresh,"document.cookie").contains("private"))
         ui.runOnIdle{assertEquals("",c.privateSession.cleanupError)}
     }
+    @Test fun privateOverviewProtectsWindowWhileNormalPageRemainsActive(){
+        assumeTrue(PrivateSession.supported())
+        val normal=ui.runOnIdle{c.active!!}
+        val privateTab=ui.runOnIdle{c.newTab(incognito=true)!!}
+        ui.runOnIdle{c.switchTab(normal.id);c.showTabs()}
+        ui.onNodeWithTag("normal-tab-group").assertIsSelected()
+        ui.runOnIdle{assertFalse(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
+        ui.onNodeWithTag("private-tab-group").performClick()
+        ui.runOnIdle{assertTrue(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
+        ui.onNodeWithTag("tab-card:${privateTab.id}").assertExists()
+        ui.onNodeWithTag("normal-tab-group").performClick()
+        ui.runOnIdle{assertFalse(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
+    }
     @Test fun recreationDoesNotRestorePrivateTabs(){
         assumeTrue(PrivateSession.supported())
         ui.runOnIdle{c.newTab(incognito=true)}
