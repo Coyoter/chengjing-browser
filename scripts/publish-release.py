@@ -8,12 +8,13 @@ import re
 import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get('CHENGJING_RELEASE_SOURCE_ROOT', str(Path(__file__).resolve().parents[1]))).resolve()
 REPO = 'Coyoter/chengjing-browser'
 
 
-def gh(*args, optional=False):
-    p = subprocess.run(['gh', *args], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+def gh(*args, optional=False, input_data=None):
+    p = subprocess.run(['gh', *args], cwd=ROOT, text=True, input=input_data,
+                       stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if p.returncode:
         if optional and ('HTTP 404' in p.stderr or 'Not Found' in p.stderr):
             return None
@@ -21,9 +22,29 @@ def gh(*args, optional=False):
     return p.stdout
 
 
-def api(path, optional=False):
-    value = gh('api', f'repos/{REPO}/{path}', optional=optional)
+def api(path, optional=False, method='GET', payload=None):
+    args = ['api', '--method', method, f'repos/{REPO}/{path}']
+    if payload is not None:
+        args += ['--input', '-']
+    value = gh(*args, optional=optional,
+               input_data=json.dumps(payload) if payload is not None else None)
     return None if value is None else json.loads(value)
+
+
+def release_by_tag(tag):
+    # The tag endpoint only returns published releases, not drafts.
+    # Enumerate authenticated releases and keep their numeric ID throughout.
+    matches = []
+    for page in range(1, 101):
+        rows = api(f'releases?per_page=100&page={page}')
+        if not isinstance(rows, list):
+            raise RuntimeError('Unexpected release-list response.')
+        matches.extend(row for row in rows if row.get('tag_name') == tag)
+        if len(rows) < 100:
+            if len(matches) > 1:
+                raise RuntimeError('Multiple releases use this tag; refusing to guess.')
+            return api(f'releases/{matches[0]["id"]}') if matches else None
+    raise RuntimeError('Release enumeration exceeded its safety limit.')
 
 
 def main():
@@ -57,7 +78,7 @@ def main():
     if manifest != wanted:
         raise RuntimeError('Checksum manifest mismatch.')
     tag = f'v{version}'
-    existing = api(f'releases/tags/{tag}', optional=True)
+    existing = release_by_tag(tag)
     ref = api(f'git/ref/tags/{tag}', optional=True)
     if ref and (ref['object']['type'] != 'commit' or ref['object']['sha'] != sha):
         raise RuntimeError('Existing tag does not point at the build commit; no tags were moved.')
@@ -68,9 +89,11 @@ def main():
     if not existing:
         notes = (ROOT / f'docs/releases/{version}.md').read_text()
         notes += f'\n\nBuild commit: `{sha}`\n'
-        gh('release', 'create', tag, '--repo', REPO, '--verify-tag', '--target', sha,
-           '--title', f'ChengJing Browser {version}', '--notes', notes, '--draft')
-        existing = api(f'releases/tags/{tag}')
+        existing = api('releases', method='POST', payload={
+            'tag_name': tag, 'target_commitish': sha,
+            'name': f'ChengJing Browser {version}', 'body': notes, 'draft': True,
+        })
+    release_id = existing['id']
     remote = {a['name']: a for a in existing.get('assets', [])}
     if set(remote) - set(expected):
         raise RuntimeError('Unexpected existing release assets; nothing will be deleted.')
@@ -82,17 +105,19 @@ def main():
         else:
             if not existing['draft']:
                 raise RuntimeError('Published release is incomplete; refusing to mutate it.')
-            gh('release', 'upload', tag, str(out / name), '--repo', REPO)
-    final = api(f'releases/tags/{tag}')
+            gh('api', '--method', 'POST',
+               f'https://uploads.github.com/repos/{REPO}/releases/{release_id}/assets?name={name}',
+               '--header', 'Content-Type: application/octet-stream', '--input', str(out / name))
+    final = api(f'releases/{release_id}')
     remote = {a['name']: a for a in final.get('assets', [])}
     if set(remote) != set(expected) or any(remote[n].get('digest') != 'sha256:' + hashes[n] or remote[n]['state'] != 'uploaded' for n in expected):
         raise RuntimeError('Remote asset verification failed; release remains a draft.')
     if api('git/ref/heads/main')['object']['sha'] != sha:
         raise RuntimeError('main changed during upload; release remains a draft.')
     if final['draft']:
-        gh('release', 'edit', tag, '--repo', REPO, '--draft=false', '--latest')
-    final = api(f'releases/tags/{tag}')
-    if final['draft'] or api(f'git/ref/tags/{tag}')['object']['sha'] != sha:
+        api(f'releases/{release_id}', method='PATCH', payload={'draft': False, 'make_latest': 'true'})
+    final = api(f'releases/{release_id}')
+    if final['draft'] or final['tag_name'] != tag or api(f'git/ref/tags/{tag}')['object']['sha'] != sha:
         raise RuntimeError('Final publication verification failed.')
     print(final['html_url'])
     print('Published and verified: ' + ', '.join(expected))
