@@ -26,6 +26,21 @@ def api(path, optional=False):
     return None if value is None else json.loads(value)
 
 
+def find_release(tag):
+    """Tag lookup returns published releases only; the collection also includes drafts."""
+    matches = []
+    page = 1
+    while True:
+        rows = api(f'releases?per_page=100&page={page}')
+        matches.extend(row for row in rows if row['tag_name'] == tag)
+        if len(rows) < 100:
+            break
+        page += 1
+    if len(matches) > 1:
+        raise RuntimeError('Multiple releases use the same tag; refusing an ambiguous update.')
+    return matches[0] if matches else None
+
+
 def main():
     config = (ROOT / 'app/build.gradle.kts').read_text()
     version = re.search(r'\bversionName\s*=\s*"(\d+\.\d+\.\d+)"', config).group(1)
@@ -57,7 +72,7 @@ def main():
     if manifest != wanted:
         raise RuntimeError('Checksum manifest mismatch.')
     tag = f'v{version}'
-    existing = api(f'releases/tags/{tag}', optional=True)
+    existing = find_release(tag)
     ref = api(f'git/ref/tags/{tag}', optional=True)
     if ref and (ref['object']['type'] != 'commit' or ref['object']['sha'] != sha):
         raise RuntimeError('Existing tag does not point at the build commit; no tags were moved.')
@@ -68,9 +83,11 @@ def main():
     if not existing:
         notes = (ROOT / f'docs/releases/{version}.md').read_text()
         notes += f'\n\nBuild commit: `{sha}`\n'
-        gh('release', 'create', tag, '--repo', REPO, '--verify-tag', '--target', sha,
-           '--title', f'ChengJing Browser {version}', '--notes', notes, '--draft')
-        existing = api(f'releases/tags/{tag}')
+        existing = json.loads(gh('api', '--method', 'POST', f'repos/{REPO}/releases',
+                                 '-f', f'tag_name={tag}', '-f', f'target_commitish={sha}',
+                                 '-f', f'name=ChengJing Browser {version}',
+                                 '-f', f'body={notes}', '-F', 'draft=true'))
+    release_id = existing['id']
     remote = {a['name']: a for a in existing.get('assets', [])}
     if set(remote) - set(expected):
         raise RuntimeError('Unexpected existing release assets; nothing will be deleted.')
@@ -83,15 +100,16 @@ def main():
             if not existing['draft']:
                 raise RuntimeError('Published release is incomplete; refusing to mutate it.')
             gh('release', 'upload', tag, str(out / name), '--repo', REPO)
-    final = api(f'releases/tags/{tag}')
+    final = api(f'releases/{release_id}')
     remote = {a['name']: a for a in final.get('assets', [])}
     if set(remote) != set(expected) or any(remote[n].get('digest') != 'sha256:' + hashes[n] or remote[n]['state'] != 'uploaded' for n in expected):
         raise RuntimeError('Remote asset verification failed; release remains a draft.')
     if api('git/ref/heads/main')['object']['sha'] != sha:
         raise RuntimeError('main changed during upload; release remains a draft.')
     if final['draft']:
-        gh('release', 'edit', tag, '--repo', REPO, '--draft=false', '--latest')
-    final = api(f'releases/tags/{tag}')
+        gh('api', '--method', 'PATCH', f'repos/{REPO}/releases/{release_id}',
+           '-F', 'draft=false', '-f', 'make_latest=true')
+    final = api(f'releases/{release_id}')
     if final['draft'] or api(f'git/ref/tags/{tag}')['object']['sha'] != sha:
         raise RuntimeError('Final publication verification failed.')
     print(final['html_url'])

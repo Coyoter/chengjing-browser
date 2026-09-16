@@ -1,0 +1,106 @@
+name: Complete verified 1.3.0 release
+
+on:
+  push:
+    branches: [fix/release-draft-lookup-1.3.0]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-release-main
+  cancel-in-progress: false
+
+jobs:
+  publish-existing:
+    if: github.repository == 'Coyoter/chengjing-browser' && github.ref == 'refs/heads/fix/release-draft-lookup-1.3.0'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Check out corrected release tooling
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          path: tooling
+      - name: Test draft handling without network or signing secrets
+        run: python3 -m unittest discover -s tooling/scripts -p test_publish_release.py -v
+      - name: Check out the exact already-tested build commit
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          ref: cd891241e4d844c080a3d449395143e14be86624
+          path: release-source
+      - name: Verify original build evidence and recover the immutable signed artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess, zipfile
+          from pathlib import Path
+          repo = 'Coyoter/chengjing-browser'
+          sha = 'cd891241e4d844c080a3d449395143e14be86624'
+          run_id = 35049568524
+          artifact_id = 10428299043
+          archive_sha = '3075ccc69d75ad7bbf3bba32634b759b6ce2cdc2c328b445a2d362a24840e72b'
+          def api(endpoint):
+              return json.loads(subprocess.check_output(['gh', 'api', f'repos/{repo}/{endpoint}'], text=True))
+          run = api(f'actions/runs/{run_id}')
+          assert run['head_sha'] == sha and run['head_branch'] == 'main' and run['status'] == 'completed'
+          jobs = {job['name']: job for job in api(f'actions/runs/{run_id}/jobs?per_page=100')['jobs']}
+          assert jobs['signing']['conclusion'] == 'success'
+          assert jobs['validate / android']['conclusion'] == 'success'
+          validation = {step['name']: step['conclusion'] for step in jobs['validate / android']['steps']}
+          assert validation['Run focused on-device regressions'] == 'success'
+          build = {step['name']: step['conclusion'] for step in jobs['release']['steps']}
+          assert build['Build and verify original-signature APK and AAB'] == 'success'
+          assert build['Preserve verified release packages'] == 'success'
+          assert api('git/ref/heads/main')['object']['sha'] == sha, 'main has moved; stop for review'
+          assert api('git/ref/tags/v1.3.0')['object']['sha'] == sha, 'Never move an existing tag'
+          artifact = api(f'actions/artifacts/{artifact_id}')
+          assert artifact['workflow_run']['id'] == run_id and artifact['workflow_run']['head_sha'] == sha
+          assert not artifact['expired'] and artifact['digest'] == 'sha256:' + archive_sha
+          assert artifact['name'] == 'signed-release-1.3.0-' + sha
+          archive = Path(os.environ['RUNNER_TEMP']) / 'verified-1.3.0.zip'
+          with archive.open('wb') as output:
+              subprocess.run(['gh', 'api', f'repos/{repo}/actions/artifacts/{artifact_id}/zip'], stdout=output, check=True)
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == archive_sha
+          expected = {
+              'ChengJing-Browser-1.3.0-Android.apk': 'fbb1adc21cb66c000452fdb6a0d03d763a3bc4ece67b8b66ba755c603f41be42',
+              'ChengJing-Browser-1.3.0-GooglePlay.aab': '195f67ced12b2dc048a521b35d63f36b11116b95e8d91d8fe902b7c98c47ed54',
+              'ChengJing-Browser-1.3.0-Source.zip': 'd10f95c8df5908043ad9543347fff8b17398cd95c893703708dc593565c685eb',
+              'ChengJing-Browser-1.3.0-BUILD.json': 'fecfdb18b6a4428798bcb9fcbc7375522150391e9c00fed50bfa5db570445989',
+              'ChengJing-Browser-1.3.0-SHA256SUMS.txt': '9113a34dfb1b7728e20801d765753d49a26ab054bb3f92f2a74c377f191034a7',
+          }
+          output_dir = Path('release-source/release/1.3.0')
+          output_dir.mkdir(parents=True, exist_ok=False)
+          with zipfile.ZipFile(archive) as bundle:
+              assert len(bundle.infolist()) == len(expected) and set(bundle.namelist()) == set(expected)
+              for entry in bundle.infolist():
+                  assert entry.file_size < 200_000_000 and Path(entry.filename).name == entry.filename
+                  data = bundle.read(entry)
+                  assert hashlib.sha256(data).hexdigest() == expected[entry.filename]
+                  (output_dir / entry.filename).write_bytes(data)
+          metadata = json.loads((output_dir / 'ChengJing-Browser-1.3.0-BUILD.json').read_text())
+          assert metadata['commit'] == sha and metadata['version'] == '1.3.0' and metadata['versionCode'] == 19
+          assert metadata['packageName'] == 'tw.techtarian.browser'
+          assert metadata['certificateSha256'] == 'ab9d27ce9722e34f946556ee015414054bae2893ffdd57ff38126ff4c5d04cf0'
+          print('Recovered and SHA-256 verified the 5 original signed release files; no rebuild or signing secrets used.')
+          PY
+      - name: Complete the existing draft by Release ID and verify all uploaded digests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_VERSION: 1.3.0
+        run: |
+          python3 - <<'PY'
+          import importlib.util
+          from pathlib import Path
+          spec = importlib.util.spec_from_file_location('publisher', Path('tooling/scripts/publish-release.py'))
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          module.ROOT = Path('release-source').resolve()
+          module.main()
+          PY
+# One-time recovery for a fixed, already verified build. Ordinary future releases use android-release.yml.
