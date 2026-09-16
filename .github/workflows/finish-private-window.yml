@@ -1,0 +1,54 @@
+name: Finish private overview guard
+on:
+  push:
+    branches: [work/library-privacy-1.4.0]
+    paths: [.github/workflows/finish-private-window.yml]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          ref: work/library-privacy-1.4.0
+          fetch-depth: 2
+      - name: Observe privacy state during composition, not only inside SideEffect
+        run: |
+          test "$(git rev-parse HEAD^)" = 427c58b19c1805c0f4f2456f1f766f39e9740dc1
+          python3 - <<'PY'
+          from pathlib import Path
+          path=Path('app/src/main/java/tw/techtarian/browser/MainActivity.kt')
+          text=path.read_text()
+          replacements=[('val suggestionRows=remember(address.text,c.revision,editingAddress){','val suggestionRows=remember(address.text,c.revision,editingAddress,c.incognito){'),('    SideEffect{\n        val protect=c.incognito||(c.sheet=="tabs"&&c.tabGroupPrivate)\n        if(protect)','    val protectPrivateWindow=c.incognito||(c.sheet=="tabs"&&c.tabGroupPrivate)\n    SideEffect{\n        if(protectPrivateWindow)')]
+          for old,new in replacements:
+              assert text.count(old)==1
+              text=text.replace(old,new)
+          path.write_text(text)
+          path=Path('app/src/androidTest/java/tw/techtarian/browser/BrowserCollectionsTest.kt')
+          text=path.read_text()
+          marker='    @Test fun recreationDoesNotRestorePrivateTabs(){'
+          addition='''    @Test fun privateOverviewProtectsWindowWhileNormalPageRemainsActive(){
+                  assumeTrue(PrivateSession.supported())
+                  val normal=ui.runOnIdle{c.active!!}
+                  val privateTab=ui.runOnIdle{c.newTab(incognito=true)!!}
+                  ui.runOnIdle{c.switchTab(normal.id);c.showTabs()}
+                  ui.onNodeWithTag("normal-tab-group").assertIsSelected()
+                  ui.runOnIdle{assertFalse(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
+                  ui.onNodeWithTag("private-tab-group").performClick()
+                  ui.runOnIdle{assertTrue(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
+                  ui.onNodeWithTag("tab-card:${privateTab.id}").assertExists()
+                  ui.onNodeWithTag("normal-tab-group").performClick()
+                  ui.runOnIdle{assertFalse(ui.activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE!=0)}
+              }
+          '''
+          assert text.count(marker)==1
+          path.write_text(text.replace(marker,addition+marker))
+          PY
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/src/main/java/tw/techtarian/browser/MainActivity.kt app/src/androidTest/java/tw/techtarian/browser/BrowserCollectionsTest.kt
+          git commit -m 'Observe incognito overview state for secure windows and suggestions'
+          git push origin HEAD:refs/heads/work/library-privacy-1.4.0
