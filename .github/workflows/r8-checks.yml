@@ -1,0 +1,64 @@
+name: R8 release verification
+on:
+  pull_request:
+    branches: [main]
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: r8-checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  optimized:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+      - name: Install SDK
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platform-tools' 'platforms;android-36' 'build-tools;36.0.0'
+      - name: Build actual minified release code without production signing secrets
+        run: |
+          ./gradlew --no-daemon --stacktrace -PqaInstall=true :app:assembleRelease :app:bundleRelease :app:lintRelease :app:testReleaseUnitTest
+      - name: Inspect optimization output and dependency consumer rules
+        if: always()
+        run: |
+          mkdir -p validation-r8
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile, json
+          aab=Path('app/build/outputs/bundle/release/app-release.aab')
+          if aab.exists():
+              with zipfile.ZipFile(aab) as z:
+                  print('DEX bytes:',sum(i.file_size for i in z.infolist() if i.filename.endswith('.dex')))
+                  for name in z.namelist():
+                      if 'BUNDLE-METADATA/' in name and ('r8' in name or 'proguard' in name):
+                          print(name, z.getinfo(name).file_size)
+                          if name.endswith('r8.json'):
+                              Path('validation-r8/r8.json').write_bytes(z.read(name))
+                              print(z.read(name).decode())
+          for aar in Path.home().glob('.gradle/caches/modules-2/files-2.1/com.google.ai.edge.litertlm/litertlm-android/0.17.0/*/*.aar'):
+              with zipfile.ZipFile(aar) as z:
+                  for name in z.namelist():
+                      if 'proguard' in name or name=='classes.jar':
+                          Path('validation-r8/litertlm-'+Path(name).name).write_bytes(z.read(name))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r8-validation-${{ github.run_id }}
+          retention-days: 7
+          path: |
+            app/build/outputs/mapping/release/
+            app/build/reports/
+            app/build/test-results/
+            app/build/outputs/apk/release/*.apk
+            app/build/outputs/bundle/release/*.aab
+            validation-r8/
