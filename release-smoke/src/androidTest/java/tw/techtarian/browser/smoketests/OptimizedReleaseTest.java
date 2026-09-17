@@ -13,6 +13,8 @@ import androidx.test.uiautomator.Until;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,6 +30,7 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class OptimizedReleaseTest {
     private static final String APP = "tw.techtarian.browser.qa";
+    @Rule public TestName testName=new TestName();
     private UiDevice device;
     private Fixture fixture;
     @Before public void start() throws Exception {
@@ -40,7 +43,7 @@ public class OptimizedReleaseTest {
     @After public void finish() throws Exception {
         if(device!=null){
             device.executeShellCommand("mkdir -p /data/local/tmp/r8-smoke");
-            device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/last-frame.png");
+            device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/"+testName.getMethodName()+".png");
             device.executeShellCommand("am force-stop " + APP);
         }
         if(fixture!=null)fixture.close();
@@ -62,15 +65,19 @@ public class OptimizedReleaseTest {
         assertNotNull("Missing UI: "+selector,node);
         return node;
     }
-    private void click(String text) throws Exception {
+    private UiObject2 findText(String text) throws Exception {
         for(int i=0;i<7;i++){
             UiObject2 node=device.wait(Until.findObject(By.text(text)),1000);
-            if(node!=null){node.click();device.waitForIdle();return;}
+            if(node!=null)return node;
             device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*3/4,
                 device.getDisplayWidth()/2,device.getDisplayHeight()/3,30);
             SystemClock.sleep(200);
         }
         fail("Missing text: "+text);
+        return null;
+    }
+    private void click(String text) throws Exception {
+        findText(text).click();device.waitForIdle();
     }
     private void menu() {require(By.desc("瀏覽器選單")).click();require(By.desc("關閉選單"));}
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
@@ -109,11 +116,12 @@ public class OptimizedReleaseTest {
     }
     @Test public void aiProviderFieldsStillRecomposeInOptimizedRelease() throws Exception {
         menu();click("設定");click("AI");click("OpenRouter · 雲端模型");
-        require(By.textContains("API Key"));
+        require(By.clazz("android.widget.EditText"));
         device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()/3,
             device.getDisplayWidth()/2,device.getDisplayHeight()*3/4,25);
         click("Gemma 4 · 手機本機");
-        assertTrue(device.wait(Until.gone(By.textContains("API Key")),5000));
+        require(By.text("Gemma 4 E2B"));
+        assertTrue(device.wait(Until.gone(By.clazz("android.widget.EditText")),5000));
     }
     @Test public void webViewJavascriptBridgeSurvivesOptimization() throws Exception {
         click("天眼");require(By.text("R8 測試元件")).click();
@@ -123,7 +131,7 @@ public class OptimizedReleaseTest {
         menu();click("歷史記錄");require(By.text("搜尋歷史記錄"));
         require(By.text("R8 功能測試 one"));closeMenu();
         menu();click("下載");require(By.text("搜尋下載"));closeMenu();
-        menu();click("Google 同步");require(By.text("使用 Google 帳戶連結"));closeMenu();
+        menu();click("Google 同步");findText("使用 Google 帳戶連結");closeMenu();
         menu();click("新增無痕分頁");require(By.text("無痕瀏覽"));
         require(By.descStartsWith("分頁，")).click();
         require(By.textStartsWith("一般 "));require(By.text("無痕 1"));
