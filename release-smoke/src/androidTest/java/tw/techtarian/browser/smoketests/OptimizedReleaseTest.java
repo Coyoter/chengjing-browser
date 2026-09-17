@@ -101,9 +101,9 @@ public class OptimizedReleaseTest {
             assertEquals("com.google.ai.edge.litertlm.LiteRtLmJniException",error.getCause().getClass().getName());
             assertTrue(error.getCause().getMessage().contains("not found"));
         }
-        Class<?> sampler=type("com.google.ai.edge.litertlm.SamplerConfig");
+        Class<?> sampler=type(InstrumentationRegistry.getArguments().getString("samplerClass"));
         for(String getter:new String[]{"getTopK","getTopP","getTemperature","getSeed"})assertNotNull(sampler.getDeclaredMethod(getter));
-        Class<?> thinking=type("com.google.ai.edge.litertlm.ThinkingConfig");
+        Class<?> thinking=type(InstrumentationRegistry.getArguments().getString("thinkingClass"));
         assertNotNull(thinking.getDeclaredMethod("getEnableThinking"));
         assertNotNull(thinking.getDeclaredMethod("getThinkingTokenBudget"));
     }
@@ -127,9 +127,21 @@ public class OptimizedReleaseTest {
         menu();click("新增無痕分頁");require(By.text("無痕瀏覽"));
         require(By.descStartsWith("分頁，")).click();
         require(By.textStartsWith("一般 "));require(By.text("無痕 1"));
-        click("全部關閉");require(By.text("關閉全部無痕分頁？"));
+        click("關閉所有分頁");require(By.text("關閉所有無痕分頁？"));
         java.util.List<UiObject2> confirms=device.findObjects(By.text("全部關閉"));
         assertFalse(confirms.isEmpty());confirms.get(confirms.size()-1).click();
+    }
+    @Test public void closeAllRegularTabsWorksInOptimizedRelease() throws Exception {
+        open("two");
+        require(By.descStartsWith("分頁，")).click();
+        click("關閉所有分頁");require(By.text("關閉所有一般分頁？"));
+        click("取消");require(By.text("R8 功能測試 one"));require(By.text("R8 功能測試 two"));
+        click("關閉所有分頁");click("全部關閉");
+        require(By.desc("瀏覽器選單"));
+        require(By.descStartsWith("分頁，")).click();
+        require(By.text("一般 1"));
+        assertFalse(device.hasObject(By.text("R8 功能測試 one")));
+        assertFalse(device.hasObject(By.text("R8 功能測試 two")));
     }
     private static final class Fixture implements AutoCloseable {
         private final ServerSocket server;

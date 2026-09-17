@@ -66,7 +66,18 @@ jobs:
           adb install -r app/build/outputs/apk/release/app-release.apk
       - name: Exercise minified app and JNI without keeping app classes for tests
         run: |
-          ./gradlew --no-daemon --stacktrace :release-smoke:connectedDebugAndroidTest
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, subprocess
+          mapping=Path('app/build/outputs/mapping/release/mapping.txt').read_text()
+          args=['./gradlew','--no-daemon','--stacktrace',':release-smoke:connectedDebugAndroidTest']
+          for key,name in [('samplerClass','SamplerConfig'),('thinkingClass','ThinkingConfig')]:
+              pattern=r'^com\.google\.ai\.edge\.litertlm\.'+name+r' -> (\S+):$'
+              match=re.search(pattern,mapping,re.M)
+              if not match: raise SystemExit('Missing mapped JNI configuration: '+name)
+              args.append('-Pandroid.testInstrumentationRunnerArguments.'+key+'='+match.group(1))
+          subprocess.run(args,check=True)
+          PY
       - name: Collect optimization diagnostics
         if: always()
         run: |
