@@ -21,34 +21,73 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: gradle
-      - name: Install SDK
+      - name: Configure isolated runner and SDK
         run: |
+          mkdir -p "$RUNNER_TEMP/android-user" "$RUNNER_TEMP/android-avd"
+          echo "ANDROID_USER_HOME=$RUNNER_TEMP/android-user" >> "$GITHUB_ENV"
+          echo "ANDROID_EMULATOR_HOME=$RUNNER_TEMP/android-user" >> "$GITHUB_ENV"
+          echo "ANDROID_AVD_HOME=$RUNNER_TEMP/android-avd" >> "$GITHUB_ENV"
+          sudo rm -rf /usr/share/dotnet
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platform-tools' 'platforms;android-36' 'build-tools;36.0.0'
-      - name: Build actual minified release code without production signing secrets
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+      - name: Build uninstrumented optimized release and independent test host
         run: |
-          ./gradlew --no-daemon --stacktrace -PqaInstall=true :app:assembleRelease :app:bundleRelease :app:lintRelease :app:testReleaseUnitTest
-      - name: Inspect optimization output and dependency consumer rules
+          ./gradlew --no-daemon --stacktrace -PqaInstall=true :app:assembleRelease :app:bundleRelease :app:lintRelease :app:testReleaseUnitTest :release-smoke:assembleDebug :release-smoke:assembleDebugAndroidTest
+          python3 scripts/r8_verification.py
+      - name: Boot isolated emulator
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
+          "$SDKMANAGER" 'emulator' 'system-images;android-36;google_apis;x86_64'
+          printf 'no\n' | "$AVDMANAGER" create avd --force --name r8-qa --path "$ANDROID_AVD_HOME/r8-qa.avd" --package 'system-images;android-36;google_apis;x86_64'
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          path=Path(os.environ['ANDROID_AVD_HOME'])/'r8-qa.avd/config.ini'
+          values={'disk.dataPartition.size':'2G','hw.ramSize':'2048','hw.cpu.ncore':'2','hw.lcd.width':'720','hw.lcd.height':'1280','hw.lcd.density':'320'}
+          lines=[line for line in path.read_text().splitlines() if line.split('=',1)[0].strip() not in values]
+          path.write_text('\n'.join(lines+[f'{k}={v}' for k,v in values.items()])+'\n')
+          PY
+          sudo chmod a+rw /dev/kvm
+          "$ANDROID_HOME/emulator/emulator" -avd r8-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader_indirect > "$RUNNER_TEMP/r8-emulator.log" 2>&1 &
+          PID=$!
+          sleep 3
+          if ! kill -0 "$PID"; then cat "$RUNNER_TEMP/r8-emulator.log"; exit 1; fi
+          timeout 180 adb wait-for-device
+          for i in $(seq 1 180); do
+            [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ] && break
+            sleep 1
+          done
+          test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1
+          adb shell settings put global window_animation_scale 0
+          adb shell settings put global transition_animation_scale 0
+          adb shell settings put global animator_duration_scale 0
+          adb shell input keyevent 82
+          adb install -r app/build/outputs/apk/release/app-release.apk
+      - name: Exercise minified app and JNI without keeping app classes for tests
+        run: |
+          ./gradlew --no-daemon --stacktrace :release-smoke:connectedDebugAndroidTest
+      - name: Collect optimization diagnostics
         if: always()
         run: |
           mkdir -p validation-r8
+          git archive --format=zip HEAD -o validation-r8/source-reviewed.zip
+          if adb get-state >/dev/null 2>&1; then
+            adb logcat -d -t 1500 > validation-r8/logcat.txt || true
+            adb pull /data/local/tmp/r8-smoke validation-r8/ || true
+            adb shell dumpsys webviewupdate > validation-r8/webview.txt || true
+          fi
+          if [ -f "$RUNNER_TEMP/r8-emulator.log" ]; then cp "$RUNNER_TEMP/r8-emulator.log" validation-r8/; fi
           python3 - <<'PY'
           from pathlib import Path
-          import zipfile, json
+          import zipfile
           aab=Path('app/build/outputs/bundle/release/app-release.aab')
           if aab.exists():
               with zipfile.ZipFile(aab) as z:
-                  print('DEX bytes:',sum(i.file_size for i in z.infolist() if i.filename.endswith('.dex')))
-                  for name in z.namelist():
-                      if 'BUNDLE-METADATA/' in name and ('r8' in name or 'proguard' in name):
-                          print(name, z.getinfo(name).file_size)
-                          if name.endswith('r8.json'):
-                              Path('validation-r8/r8.json').write_bytes(z.read(name))
-                              print(z.read(name).decode())
-          for aar in Path.home().glob('.gradle/caches/modules-2/files-2.1/com.google.ai.edge.litertlm/litertlm-android/0.17.0/*/*.aar'):
-              with zipfile.ZipFile(aar) as z:
-                  for name in z.namelist():
-                      if 'proguard' in name or name=='classes.jar':
-                          Path('validation-r8/litertlm-'+Path(name).name).write_bytes(z.read(name))
+                  name='BUNDLE-METADATA/com.android.tools/r8.json'
+                  if name in z.namelist():
+                      Path('validation-r8/r8.json').write_bytes(z.read(name))
+                      print(z.read(name).decode())
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
@@ -61,4 +100,6 @@ jobs:
             app/build/test-results/
             app/build/outputs/apk/release/*.apk
             app/build/outputs/bundle/release/*.aab
+            release-smoke/build/outputs/androidTest-results/
+            release-smoke/build/reports/
             validation-r8/
