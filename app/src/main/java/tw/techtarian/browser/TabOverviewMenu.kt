@@ -3,6 +3,7 @@ package tw.techtarian.browser
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material3.*
@@ -14,6 +15,7 @@ import androidx.compose.ui.unit.sp
 
 /** Only the tab-overview header owns this menu; it never changes the browser toolbar. */
 @Composable internal fun TabOverviewMenu(c:BrowserController) {
+    val colors=MaterialTheme.colorScheme
     val privateGroup=c.overviewPrivate
     // A dismissed/reopened overview or a different collection must not reuse an open menu.
     var expanded by remember(privateGroup){mutableStateOf(false)}
@@ -22,7 +24,8 @@ import androidx.compose.ui.unit.sp
         IconButton(onClick={expanded=!expanded},modifier=Modifier.size(48.dp).testTag("tab-overview-menu")) {
             Icon(Icons.Outlined.MoreVert,"分頁選單",Modifier.size(24.dp))
         }
-        DropdownMenu(expanded=expanded,onDismissRequest={expanded=false},modifier=Modifier.widthIn(min=188.dp)) {
+        DropdownMenu(expanded=expanded,onDismissRequest={expanded=false},modifier=Modifier.widthIn(min=188.dp),
+            shape=RoundedCornerShape(14.dp),containerColor=colors.surface,tonalElevation=0.dp) {
             DropdownMenuItem(
                 text={Text("關閉所有分頁",fontSize=15.sp)},
                 enabled=c.tabs.any{it.incognito==privateGroup},
