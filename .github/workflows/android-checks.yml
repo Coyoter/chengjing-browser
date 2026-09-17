@@ -45,7 +45,7 @@ jobs:
           "$ANDROID_HOME/platform-tools/adb" version
       - name: Compile QA app and instrumentation, run unit tests and lint
         run: |
-          ./gradlew --no-daemon --stacktrace -PqaInstall=true testDebugUnitTest assembleDebug assembleDebugAndroidTest lintDebug
+          ./gradlew --no-daemon --stacktrace -PqaInstall=true :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
       - name: Prepare an isolated Android emulator
         run: |
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
@@ -84,13 +84,14 @@ jobs:
       - name: Run focused on-device regressions
         run: |
           ./gradlew --no-daemon --stacktrace -PqaInstall=true \
-            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.CollectionsPrivacyTest,tw.techtarian.browser.TabPreviewStoreTest,tw.techtarian.browser.TabPreviewPersistenceTest \
-            connectedDebugAndroidTest
+            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.CollectionsPrivacyTest,tw.techtarian.browser.TabPreviewStoreTest,tw.techtarian.browser.TabPreviewPersistenceTest,tw.techtarian.browser.CloseAllTabsTest \
+            :app:connectedDebugAndroidTest
       - name: Verify thumbnails survive actual process restart and close-tab cleanup
         run: |
           adb install -r -t app/build/outputs/apk/debug/app-debug.apk
           adb install -r -t app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
           python3 scripts/test-preview-restart.py
+          python3 scripts/test-close-all-restart.py
       - name: Collect source, previews and emulator diagnostics
         if: always()
         run: |
@@ -105,7 +106,7 @@ jobs:
           if [ -f "$RUNNER_TEMP/avd-list.txt" ]; then cp "$RUNNER_TEMP/avd-list.txt" validation/; fi
       - name: Save validation reports and QA-only APK
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: android-validation-${{ github.run_id }}
           retention-days: 7

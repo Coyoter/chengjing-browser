@@ -59,9 +59,14 @@ jobs:
     uses: ./.github/workflows/android-checks.yml
     permissions:
       contents: read
-    # No signing secrets are passed to the QA build or emulator tests.
+  r8-validate:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/r8-checks.yml
+    permissions:
+      contents: read
+    # Both validation jobs receive no signing secrets.
   release:
-    needs: [signing, validate]
+    needs: [signing, validate, r8-validate]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 30

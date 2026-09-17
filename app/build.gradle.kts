@@ -3,16 +3,16 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
+val qaInstall = project.findProperty("qaInstall") == "true"
 android {
     namespace = "tw.techtarian.browser"
     compileSdk = 36
     defaultConfig {
-        applicationId = if (project.findProperty("qaInstall") == "true") "tw.techtarian.browser.qa" else "tw.techtarian.browser"
+        applicationId = if (qaInstall) "tw.techtarian.browser.qa" else "tw.techtarian.browser"
         minSdk = 28
         targetSdk = 36
-        // 1.3.1 restores the original toolbar; sharing stays in the overflow menu.
-        versionCode = 22
-        versionName = "1.4.1"
+        versionCode = 23
+        versionName = "1.4.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     testBuildType = (project.findProperty("testBuildType") as? String) ?: "debug"
@@ -27,7 +27,15 @@ android {
             keyPassword = System.getenv("CHENGJING_BROWSER_STORE_PASSWORD")
         }
     }
-    buildTypes { release { signingConfig = signingConfigs.getByName("release"); isMinifyEnabled = false } }
+    buildTypes {
+        release {
+            // QA uses a different package and disposable key; production never falls back to it.
+            signingConfig = signingConfigs.getByName(if (qaInstall) "debug" else "release")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
 }
 kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
 dependencies {

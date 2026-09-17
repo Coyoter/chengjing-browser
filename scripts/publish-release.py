@@ -32,8 +32,7 @@ def api(path, optional=False, method='GET', payload=None):
 
 
 def release_by_tag(tag):
-    # The tag endpoint only returns published releases, not drafts.
-    # Enumerate authenticated releases and keep their numeric ID throughout.
+    # Enumerate authenticated releases (including drafts) and retain their numeric ID.
     matches = []
     for page in range(1, 101):
         rows = api(f'releases?per_page=100&page={page}')
@@ -59,11 +58,15 @@ def main():
     out = ROOT / 'release' / version
     expected = [f'{prefix}-Android.apk', f'{prefix}-GooglePlay.aab', f'{prefix}-Source.zip',
                 f'{prefix}-BUILD.json', f'{prefix}-SHA256SUMS.txt']
+    if tuple(map(int, version.split('.'))) >= (1, 4, 2):
+        expected.append(f'{prefix}-R8.zip')
     if not out.is_dir() or sorted(p.name for p in out.iterdir()) != sorted(expected):
-        raise RuntimeError('Release output must contain exactly APK, AAB, source, build metadata and checksums.')
+        raise RuntimeError('Release output does not match the exact expected package/evidence list.')
     build = json.loads((out / f'{prefix}-BUILD.json').read_text())
     if build['commit'] != sha or build['version'] != version or build['packageName'] != 'tw.techtarian.browser':
         raise RuntimeError('Build metadata does not match this commit.')
+    if f'{prefix}-R8.zip' in expected and build.get('r8', {}).get('obfuscationPercent', 0) < 25:
+        raise RuntimeError('Required R8 verification is missing.')
     hashes = {}
     for name in expected:
         path = out / name

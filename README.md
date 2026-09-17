@@ -2,11 +2,11 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前原始碼版本為 **1.4.1（versionCode 22）**：AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.4.1 更新說明](docs/releases/1.4.1.md) · [簽章與發布流程](docs/RELEASING.md)
+目前原始碼版本為 **1.4.2（versionCode 23）**：正式版啟用 R8 混淆、程式碼與資源縮減；保留 AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.4.2 更新說明](docs/releases/1.4.2.md) · [簽章與發布流程](docs/RELEASING.md) · [R8 驗證](docs/R8-RELEASE.md)
 
 ## 安裝與使用
 
-需要 Android 9 或以上。正式 APK 必須沿用既有簽章才可覆蓋相同簽章的安裝；Google Play 的安裝簽章由 Play App Signing 設定決定。AAB 是 Play Console 上傳套件，不是直接安裝檔。CI 產生的 `.qa` debug APK 不是正式版的覆蓋安裝檔。
+需要 Android 9 或以上。正式 APK 必須沿用既有簽章才可覆蓋相同簽章的安裝；Google Play 的安裝簽章由 Play App Signing 設定決定。AAB 是 Play Console 上傳套件，不是直接安裝檔。CI 產生的 `.qa` APK 不是正式版的覆蓋安裝檔。
 
 - 打開網站後點「天眼」，直接進入元件選取。點選元件後可新增 CSS／JS／HTML、編輯內部 HTML、移除元件或請 AI 檢查。網站 AI 入口不依賴選取。
 - 點選元件後，可向外選一層、預覽移除並儲存。選取期間網站不會收到觸控，也不能因此跳轉或開新視窗。
@@ -30,20 +30,20 @@
 
 ## 開發與完整原始碼
 
-需要 Android SDK 36、build-tools 36.0.0、Java 17 與 Gradle wrapper。
+需要 Android SDK 36、build-tools 36.0.0、Java 17 與 Gradle wrapper。保留 AGP 8.13.0 與 Kotlin 2.4.0，固定使用符合 Kotlin 2.4 最低要求的 R8 9.1.29。
 
 ```sh
-./gradlew -PqaInstall=true testDebugUnitTest assembleDebug assembleDebugAndroidTest lintDebug
+./gradlew -PqaInstall=true :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
 python3 scripts/build-private.py
 ```
 
-正式建置輸出到 `release/<version>/`，包含 APK、AAB、Source.zip、BUILD.json、SHA256SUMS。`signing/` 存放本機發行簽章，不納入版本控制或原始碼壓縮檔。請保留它，既有 APK 更新需要相同簽章。不要公開或傳送私鑰與密碼；API Key 與 Google access token 不放進原始碼。雲端建置使用專用 Actions Secrets，不使用 debug 簽章替代。
+正式建置輸出到 `release/<version>/`，包含 APK、AAB、Source.zip、BUILD.json、SHA256SUMS 與 R8.zip。R8 診斷包保留該次 mapping、設定與最佳化統計；AAB 內也包含對應 mapping 與 r8.json。`signing/` 存放本機發行簽章，不納入版本控制或原始碼壓縮檔。請保留它，既有 APK 更新需要相同簽章。不要公開或傳送私鑰與密碼；API Key 與 Google access token 不放進原始碼。雲端正式建置使用專用 Actions Secrets，不使用 QA 簽章替代。
 
 [驗證紀錄](docs/VALIDATION.md) · [特殊元件限制](docs/SPECIAL-ELEMENTS.md) · [Android 套件登記](docs/ANDROID-REGISTRATION.md) · [同步與啟動畫面修正](docs/AI-FAVORITES-LAUNCH.md) · [圖片與分享](docs/IMAGE-DOWNLOAD-SHARE.md)
 
 ## 1.2.0 歷史驗證紀錄
 
-以下是原有 1.2.0 的紀錄，不代表 1.3.0 的新測試結果。
+以下是原有 1.2.0 的紀錄，不代表後續版本的新測試結果。
 
 Google OAuth 已切換為正式環境，僅使用非機密的 drive.appdata 範圍；最終 Play App Signing 簽章仍須對應 Android OAuth 用戶端。OpenRouter／DeepSeek 已用合成頁面結構完成網站與元件範圍的真實呼叫。Google Drive 網站設定也完成兩份合成裝置快照的真實寫入、讀回及刪除合併測試。測試是在隔離 Android 模擬器完成，尚未代替使用者的實體手機驗收。
 
@@ -51,7 +51,7 @@ Google OAuth 已切換為正式環境，僅使用非機密的 drive.appdata 範�
 
 ## 1.4.0 瀏覽工具
 
-三點選單加入下載、歷史記錄與無痕分頁；一般／無痕双分頁集與卡片預覽保持第一層工具列不變。無痕需支援 WebView 資料隔離與清理；主動保存的檔案、書籤及收藏仍保留，詳見更新說明。
+三點選單加入下載、歷史記錄與無痕分頁；一般／無痕雙分頁集與卡片預覽保持第一層工具列不變。無痕需支援 WebView 資料隔離與清理；主動保存的檔案、書籤及收藏仍保留，詳見更新說明。
 
 ## 1.4.1 分頁快照
 

@@ -8,6 +8,7 @@ import re
 import shutil
 import subprocess
 import sys
+from r8_verification import verify_bundle, archive_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_CERT = 'ab9d27ce9722e34f946556ee015414054bae2893ffdd57ff38126ff4c5d04cf0'
@@ -84,18 +85,23 @@ def main():
     bundle_fingerprints = re.findall(r'SHA256:\s*([0-9A-Fa-f:]+)', bundle_cert)
     if not bundle_fingerprints or any(x.replace(':', '').lower() != EXPECTED_CERT for x in bundle_fingerprints):
         raise RuntimeError('AAB signing certificate differs from the published identity.')
+    mapping_dir = ROOT / 'app/build/outputs/mapping/release'
+    r8 = verify_bundle(aab, mapping_dir)
     out.mkdir(parents=True)
     prefix = f'ChengJing-Browser-{version}'
     shutil.copy2(apk, out / f'{prefix}-Android.apk')
     shutil.copy2(aab, out / f'{prefix}-GooglePlay.aab')
     run(['git', 'archive', '--format=zip', f'--prefix={prefix}/', '-o', out / f'{prefix}-Source.zip', sha], env)
+    archive_evidence(aab, mapping_dir, r8, out / f'{prefix}-R8.zip')
     metadata = {'version': version, 'versionCode': code, 'commit': sha,
                 'packageName': 'tw.techtarian.browser', 'certificateSha256': EXPECTED_CERT,
-                'releaseChecks': ['testReleaseUnitTest', 'lintRelease', 'APK signature', 'APK 16 KB zip alignment', 'AAB signature'],
+                'r8': r8,
+                'releaseChecks': ['testReleaseUnitTest', 'lintRelease', 'APK signature', 'APK 16 KB zip alignment', 'AAB signature', 'R8 packaged DEX and mapping verification'],
                 'physicalDeviceOrLiveGoogleDriveAcceptance': False}
     (out / f'{prefix}-BUILD.json').write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n')
     rows = [f'{digest(p)}  {p.name}' for p in sorted(out.iterdir()) if p.is_file()]
     (out / f'{prefix}-SHA256SUMS.txt').write_text('\n'.join(rows) + '\n')
+    print(json.dumps(r8, ensure_ascii=False, indent=2))
     print('Verified release packages: ' + str(out), flush=True)
 
 
