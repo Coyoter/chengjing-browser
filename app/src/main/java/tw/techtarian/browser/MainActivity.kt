@@ -104,7 +104,8 @@ class MainActivity:ComponentActivity(){
         launch.doOnPreDraw{launch.post{
             if(!isFinishing&&!isDestroyed&&!browserReady){
                 val incoming=intent?.dataString
-                if(incoming?.startsWith("https://")==true||incoming?.startsWith("http://")==true)controller.newTab(incoming,incognito=false) else controller.restoreTabs()
+                controller.restoreTabs()
+                if(incoming?.startsWith("https://")==true||incoming?.startsWith("http://")==true)controller.newTab(incoming,incognito=false)
                 browserReady=true
                 setContent { BrowserApp(controller,store) }
                 if(lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED))bookmarkSync.resume()
@@ -119,7 +120,7 @@ class MainActivity:ComponentActivity(){
     override fun onPause(){
         super.onPause()
         // A backgrounded/closed launch must not replace saved tabs with an empty list.
-        if(browserReady){android.webkit.CookieManager.getInstance().flush();controller.persistTabs()}
+        if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
     override fun onResume(){super.onResume();if(browserReady&&::bookmarkSync.isInitialized)bookmarkSync.resume()}
     override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();if(::controller.isInitialized)controller.destroy();super.onDestroy()}

@@ -11,8 +11,8 @@ android {
         minSdk = 28
         targetSdk = 36
         // 1.3.1 restores the original toolbar; sharing stays in the overflow menu.
-        versionCode = 21
-        versionName = "1.4.0"
+        versionCode = 22
+        versionName = "1.4.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     testBuildType = (project.findProperty("testBuildType") as? String) ?: "debug"

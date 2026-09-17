@@ -20,7 +20,12 @@ import org.json.JSONObject
 import kotlin.coroutines.resume
 
 data class Selection(val selector: String, val label: String, val count: Int, val width: Int, val height: Int, val canParent: Boolean, val frame: Boolean)
-class BrowserTab(val id: Int, val web: SelectionWebView, val incognito:Boolean=false) {
+class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false,
+    val previewKey:String?=if(incognito)null else TabPreviewStore.newKey()) {
+    init{require(if(incognito)previewKey==null else TabPreviewStore.validKey(previewKey))}
+    internal var previewReady=false
+    internal var navigationGeneration=0L
+    internal var previewGeneration=0L
     var preview by mutableStateOf<Bitmap?>(null)
     val warnings=if(incognito)CertificateWarnings()else CertificateWarnings.session
     val refreshContainer = RefreshWebContainer(web.context, web)
@@ -49,6 +54,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     val gemma=GemmaLocal(context.applicationContext)
     val icons=SiteIcons(context.applicationContext)
     val favorites=FavoriteStore(context)
+    internal val previews=TabPreviewStore(context)
+    private var restoringTabs=false
+    private var destroyed=false
     val tabs = mutableStateListOf<BrowserTab>()
     var activeId by mutableIntStateOf(0)
     var overviewPrivate by mutableStateOf(false)
@@ -62,7 +70,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun openTabOverview(){capturePreview(active);overviewPrivate=active?.incognito==true;sheet="tabs";updatePrivacyWindow()}
     private fun capturePreview(tab:BrowserTab?){
-        if(tab==null||tab.incognito||tab.url.isEmpty()||!tab.web.isAttachedToWindow||tab.web.width<=0||tab.web.height<=0)return
+        if(destroyed||restoringTabs||tab==null||tab !in tabs||tab.incognito||!tab.previewReady||tab.error.isNotEmpty()||
+            tab.url.isEmpty()||tab.pendingUrl.isNotEmpty()||tab.id!=activeId||tab.web.selecting||!tab.web.isAttachedToWindow||tab.web.width<=0||tab.web.height<=0)return
         runCatching{
             val width=300
             val height=(tab.web.height.toFloat()*width/tab.web.width).toInt().coerceIn(1,400)
@@ -70,8 +79,28 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             val canvas=android.graphics.Canvas(bitmap)
             canvas.scale(width.toFloat()/tab.web.width,width.toFloat()/tab.web.width)
             tab.web.draw(canvas)
+            tab.previewGeneration++
             tab.preview=bitmap
+            previews.save(tab.previewKey,bitmap){if(!destroyed)notice="分頁快照未能儲存，既有快照已保留"}
         }
+    }
+    private fun requestPreviewFrame(tab:BrowserTab){
+        if(destroyed||tab.incognito||tab !in tabs||tab.url.isEmpty()||tab.pendingUrl.isNotEmpty()||tab.error.isNotEmpty())return
+        val generation=tab.navigationGeneration
+        tab.web.postVisualStateCallback(generation,object:WebView.VisualStateCallback(){
+            override fun onComplete(requestId:Long){
+                if(!destroyed&&tab in tabs&&generation==tab.navigationGeneration&&tab.pendingUrl.isEmpty()&&tab.error.isEmpty()){
+                    tab.previewReady=true
+                    capturePreview(tab)
+                }
+            }
+        })
+    }
+    fun checkpointTabs(){
+        if(destroyed||restoringTabs)return
+        capturePreview(active)
+        persistTabs()
+        if(!previews.flush())notice="快照仍在儲存中，請稍後再關閉應用程式"
     }
     internal fun cookiesFor(tab:BrowserTab)=if(tab.incognito)privateSession.cookies(tab.web)else CookieManager.getInstance()
     internal fun downloadFor(tab:BrowserTab,url:String,page:String,agent:String,mime:String?=null,disposition:String?=null,imageOnly:Boolean=true){
@@ -137,9 +166,12 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         refreshScripts(affected,applyToPage=false)
         affected.forEach{it.pendingUrl=it.url;it.web.reload()}
     }
-    fun persistTabs() {
+    fun persistTabs():Boolean {
+        if(destroyed||restoringTabs)return false
         val normal=tabs.filterNot{it.incognito}
-        store.saveTabs(normal.map{it.url},normal.map{it.favoriteId})
+        val saved=store.saveTabs(normal.map{it.url},normal.map{it.favoriteId},normal.map{it.previewKey!!},normal.map{it.title})
+        if(!saved)notice="分頁資料未能儲存，請檢查手機儲存空間"
+        return saved
     }
     fun currentUserAgent(desktop:Boolean=false):String{
         val original=WebSettings.getDefaultUserAgent(context)
@@ -171,15 +203,20 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
     }
     fun restoreTabs() {
-        val saved=store.tabs();val links=store.tabFavoriteLinks()
-        if(saved.isEmpty())newTab(incognito=false)else saved.forEachIndexed{i,url->
-            val link=links.getOrNull(i)?.takeIf{it.first==url}?.second?.let{favorites.get(it)}
-            newTab(url,incognito=false)?.favoriteId=link?.takeIf{Domains.scope(it.url)==Domains.scope(url)}?.id
-        }
-        persistTabs()
+        if(tabs.isNotEmpty())return
+        val saved=store.savedTabRecords()
+        // A partially rebuilt list must never replace/prune the not-yet-restored tabs.
+        restoringTabs=true
+        try{
+            if(saved.isEmpty())newTab(incognito=false)else saved.forEach{record->
+                createTab(record.url,false,record)
+            }
+        }finally{restoringTabs=false}
+        if(persistTabs())previews.retainOnly(tabs.mapNotNull{it.previewKey}.toSet())
     }
+    fun newTab(url:String="",incognito:Boolean=active?.incognito==true):BrowserTab?=createTab(url,incognito,null)
     @SuppressLint("SetJavaScriptEnabled")
-    fun newTab(url: String = "",incognito:Boolean=active?.incognito==true): BrowserTab? {
+    private fun createTab(url:String,incognito:Boolean,restored:SavedBrowserTab?):BrowserTab? {
         if(incognito&&!privateSession.supported){sheet="";notice="請更新 Android System WebView，才能使用資料隔離的無痕分頁";return null}
         if(tabs.size>=20){notice="目前最多可開啟 20 個分頁，請先關閉不用的分頁";return null}
         capturePreview(active)
@@ -188,7 +225,21 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(incognito)try{privateSession.attach(web)}catch(_:Exception){web.destroy();notice="無法建立隔離的無痕工作階段，未開啟網頁";return null}
         // Discard WebView trust decisions from older versions; only saved site choices apply.
         web.clearSslPreferences()
-        val tab=BrowserTab(nextId++,web,incognito)
+        val tab=BrowserTab(nextId++,web,incognito,if(incognito)null else restored?.key?:TabPreviewStore.newKey())
+        tab.url=url
+        restored?.let{record->
+            tab.title=record.title.ifBlank{"新分頁"}
+            tab.favoriteId=record.favoriteId?.let{favorites.get(it)}?.takeIf{Domains.scope(it.url)==Domains.scope(url)}?.id
+            val generation=tab.previewGeneration
+            previews.load(tab.previewKey){bitmap->
+                if(!destroyed&&tab in tabs&&tab.preview==null&&generation==tab.previewGeneration)tab.preview=bitmap
+                else bitmap?.recycle()
+            }
+        }
+        web.addOnAttachStateChangeListener(object:android.view.View.OnAttachStateChangeListener{
+            override fun onViewAttachedToWindow(view:android.view.View){requestPreviewFrame(tab)}
+            override fun onViewDetachedFromWindow(view:android.view.View){}
+        })
         tab.refreshContainer.setOnRefreshListener {
             if (web.selecting || tab !in tabs) tab.refreshContainer.isRefreshing=false
             else { tab.error=""; web.reload() }
@@ -260,7 +311,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
                 if(web.selecting){view.stopLoading();return}
-                tab.preview=null
+                tab.navigationGeneration++
+                tab.previewReady=false
+                // Keep the last successful thumbnail during reload, offline restore and errors.
                 tab.url=url;tab.pendingUrl=url;tab.error="";tab.blockedUrl=""
                 tab.favoriteId?.let{id->
                     if(favorites.get(id)?.let{Domains.scope(it.url)!=Domains.scope(url)}!=false){tab.favoriteId=null;tab.favoriteRestore=null}
@@ -294,6 +347,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                     mainHandler.postDelayed(restore,350)
                 }
                 if(tab.error.isEmpty()&&!tab.incognito){store.visit(url,tab.title);revision++}
+                requestPreviewFrame(tab)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
                 if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config(tab.url)),null)
             }
@@ -333,7 +387,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         web.webChromeClient=object:WebChromeClient(){
             override fun onProgressChanged(view:WebView,value:Int){tab.progress=value}
             override fun onReceivedIcon(view:WebView,icon:Bitmap?){if(icon!=null&&!tab.incognito)view.url?.let{icons.remember(it,icon)}}
-            override fun onReceivedTitle(view:WebView,title:String?){tab.title=title?.take(180)?:tab.url}
+            override fun onReceivedTitle(view:WebView,title:String?){tab.title=title?.take(180)?:tab.url;persistTabs()}
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {
                 if(web.selecting) return false
                 val scope=Domains.scope(tab.url)
@@ -402,6 +456,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun closeTab(id:Int){
         if(id==activeId)stopEye()
         val tab=tabs.find{it.id==id}?:return
+        previews.remove(tab.previewKey)
         tab.preview=null;tab.documentScript?.remove();tab.web.stopLoading()
         (tab.refreshContainer.parent as? ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer.removeAllViews();tab.web.destroy();tabs.remove(tab)
         if(tab.incognito&&tabs.none{it.incognito})privateSession.clear()
@@ -470,5 +525,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice="已復原上一次儲存"}}
-    fun destroy(){exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
+    fun destroy(){if(destroyed)return;destroyed=true;exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }
