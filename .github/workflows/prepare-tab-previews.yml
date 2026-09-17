@@ -13,10 +13,11 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
           persist-credentials: false
-      - name: Apply exact-source edits and remove one-time preparation tools
+      - name: Apply exact-source edits only
         run: |
           python3 .ci/prepare-tab-previews.py
-          rm .ci/prepare-tab-previews.py .github/workflows/prepare-tab-previews.yml
+          git restore -- .github/workflows/android-checks.yml
+          rm .ci/prepare-tab-previews.py
           git add -A
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Persist regular tab previews across restart with stable IDs and private internal storage'
       - name: Update only the development branch
