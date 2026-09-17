@@ -1,0 +1,118 @@
+name: Resume verified 1.4.2 release upload
+on:
+  push:
+    branches: [fix/retry-1.4.2-release-upload]
+    paths: [.github/workflows/recover-1.4.2-upload.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: android-release-main
+  cancel-in-progress: false
+jobs:
+  publish-existing:
+    if: github.repository == 'Coyoter/chengjing-browser' && github.ref == 'refs/heads/fix/retry-1.4.2-release-upload'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_VERSION: '1.4.2'
+      BUILD_SHA: 32b4c842f6c6541ed2df61077a3982e4129e2daf
+    steps:
+      - name: Check out only the exact validated application and publisher
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          ref: 32b4c842f6c6541ed2df61077a3982e4129e2daf
+          persist-credentials: false
+      - name: Verify completed tests, original-signature build and immutable artifact identity
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          repo='Coyoter/chengjing-browser'
+          def api(path):
+              return json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/{path}'],text=True))
+          def require(test,message):
+              if not test: raise SystemExit(message)
+          sha=os.environ['BUILD_SHA']
+          run=api('actions/runs/35256607899')
+          require(run['status']=='completed' and run['head_sha']==sha and run['head_branch']=='main','Original run source or state mismatch.')
+          require(run['path']=='.github/workflows/android-release.yml','Unapproved original workflow.')
+          jobs={j['name']:j for j in api('actions/runs/35256607899/jobs?per_page=100')['jobs']}
+          for name in ['signing','validate / android','r8-validate / optimized']:
+              require(jobs[name]['conclusion']=='success','Required validation did not pass: '+name)
+          steps={s['name']:s.get('conclusion') for s in jobs['release']['steps']}
+          for name in ['Build and verify original-signature APK and AAB','Preserve verified release packages']:
+              require(steps.get(name)=='success','Release build verification missing: '+name)
+          artifact=api('actions/artifacts/10513018887')
+          require(not artifact['expired'] and artifact['workflow_run']['head_sha']==sha,'Signed artifact source mismatch.')
+          require(artifact['digest']=='sha256:843113765e77b233922b03032269a071f02b33b7418e4f498154963f67d03321','Signed artifact digest mismatch.')
+          require(api('git/ref/heads/main')['object']['sha']==sha,'main moved; stop instead of publishing stale packages.')
+          require(api('git/ref/tags/v1.4.2')['object']['sha']==sha,'Existing tag mismatch; no tags will be moved.')
+          draft=api('releases/390950631')
+          require(draft['tag_name']=='v1.4.2' and draft['target_commitish']==sha,'Wrong release identity.')
+          print('Main, original signature verification, both test suites and exact signed artifact verified.')
+          PY
+      - name: Restore the existing signed packages without rebuilding or signing secrets
+        run: |
+          gh run download 35256607899 --repo Coyoter/chengjing-browser --name signed-release-1.4.2-32b4c842f6c6541ed2df61077a3982e4129e2daf --dir release/1.4.2
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          expected={
+            'ChengJing-Browser-1.4.2-Android.apk':'486ed17dc3c8cc7d58aa6bec752deec07b6037cf3f98fa061f38fc4833cf08c9',
+            'ChengJing-Browser-1.4.2-GooglePlay.aab':'4d6a775a59eee8f9567d791982ef7907055dba579ba5137eb2e91dc7d7ff823c',
+            'ChengJing-Browser-1.4.2-Source.zip':'5da58055c953dce03687fae9076df803512628cd796570daef079a9264eff2e7',
+            'ChengJing-Browser-1.4.2-R8.zip':'b4c3c76eb14e086c258745156490b044270908deb5688ba1953375e672ca2a2f',
+            'ChengJing-Browser-1.4.2-BUILD.json':'2c272ee708889ebb8d71c000030f54d151ab69759d65af3b3e96a7dde7a0b476',
+            'ChengJing-Browser-1.4.2-SHA256SUMS.txt':'76e5416fdc8bbf99fd7dfc7217aa7382bdad240f9b5060e08450c71a9db810bd'
+          }
+          root=Path('release/1.4.2')
+          assert set(p.name for p in root.iterdir())==set(expected)
+          for name,digest in expected.items():
+              path=root/name
+              assert path.is_file() and not path.is_symlink()
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==digest,name
+          Path('/tmp/browser142-expected-hashes.json').write_text(json.dumps(expected))
+          print('All six restored files match the original verified signed build.')
+          PY
+      - name: Resume missing draft uploads with bounded retry for GitHub server errors
+        run: |
+          python3 - <<'PY'
+          import json, os, re, subprocess, time
+          from pathlib import Path
+          repo='Coyoter/chengjing-browser'
+          expected=json.loads(Path('/tmp/browser142-expected-hashes.json').read_text())
+          def api(path,method='GET'):
+              result=subprocess.check_output(['gh','api','--method',method,f'repos/{repo}/{path}'],text=True)
+              return json.loads(result) if result.strip() else None
+          for attempt in range(1,4):
+              release=api('releases/390950631')
+              if release['tag_name']!='v1.4.2' or release['target_commitish']!=os.environ['BUILD_SHA']:
+                  raise SystemExit('Release identity changed; stop.')
+              for asset in release['assets']:
+                  name=asset['name']
+                  if name not in expected: raise SystemExit('Unexpected asset; no deletion: '+name)
+                  if asset['state']=='starter' and asset['size']==0 and release['draft']:
+                      # Only an empty, unfinished placeholder from a failed upload.
+                      # Never remove a completed file or an asset of a published release.
+                      api('releases/assets/'+str(asset['id']),'DELETE')
+                      print('Removed empty failed-upload placeholder:',name,flush=True)
+                  elif asset['state']!='uploaded' or asset.get('digest')!='sha256:'+expected[name]:
+                      raise SystemExit('Existing asset differs; refusing to overwrite: '+name)
+              result=subprocess.run(['python3','scripts/publish-release.py'],text=True,capture_output=True)
+              print(result.stdout,flush=True)
+              if result.returncode==0: break
+              print(result.stderr,flush=True)
+              if attempt==3 or not re.search(r'HTTP 5\d\d',result.stderr):
+                  raise SystemExit('Publication did not pass; existing draft retained.')
+              time.sleep(attempt*5)
+          final=api('releases/390950631')
+          assert not final['draft'] and not final['prerelease']
+          assert api('releases/latest')['id']==390950631
+          assert api('git/ref/tags/v1.4.2')['object']['sha']==os.environ['BUILD_SHA']
+          assert set(a['name'] for a in final['assets'])==set(expected)
+          for a in final['assets']:
+              assert a['state']=='uploaded' and a['digest']=='sha256:'+expected[a['name']]
+          print('Published Latest:',final['html_url'])
+          print('Original signed APK/AAB reused; no rebuild, no tag movement, no signing-secret access.')
+          PY
