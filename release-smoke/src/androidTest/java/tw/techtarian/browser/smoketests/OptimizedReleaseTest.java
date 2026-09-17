@@ -44,7 +44,8 @@ public class OptimizedReleaseTest {
         if(device!=null){
             device.executeShellCommand("mkdir -p /data/local/tmp/r8-smoke");
             device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/"+testName.getMethodName()+".png");
-            device.executeShellCommand("am force-stop " + APP);
+            // The shell runner stops the app after this instrumentation process exits.
+            // Loading its code registers a process dependency; force-stop here kills the test host too.
         }
         if(fixture!=null)fixture.close();
     }

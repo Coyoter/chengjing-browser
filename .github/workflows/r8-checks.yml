@@ -66,25 +66,14 @@ jobs:
           adb install -r app/build/outputs/apk/release/app-release.apk
       - name: Exercise minified app and JNI without keeping app classes for tests
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re, subprocess
-          mapping=Path('app/build/outputs/mapping/release/mapping.txt').read_text()
-          args=['./gradlew','--no-daemon','--stacktrace',':release-smoke:connectedDebugAndroidTest']
-          for key,name in [('samplerClass','SamplerConfig'),('thinkingClass','ThinkingConfig')]:
-              pattern=r'^com\.google\.ai\.edge\.litertlm\.'+name+r' -> (\S+):$'
-              match=re.search(pattern,mapping,re.M)
-              if not match: raise SystemExit('Missing mapped JNI configuration: '+name)
-              args.append('-Pandroid.testInstrumentationRunnerArguments.'+key+'='+match.group(1))
-          subprocess.run(args,check=True)
-          PY
+          python3 scripts/test-r8-release.py
       - name: Collect optimization diagnostics
         if: always()
         run: |
           mkdir -p validation-r8
           git archive --format=zip HEAD -o validation-r8/source-reviewed.zip
           if adb get-state >/dev/null 2>&1; then
-            adb logcat -d -t 1500 > validation-r8/logcat.txt || true
+            adb logcat -d -v threadtime > validation-r8/logcat.txt || true
             adb pull /data/local/tmp/r8-smoke validation-r8/ || true
             adb shell dumpsys webviewupdate > validation-r8/webview.txt || true
           fi
