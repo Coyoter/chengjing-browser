@@ -85,7 +85,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(23,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(24,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -136,16 +136,19 @@ public class OptimizedReleaseTest {
         menu();click("新增無痕分頁");require(By.text("無痕瀏覽"));
         require(By.descStartsWith("分頁，")).click();
         require(By.textStartsWith("一般 "));require(By.text("無痕 1"));
-        click("關閉所有分頁");require(By.text("關閉所有無痕分頁？"));
+        assertFalse(device.hasObject(By.text("關閉所有分頁")));
+        require(By.desc("分頁選單")).click();click("關閉所有分頁");require(By.text("關閉所有無痕分頁？"));
         java.util.List<UiObject2> confirms=device.findObjects(By.text("全部關閉"));
         assertFalse(confirms.isEmpty());confirms.get(confirms.size()-1).click();
     }
     @Test public void closeAllRegularTabsWorksInOptimizedRelease() throws Exception {
         open("two");
         require(By.descStartsWith("分頁，")).click();
-        click("關閉所有分頁");require(By.text("關閉所有一般分頁？"));
+        assertFalse(device.hasObject(By.text("關閉所有分頁")));
+        require(By.desc("分頁選單")).click();click("關閉所有分頁");require(By.text("關閉所有一般分頁？"));
         click("取消");require(By.text("R8 功能測試 one"));require(By.text("R8 功能測試 two"));
-        click("關閉所有分頁");click("全部關閉");
+        assertFalse(device.hasObject(By.text("關閉所有分頁")));
+        require(By.desc("分頁選單")).click();click("關閉所有分頁");click("全部關閉");
         require(By.desc("瀏覽器選單"));
         require(By.descStartsWith("分頁，")).click();
         require(By.text("一般 1"));

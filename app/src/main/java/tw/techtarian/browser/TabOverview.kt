@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.sp
     val colors=MaterialTheme.colorScheme
     val privateGroup=c.overviewPrivate
     val tabs=c.tabs.filter{it.incognito==privateGroup}
-    var closingGroup by remember{mutableStateOf<Boolean?>(null)}
     Row(Modifier.fillMaxWidth().padding(horizontal=20.dp,vertical=8.dp),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
         listOf(false to "一般",true to "無痕").forEach{(private,label)->
             val selected=privateGroup==private
@@ -73,33 +72,12 @@ import androidx.compose.ui.unit.sp
             }
         }
     }
-    Row(Modifier.fillMaxWidth().padding(horizontal=20.dp,vertical=12.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-        if(tabs.isNotEmpty())TextButton(onClick={closingGroup=privateGroup},modifier=Modifier.heightIn(min=48.dp).testTag("close-all-tabs")){
-            Text("關閉所有分頁",fontSize=14.sp)
-        }
-        Button(onClick={if(c.newTab(incognito=privateGroup)!=null)c.sheet=""},modifier=Modifier.weight(1f).height(50.dp),shape=RoundedCornerShape(16.dp)){
+    Row(Modifier.fillMaxWidth().testTag("tab-overview-footer").padding(horizontal=20.dp,vertical=12.dp),verticalAlignment=Alignment.CenterVertically) {
+        Button(onClick={if(c.newTab(incognito=privateGroup)!=null)c.sheet=""},modifier=Modifier.weight(1f).height(50.dp).testTag("new-overview-tab"),shape=RoundedCornerShape(16.dp)){
             Icon(Icons.Outlined.Add,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text(if(privateGroup)"新增無痕分頁"else"新增分頁")
         }
     }
-    closingGroup?.let{group->
-        val count=c.tabs.count{it.incognito==group}
-        AlertDialog(
-            onDismissRequest={closingGroup=null},
-            title={Text(if(group)"關閉所有無痕分頁？"else"關閉所有一般分頁？")},
-            text={Text("將關閉這一組的 $count 個分頁，不影響另一組。"+
-                if(group)"無痕網站資料會在全部關閉後清理。下載檔案、書籤與收藏仍會保留。"
-                else "這些分頁與快照不會在下次啟動時還原；歷史記錄、下載檔案、書籤與收藏仍會保留。")},
-            confirmButton={TextButton(enabled=count>0,onClick={
-                val onlyGroup=c.tabs.all{it.incognito==group}
-                c.closeAllTabs(group)
-                closingGroup=null
-                // After closing the whole session, show its fresh homepage instead of an
-                // apparently unclosed blank card. A surviving other group stays untouched.
-                if(onlyGroup)c.sheet=""
-            },modifier=Modifier.testTag("confirm-close-all-tabs")){Text("全部關閉")}},
-            dismissButton={TextButton(onClick={closingGroup=null},modifier=Modifier.testTag("cancel-close-all-tabs")){Text("取消")}}
-        )
-    }
+
 }
 
 @Composable internal fun IncognitoHome() {
