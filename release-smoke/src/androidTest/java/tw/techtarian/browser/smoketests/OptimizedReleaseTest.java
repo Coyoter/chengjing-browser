@@ -88,7 +88,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(24,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(25,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -162,6 +162,26 @@ public class OptimizedReleaseTest {
         require(By.text("一般 1"));
         assertFalse(device.hasObject(By.text("R8 功能測試 one")));
         assertFalse(device.hasObject(By.text("R8 功能測試 two")));
+    }
+    @Test public void homepageOptionsAndDailyQuoteWorkInOptimizedRelease() throws Exception {
+        assertFalse(device.hasObject(By.desc("首頁")));
+        menu();click("設定");click("瀏覽");
+        assertFalse(device.hasObject(By.text("自訂網址")));
+        require(By.desc("顯示首頁按鈕")).click();
+        require(By.text("澄境首頁"));require(By.text("自訂網址"));
+        closeMenu();
+        require(By.desc("首頁")).click();require(By.text("快速前往"));
+        String count=require(By.descStartsWith("分頁，")).getContentDescription();
+        menu();click("設定");click("瀏覽");click("自訂網址");
+        require(By.clazz("android.widget.EditText")).setText("http://127.0.0.1:"+fixture.port()+"/two");
+        click("儲存首頁");closeMenu();
+        require(By.desc("首頁")).click();require(By.text("R8 功能測試 two"));
+        assertEquals(count,require(By.descStartsWith("分頁，")).getContentDescription());
+        menu();click("設定");click("瀏覽");click("澄境首頁");closeMenu();
+        require(By.desc("首頁")).click();require(By.text("今日一句"));
+        menu();click("設定");click("瀏覽");require(By.desc("顯示首頁按鈕")).click();
+        assertFalse(device.hasObject(By.text("自訂網址")));closeMenu();
+        assertFalse(device.hasObject(By.desc("首頁")));
     }
     private static final class Fixture implements AutoCloseable {
         private final ServerSocket server;

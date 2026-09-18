@@ -186,6 +186,8 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         onReload={if((active?.progress?:100)<100){active?.web?.stopLoading();active?.refreshContainer?.isRefreshing=false}else c.reload()},
                         onTabs={focus.clearFocus();c.openTabOverview()},
                         onNewTab={focus.clearFocus();editingAddress=false;c.newTab()},
+                        showHome=c.home.enabled,
+                        onHome={focus.clearFocus();editingAddress=false;keyboard?.hide();c.openHome()},
                     )
         }
         val controlsBar:@Composable ()->Unit = {
@@ -212,7 +214,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text("例外中 · 原始網站",Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text("恢復規則")}}
                     }
                     Box(Modifier.weight(1f).fillMaxWidth()){
-                        if(active?.url.isNullOrEmpty()){if(active?.incognito==true)IncognitoHome()else Home(c,store)}
+                        if(active?.url.isNullOrEmpty()){if(active?.incognito==true)IncognitoHome()else BrowserHome(c,store)}
                         else if(active?.error?.isNotEmpty()==true)Column(Modifier.fillMaxSize().padding(32.dp),verticalArrangement=Arrangement.Center,horizontalAlignment=Alignment.CenterHorizontally){Icon(Icons.Outlined.CloudOff,null,Modifier.size(48.dp),tint=cs.primary);Spacer(Modifier.height(24.dp));Text("暫時連不上這個網站",style=MaterialTheme.typography.titleLarge);Spacer(Modifier.height(12.dp));Text(active.error,color=cs.onSurfaceVariant);Spacer(Modifier.height(20.dp));Button(onClick={c.reload()}){Text("重新載入")}}
                         else active?.let{tab->key(tab.id){AndroidView(factory={(tab.refreshContainer.parent as? android.view.ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer},update={it.setColorSchemeColors(cs.primary.toArgb());it.setProgressBackgroundColorSchemeColor(cs.surface.toArgb())},modifier=Modifier.fillMaxSize().testTag("web-content"))}}
                     }
@@ -276,32 +278,6 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     }
 }
 
-@Composable private fun Home(c:BrowserController,store:BrowserStore){
-    val cs=MaterialTheme.colorScheme
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal=28.dp,vertical=38.dp)){
-        Row(verticalAlignment=Alignment.CenterVertically){Image(painterResource(R.drawable.ic_launcher),"澄境瀏覽器",modifier=Modifier.size(56.dp));Spacer(Modifier.width(12.dp));Column{Text("澄境瀏覽器",fontWeight=FontWeight.SemiBold,fontSize=17.sp);Text("CHENGJING BROWSER",fontSize=9.sp,letterSpacing=1.6.sp,color=cs.onSurfaceVariant)}}
-        Spacer(Modifier.height(44.dp))
-        Text("網頁，\n依你的習慣調整。",fontSize=35.sp,lineHeight=47.sp,fontWeight=FontWeight.Light,letterSpacing=(-1).sp)
-        Spacer(Modifier.height(18.dp))
-        Text("照常瀏覽，也能打開天眼，\n新增樣式、程式碼或調整元件。",fontSize=15.sp,lineHeight=25.sp,color=cs.onSurfaceVariant)
-        Spacer(Modifier.height(32.dp))
-        Text("快速前往",fontSize=12.sp,color=cs.onSurfaceVariant);Spacer(Modifier.height(10.dp))
-        Row(horizontalArrangement=Arrangement.spacedBy(12.dp)){
-            AssistChip(onClick={c.navigate("https://www.google.com")},label={Text("Google")},leadingIcon={Icon(Icons.Outlined.Search,null,Modifier.size(16.dp))})
-            AssistChip(onClick={c.navigate("https://zh.wikipedia.org")},label={Text("維基百科")},leadingIcon={Icon(Icons.Outlined.Language,null,Modifier.size(16.dp))})
-        }
-        val favoriteRevision=c.revision
-        val recentFavorites=remember(favoriteRevision){c.favorites.all().take(3)}
-        if(recentFavorites.isNotEmpty()){
-            Spacer(Modifier.height(18.dp));Text("繼續閱讀",fontSize=12.sp,color=cs.onSurfaceVariant)
-            recentFavorites.forEach{favorite->Row(Modifier.fillMaxWidth().clickable{c.openFavorite(favorite)}.padding(vertical=12.dp),verticalAlignment=Alignment.CenterVertically){SiteIcon(c,favorite.url,28.dp);Spacer(Modifier.width(10.dp));Text(favorite.title,Modifier.weight(1f),fontSize=14.sp,maxLines=1,overflow=TextOverflow.Ellipsis)}}
-        }
-        Row(horizontalArrangement=Arrangement.spacedBy(8.dp)){
-            TextButton(onClick={c.sheet="bookmarks"}){Icon(Icons.Outlined.Folder,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("書籤資料夾")}
-            TextButton(onClick={c.sheet="favorites"}){Icon(Icons.Outlined.StarOutline,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("所有收藏")}
-        }
-    }
-}
 @Composable private fun Tool(icon:ImageVector,label:String,enabled:Boolean=true,modifier:Modifier=Modifier,onClick:()->Unit){IconButton(onClick=onClick,enabled=enabled,modifier=modifier.size(48.dp)){Icon(icon,label,Modifier.size(22.dp))}}
 @Composable private fun SheetTitle(title:String,subtitle:String=""){
     if(subtitle.isNotBlank())Text(subtitle,Modifier.fillMaxWidth(),fontSize=13.sp,lineHeight=20.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
@@ -393,6 +369,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             }
         }
         "browsing"->{
+            HomeSettings(c)
             MenuGroup("網站顯示"){
                 MenuRow(Icons.Outlined.Language,"瀏覽器識別（User-Agent）",when(store.userAgentMode){"webview"->"原始 Android WebView";"custom"->"自訂識別";else->"Chrome 手機版"}){c.sheet="user-agent"}
             }
