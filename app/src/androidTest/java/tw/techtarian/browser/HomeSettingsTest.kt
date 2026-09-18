@@ -64,7 +64,11 @@ class HomeSettingsTest {
         val count=c.tabs.size
         ui.runOnIdle{c.home.updateEnabled(true);c.home.useDefault()}
         ui.onNodeWithTag("home-button").performClick()
-        ui.waitUntil(10000){c.active?.url==""&&c.active?.web?.url=="about:blank"}
+        ui.waitUntil(10000){
+            var ready=false
+            ui.runOnUiThread{ready=c.active?.url==""&&c.active?.web?.url=="about:blank"}
+            ready
+        }
         ui.onNodeWithTag("browser-home").assertIsDisplayed()
         ui.runOnIdle{assertEquals(page.id,c.activeId);assertEquals(count,c.tabs.size);assertTrue(c.active!!.web.canGoBack())}
         ui.onNodeWithContentDescription("上一頁").performClick()
