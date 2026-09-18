@@ -54,6 +54,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     val gemma=GemmaLocal(context.applicationContext)
     val icons=SiteIcons(context.applicationContext)
     val favorites=FavoriteStore(context)
+    internal val home=HomePreferences(context,existingUser=store.tabs().isNotEmpty()||store.history().isNotEmpty())
+    internal val homeQuotes by lazy{context.assets.open("home-quotes.txt").bufferedReader(Charsets.UTF_8).use{it.readLines()}.filter{it.isNotBlank()}}
     internal val previews=TabPreviewStore(context)
     private var restoringTabs=false
     private var destroyed=false
@@ -297,6 +299,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun shouldOverrideUrlLoading(view:WebView, request:WebResourceRequest):Boolean {
                 if(web.selecting) return true
                 val u=request.url.toString()
+                // The native homepage has an actual history entry, so Back/Forward stay useful.
+                if(request.isForMainFrame&&u=="about:blank")return false
                 if(request.url.scheme !in listOf("https","http")) {
                     if(request.isForMainFrame)recordBlocked(tab,"外部 App 跳轉",u)
                     return true
@@ -314,7 +318,12 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 tab.navigationGeneration++
                 tab.previewReady=false
                 // Keep the last successful thumbnail during reload, offline restore and errors.
-                tab.url=url;tab.pendingUrl=url;tab.error="";tab.blockedUrl=""
+                tab.url=if(url=="about:blank")""else url
+                tab.pendingUrl=url;tab.error="";tab.blockedUrl=""
+                if(url=="about:blank"){
+                    tab.title="澄境首頁";tab.previewGeneration++;tab.preview=null
+                    previews.remove(tab.previewKey)
+                }
                 tab.favoriteId?.let{id->
                     if(favorites.get(id)?.let{Domains.scope(it.url)!=Domains.scope(url)}!=false){tab.favoriteId=null;tab.favoriteRestore=null}
                 }
@@ -323,8 +332,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 persistTabs()
             }
             override fun doUpdateVisitedHistory(view:WebView,url:String,isReload:Boolean){
-                if(url.startsWith("http://")||url.startsWith("https://")){
-                    tab.url=url;tab.canBack=view.canGoBack();tab.canForward=view.canGoForward();persistTabs()
+                if(url=="about:blank"||url.startsWith("http://")||url.startsWith("https://")){
+                    tab.url=if(url=="about:blank")""else url
+                    tab.canBack=view.canGoBack();tab.canForward=view.canGoForward();persistTabs()
                 }
             }
             override fun onPageFinished(view:WebView,url:String) {
@@ -387,7 +397,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         web.webChromeClient=object:WebChromeClient(){
             override fun onProgressChanged(view:WebView,value:Int){tab.progress=value}
             override fun onReceivedIcon(view:WebView,icon:Bitmap?){if(icon!=null&&!tab.incognito)view.url?.let{icons.remember(it,icon)}}
-            override fun onReceivedTitle(view:WebView,title:String?){tab.title=title?.take(180)?:tab.url;persistTabs()}
+            override fun onReceivedTitle(view:WebView,title:String?){
+                tab.title=if(view.url=="about:blank")"澄境首頁"else title?.take(180)?:tab.url
+                persistTabs()
+            }
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {
                 if(web.selecting) return false
                 val scope=Domains.scope(tab.url)
@@ -426,6 +439,16 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         stopEye();sheet="";active?.error="";active?.favoriteId=fromFavorite?.id;active?.favoriteRestore=fromFavorite;active?.favoriteRestoreTouchSequence=active?.web?.touchSequence?:0L;active?.pendingUrl=url;active?.web?.loadUrl(url)
     }
     internal fun recordSearchFor(tab:BrowserTab?,input:String,url:String){if(tab?.incognito!=true)store.recordSearch(input,url)}
+    /** Home is a navigation in the current tab, never a new tab or a change of profile. */
+    fun openHome(){
+        if(!home.enabled)return
+        val tab=active?:return
+        val destination=home.destination()
+        stopEye();sheet="";tab.error="";tab.favoriteId=null;tab.favoriteRestore=null
+        tab.web.stopLoading()
+        tab.pendingUrl=destination?:"about:blank"
+        tab.web.loadUrl(destination?:"about:blank")
+    }
     fun openFavorite(favorite:Favorite){navigate(favorite.url,favorite)}
     fun removeFavorite(id:String){favorites.remove(id);tabs.filter{it.favoriteId==id}.forEach{it.favoriteId=null;it.favoriteRestore=null};revision++;persistTabs()}
     suspend fun saveFavorite(forceNew:Boolean=false):Favorite?{

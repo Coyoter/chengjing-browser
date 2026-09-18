@@ -45,10 +45,14 @@ import androidx.compose.ui.unit.sp
     address:TextFieldValue,onAddress:(TextFieldValue)->Unit,editing:Boolean,onFocus:(Boolean)->Unit,
     loading:Boolean,secure:Boolean,blank:Boolean,tabs:Int,certificateWarning:Boolean=false,certificateException:Boolean=false,
     onGo:()->Unit,onSecurity:()->Unit,onReload:()->Unit,onTabs:()->Unit,onNewTab:()->Unit,
+    showHome:Boolean=false,onHome:()->Unit={},
 ){
     val colors=MaterialTheme.colorScheme
     LaunchedEffect(editing){if(editing)onAddress(address.copy(selection=TextRange(0,address.text.length)))}
-    Row(Modifier.fillMaxWidth().testTag("browser-topbar").padding(horizontal=24.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
+    Row(Modifier.fillMaxWidth().testTag("browser-topbar").padding(horizontal=if(showHome)8.dp else 24.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
+        if(showHome)IconButton(onClick=onHome,modifier=Modifier.size(48.dp).testTag("home-button")){
+            Icon(Icons.Outlined.Home,"首頁",Modifier.size(22.dp))
+        }
         // Visual capsule is 44 dp. The centered controls retain a 48 dp touch target.
         Box(Modifier.weight(1f).height(48.dp),contentAlignment=Alignment.Center){
             Surface(Modifier.fillMaxWidth().height(44.dp).testTag("address-capsule"),shape=RoundedCornerShape(22.dp),color=colors.surface){}
