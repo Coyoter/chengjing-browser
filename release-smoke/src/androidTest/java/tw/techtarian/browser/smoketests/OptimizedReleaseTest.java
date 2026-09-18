@@ -71,6 +71,7 @@ public class OptimizedReleaseTest {
     }
     private UiObject2 findText(String text) throws Exception {
         for(int i=0;i<7;i++){
+            device.waitForIdle();
             UiObject2 node=device.wait(Until.findObject(By.text(text)),1000);
             if(node!=null)return node;
             device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*3/4,
@@ -81,7 +82,20 @@ public class OptimizedReleaseTest {
         return null;
     }
     private void click(String text) throws Exception {
-        findText(text).click();device.waitForIdle();
+        findText(text);
+        // A text node can become visible during an unfinished scroll. Wait, re-query,
+        // and tap its actual clickable row rather than stale text coordinates.
+        device.waitForIdle();
+        SystemClock.sleep(250);
+        UiObject2 node=require(By.text(text));
+        while(node!=null&&!node.isClickable())node=node.getParent();
+        assertNotNull("No clickable target for: "+text,node);
+        node.click();device.waitForIdle();
+    }
+    private void settings(String category) throws Exception {
+        menu();click("設定");
+        require(By.text("外觀"));require(By.text("瀏覽"));
+        click(category);
     }
     private void menu() {require(By.desc("瀏覽器選單")).click();require(By.desc("關閉選單"));}
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
@@ -119,7 +133,7 @@ public class OptimizedReleaseTest {
         assertNotNull(thinking.getDeclaredMethod("getThinkingTokenBudget"));
     }
     @Test public void aiProviderFieldsStillRecomposeInOptimizedRelease() throws Exception {
-        menu();click("設定");click("AI");click("OpenRouter · 雲端模型");
+        settings("AI");click("OpenRouter · 雲端模型");
         require(By.clazz("android.widget.EditText"));
         device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()/3,
             device.getDisplayWidth()/2,device.getDisplayHeight()*3/4,25);
@@ -165,21 +179,21 @@ public class OptimizedReleaseTest {
     }
     @Test public void homepageOptionsAndDailyQuoteWorkInOptimizedRelease() throws Exception {
         assertFalse(device.hasObject(By.desc("首頁")));
-        menu();click("設定");click("瀏覽");
+        settings("瀏覽");
         assertFalse(device.hasObject(By.text("自訂網址")));
         require(By.desc("顯示首頁按鈕")).click();
         require(By.text("澄境首頁"));require(By.text("自訂網址"));
         closeMenu();
         require(By.desc("首頁")).click();require(By.text("快速前往"));
         String count=require(By.descStartsWith("分頁，")).getContentDescription();
-        menu();click("設定");click("瀏覽");click("自訂網址");
+        settings("瀏覽");click("自訂網址");
         require(By.clazz("android.widget.EditText")).setText("http://127.0.0.1:"+fixture.port()+"/two");
         click("儲存首頁");closeMenu();
         require(By.desc("首頁")).click();require(By.text("R8 功能測試 two"));
         assertEquals(count,require(By.descStartsWith("分頁，")).getContentDescription());
-        menu();click("設定");click("瀏覽");click("澄境首頁");closeMenu();
+        settings("瀏覽");click("澄境首頁");closeMenu();
         require(By.desc("首頁")).click();require(By.text("今日一句"));
-        menu();click("設定");click("瀏覽");require(By.desc("顯示首頁按鈕")).click();
+        settings("瀏覽");require(By.desc("顯示首頁按鈕")).click();
         assertFalse(device.hasObject(By.text("自訂網址")));closeMenu();
         assertFalse(device.hasObject(By.desc("首頁")));
     }
