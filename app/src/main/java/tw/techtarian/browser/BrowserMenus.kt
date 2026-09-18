@@ -64,7 +64,8 @@ internal fun panelParent(page:String)=when(page){
             Text(panelTitle(c.sheet),fontSize=20.sp,lineHeight=26.sp,fontWeight=FontWeight.SemiBold,maxLines=1,overflow=TextOverflow.Ellipsis)
             if(c.sheet=="menu")Text(c.domain.ifBlank{"依你的習慣瀏覽"},fontSize=12.sp,lineHeight=16.sp,color=colors.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
         }
-        IconButton(onClick={c.sheet=""}){Icon(Icons.Outlined.Close,"關閉選單")}
+        if(c.sheet=="tabs")TabOverviewMenu(c)
+        else IconButton(onClick={c.sheet=""}){Icon(Icons.Outlined.Close,"關閉選單")}
     }
 }
 @Composable internal fun MenuGroup(title:String,content:@Composable ColumnScope.()->Unit){

@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Process
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
 import org.json.JSONArray
 import org.junit.After
 import org.junit.Assert.*
@@ -22,6 +24,19 @@ class CloseAllTabsTest {
     }
     @After fun cleanup(){ui.runOnIdle{c.closePrivateTabs();c.sheet="";c.updatePrivacyWindow()}}
 
+    private fun openOverflow(){
+        ui.onNodeWithTag("close-all-tabs").assertDoesNotExist()
+        ui.onNode(hasTestTag("tab-overview-menu") and hasAnyAncestor(hasTestTag("panel-header"))).assertIsDisplayed().performClick()
+        ui.onNodeWithTag("close-all-tabs").assertIsDisplayed()
+    }
+    private fun chooseCloseAll(){openOverflow();ui.onNodeWithTag("close-all-tabs").assertIsEnabled().performClick()}
+    private fun dismissOverflow(){
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack()
+        ui.waitForIdle()
+        ui.onNodeWithTag("close-all-tabs").assertDoesNotExist()
+        ui.onNodeWithTag("tab-grid").assertExists()
+    }
+
     @Test fun cancellingLeavesAllTabsAndPreviewsIntact(){
         val first=f.load("https://close-all.invalid/same","閱讀甲")
         val second=f.load("https://close-all.invalid/same","閱讀乙")
@@ -29,7 +44,7 @@ class CloseAllTabsTest {
         val ids=c.tabs.map{it.id}
         val keys=listOf(first.previewKey!!,second.previewKey!!)
         val hashes=keys.associateWith{f.hash(it)}
-        ui.onNodeWithTag("close-all-tabs").assertIsDisplayed().performClick()
+        chooseCloseAll()
         ui.onNodeWithText("關閉所有一般分頁？").assertIsDisplayed()
         f.screenshot("close-all-confirm-light")
         ui.onNodeWithTag("cancel-close-all-tabs").performClick()
@@ -76,7 +91,7 @@ class CloseAllTabsTest {
         val b=f.load("https://close-all.invalid/b","全部關閉乙")
         ui.runOnIdle{c.openTabOverview();c.checkpointTabs()}
         val oldIds=c.tabs.map{it.id}.toSet()
-        ui.onNodeWithTag("close-all-tabs").performClick()
+        chooseCloseAll()
         ui.onNodeWithTag("confirm-close-all-tabs").performClick()
         ui.onNodeWithTag("browser-controls").assertIsDisplayed()
         ui.runOnIdle{
@@ -92,16 +107,23 @@ class CloseAllTabsTest {
     @Test fun emptyGroupHasNoDestructiveAction(){
         ui.runOnIdle{c.openTabOverview()}
         ui.onNodeWithTag("tab-group-true").performClick()
-        ui.onNodeWithTag("close-all-tabs").assertDoesNotExist()
+        openOverflow()
+        ui.onNodeWithTag("close-all-tabs").assertIsNotEnabled()
         ui.runOnIdle{assertEquals(0,c.closeAllTabs(true))}
+        dismissOverflow()
         ui.onNodeWithTag("tab-group-false").performClick()
-        ui.onNodeWithTag("close-all-tabs").assertIsDisplayed()
-        f.screenshot("close-all-normal-list")
+        ui.onNodeWithTag("close-all-tabs").assertDoesNotExist()
+        ui.onNodeWithTag("new-overview-tab").assertIsDisplayed()
+        openOverflow();ui.onNodeWithTag("close-all-tabs").assertIsEnabled();dismissOverflow()
     }
     @Test fun closingInDarkModeDoesNotAlterTheFirstToolbar(){
         ui.runOnIdle{c.store.theme="dark"}
         ui.activityRule.scenario.recreate();ui.waitForIdle()
+        f.load("https://close-all.invalid/dark-a","深色閱讀甲")
+        f.load("https://close-all.invalid/dark-b","深色閱讀乙")
         ui.runOnIdle{c.openTabOverview()}
+        f.screenshot("tabs-list-dark")
+        openOverflow();f.screenshot("tabs-overflow-dark")
         ui.onNodeWithTag("close-all-tabs").performClick()
         f.screenshot("close-all-confirm-dark")
         ui.onNodeWithTag("cancel-close-all-tabs").performClick()
@@ -110,6 +132,63 @@ class CloseAllTabsTest {
         ui.onNodeWithTag("share-current-page").assertDoesNotExist()
         ui.runOnIdle{c.store.theme="system"}
     }
+    @Test fun onlyAddTabAppearsInFooterAndMenuIsAnchoredAtTopRight(){
+        f.load("https://close-all.invalid/layout-a","閱讀，留給自己")
+        f.load("https://close-all.invalid/layout-b","讓每個想法有位置")
+        ui.runOnIdle{c.openTabOverview();c.checkpointTabs()}
+        ui.onNodeWithTag("close-all-tabs").assertDoesNotExist()
+        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("tab-overview-footer"))).assertCountEquals(1)
+        val footer=ui.onNodeWithTag("tab-overview-footer").fetchSemanticsNode().boundsInRoot
+        val add=ui.onNodeWithTag("new-overview-tab").assertIsDisplayed().fetchSemanticsNode().boundsInRoot
+        val header=ui.onNodeWithTag("panel-header").fetchSemanticsNode().boundsInRoot
+        val more=ui.onNodeWithTag("tab-overview-menu").fetchSemanticsNode().boundsInRoot
+        assertTrue("Add button must use the footer's available width",add.width>footer.width*.85f)
+        assertTrue("More icon belongs at the top right",more.center.x>header.center.x)
+        assertTrue("Add button remains at the bottom",add.top>header.bottom)
+        f.screenshot("tabs-list-light")
+        val ids=c.tabs.map{it.id}
+        openOverflow();f.screenshot("tabs-overflow-light")
+        dismissOverflow()
+        assertEquals(ids,c.tabs.map{it.id})
+        ui.runOnIdle{c.sheet="menu"}
+        ui.onNodeWithTag("tab-overview-menu").assertDoesNotExist()
+        ui.onNodeWithContentDescription("關閉選單").assertIsDisplayed()
+    }
+    @Test fun footerAddsToSelectedCollectionWithoutDeletingExistingTabs(){
+        ui.runOnIdle{c.openTabOverview();assertTrue(c.privateSession.supported)}
+        val normalBefore=c.tabs.filterNot{it.incognito}.map{it.id}
+        ui.onNodeWithTag("new-overview-tab").performClick()
+        ui.runOnIdle{
+            assertFalse(c.active!!.incognito)
+            assertEquals(normalBefore.size+1,c.tabs.count{!it.incognito})
+            assertTrue(c.tabs.map{it.id}.containsAll(normalBefore))
+            c.openTabOverview()
+        }
+        val retainedNormal=c.tabs.filterNot{it.incognito}.map{it.id}
+        ui.onNodeWithTag("tab-group-true").performClick()
+        ui.onNodeWithTag("new-overview-tab").assertIsDisplayed().performClick()
+        ui.runOnIdle{
+            assertTrue(c.active!!.incognito)
+            assertEquals(retainedNormal,c.tabs.filterNot{it.incognito}.map{it.id})
+        }
+    }
+    @Test fun overflowClosesSelectedNormalGroupWhilePrivatePageIsActive(){
+        f.load("https://close-all.invalid/normal-menu","一般頁面")
+        ui.runOnIdle{assertTrue(c.privateSession.supported)}
+        val privateTab=f.load("https://close-all.invalid/private-menu","無痕保留",true)
+        ui.runOnIdle{c.openTabOverview()}
+        ui.onNodeWithTag("tab-group-false").performClick()
+        chooseCloseAll()
+        ui.onNodeWithText("關閉所有一般分頁？").assertIsDisplayed()
+        ui.onNodeWithTag("confirm-close-all-tabs").performClick()
+        ui.runOnIdle{assertEquals(listOf(privateTab.id),c.tabs.map{it.id});assertTrue(c.store.tabs().isEmpty())}
+        ui.onNodeWithTag("tab-group-true").performClick()
+        chooseCloseAll()
+        ui.onNodeWithText("關閉所有無痕分頁？").assertIsDisplayed()
+        ui.onNodeWithTag("cancel-close-all-tabs").performClick()
+        ui.runOnIdle{assertEquals(listOf(privateTab.id),c.tabs.map{it.id})}
+    }
+
 }
 
 /** Invoke each method in a separate process; never operate on the production package. */
