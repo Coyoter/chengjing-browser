@@ -56,9 +56,12 @@ public class OptimizedReleaseTest {
     private Class<?> type(String name) throws Exception {
         return Class.forName(name,true,target().getClassLoader());
     }
-    private void open(String page) throws Exception {
+    private void launchPage(String page) throws Exception {
         device.executeShellCommand("am start -W -a android.intent.action.VIEW -d http://127.0.0.1:"+fixture.port()+"/"+page+" -n "+APP+"/tw.techtarian.browser.MainActivity");
         require(By.desc("瀏覽器選單"));
+    }
+    private void open(String page) throws Exception {
+        launchPage(page);
         require(By.text("R8 測試元件"));
     }
     private UiObject2 require(BySelector selector) {
@@ -142,8 +145,13 @@ public class OptimizedReleaseTest {
         assertFalse(confirms.isEmpty());confirms.get(confirms.size()-1).click();
     }
     @Test public void closeAllRegularTabsWorksInOptimizedRelease() throws Exception {
-        open("two");
+        // A second WebView can render before its virtual accessibility tree is refreshed.
+        // This scenario tests the native overview: verify BOTH real page titles there.
+        // The independent bridge scenario above still requires and clicks the DOM button.
+        launchPage("two");
         require(By.descStartsWith("分頁，")).click();
+        require(By.text("R8 功能測試 one"));require(By.text("R8 功能測試 two"));
+        require(By.text("新增分頁"));
         assertFalse(device.hasObject(By.text("關閉所有分頁")));
         require(By.desc("分頁選單")).click();click("關閉所有分頁");require(By.text("關閉所有一般分頁？"));
         click("取消");require(By.text("R8 功能測試 one"));require(By.text("R8 功能測試 two"));
