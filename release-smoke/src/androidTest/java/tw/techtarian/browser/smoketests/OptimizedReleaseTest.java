@@ -92,10 +92,22 @@ public class OptimizedReleaseTest {
         assertNotNull("No clickable target for: "+text,node);
         node.click();device.waitForIdle();
     }
+    private boolean isInSelectedTab(UiObject2 node) {
+        while(node!=null){
+            if(node.isSelected())return true;
+            node=node.getParent();
+        }
+        return false;
+    }
     private void settings(String category) throws Exception {
         menu();click("設定");
         require(By.text("外觀"));require(By.text("瀏覽"));
-        click(category);
+        // Compose correctly removes ACTION_CLICK from the already selected tab.
+        // Reopening Settings preserves its category; verify it rather than trying to
+        // click a deliberately non-actionable selection for a second time.
+        if(!isInSelectedTab(require(By.text(category))))click(category);
+        if(category.equals("瀏覽"))require(By.desc("顯示首頁按鈕"));
+        else if(category.equals("AI"))require(By.text("OpenRouter · 雲端模型"));
     }
     private void menu() {require(By.desc("瀏覽器選單")).click();require(By.desc("關閉選單"));}
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
