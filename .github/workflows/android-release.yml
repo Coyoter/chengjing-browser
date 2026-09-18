@@ -1,4 +1,4 @@
-# Revalidate 1.5.0 with stable native settings navigation in the independent R8 host.
+# Revalidate 1.5.0 with selected-category awareness in the independent R8 test host.
 name: Android release
 
 on:
