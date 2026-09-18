@@ -88,11 +88,11 @@ class HomeLayoutTest {
     @Test fun longDailyHomeRendersInLightAndDarkAndKeepsShortcutsReachable(){
         var dark by mutableStateOf(false)
         var large by mutableStateOf(false)
-        val longest=c.homeQuotes.withIndex().maxBy{it.value.length}.index
+        val longest=c.homeQuotes.withIndex().maxBy{row->row.value.sumOf{if(it.code>127)2 else 1}}.index
         ui.runOnIdle{
             ui.activity.getSharedPreferences("home-v1",android.content.Context.MODE_PRIVATE).edit()
                 .putBoolean("intro-seen",true).putLong("quote-start-day",java.time.LocalDate.now().minusDays(longest.toLong()).toEpochDay()).commit()
-            c.home.updateEnabled(true);c.newTab(incognito=false)
+            c.store.theme="light";c.home.updateEnabled(true);c.newTab(incognito=false)
         }
         ui.runOnUiThread{ui.activity.setContent{
             val density=LocalDensity.current

@@ -56,6 +56,7 @@ class HomeSettingsTest {
         ui.onNodeWithTag("home-url-input").assertDoesNotExist()
         ui.onNodeWithTag("home-button-switch").performClick()
         ui.onNodeWithTag("home-url-input").assertTextContains("https://example.com/articles")
+        ui.runOnIdle{c.sheet=""};settings()
         f.screenshot("home-settings-custom")
     }
     @Test fun homeNavigatesInPlaceAndBackReturnsToThePage(){
