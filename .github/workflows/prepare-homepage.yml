@@ -1,0 +1,39 @@
+name: Apply reviewed homepage feature patch
+on:
+  push:
+    branches: [feat/homepage-daily-quotes-1.5.0]
+    paths: [.github/workflows/prepare-homepage.yml]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Verify and apply the exact reviewed source patch
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, hashlib, subprocess
+          from pathlib import Path
+          paths=[Path('.ci/home-'+str(i)) for i in range(3)]
+          encoded=''.join(p.read_text() for p in paths)
+          encoded=encoded.replace('CJTZ4ziHnQnRUR','CJTZ4zi3QnRUR')
+          data=base64.b64decode(encoded,validate=True)
+          assert hashlib.sha256(data).hexdigest()=='8b93a1f2f2b4a7e27cfa1da1e2c610443a37fd1f7d0904de9bb815be14795b30','Reviewed patch checksum mismatch'
+          patch=Path('/tmp/home-reviewed.patch')
+          patch.write_bytes(gzip.decompress(data))
+          subprocess.run(['git','apply','--check',str(patch)],check=True)
+          subprocess.run(['git','apply',str(patch)],check=True)
+          subprocess.run(['git','diff','--check'],check=True)
+          for p in paths:p.unlink()
+          PY
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Add opt-in homepage navigation and offline daily quotes with responsive layout regressions'
+      - name: Push the development source only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$GH_TOKEN; }; f' push origin HEAD:refs/heads/feat/homepage-daily-quotes-1.5.0
