@@ -75,7 +75,7 @@ class HomeSettingsTest {
         ui.onNodeWithTag("browser-home").assertIsDisplayed()
         val count=c.tabs.size;val id=c.activeId
         ui.onNodeWithTag("home-button").performClick()
-        ui.waitUntil(10000){c.active?.url=="https://practice.chengjing.invalid/"}
+        ui.waitUntil(10000){c.active?.url=="https://practice.chengjing.invalid/"&&c.active?.progress==100&&c.store.history().any{it.first=="https://practice.chengjing.invalid/"}}
         ui.runOnIdle{assertEquals(id,c.activeId);assertEquals(count,c.tabs.size);assertTrue(c.privateSession.supported);c.newTab(incognito=true)}
         val privateId=c.activeId;val history=c.store.history()
         ui.onNodeWithTag("home-button").performClick()

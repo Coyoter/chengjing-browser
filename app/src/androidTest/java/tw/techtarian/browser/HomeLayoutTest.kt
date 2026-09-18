@@ -55,6 +55,10 @@ class HomeLayoutTest {
                 assertEquals(1,results.size)
                 assertFalse("Clipped sentence at font scale $size: $quote",results.single().hasVisualOverflow)
                 assertTrue(results.single().layoutInput.style.fontSize.value>=22f)
+                if(quote==quotes.first()){
+                    val layout=results.single();val last=layout.lineCount-1
+                    assertTrue("Do not leave a single-character widow",last==0||quote.substring(layout.getLineStart(last),layout.getLineEnd(last)).trim().length>=2)
+                }
             }
         }
     }

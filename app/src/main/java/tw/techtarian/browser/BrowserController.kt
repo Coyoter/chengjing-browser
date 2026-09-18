@@ -398,7 +398,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onProgressChanged(view:WebView,value:Int){tab.progress=value}
             override fun onReceivedIcon(view:WebView,icon:Bitmap?){if(icon!=null&&!tab.incognito)view.url?.let{icons.remember(it,icon)}}
             override fun onReceivedTitle(view:WebView,title:String?){
-                tab.title=if(view.url=="about:blank")"澄境首頁"else title?.take(180)?:tab.url
+                tab.title=if(tab.url.isEmpty()&&view.url=="about:blank")"澄境首頁"else title?.take(180)?:tab.url
                 persistTabs()
             }
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {

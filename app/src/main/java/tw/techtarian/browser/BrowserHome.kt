@@ -17,6 +17,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -82,9 +83,14 @@ import kotlinx.coroutines.delay
     BoxWithConstraints(Modifier.fillMaxWidth()){
         val pixels=with(density){maxWidth.roundToPx().coerceAtLeast(1)}
         val style=remember(text,pixels,density.fontScale,measurer){
-            (34 downTo 22).map{size->TextStyle(fontSize=size.sp,lineHeight=(size*1.42f).sp,fontWeight=FontWeight.Light)}
-                .firstOrNull{candidate->measurer.measure(AnnotatedString(text),candidate,constraints=Constraints(maxWidth=pixels)).lineCount<=4}
-                ?:TextStyle(fontSize=22.sp,lineHeight=32.sp,fontWeight=FontWeight.Light)
+            (34 downTo 22).map{size->TextStyle(fontSize=size.sp,lineHeight=(size*1.42f).sp,fontWeight=FontWeight.Light,lineBreak=LineBreak.Heading)}
+                .firstOrNull{candidate->
+                    val layout=measurer.measure(AnnotatedString(text),candidate,constraints=Constraints(maxWidth=pixels))
+                    val last=layout.lineCount-1
+                    val tail=text.substring(layout.getLineStart(last),layout.getLineEnd(last)).trim()
+                    layout.lineCount<=4&&(last==0||tail.length>=2)
+                }
+                ?:TextStyle(fontSize=22.sp,lineHeight=32.sp,fontWeight=FontWeight.Light,lineBreak=LineBreak.Heading)
         }
         // No maxLines/fixed height: large accessibility fonts may make the page scroll.
         Text(text,Modifier.fillMaxWidth().testTag("daily-home-quote"),style=style,color=MaterialTheme.colorScheme.onBackground)
