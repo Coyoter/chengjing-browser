@@ -27,37 +27,71 @@ import okhttp3.Request
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.io.File
 import java.security.MessageDigest
-import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicLong
 
 class SiteIcons(context:Context){
     private val directory=File(context.cacheDir,"site-icons").apply{mkdirs()}
-    private val cache=LruCache<String,Bitmap>(128)
-    private val locks=ConcurrentHashMap<String,Mutex>()
-    private val attempts=ConcurrentHashMap<String,Long>()
+    private data class CachedIcon(val bitmap:Bitmap,val savedAt:Long)
+    private val cache=LruCache<String,CachedIcon>(128)
+    private val locks=Array(16){Mutex()}
+    @Volatile private var clearing=false
+    @Volatile private var closed=false
+    private val attempts=LruCache<String,Long>(256)
     private val permits=Semaphore(3)
     private val scope=CoroutineScope(SupervisorJob()+Dispatchers.IO)
     private val client=OkHttpClient.Builder().callTimeout(8,TimeUnit.SECONDS).followRedirects(false).build()
     var revision by mutableIntStateOf(0);private set
+    init{scope.launch{disk.withLock{IconCachePolicy.trim(directory)}}}
     private fun origin(url:String)=url.toHttpUrlOrNull()?.newBuilder()?.username("")?.password("")?.encodedPath("/")?.query(null)?.fragment(null)?.build()?.toString()
     private fun file(key:String)=File(directory,MessageDigest.getInstance("SHA-256").digest(key.toByteArray()).joinToString(""){"%02x".format(it)}+".png")
-    fun peek(url:String)=origin(url)?.let{cache.get(it)}
+    private fun cached(key:String):Bitmap? {
+        val entry=cache.get(key)?:return null
+        if(IconCachePolicy.fresh(entry.savedAt,System.currentTimeMillis()))return entry.bitmap
+        cache.remove(key);return null
+    }
+    fun peek(url:String)=if(clearing||closed)null else origin(url)?.let{cached(it)}
+    private fun write(key:String,bitmap:Bitmap,now:Long) {
+        directory.mkdirs()
+        val path=file(key);val temporary=File(directory,path.name+".tmp")
+        try{
+            temporary.outputStream().use{check(bitmap.compress(Bitmap.CompressFormat.PNG,100,it))}
+            check(temporary.renameTo(path));path.setLastModified(now)
+        }finally{temporary.delete()}
+        IconCachePolicy.trim(directory,now)
+    }
     fun remember(url:String,icon:Bitmap){
+        if(clearing||closed)return
+        val expected=generation.get()
         val key=origin(url)?:return
         val size=maxOf(icon.width,icon.height);if(size<=0||icon.isRecycled)return
         val factor=minOf(1f,128f/size)
         val bitmap=Bitmap.createScaledBitmap(icon,maxOf(1,(icon.width*factor).toInt()),maxOf(1,(icon.height*factor).toInt()),true).copy(Bitmap.Config.ARGB_8888,false)?:return
-        cache.put(key,bitmap);revision++
-        scope.launch{runCatching{locks.getOrPut(key){Mutex()}.withLock{file(key).outputStream().use{bitmap.compress(Bitmap.CompressFormat.PNG,100,it)}}}}
+        val now=System.currentTimeMillis()
+        cache.put(key,CachedIcon(bitmap,now));revision++
+        scope.launch{runCatching{disk.withLock{if(expected==generation.get()&&!clearing&&!closed)write(key,bitmap,now)}}}
     }
     suspend fun load(url:String):Bitmap?=withContext(Dispatchers.IO){
+        if(clearing||closed)return@withContext null
+        val expected=generation.get()
         val key=origin(url)?:return@withContext null
-        locks.getOrPut(key){Mutex()}.withLock{
-            cache.get(key)?.let{return@withLock it}
+        locks[(key.hashCode() and Int.MAX_VALUE)%locks.size].withLock lookup@{
+            if(clearing||closed||expected!=generation.get())return@lookup null
+            cached(key)?.let{return@lookup it}
             val path=file(key)
-            if(path.exists())BitmapFactory.decodeFile(path.path)?.let{cache.put(key,it);return@withLock it}
-            if(System.currentTimeMillis()-(attempts[key]?:0)<86_400_000)return@withLock null
-            attempts[key]=System.currentTimeMillis()
+            val stored=disk.withLock {
+                if(clearing||closed||expected!=generation.get())return@withLock null
+                if(path.exists()&&IconCachePolicy.fresh(path.lastModified(),System.currentTimeMillis())){
+                    val bitmap=runCatching{path.inputStream().use{decode(it.readBounded(524289))}}.getOrNull()
+                    if(bitmap!=null){cache.put(key,CachedIcon(bitmap,path.lastModified()));return@withLock bitmap}
+                }
+                path.delete();null
+            }
+            if(stored!=null)return@lookup stored
+            val now=System.currentTimeMillis()
+            val attempted=attempts.get(key)?:0
+            if(now>=attempted&&now-attempted<86_400_000)return@lookup null
+            attempts.put(key,now)
             val icon=runCatching{permits.withPermit{
                 val target=key.toHttpUrlOrNull()!!.newBuilder().encodedPath("/favicon.ico").build()
                 client.newCall(Request.Builder().url(target).build()).execute().use{r->
@@ -68,12 +102,28 @@ class SiteIcons(context:Context){
                     decode(bytes)
                 }
             }}.getOrNull()
-            if(icon!=null){cache.put(key,icon);runCatching{path.outputStream().use{icon.compress(Bitmap.CompressFormat.PNG,100,it)}}}
-            icon
+            disk.withLock {
+                if(clearing||closed||expected!=generation.get())return@withLock null
+                if(icon!=null){cache.put(key,CachedIcon(icon,now));runCatching{write(key,icon,now)}}
+                icon
+            }
         }
     }
-    fun close(){scope.cancel();client.dispatcher.cancelAll()}
+    /** Wait for disk deletion and invalidate in-flight fetches/writes before reporting success. */
+    internal suspend fun clear() {
+        clearing=true;generation.incrementAndGet();client.dispatcher.cancelAll()
+        try{
+            withContext(Dispatchers.IO){disk.withLock{
+                cache.evictAll();attempts.evictAll()
+                directory.listFiles()?.filter{it.isFile}?.forEach{check(it.delete()||!it.exists()){"網站圖示快取未能刪除"}}
+            }}
+        }finally{clearing=false;withContext(Dispatchers.Main.immediate){revision++}}
+    }
+    fun close(){closed=true;scope.cancel();client.dispatcher.cancelAll()}
     companion object{
+        // Activity recreation must not let an old writer race a new controller's deletion.
+        private val disk=Mutex()
+        private val generation=AtomicLong(0)
         internal fun decode(bytes:ByteArray):Bitmap?{
             val bounds=BitmapFactory.Options().apply{inJustDecodeBounds=true};BitmapFactory.decodeByteArray(bytes,0,bytes.size,bounds)
             if(bounds.outWidth !in 1..4096||bounds.outHeight !in 1..4096)return null

@@ -165,6 +165,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     }
     BackHandler {
         when{
+            c.browsingDataCleaner.running->Unit
             c.fullScreenView!=null->c.exitFullscreen()
             c.sheet.isNotEmpty()->c.sheet=""
             c.eye->{c.stopEye();c.notice="已取消尚未儲存的預覽"}
@@ -228,11 +229,12 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             }
         }
         if(c.sheet in setOf("bookmarks","favorites"))LibraryScreen(c)
+        if(c.sheet=="clear-browsing-data")DeleteBrowsingDataDialog(c)
         if(c.sheet in setOf("tabs","history","downloads"))BrowserPanel(c){
             PanelHeader(c){c.sheet="menu"}
             when(c.sheet){"tabs"->TabOverview(c);"history"->HistoryScreen(c);"downloads"->DownloadsScreen(c)}
         }
-        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites","tabs","history","downloads")){
+        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites","tabs","history","downloads","clear-browsing-data")){
             BrowserPanel(c){
                     PanelHeader(c){c.sheet=panelTrail.dropLast(1).lastOrNull()?:panelParent(c.sheet)}
                     if(c.sheet=="settings")SettingsCategories(settingsCategory){settingsCategory=it}
@@ -376,7 +378,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             MenuGroup("資料與同步"){
                 MenuRow(Icons.Outlined.CloudSync,"Google 同步"){c.sheet="sync"}
                 MenuRow(Icons.Outlined.Folder,"書籤資料夾"){c.sheet="bookmarks"}
-                MenuRow(Icons.Outlined.History,"瀏覽紀錄"){c.sheet="history"}
+                MenuRow(Icons.Outlined.History,"瀏覽記錄"){c.sheet="history"}
             }
             MenuGroup("使用說明"){
                 MenuRow(Icons.Outlined.Info,"第三方授權"){c.sheet="legal"}

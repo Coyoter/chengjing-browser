@@ -21,7 +21,11 @@ class MenuDesignTest {
         ui.activity.contentResolver.openOutputStream(uri)!!.use{InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot().compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)}
     }
     private fun open(){main{c.newTab("https://practice.chengjing.invalid/")};until{c.active!!.url.startsWith("https://practice.chengjing.invalid")&&eval("document.readyState")=="\"complete\""};ui.waitForIdle()}
-    @Before fun isolated(){Assume.assumeTrue(ui.activity.packageName.endsWith(".qa"))}
+    @Before fun isolated(){
+        Assume.assumeTrue(ui.activity.packageName.endsWith(".qa"))
+        ui.runOnIdle{c.store.aiProvider="openrouter";c.store.theme="light";c.store.addressAtBottom=false;c.store.saveKey("")}
+        ui.activityRule.scenario.recreate();ui.waitForIdle()
+    }
     @Test fun groupedMenuKeepsLongTitlesUniformAndSettingsWork(){
         open()
         main{
@@ -33,7 +37,7 @@ class MenuDesignTest {
         val bookmark=ui.onNodeWithTag("menu-row:加入書籤").fetchSemanticsNode().boundsInRoot
         assertEquals(bookmark.width,favorite.width,.5f);assertEquals(bookmark.height,favorite.height,.5f)
         assertEquals(64*ui.activity.resources.displayMetrics.density,favorite.height,1f)
-        val widths=listOf("新增分頁","收藏","書籤","瀏覽紀錄").map{ui.onNodeWithTag("menu-shortcut:$it").fetchSemanticsNode().boundsInRoot.width}
+        val widths=listOf("新增分頁","收藏","書籤","瀏覽記錄").map{ui.onNodeWithTag("menu-shortcut:$it").fetchSemanticsNode().boundsInRoot.width}
         assertTrue(widths.max()-widths.min()<=1f)
         val panel=ui.onNodeWithTag("browser-panel").fetchSemanticsNode().boundsInWindow
         assertEquals(0f,panel.left,1f);assertEquals(0f,panel.top,1f)
@@ -59,7 +63,7 @@ class MenuDesignTest {
         ui.onNodeWithContentDescription("返回上一層").performClick();ui.onNodeWithText("目前頁面").assertIsDisplayed();shot("05-menu-dark")
         ui.onNodeWithText("天眼設定",substring=false).performScrollTo().performClick();shot("06-eye-settings")
         ui.onNodeWithContentDescription("返回上一層").performClick()
-        ui.onNodeWithText("Google 書籤同步").performScrollTo().performClick();shot("07-sync-panel")
+        ui.onNodeWithText("Google 同步").performScrollTo().performClick();shot("07-sync-panel")
         ui.onNodeWithContentDescription("返回上一層").performClick();assertEquals("menu",c.sheet)
         ui.onNodeWithTag("menu-shortcut:書籤").performClick();ui.onNodeWithContentDescription("匯入 Chrome 書籤").assertExists()
         main{c.sheet=""}

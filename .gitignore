@@ -17,3 +17,5 @@ qa/screenshots-final/
 **/.DS_Store
 .wrangler/
 qa/
+validation/
+validation-r8/

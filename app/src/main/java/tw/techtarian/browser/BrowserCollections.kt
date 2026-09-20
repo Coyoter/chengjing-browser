@@ -112,10 +112,10 @@ internal class BrowserDownloads(private val context:Context) {
     var revision by remember{mutableIntStateOf(0)}
     var clear by remember{mutableStateOf(false)}
     val rows=remember(revision,c.revision){c.store.history()}
-    CollectionHeader("歷史記錄","最近 250 個頁面，只保留在這支手機。無痕瀏覽不會加入。",query,{query=it})
-    if(rows.isNotEmpty())TextButton(onClick={clear=true},modifier=Modifier.padding(horizontal=12.dp)){Icon(Icons.Outlined.DeleteOutline,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text("清除歷史記錄")}
+    CollectionHeader("瀏覽記錄","最近 250 個頁面，只保留在這支手機。無痕瀏覽不會加入。",query,{query=it})
+    if(rows.isNotEmpty())TextButton(onClick={clear=true},modifier=Modifier.padding(horizontal=12.dp)){Icon(Icons.Outlined.DeleteOutline,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text("清除瀏覽記錄")}
     val filtered=rows.filter{it.first.contains(query,true)||it.second.contains(query,true)}
-    if(filtered.isEmpty())CollectionEmpty(if(query.isEmpty())"尚無歷史記錄"else"找不到相符的頁面","一般分頁瀏覽過的頁面會出現在這裡。")
+    if(filtered.isEmpty())CollectionEmpty(if(query.isEmpty())"尚無瀏覽記錄"else"找不到相符的頁面","一般分頁瀏覽過的頁面會出現在這裡。")
     LazyColumn(Modifier.fillMaxWidth().weight(1f).testTag("history-list"),contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         items(filtered,key={it.first}){(url,title)->
             Surface(shape=RoundedCornerShape(16.dp),color=MaterialTheme.colorScheme.surface) {
@@ -126,12 +126,12 @@ internal class BrowserDownloads(private val context:Context) {
                         Spacer(Modifier.height(4.dp))
                         Text(url,fontSize=12.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=MaterialTheme.colorScheme.onSurfaceVariant)
                     }
-                    IconButton(onClick={c.store.removeHistory(url);revision++;c.revision++}){Icon(Icons.Outlined.Close,"移除此筆歷史記錄")}
+                    IconButton(onClick={c.store.removeHistory(url);revision++;c.revision++}){Icon(Icons.Outlined.Close,"移除此筆瀏覽記錄")}
                 }
             }
         }
     }
-    if(clear)AlertDialog(onDismissRequest={clear=false},title={Text("清除歷史記錄？")},text={Text("將清除本機瀏覽與搜尋記錄，不會刪除書籤、收藏或網站登入資料。")},confirmButton={TextButton(onClick={c.store.clearHistory();revision++;c.revision++;clear=false}){Text("清除")}},dismissButton={TextButton(onClick={clear=false}){Text("取消")}})
+    if(clear)AlertDialog(onDismissRequest={clear=false},title={Text("清除瀏覽記錄？")},text={Text("將清除本機瀏覽與搜尋記錄，不會刪除書籤、收藏或網站登入資料。")},confirmButton={TextButton(onClick={c.store.clearHistory();revision++;c.revision++;clear=false}){Text("清除")}},dismissButton={TextButton(onClick={clear=false}){Text("取消")}})
 }
 
 @Composable private fun CollectionHeader(title:String,description:String,query:String,onQuery:(String)->Unit) {

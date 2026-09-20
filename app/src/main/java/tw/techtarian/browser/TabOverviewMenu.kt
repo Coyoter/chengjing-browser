@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.sp
             title={Text(if(group)"關閉所有無痕分頁？"else"關閉所有一般分頁？")},
             text={Text("將關閉這一組的 $count 個分頁，不影響另一組。"+
                 if(group)"無痕網站資料會在全部關閉後清理。下載檔案、書籤與收藏仍會保留。"
-                else "這些分頁與快照不會在下次啟動時還原；歷史記錄、下載檔案、書籤與收藏仍會保留。")},
+                else "這些分頁與快照不會在下次啟動時還原；瀏覽記錄、下載檔案、書籤與收藏仍會保留。")},
             confirmButton={TextButton(enabled=count>0,onClick={
                 val onlyGroup=c.tabs.all{it.incognito==group}
                 c.closeAllTabs(group)

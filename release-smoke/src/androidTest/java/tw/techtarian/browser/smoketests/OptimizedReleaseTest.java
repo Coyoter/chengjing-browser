@@ -114,7 +114,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(25,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(26,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -158,7 +158,7 @@ public class OptimizedReleaseTest {
         require(By.text("選中一個元件"));require(By.text("移除此網站元件"));closeMenu();
     }
     @Test public void menuHistoryAndPrivateTabCollectionsStillOpen() throws Exception {
-        menu();click("歷史記錄");require(By.text("搜尋歷史記錄"));
+        menu();click("瀏覽記錄");require(By.text("搜尋瀏覽記錄"));
         require(By.text("R8 功能測試 one"));closeMenu();
         menu();click("下載");require(By.text("搜尋下載"));closeMenu();
         menu();click("Google 同步");findText("使用 Google 帳戶連結");closeMenu();
@@ -188,6 +188,16 @@ public class OptimizedReleaseTest {
         require(By.text("一般 1"));
         assertFalse(device.hasObject(By.text("R8 功能測試 one")));
         assertFalse(device.hasObject(By.text("R8 功能測試 two")));
+    }
+    @Test public void deleteBrowsingDataWorksInOptimizedRelease() throws Exception {
+        menu();click("刪除瀏覽資料");require(By.text("時間範圍"));
+        click("過去 15 分鐘");click("不限時間");
+        require(By.text("不限時間 · 全部清除，可能會登出網站"));
+        click("Cookie、快取和網站資料");click("刪除資料");
+        require(By.desc("瀏覽器選單"));
+        require(By.descStartsWith("分頁，")).click();require(By.text("一般 1"));
+        assertFalse(device.hasObject(By.text("R8 功能測試 one")));device.pressBack();require(By.desc("瀏覽器選單"));
+        menu();click("瀏覽記錄");require(By.text("尚無瀏覽記錄"));
     }
     @Test public void homepageOptionsAndDailyQuoteWorkInOptimizedRelease() throws Exception {
         assertFalse(device.hasObject(By.desc("首頁")));

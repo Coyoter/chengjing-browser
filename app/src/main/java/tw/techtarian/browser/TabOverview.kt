@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.sp
             }
         }
     }
-    if(privateGroup)Text("無痕頁面不產生縮圖、不加入歷史記錄。關閉全部無痕分頁後清理網站資料。",Modifier.padding(horizontal=20.dp,vertical=8.dp),fontSize=12.sp,lineHeight=18.sp,color=colors.onSurfaceVariant)
+    if(privateGroup)Text("無痕頁面不產生縮圖、不加入瀏覽記錄。關閉全部無痕分頁後清理網站資料。",Modifier.padding(horizontal=20.dp,vertical=8.dp),fontSize=12.sp,lineHeight=18.sp,color=colors.onSurfaceVariant)
     if(tabs.isEmpty())CollectionEmpty(if(privateGroup)"開啟一段無痕瀏覽"else"還沒有一般分頁",if(privateGroup)"與一般分頁使用不同的登入狀態；網站與網路供應商仍可能辨識你的活動。"else"新增分頁，讓接下來的閱讀有自己的位置。")
     LazyVerticalGrid(GridCells.Adaptive(150.dp),Modifier.weight(1f).fillMaxWidth().testTag("tab-grid"),contentPadding=PaddingValues(20.dp),horizontalArrangement=Arrangement.spacedBy(14.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         items(tabs,key={it.id}){tab->

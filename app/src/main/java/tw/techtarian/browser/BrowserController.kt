@@ -26,6 +26,9 @@ class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false
     internal var previewReady=false
     internal var navigationGeneration=0L
     internal var previewGeneration=0L
+    internal var lastActiveAt=System.currentTimeMillis()
+    internal var restoringNavigation=false
+    internal var suppressHistoryUntilNavigation=false
     var preview by mutableStateOf<Bitmap?>(null)
     val warnings=if(incognito)CertificateWarnings()else CertificateWarnings.session
     val refreshContainer = RefreshWebContainer(web.context, web)
@@ -57,6 +60,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     internal val home=HomePreferences(context,existingUser=store.tabs().isNotEmpty()||store.history().isNotEmpty())
     internal val homeQuotes by lazy{context.assets.open("home-quotes.txt").bufferedReader(Charsets.UTF_8).use{it.readLines()}.filter{it.isNotBlank()}}
     internal val previews=TabPreviewStore(context)
+    internal val browsingDataCleaner=BrowsingDataCleaner(this)
     private var restoringTabs=false
     private var destroyed=false
     val tabs = mutableStateListOf<BrowserTab>()
@@ -171,7 +175,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun persistTabs():Boolean {
         if(destroyed||restoringTabs)return false
         val normal=tabs.filterNot{it.incognito}
-        val saved=store.saveTabs(normal.map{it.url},normal.map{it.favoriteId},normal.map{it.previewKey!!},normal.map{it.title})
+        val saved=store.saveTabs(normal.map{it.url},normal.map{it.favoriteId},normal.map{it.previewKey!!},normal.map{it.title},normal.map{it.lastActiveAt})
         if(!saved)notice="分頁資料未能儲存，請檢查手機儲存空間"
         return saved
     }
@@ -230,6 +234,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         val tab=BrowserTab(nextId++,web,incognito,if(incognito)null else restored?.key?:TabPreviewStore.newKey())
         tab.url=url
         restored?.let{record->
+            tab.lastActiveAt=record.lastActiveAt
+            tab.restoringNavigation=url.isNotEmpty()
             tab.title=record.title.ifBlank{"新分頁"}
             tab.favoriteId=record.favoriteId?.let{favorites.get(it)}?.takeIf{Domains.scope(it.url)==Domains.scope(url)}?.id
             val generation=tab.previewGeneration
@@ -314,7 +320,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 return false
             }
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
+                if(tab !in tabs)return
                 if(web.selecting){view.stopLoading();return}
+                if(!tab.restoringNavigation)tab.lastActiveAt=System.currentTimeMillis()
+                tab.suppressHistoryUntilNavigation=false
                 tab.navigationGeneration++
                 tab.previewReady=false
                 // Keep the last successful thumbnail during reload, offline restore and errors.
@@ -332,12 +341,15 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 persistTabs()
             }
             override fun doUpdateVisitedHistory(view:WebView,url:String,isReload:Boolean){
+                if(tab !in tabs)return
                 if(url=="about:blank"||url.startsWith("http://")||url.startsWith("https://")){
+                    if(!tab.restoringNavigation&&url!=tab.url)tab.lastActiveAt=System.currentTimeMillis()
                     tab.url=if(url=="about:blank")""else url
                     tab.canBack=view.canGoBack();tab.canForward=view.canGoForward();persistTabs()
                 }
             }
             override fun onPageFinished(view:WebView,url:String) {
+                if(tab !in tabs)return
                 tab.refreshContainer.isRefreshing=false
                 tab.canBack=view.canGoBack();tab.canForward=view.canGoForward()
                 tab.pendingUrl=""
@@ -356,7 +368,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                     }
                     mainHandler.postDelayed(restore,350)
                 }
-                if(tab.error.isEmpty()&&!tab.incognito){store.visit(url,tab.title);revision++}
+                if(tab.error.isEmpty()&&!tab.incognito&&!tab.restoringNavigation&&!tab.suppressHistoryUntilNavigation){store.visit(url,tab.title);revision++}
+                tab.restoringNavigation=false
                 requestPreviewFrame(tab)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
                 if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config(tab.url)),null)
@@ -435,6 +448,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun exitFullscreen(){val callback=fullScreenCallback;fullScreenCallback=null;fullScreenView=null;callback?.onCustomViewHidden()}
     fun navigate(input:String,fromFavorite:Favorite?=null) {
         val url=Domains.address(input);if(url.isEmpty())return
+        active?.restoringNavigation=false
         recordSearchFor(active,input,url);revision++
         stopEye();sheet="";active?.error="";active?.favoriteId=fromFavorite?.id;active?.favoriteRestore=fromFavorite;active?.favoriteRestoreTouchSequence=active?.web?.touchSequence?:0L;active?.pendingUrl=url;active?.web?.loadUrl(url)
     }
@@ -443,6 +457,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun openHome(){
         if(!home.enabled)return
         val tab=active?:return
+        tab.restoringNavigation=false
         val destination=home.destination()
         stopEye();sheet="";tab.error="";tab.favoriteId=null;tab.favoriteRestore=null
         tab.web.stopLoading()
@@ -470,12 +485,13 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun reload(){
         stopEye();active?.let{tab->
+            tab.restoringNavigation=false
             val retry=tab.error.isNotEmpty()&&tab.url.isNotEmpty()
             tab.error=""
             if(retry){tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}else tab.web.reload()
         }
     }
-    fun switchTab(id:Int){if(tabs.none{it.id==id})return;capturePreview(active);stopEye();activeId=id;sheet="";updatePrivacyWindow()}
+    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int){
         if(id==activeId)stopEye()
         val tab=tabs.find{it.id==id}?:return
@@ -548,5 +564,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice="已復原上一次儲存"}}
-    fun destroy(){if(destroyed)return;destroyed=true;exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
+    fun destroy(){if(destroyed)return;destroyed=true;browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }

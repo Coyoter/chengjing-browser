@@ -73,4 +73,4 @@ internal class TabPreviewStore(context:Context) {
 }
 
 /** A stable identity per tab, never per URL or transient list position. */
-internal data class SavedBrowserTab(val key:String,val url:String,val title:String,val favoriteId:String?)
+internal data class SavedBrowserTab(val key:String,val url:String,val title:String,val favoriteId:String?,val lastActiveAt:Long=0)

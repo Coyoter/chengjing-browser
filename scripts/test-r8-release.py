@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the uninstrumented optimized APK via seven independent test-host processes."""
+"""Exercise the uninstrumented optimized APK via independent test-host processes."""
 from pathlib import Path
 import json
 import re
@@ -18,6 +18,7 @@ METHODS = (
     "menuHistoryAndPrivateTabCollectionsStillOpen",
     "closeAllRegularTabsWorksInOptimizedRelease",
     "homepageOptionsAndDailyQuoteWorkInOptimizedRelease",
+    "deleteBrowsingDataWorksInOptimizedRelease",
 )
 
 def adb(*args, **kwargs):
@@ -61,4 +62,4 @@ for method in METHODS:
 (out / "smoke-results.json").write_text(json.dumps(results, indent=2) + "\n")
 if not all(row["passed"] for row in results):
     raise SystemExit("Optimized-release checks failed: " + ", ".join(row["method"] for row in results if not row["passed"]))
-print("All seven checks passed against the actual non-debuggable R8 APK, without adding app test keep rules.")
+print(f"All {len(METHODS)} checks passed against the actual non-debuggable R8 APK, without adding app test keep rules.")

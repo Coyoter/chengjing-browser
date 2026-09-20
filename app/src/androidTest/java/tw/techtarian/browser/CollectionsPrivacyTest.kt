@@ -34,17 +34,17 @@ class CollectionsPrivacyTest {
         ui.onNodeWithTag("share-current-page").assertDoesNotExist()
         ui.onNodeWithContentDescription("瀏覽器選單").performClick()
         ui.onNodeWithTag("menu-row:下載").performScrollTo().assertIsDisplayed()
-        ui.onNodeWithTag("menu-row:歷史記錄").performScrollTo().assertIsDisplayed()
+        ui.onNodeWithTag("menu-row:刪除瀏覽資料").performScrollTo().assertIsDisplayed()
         ui.onNodeWithTag("menu-row:新增無痕分頁").performScrollTo().assertIsDisplayed()
         screenshot("collections-menu")
     }
     @Test fun historyHasSearchAndIndividualRemoval(){
         ui.runOnIdle{c.store.visit("https://history.example/one","測試文章甲");c.store.visit("https://history.example/two","測試文章乙");c.revision++;c.sheet="history"}
         screenshot("history-list")
-        ui.onNodeWithText("搜尋歷史記錄").performTextInput("文章甲")
+        ui.onNodeWithText("搜尋瀏覽記錄").performTextInput("文章甲")
         ui.onNodeWithText("測試文章甲").assertIsDisplayed()
         ui.onNodeWithText("測試文章乙").assertDoesNotExist()
-        ui.onNodeWithContentDescription("移除此筆歷史記錄").performClick()
+        ui.onNodeWithContentDescription("移除此筆瀏覽記錄").performClick()
         ui.runOnIdle{assertFalse(c.store.history().any{it.first=="https://history.example/one"});assertTrue(c.store.history().any{it.first=="https://history.example/two"})}
     }
     @Test fun privateModeEitherIsIsolatedOrFailsClosed(){
