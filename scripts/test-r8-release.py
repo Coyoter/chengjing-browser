@@ -19,6 +19,7 @@ METHODS = (
     "closeAllRegularTabsWorksInOptimizedRelease",
     "homepageOptionsAndDailyQuoteWorkInOptimizedRelease",
     "deleteBrowsingDataWorksInOptimizedRelease",
+    "externalDeepLinksWorkInOptimizedRelease",
 )
 
 def adb(*args, **kwargs):

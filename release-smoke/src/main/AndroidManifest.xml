@@ -1,5 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
     <queries><package android:name="tw.techtarian.browser.qa" /></queries>
-    <application android:label="Browser optimized-build tests" android:allowBackup="false" />
+    <application android:label="Browser optimized-build tests" android:allowBackup="false">
+        <activity android:name=".DeepLinkReceiverActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" /><category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="chengjing-test" android:host="open" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" /><category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="links.chengjing.test" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

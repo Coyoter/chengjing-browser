@@ -29,6 +29,8 @@ class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false
     internal var lastActiveAt=System.currentTimeMillis()
     internal var restoringNavigation=false
     internal var suppressHistoryUntilNavigation=false
+    internal val externalGesture=ExternalLinkGesture{android.os.SystemClock.elapsedRealtime()}
+    internal var externalOpenerId:Int?=null
     var preview by mutableStateOf<Bitmap?>(null)
     val warnings=if(incognito)CertificateWarnings()else CertificateWarnings.session
     val refreshContainer = RefreshWebContainer(web.context, web)
@@ -303,12 +305,15 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 return null
             }
             override fun shouldOverrideUrlLoading(view:WebView, request:WebResourceRequest):Boolean {
+                if(tab !in tabs)return true
                 if(web.selecting) return true
                 val u=request.url.toString()
                 // The native homepage has an actual history entry, so Back/Forward stay useful.
                 if(request.isForMainFrame&&u=="about:blank")return false
-                if(request.url.scheme !in listOf("https","http")) {
-                    if(request.isForMainFrame)recordBlocked(tab,"外部 App 跳轉",u)
+                val allowed=tab.externalGesture.allow(request.isForMainFrame,request.hasGesture(),request.isRedirect)
+                if(!ExternalLinkPolicy.isWeb(request.url.scheme)) {
+                    if(openExternalLink(tab,u,allowed))return true
+                    if(request.isForMainFrame){recordBlocked(tab,"外部 App 跳轉",u);if(allowed)notice="此連結格式無法開啟"}
                     return true
                 }
                 if(!request.isForMainFrame)return false
@@ -316,6 +321,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(scope !in exceptions && store.get(scope).guard && !request.hasGesture() && !request.isRedirect && tab.url.isNotEmpty()) {
                     tab.blockedUrl=u;recordBlocked(tab,"自動跳轉",u);return true
                 }
+                if(openExternalLink(tab,u,allowed))return true
                 tab.pendingUrl=u
                 return false
             }
@@ -350,6 +356,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
             override fun onPageFinished(view:WebView,url:String) {
                 if(tab !in tabs)return
+                tab.externalGesture.reset()
+                tab.externalOpenerId=null
                 tab.refreshContainer.isRefreshing=false
                 tab.canBack=view.canGoBack();tab.canForward=view.canGoForward()
                 tab.pendingUrl=""
@@ -419,6 +427,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 val scope=Domains.scope(tab.url)
                 if(!isUserGesture || (scope !in exceptions && store.get(scope).guard)) {recordBlocked(tab,"新視窗／彈窗");return false}
                 val child=newTab(incognito=tab.incognito) ?: return false
+                child.externalGesture.popupFromClick();child.externalOpenerId=tab.id
                 (resultMsg.obj as WebView.WebViewTransport).webView=child.web;resultMsg.sendToTarget();return true
             }
             override fun onPermissionRequest(request:PermissionRequest){request.deny();notice="此版本尚未開放網站使用相機與麥克風"}
@@ -449,6 +458,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun navigate(input:String,fromFavorite:Favorite?=null) {
         val url=Domains.address(input);if(url.isEmpty())return
         active?.restoringNavigation=false
+        active?.externalGesture?.reset()
         recordSearchFor(active,input,url);revision++
         stopEye();sheet="";active?.error="";active?.favoriteId=fromFavorite?.id;active?.favoriteRestore=fromFavorite;active?.favoriteRestoreTouchSequence=active?.web?.touchSequence?:0L;active?.pendingUrl=url;active?.web?.loadUrl(url)
     }
@@ -458,6 +468,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(!home.enabled)return
         val tab=active?:return
         tab.restoringNavigation=false
+        tab.externalGesture.reset()
         val destination=home.destination()
         stopEye();sheet="";tab.error="";tab.favoriteId=null;tab.favoriteRestore=null
         tab.web.stopLoading()
@@ -486,6 +497,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun reload(){
         stopEye();active?.let{tab->
             tab.restoringNavigation=false
+            tab.externalGesture.reset()
             val retry=tab.error.isNotEmpty()&&tab.url.isNotEmpty()
             tab.error=""
             if(retry){tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}else tab.web.reload()

@@ -114,7 +114,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(26,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(27,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -199,6 +199,15 @@ public class OptimizedReleaseTest {
         assertFalse(device.hasObject(By.text("R8 功能測試 one")));device.pressBack();require(By.desc("瀏覽器選單"));
         menu();click("瀏覽記錄");require(By.text("尚無瀏覽記錄"));
     }
+    @Test public void externalDeepLinksWorkInOptimizedRelease() throws Exception {
+        click("Open linked app");
+        require(By.desc("deep-link-received:chengjing-test://open/r8?id=custom"));
+        device.pressBack();require(By.desc("瀏覽器選單"));
+        click("Open intent app");
+        require(By.desc("deep-link-received:chengjing-test://open/r8?id=intent"));
+        device.pressBack();require(By.desc("瀏覽器選單"));
+        require(By.text("R8 功能測試 one"));
+    }
     @Test public void homepageOptionsAndDailyQuoteWorkInOptimizedRelease() throws Exception {
         assertFalse(device.hasObject(By.desc("首頁")));
         settings("瀏覽");
@@ -232,6 +241,7 @@ public class OptimizedReleaseTest {
                     while((line=input.readLine())!=null&&!line.isEmpty()){}
                     String page=first!=null&&first.contains("/two")?"two":"one";
                     String html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 功能測試 "+page+"</title></head><body style='margin:24px;font:18px sans-serif'><h1>R8 功能測試 "+page+"</h1><button id='r8-target' style='width:100%;padding:24px;margin:20px 0'>R8 測試元件</button><p>只使用本機合成內容，不接觸真實帳號。</p></body></html>";
+                    html=html.replace("</body>","<p><a href='chengjing-test://open/r8?id=custom'>Open linked app</a></p><p><a href='intent://open/r8?id=intent#Intent;scheme=chengjing-test;package=tw.techtarian.browser.smoketests;end'>Open intent app</a></p></body>");
                     byte[] bytes=html.getBytes(StandardCharsets.UTF_8);
                     socket.getOutputStream().write(("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: "+bytes.length+"\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));
                     socket.getOutputStream().write(bytes);socket.getOutputStream().flush();
