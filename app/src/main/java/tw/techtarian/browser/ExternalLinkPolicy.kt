@@ -12,6 +12,8 @@ internal class ExternalLinkGesture(private val clock:()->Long) {
         val popup=popupUntil>0&&now<=popupUntil
         popupUntil=0
         if(hasGesture||popup){redirectUntil=now+10_000;return true}
+        // A new, non-user navigation is not part of the earlier clicked chain.
+        if(!isRedirect){redirectUntil=0;return false}
         return isRedirect&&redirectUntil>0&&now<=redirectUntil
     }
 }

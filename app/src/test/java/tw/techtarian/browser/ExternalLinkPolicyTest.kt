@@ -9,9 +9,11 @@ class ExternalLinkPolicyTest {
         assertFalse(gate.allow(true,false,false))
         assertFalse(gate.allow(true,false,true))
         assertTrue(gate.allow(true,true,false))
-        assertFalse(gate.allow(true,false,false)) // a JavaScript timer is not a redirect
         assertFalse(gate.allow(false,true,true)) // a frame is never a launch surface
         assertTrue(gate.allow(true,false,true))
+        assertFalse(gate.allow(true,false,false)) // a JavaScript timer starts a different chain
+        assertFalse(gate.allow(true,false,true)) // its server redirect cannot reuse the earlier click
+        assertTrue(gate.allow(true,true,false))
         now+=10_001;assertFalse(gate.allow(true,false,true))
     }
     @Test fun finishingOrNativeNavigationRevokesAuthorization(){
