@@ -5,6 +5,7 @@ import android.content.ContextWrapper
 import android.os.Process
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.semantics.SemanticsActions
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
@@ -25,6 +26,14 @@ class HomeSettingsTest {
     }
     @After fun cleanup(){ui.runOnIdle{c.home.updateEnabled(false);c.home.useDefault();c.closePrivateTabs();c.sheet=""}}
     private fun settings(){ui.runOnIdle{c.sheet="settings"};ui.onNodeWithText("瀏覽",useUnmergedTree=true).performClick()}
+    private fun saveHomeUrl(){
+        val button=ui.onNodeWithTag("save-home-url")
+        button.performScrollTo().assertIsDisplayed().assertIsEnabled()
+        // This case verifies URL validation/persistence. Trigger the real button's
+        // accessibility action so native IME movement cannot move the touch target.
+        // The independent R8 test still exercises actual touches on Save homepage.
+        button.performSemanticsAction(SemanticsActions.OnClick){assertTrue(it())}
+    }
     @Test fun switchRevealsConfigurationAndImmediatelyAddsTheAddressButton(){
         ui.onNodeWithTag("home-button").assertDoesNotExist()
         settings()
@@ -46,10 +55,10 @@ class HomeSettingsTest {
         settings();ui.onNodeWithTag("home-button-switch").performClick()
         ui.onNodeWithTag("home-custom-choice").performClick()
         ui.onNodeWithTag("home-url-input").performTextReplacement("example.com/articles")
-        ui.onNodeWithTag("save-home-url").performScrollTo().performClick()
+        saveHomeUrl()
         ui.runOnIdle{assertEquals("https://example.com/articles",c.home.destination())}
         ui.onNodeWithTag("home-url-input").performTextReplacement("javascript:alert(1)")
-        ui.onNodeWithTag("save-home-url").performScrollTo().performClick()
+        saveHomeUrl()
         ui.onNodeWithTag("home-url-error").assertExists()
         ui.runOnIdle{assertEquals("https://example.com/articles",c.home.destination())}
         ui.onNodeWithTag("home-button-switch").performScrollTo().performClick()
