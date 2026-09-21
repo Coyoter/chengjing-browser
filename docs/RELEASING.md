@@ -1,6 +1,6 @@
 # Android 簽章與發布
 
-新版原始碼為 1.7.0（versionCode 27）。合併不等於 APK/AAB 已發布：只有 Android release 工作流程完整成功，且 GitHub Release 附件通過雜湊驗證，才是完成。
+新版原始碼為 1.7.1（versionCode 28）。合併不等於 APK/AAB 已發布：只有 Android release 工作流程完整成功，且 GitHub Release 附件通過雜湊驗證，才是完成。
 
 ## 一次性設定
 

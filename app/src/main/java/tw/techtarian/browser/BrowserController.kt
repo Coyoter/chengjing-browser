@@ -24,6 +24,7 @@ class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false
     val previewKey:String?=if(incognito)null else TabPreviewStore.newKey()) {
     init{require(if(incognito)previewKey==null else TabPreviewStore.validKey(previewKey))}
     internal var previewReady=false
+    internal var previewCommitted=false
     internal var navigationGeneration=0L
     internal var previewGeneration=0L
     internal var lastActiveAt=System.currentTimeMillis()
@@ -79,25 +80,21 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun openTabOverview(){capturePreview(active);overviewPrivate=active?.incognito==true;sheet="tabs";updatePrivacyWindow()}
     private fun capturePreview(tab:BrowserTab?){
         if(destroyed||restoringTabs||tab==null||tab !in tabs||tab.incognito||!tab.previewReady||tab.error.isNotEmpty()||
-            tab.url.isEmpty()||tab.pendingUrl.isNotEmpty()||tab.id!=activeId||tab.web.selecting||!tab.web.isAttachedToWindow||tab.web.width<=0||tab.web.height<=0)return
+            tab.url.isEmpty()||tab.id!=activeId||tab.web.selecting||!tab.web.isAttachedToWindow||tab.web.width<=0||tab.web.height<=0)return
         runCatching{
-            val width=300
-            val height=(tab.web.height.toFloat()*width/tab.web.width).toInt().coerceIn(1,400)
-            val bitmap=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888)
-            val canvas=android.graphics.Canvas(bitmap)
-            canvas.scale(width.toFloat()/tab.web.width,width.toFloat()/tab.web.width)
-            tab.web.draw(canvas)
+            val bitmap=TabPreviewImage.capture(tab.web)?:return
             tab.previewGeneration++
             tab.preview=bitmap
             previews.save(tab.previewKey,bitmap){if(!destroyed)notice="分頁快照未能儲存，既有快照已保留"}
         }
     }
     private fun requestPreviewFrame(tab:BrowserTab){
-        if(destroyed||tab.incognito||tab !in tabs||tab.url.isEmpty()||tab.pendingUrl.isNotEmpty()||tab.error.isNotEmpty())return
+        if(destroyed||tab.incognito||tab !in tabs||tab.url.isEmpty()||!tab.previewCommitted||tab.error.isNotEmpty()||
+            tab.id!=activeId||!tab.web.isAttachedToWindow||tab.web.width<=0||tab.web.height<=0)return
         val generation=tab.navigationGeneration
         tab.web.postVisualStateCallback(generation,object:WebView.VisualStateCallback(){
             override fun onComplete(requestId:Long){
-                if(!destroyed&&tab in tabs&&generation==tab.navigationGeneration&&tab.pendingUrl.isEmpty()&&tab.error.isEmpty()){
+                if(!destroyed&&tab in tabs&&generation==tab.navigationGeneration&&tab.previewCommitted&&tab.error.isEmpty()){
                     tab.previewReady=true
                     capturePreview(tab)
                 }
@@ -242,7 +239,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             tab.favoriteId=record.favoriteId?.let{favorites.get(it)}?.takeIf{Domains.scope(it.url)==Domains.scope(url)}?.id
             val generation=tab.previewGeneration
             previews.load(tab.previewKey){bitmap->
-                if(!destroyed&&tab in tabs&&tab.preview==null&&generation==tab.previewGeneration)tab.preview=bitmap
+                if(!destroyed&&tab in tabs&&tab.preview==null&&generation==tab.previewGeneration&&bitmap!=null&&TabPreviewImage.hasContent(bitmap))tab.preview=bitmap
                 else bitmap?.recycle()
             }
         }
@@ -250,6 +247,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onViewAttachedToWindow(view:android.view.View){requestPreviewFrame(tab)}
             override fun onViewDetachedFromWindow(view:android.view.View){}
         })
+        web.addOnLayoutChangeListener{_,left,top,right,bottom,oldLeft,oldTop,oldRight,oldBottom->
+            if(right-left!=oldRight-oldLeft||bottom-top!=oldBottom-oldTop)requestPreviewFrame(tab)
+        }
         tab.refreshContainer.setOnRefreshListener {
             if (web.selecting || tab !in tabs) tab.refreshContainer.isRefreshing=false
             else { tab.error=""; web.reload() }
@@ -332,6 +332,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 tab.suppressHistoryUntilNavigation=false
                 tab.navigationGeneration++
                 tab.previewReady=false
+                tab.previewCommitted=false
                 // Keep the last successful thumbnail during reload, offline restore and errors.
                 tab.url=if(url=="about:blank")""else url
                 tab.pendingUrl=url;tab.error="";tab.blockedUrl=""
@@ -352,6 +353,12 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                     if(!tab.restoringNavigation&&url!=tab.url)tab.lastActiveAt=System.currentTimeMillis()
                     tab.url=if(url=="about:blank")""else url
                     tab.canBack=view.canGoBack();tab.canForward=view.canGoForward();persistTabs()
+                }
+            }
+            override fun onPageCommitVisible(view:WebView,url:String){
+                if(tab in tabs&&tab.url==url&&tab.error.isEmpty()){
+                    tab.previewCommitted=true
+                    requestPreviewFrame(tab)
                 }
             }
             override fun onPageFinished(view:WebView,url:String) {
@@ -378,6 +385,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 }
                 if(tab.error.isEmpty()&&!tab.incognito&&!tab.restoringNavigation&&!tab.suppressHistoryUntilNavigation){store.visit(url,tab.title);revision++}
                 tab.restoringNavigation=false
+                if(tab.url==url)tab.previewCommitted=true
                 requestPreviewFrame(tab)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
                 if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config(tab.url)),null)

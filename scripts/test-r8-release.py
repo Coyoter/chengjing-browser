@@ -20,6 +20,7 @@ METHODS = (
     "homepageOptionsAndDailyQuoteWorkInOptimizedRelease",
     "deleteBrowsingDataWorksInOptimizedRelease",
     "externalDeepLinksWorkInOptimizedRelease",
+    "scrolledImagePreviewSurvivesRestartAndBlankReload",
 )
 
 def adb(*args, **kwargs):

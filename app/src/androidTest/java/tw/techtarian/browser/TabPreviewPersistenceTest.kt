@@ -34,7 +34,8 @@ internal class PreviewFixture(private val ui:androidx.compose.ui.test.junit4.And
         ui.runOnIdle{tab.set(c.newTab(incognito=incognito)!!)}
         val html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>$title</title></head><body style='margin:0;background:#f1eee7;color:#20352c;font:20px sans-serif'><header style='background:#147a64;color:white;padding:24px'>$title</header><main style='padding:24px'><h1>分頁還在，快照就該還在。</h1><p>這是本機合成測試頁，不需要連線。</p></main></body></html>"
         ui.runOnUiThread{tab.get().web.loadDataWithBaseURL(url,html,"text/html","UTF-8",null)}
-        ui.waitUntil(15000){tab.get().title==title&&(incognito||tab.get().previewReady)}
+        // Preview readiness can precede full loading; ordinary fixtures need both.
+        ui.waitUntil(15000){tab.get().title==title&&tab.get().pendingUrl.isEmpty()&&(incognito||tab.get().previewReady)}
         ui.waitForIdle()
         return tab.get()
     }

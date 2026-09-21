@@ -3,6 +3,8 @@ package tw.techtarian.browser.smoketests;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.SystemClock;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.By;
@@ -38,7 +40,7 @@ public class OptimizedReleaseTest {
         fixture=new Fixture();
         // Disposable QA package only. Each scenario starts with no account or private data.
         assertTrue(device.executeShellCommand("pm clear " + APP).contains("Success"));
-        open("one");
+        open(testName.getMethodName().equals("scrolledImagePreviewSurvivesRestartAndBlankReload")?"reader":"one");
     }
     @After public void finish() throws Exception {
         if(device!=null){
@@ -114,7 +116,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(27,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(28,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -208,6 +210,28 @@ public class OptimizedReleaseTest {
         device.pressBack();require(By.desc("瀏覽器選單"));
         require(By.text("R8 功能測試 one"));
     }
+    private double blueScreenRatio() {
+        Bitmap image=InstrumentationRegistry.getInstrumentation().getUiAutomation().takeScreenshot();
+        assertNotNull(image);int blue=0,total=0;
+        for(int y=0;y<image.getHeight();y+=4)for(int x=0;x<image.getWidth();x+=4){
+            int p=image.getPixel(x,y);if(Color.blue(p)>160&&Color.red(p)<80&&Color.green(p)<120)blue++;total++;
+        }
+        image.recycle();return (double)blue/Math.max(1,total);
+    }
+    @Test public void scrolledImagePreviewSurvivesRestartAndBlankReload() throws Exception {
+        click("Show reading panels");device.waitForIdle();
+        assertTrue("The actual scrolled page must show the image fixture",blueScreenRatio()>.1);
+        require(By.descStartsWith("分頁，")).click();require(By.text("R8 image reader"));device.waitForIdle();
+        assertTrue("The overview must contain blue image pixels, not a blank thumbnail",blueScreenRatio()>.01);
+        fixture.emptyReader=true;
+        // This UI-only method never loads :app classes, so its host and HTTP server
+        // survive the real browser-process stop (unlike the separate JNI test).
+        device.executeShellCommand("am force-stop "+APP);
+        device.executeShellCommand("am start -W -n "+APP+"/tw.techtarian.browser.MainActivity");
+        require(By.descStartsWith("分頁，")).click();require(By.text("Restored empty reader"));
+        InstrumentationRegistry.getInstrumentation().getUiAutomation().waitForIdle(500,10000);
+        assertTrue("The saved image must remain visible after a real restart and blank response",blueScreenRatio()>.01);
+    }
     @Test public void homepageOptionsAndDailyQuoteWorkInOptimizedRelease() throws Exception {
         assertFalse(device.hasObject(By.desc("首頁")));
         settings("瀏覽");
@@ -232,6 +256,7 @@ public class OptimizedReleaseTest {
         private final ServerSocket server;
         private final Thread worker;
         private volatile boolean running=true;
+        volatile boolean emptyReader=false;
         Fixture() throws IOException {
             server=new ServerSocket(0);
             worker=new Thread(()->{
@@ -242,8 +267,14 @@ public class OptimizedReleaseTest {
                     String page=first!=null&&first.contains("/two")?"two":"one";
                     String html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 功能測試 "+page+"</title></head><body style='margin:24px;font:18px sans-serif'><h1>R8 功能測試 "+page+"</h1><button id='r8-target' style='width:100%;padding:24px;margin:20px 0'>R8 測試元件</button><p>只使用本機合成內容，不接觸真實帳號。</p></body></html>";
                     html=html.replace("</body>","<p><a href='chengjing-test://open/r8?id=custom'>Open linked app</a></p><p><a href='intent://open/r8?id=intent#Intent;scheme=chengjing-test;package=tw.techtarian.browser.smoketests;end'>Open intent app</a></p></body>");
+                    if(first!=null&&first.contains("/reader")){
+                        String svg="<svg xmlns='http://www.w3.org/2000/svg' width='320' height='960'><rect width='320' height='960' fill='#1446dc'/><g fill='white'><rect x='30' y='30' width='90' height='80'/><rect x='30' y='230' width='90' height='80'/><rect x='30' y='430' width='90' height='80'/><rect x='30' y='630' width='90' height='80'/><rect x='30' y='830' width='90' height='80'/></g></svg>";
+                        String src="data:image/svg+xml;base64,"+java.util.Base64.getEncoder().encodeToString(svg.getBytes(StandardCharsets.UTF_8));
+                        String body=emptyReader?"":"<button id='r8-target'>R8 測試元件</button><p><a href='#panels'>Show reading panels</a></p><div style='height:12000px'></div><img id='panels' alt='Reading panels' src='"+src+"' style='display:block;width:100%'>";
+                        html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>"+(emptyReader?"Restored empty reader":"R8 image reader")+"</title></head><body style='margin:0;background:white'>"+body+"</body></html>";
+                    }
                     byte[] bytes=html.getBytes(StandardCharsets.UTF_8);
-                    socket.getOutputStream().write(("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: "+bytes.length+"\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));
+                    socket.getOutputStream().write(("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nCache-Control: no-store\r\nContent-Length: "+bytes.length+"\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));
                     socket.getOutputStream().write(bytes);socket.getOutputStream().flush();
                 }catch(IOException error){if(running)throw new RuntimeException(error);}
             },"r8-local-fixture");worker.setDaemon(true);worker.start();
