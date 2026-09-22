@@ -74,9 +74,27 @@ class ImageActionsTest {
         if(item==null){device.executeShellCommand("mkdir -p /data/local/tmp/chengjing-ui");device.executeShellCommand("screencap -p /data/local/tmp/chengjing-ui/image-menu-failure.png")}
         assertNotNull("No image menu at $x,$y (web origin ${origin.toList()})",item)
     }
-    private fun click(label:String){val node=device.wait(Until.findObject(By.text(label)),10000);assertNotNull("Missing $label",node);node!!.click()}
+    private fun failureSnapshot(){val dir=ui.activity.getExternalFilesDir(null)!!;device.dumpWindowHierarchy(java.io.File(dir,"image-action-failure.xml"));device.takeScreenshot(java.io.File(dir,"image-action-failure.png"))}
+    private fun click(label:String){
+        assertNotNull("Missing $label",device.wait(Until.findObject(By.text(label)),10000))
+        device.waitForIdle();SystemClock.sleep(250)
+        var node=device.findObject(By.text(label));if(node==null)failureSnapshot();assertNotNull("Missing $label",node)
+        val textNode=node
+        while(node!=null&&!node.isClickable)node=node.parent
+        (node?:textNode)!!.click()
+    }
+    private fun chooseReceiver(){
+        repeat(4){
+            device.waitForIdle();SystemClock.sleep(250)
+            var node=device.wait(Until.findObject(By.textStartsWith("QA 圖片")),1500)
+            if(node!=null){while(node!=null&&!node.isClickable)node=node.parent;assertNotNull(node);node!!.click();return}
+            device.swipe(device.displayWidth/2,device.displayHeight*4/5,device.displayWidth/2,device.displayHeight/3,30)
+        }
+        failureSnapshot();fail("Missing image receiver in expanded system sharesheet")
+    }
     private fun expected(raw:ByteArray)="image-received:image/png:${raw.size}:"+MessageDigest.getInstance("SHA-256").digest(raw).joinToString(""){"%02x".format(it)}
-    private fun checkReceiver(raw:ByteArray){assertNotNull(device.wait(Until.findObject(By.desc(expected(raw))),10000));device.pressBack();ui.waitForIdle()}
+    private fun checkReceiver(raw:ByteArray){val result=device.wait(Until.findObject(By.desc(expected(raw))),10000);if(result==null)failureSnapshot();assertNotNull(result);device.pressBack();ui.waitForIdle()}
+    private fun previewReady(){ui.waitUntil(15000){ui.onAllNodesWithTag("image-preview-content").fetchSemanticsNodes().size==1};ui.onNodeWithTag("image-preview-content").assertIsDisplayed()}
 
     @Test fun responseBytesDetermineFileNameMimeAndSavedContents()=runBlocking {
         for((format,expected) in listOf(Bitmap.CompressFormat.PNG to ImageFormat.PNG,Bitmap.CompressFormat.JPEG to ImageFormat.JPEG,Bitmap.CompressFormat.WEBP_LOSSLESS to ImageFormat.WEBP)){
@@ -126,7 +144,7 @@ class ImageActionsTest {
         menu();click("在新分頁開啟圖片")
         ui.waitUntil(10000){c.active?.imageContent!=null}
         ui.runOnIdle{assertNotEquals(original,c.activeId);assertArrayEquals(raw,c.active!!.imageContent!!.file.readBytes())}
-        ui.onNodeWithTag("image-preview-content").assertExists()
+        previewReady()
         ui.onNodeWithContentDescription("關閉圖片預覽").performClick()
         ui.runOnIdle{assertEquals(original,c.activeId)}
         assertArrayEquals(raw,PageImageReader.dataBytes(data(raw)))
@@ -138,7 +156,7 @@ class ImageActionsTest {
         for(label in listOf("在新分頁開啟圖片","預覽圖片","複製圖片","下載圖片","分享圖片"))assertTrue(device.hasObject(By.text(label)))
         assertFalse(device.hasObject(By.textContains("Lens")))
         click("預覽圖片");ui.waitUntil(10000){c.imagePreview!=null}
-        ui.onNodeWithTag("image-preview-content").assertExists()
+        previewReady()
         ui.onNodeWithContentDescription("關閉圖片預覽").performClick()
         val clipboard=ui.activity.getSystemService(android.content.ClipboardManager::class.java)
         ui.runOnIdle{clipboard.clearPrimaryClip()}
@@ -146,7 +164,7 @@ class ImageActionsTest {
         ui.waitUntil(10000){var copied=false;ui.runOnUiThread{copied=clipboard.primaryClip?.getItemAt(0)?.uri?.authority=="${ui.activity.packageName}.images"};copied}
         ui.runOnIdle{ui.activity.startActivity(Intent().setComponent(receiver))}
         click("Paste QA image");checkReceiver(raw)
-        menu();click("分享圖片");click("QA 圖片接收器");checkReceiver(raw)
+        menu();click("分享圖片");chooseReceiver();checkReceiver(raw)
     }
     @Test fun privatePreviewStaysPrivateAndCancelledExportWritesNothing() {
         val raw=bytes();fixture(data(raw),true);menu();click("預覽圖片")

@@ -40,7 +40,8 @@ public class OptimizedReleaseTest {
         fixture=new Fixture();
         // Disposable QA package only. Each scenario starts with no account or private data.
         assertTrue(device.executeShellCommand("pm clear " + APP).contains("Success"));
-        open(testName.getMethodName().equals("scrolledImagePreviewSurvivesRestartAndBlankReload")?"reader":"one");
+        String method=testName.getMethodName();
+        open(method.equals("scrolledImagePreviewSurvivesRestartAndBlankReload")?"reader":method.equals("imageDownloadPreviewCopyAndShareWorkInOptimizedRelease")?"image-actions":"one");
     }
     @After public void finish() throws Exception {
         if(device!=null){
@@ -261,11 +262,22 @@ public class OptimizedReleaseTest {
         assertFalse(device.hasObject(By.desc("首頁")));
     }
     private void imageMenu() {
-        require(By.desc("R8 image target")).longClick();
+        UiObject2 image=device.wait(Until.findObject(By.desc("R8 image target")),5000);
+        if(image==null)image=require(By.text("R8 image target"));
+        image.longClick();
         require(By.text("下載圖片"));require(By.text("預覽圖片"));require(By.text("在新分頁開啟圖片"));
     }
+    private void chooseImageReceiver() throws Exception {
+        for(int i=0;i<4;i++){
+            device.waitForIdle();SystemClock.sleep(250);
+            UiObject2 node=device.wait(Until.findObject(By.textStartsWith("QA 圖片")),1500);
+            if(node!=null){while(node!=null&&!node.isClickable())node=node.getParent();assertNotNull(node);node.click();return;}
+            device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*4/5,device.getDisplayWidth()/2,device.getDisplayHeight()/3,30);
+        }
+        fail("Image receiver missing from expanded system sharesheet");
+    }
     @Test public void imageDownloadPreviewCopyAndShareWorkInOptimizedRelease() throws Exception {
-        launchPage("image-actions");imageMenu();click("預覽圖片");
+        imageMenu();click("預覽圖片");
         UiObject2 image=require(By.desc("圖片，可雙指縮放與拖曳"));device.waitForIdle();
         device.executeShellCommand("mkdir -p /data/local/tmp/r8-smoke");
         device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/image-preview.png");
@@ -280,7 +292,7 @@ public class OptimizedReleaseTest {
         for(int i=0;i<10&&!device.hasObject(By.desc(fixture.expectedImage()));i++){click("Paste QA image");SystemClock.sleep(150);}
         require(By.desc(fixture.expectedImage()));
         device.pressBack();require(By.desc("瀏覽器選單"));
-        imageMenu();click("分享圖片");click("QA 圖片接收器");require(By.desc(fixture.expectedImage()));
+        imageMenu();click("分享圖片");chooseImageReceiver();require(By.desc(fixture.expectedImage()));
         device.pressBack();require(By.desc("瀏覽器選單"));
         imageMenu();click("下載圖片");
         menu();click("下載");require(By.text("搜尋下載"));require(By.text(java.util.regex.Pattern.compile(".*\\.png")));
@@ -309,7 +321,7 @@ public class OptimizedReleaseTest {
                         String body=emptyReader?"":"<button id='r8-target'>R8 測試元件</button><p><a href='#panels'>Show reading panels</a></p><div style='height:12000px'></div><img id='panels' alt='Reading panels' src='"+src+"' style='display:block;width:100%'>";
                         html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>"+(emptyReader?"Restored empty reader":"R8 image reader")+"</title></head><body style='margin:0;background:white'>"+body+"</body></html>";
                     }
-                    if(first!=null&&first.contains("/image-actions"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 圖片操作</title></head><body style='margin:24px'><img alt='R8 image target' src='/image-without-extension' width='180' height='180'></body></html>";
+                    if(first!=null&&first.contains("/image-actions"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 圖片操作</title></head><body style='margin:24px'><img role='img' aria-label='R8 image target' alt='R8 image target' tabindex='0' src='/image-without-extension' width='180' height='180'><p><button id='r8-target'>R8 測試元件</button></p></body></html>";
                     boolean imageRequest=first!=null&&first.contains("/image-without-extension");
                     byte[] bytes=imageRequest?image:html.getBytes(StandardCharsets.UTF_8);
                     socket.getOutputStream().write(("HTTP/1.1 200 OK\r\nContent-Type: "+(imageRequest?"application/octet-stream":"text/html; charset=utf-8")+"\r\nCache-Control: no-store\r\nContent-Length: "+bytes.length+"\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));

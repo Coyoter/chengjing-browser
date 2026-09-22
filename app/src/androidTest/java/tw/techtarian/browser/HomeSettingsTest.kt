@@ -5,7 +5,6 @@ import android.content.ContextWrapper
 import android.os.Process
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.semantics.SemanticsActions
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
@@ -27,12 +26,9 @@ class HomeSettingsTest {
     @After fun cleanup(){ui.runOnIdle{c.home.updateEnabled(false);c.home.useDefault();c.closePrivateTabs();c.sheet=""}}
     private fun settings(){ui.runOnIdle{c.sheet="settings"};ui.onNodeWithText("瀏覽",useUnmergedTree=true).performClick()}
     private fun saveHomeUrl(){
-        val button=ui.onNodeWithTag("save-home-url")
-        button.performScrollTo().assertIsDisplayed().assertIsEnabled()
-        // This case verifies URL validation/persistence. Trigger the real button's
-        // accessibility action so native IME movement cannot move the touch target.
-        // The independent R8 test still exercises actual touches on Save homepage.
-        button.performSemanticsAction(SemanticsActions.OnClick){assertTrue(it())}
+        // Validate the real IME Done action, which invokes the same save handler.
+        // The independent R8 scenario covers touching the visible Save button.
+        ui.onNodeWithTag("home-url-input").performImeAction()
     }
     @Test fun switchRevealsConfigurationAndImmediatelyAddsTheAddressButton(){
         ui.onNodeWithTag("home-button").assertDoesNotExist()
