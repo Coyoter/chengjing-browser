@@ -33,7 +33,11 @@ import kotlin.math.sqrt
 @Composable internal fun ImagePreviewDialog(c:BrowserController,asset:ImageAsset){
     Dialog(onDismissRequest={c.imagePreview=null},properties=DialogProperties(usePlatformDefaultWidth=false,decorFitsSystemWindows=false)){
         val view=LocalView.current
-        SideEffect{if(asset.private)(view.parent as? DialogWindowProvider)?.window?.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)}
+        SideEffect{(view.parent as? DialogWindowProvider)?.window?.let{window->
+            androidx.core.view.WindowCompat.getInsetsController(window,view).apply{isAppearanceLightStatusBars=false;isAppearanceLightNavigationBars=false}
+            if(asset.private)window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+            else window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+        }}
         ImageViewer(c,asset,Modifier.fillMaxSize()){c.imagePreview=null}
     }
 }
@@ -80,6 +84,9 @@ private class ZoomImageView(context:android.content.Context):ImageView(context){
     })
     init{scaleType=ScaleType.MATRIX;contentDescription="圖片，可雙指縮放與拖曳"}
     fun show(value:android.graphics.drawable.Drawable){if(drawable!==value){setImageDrawable(value);fit()}}
+    // Compose's AndroidView holder does not clip an ImageView's zoom matrix.
+    // Clip in local canvas coordinates so the image cannot cover the controls.
+    override fun onDraw(canvas:android.graphics.Canvas){val saved=canvas.save();canvas.clipRect(0,0,width,height);super.onDraw(canvas);canvas.restoreToCount(saved)}
     override fun onSizeChanged(w:Int,h:Int,oldw:Int,oldh:Int){super.onSizeChanged(w,h,oldw,oldh);fit()}
     private fun fit(){val image=drawable?:return;if(width<=0||height<=0||image.intrinsicWidth<=0||image.intrinsicHeight<=0)return
         minimum=min(width.toFloat()/image.intrinsicWidth,height.toFloat()/image.intrinsicHeight);current=minimum

@@ -218,6 +218,14 @@ public class OptimizedReleaseTest {
         }
         image.recycle();return (double)blue/Math.max(1,total);
     }
+    private double blueOutside(android.graphics.Rect bounds) {
+        Bitmap image=InstrumentationRegistry.getInstrumentation().getUiAutomation().takeScreenshot();
+        assertNotNull(image);int blue=0,total=0;
+        for(int y=0;y<image.getHeight();y+=4)for(int x=0;x<image.getWidth();x+=4)if(!bounds.contains(x,y)){
+            int p=image.getPixel(x,y);if(Color.blue(p)>160&&Color.red(p)<80&&Color.green(p)<120)blue++;total++;
+        }
+        image.recycle();return (double)blue/Math.max(1,total);
+    }
     @Test public void scrolledImagePreviewSurvivesRestartAndBlankReload() throws Exception {
         click("Show reading panels");device.waitForIdle();
         assertTrue("The actual scrolled page must show the image fixture",blueScreenRatio()>.1);
@@ -264,6 +272,7 @@ public class OptimizedReleaseTest {
         double before=blueScreenRatio();android.graphics.Rect bounds=image.getVisibleBounds();
         device.click(bounds.centerX(),bounds.centerY());SystemClock.sleep(70);device.click(bounds.centerX(),bounds.centerY());device.waitForIdle();
         assertTrue("Double tap must visibly enlarge the preview",blueScreenRatio()>before+.05);
+        assertTrue("Zoomed image must not cover preview controls",blueOutside(bounds)<.01);
         device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/image-preview-zoom.png");
         require(By.desc("關閉圖片預覽")).click();
         imageMenu();click("複製圖片");
