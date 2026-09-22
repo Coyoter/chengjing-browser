@@ -266,8 +266,10 @@ public class OptimizedReleaseTest {
         for(String label:new String[]{"Google","Bing","Yahoo","百度","Naver","Wiki","自訂"})findText(label);
         click("Wiki");require(By.text("中文維基百科"));
         require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));
-        UiObject2 address=require(By.clazz("android.widget.EditText"));address.click();address.setText("r8 search terms");device.pressEnter();
-        assertTrue("Address text must use the selected Wiki engine",device.wait(Until.hasObject(By.textStartsWith("https://zh.wikipedia.org/w/index.php?search=r8%20search%20terms")),10000));
+        UiObject2 address=require(By.clazz("android.widget.EditText"));address.click();device.waitForIdle();
+        address=require(By.clazz("android.widget.EditText"));address.clear();address.setText("r8 search terms");
+        require(By.text("r8 search terms"));SystemClock.sleep(250);device.pressEnter();
+        assertTrue("Address text must use the selected Wiki engine",device.wait(Until.hasObject(By.text(java.util.regex.Pattern.compile("https://zh\\.wikipedia\\.org/w/index\\.php\\?search=r8(?:%20|\\+)search(?:%20|\\+)terms.*"))),10000));
         settings("瀏覽");click("預設搜尋引擎");click("自訂");
         UiObject2 template=require(By.clazz("android.widget.EditText"));template.setText("https://find.example/search?lang=zh-TW&q={query}");
         click("儲存並使用");require(By.desc("返回上一層")).click();
