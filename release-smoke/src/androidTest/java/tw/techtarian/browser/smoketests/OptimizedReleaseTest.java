@@ -117,7 +117,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(30,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(31,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -260,6 +260,20 @@ public class OptimizedReleaseTest {
         settings("瀏覽");require(By.desc("顯示首頁按鈕")).click();
         assertFalse(device.hasObject(By.text("自訂網址")));closeMenu();
         assertFalse(device.hasObject(By.desc("首頁")));
+    }
+    @Test public void searchEngineChoiceAndCustomTemplateWorkInOptimizedRelease() throws Exception {
+        settings("瀏覽");click("預設搜尋引擎");
+        for(String label:new String[]{"Google","Bing","Yahoo","百度","Naver","Wiki","自訂"})findText(label);
+        click("Wiki");require(By.text("中文維基百科"));
+        require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));
+        UiObject2 address=require(By.clazz("android.widget.EditText"));address.click();address.setText("r8 search terms");device.pressEnter();
+        assertTrue("Address text must use the selected Wiki engine",device.wait(Until.hasObject(By.textStartsWith("https://zh.wikipedia.org/w/index.php?search=r8%20search%20terms")),10000));
+        settings("瀏覽");click("預設搜尋引擎");click("自訂");
+        UiObject2 template=require(By.clazz("android.widget.EditText"));template.setText("https://find.example/search?lang=zh-TW&q={query}");
+        click("儲存並使用");require(By.desc("返回上一層")).click();
+        require(By.textContains("自訂 · find.example"));click("預設搜尋引擎");require(By.text("find.example"));
+        device.executeShellCommand("mkdir -p /data/local/tmp/r8-smoke");
+        device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/search-engine-custom.png");
     }
     private void imageMenu() {
         UiObject2 image=device.wait(Until.findObject(By.desc("R8 image target")),5000);

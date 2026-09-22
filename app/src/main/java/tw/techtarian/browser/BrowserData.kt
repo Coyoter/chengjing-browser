@@ -19,16 +19,17 @@ import javax.crypto.spec.GCMParameterSpec
 object Domains {
     fun scope(url: String): String = url.toHttpUrlOrNull()?.let { it.topPrivateDomain() ?: it.host }.orEmpty()
     fun matches(host: String, scope: String) = scope.isNotEmpty() && (host == scope || host.endsWith(".$scope"))
-    fun address(input: String): String {
+    fun resolve(input:String,searchSettings:SearchSettings=SearchSettings()):AddressResolution {
         val text = input.trim()
-        if (text.isEmpty()) return ""
-        if (text.startsWith("https://") || text.startsWith("http://")) return if (text.toHttpUrlOrNull() != null) text else ""
+        if (text.isEmpty()) return AddressResolution("",false)
+        if (text.startsWith("https://") || text.startsWith("http://")) return AddressResolution(if(text.toHttpUrlOrNull()!=null)text else "",false)
         if (!text.contains(' ') && (text.contains('.') || text.startsWith("localhost"))) {
             val scheme = if (text.startsWith("localhost") || text.startsWith("127.0.0.1") || text.startsWith("10.0.2.2")) "http://" else "https://"
-            return (scheme + text).toHttpUrlOrNull()?.toString().orEmpty()
+            return AddressResolution((scheme+text).toHttpUrlOrNull()?.toString().orEmpty(),false)
         }
-        return "https://www.google.com/search?q=" + java.net.URLEncoder.encode(text, "UTF-8")
+        return AddressResolution(SearchEngines.searchUrl(text,searchSettings),true)
     }
+    fun address(input:String,searchSettings:SearchSettings=SearchSettings())=resolve(input,searchSettings).url
 }
 
 data class ElementRule(val selector: String, val label: String = "網站元件") {
@@ -125,6 +126,21 @@ class BrowserStore(context: Context) {
     var addressAtBottom:Boolean
         get()=prefs.getBoolean("address-at-bottom",false)
         set(value){prefs.edit().putBoolean("address-at-bottom",value).apply()}
+    private var searchEngineState by mutableStateOf(prefs.getString("search-engine","google")?.takeIf{it in SearchEngines.ids}?:"google")
+    private var customSearchTemplateState by mutableStateOf(prefs.getString("custom-search-template","").orEmpty().takeIf{SearchEngines.templateError(it)==null}.orEmpty())
+    val searchSettings get()=SearchSettings(searchEngineState,customSearchTemplateState)
+    val searchEngine get()=searchEngineState
+    val customSearchTemplate get()=customSearchTemplateState
+    fun useSearchEngine(id:String){
+        require(id in SearchEngines.ids&&id!="custom")
+        check(prefs.edit().putString("search-engine",id).commit()){ "搜尋引擎設定未能儲存" }
+        searchEngineState=id
+    }
+    fun useCustomSearch(raw:String){
+        val template=SearchEngines.normalizeTemplate(raw)
+        check(prefs.edit().putString("custom-search-template",template).putString("search-engine","custom").commit()){ "自訂搜尋引擎未能儲存" }
+        customSearchTemplateState=template;searchEngineState="custom"
+    }
     fun all(): List<SiteRules> = prefs.all.keys.filter { it.startsWith("site:") }.mapNotNull { key ->
         runCatching { SiteRules.from(JSONObject(prefs.getString(key, "{}")!!)) }.getOrNull()
     }
@@ -170,9 +186,9 @@ class BrowserStore(context: Context) {
         prefs.edit().putString("history",BrowsingHistoryFormat.pagesJson(items)).apply()
     }
     fun searches():List<String> = historySearches().map{it.query}
-    fun recordSearch(input:String,resolved:String,searchedAt:Long=System.currentTimeMillis()){
+    fun recordSearch(input:String,resolved:String,searchedAt:Long=System.currentTimeMillis(),isSearch:Boolean=SearchEngines.looksLikeSearch(resolved)){
         val query=input.trim()
-        if(query.isEmpty()||query.startsWith("http://",true)||query.startsWith("https://",true)||!resolved.startsWith("https://www.google.com/search?q="))return
+        if(query.isEmpty()||query.startsWith("http://",true)||query.startsWith("https://",true)||!isSearch)return
         val rows=(listOf(HistorySearch(query,searchedAt))+historySearches().filterNot{it.query.equals(query,true)}).take(100)
         prefs.edit().putString("searches",BrowsingHistoryFormat.searchesJson(rows)).apply()
     }

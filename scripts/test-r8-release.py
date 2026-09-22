@@ -23,6 +23,7 @@ METHODS = (
     "scrolledImagePreviewSurvivesRestartAndBlankReload",
     "imageDownloadPreviewCopyAndShareWorkInOptimizedRelease",
     "appearanceFollowsAppChoiceAcrossSystemModes",
+    "searchEngineChoiceAndCustomTemplateWorkInOptimizedRelease",
 )
 
 def adb(*args, **kwargs):

@@ -487,14 +487,14 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun exitFullscreen(){val callback=fullScreenCallback;fullScreenCallback=null;fullScreenView=null;callback?.onCustomViewHidden()}
     fun navigate(input:String,fromFavorite:Favorite?=null) {
-        val url=Domains.address(input);if(url.isEmpty())return
+        val resolution=Domains.resolve(input,store.searchSettings);val url=resolution.url;if(url.isEmpty())return
         active?.imageContent=null
         active?.restoringNavigation=false
         active?.externalGesture?.reset()
-        recordSearchFor(active,input,url);revision++
+        recordSearchFor(active,input,url,resolution.search);revision++
         stopEye();sheet="";active?.error="";active?.favoriteId=fromFavorite?.id;active?.favoriteRestore=fromFavorite;active?.favoriteRestoreTouchSequence=active?.web?.touchSequence?:0L;active?.pendingUrl=url;active?.web?.loadUrl(url)
     }
-    internal fun recordSearchFor(tab:BrowserTab?,input:String,url:String){if(tab?.incognito!=true)store.recordSearch(input,url)}
+    internal fun recordSearchFor(tab:BrowserTab?,input:String,url:String,isSearch:Boolean=SearchEngines.looksLikeSearch(url)){if(tab?.incognito!=true)store.recordSearch(input,url,isSearch=isSearch)}
     /** Home is a navigation in the current tab, never a new tab or a change of profile. */
     fun openHome(){
         if(!home.enabled)return

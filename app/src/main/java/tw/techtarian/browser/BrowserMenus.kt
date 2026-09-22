@@ -47,12 +47,12 @@ import kotlinx.coroutines.launch
 
 internal fun panelTitle(page:String)=when(page){
     "legal"->"第三方授權";"element-editor"->"元件程式碼";"develop-ai"->"天眼 AI";"connection"->"網站連線";"privacy"->"隱私與資料";"menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
-    "rules"->"網站修改";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別"
+    "rules"->"網站修改";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別";"search-engine"->"預設搜尋引擎"
     "inventory"->"結構清單";"sync"->"Google 同步";"history"->"瀏覽記錄";"downloads"->"下載";"domains"->"網域規則"
     "find"->"尋找頁面文字";"blocked"->"攔截紀錄";else->"澄境瀏覽器"
 }
 internal fun panelParent(page:String)=when(page){
-    "menu","selection","connection"->"";"rules","code","ai","inventory"->"eye";"user-agent","sync"->"settings";else->"menu"
+    "menu","selection","connection"->"";"rules","code","ai","inventory"->"eye";"user-agent","search-engine","sync"->"settings";else->"menu"
 }
 @Composable internal fun PanelHeader(c:BrowserController,onBack:()->Unit){
     val colors=MaterialTheme.colorScheme
@@ -124,7 +124,7 @@ internal fun panelParent(page:String)=when(page){
         if((tab?.blockedTotal?:0)>0)MenuRow(Icons.Outlined.Shield,"已攔截 ${tab?.blockedTotal} 次干擾","查看本分頁紀錄"){tab?.blockedUnread=false;c.sheet="blocked"}
     }
     MenuGroup("偏好與資料"){
-        MenuRow(Icons.Outlined.Settings,"設定","外觀與 AI 設定"){c.sheet="settings"}
+        MenuRow(Icons.Outlined.Settings,"設定","外觀、瀏覽與 AI 設定"){c.sheet="settings"}
         MenuRow(Icons.Outlined.CloudSync,"Google 同步"){c.sheet="sync"}
     }
     Text("澄境瀏覽器 ${BuildConfig.VERSION_NAME}",Modifier.fillMaxWidth().padding(start=4.dp),fontSize=11.sp,lineHeight=16.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)

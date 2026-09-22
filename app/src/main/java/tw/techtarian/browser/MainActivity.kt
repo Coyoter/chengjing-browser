@@ -289,6 +289,7 @@ class MainActivity:AppCompatActivity(){
                         "ai"->DeveloperAiPanel(c){settingsCategory="ai";c.sheet="settings"}
                         "settings"->SettingsPanel(settingsCategory,store,theme,{activity.applyAppearance(it)},c,addressAtBottom,{addressAtBottom=it;store.addressAtBottom=it})
                         "user-agent"->UserAgentPanel(c)
+                        "search-engine"->SearchEnginePanel(c)
                         "inventory"->InventoryPanel(c)
                         "sync"->SyncPanel(c,store)
                         "domains"->{SheetTitle("網域規則","你的選擇，留在你的手機。")
@@ -408,6 +409,9 @@ class MainActivity:AppCompatActivity(){
         }
         "browsing"->{
             HomeSettings(c)
+            MenuGroup("搜尋"){
+                MenuRow(Icons.Outlined.Search,"預設搜尋引擎","${SearchEngines.label(store.searchSettings)} · ${SearchEngines.description(store.searchSettings)}"){c.sheet="search-engine"}
+            }
             MenuGroup("網站顯示"){
                 MenuRow(Icons.Outlined.Language,"瀏覽器識別（User-Agent）",when(store.userAgentMode){"webview"->"原始 Android WebView";"custom"->"自訂識別";else->"Chrome 手機版"}){c.sheet="user-agent"}
             }
