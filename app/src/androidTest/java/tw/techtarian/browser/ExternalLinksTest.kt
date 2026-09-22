@@ -57,6 +57,7 @@ class ExternalLinksTest {
     }
     private fun click(label:String){
         if(!label.startsWith("Open ")){
+            ui.waitUntil(10000){ui.onAllNodesWithText(label).fetchSemanticsNodes().isNotEmpty()}
             val node=device.wait(Until.findObject(By.text(label)),10000);assertNotNull(label,node);node!!.click();return
         }
         // Read the fixture's actual DOM, then deliver a real touch. WebView's virtual
@@ -74,7 +75,12 @@ class ExternalLinksTest {
         shell("mkdir -p /data/local/tmp/chengjing-ui")
         shell("screencap -p /data/local/tmp/chengjing-ui/deep-link-receiver.png")
     }
-    private fun back(){device.pressBack();assertNotNull(device.wait(Until.findObject(By.desc("瀏覽器選單")),10000));ui.waitForIdle()}
+    private fun back(){
+        device.pressBack()
+        ui.waitUntil(10000){ui.activity.lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED)}
+        ui.waitForIdle()
+        assertNotNull(device.wait(Until.findObject(By.desc("瀏覽器選單")),10000))
+    }
 
     @Test fun customSchemeReallyOpensAnotherAppAndBackKeepsThePage(){
         val tab=load();val before=c.tabs.map{it.id}
@@ -141,6 +147,7 @@ class ExternalLinksTest {
         ui.runOnIdle{assertTrue(c.privateSession.supported)}
         val tab=load(true)
         click("Open custom app")
+        ui.waitUntil(10000){ui.onAllNodesWithText("在其他 App 開啟？").fetchSemanticsNodes().isNotEmpty()}
         assertNotNull(device.wait(Until.findObject(By.text("在其他 App 開啟？")),10000))
         click("取消")
         assertEquals(ui.activity.packageName,device.currentPackageName)

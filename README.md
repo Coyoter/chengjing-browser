@@ -2,7 +2,7 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前原始碼版本為 **1.8.0（versionCode 29）**：正式版啟用 R8 混淆、程式碼與資源縮減；保留 AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.8.0 更新說明](docs/releases/1.8.0.md) · [簽章與發布流程](docs/RELEASING.md) · [R8 驗證](docs/R8-RELEASE.md)
+目前原始碼版本為 **1.8.1（versionCode 30）**：正式版啟用 R8 混淆、程式碼與資源縮減；保留 AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.8.1 更新說明](docs/releases/1.8.1.md) · [簽章與發布流程](docs/RELEASING.md) · [R8 驗證](docs/R8-RELEASE.md)
 
 ## 安裝與使用
 
@@ -82,3 +82,7 @@ Google OAuth 已切換為正式環境，僅使用非機密的 drive.appdata 範�
 ## 1.8.0 圖片操作
 
 長按下載先驗證圖片，再存至 Downloads/ChengJing；複製與分享提供真正圖片檔，預覽支援雙指縮放。網頁內的 data:/blob: 圖片可開啟暫存圖片分頁，重開 App 不保留，畫面會提示先下載；一般 HTTP(S) 圖片分頁照常還原。圖片操作快取在啟動及寫入時清理，最長 24 小時、一般最多 128 MiB、無痕最多 64 MiB，單張最多 32 MiB。[格式、權限與驗證範圍](docs/IMAGE-DOWNLOAD-SHARE.md)。
+
+## 1.8.1 外觀一致性
+
+App 的深色／淺色／跟隨系統改由同一設定管理 Compose 與 Android 原生元件。圖片及連結長按選單、下載與無痕提醒、書籤匯入和網站提示共用澄境樣式；補完整個介面的表面、次要文字、錯誤與提示配色。切換外觀不重建分頁，網頁色彩偏好同步更新；支援的網站自行選用其深色樣式。Android 12 起會依選項保存後續的系統啟動畫面主題。[檢查範圍與設計決策](docs/APPEARANCE-AUDIT.md)。

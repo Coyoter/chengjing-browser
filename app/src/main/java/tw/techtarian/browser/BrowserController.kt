@@ -117,9 +117,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 cookieHeader=cookiesFor(tab).getCookie(url),mimeHint=mime,disposition=disposition,imageOnly=imageOnly)
             Unit
         }
-        if(tab.incognito)android.app.AlertDialog.Builder(context).setTitle("下載會保留在手機")
-            .setMessage("檔案與系統下載紀錄不會隨無痕分頁清除。確定要下載嗎？")
-            .setNegativeButton("取消",null).setPositiveButton("下載"){_,_->action()}.show()
+        if(tab.incognito)prompts.confirm("下載會保留在手機","檔案與系統下載紀錄不會隨無痕分頁清除。確定要下載嗎？","下載",
+            owner=tab.id,valid={tab in tabs&&tab.id==activeId},confirm=action)
         else action()
     }
     val active: BrowserTab? get() = tabs.find { it.id == activeId }
@@ -130,6 +129,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     var dirty by mutableStateOf(false)
     var notice by mutableStateOf("")
     var sheet by mutableStateOf("")
+    internal val prompts=BrowserPrompts()
     internal var imagePreview by mutableStateOf<ImageAsset?>(null)
     var aiElement by mutableStateOf<Selection?>(null)
     var editingHtml by mutableStateOf(false)
@@ -336,6 +336,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(web.selecting){view.stopLoading();return}
                 if(!tab.restoringNavigation)tab.lastActiveAt=System.currentTimeMillis()
                 tab.suppressHistoryUntilNavigation=false
+                prompts.closeFor(tab.id)
                 tab.navigationGeneration++
                 tab.previewReady=false
                 tab.previewCommitted=false
@@ -430,6 +431,22 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
         }
         web.webChromeClient=object:WebChromeClient(){
+            private fun websitePrompt(url:String,message:String,result:android.webkit.JsResult,initial:String?=null,beforeUnload:Boolean=false,alert:Boolean=false):Boolean {
+                if(tab !in tabs||tab.id!=activeId||web.selecting){result.cancel();return true}
+                val generation=tab.navigationGeneration
+                val site=android.net.Uri.parse(url).host?:"本機網頁"
+                prompts.show(BrowserPrompt.Confirm(
+                    if(beforeUnload)"離開網頁？"else"網站訊息 · $site",message,
+                    if(beforeUnload)"離開"else"確定",{result.confirm()},if(beforeUnload)"留在此頁"else"取消",
+                    tab.id,{tab in tabs&&tab.id==activeId&&tab.navigationGeneration==generation},{result.cancel()},
+                    input=initial,submit=if(result is android.webkit.JsPromptResult)({value:String->result.confirm(value)})else null,
+                    showCancel=!alert
+                ));return true
+            }
+            override fun onJsAlert(view:WebView,url:String,message:String,result:android.webkit.JsResult)=websitePrompt(url,message,result,alert=true)
+            override fun onJsConfirm(view:WebView,url:String,message:String,result:android.webkit.JsResult)=websitePrompt(url,message,result)
+            override fun onJsPrompt(view:WebView,url:String,message:String,defaultValue:String?,result:android.webkit.JsPromptResult)=websitePrompt(url,message,result,initial=defaultValue.orEmpty())
+            override fun onJsBeforeUnload(view:WebView,url:String,message:String,result:android.webkit.JsResult)=websitePrompt(url,message,result,beforeUnload=true)
             override fun onProgressChanged(view:WebView,value:Int){tab.progress=value}
             override fun onReceivedIcon(view:WebView,icon:Bitmap?){if(icon!=null&&!tab.incognito)view.url?.let{icons.remember(it,icon)}}
             override fun onReceivedTitle(view:WebView,title:String?){
@@ -458,9 +475,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             if(web.selecting)return@setDownloadListener
             if(!url.startsWith("https://")&&!url.startsWith("http://")){notice="此類型的下載尚未支援";return@setDownloadListener}
             val name=URLUtil.guessFileName(url,disposition,mime)
-            android.app.AlertDialog.Builder(context).setTitle("下載檔案？").setMessage(name).setNegativeButton("取消",null).setPositiveButton("下載") { _,_->
+            prompts.confirm("下載檔案？",name,"下載",owner=tab.id,valid={tab in tabs&&tab.id==activeId}) {
                 downloadFor(tab,url,tab.url,userAgent,mime,disposition,imageOnly=false)
-            }.show()
+            }
         }
         PageContextMenu(this,tab).install()
         tabs.add(tab);activeId=tab.id;updatePrivacyWindow()
@@ -521,6 +538,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int){
+        prompts.closeFor(id)
         if(id==activeId)stopEye()
         val tab=tabs.find{it.id==id}?:return
         previews.remove(tab.previewKey)
@@ -592,5 +610,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice="已復原上一次儲存"}}
-    fun destroy(){if(destroyed)return;destroyed=true;browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
+    fun destroy(){if(destroyed)return;destroyed=true;prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }

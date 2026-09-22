@@ -10,4 +10,22 @@
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_browser_launch</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
     </style>
+    <style name="AppTheme.Starting.Light" parent="AppTheme.Starting">
+        <item name="android:windowBackground">@color/browser_light_background</item>
+        <item name="android:statusBarColor">@color/browser_light_background</item>
+        <item name="android:navigationBarColor">@color/browser_light_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowSplashScreenBackground">@color/browser_light_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_browser_launch_light</item>
+    </style>
+    <style name="AppTheme.Starting.Dark" parent="AppTheme.Starting">
+        <item name="android:windowBackground">@color/browser_dark_background</item>
+        <item name="android:statusBarColor">@color/browser_dark_background</item>
+        <item name="android:navigationBarColor">@color/browser_dark_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowSplashScreenBackground">@color/browser_dark_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_browser_launch_dark</item>
+    </style>
 </resources>

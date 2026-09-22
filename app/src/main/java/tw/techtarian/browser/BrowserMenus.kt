@@ -18,7 +18,6 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
-import androidx.core.view.WindowCompat
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
@@ -38,8 +37,7 @@ import kotlinx.coroutines.launch
         val view=LocalView.current
         SideEffect{(view.parent as? DialogWindowProvider)?.window?.let{window->
             if(c.privateScreen)window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)else window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
-            WindowCompat.getInsetsController(window,view).isAppearanceLightStatusBars=colors.background.luminance()>.5f
-            WindowCompat.getInsetsController(window,view).isAppearanceLightNavigationBars=colors.background.luminance()>.5f
+            browserSystemBars(window,view,colors.background.luminance()>.5f)
         }}
         Surface(Modifier.fillMaxSize().testTag("browser-panel"),color=colors.background){
             Column(Modifier.fillMaxSize().safeDrawingPadding().imePadding(),content=content)

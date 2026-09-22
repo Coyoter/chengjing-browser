@@ -1,7 +1,6 @@
 package tw.techtarian.browser
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -41,9 +40,8 @@ internal class BrowserImageActions(private val activity:MainActivity) {
     private fun notice(text:String){c.notice=text}
     private fun confirmExport(private:Boolean,action:ImageAction,run:()->Unit){
         if(private&&action in setOf(ImageAction.COPY,ImageAction.DOWNLOAD,ImageAction.SHARE)){
-            AlertDialog.Builder(activity).setTitle("圖片會保留在無痕瀏覽之外")
-                .setMessage("下載、剪貼簿或接收圖片的 App 可能保留檔案，不會隨無痕分頁清除。")
-                .setNegativeButton("取消",null).setPositiveButton("繼續"){_,_->run()}.show()
+            c.prompts.confirm("圖片會保留在無痕瀏覽之外",
+                "下載、剪貼簿或接收圖片的 App 可能保留檔案，不會隨無痕分頁清除。","繼續",confirm=run)
         }else run()
     }
     private fun runAction(private:Boolean=false,work:suspend ()->Unit){

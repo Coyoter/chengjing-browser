@@ -41,7 +41,7 @@ public class OptimizedReleaseTest {
         // Disposable QA package only. Each scenario starts with no account or private data.
         assertTrue(device.executeShellCommand("pm clear " + APP).contains("Success"));
         String method=testName.getMethodName();
-        open(method.equals("scrolledImagePreviewSurvivesRestartAndBlankReload")?"reader":method.equals("imageDownloadPreviewCopyAndShareWorkInOptimizedRelease")?"image-actions":"one");
+        open(method.equals("scrolledImagePreviewSurvivesRestartAndBlankReload")?"reader":method.equals("imageDownloadPreviewCopyAndShareWorkInOptimizedRelease")||method.equals("appearanceFollowsAppChoiceAcrossSystemModes")?"image-actions":"one");
     }
     @After public void finish() throws Exception {
         if(device!=null){
@@ -117,7 +117,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(29,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(30,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -266,6 +266,32 @@ public class OptimizedReleaseTest {
         if(image==null)image=require(By.text("R8 image target"));
         image.longClick();
         require(By.text("下載圖片"));require(By.text("預覽圖片"));require(By.text("在新分頁開啟圖片"));
+    }
+    private void assertImageMenuTone(boolean dark) throws Exception {
+        imageMenu();device.waitForIdle();
+        UiObject2 row=require(By.text("下載圖片"));while(row.getParent()!=null&&!row.isClickable())row=row.getParent();
+        android.graphics.Rect bounds=row.getVisibleBounds();
+        Bitmap image=InstrumentationRegistry.getInstrumentation().getUiAutomation().takeScreenshot();assertNotNull(image);
+        int color=image.getPixel(bounds.left+6,bounds.centerY());image.recycle();
+        int light=(Color.red(color)+Color.green(color)+Color.blue(color))/3;
+        assertTrue("Wrong image-menu surface, dark="+dark+", color="+Integer.toHexString(color),dark?light<90:light>200);
+        device.executeShellCommand("mkdir -p /data/local/tmp/r8-smoke");
+        device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/appearance-"+(dark?"dark":"light")+".png");
+        require(By.desc("關閉長按選單")).click();
+    }
+    @Test public void appearanceFollowsAppChoiceAcrossSystemModes() throws Exception {
+        String tabs=require(By.descStartsWith("分頁，")).getContentDescription();
+        try {
+            device.executeShellCommand("cmd uimode night no");
+            settings("外觀");click("深色");closeMenu();assertImageMenuTone(true);
+            device.executeShellCommand("cmd uimode night yes");
+            settings("外觀");click("淺色");closeMenu();assertImageMenuTone(false);
+            settings("外觀");click("系統");closeMenu();assertImageMenuTone(true);
+            device.executeShellCommand("cmd uimode night no");assertImageMenuTone(false);
+            assertEquals("Theme changes must keep the current tabs",tabs,require(By.descStartsWith("分頁，")).getContentDescription());
+            menu();require(By.desc("關閉選單"));launchPage("two");
+            assertTrue("An external URL must dismiss the old panel",device.wait(Until.gone(By.desc("關閉選單")),5000));
+        }finally{device.executeShellCommand("cmd uimode night no");}
     }
     private void chooseImageReceiver() throws Exception {
         for(int i=0;i<4;i++){

@@ -22,6 +22,7 @@ METHODS = (
     "externalDeepLinksWorkInOptimizedRelease",
     "scrolledImagePreviewSurvivesRestartAndBlankReload",
     "imageDownloadPreviewCopyAndShareWorkInOptimizedRelease",
+    "appearanceFollowsAppChoiceAcrossSystemModes",
 )
 
 def adb(*args, **kwargs):

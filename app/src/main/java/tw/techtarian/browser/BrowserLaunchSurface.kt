@@ -3,7 +3,6 @@ package tw.techtarian.browser
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.Typeface
@@ -20,6 +19,11 @@ import kotlin.math.sin
  * No WebView, network request, bitmap allocation, or model download is needed to draw it.
  */
 internal class BrowserLaunchSurface(context:Context, private val dark:Boolean):View(context){
+    private val palette=context.createConfigurationContext(android.content.res.Configuration(resources.configuration).apply{
+        uiMode=(uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK.inv()) or
+            if(dark)android.content.res.Configuration.UI_MODE_NIGHT_YES else android.content.res.Configuration.UI_MODE_NIGHT_NO
+    }).resources
+    private val primary=palette.getColor(R.color.browser_primary,null)
     private val density=resources.displayMetrics.density
     private fun dp(value:Float)=value*density
     private fun sp(value:Float)=TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,value,resources.displayMetrics)
@@ -37,7 +41,7 @@ internal class BrowserLaunchSurface(context:Context, private val dark:Boolean):V
     init{
         contentDescription="正在開啟澄境瀏覽器"
         importantForAccessibility=IMPORTANT_FOR_ACCESSIBILITY_YES
-        setBackgroundColor(if(dark)Color.rgb(15,21,19)else Color.rgb(241,238,231))
+        setBackgroundColor(palette.getColor(R.color.browser_background,null))
     }
     override fun onDraw(canvas:Canvas){
         super.onDraw(canvas)
@@ -46,7 +50,7 @@ internal class BrowserLaunchSurface(context:Context, private val dark:Boolean):V
         val available=width-x*2
         paint.style=Paint.Style.STROKE
         paint.strokeWidth=dp(1f)
-        paint.color=if(dark)Color.argb(26,105,223,192)else Color.argb(26,20,122,100)
+        paint.color=androidx.core.graphics.ColorUtils.setAlphaComponent(primary,26)
         val unit=min(width,height).toFloat()
         for(ratio in floatArrayOf(.28f,.40f,.53f)){
             val radius=unit*ratio
@@ -59,12 +63,12 @@ internal class BrowserLaunchSurface(context:Context, private val dark:Boolean):V
         paint.typeface=medium
         paint.textSize=sp(34f)
         paint.textSize=min(paint.textSize,paint.textSize*available/paint.measureText("澄境"))
-        paint.color=if(dark)Color.rgb(242,239,231)else Color.rgb(29,41,37)
+        paint.color=palette.getColor(R.color.browser_on_background,null)
         canvas.drawText("澄境",x,baseline,paint)
         val titleBottom=baseline+paint.fontMetrics.descent
         paint.typeface=regular
         paint.textSize=sp(14f)
-        paint.color=if(dark)Color.rgb(177,184,176)else Color.rgb(89,102,95)
+        paint.color=palette.getColor(R.color.browser_on_surface_variant,null)
         val subtitleBaseline=titleBottom+dp(12f)-paint.fontMetrics.ascent
         canvas.drawText("瀏覽器",x,subtitleBaseline,paint)
         val subtitleBottom=subtitleBaseline+paint.fontMetrics.descent
@@ -82,7 +86,7 @@ internal class BrowserLaunchSurface(context:Context, private val dark:Boolean):V
         }
         for(index in 0..2){
             val alpha=(100+55*sin(phase*6.283185f-index*.7f)).toInt()
-            paint.color=if(dark)Color.argb(alpha,105,223,192)else Color.argb(alpha,20,122,100)
+            paint.color=androidx.core.graphics.ColorUtils.setAlphaComponent(primary,alpha)
             canvas.drawCircle(x+dp(index*11f),captionBaseline+dp(32f),dp(1.6f),paint)
         }
     }

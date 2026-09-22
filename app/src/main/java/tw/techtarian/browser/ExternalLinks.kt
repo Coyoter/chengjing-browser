@@ -1,14 +1,12 @@
 package tw.techtarian.browser
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import android.view.WindowManager
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 internal data class ExternalLink(val intent:Intent,val fallback:String?,val webLink:Boolean)
@@ -95,11 +93,9 @@ internal fun BrowserController.openExternalLink(tab:BrowserTab,raw:String,allowe
     if(tab.incognito){
         val activity=context as? Activity?:return false
         if(activity.isFinishing||activity.isDestroyed)return false
-        AlertDialog.Builder(activity).setTitle("在其他 App 開啟？")
-            .setMessage("將離開澄境的無痕瀏覽。其他 App 可能保存這個連結與使用記錄。")
-            .setNegativeButton("取消"){_,_->discardEmptyPopup()}.setOnCancelListener{discardEmptyPopup()}
-            .setPositiveButton("開啟"){_,_->launch()}
-            .create().also{it.window?.addFlags(WindowManager.LayoutParams.FLAG_SECURE);it.show()}
+        prompts.confirm("在其他 App 開啟？","將離開澄境的無痕瀏覽。其他 App 可能保存這個連結與使用記錄。","開啟",
+            owner=tab.id,valid={tab in tabs&&tab.id==activeId&&tab.url==page&&tab.navigationGeneration==generation},
+            onCancel={discardEmptyPopup()},confirm=launch)
         return true
     }
     // An ordinary HTTPS URL that fails to open in its app must continue in WebView.

@@ -1,0 +1,41 @@
+<resources>
+    <color name="browser_light_background">#F1EEE7</color>
+    <color name="browser_dark_background">#0F1513</color>
+    <color name="browser_light_primary">#147A64</color>
+    <color name="browser_dark_primary">#69DFC0</color>
+
+    <color name="browser_primary">@color/browser_light_primary</color>
+    <color name="browser_on_primary">#FFFDF7</color>
+    <color name="browser_primary_container">#D9F0E9</color>
+    <color name="browser_on_primary_container">#124D3F</color>
+    <color name="browser_secondary">#426958</color>
+    <color name="browser_on_secondary">#FFFFFF</color>
+    <color name="browser_secondary_container">#D9F0E9</color>
+    <color name="browser_on_secondary_container">#124D3F</color>
+    <color name="browser_tertiary">#6D6950</color>
+    <color name="browser_on_tertiary">#FFFFFF</color>
+    <color name="browser_tertiary_container">#EDE5C6</color>
+    <color name="browser_on_tertiary_container">#201D0B</color>
+    <color name="browser_background">@color/browser_light_background</color>
+    <color name="browser_on_background">#1D2925</color>
+    <color name="browser_surface">#FBFAF6</color>
+    <color name="browser_on_surface">#1D2925</color>
+    <color name="browser_surface_variant">#EAE6DC</color>
+    <color name="browser_on_surface_variant">#59665F</color>
+    <color name="browser_outline">#8A958B</color>
+    <color name="browser_outline_variant">#D0CBC0</color>
+    <color name="browser_error">#B43D38</color>
+    <color name="browser_on_error">#FFFFFF</color>
+    <color name="browser_error_container">#FFDAD6</color>
+    <color name="browser_on_error_container">#410005</color>
+    <color name="browser_inverse_surface">#303A34</color>
+    <color name="browser_inverse_on_surface">#F0F2EB</color>
+    <color name="browser_inverse_primary">#69DFC0</color>
+    <color name="browser_surface_dim">#D9D7CD</color>
+    <color name="browser_surface_bright">#FBFAF6</color>
+    <color name="browser_surface_container_lowest">#FFFDF7</color>
+    <color name="browser_surface_container_low">#F5F3EC</color>
+    <color name="browser_surface_container">#F0F0E8</color>
+    <color name="browser_surface_container_high">#EBF1EA</color>
+    <color name="browser_surface_container_highest">#E0E8E1</color>
+</resources>

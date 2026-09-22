@@ -3,7 +3,7 @@ package tw.techtarian.browser
 import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebChromeClient
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -52,7 +52,7 @@ import kotlinx.coroutines.flow.collectLatest
 import org.json.JSONArray
 import org.json.JSONObject
 
-class MainActivity:ComponentActivity(){
+class MainActivity:AppCompatActivity(){
     lateinit var controller:BrowserController
     lateinit var bookmarkSync:BookmarkSync
     private lateinit var store:BrowserStore
@@ -68,12 +68,12 @@ class MainActivity:ComponentActivity(){
                 val rows=BookmarkFormat.parseHtml(String(data,Charsets.UTF_8));require(rows.isNotEmpty()){ "檔案中找不到 HTTP / HTTPS 書籤" };rows
             }
             kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main){result.onSuccess{rows->
-                android.app.AlertDialog.Builder(this@MainActivity).setTitle("匯入 ${rows.size} 個書籤？").setMessage("會保留資料夾；已存在的書籤不會重複新增。").setNegativeButton("取消",null).setPositiveButton("匯入"){_,_->
+                controller.prompts.confirm("匯入 ${rows.size} 個書籤？","會保留資料夾；已存在的書籤不會重複新增。","匯入"){
                     runCatching{store.bookmarkStore.importRows(rows)}.onSuccess{count->
                         controller.revision++;controller.sheet="bookmarks"
                         controller.notice=if(count>0)"已匯入 $count 個書籤"else"這些書籤已經匯入，不會重複新增"
                     }.onFailure{controller.notice="匯入未完成，請稍後再試"}
-                }.show()
+                }
             }.onFailure{controller.notice=it.localizedMessage?:"匯入未完成"}}
         }
     }
@@ -82,7 +82,9 @@ class MainActivity:ComponentActivity(){
     fun exportBookmarks(){exportBookmarks.launch("ChengJing-Bookmarks.html")}
     private val files=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->controller.fileCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result.resultCode,result.data));controller.fileCallback=null}
     override fun onCreate(savedInstanceState:Bundle?){
-        super.onCreate(savedInstanceState);enableEdgeToEdge()
+        delegate.localNightMode=BrowserAppearance.mode(BrowserAppearance.savedChoice(this))
+        super.onCreate(savedInstanceState);setTheme(R.style.AppTheme);enableEdgeToEdge()
+        updateSplashTheme(BrowserAppearance.savedChoice(this))
         imageActions.initialize()
         if(android.os.Build.VERSION.SDK_INT>=31)splashScreen.setOnExitAnimationListener{it.remove()}
         @Suppress("DEPRECATION")
@@ -94,7 +96,7 @@ class MainActivity:ComponentActivity(){
         bookmarkSync.launchConsent={consent.launch(it)}
         controller.chooseFiles={files.launch(it)}
         val systemDark=(resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES
-        val dark=store.theme=="dark"||(store.theme=="system"&&systemDark)
+        val dark=systemDark
         val launch=BrowserLaunchSurface(this,dark)
         WindowCompat.getInsetsController(window,window.decorView).apply{
             isAppearanceLightStatusBars=!dark
@@ -114,10 +116,37 @@ class MainActivity:ComponentActivity(){
             }
         }}
     }
+    internal fun applyAppearance(choice:String){
+        store.theme=choice
+        syncAppearance(choice)
+    }
+    internal fun syncAppearance(choice:String){
+        updateSplashTheme(choice)
+        delegate.localNightMode=BrowserAppearance.mode(choice)
+        notifyWebAppearance(resources.configuration)
+    }
+    override fun onConfigurationChanged(configuration:android.content.res.Configuration){
+        super.onConfigurationChanged(configuration)
+        notifyWebAppearance(configuration)
+    }
+    private fun notifyWebAppearance(configuration:android.content.res.Configuration){
+        // AppCompat can update resources without an Activity recreation. Detached tabs
+        // do not receive the view-tree event, so forward it to every existing WebView.
+        // This updates native color-scheme preferences without reloading any page.
+        if(browserReady)controller.tabs.forEach{it.web.dispatchConfigurationChanged(configuration)}
+    }
+    private fun updateSplashTheme(choice:String){
+        if(android.os.Build.VERSION.SDK_INT>=31)splashScreen.setSplashScreenTheme(when(choice){
+            "dark"->R.style.AppTheme_Starting_Dark;"light"->R.style.AppTheme_Starting_Light;else->R.style.AppTheme_Starting
+        })
+    }
     override fun onNewIntent(intent:Intent){
         super.onNewIntent(intent)
         setIntent(intent)
-        if(browserReady)intent.dataString?.let{if(it.startsWith("https://")||it.startsWith("http://"))controller.newTab(it,incognito=false)}
+        if(browserReady)intent.dataString?.let{if(it.startsWith("https://")||it.startsWith("http://")){
+            controller.prompts.cancel();controller.imagePreview=null;controller.exitFullscreen();controller.sheet=""
+            controller.newTab(it,incognito=false)
+        }}
     }
     override fun onPause(){
         super.onPause()
@@ -128,12 +157,9 @@ class MainActivity:ComponentActivity(){
     override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
-private val Light=lightColorScheme(primary=Color(0xFF147A64),onPrimary=Color(0xFFFFFDF7),secondaryContainer=Color(0xFFD9F0E9),onSecondaryContainer=Color(0xFF124D3F),primaryContainer=Color(0xFFD9F0E9),onPrimaryContainer=Color(0xFF124D3F),background=Color(0xFFF1EEE7),onBackground=Color(0xFF1D2925),surface=Color(0xFFFBFAF6),onSurface=Color(0xFF1D2925),surfaceVariant=Color(0xFFEAE6DC),onSurfaceVariant=Color(0xFF59665F),outline=Color(0xFF8A958B),outlineVariant=Color(0xFFD0CBC0),error=Color(0xFFB43D38))
-private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0E372C),secondaryContainer=Color(0xFF173F35),onSecondaryContainer=Color(0xFFD9F0E9),primaryContainer=Color(0xFF173F35),onPrimaryContainer=Color(0xFFD9F0E9),background=Color(0xFF0F1513),onBackground=Color(0xFFF2EFE7),surface=Color(0xFF1A2420),onSurface=Color(0xFFF2EFE7),surfaceVariant=Color(0xFF26332E),onSurfaceVariant=Color(0xFFB1B8B0),outline=Color(0xFF82998E),outlineVariant=Color(0xFF394842),error=Color(0xFFFF9188))
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable fun BrowserApp(c:BrowserController,store:BrowserStore){
-    var theme by remember{mutableStateOf(store.theme)}
+    val theme=store.theme
     var addressAtBottom by remember{mutableStateOf(store.addressAtBottom)}
     var settingsCategory by remember{mutableStateOf("appearance")}
     var codeFocus by remember{mutableStateOf("")}
@@ -143,22 +169,24 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
         if(page.isBlank()||page in setOf("bookmarks","favorites"))panelTrail.clear()
         else {val index=panelTrail.indexOf(page);if(index>=0){while(panelTrail.size>index+1)panelTrail.removeAt(panelTrail.lastIndex)}else panelTrail.add(page)}
     }
-    val dark=theme=="dark"||(theme=="system"&&isSystemInDarkTheme())
+    val dark=isSystemInDarkTheme()
     val scope=rememberCoroutineScope()
     val snackbar=remember{SnackbarHostState()}
     val focus=LocalFocusManager.current
     val keyboard=LocalSoftwareKeyboardController.current
     val activity=c.context as MainActivity
+    LaunchedEffect(theme){activity.syncAppearance(theme)}
     val active=c.active
     c.revision
     val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
     var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
     var editingAddress by remember{mutableStateOf(false)}
+    LaunchedEffect(active?.id){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}
     val suggestionRows=remember(address.text,c.revision,editingAddress,active?.incognito){if(editingAddress&&active?.incognito!=true)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
     LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
-    val cs=if(dark)Dark else Light
+    val cs=browserColorScheme()
     SideEffect{c.updatePrivacyWindow()}
-    SideEffect{WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightStatusBars=!dark;WindowCompat.getInsetsController(activity.window,activity.window.decorView).isAppearanceLightNavigationBars=!dark}
+    SideEffect{browserSystemBars(activity.window,activity.window.decorView,!dark&&c.fullScreenView==null,c.fullScreenView!=null)}
     LaunchedEffect(c){
         snapshotFlow{c.notice to c.sheet}.filter{it.first.isNotEmpty()&&it.second !in setOf("bookmarks","favorites")}.collectLatest{(message,_)->
             c.notice=""
@@ -167,6 +195,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     }
     BackHandler {
         when{
+            c.prompts.current!=null->c.prompts.cancel()
             c.imagePreview!=null->c.imagePreview=null
             c.browsingDataCleaner.running->Unit
             c.fullScreenView!=null->c.exitFullscreen()
@@ -178,7 +207,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             else->activity.moveTaskToBack(true)
         }
     }
-    MaterialTheme(colorScheme=cs,typography=Typography(bodyLarge=androidx.compose.ui.text.TextStyle(fontSize=16.sp,lineHeight=24.sp),bodyMedium=androidx.compose.ui.text.TextStyle(fontSize=14.sp,lineHeight=21.sp),titleMedium=androidx.compose.ui.text.TextStyle(fontSize=17.sp,lineHeight=24.sp,fontWeight=FontWeight.SemiBold))){
+    MaterialTheme(colorScheme=cs,typography=BrowserTypography){
         val addressBar:@Composable ()->Unit = {
             BrowserAddressBar(
                         address=address,onAddress={address=it},editing=editingAddress,onFocus={editingAddress=it},
@@ -258,7 +287,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         "rules"->RulePanel(c)
                         "code"->CodePanel(c,codeFocus)
                         "ai"->DeveloperAiPanel(c){settingsCategory="ai";c.sheet="settings"}
-                        "settings"->SettingsPanel(settingsCategory,store,theme,{theme=it;store.theme=it},c,addressAtBottom,{addressAtBottom=it;store.addressAtBottom=it})
+                        "settings"->SettingsPanel(settingsCategory,store,theme,{activity.applyAppearance(it)},c,addressAtBottom,{addressAtBottom=it;store.addressAtBottom=it})
                         "user-agent"->UserAgentPanel(c)
                         "inventory"->InventoryPanel(c)
                         "sync"->SyncPanel(c,store)
@@ -283,6 +312,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             }
         }
         c.fullScreenView?.let{view->VideoFullscreen(c,view)}
+        BrowserPromptHost(c)
     }
 }
 

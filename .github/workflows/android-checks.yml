@@ -85,7 +85,7 @@ jobs:
         run: |
           adb install -r release-smoke/build/outputs/apk/debug/release-smoke-debug.apk
           ./gradlew --no-daemon --stacktrace -PqaInstall=true \
-            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.ImageActionsTest,tw.techtarian.browser.CollectionsPrivacyTest,tw.techtarian.browser.TabPreviewStoreTest,tw.techtarian.browser.TabPreviewPersistenceTest,tw.techtarian.browser.CloseAllTabsTest,tw.techtarian.browser.HomeSettingsTest,tw.techtarian.browser.HomeLayoutTest,tw.techtarian.browser.BrowsingDataTest,tw.techtarian.browser.ExternalLinksTest,tw.techtarian.browser.TabPreviewRenderingTest \
+            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.ImageActionsTest,tw.techtarian.browser.AppearanceTest,tw.techtarian.browser.CollectionsPrivacyTest,tw.techtarian.browser.TabPreviewStoreTest,tw.techtarian.browser.TabPreviewPersistenceTest,tw.techtarian.browser.CloseAllTabsTest,tw.techtarian.browser.HomeSettingsTest,tw.techtarian.browser.HomeLayoutTest,tw.techtarian.browser.BrowsingDataTest,tw.techtarian.browser.ExternalLinksTest,tw.techtarian.browser.TabPreviewRenderingTest \
             :app:connectedDebugAndroidTest
       - name: Verify thumbnails survive actual process restart and close-tab cleanup
         run: |
@@ -103,6 +103,7 @@ jobs:
           if adb get-state >/dev/null 2>&1; then
             adb pull /sdcard/Android/data/tw.techtarian.browser.qa/files/launch-previews validation/ || true
             adb pull /data/local/tmp/chengjing-ui validation/ || true
+            adb pull /data/local/tmp/appearance validation/ || true
             adb pull /sdcard/Android/data/tw.techtarian.browser.qa/files/image-action-failure.xml validation/ || true
             adb pull /sdcard/Android/data/tw.techtarian.browser.qa/files/image-action-failure.png validation/ || true
             adb logcat -d -t 1000 > validation/emulator-logcat.txt || true

@@ -1,0 +1,36 @@
+<resources>
+    <color name="browser_primary">@color/browser_dark_primary</color>
+    <color name="browser_on_primary">#0E372C</color>
+    <color name="browser_primary_container">#173F35</color>
+    <color name="browser_on_primary_container">#D9F0E9</color>
+    <color name="browser_secondary">#A9CFBF</color>
+    <color name="browser_on_secondary">#16382C</color>
+    <color name="browser_secondary_container">#294D40</color>
+    <color name="browser_on_secondary_container">#CDE9DC</color>
+    <color name="browser_tertiary">#D0C79D</color>
+    <color name="browser_on_tertiary">#333018</color>
+    <color name="browser_tertiary_container">#4C482E</color>
+    <color name="browser_on_tertiary_container">#EDE3B8</color>
+    <color name="browser_background">@color/browser_dark_background</color>
+    <color name="browser_on_background">#F2EFE7</color>
+    <color name="browser_surface">#1A2420</color>
+    <color name="browser_on_surface">#F2EFE7</color>
+    <color name="browser_surface_variant">#26332E</color>
+    <color name="browser_on_surface_variant">#B1B8B0</color>
+    <color name="browser_outline">#82998E</color>
+    <color name="browser_outline_variant">#394842</color>
+    <color name="browser_error">#FF9188</color>
+    <color name="browser_on_error">#680007</color>
+    <color name="browser_error_container">#8B1D20</color>
+    <color name="browser_on_error_container">#FFDAD6</color>
+    <color name="browser_inverse_surface">#E1E8E0</color>
+    <color name="browser_inverse_on_surface">#2C352F</color>
+    <color name="browser_inverse_primary">#126F5D</color>
+    <color name="browser_surface_dim">#0F1513</color>
+    <color name="browser_surface_bright">#34423A</color>
+    <color name="browser_surface_container_lowest">#0B100E</color>
+    <color name="browser_surface_container_low">#14201A</color>
+    <color name="browser_surface_container">#1A2420</color>
+    <color name="browser_surface_container_high">#26332E</color>
+    <color name="browser_surface_container_highest">#303E37</color>
+</resources>

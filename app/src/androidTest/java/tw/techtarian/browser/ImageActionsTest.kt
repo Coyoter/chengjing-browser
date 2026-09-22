@@ -70,12 +70,15 @@ class ImageActionsTest {
         val down=SystemClock.uptimeMillis()
         fun send(action:Int){val e=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,x,y,0);try{instrumentation.sendPointerSync(e)}finally{e.recycle()}}
         send(MotionEvent.ACTION_DOWN);SystemClock.sleep(850);send(MotionEvent.ACTION_UP)
+        ui.waitForIdle()
+        ui.waitUntil(5000){ui.onAllNodesWithText("下載圖片").fetchSemanticsNodes().isNotEmpty()}
         val item=device.wait(Until.findObject(By.text("下載圖片")),5000)
         if(item==null){device.executeShellCommand("mkdir -p /data/local/tmp/chengjing-ui");device.executeShellCommand("screencap -p /data/local/tmp/chengjing-ui/image-menu-failure.png")}
         assertNotNull("No image menu at $x,$y (web origin ${origin.toList()})",item)
     }
     private fun failureSnapshot(){val dir=ui.activity.getExternalFilesDir(null)!!;device.dumpWindowHierarchy(java.io.File(dir,"image-action-failure.xml"));device.takeScreenshot(java.io.File(dir,"image-action-failure.png"))}
     private fun click(label:String){
+        ui.waitForIdle()
         assertNotNull("Missing $label",device.wait(Until.findObject(By.text(label)),10000))
         device.waitForIdle();SystemClock.sleep(250)
         var node=device.findObject(By.text(label));if(node==null)failureSnapshot();assertNotNull("Missing $label",node)

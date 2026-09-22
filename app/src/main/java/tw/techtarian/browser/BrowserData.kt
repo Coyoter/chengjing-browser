@@ -109,9 +109,10 @@ class BrowserStore(context: Context) {
             prefs.edit().putString("ai-provider",value).apply()
             providerState=value
         }
-    var theme: String
-        get() = prefs.getString("theme", "system") ?: "system"
-        set(value) { prefs.edit().putString("theme", value).apply() }
+    private var themeState by mutableStateOf(prefs.getString("theme","system")?.takeIf{it in setOf("light","dark","system")}?:"system")
+    var theme:String
+        get()=themeState
+        set(value){require(value in setOf("light","dark","system"));prefs.edit().putString("theme",value).apply();themeState=value}
     var model: String
         get() = prefs.getString("model", "deepseek/deepseek-v4.1-flash") ?: "deepseek/deepseek-v4.1-flash"
         set(value) { prefs.edit().putString("model", value.trim()).apply() }

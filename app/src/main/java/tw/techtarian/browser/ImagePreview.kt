@@ -34,7 +34,7 @@ import kotlin.math.sqrt
     Dialog(onDismissRequest={c.imagePreview=null},properties=DialogProperties(usePlatformDefaultWidth=false,decorFitsSystemWindows=false)){
         val view=LocalView.current
         SideEffect{(view.parent as? DialogWindowProvider)?.window?.let{window->
-            androidx.core.view.WindowCompat.getInsetsController(window,view).apply{isAppearanceLightStatusBars=false;isAppearanceLightNavigationBars=false}
+            browserSystemBars(window,view,false)
             if(asset.private)window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
             else window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
         }}
@@ -65,14 +65,15 @@ import kotlin.math.sqrt
         if(temporaryTab)Text("這是網頁暫存圖片分頁，重開 App 後不保留。需要保留請下載。",Modifier.padding(horizontal=20.dp,vertical=4.dp),color=Color(0xffc3cbc7),style=MaterialTheme.typography.bodySmall)
         Row(Modifier.fillMaxWidth().padding(bottom=8.dp),horizontalArrangement=Arrangement.SpaceEvenly){
             listOf(ImageAction.COPY to "複製圖片",ImageAction.DOWNLOAD to "下載圖片",ImageAction.SHARE to "分享圖片").forEach{(action,label)->
-                TextButton(onClick={(c.context as MainActivity).imageActions.usePrepared(asset,action)},enabled=drawable!=null){Text(label,color=Color(0xff69dfc0))}
+                TextButton(onClick={(c.context as MainActivity).imageActions.usePrepared(asset,action)},enabled=drawable!=null,
+                    colors=ButtonDefaults.textButtonColors(contentColor=Color(0xff69dfc0),disabledContentColor=Color(0xffc3cbc7).copy(alpha=.38f))){Text(label)}
             }
         }
     }
 }
 
 @SuppressLint("ClickableViewAccessibility")
-private class ZoomImageView(context:android.content.Context):ImageView(context){
+private class ZoomImageView(context:android.content.Context):androidx.appcompat.widget.AppCompatImageView(context){
     private val transform=Matrix();private var minimum=1f;private var current=1f
     private val scale=ScaleGestureDetector(context,object:ScaleGestureDetector.SimpleOnScaleGestureListener(){
         override fun onScale(detector:ScaleGestureDetector):Boolean{zoom((current*detector.scaleFactor).coerceIn(minimum,minimum*5),detector.focusX,detector.focusY);return true}

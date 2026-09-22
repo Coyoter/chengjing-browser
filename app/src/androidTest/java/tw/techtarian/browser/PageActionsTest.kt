@@ -175,6 +175,10 @@ class PageActionsTest {
         return result.get()
     }
     private fun longPressImage(){
+        val drawn=CountDownLatch(1)
+        ui.runOnUiThread{c.active!!.web.postVisualStateCallback(1,object:android.webkit.WebView.VisualStateCallback(){override fun onComplete(id:Long){drawn.countDown()}})}
+        assertTrue("Wait for the visible image before injecting a long press",drawn.await(8,TimeUnit.SECONDS))
+        ui.waitForIdle()
         val position=JSONObject(eval("(()=>{const r=document.querySelector('#picture').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,dpr:devicePixelRatio};})()"))
         val screen=IntArray(2)
         ui.runOnUiThread{c.active!!.web.getLocationOnScreen(screen)}
@@ -189,5 +193,9 @@ class PageActionsTest {
         SystemClock.sleep(ViewConfiguration.getLongPressTimeout().toLong()+300)
         send(MotionEvent.ACTION_UP)
         instrumentation.waitForIdleSync()
+        // The menu now uses the app's Compose theme. Advance its test frame clock,
+        // which UiAutomator's native-window polling does not advance itself.
+        ui.waitForIdle()
+        ui.waitUntil(5000){ui.onAllNodesWithText("下載圖片").fetchSemanticsNodes().isNotEmpty()}
     }
 }

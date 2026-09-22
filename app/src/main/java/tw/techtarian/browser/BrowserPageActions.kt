@@ -1,7 +1,6 @@
 package tw.techtarian.browser
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -10,6 +9,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.webkit.WebView
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
@@ -56,12 +57,12 @@ internal class PageContextMenu(
 ) {
     private val web get()=tab.web
     private var sequence=0
-    private var dialog:AlertDialog?=null
+    private var dialog:BrowserPrompt?=null
     fun install(){
         web.setOnLongClickListener{onLongClick()}
         web.addOnAttachStateChangeListener(object:View.OnAttachStateChangeListener{
             override fun onViewAttachedToWindow(view:View){}
-            override fun onViewDetachedFromWindow(view:View){sequence++;dialog?.dismiss();dialog=null}
+            override fun onViewDetachedFromWindow(view:View){sequence++;controller.prompts.cancel(dialog);dialog=null}
         })
     }
     private fun valid(page:String,request:Int)=request==sequence&&tab in controller.tabs&&controller.activeId==tab.id&&tab.url==page&&!controller.eye&&!web.selecting&&web.isAttachedToWindow
@@ -128,15 +129,19 @@ internal class PageContextMenu(
             }
         }
         if(entries.isEmpty())return
-        dialog?.dismiss()
+        controller.prompts.cancel(dialog)
         val host=controller.context as? Activity
         if(host?.isFinishing==true||host?.isDestroyed==true)return
-        dialog=AlertDialog.Builder(controller.context)
-            .setTitle(if(target.isImage)target.title.ifBlank{"圖片"}.take(90)else "連結")
-            .setItems(entries.map{it.first}.toTypedArray()){_,index->
-                if(valid(page,request))entries[index].second()
-                else controller.notice="頁面已變更，請重新長按"
-            }.create().also{it.show()}
+        val icons=mapOf("在新分頁開啟" to Icons.Outlined.OpenInNew,"複製連結" to Icons.Outlined.Link,
+            "在新分頁開啟圖片" to Icons.Outlined.OpenInNew,"預覽圖片" to Icons.Outlined.ZoomIn,
+            "複製圖片" to Icons.Outlined.ContentCopy,"下載圖片" to Icons.Outlined.Download,
+            "分享圖片" to Icons.Outlined.Share,"複製圖片連結" to Icons.Outlined.Link)
+        dialog=BrowserPrompt.Menu(
+            if(target.isImage)target.title.ifBlank{"圖片"}.take(120)else "連結",
+            android.net.Uri.parse(if(target.isImage)page else target.link?:page).host.orEmpty(),
+            entries.map{(label,action)->BrowserMenuAction(label,icons.getValue(label),action)},tab.id,
+            {valid(page,request)}
+        ).also{controller.prompts.show(it)}
     }
     private fun copy(value:String,label:String){
         (controller.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)

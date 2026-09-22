@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
-import androidx.core.view.WindowCompat
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.collectLatest
@@ -59,8 +58,7 @@ import java.util.Date
         val view=LocalView.current
         SideEffect{
             (view.parent as? DialogWindowProvider)?.window?.let{window->
-                WindowCompat.getInsetsController(window,view).isAppearanceLightStatusBars=colors.background.luminance()>.5f
-                WindowCompat.getInsetsController(window,view).isAppearanceLightNavigationBars=colors.background.luminance()>.5f
+                browserSystemBars(window,view,colors.background.luminance()>.5f)
             }
         }
         Surface(Modifier.fillMaxSize().testTag("library-screen"),color=colors.background){
