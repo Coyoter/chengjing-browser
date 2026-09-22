@@ -10,6 +10,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.webkit.WebView
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 internal object PageSharing {
     fun chooser(rawUrl:String?,title:String):Intent? {
@@ -40,7 +42,7 @@ internal fun BrowserController.shareCurrentPage():Boolean {
 }
 
 /** The link destination and image source are different values for <a><img></a>. */
-internal data class PageContextTarget(val link:String?,val image:String?,val isImage:Boolean)
+internal data class PageContextTarget(val link:String?,val image:String?,val isImage:Boolean,val title:String="",val width:Int=0,val height:Int=0)
 
 internal class PageContextMenu(
     private val controller:BrowserController,
@@ -71,7 +73,7 @@ internal class PageContextMenu(
         val request=++sequence
         val extra=PageActionPolicy.resolve(hit.extra,page)
         return when(hit.type){
-            WebView.HitTestResult.IMAGE_TYPE->{show(PageContextTarget(null,extra,true),page,request);true}
+            WebView.HitTestResult.IMAGE_TYPE->{resolveImage(PageContextTarget(null,extra,true),page,request);true}
             WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE->{
                 // Native WebView resolves the focused node, including images inside frames.
                 // Never treat hit.extra (the anchor) as the image to download.
@@ -79,7 +81,7 @@ internal class PageContextMenu(
                     if(valid(page,request)){
                         val link=PageActionPolicy.resolve(message.data.getString("url"),page)?:extra
                         val image=PageActionPolicy.resolve(message.data.getString("src"),page)
-                        show(PageContextTarget(link,image,true),page,request)
+                        resolveImage(PageContextTarget(link,image,true),page,request)
                     }
                     true
                 }
@@ -92,6 +94,14 @@ internal class PageContextMenu(
             else->false // Preserve selection and the native text/edit-field menu.
         }
     }
+    private fun resolveImage(target:PageContextTarget,page:String,request:Int){
+        val host=controller.context as? MainActivity
+        if(host==null||target.image==null){show(target,page,request);return}
+        host.lifecycleScope.launch{
+            val source=PageImageReader.resolve(tab,target.image,page)
+            if(valid(page,request))show(target.copy(image=source.url,title=source.title,width=source.width,height=source.height),page,request)
+        }
+    }
     private fun show(target:PageContextTarget,page:String,request:Int){
         if(!valid(page,request))return
         val entries=mutableListOf<Pair<String,()->Unit>>()
@@ -100,14 +110,21 @@ internal class PageContextMenu(
             entries.add("複製連結" to {copy(link,"連結")})
         }
         if(target.isImage){
+            val source=target.image?.let{PageImageSource(it,page,target.title,target.width,target.height)}
+            fun perform(action:ImageAction){if(source!=null)(controller.context as? MainActivity)?.imageActions?.perform(tab,source,action)}
+            if(source!=null){
+                entries.add("在新分頁開啟圖片" to {perform(ImageAction.NEW_TAB)})
+                entries.add("預覽圖片" to {perform(ImageAction.PREVIEW)})
+                entries.add("複製圖片" to {perform(ImageAction.COPY)})
+            }
             entries.add("下載圖片" to {
                 val image=target.image
                 if(image.isNullOrBlank())controller.notice="無法取得圖片網址，請重新長按圖片"
                 else download(image,page,web.settings.userAgentString)
             })
             target.image?.let{image->
-                PageActionPolicy.shareUrl(image)?.let{url->entries.add("在新分頁開啟圖片" to {controller.newTab(url)})}
-                entries.add("複製圖片連結" to {copy(image,"圖片連結")})
+                entries.add("分享圖片" to {perform(ImageAction.SHARE)})
+                PageActionPolicy.shareUrl(image)?.let{url->entries.add("複製圖片連結" to {copy(url,"圖片連結")})}
             }
         }
         if(entries.isEmpty())return
@@ -115,6 +132,7 @@ internal class PageContextMenu(
         val host=controller.context as? Activity
         if(host?.isFinishing==true||host?.isDestroyed==true)return
         dialog=AlertDialog.Builder(controller.context)
+            .setTitle(if(target.isImage)target.title.ifBlank{"圖片"}.take(90)else "連結")
             .setItems(entries.map{it.first}.toTypedArray()){_,index->
                 if(valid(page,request))entries[index].second()
                 else controller.notice="頁面已變更，請重新長按"

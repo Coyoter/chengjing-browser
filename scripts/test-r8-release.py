@@ -21,6 +21,7 @@ METHODS = (
     "deleteBrowsingDataWorksInOptimizedRelease",
     "externalDeepLinksWorkInOptimizedRelease",
     "scrolledImagePreviewSurvivesRestartAndBlankReload",
+    "imageDownloadPreviewCopyAndShareWorkInOptimizedRelease",
 )
 
 def adb(*args, **kwargs):

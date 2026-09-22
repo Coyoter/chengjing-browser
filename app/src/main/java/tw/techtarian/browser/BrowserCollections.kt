@@ -26,7 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-internal data class DownloadItem(val id:Long,val title:String,val source:String,val mime:String,val status:Int,val done:Long,val total:Long)
+internal data class DownloadItem(val id:Long,val title:String,val source:String,val mime:String,val status:Int,val done:Long,val total:Long,val contentUri:String?=null,val createdAt:Long=0)
 internal class BrowserDownloads(private val context:Context) {
     private val manager=context.getSystemService(DownloadManager::class.java)
     // DownloadManager scopes this query to our UID, including pre-upgrade downloads.
@@ -41,13 +41,13 @@ internal class BrowserDownloads(private val context:Context) {
                 if(local.contains("/Android/data/${context.packageName}/")||title=="澄境 · Gemma 4 本機模型")continue
                 result.add(DownloadItem(number(DownloadManager.COLUMN_ID),title.ifBlank{"未命名檔案"},
                     text(DownloadManager.COLUMN_URI),text(DownloadManager.COLUMN_MEDIA_TYPE),
-                    number(DownloadManager.COLUMN_STATUS).toInt(),number(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR),number(DownloadManager.COLUMN_TOTAL_SIZE_BYTES)))
+                    number(DownloadManager.COLUMN_STATUS).toInt(),number(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR),number(DownloadManager.COLUMN_TOTAL_SIZE_BYTES),createdAt=number(DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP)))
             }
         }
-        return result.sortedByDescending{it.id}
+        return (result+SavedImageDownloads(context).list()).sortedByDescending{it.createdAt}
     }
     fun open(item:DownloadItem):String?=try {
-        val uri=manager.getUriForDownloadedFile(item.id)?:error("下載尚未完成或檔案已移除")
+        val uri=item.contentUri?.let{android.net.Uri.parse(it)}?:manager.getUriForDownloadedFile(item.id)?:error("下載尚未完成或檔案已移除")
         context.contentResolver.openFileDescriptor(uri,"r")?.use{}?:error("檔案已移除")
         val intent=Intent(Intent.ACTION_VIEW).setDataAndType(uri,item.mime.ifBlank{"*/*"})
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -75,7 +75,7 @@ internal class BrowserDownloads(private val context:Context) {
             }
         }
     }
-    CollectionHeader("下載", "只顯示由澄境瀏覽器交給系統處理的下載。", query,{query=it})
+    CollectionHeader("下載", "只顯示由澄境瀏覽器下載的圖片與檔案。", query,{query=it})
     if(loading)LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal=20.dp))
     if(error.isNotEmpty())Text(error,Modifier.padding(20.dp),color=MaterialTheme.colorScheme.error)
     val filtered=rows.filter{it.title.contains(query,true)||it.source.contains(query,true)}

@@ -10,6 +10,10 @@ import android.widget.OverScroller
 class SelectionWebView(context: Context) : WebView(context) {
     var touchSequence=0L
         private set
+    internal var lastTouchX=0f
+        private set
+    internal var lastTouchY=0f
+        private set
     @Volatile var selecting = false
         set(value) {
             if (field != value) pickerScroller.forceFinished(true)
@@ -43,7 +47,7 @@ class SelectionWebView(context: Context) : WebView(context) {
     }).apply { setIsLongpressEnabled(false); setOnDoubleTapListener(null) }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        if(event.actionMasked==MotionEvent.ACTION_DOWN)touchSequence++
+        if(event.actionMasked==MotionEvent.ACTION_DOWN){touchSequence++;lastTouchX=event.x;lastTouchY=event.y}
         if (!selecting) return super.dispatchTouchEvent(event)
         pickerGestures.onTouchEvent(event)
         return true

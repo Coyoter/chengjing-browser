@@ -29,3 +29,7 @@ r8-checks 在無正式 Secrets 的 runner 建置 .qa 套件的非 debuggable rel
 main 的發布同時等待既有回歸與 R8 release 驗證；正式簽章套件還會重新檢查實際 AAB。每個新 Release 多附一份 R8.zip（mapping、設定、移除清單、r8.json 與驗證摘要），BUILD.json 記錄該次統計。AAB 內含該版本 mapping，利於 Play 反混淆崩潰紀錄。不可拿其他版本 mapping 替換。
 
 GitHub Release 不會替你提交 Google Play。需上傳 1.4.2 / 23 AAB，再由 Play 重算該版本資訊；不能以本機驗證宣稱既有 22 (1.4.1) 的警告已被後台移除。SHA-1/256 憑證不會因混淆而更換。
+
+## 1.8.0 圖片操作回歸
+
+獨立 R8 host 另檢查圖片的長按選單、預覽雙擊後的畫面像素變化、下載清單，以及另一個 UID 實際讀取剪貼簿／系統分享圖片的 MIME、大小與 SHA-256。不增加應用程式測試保留規則，FileProvider 只開放圖片操作的暫存目錄。完整流程現有 11 個獨立案例，結果以當次 Actions 為準。

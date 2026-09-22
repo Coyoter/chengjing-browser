@@ -31,6 +31,7 @@ internal class BrowsingDataCleaner(private val c:BrowserController) {
                     regular.forEach{it.web.stopLoading();it.refreshContainer.isRefreshing=false}
                     withTimeout(60_000){deleteSiteData()}
                     c.icons.clear()
+                    (c.context as? MainActivity)?.imageActions?.clearShared()
                 }
                 if(selection.history){
                     c.store.clearHistory(window)

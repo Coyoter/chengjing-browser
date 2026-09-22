@@ -58,6 +58,7 @@ class MainActivity:ComponentActivity(){
     private lateinit var store:BrowserStore
     private var browserReady=false
     internal val imageDownloads=BrowserImageDownloads(this){message->if(::controller.isInitialized)controller.notice=message}
+    internal val imageActions=BrowserImageActions(this)
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
@@ -82,6 +83,7 @@ class MainActivity:ComponentActivity(){
     private val files=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->controller.fileCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result.resultCode,result.data));controller.fileCallback=null}
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState);enableEdgeToEdge()
+        imageActions.initialize()
         if(android.os.Build.VERSION.SDK_INT>=31)splashScreen.setOnExitAnimationListener{it.remove()}
         @Suppress("DEPRECATION")
         val taskIcon=if(android.os.Build.VERSION.SDK_INT>=33)android.app.ActivityManager.TaskDescription.Builder().setLabel("澄境瀏覽器").setIcon(R.mipmap.ic_launcher).build()
@@ -123,7 +125,7 @@ class MainActivity:ComponentActivity(){
         if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
     override fun onResume(){super.onResume();if(browserReady&&::bookmarkSync.isInitialized)bookmarkSync.resume()}
-    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
+    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
 private val Light=lightColorScheme(primary=Color(0xFF147A64),onPrimary=Color(0xFFFFFDF7),secondaryContainer=Color(0xFFD9F0E9),onSecondaryContainer=Color(0xFF124D3F),primaryContainer=Color(0xFFD9F0E9),onPrimaryContainer=Color(0xFF124D3F),background=Color(0xFFF1EEE7),onBackground=Color(0xFF1D2925),surface=Color(0xFFFBFAF6),onSurface=Color(0xFF1D2925),surfaceVariant=Color(0xFFEAE6DC),onSurfaceVariant=Color(0xFF59665F),outline=Color(0xFF8A958B),outlineVariant=Color(0xFFD0CBC0),error=Color(0xFFB43D38))
@@ -165,9 +167,11 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
     }
     BackHandler {
         when{
+            c.imagePreview!=null->c.imagePreview=null
             c.browsingDataCleaner.running->Unit
             c.fullScreenView!=null->c.exitFullscreen()
             c.sheet.isNotEmpty()->c.sheet=""
+            active?.imageContent!=null->c.closeTab(active.id)
             c.eye->{c.stopEye();c.notice="已取消尚未儲存的預覽"}
             active?.web?.canGoBack()==true->active.web.goBack()
             active?.url?.isNotEmpty()==true->{c.newTab();c.closeTab(active.id)}
@@ -215,7 +219,8 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
                         Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text("例外中 · 原始網站",Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text("恢復規則")}}
                     }
                     Box(Modifier.weight(1f).fillMaxWidth()){
-                        if(active?.url.isNullOrEmpty()){if(active?.incognito==true)IncognitoHome()else BrowserHome(c,store)}
+                        if(active?.imageContent!=null)ImageViewer(c,active.imageContent!!,Modifier.fillMaxSize(),temporaryTab=true){c.closeTab(active.id)}
+                        else if(active?.url.isNullOrEmpty()){if(active?.incognito==true)IncognitoHome()else BrowserHome(c,store)}
                         else if(active?.error?.isNotEmpty()==true)Column(Modifier.fillMaxSize().padding(32.dp),verticalArrangement=Arrangement.Center,horizontalAlignment=Alignment.CenterHorizontally){Icon(Icons.Outlined.CloudOff,null,Modifier.size(48.dp),tint=cs.primary);Spacer(Modifier.height(24.dp));Text("暫時連不上這個網站",style=MaterialTheme.typography.titleLarge);Spacer(Modifier.height(12.dp));Text(active.error,color=cs.onSurfaceVariant);Spacer(Modifier.height(20.dp));Button(onClick={c.reload()}){Text("重新載入")}}
                         else active?.let{tab->key(tab.id){AndroidView(factory={(tab.refreshContainer.parent as? android.view.ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer},update={it.setColorSchemeColors(cs.primary.toArgb());it.setProgressBackgroundColorSchemeColor(cs.surface.toArgb())},modifier=Modifier.fillMaxSize().testTag("web-content"))}}
                     }
@@ -229,6 +234,7 @@ private val Dark=darkColorScheme(primary=Color(0xFF69DFC0),onPrimary=Color(0xFF0
             }
         }
         if(c.sheet in setOf("bookmarks","favorites"))LibraryScreen(c)
+        c.imagePreview?.let{ImagePreviewDialog(c,it)}
         if(c.sheet=="clear-browsing-data")DeleteBrowsingDataDialog(c)
         if(c.sheet in setOf("tabs","history","downloads"))BrowserPanel(c){
             PanelHeader(c){c.sheet="menu"}
