@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
     val scope=rememberCoroutineScope()
     Surface(color=cs.surface){
         Row(Modifier.fillMaxWidth().testTag("browser-controls").height(64.dp).padding(horizontal=8.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically){
-            Tool(Icons.AutoMirrored.Outlined.ArrowBack,"上一頁",active?.canBack==true){c.stopEye();active?.web?.goBack()}
+            Tool(Icons.AutoMirrored.Outlined.ArrowBack,"上一頁",active?.canBack==true){c.goBackInPage()}
             Tool(Icons.AutoMirrored.Outlined.ArrowForward,"下一頁",active?.canForward==true){c.stopEye();active?.web?.goForward()}
             FilledTonalButton(onClick={onAction();c.beginEye()},contentPadding=PaddingValues(horizontal=18.dp,vertical=10.dp)){
                 Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text("天眼",fontWeight=FontWeight.SemiBold)

@@ -32,6 +32,7 @@ class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false
     internal var suppressHistoryUntilNavigation=false
     internal val externalGesture=ExternalLinkGesture{android.os.SystemClock.elapsedRealtime()}
     internal var externalOpenerId:Int?=null
+    internal var openedExternally=false
     var preview by mutableStateOf<Bitmap?>(null)
     internal var imageContent by mutableStateOf<ImageAsset?>(null)
     val warnings=if(incognito)CertificateWarnings()else CertificateWarnings.session
@@ -179,7 +180,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun persistTabs():Boolean {
         if(destroyed||restoringTabs)return false
         val normal=tabs.filterNot{it.incognito||it.imageContent!=null}
-        val saved=store.saveTabs(normal.map{it.url},normal.map{it.favoriteId},normal.map{it.previewKey!!},normal.map{it.title},normal.map{it.lastActiveAt})
+        val saved=store.saveTabs(normal.map{it.url},normal.map{it.favoriteId},normal.map{it.previewKey!!},normal.map{it.title},normal.map{it.lastActiveAt},normal.map{it.openedExternally})
         if(!saved)notice="分頁資料未能儲存，請檢查手機儲存空間"
         return saved
     }
@@ -225,9 +226,15 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(persistTabs())previews.retainOnly(tabs.mapNotNull{it.previewKey}.toSet())
     }
     fun newTab(url:String="",incognito:Boolean=active?.incognito==true):BrowserTab?=createTab(url,incognito,null)
+    internal fun openExternalTab(url:String):BrowserTab? {
+        active?.takeIf{it.canReceiveExternalLink()}?.let{tab->
+            tab.openedExternally=true;tab.url=url;navigate(url);persistTabs();return tab
+        }
+        return createTab(url,false,null,openedExternally=true)
+    }
     internal fun newImageTab(image:ImageAsset,incognito:Boolean):BrowserTab?=createTab("",incognito,null,image)
     @SuppressLint("SetJavaScriptEnabled")
-    private fun createTab(url:String,incognito:Boolean,restored:SavedBrowserTab?,image:ImageAsset?=null):BrowserTab? {
+    private fun createTab(url:String,incognito:Boolean,restored:SavedBrowserTab?,image:ImageAsset?=null,openedExternally:Boolean=false):BrowserTab? {
         if(incognito&&!privateSession.supported){sheet="";notice="請更新 Android System WebView，才能使用資料隔離的無痕分頁";return null}
         if(tabs.size>=20){notice="目前最多可開啟 20 個分頁，請先關閉不用的分頁";return null}
         capturePreview(active)
@@ -238,6 +245,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         web.clearSslPreferences()
         val tab=BrowserTab(nextId++,web,incognito,if(incognito)null else restored?.key?:TabPreviewStore.newKey())
         tab.url=url
+        tab.openedExternally=restored?.openedExternally?:openedExternally
         tab.imageContent=image
         if(image!=null){tab.title="${image.title.ifBlank{"圖片"}.take(80)} · 暫存圖片";if(!incognito)tab.preview=image.thumbnail}
         restored?.let{record->
@@ -361,7 +369,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(url=="about:blank"||url.startsWith("http://")||url.startsWith("https://")){
                     if(!tab.restoringNavigation&&url!=tab.url)tab.lastActiveAt=System.currentTimeMillis()
                     tab.url=if(url=="about:blank")""else url
-                    tab.canBack=view.canGoBack();tab.canForward=view.canGoForward();persistTabs()
+                    tab.updateNavigationState();persistTabs()
                 }
             }
             override fun onPageCommitVisible(view:WebView,url:String){
@@ -375,7 +383,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 tab.externalGesture.reset()
                 tab.externalOpenerId=null
                 tab.refreshContainer.isRefreshing=false
-                tab.canBack=view.canGoBack();tab.canForward=view.canGoForward()
+                tab.updateNavigationState()
                 tab.pendingUrl=""
                 tab.certificateWarning=tab.warnings.messageFor(tab.url)
                 tab.favoriteRestore?.let{favorite->
@@ -539,7 +547,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
     }
     fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
-    fun closeTab(id:Int){
+    fun closeTab(id:Int,replaceLast:Boolean=true){
         prompts.closeFor(id)
         if(id==activeId)stopEye()
         val tab=tabs.find{it.id==id}?:return
@@ -548,7 +556,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         (tab.refreshContainer.parent as? ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer.removeAllViews();tab.web.destroy();tabs.remove(tab)
         if(tab.incognito&&tabs.none{it.incognito}){privateSession.clear();(context as? MainActivity)?.imageActions?.clearPrivate()}
         if(activeId==id)activeId=(tabs.lastOrNull{it.incognito==tab.incognito}?:tabs.lastOrNull())?.id?:0
-        if(tabs.isEmpty())newTab(incognito=false)
+        if(tabs.isEmpty()&&replaceLast)newTab(incognito=false)
         persistTabs();updatePrivacyWindow()
     }
     fun closePrivateTabs(){tabs.filter{it.incognito}.map{it.id}.forEach{closeTab(it)}}

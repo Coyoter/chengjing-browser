@@ -2,7 +2,7 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前原始碼版本為 **1.9.0（versionCode 31）**：正式版啟用 R8 混淆、程式碼與資源縮減；保留 AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.9.0 更新說明](docs/releases/1.9.0.md) · [簽章與發布流程](docs/RELEASING.md) · [R8 驗證](docs/R8-RELEASE.md)
+目前原始碼版本為 **1.9.1（versionCode 32）**：正式版啟用 R8 混淆、程式碼與資源縮減；保留 AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.9.1 更新說明](docs/releases/1.9.1.md) · [簽章與發布流程](docs/RELEASING.md) · [R8 驗證](docs/R8-RELEASE.md)
 
 ## 安裝與使用
 
@@ -92,3 +92,7 @@ App 的深色／淺色／跟隨系統改由同一設定管理 Compose 與 Androi
 設定 → 瀏覽新增預設搜尋引擎，可選 Google、Bing、Yahoo、百度、Naver、Wiki 或自訂 HTTPS 網址範本。Google 維持預設；網址仍優先辨識為網址，只有搜尋內容會交給所選服務。自訂範本必須包含一次 `{query}`，並在本機完成驗證與預覽。[設計、隱私與驗證說明](docs/SEARCH-ENGINE.md)。
 
 天眼已儲存的自訂規則改為點選編輯。可以手動修改，或讓 AI 依據本次頁面原始 HTML、目前規則與新要求修訂，確認後更新原規則；刪除獨立操作並先確認。[編輯流程與資料範圍](docs/RULE-EDITING.md)。
+
+## 1.9.1 返回與外部連結
+
+返回到網頁起點後直接離開瀏覽器，外部 App 開啟的連結分頁會結束並回到來源 App；一般自行開啟的頁面保留，不再用空白首頁取代。正常網頁仍逐頁返回，途中略過內建首頁。[返回行為與驗證](docs/BACK-NAVIGATION.md)。

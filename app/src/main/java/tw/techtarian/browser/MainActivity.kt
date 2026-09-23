@@ -57,6 +57,7 @@ class MainActivity:AppCompatActivity(){
     lateinit var bookmarkSync:BookmarkSync
     private lateinit var store:BrowserStore
     private var browserReady=false
+    private var incomingIntentPending=false
     internal val imageDownloads=BrowserImageDownloads(this){message->if(::controller.isInitialized)controller.notice=message}
     internal val imageActions=BrowserImageActions(this)
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
@@ -107,9 +108,8 @@ class MainActivity:AppCompatActivity(){
         // No sleep, minimum display time, network wait, or separate splash Activity.
         launch.doOnPreDraw{launch.post{
             if(!isFinishing&&!isDestroyed&&!browserReady){
-                val incoming=intent?.dataString
                 controller.restoreTabs()
-                if(incoming?.startsWith("https://")==true||incoming?.startsWith("http://")==true)controller.newTab(incoming,incognito=false)
+                if(savedInstanceState?.getBoolean("browser-launch-consumed")!=true||incomingIntentPending)acceptIncomingLink(intent)
                 browserReady=true
                 setContent { BrowserApp(controller,store) }
                 if(lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED))bookmarkSync.resume()
@@ -143,17 +143,32 @@ class MainActivity:AppCompatActivity(){
     override fun onNewIntent(intent:Intent){
         super.onNewIntent(intent)
         setIntent(intent)
-        if(browserReady)intent.dataString?.let{if(it.startsWith("https://")||it.startsWith("http://")){
-            controller.prompts.cancel();controller.imagePreview=null;controller.exitFullscreen();controller.sheet=""
-            controller.newTab(it,incognito=false)
-        }}
+        if(browserReady)acceptIncomingLink(intent)else incomingIntentPending=true
+    }
+    private fun acceptIncomingLink(incoming:Intent?) {
+        incomingIntentPending=false
+        val url=incoming?.dataString?.takeIf{it.startsWith("https://")||it.startsWith("http://")}?:return
+        // Consume the launch URL so Activity recreation does not open the same link again.
+        setIntent(Intent(incoming).setData(null))
+        controller.prompts.cancel();controller.imagePreview=null;controller.exitFullscreen();controller.sheet=""
+        controller.openExternalTab(url)
+    }
+    internal fun backFromPage(){
+        if(controller.goBackInPage())return
+        controller.finishBackNavigation()
+        // Let Android reveal the caller's task (or the launcher), without creating a homepage.
+        if(!moveTaskToBack(true))finish()
+    }
+    override fun onSaveInstanceState(outState:Bundle){
+        outState.putBoolean("browser-launch-consumed",browserReady&&!incomingIntentPending)
+        super.onSaveInstanceState(outState)
     }
     override fun onPause(){
         super.onPause()
         // A backgrounded/closed launch must not replace saved tabs with an empty list.
         if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
-    override fun onResume(){super.onResume();if(browserReady&&::bookmarkSync.isInitialized)bookmarkSync.resume()}
+    override fun onResume(){super.onResume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
     override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
@@ -202,9 +217,7 @@ class MainActivity:AppCompatActivity(){
             c.sheet.isNotEmpty()->c.sheet=""
             active?.imageContent!=null->c.closeTab(active.id)
             c.eye->{c.stopEye();c.notice="已取消尚未儲存的預覽"}
-            active?.web?.canGoBack()==true->active.web.goBack()
-            active?.url?.isNotEmpty()==true->{c.newTab();c.closeTab(active.id)}
-            else->activity.moveTaskToBack(true)
+            else->activity.backFromPage()
         }
     }
     MaterialTheme(colorScheme=cs,typography=BrowserTypography){

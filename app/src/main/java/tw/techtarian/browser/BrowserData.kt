@@ -203,10 +203,10 @@ class BrowserStore(context: Context) {
             .putString("searches",BrowsingHistoryFormat.searchesJson(historySearches().filterNot{window.contains(it.searchedAt)}))
             .commit()){"瀏覽記錄未能儲存，請檢查手機儲存空間"}
     }
-    fun saveTabs(urls:List<String>,favoriteIds:List<String?> = emptyList(),previewKeys:List<String> = emptyList(),titles:List<String> = emptyList(),lastActiveTimes:List<Long> = emptyList()):Boolean {
+    fun saveTabs(urls:List<String>,favoriteIds:List<String?> = emptyList(),previewKeys:List<String> = emptyList(),titles:List<String> = emptyList(),lastActiveTimes:List<Long> = emptyList(),openedExternally:List<Boolean> = emptyList()):Boolean {
         val links=JSONArray(urls.mapIndexed{i,url->JSONObject().put("url",url).put("id",favoriteIds.getOrNull(i)?:JSONObject.NULL)
             .put("previewKey",previewKeys.getOrNull(i)?:TabPreviewStore.newKey()).put("title",titles.getOrNull(i)?:url)
-            .put("lastActiveAt",lastActiveTimes.getOrNull(i)?:0)})
+            .put("lastActiveAt",lastActiveTimes.getOrNull(i)?:0).put("openedExternally",openedExternally.getOrNull(i)?:false)})
         // Keep the legacy keys in the same transaction: existing bookmarks and migrations still work.
         return prefs.edit().putString("tabs",JSONArray(urls).toString()).putString("tab-favorite-links",links.toString()).commit()
     }
@@ -218,7 +218,7 @@ class BrowserStore(context: Context) {
             val existing=row?.optString("previewKey")
             val key=existing?.takeIf{TabPreviewStore.validKey(it)&&used.add(it)}?:TabPreviewStore.newKey().also{used.add(it)}
             SavedBrowserTab(key,url,row?.optString("title")?.takeIf{it.isNotBlank()}?.take(180)?:url,
-                row?.takeUnless{it.isNull("id")}?.optString("id")?.takeIf{it.isNotBlank()},row?.optLong("lastActiveAt",0)?.coerceAtLeast(0)?:0)
+                row?.takeUnless{it.isNull("id")}?.optString("id")?.takeIf{it.isNotBlank()},row?.optLong("lastActiveAt",0)?.coerceAtLeast(0)?:0,row?.optBoolean("openedExternally",false)?:false)
         }
     }
     fun tabs(): List<String> = runCatching { val a = JSONArray(prefs.getString("tabs", "[]")); (0 until a.length()).map { a.getString(it) }.filter { it.isEmpty() || it.toHttpUrlOrNull() != null }.take(20) }.getOrDefault(emptyList())

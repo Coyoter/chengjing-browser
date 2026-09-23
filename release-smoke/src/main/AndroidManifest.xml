@@ -2,6 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <queries><package android:name="tw.techtarian.browser.qa" /></queries>
     <application android:label="Browser optimized-build tests" android:allowBackup="false">
+        <activity android:name=".BrowserLinkSourceActivity" android:exported="true" android:theme="@android:style/Theme.Material.Light.NoActionBar" />
         <activity android:name=".ImageReceiverActivity" android:label="QA 圖片接收器" android:exported="true" android:theme="@android:style/Theme.Material.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

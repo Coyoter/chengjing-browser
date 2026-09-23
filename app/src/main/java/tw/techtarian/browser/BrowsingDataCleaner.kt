@@ -37,7 +37,7 @@ internal class BrowsingDataCleaner(private val c:BrowserController) {
                     c.store.clearHistory(window)
                     regular.filter{it.url in historyUrls||window.contains(it.lastActiveAt)}.forEach{
                         it.suppressHistoryUntilNavigation=true
-                        it.web.clearHistory();it.canBack=it.web.canGoBack();it.canForward=it.web.canGoForward()
+                        it.web.clearHistory();it.updateNavigationState()
                     }
                 }
                 closeIds.forEach{c.closeTab(it)}
