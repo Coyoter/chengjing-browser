@@ -79,7 +79,7 @@ import org.json.JSONObject
             revision?.checkCurrent(c)
             analyzedDocument=c.js("performance.timeOrigin")
             val raw=if(revision!=null)c.js("window.__chengjingEye?.originalSource(${revision.edit?.selector?.let{JSONObject.quote(it)}?:"null"})")else c.js("window.__chengjingEye?.snapshot(${selected?.selector?.let{JSONObject.quote(it)}?:"null"})")
-            check(raw!="null"){"頁面尚未準備好，請稍後再試"}
+            check(raw!="null"){if(revision?.edit!=null)"無法讀取這項規則的原始 HTML。請先開啟包含該元件的網頁，重新載入後再試。"else"頁面尚未準備好，請重新載入後再試"}
             val data=JSONArray("[$raw]").getString(0)
             check(c.activeId==tab&&c.active?.url==url&&c.js("performance.timeOrigin")==analyzedDocument){"網頁已變更，請重新分析"}
             if(revision!=null)c.developerRevision(problem,data,original,revision.editId)else c.developerSuggestion(problem,data,original,selected?.selector)

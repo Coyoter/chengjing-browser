@@ -81,6 +81,12 @@ class RuleEditingJourneyTest {
         ui.onNodeWithTag("developer-error").performScrollTo().assertTextContains("網頁已變更，請重新分析")
         assertEquals(first,c.site.edits[0])
     }
+    @Test fun manualEditingDoesNotRequireTheSavedElementOnThisPage(){
+        eval("document.querySelector('#notice-banner').remove()")
+        openFirst();ui.onNodeWithTag("saved-rule-css").performTextReplacement("color: blue;")
+        ui.onNodeWithTag("save-rule").performScrollTo().performClick()
+        until{c.site.edits[0].css=="color: blue;"};assertEquals(second,c.site.edits[1])
+    }
     @Test fun domainsOpenSavedRulesAndWebsiteRevisionPreservesElementEdits(){
         main{c.sheet="domains"};ui.onNodeWithTag("menu-row:$domain").performScrollTo().performClick()
         ui.onNodeWithText("網站 CSS / JS / HTML").performScrollTo().performClick()

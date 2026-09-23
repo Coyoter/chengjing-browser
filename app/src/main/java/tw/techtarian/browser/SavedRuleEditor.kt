@@ -56,7 +56,7 @@ internal fun BrowserController.editSavedRule(editId:String?=null){
     Text("適用此網域及子網域。JavaScript 可存取頁面或發出請求，請確認內容後再儲存。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,modifier=Modifier.testTag("saved-rule-error"))
     Button(enabled=!busy,onClick={busy=true;scope.launch{
-        runCatching{session.checkCurrent(c);val value=session.value();c.validateSelectors(listOfNotNull(session.edit?.selector))?.let{error(it)};c.validateCode(value);session.checkCurrent(c);check(session.value()==value){"編輯內容已變更，請再次儲存"};c.saveSite(value,reload=true);c.stopEye();c.sheet="";c.notice="已更新原規則並套用"}
+        runCatching{session.checkCurrent(c);val value=session.value();c.validateCode(value);session.checkCurrent(c);check(session.value()==value){"編輯內容已變更，請再次儲存"};c.saveSite(value,reload=true);c.stopEye();c.sheet="";c.notice="已更新原規則並套用"}
             .onFailure{error=it.localizedMessage.orEmpty()};busy=false
     }},modifier=Modifier.fillMaxWidth().testTag("save-rule")){Text("儲存並套用")}
     TextButton(onClick={deleting=true},enabled=!busy,modifier=Modifier.fillMaxWidth(),colors=ButtonDefaults.textButtonColors(contentColor=MaterialTheme.colorScheme.error)){
