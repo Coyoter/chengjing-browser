@@ -28,7 +28,14 @@ class RuleEditingJourneyTest {
     }
     @Before fun setup(){
         Assume.assumeTrue(ui.activity.packageName.endsWith(".qa"))
-        main{ui.activity.bookmarkSync.disconnect();ui.activity.getSharedPreferences("browser-v1",0).edit().remove("site:practice.chengjing.invalid").commit();c.exceptions.clear();c.stopEye();c.sheet="";c.store.aiProvider="openrouter";c.store.saveKey("qa-not-a-real-key");c.saveSite(SiteRules(domain,css="h1 {letter-spacing: 1px}",edits=listOf(first,second)));c.newTab(url)}
+        main{
+            ui.activity.bookmarkSync.disconnect()
+            // Each case owns only its practice page, not restored tabs from preceding suites.
+            c.closePrivateTabs();c.closeAllTabs(incognito=false)
+            ui.activity.getSharedPreferences("browser-v1",0).edit().remove("site:practice.chengjing.invalid").commit()
+            c.exceptions.clear();c.stopEye();c.sheet="";c.store.aiProvider="openrouter";c.store.saveKey("qa-not-a-real-key")
+            c.saveSite(SiteRules(domain,css="h1 {letter-spacing: 1px}",edits=listOf(first,second)));c.navigate(url)
+        }
         until{eval("document.querySelector('#saved-note')?.textContent")=="\"先前規則\""};ui.waitForIdle()
     }
     @After fun cleanup(){main{c.store.saveKey("");c.sheet="";c.stopEye();c.saveSite(SiteRules(domain));ui.activity.applyAppearance("system")}}
@@ -38,9 +45,18 @@ class RuleEditingJourneyTest {
     private fun analyze(){
         ui.onNodeWithText("請 AI 修改這項規則").performScrollTo().performClick()
         ui.onNodeWithTag("developer-ai-problem").performTextReplacement("改成藍色，保留原本內容")
-        ui.onNode(isToggleable()).performScrollTo().performClick()
-        ui.onNodeWithText("傳送並取得建議").performScrollTo().performClick()
-        ui.waitUntil(10000){ui.onAllNodesWithText("更新原規則並套用").fetchSemanticsNodes().isNotEmpty()}
+        // Wait for the real dialog IME to close before tapping rows whose bounds move.
+        if(android.os.Build.VERSION.SDK_INT>=30){
+            main{android.view.inspector.WindowInspector.getGlobalWindowViews().forEach{it.windowInsetsController?.hide(android.view.WindowInsets.Type.ime())}}
+            ui.waitUntil(5000){var hidden=false;main{hidden=android.view.inspector.WindowInspector.getGlobalWindowViews().none{it.rootWindowInsets?.isVisible(android.view.WindowInsets.Type.ime())==true}};hidden}
+        }
+        ui.waitForIdle()
+        ui.onNode(isToggleable()).performScrollTo().assertIsOff().performClick().assertIsOn()
+        ui.onNodeWithText("傳送並取得建議").performScrollTo().assertIsEnabled().performClick()
+        try {
+            ui.waitUntil(10000){ui.onAllNodesWithText("更新原規則並套用").fetchSemanticsNodes().isNotEmpty()||ui.onAllNodesWithTag("developer-error").fetchSemanticsNodes().isNotEmpty()}
+            ui.onNodeWithText("更新原規則並套用").assertExists()
+        }catch(failure:Throwable){throw AssertionError("AI revision did not produce a proposal; sheet=${c.sheet}, tabs=${c.tabs.size}, notice=${c.notice}\n"+ui.onRoot().printToString(),failure)}
     }
     @Test fun clickOpensEditorAndManualSaveUpdatesInPlace(){
         openFirst();assertEquals(2,c.site.edits.size)
