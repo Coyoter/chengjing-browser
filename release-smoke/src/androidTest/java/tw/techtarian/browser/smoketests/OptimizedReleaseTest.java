@@ -160,6 +160,22 @@ public class OptimizedReleaseTest {
         click("天眼");require(By.text("R8 測試元件")).click();
         require(By.text("選中一個元件"));require(By.text("移除此網站元件"));closeMenu();
     }
+    @Test public void savedRuleEditorAndAiRevisionEntryWorkInOptimizedRelease() throws Exception {
+        click("天眼");require(By.text("R8 測試元件")).click();click("修改這段代碼");
+        UiObject2 html=require(By.clazz("android.widget.EditText"));
+        assertTrue(device.wait(Until.hasObject(By.text("R8 測試元件")),10000));
+        html.setText("<span>R8 original edit</span>");click("儲存並套用");
+        require(By.text("R8 original edit"));menu();click("天眼設定");click("已儲存的網站修改");click("編輯 HTML");
+        require(By.text("編輯網站規則"));click("請 AI 修改這項規則");
+        require(By.text("讓原本的修改更合心意"));require(By.textContains("套用天眼前的 HTML"));
+        require(By.desc("返回上一層")).click();require(By.text("編輯網站規則"));
+        findText("HTML");device.waitForIdle();
+        java.util.List<UiObject2> inputs=device.findObjects(By.clazz("android.widget.EditText"));
+        assertFalse(inputs.isEmpty());html=inputs.get(inputs.size()-1);
+        assertTrue("Editor must preserve the old rule",html.getText().contains("R8 original edit"));
+        html.setText("<span>R8 revised edit</span>");click("儲存並套用");
+        require(By.text("R8 revised edit"));assertFalse(device.hasObject(By.text("R8 original edit")));
+    }
     @Test public void menuHistoryAndPrivateTabCollectionsStillOpen() throws Exception {
         menu();click("瀏覽記錄");require(By.text("搜尋瀏覽記錄"));
         require(By.text("R8 功能測試 one"));closeMenu();
@@ -229,6 +245,9 @@ public class OptimizedReleaseTest {
     }
     @Test public void scrolledImagePreviewSurvivesRestartAndBlankReload() throws Exception {
         click("Show reading panels");device.waitForIdle();
+        // Accessibility idle does not imply Chromium has presented the scrolled image frame.
+        long paintDeadline=SystemClock.uptimeMillis()+10000;
+        while(blueScreenRatio()<=.1&&SystemClock.uptimeMillis()<paintDeadline)SystemClock.sleep(150);
         assertTrue("The actual scrolled page must show the image fixture",blueScreenRatio()>.1);
         require(By.descStartsWith("分頁，")).click();require(By.text("R8 image reader"));device.waitForIdle();
         assertTrue("The overview must contain blue image pixels, not a blank thumbnail",blueScreenRatio()>.01);

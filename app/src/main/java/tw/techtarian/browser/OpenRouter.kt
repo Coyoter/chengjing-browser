@@ -52,15 +52,16 @@ class OpenRouter {
             RuleValidation.parseAi(content, current)
         }
     }
-    suspend fun develop(key:String,model:String,problem:String,structure:String,current:SiteRules,selected:String?):DeveloperProposal = withContext(Dispatchers.IO){
+    suspend fun develop(key:String,model:String,problem:String,structure:String,current:SiteRules,selected:String?,revision:Boolean=false,editId:String?=null):DeveloperProposal = withContext(Dispatchers.IO){
         require(key.isNotBlank()&&model.isNotBlank()){ "請先設定 OpenRouter 金鑰與模型" }
-        val system=DeveloperPrompt.system
-        val ctx=DeveloperPrompt.context(problem,structure,current,selected)
+        val system=if(revision)RuleRevision.system else DeveloperPrompt.system
+        val ctx=if(revision)RuleRevision.context(problem,structure,current,editId)else DeveloperPrompt.context(problem,structure,current,selected)
         val body=JSONObject().put("model",model).put("provider",JSONObject().put("data_collection","deny")).put("max_tokens",6000).put("messages",JSONArray().put(JSONObject().put("role","system").put("content",system)).put(JSONObject().put("role","user").put("content",ctx.toString())))
         val request=Request.Builder().url("https://openrouter.ai/api/v1/chat/completions").header("Authorization","Bearer $key").header("X-Title","ChengJing Browser").post(body.toString().toRequestBody("application/json".toMediaType())).build()
         client.newCall(request).execute().use{r->
             check(r.isSuccessful){when(r.code){401->"API Key 無效";402->"OpenRouter 額度不足";429->"請求太頻繁，請稍後再試";else->"AI 服務未完成請求（${r.code}）"}}
-            DeveloperProposals.parse(JSONObject(r.body!!.string()).getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content"),current,selected)
+            val content=JSONObject(r.body!!.string()).getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content")
+            if(revision)RuleRevision.parse(content,current,editId)else DeveloperProposals.parse(content,current,selected)
         }
     }
 

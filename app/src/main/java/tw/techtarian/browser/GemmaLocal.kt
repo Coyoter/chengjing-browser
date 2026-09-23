@@ -86,22 +86,22 @@ class GemmaLocal(private val context:Context){
         modelFile.delete();prefs.edit().clear().apply();ready=false;downloading=false;progress=0f;status="尚未下載本機模型";error=""
     }
     fun cancelInference(){conversation?.cancelProcess()}
-    suspend fun develop(problem:String,structure:String,current:SiteRules,selected:String?):DeveloperProposal=withContext(Dispatchers.IO){
+    suspend fun develop(problem:String,structure:String,current:SiteRules,selected:String?,revision:Boolean=false,editId:String?=null):DeveloperProposal=withContext(Dispatchers.IO){
         lock.withLock{
             check(supported&&ready&&modelFile.length()==MODEL_BYTES){"請先下載 Gemma 4 本機模型"}
             val memory=ActivityManager.MemoryInfo();context.getSystemService(ActivityManager::class.java).getMemoryInfo(memory)
             check(memory.availMem>=1_800_000_000L){"目前可用記憶體不足，請先關閉部分分頁或其他 App，再使用本機模型。"}
-            val prompt=DeveloperPrompt.context(problem,structure,current,selected,true).toString()
+            val prompt=(if(revision)RuleRevision.context(problem,structure,current,editId,true)else DeveloperPrompt.context(problem,structure,current,selected,true)).toString()
             Engine.setNativeMinLogSeverity(LogSeverity.ERROR)
             val config=EngineConfig(modelPath=modelFile.absolutePath,backend=Backend.CPU(threadCount=4),maxNumTokens=8192,cacheDir=File(context.cacheDir,"gemma").apply{mkdirs()}.absolutePath)
             Engine(config).use{engine->
                 engine.initialize();currentCoroutineContext().ensureActive()
-                engine.createConversation(ConversationConfig(systemInstruction=Contents.of(if(selected==null)DeveloperPrompt.system else DeveloperPrompt.elementSystem),samplerConfig=SamplerConfig(topK=20,topP=0.9,temperature=0.2),maxOutputToken=1800,thinkingConfig=ThinkingConfig(enableThinking=false))).use{chat->
+                engine.createConversation(ConversationConfig(systemInstruction=Contents.of(if(revision)RuleRevision.system else if(selected==null)DeveloperPrompt.system else DeveloperPrompt.elementSystem),samplerConfig=SamplerConfig(topK=20,topP=0.9,temperature=0.2),maxOutputToken=1800,thinkingConfig=ThinkingConfig(enableThinking=false))).use{chat->
                     conversation=chat
                     try{
                         val text=StringBuilder()
                         chat.sendMessageAsync(prompt).collect{message->currentCoroutineContext().ensureActive();text.append(message.toString());check(text.length<=48000){"模型回覆過長，請縮小問題範圍"}}
-                        if(selected==null)DeveloperProposals.parse(text.toString(),current,null)else DeveloperPrompt.localElementProposal(text.toString(),current,selected)
+                        if(revision)RuleRevision.parse(text.toString(),current,editId)else if(selected==null)DeveloperProposals.parse(text.toString(),current,null)else DeveloperPrompt.localElementProposal(text.toString(),current,selected)
                     }finally{chat.cancelProcess();conversation=null}
                 }
             }

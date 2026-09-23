@@ -285,6 +285,8 @@ class MainActivity:AppCompatActivity(){
                         "element-editor"->ElementEditor(c)
                         "develop-ai"->DeveloperAiPanel(c){settingsCategory="ai";c.sheet="settings"}
                         "rules"->RulePanel(c)
+                        "rule-editor"->SavedRuleEditor(c)
+                        "rule-ai"->c.ruleEdit?.let{DeveloperAiPanel(c,revision=it){settingsCategory="ai";c.sheet="settings"}}
                         "code"->CodePanel(c,codeFocus)
                         "ai"->DeveloperAiPanel(c){settingsCategory="ai";c.sheet="settings"}
                         "settings"->SettingsPanel(settingsCategory,store,theme,{activity.applyAppearance(it)},c,addressAtBottom,{addressAtBottom=it;store.addressAtBottom=it})
@@ -294,7 +296,9 @@ class MainActivity:AppCompatActivity(){
                         "sync"->SyncPanel(c,store)
                         "domains"->{SheetTitle("網域規則","你的選擇，留在你的手機。")
                             val sites=store.all();if(sites.isEmpty())Text("尚未儲存任何網域規則。")
-                            sites.forEach{site->MenuRow(Icons.Outlined.Language,site.domain,"${site.rules.size} 條元件規則${if(site.guard)" · 跳轉防護"else""}"){c.navigate(if(site.domain=="practice.chengjing.invalid")"https://${site.domain}/"else"https://${site.domain}")}}
+                            sites.forEach{site->MenuRow(Icons.Outlined.Language,site.domain,"點選編輯 · ${site.rules.size+site.edits.size} 項元件修改"){
+                                if(c.domain==site.domain||c.newTab("https://${site.domain}/")!=null)c.sheet="rules"
+                            }}
                         }
                         "find"->{var text by remember{mutableStateOf("")};SheetTitle("尋找頁面文字");OutlinedTextField(text,{text=it;active?.web?.findAllAsync(it)},label={Text("要找的文字")},modifier=Modifier.fillMaxWidth());Row{TextButton(onClick={active?.web?.findNext(false)}){Text("上一個")};TextButton(onClick={active?.web?.findNext(true)}){Text("下一個")};TextButton(onClick={active?.web?.clearMatches();c.sheet=""}){Text("完成")}}}
                         "blocked"->{SheetTitle("攔截紀錄","本分頁共 ${active?.blockedTotal?:0} 次，保留最近 30 筆。")
@@ -330,7 +334,7 @@ class MainActivity:AppCompatActivity(){
     WebsiteAiEntry(c)
     MenuGroup("元件與程式碼"){
         MenuRow(Icons.Outlined.Layers,"結構清單","查看浮動、隱藏與內嵌元件"){if(!c.eye)c.beginEye();if(c.eye)c.sheet="inventory"}
-        MenuRow(Icons.Outlined.Tune,"已儲存的網站修改","${c.site.rules.size+c.site.edits.size} 項 · 適用此網域與子網域"){c.sheet="rules"}
+        MenuRow(Icons.Outlined.Tune,"已儲存的網站修改","點選規則，繼續編輯或請 AI 調整"){c.sheet="rules"}
         MenuRow(Icons.Outlined.Code,"網站 CSS / JS / HTML"){c.sheet="code"}
     }
     MenuGroup("網站行為"){
@@ -357,10 +361,17 @@ class MainActivity:AppCompatActivity(){
 }
 @Composable private fun RulePanel(c:BrowserController){
     val site=c.site
-    SheetTitle("移除規則",c.domain)
-    if(site.rules.isEmpty())Text("目前沒有移除規則。開啟天眼，點選不想看到的元件。")
-    site.rules.forEach{rule->Row(verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f)){Text(rule.label,fontSize=14.sp);Text(rule.selector,fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Tool(Icons.AutoMirrored.Outlined.Undo,"恢復 ${rule.label}"){c.saveSite(c.site.copy(rules=c.site.rules.filterNot{it.selector==rule.selector}));c.notice="已恢復這個元件"}}}
-    site.edits.forEach{edit->MenuRow(Icons.Outlined.Code,if(edit.mode=="replace")"編輯 HTML"else"自訂元件程式碼",edit.selector){c.saveSite(c.site.copy(edits=c.site.edits.filterNot{it.id==edit.id}),reload=true);c.notice="已恢復這項修改"}}
+    SheetTitle("網站修改",c.domain)
+    if(site.css.isNotBlank()||site.js.isNotBlank()||site.html.isNotBlank())MenuGroup("網站程式碼"){
+        MenuRow(Icons.Outlined.Code,"網站 CSS / JS / HTML","編輯已儲存內容，或交給 AI 再修改"){c.editSavedRule()}
+    }
+    if(site.edits.isNotEmpty())MenuGroup("自訂元件"){
+        site.edits.forEach{edit->MenuRow(Icons.Outlined.Code,if(edit.mode=="replace")"編輯 HTML"else"自訂元件程式碼",edit.selector){c.editSavedRule(edit.id)}}
+    }
+    if(site.rules.isNotEmpty())MenuGroup("已隱藏的元件"){
+        site.rules.forEach{rule->Row(Modifier.padding(14.dp),verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f)){Text(rule.label,fontSize=14.sp);Text(rule.selector,fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Tool(Icons.AutoMirrored.Outlined.Undo,"恢復 ${rule.label}"){c.saveSite(c.site.copy(rules=c.site.rules.filterNot{it.selector==rule.selector}));c.notice="已恢復這個元件"}}}
+    }
+    if(site.rules.isEmpty()&&site.edits.isEmpty()&&site.css.isBlank()&&site.js.isBlank()&&site.html.isBlank())Text("尚未儲存修改。可透過天眼選取元件，或新增網站程式碼。")
     SwitchRow("恢復頁面捲動","移除蓋版後仍無法捲動時，才開啟。",site.unlockScroll){c.saveSite(site.copy(unlockScroll=it))}
     Text("規則保存在本機。網域的結構如果改版，可以重新選取或請 AI 調整。",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }

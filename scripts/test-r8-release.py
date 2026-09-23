@@ -15,6 +15,7 @@ METHODS = (
     "nativeJniCanLoadCallAndThrowItsTypedError",
     "aiProviderFieldsStillRecomposeInOptimizedRelease",
     "webViewJavascriptBridgeSurvivesOptimization",
+    "savedRuleEditorAndAiRevisionEntryWorkInOptimizedRelease",
     "menuHistoryAndPrivateTabCollectionsStillOpen",
     "closeAllRegularTabsWorksInOptimizedRelease",
     "homepageOptionsAndDailyQuoteWorkInOptimizedRelease",

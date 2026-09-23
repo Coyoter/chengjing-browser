@@ -46,12 +46,14 @@ import kotlinx.coroutines.launch
 }
 
 internal fun panelTitle(page:String)=when(page){
+    "rule-editor"->"編輯網站規則";"rule-ai"->"AI 修訂規則"
     "legal"->"第三方授權";"element-editor"->"元件程式碼";"develop-ai"->"天眼 AI";"connection"->"網站連線";"privacy"->"隱私與資料";"menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
     "rules"->"網站修改";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別";"search-engine"->"預設搜尋引擎"
     "inventory"->"結構清單";"sync"->"Google 同步";"history"->"瀏覽記錄";"downloads"->"下載";"domains"->"網域規則"
     "find"->"尋找頁面文字";"blocked"->"攔截紀錄";else->"澄境瀏覽器"
 }
 internal fun panelParent(page:String)=when(page){
+    "rule-editor"->"rules";"rule-ai"->"rule-editor"
     "menu","selection","connection"->"";"rules","code","ai","inventory"->"eye";"user-agent","search-engine","sync"->"settings";else->"menu"
 }
 @Composable internal fun PanelHeader(c:BrowserController,onBack:()->Unit){

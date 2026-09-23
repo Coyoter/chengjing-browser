@@ -12,6 +12,37 @@
   const marker = 'data-cj-removed';
   let editsReady=false,globalHtmlApplied=false;
   const appliedEdits=new WeakMap(),generated=new WeakSet();
+  // Ephemeral, bounded source from before custom code runs. Never persist page text.
+  let pageSource=null,sourceBudget=240000;
+  const elementSources=new Map();
+  function sourceHTML(root,limit=24000){
+    let html='',count=0,truncated=false;
+    const escape=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const append=s=>{const room=limit-html.length;if(s.length>room)truncated=true;html+=s.slice(0,room);};
+    function walk(node,depth){
+      if(html.length>=limit||count++>=3000||depth>64){truncated=true;return;}
+      if(node.nodeType===3){append(escape((node.textContent||'').slice(0,limit+1)));return;}
+      if(node.nodeType!==1||own.has(node)||generated.has(node))return;
+      const tag=node.localName;
+      if(['script','noscript','template','input','textarea','select','option','iframe','object','embed','meta'].includes(tag)||node.isContentEditable)return;
+      append('<'+tag);
+      for(const name of ['id','class','role','style','alt','href','src','rel']){
+        let value=node.getAttribute(name);if(!value)continue;
+        if(name==='href'||name==='src'){try{const u=new URL(value,location.href);if(!['https:','http:'].includes(u.protocol))continue;value=u.origin+u.pathname;}catch(_){continue;}}
+        append(' '+name+'="'+escape(value.slice(0,2000))+'"');
+      }
+      append('>');
+      for(const child of node.childNodes){walk(child,depth+1);if(html.length>=limit||count>=3000){truncated=true;break;}}
+      append('</'+tag+'>');
+    }
+    if(root)walk(root,0);
+    return {html,truncated,captured:'before-browser-customizations',notice:'Sanitized HTML; no scripts, form fields, event attributes or URL queries. May precede dynamic changes.'};
+  }
+  function captureElementSource(selector,element){
+    if(elementSources.has(selector)||sourceBudget<=0)return;
+    const source=sourceHTML(element,Math.min(24000,sourceBudget));sourceBudget-=source.html.length;
+    elementSources.set(selector,source);
+  }
   function insertMarkup(target,html,replace){
     const template=document.createElement('template');template.innerHTML=html;
     template.content.querySelectorAll('*').forEach(n=>generated.add(n));
@@ -26,6 +57,7 @@
         query(edit.selector).filter(el=>!generated.has(el)).slice(0,200).forEach(element=>{
           const done=appliedEdits.get(element)||new Set();
           if(done.has(edit.id))return;
+          captureElementSource(edit.selector,element);
           done.add(edit.id);appliedEdits.set(element,done);
           if(edit.css)element.style.cssText+=';'+edit.css;
           if(edit.html||edit.mode==='replace')insertMarkup(element,edit.html||'',edit.mode==='replace');
@@ -204,6 +236,11 @@
     inspect:safe,
     preview(value){preview=value;apply();return {applied:true};},
     inventory,snapshot,
+    originalSource(scope){
+      const source=scope?elementSources.get(scope):pageSource;
+      if(!source?.html)throw new Error('原始 HTML 尚未準備好，請重新載入頁面再開啟規則');
+      return JSON.stringify(source);
+    },
     innerHTML(s){const el=query(s)[0];if(!el)throw new Error("找不到元件");if(el.innerHTML.length>64000)throw new Error("元件過大，請選擇更小範圍");return el.innerHTML;},
     status(){return {enabled,removed:document.querySelectorAll('['+marker+']').length,domain:current()?.domain||'',selected:selected?describe(selected):null};}
   };
@@ -213,7 +250,12 @@
   document.addEventListener('submit',e=>{if(enabled){e.preventDefault();e.stopImmediatePropagation();}},true);
   window.addEventListener('scroll',()=>{if(enabled){drawSelected();drawFrames();}},{passive:true,capture:true});
   window.addEventListener('resize',schedule);
-  const ready=()=>{editsReady=true;apply();const site=current();if(site?.js){try{(0,eval)(site.js);}catch(e){send({type:'codeError',message:String(e).slice(0,200)});}}};
+  const ready=()=>{
+    pageSource=sourceHTML(document.body||document.documentElement);
+    // Capture all saved targets before any overlapping edit or website HTML can change them.
+    for(const edit of current()?.edits||[]){try{const node=query(edit.selector)[0];if(node)captureElementSource(edit.selector,node);}catch(_){}}
+    editsReady=true;apply();const site=current();if(site?.js){try{(0,eval)(site.js);}catch(e){send({type:'codeError',message:String(e).slice(0,200)});}}
+  };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();
   apply();
 })();

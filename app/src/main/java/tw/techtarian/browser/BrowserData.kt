@@ -128,8 +128,8 @@ class BrowserStore(context: Context) {
         set(value){prefs.edit().putBoolean("address-at-bottom",value).apply()}
     private var searchEngineState by mutableStateOf(prefs.getString("search-engine","google")?.takeIf{it in SearchEngines.ids}?:"google")
     private var customSearchTemplateState by mutableStateOf(prefs.getString("custom-search-template","").orEmpty().takeIf{SearchEngines.templateError(it)==null}.orEmpty())
-    val searchSettings get()=SearchSettings(searchEngineState,customSearchTemplateState)
-    val searchEngine get()=searchEngineState
+    val searchSettings get()=SearchSettings(searchEngine,customSearchTemplateState)
+    val searchEngine get()=if(searchEngineState=="custom"&&customSearchTemplateState.isEmpty())"google"else searchEngineState
     val customSearchTemplate get()=customSearchTemplateState
     fun useSearchEngine(id:String){
         require(id in SearchEngines.ids&&id!="custom")

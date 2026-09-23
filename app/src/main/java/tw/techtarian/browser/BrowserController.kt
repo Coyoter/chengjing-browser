@@ -58,6 +58,8 @@ class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false
 
 class BrowserController(val context: Context, val store: BrowserStore) {
     internal var developerSuggestion:suspend (String,String,SiteRules,String?)->DeveloperProposal = {problem,structure,current,selected->if(store.aiProvider=="gemma")gemma.develop(problem,structure,current,selected)else OpenRouter().develop(store.readKey(),store.model,problem,structure,current,selected)}
+    internal var developerRevision:suspend (String,String,SiteRules,String?)->DeveloperProposal = {problem,source,current,editId->if(store.aiProvider=="gemma")gemma.develop(problem,source,current,null,true,editId)else OpenRouter().develop(store.readKey(),store.model,problem,source,current,null,true,editId)}
+    internal var ruleEdit by mutableStateOf<RuleEditSession?>(null)
     val gemma=GemmaLocal(context.applicationContext)
     val icons=SiteIcons(context.applicationContext)
     val favorites=FavoriteStore(context)
