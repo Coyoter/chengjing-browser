@@ -284,7 +284,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         web.setBackgroundColor(android.graphics.Color.WHITE)
         WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG)
         web.settings.apply {
-            javaScriptEnabled=true;domStorageEnabled=true;databaseEnabled=true
+            javaScriptEnabled=true;domStorageEnabled=true;databaseEnabled=true;setGeolocationEnabled(true)
             userAgentString=currentUserAgent()
             allowFileAccess=false;allowContentAccess=false
             mixedContentMode=WebSettings.MIXED_CONTENT_NEVER_ALLOW
@@ -353,6 +353,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 return false
             }
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
+                (context as? MainActivity)?.websiteLocation?.cancelFor(tab.id)
                 if(tab !in tabs)return
                 if(web.selecting){view.stopLoading();return}
                 (context as? MainActivity)?.pageDownloads?.cancelFor(tab.id)
@@ -487,7 +488,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 (resultMsg.obj as WebView.WebViewTransport).webView=child.web;resultMsg.sendToTarget();return true
             }
             override fun onPermissionRequest(request:PermissionRequest){request.deny();notice="此版本尚未開放網站使用相機與麥克風"}
-            override fun onGeolocationPermissionsShowPrompt(origin:String,callback:GeolocationPermissions.Callback){callback.invoke(origin,false,false);notice="此版本尚未開放網站定位"}
+            override fun onGeolocationPermissionsShowPrompt(origin:String,callback:GeolocationPermissions.Callback){
+                val location=(context as? MainActivity)?.websiteLocation
+                if(location!=null)location.request(tab,origin,callback)else callback.invoke(origin,false,false)
+            }
+            override fun onGeolocationPermissionsHidePrompt(){(context as? MainActivity)?.websiteLocation?.cancelFor(tab.id)}
             override fun onShowFileChooser(webView:WebView,callback:ValueCallback<Array<Uri>>,params:FileChooserParams):Boolean {
                 if(web.selecting){callback.onReceiveValue(null);return true}
                 fileCallback?.onReceiveValue(null);fileCallback=callback
@@ -566,6 +571,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
+        (context as? MainActivity)?.websiteLocation?.cancelFor(id)
         findInPage.closeFor(id)
         (context as? MainActivity)?.pageDownloads?.cancelFor(id)
         prompts.closeFor(id)
@@ -574,7 +580,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         previews.remove(tab.previewKey)
         tab.preview=null;tab.documentScript?.remove();tab.web.stopLoading()
         (tab.refreshContainer.parent as? ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer.removeAllViews();tab.web.destroy();tabs.remove(tab)
-        if(tab.incognito&&tabs.none{it.incognito}){privateSession.clear();(context as? MainActivity)?.imageActions?.clearPrivate()}
+        if(tab.incognito&&tabs.none{it.incognito}){privateSession.clear();(context as? MainActivity)?.imageActions?.clearPrivate();(context as? MainActivity)?.websiteLocation?.clearPrivate()}
         if(activeId==id)activeId=(tabs.lastOrNull{it.incognito==tab.incognito}?:tabs.lastOrNull())?.id?:0
         if(tabs.isEmpty()&&replaceLast)newTab(incognito=false)
         persistTabs();updatePrivacyWindow()

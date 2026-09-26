@@ -61,6 +61,7 @@ class MainActivity:AppCompatActivity(){
     internal val imageDownloads=BrowserImageDownloads(this){message->if(::controller.isInitialized)controller.notice=message}
     internal val imageActions=BrowserImageActions(this)
     internal val pageDownloads=BrowserPageDownloads(this)
+    internal val websiteLocation=WebsiteLocation(this)
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
@@ -171,7 +172,7 @@ class MainActivity:AppCompatActivity(){
         if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
     override fun onResume(){super.onResume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
-    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
+    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();websiteLocation.close();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -488,13 +489,14 @@ class MainActivity:AppCompatActivity(){
 }
 @Composable private fun SyncPanel(c:BrowserController,store:BrowserStore){
     val sync=(c.context as MainActivity).bookmarkSync
+    LaunchedEffect(sync){sync.resume()}
     c.revision
     SheetTitle("Google 同步","把書籤、收藏進度與天眼設定帶到下一支手機。")
     Surface(modifier=Modifier.fillMaxWidth(),color=MaterialTheme.colorScheme.primaryContainer,shape=RoundedCornerShape(18.dp)){
         Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
-            Icon(Icons.Outlined.CloudDone,null,tint=MaterialTheme.colorScheme.primary)
-            Text(sync.status,fontWeight=FontWeight.SemiBold)
-            if(sync.details.isNotBlank())Text(sync.details,fontSize=11.sp,color=MaterialTheme.colorScheme.error,lineHeight=17.sp)
+            Icon(if(sync.busy)Icons.Outlined.CloudSync else if(!sync.connected||sync.details.isNotBlank())Icons.Outlined.CloudOff else Icons.Outlined.CloudDone,null,tint=if(sync.requiresAttention)MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+            Text(sync.status,fontWeight=FontWeight.SemiBold,modifier=Modifier.testTag("sync-status"))
+            if(sync.details.isNotBlank())Text(sync.details,fontSize=13.sp,color=if(sync.requiresAttention)MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,lineHeight=21.sp,modifier=Modifier.testTag("sync-details"))
             if(sync.connected)Text(store.bookmarkStore.accountLabel,fontSize=13.sp)
             if(store.bookmarkStore.lastSync>0)Text("上次完成："+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(java.util.Date(store.bookmarkStore.lastSync)),fontSize=12.sp)
         }

@@ -440,6 +440,27 @@ public class OptimizedReleaseTest {
         }
         fail("Download receiver missing from Android chooser");
     }
+    @Test @SuppressWarnings("deprecation") public void websiteLocationRequiresConsentAndReturnsCoordinatesInOptimizedRelease() throws Exception {
+        String host=InstrumentationRegistry.getInstrumentation().getTargetContext().getPackageName();
+        for(String pkg:new String[]{APP,host})for(String permission:new String[]{"android.permission.ACCESS_COARSE_LOCATION","android.permission.ACCESS_FINE_LOCATION"})
+            device.executeShellCommand("pm grant "+pkg+" "+permission);
+        device.executeShellCommand("cmd location set-location-enabled true");
+        device.executeShellCommand("appops set "+host+" android:mock_location allow");
+        android.location.LocationManager manager=InstrumentationRegistry.getInstrumentation().getTargetContext().getSystemService(android.location.LocationManager.class);
+        manager.addTestProvider("gps",false,false,false,false,true,true,true,android.location.Criteria.POWER_LOW,android.location.Criteria.ACCURACY_FINE);
+        manager.setTestProviderEnabled("gps",true);
+        java.util.concurrent.atomic.AtomicBoolean running=new java.util.concurrent.atomic.AtomicBoolean(true);
+        Thread gps=new Thread(()->{int tick=0;while(running.get()){
+            android.location.Location point=new android.location.Location("gps");point.setLatitude(25.033+(tick++%2)*.001);point.setLongitude(121.5654);point.setAccuracy(5);point.setTime(System.currentTimeMillis());point.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
+            manager.setTestProviderLocation("gps",point);SystemClock.sleep(250);
+        }},"r8-location-fixture");gps.start();
+        try{
+            launchPage("location");require(By.text("Location ready"));click("Locate QA");click("暫不允許");require(By.text("Location denied 1"));
+            click("Locate QA");click("允許定位");require(By.text("Location verified"));
+            launchPage("location");require(By.text("Location ready"));click("Locate QA");require(By.text("Location verified"));
+            assertFalse(device.hasObject(By.text("允許定位")));
+        }finally{running.set(false);gps.join(1000);manager.removeTestProvider("gps");}
+    }
     private static final class Fixture implements AutoCloseable {
         private final ServerSocket server;
         private final Thread worker;
@@ -467,6 +488,7 @@ public class OptimizedReleaseTest {
                     String page=first!=null&&first.contains("/two")?"two":"one";
                     String html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 功能測試 "+page+"</title></head><body style='margin:24px;font:18px sans-serif'><h1>R8 功能測試 "+page+"</h1><button id='r8-target' style='width:100%;padding:24px;margin:20px 0'>R8 測試元件</button><p>只使用本機合成內容，不接觸真實帳號。</p></body></html>";
                     html=html.replace("</body>","<p><a href='chengjing-test://open/r8?id=custom'>Open linked app</a></p><p><a href='intent://open/r8?id=intent#Intent;scheme=chengjing-test;package=tw.techtarian.browser.smoketests;end'>Open intent app</a></p></body>");
+                    if(first!=null&&first.contains("/location"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Location fixture</title></head><body><button style='padding:24px' onclick=\"navigator.geolocation.getCurrentPosition(p=>document.getElementById('result').textContent=(Math.abs(p.coords.latitude-25.033)<.1&amp;&amp;Math.abs(p.coords.longitude-121.5654)<.1)?'Location verified':'Wrong coordinates',e=>document.getElementById('result').textContent='Location denied '+e.code,{enableHighAccuracy:true,timeout:20000,maximumAge:0})\">Locate QA</button><p id='result' role='status' aria-live='polite'>Location ready</p></body></html>";
                     if(first!=null&&first.contains("/find-page")){
                         html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>頁內搜尋測試</title></head><body style='margin:20px;font:20px sans-serif'><h1>邊看網頁，邊找文字</h1><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:300px'></div></body></html>";
                     }
