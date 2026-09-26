@@ -86,26 +86,34 @@ class PageDownloadsTest {
     }
     @Test fun nativeVideoOverflowDownloadActuallyReachesTheNewDownloader(){
         videoPage();eval("(()=>{const v=document.getElementById('fixture-video');v.setAttribute('aria-label','QA fixture video');v.preload='auto';v.load();})()")
-        ui.waitUntil(15000){eval("document.getElementById('fixture-video').readyState>=2")=="true"};painted()
+        // HAVE_CURRENT_DATA can still be buffering and rebuilding native controls.
+        // Wait for playable future data, then tap the current on-screen hit bounds.
+        ui.waitUntil(15000){eval("(()=>{const v=document.getElementById('fixture-video');return v.readyState>=3&&!v.seeking&&!v.error;})()") == "true"};painted()
         val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         fun more()=(device.findObject(By.descContains("QA fixture video"))?:device.findObject(By.res("fixture-video")))?.let{video->
             video.findObject(By.desc(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
                 ?:video.findObject(By.text(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
                 ?:video.findObjects(By.clazz("android.widget.Button").clickable(true).enabled(true)).singleOrNull{it.contentDescription.isNullOrEmpty()&&it.text.isNullOrEmpty()}
         }
-        // Restrict lookup to this player's controls, never a system "more notifications" icon.
-        val overflow=more()
-        if(overflow==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native overflow missing: "+xml.toString("UTF-8"))}
-        device.waitForIdle();painted();more()!!.click()
         val label=java.util.regex.Pattern.compile("(?i)download( media)?|下載(媒體)?")
-        var download=device.wait(Until.findObject(By.text(label)),2500)?:device.wait(Until.findObject(By.desc(label)),2500)
-        if(download==null){
-            val speed=java.util.regex.Pattern.compile("(?i).*playback speed.*|.*播放速度.*")
-            if(!device.hasObject(By.text(speed))&&!device.hasObject(By.desc(speed))){painted();more()?.click()}
-            download=device.wait(Until.findObject(By.text(label)),2500)?:device.wait(Until.findObject(By.desc(label)),2500)
+        fun shown()=device.findObject(By.text(label))?:device.findObject(By.desc(label))
+        var download:androidx.test.uiautomator.UiObject2?=null
+        repeat(3){
+            if(download==null){
+                download=shown()
+                if(download==null){
+                    device.waitForIdle();painted()
+                    val overflow=more()
+                    if(overflow==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native overflow missing: "+xml.toString("UTF-8"))}
+                    val bounds=overflow.visibleBounds
+                    assertTrue("Native media control must be visible",bounds.width()>0&&bounds.height()>0)
+                    device.click(bounds.centerX(),bounds.centerY())
+                    download=device.wait(Until.findObject(By.text(label)),1500)?:device.wait(Until.findObject(By.desc(label)),500)
+                }
+            }
         }
         if(download==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native download menu missing: "+xml.toString("UTF-8"))}
-        assertNotNull("Native video menu must contain Download",download);download!!.click()
+        val bounds=download!!.visibleBounds;device.click(bounds.centerX(),bounds.centerY())
         ui.waitUntil(10000){ui.onAllNodesWithText("下載檔案？").fetchSemanticsNodes().isNotEmpty()};confirm()
         val item=finished();assertEquals("video/mp4",item.mime);assertArrayEquals(video(),bytes(item))
     }

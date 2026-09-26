@@ -69,7 +69,13 @@ public class OptimizedReleaseTest {
     }
     private UiObject2 require(BySelector selector) {
         UiObject2 node=device.wait(Until.findObject(selector),20000);
-        assertNotNull("Missing UI: "+selector,node);
+        if(node==null){
+            try{
+                java.io.ByteArrayOutputStream hierarchy=new java.io.ByteArrayOutputStream();
+                device.dumpWindowHierarchy(hierarchy);
+                fail("Missing UI: "+selector+"\n"+hierarchy.toString("UTF-8"));
+            }catch(IOException error){throw new AssertionError("Missing UI: "+selector,error);}
+        }
         return node;
     }
     private UiObject2 findText(String text) throws Exception {
@@ -119,15 +125,15 @@ public class OptimizedReleaseTest {
         menu();click("尋找頁面文字");
         assertFalse(device.hasObject(By.desc("關閉選單")));
         require(By.text("R8 測試元件")); // Same live document still visible, not a full-screen sheet.
-        UiObject2 input=require(By.clazz("android.widget.EditText").desc("尋找頁面文字"));
+        UiObject2 input=require(By.res("find-in-page-input"));
         input.setText("R8");
-        require(By.desc("第 1 筆，共 2 筆"));
+        require(By.res("find-in-page-count").text("1/2"));
         require(By.desc("下一筆符合文字")).click();
-        require(By.desc("第 2 筆，共 2 筆"));
+        require(By.res("find-in-page-count").text("2/2"));
         require(By.desc("上一筆符合文字")).click();
-        require(By.desc("第 1 筆，共 2 筆"));
-        require(By.clazz("android.widget.EditText").desc("尋找頁面文字")).setText("no-such-search-marker");
-        require(By.desc("找不到符合文字"));
+        require(By.res("find-in-page-count").text("1/2"));
+        require(By.res("find-in-page-input")).setText("no-such-search-marker");
+        require(By.res("find-in-page-count").text("0/0"));
         require(By.desc("關閉頁面搜尋")).click();
         assertTrue(device.wait(Until.gone(By.desc("關閉頁面搜尋")),5000));
         require(By.text("R8 測試元件"));

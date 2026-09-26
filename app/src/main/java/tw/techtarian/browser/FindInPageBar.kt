@@ -27,6 +27,7 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -70,7 +71,7 @@ internal fun BrowserController.closeFindInPage(tabId:Int?=null){
         requester.requestFocus()
         keyboard?.show()
     }
-    Surface(color=colors.surface,tonalElevation=1.dp,modifier=Modifier.fillMaxWidth().testTag("find-in-page-bar")){
+    Surface(color=colors.surface,tonalElevation=1.dp,modifier=Modifier.fillMaxWidth().testTag("find-in-page-bar").semantics{testTagsAsResourceId=true}){
         BoxWithConstraints(Modifier.fillMaxWidth().padding(horizontal=8.dp,vertical=4.dp)){
             // Keep 48 dp controls and a useful input even with very large accessibility text.
             val stacked=maxWidth<300.dp||LocalDensity.current.fontScale>1.4f
@@ -82,7 +83,7 @@ internal fun BrowserController.closeFindInPage(tabId:Int?=null){
                     keyboardActions=KeyboardActions(onSearch={move(true)}),
                     modifier=modifier.heightIn(min=48.dp).clip(RoundedCornerShape(12.dp))
                         .background(colors.surfaceVariant.copy(alpha=.55f)).focusRequester(requester)
-                        .testTag("find-in-page-input").semantics{contentDescription="尋找頁面文字"},
+                        .testTag("find-in-page-input"),
                     decorationBox={inner->
                         Box(Modifier.padding(horizontal=12.dp,vertical=12.dp),contentAlignment=Alignment.CenterStart){
                             if(session.query.isEmpty())Text("尋找頁面文字",fontSize=15.sp,color=colors.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
