@@ -115,6 +115,27 @@ public class OptimizedReleaseTest {
     private void menu() {require(By.desc("瀏覽器選單")).click();require(By.desc("關閉選單"));}
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
 
+    @Test public void findInPageKeepsWebContentVisibleAndNavigatesNativeMatches() throws Exception {
+        launchPage("find-page");require(By.text("搜尋針甲 SearchNeedle"));
+        menu();click("尋找頁面文字");
+        assertTrue(device.wait(Until.gone(By.desc("關閉選單")),5000));
+        UiObject2 input=require(By.clazz("android.widget.EditText"));
+        input.setText("搜尋針甲");
+        require(By.desc("第 1 筆，共 3 筆"));
+        UiObject2 page=require(By.clazz("android.webkit.WebView"));
+        assertTrue("The page must remain visible below the inline field",page.getVisibleBounds().height()>100);
+        require(By.desc("下一筆符合文字")).click();require(By.desc("第 2 筆，共 3 筆"));
+        require(By.desc("下一筆符合文字")).click();require(By.desc("第 3 筆，共 3 筆"));
+        require(By.desc("下一筆符合文字")).click();require(By.desc("第 1 筆，共 3 筆"));
+        require(By.desc("上一筆符合文字")).click();require(By.desc("第 3 筆，共 3 筆"));
+        device.executeShellCommand("mkdir -p /data/local/tmp/r8-smoke");
+        device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/find-in-page-native-match.png");
+        require(By.clazz("android.widget.EditText")).setText("no-such-needle");
+        require(By.desc("找不到符合的文字"));
+        assertFalse(require(By.desc("下一筆符合文字")).isEnabled());
+        require(By.desc("關閉頁面搜尋")).click();require(By.desc("瀏覽器選單"));
+        assertFalse(device.hasObject(By.desc("關閉頁面搜尋")));
+    }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
         assertEquals(33,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
@@ -446,6 +467,9 @@ public class OptimizedReleaseTest {
                     String page=first!=null&&first.contains("/two")?"two":"one";
                     String html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 功能測試 "+page+"</title></head><body style='margin:24px;font:18px sans-serif'><h1>R8 功能測試 "+page+"</h1><button id='r8-target' style='width:100%;padding:24px;margin:20px 0'>R8 測試元件</button><p>只使用本機合成內容，不接觸真實帳號。</p></body></html>";
                     html=html.replace("</body>","<p><a href='chengjing-test://open/r8?id=custom'>Open linked app</a></p><p><a href='intent://open/r8?id=intent#Intent;scheme=chengjing-test;package=tw.techtarian.browser.smoketests;end'>Open intent app</a></p></body>");
+                    if(first!=null&&first.contains("/find-page")){
+                        html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>頁內搜尋測試</title></head><body style='margin:20px;font:20px sans-serif'><h1>邊看網頁，邊找文字</h1><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:300px'></div></body></html>";
+                    }
                     if(first!=null&&first.contains("/reader")){
                         String svg="<svg xmlns='http://www.w3.org/2000/svg' width='320' height='960'><rect width='320' height='960' fill='#1446dc'/><g fill='white'><rect x='30' y='30' width='90' height='80'/><rect x='30' y='230' width='90' height='80'/><rect x='30' y='430' width='90' height='80'/><rect x='30' y='630' width='90' height='80'/><rect x='30' y='830' width='90' height='80'/></g></svg>";
                         String src="data:image/svg+xml;base64,"+java.util.Base64.getEncoder().encodeToString(svg.getBytes(StandardCharsets.UTF_8));

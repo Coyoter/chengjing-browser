@@ -194,13 +194,15 @@ class MainActivity:AppCompatActivity(){
     val activity=c.context as MainActivity
     LaunchedEffect(theme){activity.syncAppearance(theme)}
     val active=c.active
+    val finding=c.findInPage.isOpen
     c.revision
     val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
     var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
     var editingAddress by remember{mutableStateOf(false)}
+    LaunchedEffect(finding){if(finding)editingAddress=false}
     LaunchedEffect(active?.id){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}
     val suggestionRows=remember(address.text,c.revision,editingAddress,active?.incognito){if(editingAddress&&active?.incognito!=true)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
-    LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
+    LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){c.findInPage.close();editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
     val cs=browserColorScheme()
     SideEffect{c.updatePrivacyWindow()}
     SideEffect{browserSystemBars(activity.window,activity.window.decorView,!dark&&c.fullScreenView==null,c.fullScreenView!=null)}
@@ -216,6 +218,7 @@ class MainActivity:AppCompatActivity(){
             c.imagePreview!=null->c.imagePreview=null
             c.browsingDataCleaner.running->Unit
             c.fullScreenView!=null->c.exitFullscreen()
+            finding->c.findInPage.close()
             c.sheet.isNotEmpty()->c.sheet=""
             active?.imageContent!=null->c.closeTab(active.id)
             c.eye->{c.stopEye();c.notice="已取消尚未儲存的預覽"}
@@ -245,8 +248,8 @@ class MainActivity:AppCompatActivity(){
         Surface(Modifier.fillMaxSize(),color=cs.background){
             Box(Modifier.fillMaxSize().safeDrawingPadding().imePadding()){
                 Column(Modifier.fillMaxSize()){
-                    if(addressAtBottom)controlsBar()else addressBar()
-                    if(!addressAtBottom&&editingAddress)AddressSuggestionPanel(c,suggestionRows){c.navigate(it);editingAddress=false;focus.clearFocus()}
+                    if(finding)FindInPageBar(c.findInPage)else if(addressAtBottom)controlsBar()else addressBar()
+                    if(!finding&&!addressAtBottom&&editingAddress)AddressSuggestionPanel(c,suggestionRows){c.navigate(it);editingAddress=false;focus.clearFocus()}
                     if(!addressAtBottom&&(active?.progress?:100)<100)LinearProgressIndicator(progress={(active?.progress?:0)/100f},modifier=Modifier.fillMaxWidth().height(2.dp),trackColor=Color.Transparent)
                     if(active?.incognito==true)Text("無痕瀏覽",Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(horizontal=18.dp,vertical=5.dp).testTag("incognito-indicator"),fontSize=11.sp,color=cs.onSurfaceVariant)
                     if(c.eye) {
@@ -268,11 +271,11 @@ class MainActivity:AppCompatActivity(){
                         else if(active?.error?.isNotEmpty()==true)Column(Modifier.fillMaxSize().padding(32.dp),verticalArrangement=Arrangement.Center,horizontalAlignment=Alignment.CenterHorizontally){Icon(Icons.Outlined.CloudOff,null,Modifier.size(48.dp),tint=cs.primary);Spacer(Modifier.height(24.dp));Text("暫時連不上這個網站",style=MaterialTheme.typography.titleLarge);Spacer(Modifier.height(12.dp));Text(active.error,color=cs.onSurfaceVariant);Spacer(Modifier.height(20.dp));Button(onClick={c.reload()}){Text("重新載入")}}
                         else active?.let{tab->key(tab.id){AndroidView(factory={(tab.refreshContainer.parent as? android.view.ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer},update={it.setColorSchemeColors(cs.primary.toArgb());it.setProgressBackgroundColorSchemeColor(cs.surface.toArgb())},modifier=Modifier.fillMaxSize().testTag("web-content"))}}
                     }
-                    if(addressAtBottom){
+                    if(!finding&&addressAtBottom){
                         if(editingAddress)AddressSuggestionPanel(c,suggestionRows){c.navigate(it);editingAddress=false;focus.clearFocus()}
                         if((active?.progress?:100)<100)LinearProgressIndicator(progress={(active?.progress?:0)/100f},modifier=Modifier.fillMaxWidth().height(2.dp),trackColor=Color.Transparent)
                         addressBar()
-                    }else controlsBar()
+                    }else if(!finding)controlsBar()
                 }
                 SnackbarHost(snackbar,Modifier.testTag("browser-notices").align(Alignment.BottomCenter).padding(bottom=70.dp))
             }
@@ -315,7 +318,6 @@ class MainActivity:AppCompatActivity(){
                                 if(c.domain==site.domain||c.newTab("https://${site.domain}/")!=null)c.sheet="rules"
                             }}
                         }
-                        "find"->{var text by remember{mutableStateOf("")};SheetTitle("尋找頁面文字");OutlinedTextField(text,{text=it;active?.web?.findAllAsync(it)},label={Text("要找的文字")},modifier=Modifier.fillMaxWidth());Row{TextButton(onClick={active?.web?.findNext(false)}){Text("上一個")};TextButton(onClick={active?.web?.findNext(true)}){Text("下一個")};TextButton(onClick={active?.web?.clearMatches();c.sheet=""}){Text("完成")}}}
                         "blocked"->{SheetTitle("攔截紀錄","本分頁共 ${active?.blockedTotal?:0} 次，保留最近 30 筆。")
                             active?.blockedEvents?.toList()?.forEach{event->
                                 Column(verticalArrangement=Arrangement.spacedBy(6.dp)){

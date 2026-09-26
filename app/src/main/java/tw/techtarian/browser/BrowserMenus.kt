@@ -114,7 +114,7 @@ internal fun panelParent(page:String)=when(page){
         MenuRow(Icons.Outlined.Star,if(tab?.favoriteId!=null)"更新收藏進度"else"收藏目前頁面",tab?.favoriteId?.let{c.favorites.get(it)?.title}.orEmpty(),navigation=false){scope.launch{if(c.saveFavorite()!=null){c.notice="已保存收藏與閱讀位置";c.sheet=""}}}
         MenuRow(Icons.Outlined.BookmarkAdd,"加入書籤",navigation=false){val count=store.bookmarkStore.add(tab!!.url,tab.title);c.revision++;c.notice=if(count>0)"已加入書籤的未分類資料夾"else"這個頁面已在書籤裡";c.sheet=""}
         MenuRow(Icons.Outlined.Share,"分享","使用 Android 系統分享",navigation=false){c.shareCurrentPage()}
-        MenuRow(Icons.Outlined.Search,"尋找頁面文字"){c.sheet="find"}
+        MenuRow(Icons.Outlined.Search,"尋找頁面文字",navigation=false){c.findInPage.open()}
         MenuRow(Icons.Outlined.Computer,if(tab?.desktop==true)"切換手機版網站"else"切換電腦版網站",navigation=false){c.toggleDesktop();c.sheet=""}
     }
     MenuGroup("天眼與網站"){

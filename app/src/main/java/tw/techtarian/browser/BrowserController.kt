@@ -71,7 +71,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     private var restoringTabs=false
     private var destroyed=false
     val tabs = mutableStateListOf<BrowserTab>()
-    var activeId by mutableIntStateOf(0)
+    internal val findInPage=FindInPage(this)
+    private var currentTabId by mutableIntStateOf(0)
+    var activeId:Int
+        get()=currentTabId
+        set(value){if(value!=currentTabId)findInPage.close();currentTabId=value}
     var overviewPrivate by mutableStateOf(false)
     internal val privateSession=PrivateSession{notice=it}
     val privateScreen:Boolean get()=active?.incognito==true||(sheet=="tabs"&&overviewPrivate)
@@ -135,7 +139,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     var draft by mutableStateOf<SiteRules?>(null)
     var dirty by mutableStateOf(false)
     var notice by mutableStateOf("")
-    var sheet by mutableStateOf("")
+    private var sheetState by mutableStateOf("")
+    var sheet:String
+        get()=sheetState
+        set(value){if(value.isNotEmpty())findInPage.close();sheetState=value}
     internal val prompts=BrowserPrompts()
     internal var imagePreview by mutableStateOf<ImageAsset?>(null)
     var aiElement by mutableStateOf<Selection?>(null)
@@ -352,6 +359,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(!tab.restoringNavigation)tab.lastActiveAt=System.currentTimeMillis()
                 tab.suppressHistoryUntilNavigation=false
                 prompts.closeFor(tab.id)
+                findInPage.closeFor(tab.id)
                 tab.navigationGeneration++
                 tab.previewReady=false
                 tab.previewCommitted=false
@@ -407,6 +415,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 }
                 if(tab.error.isEmpty()&&!tab.incognito&&!tab.restoringNavigation&&!tab.suppressHistoryUntilNavigation){store.visit(url,tab.title);revision++}
                 tab.restoringNavigation=false
+                findInPage.pageFinished(tab)
                 if(tab.url==url)tab.previewCommitted=true
                 requestPreviewFrame(tab)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
@@ -414,7 +423,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
             override fun onReceivedError(view:WebView,request:WebResourceRequest,error:WebResourceError) {
                 if(web.selecting)return
-                if(request.isForMainFrame){tab.refreshContainer.isRefreshing=false;tab.error=if(error.errorCode==ERROR_FAILED_SSL_HANDSHAKE)"這個網站無法完成加密連線，請稍後重試。"else"網頁暫時無法開啟，請確認網路或網址後重試。";tab.progress=100}
+                if(request.isForMainFrame){findInPage.closeFor(tab.id);tab.refreshContainer.isRefreshing=false;tab.error=if(error.errorCode==ERROR_FAILED_SSL_HANDSHAKE)"這個網站無法完成加密連線，請稍後重試。"else"網頁暫時無法開啟，請確認網路或網址後重試。";tab.progress=100}
             }
             @SuppressLint("WebViewClientOnReceivedSslError")
             override fun onReceivedSslError(view:WebView,handler:SslErrorHandler,error:android.net.http.SslError){
@@ -441,6 +450,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 }
             }
             override fun onRenderProcessGone(view:WebView,detail:RenderProcessGoneDetail):Boolean {
+                findInPage.closeFor(tab.id)
                 tab.refreshContainer.isRefreshing=false
                 tab.error="網頁程序已停止，請關閉這個分頁後重新開啟。";return true
             }
@@ -556,6 +566,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
+        findInPage.closeFor(id)
         (context as? MainActivity)?.pageDownloads?.cancelFor(id)
         prompts.closeFor(id)
         if(id==activeId)stopEye()
@@ -629,5 +640,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice="已復原上一次儲存"}}
-    fun destroy(){if(destroyed)return;destroyed=true;prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
+    fun destroy(){if(destroyed)return;findInPage.close();destroyed=true;prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }
