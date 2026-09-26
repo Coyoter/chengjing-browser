@@ -127,10 +127,11 @@ class PageActionsTest {
     }
     @Test fun plainImageLongPressOffersDownload(){checkImageMenu(false)}
     @Test fun linkedImageDownloadsItsSourceNotItsAnchor(){checkImageMenu(true)}
-    @Test fun unsupportedInlineImageGivesAnHonestMessage(){
+    @Test fun systemQueueDeclinesPageLocalUrlsWithARoutingMessage(){
         ui.runOnIdle{
             assertNull(ui.activity.imageDownloads.download("blob:https://example.com/test","https://example.com/","QA"))
-            assertTrue(c.notice.contains("尚未支援"))
+            assertTrue(c.notice.contains("系統下載服務"))
+            assertFalse(c.notice.contains("尚未支援"))
         }
     }
     @Test fun skyEyeSelectionDoesNotOpenTheBrowserContextMenu(){
