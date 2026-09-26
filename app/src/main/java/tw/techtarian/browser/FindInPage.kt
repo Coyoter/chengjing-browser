@@ -177,19 +177,21 @@ internal class FindInPage(private val controller:BrowserController) {
                 },fontSize=12.sp,maxLines=1,overflow=TextOverflow.Ellipsis,
                     color=if(find.query.isNotEmpty()&&!find.searching&&find.matches==0)colors.error else colors.onSurfaceVariant)
             }
+            // Put descriptions on the actual buttons rather than decorative child icons,
+            // so accessibility exposes the same enabled/disabled state users interact with.
             val previous:@Composable ()->Unit={
-                IconButton(onClick={next(false)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-previous")){
-                    Icon(Icons.Outlined.KeyboardArrowUp,"上一筆符合文字")
+                IconButton(onClick={next(false)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-previous").semantics{contentDescription="上一筆符合文字"}){
+                    Icon(Icons.Outlined.KeyboardArrowUp,null)
                 }
             }
             val following:@Composable ()->Unit={
-                IconButton(onClick={next(true)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-next")){
-                    Icon(Icons.Outlined.KeyboardArrowDown,"下一筆符合文字")
+                IconButton(onClick={next(true)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-next").semantics{contentDescription="下一筆符合文字"}){
+                    Icon(Icons.Outlined.KeyboardArrowDown,null)
                 }
             }
             val close:@Composable ()->Unit={
-                IconButton(onClick={finish()},modifier=Modifier.size(48.dp).testTag("find-close")){
-                    Icon(Icons.Outlined.Close,"關閉頁面搜尋")
+                IconButton(onClick={finish()},modifier=Modifier.size(48.dp).testTag("find-close").semantics{contentDescription="關閉頁面搜尋"}){
+                    Icon(Icons.Outlined.Close,null)
                 }
             }
             if(stacked)Column{
