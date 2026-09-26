@@ -36,6 +36,7 @@ class WebsiteLocationTest{
     }
     @After fun cleanup(){
         mockRunning=false;worker?.join(1000)
+        if(device.hasObject(By.res(java.util.regex.Pattern.compile(".*:id/permission_deny_button"))))device.pressBack()
         runCatching{ui.activity.getSystemService(LocationManager::class.java).removeTestProvider(LocationManager.GPS_PROVIDER)}
         ui.runOnIdle{c.prompts.cancel();location.decisions.clearRegular();c.closePrivateTabs();c.sheet=""}
     }
@@ -46,6 +47,16 @@ class WebsiteLocationTest{
     }
     private fun request(tab:BrowserTab){
         eval(tab,"window.geoResult=null;navigator.geolocation.getCurrentPosition(p=>window.geoResult={latitude:p.coords.latitude,longitude:p.coords.longitude},e=>window.geoResult={error:e.code},{enableHighAccuracy:true,timeout:20000,maximumAge:0});true")
+    }
+    private fun permissionButton(id:String){
+        val selector=By.res(java.util.regex.Pattern.compile(".*:id/"+id))
+        repeat(3){
+            device.waitForIdle(1000)
+            val button=device.wait(Until.findObject(selector),5000)
+            if(button!=null){button.click();if(device.wait(Until.gone(selector),2000))return}
+        }
+        val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml)
+        fail("Android permission button did not dismiss: $id; "+xml.toString("UTF-8"))
     }
     private fun result(tab:BrowserTab):JSONObject{
         ui.waitUntil(25000){eval(tab,"window.geoResult")!="null"}
@@ -74,12 +85,10 @@ class WebsiteLocationTest{
         request(tab);ui.waitUntil(5000){c.prompts.current!=null};f.screenshot("location-prompt-light")
         ui.onNodeWithText("允許定位").performClick()
         if(!location.hasPermission()){
-            val deny=device.wait(Until.findObject(By.res(java.util.regex.Pattern.compile(".*:id/permission_deny_button"))),10000)
-            assertNotNull("Android must allow declining phone location permission",deny);deny!!.click()
+            permissionButton("permission_deny_button")
             assertEquals(1,result(tab).getInt("error"));assertEquals(LocationChoice.ASK,location.choice(tab))
             request(tab);ui.waitUntil(5000){c.prompts.current!=null};ui.onNodeWithText("允許定位").performClick()
-            val allow=device.wait(Until.findObject(By.res(java.util.regex.Pattern.compile(".*:id/permission_allow_foreground_only_button"))),10000)
-            assertNotNull("Android must request the phone's location permission",allow);allow!!.click()
+            permissionButton("permission_allow_foreground_only_button")
         }
         ui.waitUntil(5000){location.hasPermission()};mockGps()
         val coordinates=result(tab);assertFalse(coordinates.toString(),coordinates.has("error"))
@@ -94,6 +103,9 @@ class WebsiteLocationTest{
         request(tab);assertEquals(1,result(tab).getInt("error"));assertNull(c.prompts.current)
     }
     @Test fun bPrivatePermissionIsIsolatedAndClearedWithTheLastPrivateTab(){
+        val automation=InstrumentationRegistry.getInstrumentation().uiAutomation
+        automation.grantRuntimePermission(ui.activity.packageName,Manifest.permission.ACCESS_COARSE_LOCATION)
+        automation.grantRuntimePermission(ui.activity.packageName,Manifest.permission.ACCESS_FINE_LOCATION)
         val tab=f.load("https://location-qa.invalid/private","Private location",true)
         val done=AtomicReference<Boolean?>()
         ui.runOnIdle{location.request(tab,"https://location-qa.invalid/"){_,allowed,remember->assertFalse(remember);done.set(allowed)}}

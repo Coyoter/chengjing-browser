@@ -138,7 +138,7 @@ public class OptimizedReleaseTest {
     }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(35,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(36,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -456,12 +456,20 @@ public class OptimizedReleaseTest {
         }},"r8-location-fixture");gps.start();
         try{
             launchPage("location");require(By.text("Location ready"));click("Locate QA");click("暫不允許");require(By.text("Location denied 1"));
-            click("Locate QA");click("允許定位");require(By.text("Location verified"));
-            launchPage("location");require(By.text("Location ready"));click("Locate QA");require(By.text("Location verified"));
+            click("Locate QA");click("允許定位");verifyLocationCallback();
+            launchPage("location");require(By.text("Location ready"));click("Locate QA");verifyLocationCallback();
             assertFalse(device.hasObject(By.text("允許定位")));
         }finally{running.set(false);gps.join(1000);manager.removeTestProvider("gps");}
     }
+    private void verifyLocationCallback() throws Exception {
+        // Verify the page's real JS callback through its local HTTP result endpoint;
+        // WebView accessibility text can lag behind already-painted DOM updates.
+        double[] point=fixture.locations.poll(25,java.util.concurrent.TimeUnit.SECONDS);
+        assertNotNull("The page must receive a real location callback",point);
+        assertEquals(25.033,point[0],.1);assertEquals(121.5654,point[1],.1);
+    }
     private static final class Fixture implements AutoCloseable {
+        final java.util.concurrent.BlockingQueue<double[]> locations=new java.util.concurrent.LinkedBlockingQueue<>();
         private final ServerSocket server;
         private final Thread worker;
         private volatile boolean running=true;
@@ -485,10 +493,14 @@ public class OptimizedReleaseTest {
                     BufferedReader input=new BufferedReader(new InputStreamReader(socket.getInputStream(),StandardCharsets.UTF_8));
                     String first=input.readLine();String line;
                     while((line=input.readLine())!=null&&!line.isEmpty()){}
+                    if(first!=null&&first.contains("/location-result?")){
+                        android.net.Uri uri=android.net.Uri.parse("http://127.0.0.1"+first.split(" ")[1]);
+                        locations.add(new double[]{Double.parseDouble(uri.getQueryParameter("latitude")),Double.parseDouble(uri.getQueryParameter("longitude"))});
+                    }
                     String page=first!=null&&first.contains("/two")?"two":"one";
                     String html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 功能測試 "+page+"</title></head><body style='margin:24px;font:18px sans-serif'><h1>R8 功能測試 "+page+"</h1><button id='r8-target' style='width:100%;padding:24px;margin:20px 0'>R8 測試元件</button><p>只使用本機合成內容，不接觸真實帳號。</p></body></html>";
                     html=html.replace("</body>","<p><a href='chengjing-test://open/r8?id=custom'>Open linked app</a></p><p><a href='intent://open/r8?id=intent#Intent;scheme=chengjing-test;package=tw.techtarian.browser.smoketests;end'>Open intent app</a></p></body>");
-                    if(first!=null&&first.contains("/location"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Location fixture</title></head><body><button style='padding:24px' onclick=\"navigator.geolocation.getCurrentPosition(p=>document.getElementById('result').textContent=(Math.abs(p.coords.latitude-25.033)<.1&amp;&amp;Math.abs(p.coords.longitude-121.5654)<.1)?'Location verified':'Wrong coordinates',e=>document.getElementById('result').textContent='Location denied '+e.code,{enableHighAccuracy:true,timeout:20000,maximumAge:0})\">Locate QA</button><p id='result' role='status' aria-live='polite'>Location ready</p></body></html>";
+                    if(first!=null&&first.contains("/location"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Location fixture</title></head><body><button style='padding:24px' onclick=\"navigator.geolocation.getCurrentPosition(p=>{document.getElementById('result').textContent='Location verified';fetch('/location-result?latitude='+p.coords.latitude+'&amp;longitude='+p.coords.longitude)},e=>document.getElementById('result').textContent='Location denied '+e.code,{enableHighAccuracy:true,timeout:20000,maximumAge:0})\">Locate QA</button><p id='result' role='status' aria-live='polite'>Location ready</p></body></html>";
                     if(first!=null&&first.contains("/find-page")){
                         html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>頁內搜尋測試</title></head><body style='margin:20px;font:20px sans-serif'><h1>邊看網頁，邊找文字</h1><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:300px'></div></body></html>";
                     }

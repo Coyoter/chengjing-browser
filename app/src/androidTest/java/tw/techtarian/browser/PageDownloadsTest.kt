@@ -1,5 +1,7 @@
 package tw.techtarian.browser
 
+import android.os.SystemClock
+
 import android.app.DownloadManager
 import android.net.Uri
 import android.provider.MediaStore
@@ -96,13 +98,23 @@ class PageDownloadsTest {
         // Restrict lookup to this player's controls, never a system "more notifications" icon.
         val overflow=more()
         if(overflow==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native overflow missing: "+xml.toString("UTF-8"))}
+        ui.waitUntil(10000){c.active!!.web.hasWindowFocus()&&c.active!!.web.isShown}
         device.waitForIdle();painted();more()!!.click()
         val label=java.util.regex.Pattern.compile("(?i)download( media)?|下載(媒體)?")
-        var download=device.wait(Until.findObject(By.text(label)),2500)?:device.wait(Until.findObject(By.desc(label)),2500)
+        fun downloadItem():androidx.test.uiautomator.UiObject2?{
+            val deadline=SystemClock.elapsedRealtime()+5000
+            do{
+                val item=device.findObject(By.text(label))?:device.findObject(By.desc(label))
+                if(item!=null)return item
+                SystemClock.sleep(100)
+            }while(SystemClock.elapsedRealtime()<deadline)
+            return null
+        }
+        var download=downloadItem()
         if(download==null){
             val speed=java.util.regex.Pattern.compile("(?i).*playback speed.*|.*播放速度.*")
             if(!device.hasObject(By.text(speed))&&!device.hasObject(By.desc(speed))){painted();more()?.click()}
-            download=device.wait(Until.findObject(By.text(label)),2500)?:device.wait(Until.findObject(By.desc(label)),2500)
+            download=downloadItem()
         }
         if(download==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native download menu missing: "+xml.toString("UTF-8"))}
         assertNotNull("Native video menu must contain Download",download);download!!.click()
