@@ -152,7 +152,8 @@ class PageDownloadsTest {
         runBlocking{
             val storage=PageFileStorage(ui.activity);val partial=storage.create("interrupted.mp4","video/mp4","",4000)
             partial.output.write(byteArrayOf(1,2,3));partial.output.close();storage.recover()
-            val row=catalog.list().first{it.id !in before};assertEquals(DownloadManager.STATUS_FAILED,row.status);assertTrue(row.detail.contains("中斷"))
+            ui.activity.contentResolver.query(partial.uri,arrayOf(MediaStore.MediaColumns._ID),null,null,null)?.use{assertFalse(it.moveToFirst())}
         }
+        val row=catalog.list().first{it.id !in before};assertEquals(DownloadManager.STATUS_FAILED,row.status);assertTrue(row.detail.contains("中斷"))
     }
 }
