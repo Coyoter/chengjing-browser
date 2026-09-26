@@ -199,6 +199,11 @@ class MainActivity:AppCompatActivity(){
     var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
     var editingAddress by remember{mutableStateOf(false)}
     LaunchedEffect(active?.id){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}
+    LaunchedEffect(c.sheet,active?.id,active?.error,active?.imageContent,c.fullScreenView){
+        if(c.pageFind.ownerId!=null&&(c.sheet!="find"||c.pageFind.ownerId!=active?.id||
+            active?.error?.isNotEmpty()==true||active?.imageContent!=null||c.fullScreenView!=null))c.closeFindInPage()
+        if(c.sheet=="find")editingAddress=false
+    }
     val suggestionRows=remember(address.text,c.revision,editingAddress,active?.incognito){if(editingAddress&&active?.incognito!=true)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
     LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
     val cs=browserColorScheme()
@@ -216,6 +221,7 @@ class MainActivity:AppCompatActivity(){
             c.imagePreview!=null->c.imagePreview=null
             c.browsingDataCleaner.running->Unit
             c.fullScreenView!=null->c.exitFullscreen()
+            c.sheet=="find"->{focus.clearFocus(force=true);keyboard?.hide();c.closeFindInPage()}
             c.sheet.isNotEmpty()->c.sheet=""
             active?.imageContent!=null->c.closeTab(active.id)
             c.eye->{c.stopEye();c.notice="已取消尚未儲存的預覽"}
@@ -262,6 +268,9 @@ class MainActivity:AppCompatActivity(){
                     } else if(c.isException) {
                         Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text("例外中 · 原始網站",Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text("恢復規則")}}
                     }
+                    if(c.sheet=="find"&&c.pageFind.ownerId==active?.id&&active!=null){
+                        key(active.id){FindInPageBar(c.pageFind){c.closeFindInPage()}}
+                    }
                     Box(Modifier.weight(1f).fillMaxWidth()){
                         if(active?.imageContent!=null)ImageViewer(c,active.imageContent!!,Modifier.fillMaxSize(),temporaryTab=true){c.closeTab(active.id)}
                         else if(active?.url.isNullOrEmpty()){if(active?.incognito==true)IncognitoHome()else BrowserHome(c,store)}
@@ -284,7 +293,7 @@ class MainActivity:AppCompatActivity(){
             PanelHeader(c){c.sheet="menu"}
             when(c.sheet){"tabs"->TabOverview(c);"history"->HistoryScreen(c);"downloads"->DownloadsScreen(c)}
         }
-        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites","tabs","history","downloads","clear-browsing-data")){
+        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites","tabs","history","downloads","clear-browsing-data","find")){
             BrowserPanel(c){
                     PanelHeader(c){c.sheet=panelTrail.dropLast(1).lastOrNull()?:panelParent(c.sheet)}
                     if(c.sheet=="settings")SettingsCategories(settingsCategory){settingsCategory=it}
@@ -315,7 +324,6 @@ class MainActivity:AppCompatActivity(){
                                 if(c.domain==site.domain||c.newTab("https://${site.domain}/")!=null)c.sheet="rules"
                             }}
                         }
-                        "find"->{var text by remember{mutableStateOf("")};SheetTitle("尋找頁面文字");OutlinedTextField(text,{text=it;active?.web?.findAllAsync(it)},label={Text("要找的文字")},modifier=Modifier.fillMaxWidth());Row{TextButton(onClick={active?.web?.findNext(false)}){Text("上一個")};TextButton(onClick={active?.web?.findNext(true)}){Text("下一個")};TextButton(onClick={active?.web?.clearMatches();c.sheet=""}){Text("完成")}}}
                         "blocked"->{SheetTitle("攔截紀錄","本分頁共 ${active?.blockedTotal?:0} 次，保留最近 30 筆。")
                             active?.blockedEvents?.toList()?.forEach{event->
                                 Column(verticalArrangement=Arrangement.spacedBy(6.dp)){

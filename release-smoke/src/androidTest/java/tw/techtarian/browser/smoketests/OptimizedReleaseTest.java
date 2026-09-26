@@ -115,6 +115,25 @@ public class OptimizedReleaseTest {
     private void menu() {require(By.desc("瀏覽器選單")).click();require(By.desc("關閉選單"));}
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
 
+    @Test public void findInPageKeepsTheDocumentVisibleAndCountsMatches() throws Exception {
+        menu();click("尋找頁面文字");
+        assertFalse(device.hasObject(By.desc("關閉選單")));
+        require(By.text("R8 測試元件")); // Same live document still visible, not a full-screen sheet.
+        UiObject2 input=require(By.clazz("android.widget.EditText"));
+        input.setText("R8");
+        require(By.desc("第 1 筆，共 2 筆"));
+        require(By.desc("下一筆符合文字")).click();
+        require(By.desc("第 2 筆，共 2 筆"));
+        require(By.desc("上一筆符合文字")).click();
+        require(By.desc("第 1 筆，共 2 筆"));
+        require(By.clazz("android.widget.EditText")).setText("no-such-search-marker");
+        require(By.desc("找不到符合文字"));
+        require(By.desc("關閉頁面搜尋")).click();
+        assertTrue(device.wait(Until.gone(By.desc("關閉頁面搜尋")),5000));
+        require(By.text("R8 測試元件"));
+        require(By.desc("瀏覽器選單"));
+    }
+
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
         assertEquals(33,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());

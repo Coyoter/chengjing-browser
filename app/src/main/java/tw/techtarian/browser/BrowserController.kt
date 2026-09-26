@@ -64,6 +64,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     val gemma=GemmaLocal(context.applicationContext)
     val icons=SiteIcons(context.applicationContext)
     val favorites=FavoriteStore(context)
+    internal val pageFind=PageFindSession()
     internal val home=HomePreferences(context,existingUser=store.tabs().isNotEmpty()||store.history().isNotEmpty())
     internal val homeQuotes by lazy{context.assets.open("home-quotes.txt").bufferedReader(Charsets.UTF_8).use{it.readLines()}.filter{it.isNotBlank()}}
     internal val previews=TabPreviewStore(context)
@@ -241,6 +242,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     private fun createTab(url:String,incognito:Boolean,restored:SavedBrowserTab?,image:ImageAsset?=null,openedExternally:Boolean=false):BrowserTab? {
         if(incognito&&!privateSession.supported){sheet="";notice="請更新 Android System WebView，才能使用資料隔離的無痕分頁";return null}
         if(tabs.size>=20){notice="目前最多可開啟 20 個分頁，請先關閉不用的分頁";return null}
+        closeFindInPage()
         capturePreview(active)
         stopEye()
         val web=SelectionWebView(context)
@@ -352,6 +354,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(!tab.restoringNavigation)tab.lastActiveAt=System.currentTimeMillis()
                 tab.suppressHistoryUntilNavigation=false
                 prompts.closeFor(tab.id)
+                closeFindInPage(tab.id)
                 tab.navigationGeneration++
                 tab.previewReady=false
                 tab.previewCommitted=false
@@ -554,10 +557,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             if(retry){tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}else tab.web.reload()
         }
     }
-    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
+    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;closeFindInPage();capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
         (context as? MainActivity)?.pageDownloads?.cancelFor(id)
         prompts.closeFor(id)
+        closeFindInPage(id)
         if(id==activeId)stopEye()
         val tab=tabs.find{it.id==id}?:return
         previews.remove(tab.previewKey)
@@ -629,5 +633,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)"已暫時顯示原始網站；規則仍然保留"else"已恢復套用天眼規則"
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice="已復原上一次儲存"}}
-    fun destroy(){if(destroyed)return;destroyed=true;prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
+    fun destroy(){if(destroyed)return;destroyed=true;pageFind.close();prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }
