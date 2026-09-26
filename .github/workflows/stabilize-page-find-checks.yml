@@ -1,0 +1,107 @@
+name: Stabilize page-find integration checks
+on:
+  push:
+    branches: [fix/inline-page-find-20260926]
+    paths: [.github/workflows/stabilize-page-find-checks.yml]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Make focused, exact-source accessibility and test-harness changes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          expected={
+            'app/src/main/java/tw/techtarian/browser/FindInPageBar.kt':'61cbf3d5d6914d1ccbf4d33c6b298b4f387b8c88',
+            'app/src/androidTest/java/tw/techtarian/browser/PageDownloadsTest.kt':'611f89d98f5e407316d3c2e5acbed096ccd1d938',
+            'release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java':'ca762f08204c1cdbcf377bcd64e8a7a6625711db'
+          }
+          for name,sha in expected.items():
+              assert subprocess.check_output(['git','hash-object',name],text=True).strip()==sha,name
+          p=Path('app/src/main/java/tw/techtarian/browser/FindInPageBar.kt')
+          text=p.read_text()
+          for old,new in {
+            'import androidx.compose.ui.semantics.semantics':'import androidx.compose.ui.semantics.semantics\nimport androidx.compose.ui.semantics.testTagsAsResourceId',
+            'Modifier.fillMaxWidth().testTag("find-in-page-bar")':'Modifier.fillMaxWidth().testTag("find-in-page-bar").semantics{testTagsAsResourceId=true}',
+            '.testTag("find-in-page-input").semantics{contentDescription="尋找頁面文字"}':'.testTag("find-in-page-input")'
+          }.items():
+              assert text.count(old)==1,old
+              text=text.replace(old,new)
+          p.write_text(text)
+          p=Path('release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java')
+          text=p.read_text()
+          start=text.index('    @Test public void findInPageKeepsTheDocumentVisibleAndCountsMatches()')
+          end=text.index('    @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable()',start)
+          method=text[start:end]
+          old='By.clazz("android.widget.EditText").desc("尋找頁面文字")'
+          assert method.count(old)==2
+          method=method.replace(old,'By.res("find-in-page-input")')
+          method=method.replace('By.desc("第 1 筆，共 2 筆")','By.res("find-in-page-count").text("1/2")')
+          method=method.replace('By.desc("第 2 筆，共 2 筆")','By.res("find-in-page-count").text("2/2")')
+          method=method.replace('By.desc("找不到符合文字")','By.res("find-in-page-count").text("0/0")')
+          text=text[:start]+method+text[end:]
+          old='        assertNotNull("Missing UI: "+selector,node);'
+          new='''        if(node==null){
+                      try{
+                          java.io.ByteArrayOutputStream hierarchy=new java.io.ByteArrayOutputStream();
+                          device.dumpWindowHierarchy(hierarchy);
+                          fail("Missing UI: "+selector+"\\n"+hierarchy.toString("UTF-8"));
+                      }catch(IOException error){throw new AssertionError("Missing UI: "+selector,error);}
+                  }'''
+          assert text.count(old)==1
+          p.write_text(text.replace(old,new))
+          p=Path('app/src/androidTest/java/tw/techtarian/browser/PageDownloadsTest.kt')
+          text=p.read_text()
+          start=text.index('    @Test fun nativeVideoOverflowDownloadActuallyReachesTheNewDownloader(){')
+          end=text.index('    @Test fun aGenericBlobGetsItsRealFormatInsteadOfBin(){',start)
+          method='''    @Test fun nativeVideoOverflowDownloadActuallyReachesTheNewDownloader(){
+                  videoPage();eval("(()=>{const v=document.getElementById('fixture-video');v.setAttribute('aria-label','QA fixture video');v.preload='auto';v.load();})()")
+                  // HAVE_CURRENT_DATA can still be buffering and rebuilding native controls.
+                  // Wait for playable future data, then tap the current on-screen hit bounds.
+                  ui.waitUntil(15000){eval("(()=>{const v=document.getElementById('fixture-video');return v.readyState>=3&&!v.seeking&&!v.error;})()") == "true"};painted()
+                  val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+                  fun more()=(device.findObject(By.descContains("QA fixture video"))?:device.findObject(By.res("fixture-video")))?.let{video->
+                      video.findObject(By.desc(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
+                          ?:video.findObject(By.text(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
+                          ?:video.findObjects(By.clazz("android.widget.Button").clickable(true).enabled(true)).singleOrNull{it.contentDescription.isNullOrEmpty()&&it.text.isNullOrEmpty()}
+                  }
+                  val label=java.util.regex.Pattern.compile("(?i)download( media)?|下載(媒體)?")
+                  fun shown()=device.findObject(By.text(label))?:device.findObject(By.desc(label))
+                  var download:androidx.test.uiautomator.UiObject2?=null
+                  repeat(3){
+                      if(download==null){
+                          download=shown()
+                          if(download==null){
+                              device.waitForIdle();painted()
+                              val overflow=more()
+                              if(overflow==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native overflow missing: "+xml.toString("UTF-8"))}
+                              val bounds=overflow.visibleBounds
+                              assertTrue("Native media control must be visible",bounds.width()>0&&bounds.height()>0)
+                              device.click(bounds.centerX(),bounds.centerY())
+                              download=device.wait(Until.findObject(By.text(label)),1500)?:device.wait(Until.findObject(By.desc(label)),500)
+                          }
+                      }
+                  }
+                  if(download==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native download menu missing: "+xml.toString("UTF-8"))}
+                  val bounds=download!!.visibleBounds;device.click(bounds.centerX(),bounds.centerY())
+                  ui.waitUntil(10000){ui.onAllNodesWithText("下載檔案？").fetchSemanticsNodes().isNotEmpty()};confirm()
+                  val item=finished();assertEquals("video/mp4",item.mime);assertArrayEquals(video(),bytes(item))
+              }
+          '''
+          p.write_text(text[:start]+method+text[end:])
+          subprocess.run(['git','diff','--check'],check=True)
+          PY
+          git add -- app/src/main/java/tw/techtarian/browser/FindInPageBar.kt app/src/androidTest/java/tw/techtarian/browser/PageDownloadsTest.kt release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Expose find controls by resource ID without overriding editable text; stabilize native-video UI readiness checks'
+      - name: Update the development branch only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$GH_TOKEN; }; f' push origin HEAD:refs/heads/fix/inline-page-find-20260926
