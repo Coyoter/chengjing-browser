@@ -62,6 +62,9 @@ class TabPreviewRenderingTest {
     }
     @Test fun aBlankReloadCannotReplaceTheSavedPreview(){
         val tab=f.load("https://preview-render.invalid/blank","Keep the good preview")
+        // Title/load completion can precede the final painted frame. Establish a
+        // rendered baseline before comparing the exact saved bytes after reload.
+        frame(tab)
         ui.runOnIdle{c.checkpointTabs()};val key=tab.previewKey!!;val before=f.hash(key)
         ui.runOnUiThread{tab.web.loadDataWithBaseURL(tab.url,"<html><head><title>Blank loading frame</title></head><body style='background:white'></body></html>","text/html","UTF-8",null)}
         ui.waitUntil(15000){tab.title=="Blank loading frame"&&tab.pendingUrl.isEmpty()};frame(tab)
