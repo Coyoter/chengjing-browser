@@ -1,0 +1,51 @@
+name: Correct page-search test harness
+on:
+  push:
+    branches: [fix/inline-page-find-20260926]
+    paths: [.github/workflows/repair-page-find-tests.yml]
+permissions:
+  contents: write
+jobs:
+  correct-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Correct only the verified test sources, leaving application behavior unchanged
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          p=Path('app/src/androidTest/java/tw/techtarian/browser/FindInPageTest.kt')
+          assert subprocess.check_output(['git','hash-object',str(p)],text=True).strip()=='710682bba6e21417cd1e4fc00e2aa0cd1c27801f'
+          text=p.read_text()
+          replacements={
+            'val tab=load();val url=tab.web.url;openFromMenu()':'val tab=load();val url=ui.runOnIdle{tab.web.url};openFromMenu()',
+            'assertSame(tab,c.active);assertEquals(url,tab.web.url)':'ui.runOnIdle{assertSame(tab,c.active);assertEquals(url,tab.web.url)}',
+            'MaterialTheme{Column(Modifier.width(320.dp).fillMaxHeight()){':'MaterialTheme{Column(Modifier.width(320.dp).fillMaxHeight().safeDrawingPadding().imePadding()){'
+          }
+          for old,new in replacements.items():
+              assert text.count(old)==1,old
+              text=text.replace(old,new)
+          p.write_text(text)
+          p=Path('release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java')
+          assert subprocess.check_output(['git','hash-object',str(p)],text=True).strip()=='2f1febf08d71259c3d7436cd7b253b1f76320f12'
+          text=p.read_text()
+          start=text.index('    @Test public void findInPageKeepsTheDocumentVisibleAndCountsMatches()')
+          end=text.index('    @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable()',start)
+          method=text[start:end]
+          old='By.clazz("android.widget.EditText")'
+          assert method.count(old)==2
+          method=method.replace(old,old+'.desc("尋找頁面文字")')
+          p.write_text(text[:start]+method+text[end:])
+          subprocess.run(['git','diff','--check'],check=True)
+          PY
+          git add -- app/src/androidTest/java/tw/techtarian/browser/FindInPageTest.kt release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Read WebView only on main thread and target find input instead of address bar in UI tests'
+      - name: Update only the development branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$GH_TOKEN; }; f' push origin HEAD:refs/heads/fix/inline-page-find-20260926
