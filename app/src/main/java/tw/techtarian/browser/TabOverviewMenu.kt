@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -45,7 +46,9 @@ import androidx.compose.ui.unit.sp
                 DropdownMenuItem(
                     text={
                         Box(Modifier.fillMaxWidth().heightIn(min=48.dp),contentAlignment=Alignment.Center) {
-                            Text("關閉所有分頁",modifier=Modifier.testTag("close-all-tabs-label"),
+                            // Use the same paragraph layout for painting and accessibility;
+                            // the String fast path reconstructs a different-width layout for semantics.
+                            Text(AnnotatedString("關閉所有分頁"),modifier=Modifier.testTag("close-all-tabs-label"),
                                 style=MaterialTheme.typography.bodyMedium.copy(
                                     fontSize=15.sp,lineHeight=20.sp,textAlign=TextAlign.Center,
                                     platformStyle=PlatformTextStyle(includeFontPadding=false),

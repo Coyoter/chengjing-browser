@@ -208,7 +208,10 @@ class CloseAllTabsTest {
         assertTrue(label.top>=surface.top&&label.bottom<=surface.bottom)
         val layouts=mutableListOf<androidx.compose.ui.text.TextLayoutResult>()
         ui.onNodeWithTag("close-all-tabs-label",useUnmergedTree=true).performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.GetTextLayoutResult){it(layouts)}
-        assertTrue(layouts.isNotEmpty());assertTrue(layouts.all{!it.hasVisualOverflow})
+        assertTrue("Text must expose its measured layout",layouts.isNotEmpty())
+        val details=layouts.joinToString{r->"size=${r.size}, paragraph=${r.multiParagraph.width}x${r.multiParagraph.height}, lines=${r.lineCount}, widthOverflow=${r.didOverflowWidth}, heightOverflow=${r.didOverflowHeight}"}
+        println("MENU_GEOMETRY surface=$surface label=$label layouts=$details")
+        assertTrue("Label must not be clipped: $details",layouts.all{!it.hasVisualOverflow})
         if(compact){
             assertTrue("Default surface should not keep the old 188 dp minimum",surface.width/density in 143f..160f)
             assertTrue("Single action should not paint an oversized 64 dp panel",surface.height/density in 47f..50f)
@@ -254,6 +257,7 @@ class CloseAllTabsTest {
             assertCompactCenteredMenu(compact=scale==1f)
             val surface=ui.onNodeWithTag("tab-overview-menu-surface",useUnmergedTree=true).fetchSemanticsNode().boundsInRoot
             assertTrue("Large-font menu must fit a narrow window",surface.width/ui.density.density<=280f+1f)
+            f.screenshot("compact-tab-menu-scale-$scale-$layout")
             UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack()
             ui.onNodeWithTag("close-all-tabs").assertDoesNotExist()
         }
