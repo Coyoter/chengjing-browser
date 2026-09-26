@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.PlatformTextStyle
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.sp
 /** Only the tab-overview header owns this menu; it never changes the browser toolbar. */
 @Composable internal fun TabOverviewMenu(c:BrowserController) {
     val colors=MaterialTheme.colorScheme
+    val textDensity=LocalDensity.current
     val privateGroup=c.overviewPrivate
     // A dismissed/reopened overview or a different collection must not reuse an open menu.
     var expanded by remember(privateGroup){mutableStateOf(false)}
@@ -39,27 +41,29 @@ import androidx.compose.ui.unit.sp
         DropdownMenu(expanded=expanded,onDismissRequest={expanded=false},
             modifier=Modifier.widthIn(min=144.dp,max=280.dp),
             containerColor=Color.Transparent,tonalElevation=0.dp,shadowElevation=0.dp) {
-            Surface(modifier=Modifier.fillMaxWidth().testTag("tab-overview-menu-surface"),
-                shape=RoundedCornerShape(12.dp),color=colors.surface,
-                border=BorderStroke(1.dp,colors.outlineVariant.copy(alpha=.55f)),
-                tonalElevation=0.dp,shadowElevation=3.dp) {
-                DropdownMenuItem(
-                    text={
-                        Box(Modifier.fillMaxWidth().heightIn(min=48.dp),contentAlignment=Alignment.Center) {
-                            // Use the same paragraph layout for painting and accessibility;
-                            // the String fast path reconstructs a different-width layout for semantics.
-                            Text(AnnotatedString("關閉所有分頁"),modifier=Modifier.testTag("close-all-tabs-label"),
-                                style=MaterialTheme.typography.bodyMedium.copy(
-                                    fontSize=15.sp,lineHeight=20.sp,textAlign=TextAlign.Center,
-                                    platformStyle=PlatformTextStyle(includeFontPadding=false),
-                                    lineHeightStyle=LineHeightStyle(LineHeightStyle.Alignment.Center,LineHeightStyle.Trim.None)))
-                        }
-                    },
-                    contentPadding=PaddingValues(horizontal=16.dp),
-                    enabled=c.tabs.any{it.incognito==privateGroup},
-                    onClick={expanded=false;closingGroup=privateGroup},
-                    modifier=Modifier.testTag("close-all-tabs")
-                )
+            // Popup owns a separate Android View: explicitly retain the header's font scale.
+            CompositionLocalProvider(LocalDensity provides textDensity) {
+                Surface(modifier=Modifier.fillMaxWidth().testTag("tab-overview-menu-surface"),
+                    shape=RoundedCornerShape(12.dp),color=colors.surface,
+                    border=BorderStroke(1.dp,colors.outlineVariant.copy(alpha=.55f)),
+                    tonalElevation=0.dp,shadowElevation=3.dp) {
+                    DropdownMenuItem(
+                        text={
+                            Box(Modifier.fillMaxWidth().heightIn(min=48.dp),contentAlignment=Alignment.Center) {
+                                // Painting and accessibility use the same paragraph layout.
+                                Text(AnnotatedString("關閉所有分頁"),modifier=Modifier.testTag("close-all-tabs-label"),
+                                    style=MaterialTheme.typography.bodyMedium.copy(
+                                        fontSize=15.sp,lineHeight=20.sp,textAlign=TextAlign.Center,
+                                        platformStyle=PlatformTextStyle(includeFontPadding=false),
+                                        lineHeightStyle=LineHeightStyle(LineHeightStyle.Alignment.Center,LineHeightStyle.Trim.None)))
+                            }
+                        },
+                        contentPadding=PaddingValues(horizontal=16.dp),
+                        enabled=c.tabs.any{it.incognito==privateGroup},
+                        onClick={expanded=false;closingGroup=privateGroup},
+                        modifier=Modifier.testTag("close-all-tabs")
+                    )
+                }
             }
         }
     }
