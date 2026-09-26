@@ -1,5 +1,6 @@
 package tw.techtarian.browser
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.sp
             containerColor=Color.Transparent,tonalElevation=0.dp,shadowElevation=0.dp) {
             Surface(modifier=Modifier.fillMaxWidth().testTag("tab-overview-menu-surface"),
                 shape=RoundedCornerShape(12.dp),color=colors.surface,
+                border=BorderStroke(1.dp,colors.outlineVariant.copy(alpha=.55f)),
                 tonalElevation=0.dp,shadowElevation=3.dp) {
                 DropdownMenuItem(
                     text={
@@ -47,7 +49,7 @@ import androidx.compose.ui.unit.sp
                                 style=MaterialTheme.typography.bodyMedium.copy(
                                     fontSize=15.sp,lineHeight=20.sp,textAlign=TextAlign.Center,
                                     platformStyle=PlatformTextStyle(includeFontPadding=false),
-                                    lineHeightStyle=LineHeightStyle(LineHeightStyle.Alignment.Center,LineHeightStyle.Trim.Both)))
+                                    lineHeightStyle=LineHeightStyle(LineHeightStyle.Alignment.Center,LineHeightStyle.Trim.None)))
                         }
                     },
                     contentPadding=PaddingValues(horizontal=16.dp),
