@@ -60,6 +60,7 @@ class MainActivity:AppCompatActivity(){
     private var incomingIntentPending=false
     internal val imageDownloads=BrowserImageDownloads(this){message->if(::controller.isInitialized)controller.notice=message}
     internal val imageActions=BrowserImageActions(this)
+    internal val pageDownloads=BrowserPageDownloads(this)
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
@@ -87,6 +88,7 @@ class MainActivity:AppCompatActivity(){
         super.onCreate(savedInstanceState);setTheme(R.style.AppTheme);enableEdgeToEdge()
         updateSplashTheme(BrowserAppearance.savedChoice(this))
         imageActions.initialize()
+        pageDownloads.initialize()
         if(android.os.Build.VERSION.SDK_INT>=31)splashScreen.setOnExitAnimationListener{it.remove()}
         @Suppress("DEPRECATION")
         val taskIcon=if(android.os.Build.VERSION.SDK_INT>=33)android.app.ActivityManager.TaskDescription.Builder().setLabel("澄境瀏覽器").setIcon(R.mipmap.ic_launcher).build()
@@ -169,7 +171,7 @@ class MainActivity:AppCompatActivity(){
         if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
     override fun onResume(){super.onResume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
-    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
+    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

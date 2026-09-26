@@ -14,23 +14,24 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 
-/** Verified image bytes go to Downloads only after their format is known. */
+/** Keep the existing catalogue compatible while adding completed page-generated files. */
 internal class SavedImageDownloads(private val context:Context) {
     companion object { private val lock=Any() }
     private val prefs=context.getSharedPreferences("saved-image-downloads-v1",Context.MODE_PRIVATE)
     @Synchronized fun list():List<DownloadItem> = runCatching{
         val data=JSONArray(prefs.getString("items","[]"))
         (0 until data.length()).map{data.getJSONObject(it)}.map{j->
-            DownloadItem(j.getLong("id"),j.getString("name"),j.optString("source"),j.getString("mime"),DownloadManager.STATUS_SUCCESSFUL,j.getLong("size"),j.getLong("size"),j.getString("uri"),j.getLong("time"))
+            DownloadItem(j.getLong("id"),j.getString("name"),j.optString("source"),j.getString("mime"),j.optInt("status",DownloadManager.STATUS_SUCCESSFUL),j.getLong("size"),j.getLong("size"),j.getString("uri"),j.getLong("time"),j.optString("detail"))
         }
     }.getOrDefault(emptyList())
-    private fun record(asset:ImageAsset,uri:Uri):DownloadItem = synchronized(lock) {
+    internal fun recordFile(name:String,sourceUrl:String,mime:String,size:Long,uri:Uri,status:Int=DownloadManager.STATUS_SUCCESSFUL,detail:String=""):DownloadItem = synchronized(lock) {
+        if(uri.toString().isNotEmpty())list().firstOrNull{it.contentUri==uri.toString()}?.let{return@synchronized it}
         val now=System.currentTimeMillis()
         val id=minOf(-now,(list().minOfOrNull{it.id}?:0)-1)
-        val source=PageActionPolicy.shareUrl(asset.source)?.let{if(it.length<=8192)it else PageActionPolicy.referrer(it,it)}.orEmpty()
-        val row=DownloadItem(id,asset.file.name,source,asset.format.mime,DownloadManager.STATUS_SUCCESSFUL,asset.file.length(),asset.file.length(),uri.toString(),now)
+        val source=PageActionPolicy.shareUrl(sourceUrl)?.let{if(it.length<=8192)it else PageActionPolicy.referrer(it,it)}.orEmpty()
+        val row=DownloadItem(id,name,source,mime,status,size,size,uri.toString(),now,detail)
         val rows=(listOf(row)+list()).take(500)
-        check(prefs.edit().putString("items",JSONArray(rows.map{JSONObject().put("id",it.id).put("name",it.title).put("source",it.source).put("mime",it.mime).put("size",it.total).put("uri",it.contentUri).put("time",it.createdAt)}).toString()).commit()){"下載記錄未能儲存"}
+        check(prefs.edit().putString("items",JSONArray(rows.map{JSONObject().put("id",it.id).put("name",it.title).put("source",it.source).put("mime",it.mime).put("size",it.total).put("uri",it.contentUri).put("time",it.createdAt).put("status",it.status).put("detail",it.detail)}).toString()).commit()){"下載記錄未能儲存"}
         row
     }
     suspend fun save(asset:ImageAsset):DownloadItem=withContext(Dispatchers.IO){
@@ -45,7 +46,7 @@ internal class SavedImageDownloads(private val context:Context) {
             try{
                 resolver.openOutputStream(uri,"w")!!.use{out->asset.file.inputStream().use{ImageFiles.copyBounded(it,out)}}
                 check(resolver.update(uri,ContentValues().apply{put(MediaStore.MediaColumns.IS_PENDING,0)},null,null)==1)
-                record(asset,uri)
+                recordFile(asset.file.name,asset.source,asset.format.mime,asset.file.length(),uri)
             }catch(e:Exception){resolver.delete(uri,null,null);throw e}
         }else{
             @Suppress("DEPRECATION")

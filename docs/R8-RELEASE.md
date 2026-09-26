@@ -45,3 +45,5 @@ GitHub Release 不會替你提交 Google Play。需上傳 1.4.2 / 23 AAB，再�
 第 14 個案例以真實 WebView 元件新增 HTML 規則，再從已儲存規則開啟編輯、進入 AI 修訂頁、返回並更新 HTML，確認正式版顯示更新後內容。分頁預覽案例等待 Chromium 實際呈現圖片後再擷取預覽，不以原生 accessibility idle 代替已繪製畫面。
 
 1.9.1 增加三個返回案例（共 17 項）：由獨立來源 App 開啟連結並連續 Back 返回、不留空分頁；冷啟動與實際程序停止後的外部分頁仍能正確返回；一般自行新增的頁面在根頁 Back 離開後仍保留。來源 App 僅存在測試 host，不包含於正式 APK／AAB。
+
+1.10.0 增加第 18 項：最佳化 APK 透過實際連結下載 Blob MP4、Data PDF、HTTP PDF，再從下載清單以 ACTION_VIEW 開啟，獨立接收 App 核對 MIME、長度與 SHA-256。

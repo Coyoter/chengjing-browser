@@ -26,6 +26,7 @@ METHODS = (
     "externalDeepLinksWorkInOptimizedRelease",
     "scrolledImagePreviewSurvivesRestartAndBlankReload",
     "imageDownloadPreviewCopyAndShareWorkInOptimizedRelease",
+    "blobVideoAndDataAndHttpDownloadsOpenWithRealBytes",
     "appearanceFollowsAppChoiceAcrossSystemModes",
     "searchEngineChoiceAndCustomTemplateWorkInOptimizedRelease",
 )

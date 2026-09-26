@@ -26,7 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-internal data class DownloadItem(val id:Long,val title:String,val source:String,val mime:String,val status:Int,val done:Long,val total:Long,val contentUri:String?=null,val createdAt:Long=0)
+internal data class DownloadItem(val id:Long,val title:String,val source:String,val mime:String,val status:Int,val done:Long,val total:Long,val contentUri:String?=null,val createdAt:Long=0,val detail:String="")
 internal class BrowserDownloads(private val context:Context) {
     private val manager=context.getSystemService(DownloadManager::class.java)
     // DownloadManager scopes this query to our UID, including pre-upgrade downloads.
@@ -75,27 +75,30 @@ internal class BrowserDownloads(private val context:Context) {
             }
         }
     }
-    CollectionHeader("下載", "只顯示由澄境瀏覽器下載的圖片與檔案。", query,{query=it})
+    CollectionHeader("下載", "由澄境瀏覽器下載的圖片、影片、音訊與檔案。", query,{query=it})
     if(loading)LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal=20.dp))
     if(error.isNotEmpty())Text(error,Modifier.padding(20.dp),color=MaterialTheme.colorScheme.error)
-    val filtered=rows.filter{it.title.contains(query,true)||it.source.contains(query,true)}
-    if(!loading&&filtered.isEmpty())CollectionEmpty(if(query.isEmpty())"還沒有下載項目"else"找不到相符的下載", "長按網頁圖片可下載；網站提供的檔案下載也會出現在這裡。")
+    val pageDownloads=c.context.pageDownloads
+    val filtered=(pageDownloads.items+rows).filter{it.title.contains(query,true)||it.source.contains(query,true)}
+    if(!loading&&filtered.isEmpty())CollectionEmpty(if(query.isEmpty())"還沒有下載項目"else"找不到相符的下載", "長按圖片、使用播放器的下載選單，或點擊網站的下載連結。")
     LazyColumn(Modifier.fillMaxWidth().weight(1f).testTag("download-list"),contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
         items(filtered,key={it.id}){item->
             Surface(shape=RoundedCornerShape(18.dp),color=MaterialTheme.colorScheme.surface) {
                 Column(Modifier.fillMaxWidth().padding(16.dp),verticalArrangement=Arrangement.spacedBy(10.dp)) {
                     Row(verticalAlignment=Alignment.CenterVertically) {
-                        Icon(if(item.mime.startsWith("image/"))Icons.Outlined.Image else Icons.Outlined.InsertDriveFile,null,Modifier.size(28.dp),tint=MaterialTheme.colorScheme.primary)
+                        Icon(when{item.mime.startsWith("image/")->Icons.Outlined.Image;item.mime.startsWith("video/")->Icons.Outlined.Movie;item.mime.startsWith("audio/")->Icons.Outlined.AudioFile;else->Icons.Outlined.InsertDriveFile},null,Modifier.size(28.dp),tint=MaterialTheme.colorScheme.primary)
                         Spacer(Modifier.width(12.dp))
                         Column(Modifier.weight(1f)) {
                             Text(item.title,maxLines=2,overflow=TextOverflow.Ellipsis,fontWeight=FontWeight.Medium)
                             Text(Domains.scope(item.source),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
                         }
                         if(item.status==DownloadManager.STATUS_SUCCESSFUL)IconButton(onClick={openError=downloads.open(item)}){Icon(Icons.Outlined.OpenInNew,"開啟 ${item.title}")}
+                        if(item.status==DownloadManager.STATUS_RUNNING&&pageDownloads.items.any{it.id==item.id})IconButton(onClick={pageDownloads.cancel(item.id)}){Icon(Icons.Outlined.Close,"取消 ${item.title}")}
                     }
-                    val status=when(item.status){DownloadManager.STATUS_SUCCESSFUL->"已完成";DownloadManager.STATUS_FAILED->"下載失敗";DownloadManager.STATUS_PAUSED->"已暫停，等待系統重試";DownloadManager.STATUS_RUNNING->"下載中";else->"等待下載"}
-                    val size=if(item.total>0)Formatter.formatFileSize(c.context,item.total)else if(item.done>0)Formatter.formatFileSize(c.context,item.done)else"大小待確認"
+                    val status=if(item.detail.startsWith("已取消"))"已取消"else when(item.status){DownloadManager.STATUS_SUCCESSFUL->"已完成";DownloadManager.STATUS_FAILED->"下載失敗";DownloadManager.STATUS_PAUSED->"已暫停，等待系統重試";DownloadManager.STATUS_RUNNING->"下載中";else->"等待下載"}
+                    val size=if(item.status==DownloadManager.STATUS_RUNNING&&item.total>0)"${Formatter.formatFileSize(c.context,item.done)}／${Formatter.formatFileSize(c.context,item.total)}"else if(item.total>0)Formatter.formatFileSize(c.context,item.total)else if(item.done>0)Formatter.formatFileSize(c.context,item.done)else"大小待確認"
                     Text("$status · $size",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+                    if(item.detail.isNotBlank())Text(item.detail,fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
                     if(item.status==DownloadManager.STATUS_RUNNING) {
                         if(item.total>0)LinearProgressIndicator(progress={(item.done.toFloat()/item.total).coerceIn(0f,1f)},modifier=Modifier.fillMaxWidth())
                         else LinearProgressIndicator(Modifier.fillMaxWidth())

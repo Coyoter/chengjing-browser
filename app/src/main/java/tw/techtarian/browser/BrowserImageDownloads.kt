@@ -24,18 +24,18 @@ internal class BrowserImageDownloads(private val activity:ComponentActivity,priv
         val request=pending
         pending=null
         if(granted&&request!=null)enqueue(request)
-        else if(!granted)notice("未允許儲存權限，圖片沒有下載")
-        else notice("請重新長按圖片後下載")
+        else if(!granted)notice("未允許儲存權限，檔案沒有下載")
+        else notice("請重新選擇要下載的檔案")
     }
     fun download(rawUrl:String,page:String,userAgent:String,cookieHeader:String?=CookieManager.getInstance().getCookie(rawUrl),mimeHint:String?=null,disposition:String?=null,imageOnly:Boolean=true):Long? {
         val url=PageActionPolicy.downloadUrl(rawUrl)
         if(url==null){
-            notice("目前可下載 HTTP／HTTPS 圖片；內嵌或 blob 暫存圖片尚未支援")
+            notice("這個網址無法交給系統下載服務，請在原頁重新下載")
             return null
         }
         val request=Pending(url,page,userAgent,cookieHeader,mimeHint,disposition,imageOnly)
         if(Build.VERSION.SDK_INT<=28&&ContextCompat.checkSelfPermission(activity,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
-            if(pending!=null){notice("請先完成上一個圖片的儲存授權");return null}
+            if(pending!=null){notice("請先完成上一個檔案的儲存授權");return null}
             pending=request
             try{permission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)}catch(_:IllegalStateException){pending=null;notice("無法開啟儲存授權，請重新嘗試")}
             return null
@@ -60,5 +60,5 @@ internal class BrowserImageDownloads(private val activity:ComponentActivity,priv
         val id=(activity.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
         notice("已加入系統下載佇列，可在三點選單的「下載」查看結果")
         id
-    }catch(_:Exception){notice("無法加入圖片下載，請檢查儲存空間及系統下載服務");null}
+    }catch(_:Exception){notice("無法加入檔案下載，請檢查儲存空間及系統下載服務");null}
 }

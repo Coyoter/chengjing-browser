@@ -117,7 +117,7 @@ public class OptimizedReleaseTest {
 
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(32,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(33,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -398,15 +398,45 @@ public class OptimizedReleaseTest {
         imageMenu();click("下載圖片");
         menu();click("下載");require(By.text("搜尋下載"));require(By.text(java.util.regex.Pattern.compile(".*\\.png")));
     }
+    @Test public void blobVideoAndDataAndHttpDownloadsOpenWithRealBytes() throws Exception {
+        launchPage("page-downloads");require(By.text("Blob video"));click("Blob video");click("下載");
+        menu();click("下載");require(By.text(fixture.videoName));
+        require(By.desc("開啟 "+fixture.videoName)).click();chooseFileReceiver();require(By.desc(fixture.expectedDownload("video/mp4",fixture.video)));
+        device.pressBack();closeMenu();
+        click("Data PDF");click("下載");menu();click("下載");require(By.desc("開啟 "+fixture.dataName)).click();chooseFileReceiver();require(By.desc(fixture.expectedDownload("application/pdf",fixture.pdf)));
+        device.pressBack();closeMenu();
+        click("HTTP PDF");click("下載");menu();click("下載");
+        UiObject2 open=null;
+        for(int i=0;i<20&&open==null;i++){open=device.wait(Until.findObject(By.desc(java.util.regex.Pattern.compile("開啟 "+java.util.regex.Pattern.quote(fixture.httpName.substring(0,fixture.httpName.length()-4))+"-.*\\.pdf"))),1000);}
+        assertNotNull("System HTTP download must complete",open);open.click();chooseFileReceiver();require(By.desc(fixture.expectedDownload("application/pdf",fixture.pdf)));
+    }
+    private void chooseFileReceiver() throws Exception {
+        for(int i=0;i<5;i++){
+            if(device.hasObject(By.descStartsWith("download-received:")))return;
+            UiObject2 node=device.wait(Until.findObject(By.textStartsWith("QA 檔案")),1000);
+            if(node!=null){while(node!=null&&!node.isClickable())node=node.getParent();assertNotNull(node);node.click();return;}
+            device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*4/5,device.getDisplayWidth()/2,device.getDisplayHeight()/3,30);
+        }
+        fail("Download receiver missing from Android chooser");
+    }
     private static final class Fixture implements AutoCloseable {
         private final ServerSocket server;
         private final Thread worker;
         private volatile boolean running=true;
         volatile boolean emptyReader=false;
         private final byte[] image;
+        final byte[] video;
+        final byte[] pdf="%PDF-1.7\nQA fixture\n%%EOF".getBytes(StandardCharsets.UTF_8);
+        final String videoName="r8-video-"+System.nanoTime()+".mp4";
+        final String dataName="r8-data-"+System.nanoTime()+".pdf";
+        final String httpName="r8-http-"+System.nanoTime()+".pdf";
         Fixture() throws IOException {
             Bitmap bitmap=Bitmap.createBitmap(80,60,Bitmap.Config.ARGB_8888);bitmap.eraseColor(Color.BLUE);
             java.io.ByteArrayOutputStream png=new java.io.ByteArrayOutputStream();bitmap.compress(Bitmap.CompressFormat.PNG,100,png);bitmap.recycle();image=png.toByteArray();
+            try(java.io.InputStream source=InstrumentationRegistry.getInstrumentation().getContext().getAssets().open("download-video.b64")){
+                java.io.ByteArrayOutputStream data=new java.io.ByteArrayOutputStream();byte[] buffer=new byte[4096];int n;while((n=source.read(buffer))!=-1)data.write(buffer,0,n);
+                video=android.util.Base64.decode(data.toByteArray(),android.util.Base64.DEFAULT);
+            }
             server=new ServerSocket(0);
             worker=new Thread(()->{
                 while(running)try(Socket socket=server.accept()){
@@ -423,9 +453,13 @@ public class OptimizedReleaseTest {
                         html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>"+(emptyReader?"Restored empty reader":"R8 image reader")+"</title></head><body style='margin:0;background:white'>"+body+"</body></html>";
                     }
                     if(first!=null&&first.contains("/image-actions"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 圖片操作</title></head><body style='margin:24px'><img role='img' aria-label='R8 image target' alt='R8 image target' tabindex='0' src='/image-without-extension' width='180' height='180'><p><button id='r8-target'>R8 測試元件</button></p></body></html>";
+                    if(first!=null&&first.contains("/page-downloads")){
+                        html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Page downloads</title><style>a{display:block;padding:24px;font:20px sans-serif}</style></head><body><a id='video'>Blob video</a><a href='data:application/pdf;base64,"+java.util.Base64.getEncoder().encodeToString(pdf)+"' download='"+dataName+"'>Data PDF</a><a href='/file-download'>HTTP PDF</a><script>const bytes=Uint8Array.from(atob('"+java.util.Base64.getEncoder().encodeToString(video)+"'),c=>c.charCodeAt(0));const a=document.getElementById('video');a.href=URL.createObjectURL(new Blob([bytes],{type:'video/mp4'}));a.download='"+videoName+"';</script></body></html>";
+                    }
                     boolean imageRequest=first!=null&&first.contains("/image-without-extension");
-                    byte[] bytes=imageRequest?image:html.getBytes(StandardCharsets.UTF_8);
-                    socket.getOutputStream().write(("HTTP/1.1 200 OK\r\nContent-Type: "+(imageRequest?"application/octet-stream":"text/html; charset=utf-8")+"\r\nCache-Control: no-store\r\nContent-Length: "+bytes.length+"\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));
+                    boolean fileRequest=first!=null&&first.contains("/file-download");
+                    byte[] bytes=fileRequest?pdf:imageRequest?image:html.getBytes(StandardCharsets.UTF_8);
+                    socket.getOutputStream().write(("HTTP/1.1 200 OK\r\nContent-Type: "+(fileRequest?"application/pdf":imageRequest?"application/octet-stream":"text/html; charset=utf-8")+"\r\n"+(fileRequest?"Content-Disposition: attachment; filename=\""+httpName+"\"\r\n":"")+"Cache-Control: no-store\r\nContent-Length: "+bytes.length+"\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));
                     socket.getOutputStream().write(bytes);socket.getOutputStream().flush();
                 }catch(IOException error){if(running)throw new RuntimeException(error);}
             },"r8-local-fixture");worker.setDaemon(true);worker.start();
@@ -434,6 +468,10 @@ public class OptimizedReleaseTest {
         String expectedImage() throws Exception {
             StringBuilder hash=new StringBuilder();for(byte b:java.security.MessageDigest.getInstance("SHA-256").digest(image))hash.append(String.format("%02x",b & 255));
             return "image-received:image/png:"+image.length+":"+hash;
+        }
+        String expectedDownload(String mime,byte[] data) throws Exception {
+            StringBuilder hash=new StringBuilder();for(byte b:java.security.MessageDigest.getInstance("SHA-256").digest(data))hash.append(String.format("%02x",b&255));
+            return "download-received:"+mime+":"+data.length+":"+hash;
         }
         @Override public void close() throws Exception {running=false;server.close();worker.join(1000);}
     }

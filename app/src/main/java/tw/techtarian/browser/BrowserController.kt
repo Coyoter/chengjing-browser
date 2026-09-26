@@ -112,15 +112,19 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(!previews.flush())notice="快照仍在儲存中，請稍後再關閉應用程式"
     }
     internal fun cookiesFor(tab:BrowserTab)=if(tab.incognito)privateSession.cookies(tab.web)else CookieManager.getInstance()
-    internal fun downloadFor(tab:BrowserTab,url:String,page:String,agent:String,mime:String?=null,disposition:String?=null,imageOnly:Boolean=true){
+    internal fun downloadFor(tab:BrowserTab,url:String,page:String,agent:String,mime:String?=null,disposition:String?=null,imageOnly:Boolean=true,confirmed:Boolean=false){
         if(tab !in tabs)return
         if(imageOnly){(context as? MainActivity)?.imageActions?.perform(tab,PageImageSource(url,page,tab.title),ImageAction.DOWNLOAD);return}
+        val generation=tab.navigationGeneration
         val action={
-            if(tab in tabs)(context as? MainActivity)?.imageDownloads?.download(url,page,agent,
-                cookieHeader=cookiesFor(tab).getCookie(url),mimeHint=mime,disposition=disposition,imageOnly=imageOnly)
+            if(tab in tabs&&tab.navigationGeneration==generation){
+                if(DownloadFormat.inline(url))(context as? MainActivity)?.pageDownloads?.download(tab,url,mime,disposition)
+                else (context as? MainActivity)?.imageDownloads?.download(url,page,agent,
+                    cookieHeader=cookiesFor(tab).getCookie(url),mimeHint=mime,disposition=disposition,imageOnly=false)
+            }
             Unit
         }
-        if(tab.incognito)prompts.confirm("下載會保留在手機","檔案與系統下載紀錄不會隨無痕分頁清除。確定要下載嗎？","下載",
+        if(tab.incognito&&!confirmed)prompts.confirm("下載會保留在手機","檔案與系統下載紀錄不會隨無痕分頁清除。確定要下載嗎？","下載",
             owner=tab.id,valid={tab in tabs&&tab.id==activeId},confirm=action)
         else action()
     }
@@ -344,6 +348,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
                 if(tab !in tabs)return
                 if(web.selecting){view.stopLoading();return}
+                (context as? MainActivity)?.pageDownloads?.cancelFor(tab.id)
                 if(!tab.restoringNavigation)tab.lastActiveAt=System.currentTimeMillis()
                 tab.suppressHistoryUntilNavigation=false
                 prompts.closeFor(tab.id)
@@ -483,10 +488,13 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         web.setDownloadListener { url, userAgent, disposition, mime, _ ->
             if(web.selecting)return@setDownloadListener
-            if(!url.startsWith("https://")&&!url.startsWith("http://")){notice="此類型的下載尚未支援";return@setDownloadListener}
-            val name=URLUtil.guessFileName(url,disposition,mime)
-            prompts.confirm("下載檔案？",name,"下載",owner=tab.id,valid={tab in tabs&&tab.id==activeId}) {
-                downloadFor(tab,url,tab.url,userAgent,mime,disposition,imageOnly=false)
+            if(!DownloadFormat.supported(url)){notice="這個連結沒有提供可下載的檔案";return@setDownloadListener}
+            val inline=DownloadFormat.inline(url)
+            val name=if(inline)DownloadFormat.filename(null,DownloadFormat.mime(mime).orEmpty())else URLUtil.guessFileName(url,disposition,mime)
+            val generation=tab.navigationGeneration;val page=tab.url
+            val message=name+(if(inline)"\n\n這是網頁暫存檔案，下載完成前請保留來源分頁，不要重新整理。"else"")+(if(tab.incognito)"\n\n檔案與下載紀錄會保留在手機，不會隨無痕分頁清除。"else"")
+            prompts.confirm("下載檔案？",message,"下載",owner=tab.id,valid={tab in tabs&&tab.id==activeId&&tab.navigationGeneration==generation}) {
+                downloadFor(tab,url,page,userAgent,mime,disposition,imageOnly=false,confirmed=true)
             }
         }
         PageContextMenu(this,tab).install()
@@ -548,6 +556,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
+        (context as? MainActivity)?.pageDownloads?.cancelFor(id)
         prompts.closeFor(id)
         if(id==activeId)stopEye()
         val tab=tabs.find{it.id==id}?:return
