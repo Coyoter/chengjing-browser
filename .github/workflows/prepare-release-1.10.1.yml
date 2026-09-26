@@ -1,0 +1,51 @@
+name: Prepare scoped 1.10.1 release metadata
+on:
+  push:
+    branches: [release/find-in-page-1.10.1]
+    paths: [.github/workflows/prepare-release-1.10.1.yml]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.repository == 'Coyoter/chengjing-browser' && github.ref == 'refs/heads/release/find-in-page-1.10.1'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Update exact known version references, without changing application behavior
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          expected={
+              'app/build.gradle.kts':'428077253842bb5130b534966fe3ca8ddfdad613',
+              'README.md':'d79b7bab3e3867c732772039e31a65b9c351be09',
+              'release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java':'4e91ae09f9c19202bb521779cf4f9cc4ec6bd9f5'
+          }
+          for name,sha in expected.items():
+              assert subprocess.check_output(['git','hash-object',name],text=True).strip()==sha,name
+          def replace(name,old,new):
+              p=Path(name);text=p.read_text();assert text.count(old)==1,(name,old)
+              p.write_text(text.replace(old,new))
+          replace('app/build.gradle.kts','versionCode = 33','versionCode = 34')
+          replace('app/build.gradle.kts','versionName = "1.10.0"','versionName = "1.10.1"')
+          replace('README.md','**1.10.0（versionCode 33）**','**1.10.1（versionCode 34）**')
+          replace('README.md','[1.10.0 更新說明](docs/releases/1.10.0.md)','[1.10.1 更新說明](docs/releases/1.10.1.md)')
+          p=Path('README.md')
+          p.write_text(p.read_text()+'\n\n## 1.10.1 頁內搜尋\n\n「尋找頁面文字」改為網頁上方的搜尋列，保留目前網頁、原生反白及目前／總筆數，支援上一筆與下一筆；無結果有明確提示。關閉搜尋即恢復原本工具列，首頁、分頁與快照行為不變。[修正範圍與驗證](docs/FIND-IN-PAGE.md)。\n')
+          replace('release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java',
+              'assertEquals(33,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());',
+              'assertEquals(34,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());')
+          subprocess.run(['git','diff','--check'],check=True)
+          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          assert set(changed)==set(expected),changed
+          PY
+          git add -- app/build.gradle.kts README.md release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Prepare 1.10.1 / 34 release of the verified inline find-in-page fix'
+      - name: Push only the release preparation branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$GH_TOKEN; }; f' push origin HEAD:refs/heads/release/find-in-page-1.10.1
