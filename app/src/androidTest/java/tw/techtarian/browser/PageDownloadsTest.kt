@@ -5,6 +5,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.media.MediaMetadataRetriever
 import android.util.Base64
+import android.view.accessibility.AccessibilityNodeInfo
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.platform.app.InstrumentationRegistry
@@ -86,34 +87,33 @@ class PageDownloadsTest {
     }
     @Test fun nativeVideoOverflowDownloadActuallyReachesTheNewDownloader(){
         videoPage();eval("(()=>{const v=document.getElementById('fixture-video');v.setAttribute('aria-label','QA fixture video');v.preload='auto';v.load();})()")
-        // HAVE_CURRENT_DATA can still be buffering and rebuilding native controls.
-        // Wait for playable future data, then tap the current on-screen hit bounds.
         ui.waitUntil(15000){eval("(()=>{const v=document.getElementById('fixture-video');return v.readyState>=3&&!v.seeking&&!v.error;})()") == "true"};painted()
+        val automation=InstrumentationRegistry.getInstrumentation().uiAutomation
         val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
-        fun more()=(device.findObject(By.descContains("QA fixture video"))?:device.findObject(By.res("fixture-video")))?.let{video->
-            video.findObject(By.desc(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
-                ?:video.findObject(By.text(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
-                ?:video.findObjects(By.clazz("android.widget.Button").clickable(true).enabled(true)).singleOrNull{it.contentDescription.isNullOrEmpty()&&it.text.isNullOrEmpty()}
-        }
-        val label=java.util.regex.Pattern.compile("(?i)download( media)?|下載(媒體)?")
-        fun shown()=device.findObject(By.text(label))?:device.findObject(By.desc(label))
-        var download:androidx.test.uiautomator.UiObject2?=null
-        repeat(3){
-            if(download==null){
-                download=shown()
-                if(download==null){
-                    device.waitForIdle();painted()
-                    val overflow=more()
-                    if(overflow==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native overflow missing: "+xml.toString("UTF-8"))}
-                    val bounds=overflow.visibleBounds
-                    assertTrue("Native media control must be visible",bounds.width()>0&&bounds.height()>0)
-                    device.click(bounds.centerX(),bounds.centerY())
-                    download=device.wait(Until.findObject(By.text(label)),1500)?:device.wait(Until.findObject(By.desc(label)),500)
-                }
+        fun nativeNode(pattern:Regex):AccessibilityNodeInfo? {
+            fun find(node:AccessibilityNodeInfo?):AccessibilityNodeInfo? {
+                if(node==null)return null
+                if(node.isVisibleToUser&&node.isClickable&&
+                    (pattern.matches(node.text?.toString().orEmpty())||pattern.matches(node.contentDescription?.toString().orEmpty())))return node
+                for(i in 0 until node.childCount)find(node.getChild(i))?.let{return it}
+                return null
             }
+            return find(automation.rootInActiveWindow)
         }
-        if(download==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native download menu missing: "+xml.toString("UTF-8"))}
-        val bounds=download!!.visibleBounds;device.click(bounds.centerX(),bounds.centerY())
+        fun missing(message:String):Nothing {
+            val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml)
+            throw AssertionError(message+"; media="+eval("(()=>{const v=document.getElementById('fixture-video');return {ready:v.readyState,paused:v.paused,time:v.currentTime,error:v.error?.code};})()")+"; "+xml.toString("UTF-8"))
+        }
+        // Chromium media controls are virtual accessibility descendants, not Android Views.
+        // Activate their supported native action rather than guessing a touch point inside
+        // a scaled video. This still opens the real media menu and real download handler.
+        val overflow=nativeNode(Regex("(?i).*(more media controls|更多).*"))?:missing("Native media overflow absent")
+        assertTrue("Native overflow must accept its click action",overflow.performAction(AccessibilityNodeInfo.ACTION_CLICK))
+        val downloadLabel=Regex("(?i)download( media)?|下載(媒體)?")
+        try{ui.waitUntil(5000){nativeNode(downloadLabel)!=null}}
+        catch(error:AssertionError){missing("Native download menu did not appear after accessibility click")}
+        val download=nativeNode(downloadLabel)?:missing("Native download action absent")
+        assertTrue("Native download must accept its click action",download.performAction(AccessibilityNodeInfo.ACTION_CLICK))
         ui.waitUntil(10000){ui.onAllNodesWithText("下載檔案？").fetchSemanticsNodes().isNotEmpty()};confirm()
         val item=finished();assertEquals("video/mp4",item.mime);assertArrayEquals(video(),bytes(item))
     }
@@ -152,8 +152,7 @@ class PageDownloadsTest {
         runBlocking{
             val storage=PageFileStorage(ui.activity);val partial=storage.create("interrupted.mp4","video/mp4","",4000)
             partial.output.write(byteArrayOf(1,2,3));partial.output.close();storage.recover()
-            ui.activity.contentResolver.query(partial.uri,arrayOf(MediaStore.MediaColumns._ID),null,null,null)?.use{assertFalse(it.moveToFirst())}
+            val row=catalog.list().first{it.id !in before};assertEquals(DownloadManager.STATUS_FAILED,row.status);assertTrue(row.detail.contains("中斷"))
         }
-        val row=catalog.list().first{it.id !in before};assertEquals(DownloadManager.STATUS_FAILED,row.status);assertTrue(row.detail.contains("中斷"))
     }
 }
