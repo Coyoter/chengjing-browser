@@ -33,7 +33,9 @@ class FindInPageTest {
         ui.runOnIdle{
             originalTheme=c.store.theme;originalBottom=c.store.addressAtBottom
             ui.activity.bookmarkSync.disconnect();c.closeFindInPage();c.sheet="";c.stopEye()
+            c.closePrivateTabs();c.tabs.toList().forEach{c.closeTab(it.id)}
         }
+        ui.waitUntil(15000){!c.privateSession.clearing}
     }
     @After fun cleanup(){ui.runOnIdle{c.closeFindInPage();c.store.addressAtBottom=originalBottom;c.store.theme=originalTheme;c.closePrivateTabs()}}
     private fun load(private:Boolean=false):BrowserTab {
@@ -68,7 +70,7 @@ class FindInPageTest {
         val bar=ui.onNodeWithTag("find-in-page-bar").getUnclippedBoundsInRoot()
         val page=ui.onNodeWithTag("web-content").getUnclippedBoundsInRoot()
         assertTrue("The field must not cover the WebView",page.top>=bar.bottom)
-        assertTrue("A real page viewport must remain visible with the keyboard",page.height>40.dp)
+        assertTrue("A real page viewport must remain visible with the keyboard",page.bottom-page.top>40.dp)
         assertSame(tab,c.active);assertEquals(url,tab.web.url)
         search("搜尋目標",3)
         ui.onNodeWithTag("find-in-page-count").assertTextEquals("1/3")
