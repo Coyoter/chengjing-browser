@@ -11,6 +11,7 @@ HOST = "tw.techtarian.browser.smoketests"
 RUNNER = HOST + ".test/androidx.test.runner.AndroidJUnitRunner"
 TEST = HOST + ".OptimizedReleaseTest"
 METHODS = (
+    "findInPageKeepsWebContentVisibleAndNavigatesNativeMatches",
     "installedReleaseIsActuallyObfuscatedAndNotDebuggable",
     "nativeJniCanLoadCallAndThrowItsTypedError",
     "aiProviderFieldsStillRecomposeInOptimizedRelease",
