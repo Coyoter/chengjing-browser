@@ -12,6 +12,7 @@ RUNNER = HOST + ".test/androidx.test.runner.AndroidJUnitRunner"
 TEST = HOST + ".OptimizedReleaseTest"
 METHODS = (
     "installedReleaseIsActuallyObfuscatedAndNotDebuggable",
+    "findInPageKeepsTheDocumentVisibleAndCountsMatches",
     "nativeJniCanLoadCallAndThrowItsTypedError",
     "aiProviderFieldsStillRecomposeInOptimizedRelease",
     "webViewJavascriptBridgeSurvivesOptimization",
