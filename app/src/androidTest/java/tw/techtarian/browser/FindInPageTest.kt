@@ -64,14 +64,14 @@ class FindInPageTest {
         ui.waitUntil(10000){c.pageFind.query==text&&!c.pageFind.searching&&c.pageFind.count==count}
     }
     @Test fun menuOpensAnInlineSearchWhileTheSamePageRemainsVisible(){
-        val tab=load();val url=tab.web.url;openFromMenu()
+        val tab=load();val url=ui.runOnIdle{tab.web.url};openFromMenu()
         ui.onNodeWithTag("web-content").assertIsDisplayed()
         ui.onNodeWithTag("find-in-page-input").assertIsFocused()
         val bar=ui.onNodeWithTag("find-in-page-bar").getUnclippedBoundsInRoot()
         val page=ui.onNodeWithTag("web-content").getUnclippedBoundsInRoot()
         assertTrue("The field must not cover the WebView",page.top>=bar.bottom)
         assertTrue("A real page viewport must remain visible with the keyboard",page.bottom-page.top>40.dp)
-        assertSame(tab,c.active);assertEquals(url,tab.web.url)
+        ui.runOnIdle{assertSame(tab,c.active);assertEquals(url,tab.web.url)}
         search("搜尋目標",3)
         ui.onNodeWithTag("find-in-page-count").assertTextEquals("1/3")
         ui.onNodeWithTag("find-in-page-next").performClick()
@@ -157,7 +157,7 @@ class FindInPageTest {
         ui.runOnUiThread{ui.activity.setContent{
             val density=LocalDensity.current
             CompositionLocalProvider(LocalDensity provides Density(density.density,scale)){
-                MaterialTheme{Column(Modifier.width(320.dp).fillMaxHeight()){
+                MaterialTheme{Column(Modifier.width(320.dp).fillMaxHeight().safeDrawingPadding().imePadding()){
                     FindInPageBar(session){}
                     Box(Modifier.weight(1f).fillMaxWidth().testTag("remaining-page"))
                 }}

@@ -119,14 +119,14 @@ public class OptimizedReleaseTest {
         menu();click("尋找頁面文字");
         assertFalse(device.hasObject(By.desc("關閉選單")));
         require(By.text("R8 測試元件")); // Same live document still visible, not a full-screen sheet.
-        UiObject2 input=require(By.clazz("android.widget.EditText"));
+        UiObject2 input=require(By.clazz("android.widget.EditText").desc("尋找頁面文字"));
         input.setText("R8");
         require(By.desc("第 1 筆，共 2 筆"));
         require(By.desc("下一筆符合文字")).click();
         require(By.desc("第 2 筆，共 2 筆"));
         require(By.desc("上一筆符合文字")).click();
         require(By.desc("第 1 筆，共 2 筆"));
-        require(By.clazz("android.widget.EditText")).setText("no-such-search-marker");
+        require(By.clazz("android.widget.EditText").desc("尋找頁面文字")).setText("no-such-search-marker");
         require(By.desc("找不到符合文字"));
         require(By.desc("關閉頁面搜尋")).click();
         assertTrue(device.wait(Until.gone(By.desc("關閉頁面搜尋")),5000));
