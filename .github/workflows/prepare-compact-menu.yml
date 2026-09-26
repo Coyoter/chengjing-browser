@@ -1,0 +1,27 @@
+name: Prepare scoped compact tab menu
+on:
+  push:
+    branches: [fix/compact-tab-menu-1.10.2]
+    paths: [.github/workflows/prepare-compact-menu.yml]
+permissions:
+  contents: write
+jobs:
+  integrate:
+    if: github.repository == 'Coyoter/chengjing-browser' && github.ref == 'refs/heads/fix/compact-tab-menu-1.10.2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Apply exact-source version and geometry-test edits only
+        run: |
+          python3 .ci/prepare-compact-menu.py
+          rm .ci/prepare-compact-menu.py .ci/menu-layout-tests.inc.kt
+          git add -- app/build.gradle.kts README.md app/src/androidTest/java/tw/techtarian/browser/CloseAllTabsTest.kt release-smoke/src/androidTest/java/tw/techtarian/browser/smoketests/OptimizedReleaseTest.java .ci/prepare-compact-menu.py .ci/menu-layout-tests.inc.kt
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Prepare 1.10.2 version and actual menu size, centering and font-scale regression tests'
+      - name: Update the development branch only, without signing secrets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$GH_TOKEN; }; f' push origin HEAD:refs/heads/fix/compact-tab-menu-1.10.2
