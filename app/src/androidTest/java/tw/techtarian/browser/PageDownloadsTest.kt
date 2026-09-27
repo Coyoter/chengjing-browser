@@ -87,39 +87,46 @@ class PageDownloadsTest {
         tapDownload();confirm();val item=finished();assertEquals("text/csv",item.mime);assertEquals("名稱,值\n測試,A+B",String(bytes(item),Charsets.UTF_8))
     }
     @Test fun nativeVideoOverflowDownloadActuallyReachesTheNewDownloader(){
-        videoPage();eval("(()=>{const v=document.getElementById('fixture-video');v.setAttribute('aria-label','QA fixture video');v.preload='auto';v.load();})()")
-        ui.waitUntil(15000){eval("document.getElementById('fixture-video').readyState>=2")=="true"};painted()
-        val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
-        fun more()=(device.findObject(By.descContains("QA fixture video"))?:device.findObject(By.res("fixture-video")))?.let{video->
-            video.findObject(By.desc(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
-                ?:video.findObject(By.text(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
-                ?:video.findObjects(By.clazz("android.widget.Button").clickable(true).enabled(true)).singleOrNull{it.contentDescription.isNullOrEmpty()&&it.text.isNullOrEmpty()}
-        }
-        // Restrict lookup to this player's controls, never a system "more notifications" icon.
-        val overflow=more()
-        if(overflow==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native overflow missing: "+xml.toString("UTF-8"))}
-        ui.waitUntil(10000){c.active!!.web.hasWindowFocus()&&c.active!!.web.isShown}
-        device.waitForIdle();painted();more()!!.click()
-        val label=java.util.regex.Pattern.compile("(?i)download( media)?|下載(媒體)?")
-        fun downloadItem():androidx.test.uiautomator.UiObject2?{
+        val server=okhttp3.mockwebserver.MockWebServer()
+        val encoded=Base64.encodeToString(video(),Base64.NO_WRAP)
+        server.enqueue(okhttp3.mockwebserver.MockResponse().setHeader("Content-Type","text/html; charset=utf-8").setBody("""
+            <html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Native video fixture</title></head>
+            <body style="margin:0"><video id="fixture-video" aria-label="QA fixture video" controls muted autoplay preload="auto" style="width:300px;height:190px"></video>
+            <a id="fixture-download" download="test-video.mp4">Download fixture</a><script>
+            const bytes=Uint8Array.from(atob('$encoded'),c=>c.charCodeAt(0));
+            const url=URL.createObjectURL(new Blob([bytes],{type:'video/mp4'}));
+            document.getElementById('fixture-download').href=url;document.getElementById('fixture-video').src=url;
+            </script></body></html>
+        """.trimIndent()))
+        server.start()
+        try{
+            val url=server.url("/video").toString()
+            ui.runOnIdle{c.active!!.web.settings.mediaPlaybackRequiresUserGesture=false;c.navigate(url)}
+            ui.waitUntil(15000){c.active!!.title=="Native video fixture"&&eval("document.getElementById('fixture-video')?.ended===true")=="true"}
+            painted()
+            val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+            val automation=InstrumentationRegistry.getInstrumentation().uiAutomation
+            fun fresh(){automation.serviceInfo=automation.serviceInfo}
+            fun more()=(device.findObject(By.descContains("QA fixture video"))?:device.findObject(By.res("fixture-video")))?.let{video->
+                video.findObject(By.desc(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
+                    ?:video.findObject(By.text(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
+            }
+            // The actual native player is fully buffered and played before opening its menu.
+            // A real HTTP document avoids the practice page's document replacement timing.
+            fresh();assertNotNull("Native overflow must exist",more());more()!!.click()
+            PreviewFixture(ui).screenshot("native-video-menu-after-click")
+            val label=java.util.regex.Pattern.compile("(?i)download( media)?|下載(媒體)?")
+            var download:androidx.test.uiautomator.UiObject2?=null
             val deadline=SystemClock.elapsedRealtime()+5000
-            do{
-                val item=device.findObject(By.text(label))?:device.findObject(By.desc(label))
-                if(item!=null)return item
-                SystemClock.sleep(100)
-            }while(SystemClock.elapsedRealtime()<deadline)
-            return null
-        }
-        var download=downloadItem()
-        if(download==null){
-            val speed=java.util.regex.Pattern.compile("(?i).*playback speed.*|.*播放速度.*")
-            if(!device.hasObject(By.text(speed))&&!device.hasObject(By.desc(speed))){painted();more()?.click()}
-            download=downloadItem()
-        }
-        if(download==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native download menu missing: "+xml.toString("UTF-8"))}
-        assertNotNull("Native video menu must contain Download",download);download!!.click()
-        ui.waitUntil(10000){ui.onAllNodesWithText("下載檔案？").fetchSemanticsNodes().isNotEmpty()};confirm()
-        val item=finished();assertEquals("video/mp4",item.mime);assertArrayEquals(video(),bytes(item))
+            while(download==null&&SystemClock.elapsedRealtime()<deadline){
+                fresh();download=device.findObject(By.text(label))?:device.findObject(By.desc(label))
+                if(download==null)SystemClock.sleep(100)
+            }
+            if(download==null){val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml);throw AssertionError("Native download menu missing: "+xml.toString("UTF-8"))}
+            download!!.click()
+            ui.waitUntil(10000){ui.onAllNodesWithText("下載檔案？").fetchSemanticsNodes().isNotEmpty()};confirm()
+            val item=finished();assertEquals("video/mp4",item.mime);assertArrayEquals(video(),bytes(item))
+        }finally{server.shutdown()}
     }
     @Test fun aGenericBlobGetsItsRealFormatInsteadOfBin(){
         page("window.fixtureUrl=URL.createObjectURL(new Blob(['%PDF-1.7\\nfixture\\n%%EOF'],{type:'application/octet-stream'}));window.fixtureName='report.bin';")
