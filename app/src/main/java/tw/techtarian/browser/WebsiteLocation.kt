@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.webkit.GeolocationPermissions
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.compose.runtime.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 internal enum class LocationChoice(val label:String){ASK("詢問"),ALLOW("允許"),BLOCK("封鎖")}
@@ -40,8 +41,20 @@ internal class LocationDecisions(context:Context){
 
 internal class WebsiteLocation(private val activity:MainActivity){
     private val c get()=activity.controller
+    private var native:NativeWebsiteLocation?=null
+    var status by mutableStateOf("尚未要求定位")
+        internal set
+    internal val activeProviders get()=native?.activeProviders.orEmpty()
+    internal val registrationCount get()=native?.registrationCount?:0
+    internal fun nativeAttached(id:Int)=native?.attached(id)==true
+    fun attach(tab:BrowserTab){(native?:NativeWebsiteLocation(activity,this).also{native=it}).attach(tab)}
+    fun detach(id:Int){cancelFor(id);native?.detach(id)}
+    fun pause(){native?.pause()}
+    fun resume(){native?.resume()}
+    fun pauseFor(id:Int){native?.pauseFor(id)}
+    fun resumeFor(id:Int){native?.resumeFor(id)}
     val decisions by lazy{LocationDecisions(activity)}
-    private data class Request(val tab:BrowserTab,val origin:String,val raw:String,val generation:Long,val callback:GeolocationPermissions.Callback,var completed:Boolean=false)
+    private data class Request(val tab:BrowserTab,val origin:String,val raw:String,val generation:Long,val callback:GeolocationPermissions.Callback,val native:Boolean=false,var completed:Boolean=false)
     private var pending:Request?=null
     private var runtimeInFlight=false
     private val permission=activity.activityResultRegistry.register("website-location",activity,ActivityResultContracts.RequestMultiplePermissions()){
@@ -57,9 +70,9 @@ internal class WebsiteLocation(private val activity:MainActivity){
         ContextCompat.checkSelfPermission(activity,it)==PackageManager.PERMISSION_GRANTED
     }
     fun locationEnabled()=activity.getSystemService(LocationManager::class.java)?.isLocationEnabled==true
-    private fun valid(request:Request)=request.tab in c.tabs&&c.activeId==request.tab.id&&
-        request.tab.navigationGeneration==request.generation&&LocationOrigin.of(request.tab.url)==request.origin&&
-        request.tab.certificateWarning.isBlank()&&!c.store.certificateException(request.origin)&&!activity.isDestroyed
+    internal fun canUse(tab:BrowserTab,origin:String)=tab in c.tabs&&c.activeId==tab.id&&LocationOrigin.of(tab.url)==origin&&
+        tab.error.isEmpty()&&tab.certificateWarning.isBlank()&&!c.store.certificateException(origin)&&!activity.isDestroyed
+    private fun valid(request:Request)=canUse(request.tab,request.origin)&&request.tab.navigationGeneration==request.generation
     private fun finish(request:Request,allow:Boolean){
         if(request.completed)return
         request.completed=true
@@ -81,11 +94,15 @@ internal class WebsiteLocation(private val activity:MainActivity){
         finish(request,true)
     }
     fun request(tab:BrowserTab,raw:String,callback:GeolocationPermissions.Callback){
+        requestPermission(tab,raw,callback,false)
+    }
+    internal fun authorizeNative(tab:BrowserTab,raw:String,callback:GeolocationPermissions.Callback){requestPermission(tab,raw,callback,true)}
+    private fun requestPermission(tab:BrowserTab,raw:String,callback:GeolocationPermissions.Callback,native:Boolean){
         val origin=LocationOrigin.of(raw)
         if(origin==null||runtimeInFlight){callback.invoke(raw,false,false);return}
-        val request=Request(tab,origin,raw,tab.navigationGeneration,callback)
+        val request=Request(tab,origin,raw,tab.navigationGeneration,callback,native)
         if(!valid(request)){callback.invoke(raw,false,false);return}
-        pending?.let{cancelFor(it.tab.id)}
+        pending?.let{cancelPermissionFor(it.tab.id)}
         pending=request
         when(decisions.get(origin,tab.incognito)){
             LocationChoice.BLOCK->finish(request,false)
@@ -99,9 +116,14 @@ internal class WebsiteLocation(private val activity:MainActivity){
         }
     }
     fun cancelFor(id:Int){
+        native?.cancelFor(id)
+        cancelPermissionFor(id)
+    }
+    internal fun cancelPermissionFor(id:Int){
         val request=pending?.takeIf{it.tab.id==id}?:return
         finish(request,false);c.prompts.closeFor(id)
     }
+    fun hideLegacyPrompt(id:Int){if(pending?.let{it.tab.id==id&&!it.native}==true)cancelPermissionFor(id)}
     fun choice(tab:BrowserTab)=LocationOrigin.of(tab.url)?.let{decisions.get(it,tab.incognito)}?:LocationChoice.BLOCK
     fun setChoice(tab:BrowserTab,choice:LocationChoice){
         val origin=LocationOrigin.of(tab.url)?:return
@@ -114,5 +136,5 @@ internal class WebsiteLocation(private val activity:MainActivity){
     fun clearPrivate(){decisions.clearPrivate()}
     fun openAppSettings(){activity.startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.parse("package:${activity.packageName}")))}
     fun openLocationSettings(){activity.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))}
-    fun close(){pending?.let{finish(it,false)};decisions.clearPrivate()}
+    fun close(){native?.close();pending?.let{finish(it,false)};decisions.clearPrivate()}
 }

@@ -167,11 +167,12 @@ class MainActivity:AppCompatActivity(){
         super.onSaveInstanceState(outState)
     }
     override fun onPause(){
+        websiteLocation.pause()
         super.onPause()
         // A backgrounded/closed launch must not replace saved tabs with an empty list.
         if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
-    override fun onResume(){super.onResume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
+    override fun onResume(){super.onResume();websiteLocation.resume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
     override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();websiteLocation.close();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 

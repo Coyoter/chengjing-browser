@@ -249,6 +249,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         if(incognito&&!privateSession.supported){sheet="";notice="請更新 Android System WebView，才能使用資料隔離的無痕分頁";return null}
         if(tabs.size>=20){notice="目前最多可開啟 20 個分頁，請先關閉不用的分頁";return null}
         capturePreview(active)
+        (context as? MainActivity)?.websiteLocation?.pauseFor(activeId)
         stopEye()
         val web=SelectionWebView(context)
         if(incognito)try{privateSession.attach(web)}catch(_:Exception){web.destroy();notice="無法建立隔離的無痕工作階段，未開啟網頁";return null}
@@ -451,6 +452,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 }
             }
             override fun onRenderProcessGone(view:WebView,detail:RenderProcessGoneDetail):Boolean {
+                (context as? MainActivity)?.websiteLocation?.cancelFor(tab.id)
                 findInPage.closeFor(tab.id)
                 tab.refreshContainer.isRefreshing=false
                 tab.error="網頁程序已停止，請關閉這個分頁後重新開啟。";return true
@@ -492,7 +494,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 val location=(context as? MainActivity)?.websiteLocation
                 if(location!=null)location.request(tab,origin,callback)else callback.invoke(origin,false,false)
             }
-            override fun onGeolocationPermissionsHidePrompt(){(context as? MainActivity)?.websiteLocation?.cancelFor(tab.id)}
+            override fun onGeolocationPermissionsHidePrompt(){(context as? MainActivity)?.websiteLocation?.hideLegacyPrompt(tab.id)}
             override fun onShowFileChooser(webView:WebView,callback:ValueCallback<Array<Uri>>,params:FileChooserParams):Boolean {
                 if(web.selecting){callback.onReceiveValue(null);return true}
                 fileCallback?.onReceiveValue(null);fileCallback=callback
@@ -514,6 +516,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         }
         PageContextMenu(this,tab).install()
         tabs.add(tab);activeId=tab.id;updatePrivacyWindow()
+        (context as? MainActivity)?.websiteLocation?.attach(tab)
         refreshScripts(listOf(tab),applyToPage=false)
         if(url.isNotEmpty()){tab.pendingUrl=url;web.loadUrl(url)}
         persistTabs();return tab
@@ -569,9 +572,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             if(retry){tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}else tab.web.reload()
         }
     }
-    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;persistTabs();sheet="";updatePrivacyWindow()}
+    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);(context as? MainActivity)?.websiteLocation?.pauseFor(activeId);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;(context as? MainActivity)?.websiteLocation?.resumeFor(id);persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
-        (context as? MainActivity)?.websiteLocation?.cancelFor(id)
+        (context as? MainActivity)?.websiteLocation?.detach(id)
         findInPage.closeFor(id)
         (context as? MainActivity)?.pageDownloads?.cancelFor(id)
         prompts.closeFor(id)
@@ -582,6 +585,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         (tab.refreshContainer.parent as? ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer.removeAllViews();tab.web.destroy();tabs.remove(tab)
         if(tab.incognito&&tabs.none{it.incognito}){privateSession.clear();(context as? MainActivity)?.imageActions?.clearPrivate();(context as? MainActivity)?.websiteLocation?.clearPrivate()}
         if(activeId==id)activeId=(tabs.lastOrNull{it.incognito==tab.incognito}?:tabs.lastOrNull())?.id?:0
+        (context as? MainActivity)?.websiteLocation?.resumeFor(activeId)
         if(tabs.isEmpty()&&replaceLast)newTab(incognito=false)
         persistTabs();updatePrivacyWindow()
     }

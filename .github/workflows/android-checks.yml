@@ -95,6 +95,8 @@ jobs:
           python3 scripts/test-close-all-restart.py
           python3 scripts/test-home-restart.py
           python3 scripts/test-browsing-data-restart.py
+      - name: Verify direct Android location without Google Play Services
+        run: python3 scripts/test-native-location.py
       - name: Collect source, previews and emulator diagnostics
         if: always()
         run: |

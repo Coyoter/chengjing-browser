@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.sp
     val origin=LocationOrigin.of(tab.url)?:return
     c.revision
     SettingsGroup("網站定位"){
+        Text(location.status,fontSize=13.sp,lineHeight=21.sp,modifier=Modifier.testTag("location-status"))
+        if(!location.nativeAttached(tab.id))Text("手機的網頁元件尚不支援直接定位，請更新 Android System WebView。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         Text(if(tab.incognito)"無痕授權只保留到關閉全部無痕分頁。"else"只套用此網站；其他網站需另行取得授權。",fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         LocationChoice.entries.forEach{choice->
             Row(Modifier.fillMaxWidth().heightIn(min=48.dp).selectable(location.choice(tab)==choice,role=Role.RadioButton){location.setChoice(tab,choice)}
