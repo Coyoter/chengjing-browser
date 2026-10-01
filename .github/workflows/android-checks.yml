@@ -64,7 +64,9 @@ jobs:
           "$EMULATOR" -list-avds | tee "$RUNNER_TEMP/avd-list.txt"
           grep -Fx chengjing-qa "$RUNNER_TEMP/avd-list.txt"
           sudo chmod a+rw /dev/kvm
-          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          # Emulator 37's host video decoder can terminate the VM during native video playback.
+          # Use Android's software codecs in this disposable runner; keep the real video/menu/download tests.
+          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader_indirect -feature -HardwareDecoder > "$RUNNER_TEMP/emulator.log" 2>&1 &
           EMULATOR_PID=$!
           sleep 3
           if ! kill -0 "$EMULATOR_PID" 2>/dev/null; then cat "$RUNNER_TEMP/emulator.log"; exit 1; fi
@@ -80,6 +82,8 @@ jobs:
           adb shell settings put global animator_duration_scale 0
           adb shell input keyevent 82
           mkdir -p validation
+          adb shell getprop ro.boot.qemu.hwcodec.avcdec | tee validation/emulator-avc-mode.txt
+          test "$(adb shell getprop ro.boot.qemu.hwcodec.avcdec | tr -d '\r')" != 2
           adb shell dumpsys webviewupdate | tee validation/webview-provider.txt
       - name: Run focused on-device regressions
         run: |
