@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -35,10 +36,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -199,11 +200,11 @@ class MainActivity:AppCompatActivity(){
     val finding=c.findInPage.isOpen
     c.revision
     val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
-    var address by remember(active?.id,active?.url){mutableStateOf(TextFieldValue(active?.url.orEmpty()))}
+    val address=remember(active?.id,active?.url){TextFieldState(active?.url.orEmpty(),initialSelection=TextRange.Zero)}
     var editingAddress by remember{mutableStateOf(false)}
     LaunchedEffect(finding){if(finding)editingAddress=false}
     LaunchedEffect(active?.id){editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}
-    val suggestionRows=remember(address.text,c.revision,editingAddress,active?.incognito){if(editingAddress&&active?.incognito!=true)AddressHistory.suggestions(address.text,store.searches(),store.history())else emptyList()}
+    val suggestionRows=remember(address.text,c.revision,editingAddress,active?.incognito){if(editingAddress&&active?.incognito!=true)AddressHistory.suggestions(address.text.toString(),store.searches(),store.history())else emptyList()}
     LaunchedEffect(c.fullScreenView){if(c.fullScreenView!=null){c.findInPage.close();editingAddress=false;focus.clearFocus(force=true);keyboard?.hide()}}
     val cs=browserColorScheme()
     SideEffect{c.updatePrivacyWindow()}
@@ -230,12 +231,12 @@ class MainActivity:AppCompatActivity(){
     MaterialTheme(colorScheme=cs,typography=BrowserTypography){
         val addressBar:@Composable ()->Unit = {
             BrowserAddressBar(
-                        address=address,onAddress={address=it},editing=editingAddress,onFocus={editingAddress=it},
+                        address=address,editing=editingAddress,onFocus={editingAddress=it},
                         loading=(active?.progress?:100)<100,secure=active?.url?.startsWith("https:")==true&&active.error.isEmpty()&&active.certificateWarning.isEmpty(),
                         certificateWarning=active?.certificateWarning?.isNotEmpty()==true,
                         certificateException=c.store.certificateException(active?.url.orEmpty()),
                         blank=active?.url.isNullOrEmpty(),tabs=c.activeTabCount,
-                        onGo={c.navigate(address.text);editingAddress=false;focus.clearFocus()},
+                        onGo={c.navigate(address.text.toString());editingAddress=false;focus.clearFocus()},
                         onSecurity={focus.clearFocus();c.sheet="connection"},
                         onReload={if((active?.progress?:100)<100){active?.web?.stopLoading();active?.refreshContainer?.isRefreshing=false}else c.reload()},
                         onTabs={focus.clearFocus();c.openTabOverview()},

@@ -11,8 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextLayoutResult
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.*
@@ -68,7 +69,7 @@ class HomeLayoutTest {
             val density=LocalDensity.current
             CompositionLocalProvider(LocalDensity provides Density(density.density,scale)){
                 MaterialTheme{Surface{Column(Modifier.width(320.dp)){
-                    BrowserAddressBar(TextFieldValue("https://example.com/a/long/path"),{},false,{},false,true,false,20,
+                    BrowserAddressBar(remember{TextFieldState("https://example.com/a/long/path",initialSelection=TextRange.Zero)},false,{},false,true,false,20,
                         onGo={},onSecurity={},onReload={},onTabs={},onNewTab={},showHome=true,onHome={})
                 }}}
             }

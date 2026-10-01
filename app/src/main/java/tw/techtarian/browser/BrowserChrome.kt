@@ -7,9 +7,11 @@ import android.graphics.Bitmap
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.TextFieldLineLimits
+import androidx.compose.foundation.text.input.selectAll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowForward
@@ -33,8 +35,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -42,13 +42,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable internal fun BrowserAddressBar(
-    address:TextFieldValue,onAddress:(TextFieldValue)->Unit,editing:Boolean,onFocus:(Boolean)->Unit,
+    address:TextFieldState,editing:Boolean,onFocus:(Boolean)->Unit,
     loading:Boolean,secure:Boolean,blank:Boolean,tabs:Int,certificateWarning:Boolean=false,certificateException:Boolean=false,
     onGo:()->Unit,onSecurity:()->Unit,onReload:()->Unit,onTabs:()->Unit,onNewTab:()->Unit,
     showHome:Boolean=false,onHome:()->Unit={},
 ){
     val colors=MaterialTheme.colorScheme
-    LaunchedEffect(editing){if(editing)onAddress(address.copy(selection=TextRange(0,address.text.length)))}
+    // State-based input keeps the dragged handle and horizontal scroll in sync.
+    LaunchedEffect(editing,address){if(editing)address.edit{selectAll()}}
     Row(Modifier.fillMaxWidth().testTag("browser-topbar").padding(horizontal=if(showHome)8.dp else 24.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
         if(showHome)IconButton(onClick=onHome,modifier=Modifier.size(48.dp).testTag("home-button")){
             Icon(Icons.Outlined.Home,"首頁",Modifier.size(22.dp))
@@ -63,16 +64,16 @@ import androidx.compose.ui.unit.sp
                         tint=if(certificateWarning||certificateException)colors.error else colors.onSurface)
                 }
                 BasicTextField(
-                    value=address,onValueChange=onAddress,
+                    state=address,
                     modifier=Modifier.weight(1f).height(44.dp).testTag("address-input").onFocusChanged{onFocus(it.isFocused)},
-                    singleLine=true,
+                    lineLimits=TextFieldLineLimits.SingleLine,
                     textStyle=TextStyle(color=colors.onSurface,fontSize=14.sp,lineHeight=20.sp,
                         platformStyle=PlatformTextStyle(includeFontPadding=false),
                         lineHeightStyle=LineHeightStyle(LineHeightStyle.Alignment.Center,LineHeightStyle.Trim.Both)),
                     cursorBrush=SolidColor(colors.primary),
                     keyboardOptions=KeyboardOptions(imeAction=ImeAction.Go),
-                    keyboardActions=KeyboardActions(onGo={onGo()}),
-                    decorationBox={inner->Box(Modifier.fillMaxSize(),contentAlignment=Alignment.CenterStart){
+                    onKeyboardAction={onGo()},
+                    decorator={inner->Box(Modifier.fillMaxSize(),contentAlignment=Alignment.CenterStart){
                         if(address.text.isEmpty())Text("搜尋或輸入網址",color=colors.onSurfaceVariant,fontSize=14.sp,lineHeight=20.sp,maxLines=1,overflow=TextOverflow.Ellipsis,
                             style=TextStyle(platformStyle=PlatformTextStyle(includeFontPadding=false)))
                         inner()
