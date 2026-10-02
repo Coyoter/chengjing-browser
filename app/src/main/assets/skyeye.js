@@ -231,6 +231,7 @@
   }
   const api={
     configure(value){config=scopeConfig(value);preview=null;apply();},
+    localize(strings){config.strings=strings;},
     enable:setEnabled,pickAt,
     parent(){if(selected?.parentElement && selected.parentElement!==document.body)select(selected.parentElement);},
     select(s){try{select(query(s)[0]);}catch(_){}},

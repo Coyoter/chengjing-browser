@@ -165,7 +165,14 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         val host=page?.let{Uri.parse(it).host.orEmpty()}
         val sites=store.all().filter{host==null||Domains.matches(host,it.domain)}
         val bypass=exceptions.filter{host==null||Domains.matches(host,it)}
-        return JSONObject().put("strings",JSONObject().put("元件規則格式不正確",bt(R.string.msg_485107965fef)).put("不能移除整個頁面",bt(R.string.msg_8ace37cfd750)).put("找不到有效的元件選擇器",bt(R.string.msg_8b9869b822e7)).put("所選元件已不存在",bt(R.string.msg_e120bd1bed88)).put("原始 HTML 尚未準備好，請重新載入頁面再開啟規則",bt(R.string.msg_db7282021ef2)).put("找不到元件",bt(R.string.msg_f3cfde65b6f6)).put("元件過大，請選擇更小範圍",bt(R.string.msg_837653b6c57e))).put("sites",JSONArray(sites.map{it.json()})).put("exceptions",JSONArray(bypass)).toString()
+        return JSONObject().put("strings",messages()).put("sites",JSONArray(sites.map{it.json()})).put("exceptions",JSONArray(bypass)).toString()
+    }
+    private fun messages():JSONObject=JSONObject().put("元件規則格式不正確",bt(R.string.msg_485107965fef)).put("不能移除整個頁面",bt(R.string.msg_8ace37cfd750)).put("找不到有效的元件選擇器",bt(R.string.msg_8b9869b822e7)).put("所選元件已不存在",bt(R.string.msg_e120bd1bed88)).put("原始 HTML 尚未準備好，請重新載入頁面再開啟規則",bt(R.string.msg_db7282021ef2)).put("找不到元件",bt(R.string.msg_f3cfde65b6f6)).put("元件過大，請選擇更小範圍",bt(R.string.msg_837653b6c57e))
+    fun refreshLanguage(){
+        refreshScripts(applyToPage=false)
+        val text=messages()
+        // Updating captions must not clear an unsaved preview or reapply website edits.
+        tabs.filter{it.url.isNotEmpty()}.forEach{it.web.evaluateJavascript("window.__chengjingEye?.localize($text)",null)}
     }
     fun refreshScripts(targetTabs:List<BrowserTab> = tabs.toList(),applyToPage:Boolean=true) {
         val configuration=config()

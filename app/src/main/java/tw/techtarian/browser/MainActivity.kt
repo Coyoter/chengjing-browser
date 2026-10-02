@@ -123,10 +123,15 @@ class MainActivity:AppCompatActivity(){
     }
     internal fun applyLanguage(choice:String){
         AppLanguages.select(this,choice)
-        if(browserReady)controller.refreshScripts()
+        if(browserReady)controller.refreshLanguage()
+    }
+    private fun refreshLanguageFromDevice(){
+        val previous=AppLanguages.currentTag
+        AppLanguages.refresh(this)
+        if(browserReady&&previous!=AppLanguages.currentTag)controller.refreshLanguage()
     }
     private val languageReceiver=object:android.content.BroadcastReceiver(){
-        override fun onReceive(context:android.content.Context?,intent:Intent?){AppLanguages.refresh(this@MainActivity)}
+        override fun onReceive(context:android.content.Context?,intent:Intent?){refreshLanguageFromDevice()}
     }
     internal fun applyAppearance(choice:String){
         store.theme=choice
@@ -139,7 +144,7 @@ class MainActivity:AppCompatActivity(){
     }
     override fun onConfigurationChanged(configuration:android.content.res.Configuration){
         super.onConfigurationChanged(configuration)
-        AppLanguages.refresh(this)
+        refreshLanguageFromDevice()
         notifyWebAppearance(configuration)
     }
     private fun notifyWebAppearance(configuration:android.content.res.Configuration){
@@ -185,7 +190,7 @@ class MainActivity:AppCompatActivity(){
         // A backgrounded/closed launch must not replace saved tabs with an empty list.
         if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
-    override fun onResume(){super.onResume();AppLanguages.refresh(this);websiteLocation.resume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
+    override fun onResume(){super.onResume();refreshLanguageFromDevice();websiteLocation.resume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
     override fun onDestroy(){
         runCatching{unregisterReceiver(languageReceiver)};if(::bookmarkSync.isInitialized)bookmarkSync.destroy();websiteLocation.close();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }

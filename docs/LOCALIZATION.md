@@ -14,7 +14,7 @@
 - `bt` 在呈現時讀取目前語言資源，使用 %1$s 等位置參數。`BrowserCaption` 保留資源 ID，讓長時間存在的 AI 模型及同步狀態也能隨語言切換。
 - `localization/source-zh-TW.json` 保存完整繁體中文來源，`BrowserTextSource` 只供沒有 Android Context 的 JVM 驗證回退。新增來源後可執行 `python3 scripts/update-localization-source.py` 更新該對照表；必須同步更新 17 組 XML。
 - 每個語言的 i18n/<tag>/practice.html 和 privacy.txt 隨安裝檔提供。長隱私政策使用資產文字檔，避免超過 Android 編譯字串長度限制。首頁語錄由各語言 home_quotes 資源讀取。
-- 天眼的應用提示與 AI 回覆語言依所選介面語言提供。網站內容、網址、協定鍵值、使用者命名與自訂程式碼維持原內容；網址和程式碼固定由左至右顯示。
+- 天眼的應用提示與 AI 回覆語言依所選介面語言提供。語言變更只更新頁面提示，不重新套用規則或清除未儲存預覽。網站內容、網址、協定鍵值、使用者命名與自訂程式碼維持原內容；網址和程式碼固定由左至右顯示。
 - AAB 停用 language split，所有語言離線可用。執行期不使用翻譯服務，不新增翻譯 API 或密鑰需求。
 
 翻譯以繁體中文來源製作，尚未經所有語言母語者逐項審校。

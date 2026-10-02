@@ -2,6 +2,8 @@ package tw.techtarian.browser
 
 import android.content.Context
 import android.view.View
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.platform.app.InstrumentationRegistry
@@ -69,6 +71,26 @@ class LanguageSettingsTest {
         ui.runOnIdle{assertNotEquals(before.first,c.gemma.status);assertNotEquals(before.second,ui.activity.bookmarkSync.status)}
         select("zh-TW")
         ui.runOnIdle{assertEquals(before.first,c.gemma.status);assertEquals(before.second,ui.activity.bookmarkSync.status)}
+    }
+    @Test fun switchingLanguagePreservesUnsavedWebsitePreviewAndUpdatesPagePrompts(){
+        fun eval(code:String):String {
+            val latch=CountDownLatch(1);var value=""
+            InstrumentationRegistry.getInstrumentation().runOnMainSync{c.active!!.web.evaluateJavascript(code){value=it;latch.countDown()}}
+            assertTrue(latch.await(5,TimeUnit.SECONDS));return value
+        }
+        ui.runOnIdle{c.sheet="";c.navigate("https://practice.chengjing.invalid/")}
+        ui.waitUntil(10000){eval("!!window.__chengjingEye && !!document.querySelector('#notice-banner')")=="true"}
+        val preview=SiteRules("practice.chengjing.invalid",css="#notice-banner{display:none!important}")
+        ui.runOnIdle{c.previewSite(preview);c.sheet="settings"}
+        ui.waitUntil(5000){eval("getComputedStyle(document.querySelector('#notice-banner')).display")=="\"none\""}
+        val web=ui.runOnIdle{c.active!!.web}
+        try{
+            select("en")
+            ui.runOnIdle{assertSame(web,c.active!!.web);assertEquals(preview,c.draft);assertTrue(c.dirty)}
+            assertEquals("\"none\"",eval("getComputedStyle(document.querySelector('#notice-banner')).display"))
+            val expected=org.json.JSONObject.quote(bt(R.string.msg_485107965fef))
+            assertEquals(expected,eval("window.__chengjingEye.inspect('{}').error"))
+        }finally{ui.runOnIdle{c.stopEye()}}
     }
     private fun screenshot(name:String){
         ui.waitForIdle()
