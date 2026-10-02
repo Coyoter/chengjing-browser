@@ -12,7 +12,7 @@
 
 main 的版本檔或 release workflow 更新會觸發發布流程。也可手動執行 Android release，填入與目前 main 一致的 version。檢查包含 QA 單元測試、lint、APK／測試編譯及隔離模擬器回歸；全部成功且簽章設定存在後，才執行正式 release 單元測試、lint、APK/AAB 建置、簽章和 APK zip 對齊驗證。
 
-雲端 QA 模擬器使用 `-feature -HardwareDecoder` 停用 QEMU 主機端影片解碼，改由 Android 軟體解碼，避開影片播放時整台虛擬裝置中斷的問題。影片播放、原生三點選單、下載確認及檔案內容核對仍完整執行。這項設定只套用測試裝置，正式 APK 的影片設定維持相同。[Android 模擬器的解碼設定](https://android.googlesource.com/platform/external/qemu/+/ba29194f97e72ffe770bd56e4e5c5c620598004b/android/data/advancedFeatures.ini)。
+雲端 QA 模擬器使用 `-gpu swiftshader -feature -Vulkan,-HardwareDecoder`，以軟體 GLES 繪圖及 Android 軟體影片解碼執行測試。2026-10-02 的 Linux runner 在原生影片測試出現繪圖 color buffer 錯誤後整台模擬器失聯，因此依 [Android 官方的網頁繪圖相容性建議](https://developer.android.com/studio/run/emulator-troubleshooting?hl=en) 關閉 Vulkan，並改用 [目前支援的 SwiftShader 模式](https://developer.android.com/studio/run/emulator-acceleration)。這是針對測試環境的調整；影片播放、原生三點選單、下載確認及檔案內容核對仍完整執行，正式 APK 的影片及繪圖設定維持相同。[Android 模擬器的解碼設定](https://android.googlesource.com/platform/external/qemu/+/ba29194f97e72ffe770bd56e4e5c5c620598004b/android/data/advancedFeatures.ini)。
 
 scripts/publish-release.py 將 Tag 指向建置的精確提交，先建立 Draft，上傳六個附件並比對遠端 SHA-256，再發布為 Latest。不移動既有 Tag、不覆蓋附件；若 main 已前進或同名附件內容不同，停止並保留 Draft 供檢查。
 
