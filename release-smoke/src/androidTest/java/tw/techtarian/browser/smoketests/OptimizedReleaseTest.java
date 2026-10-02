@@ -138,7 +138,7 @@ public class OptimizedReleaseTest {
     }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(39,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(40,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -195,6 +195,9 @@ public class OptimizedReleaseTest {
             device.pressBack();require(By.text("快速前往"));require(By.desc("瀏覽器選單"));
             assertEquals("Root Back must keep the browser in front",APP,device.getCurrentPackageName());
         }
+        device.pressBack();require(By.desc("external-link-source"));
+        assertEquals("Initial-page Back must reveal the caller","tw.techtarian.browser.smoketests",device.getCurrentPackageName());
+        launcherOpen();require(By.text("快速前往"));
         require(By.descStartsWith("分頁，")).click();require(By.text("一般 2"));require(By.text("R8 功能測試 one"));
         assertFalse(device.hasObject(By.text("R8 功能測試 two")));
     }
@@ -203,24 +206,27 @@ public class OptimizedReleaseTest {
         sourceApp("two");require(By.desc("open-browser-article")).click();require(By.text("R8 功能測試 two"));
         device.executeShellCommand("am force-stop "+APP);launcherOpen();require(By.text("R8 功能測試 two"));
         device.pressBack();require(By.text("快速前往"));assertEquals(APP,device.getCurrentPackageName());
+        device.pressBack();require(By.desc("external-link-source"));
         for(int i=0;i<2;i++){
             sourceApp("two");require(By.desc("open-browser-article")).click();require(By.text("R8 功能測試 two"));
             device.pressBack();require(By.text("快速前往"));assertEquals(APP,device.getCurrentPackageName());
+            device.pressBack();require(By.desc("external-link-source"));
         }
         device.executeShellCommand("am force-stop "+APP);launcherOpen();require(By.text("快速前往"));
         require(By.descStartsWith("分頁，")).click();require(By.text("一般 1"));
         assertFalse(device.hasObject(By.text("R8 功能測試 two")));
     }
-    @Test public void regularRootBackClosesOnlyItsPageAndRepeatedBackStaysOnTheInitialPage() throws Exception {
+    @Test public void regularRootBackClosesItsPageThenInitialBackLeavesTheBrowser() throws Exception {
         require(By.desc("新增分頁")).click();require(By.text("快速前往"));
         UiObject2 address=require(By.clazz("android.widget.EditText"));address.click();device.waitForIdle();
         String url="http://127.0.0.1:"+fixture.port()+"/two";
         address=require(By.clazz("android.widget.EditText"));address.setText(url);require(By.text(url));SystemClock.sleep(250);device.pressEnter();
         require(By.text("R8 功能測試 two"));
-        for(int i=0;i<4;i++){
-            device.pressBack();require(By.text("快速前往"));require(By.desc("瀏覽器選單"));
-            assertEquals("Back must stay on the new-tab page",APP,device.getCurrentPackageName());
-        }
+        device.pressBack();require(By.text("快速前往"));require(By.desc("瀏覽器選單"));
+        assertEquals("Page-root Back must first show the initial page",APP,device.getCurrentPackageName());
+        device.pressBack();
+        assertTrue("Initial-page Back must leave the browser",device.wait(Until.gone(By.desc("瀏覽器選單")),10000));
+        assertNotEquals(APP,device.getCurrentPackageName());
         device.executeShellCommand("am force-stop "+APP);launcherOpen();require(By.text("快速前往"));
         require(By.descStartsWith("分頁，")).click();require(By.text("一般 2"));require(By.text("R8 功能測試 one"));
         assertFalse(device.hasObject(By.text("R8 功能測試 two")));

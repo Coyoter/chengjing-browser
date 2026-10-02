@@ -39,7 +39,7 @@ internal fun BrowserController.backInBrowser(){
 /** At the history boundary, close the current page and show a usable new-tab page in its profile. */
 internal fun BrowserController.finishBackNavigation(){
     val tab=active?:run{newTab(incognito=false);return}
-    // Repeated Back on the initial page stays here without destroying/recreating blank tabs.
+    // Initial-page system Back exits through MainActivity; the toolbar never recreates blank tabs.
     if(tab.isInitialNewTab())return
     val initial=tabs.firstOrNull{it.id!=tab.id&&it.incognito==tab.incognito&&it.isInitialNewTab()}
     val incognito=tab.incognito

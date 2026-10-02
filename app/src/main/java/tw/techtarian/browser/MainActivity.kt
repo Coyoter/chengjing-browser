@@ -158,6 +158,12 @@ class MainActivity:AppCompatActivity(){
         controller.openExternalTab(url)
     }
     internal fun backFromPage(){
+        if(controller.active?.isInitialNewTab()==true){
+            // The new-tab page is the final Back stop; leave the app without adding/removing tabs.
+            controller.persistTabs()
+            if(!moveTaskToBack(true))finish()
+            return
+        }
         controller.backInBrowser()
     }
     override fun onSaveInstanceState(outState:Bundle){

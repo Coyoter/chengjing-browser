@@ -40,20 +40,34 @@ class BackNavigationTest {
         ui.waitForIdle()
         ui.runOnIdle{assertEquals(androidx.lifecycle.Lifecycle.State.RESUMED,ui.activity.lifecycle.currentState)}
     }
+    private fun leaveInitialAndReopen(private:Boolean=false){
+        val activity=ui.activity
+        val initialId=c.active!!.id
+        val count=c.tabs.size
+        val automation=InstrumentationRegistry.getInstrumentation().uiAutomation
+        fun shell(command:String)=android.os.ParcelFileDescriptor.AutoCloseInputStream(automation.executeShellCommand(command)).use{it.readBytes()}
+        shell("input keyevent KEYCODE_BACK")
+        ui.waitUntil(10000){!activity.lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED)&&androidx.test.uiautomator.UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).currentPackageName!=activity.packageName}
+        assertNotEquals("Initial-page Back must leave the browser",activity.packageName,androidx.test.uiautomator.UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).currentPackageName)
+        shell("am start -W -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -n ${activity.packageName}/tw.techtarian.browser.MainActivity")
+        ui.waitUntil(10000){activity.lifecycle.currentState==androidx.lifecycle.Lifecycle.State.RESUMED}
+        initial(private)
+        ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(count,c.tabs.size)}
+    }
     private fun initial(private:Boolean=false){
         ui.waitUntil(10000){c.active?.url==""&&c.active?.pendingUrl==""&&c.active?.incognito==private}
         ui.runOnIdle{assertTrue(c.active!!.isInitialNewTab());assertFalse(c.active!!.openedExternally);assertFalse(c.active!!.canBack)}
         ui.onNodeWithTag(if(private)"incognito-indicator" else "browser-home").assertIsDisplayed()
         ui.onNodeWithContentDescription("上一頁").assertIsNotEnabled()
     }
-    @Test fun systemBackTraversesHistoryThenClosesTheRootPageAndKeepsTheAppOpen(){
+    @Test fun systemBackTraversesHistoryClosesThePageThenLeavesFromInitial(){
         regular("a");val closed=c.active!!.id;val key=c.active!!.previewKey
         regular("b");back();waitFor("a")
         back();initial()
         ui.runOnIdle{assertEquals(listOf(""),c.store.tabs());assertEquals(1,c.tabs.size);assertNotEquals(closed,c.active!!.id);assertNotEquals(key,c.active!!.previewKey)}
         PreviewFixture(ui).screenshot("root-back-new-tab")
         val initialId=c.active!!.id
-        repeat(5){back();initial();ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(1,c.tabs.size)}}
+        repeat(3){leaveInitialAndReopen();ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(1,c.tabs.size)}}
     }
     @Test fun repeatedExternalLinksCloseToOneInitialTabAndPreserveOtherPages(){
         regular();val resident=c.active!!.id
@@ -113,7 +127,7 @@ class BackNavigationTest {
         back();initial(private=true)
         ui.runOnIdle{assertEquals(2,c.tabs.size);assertTrue(c.tabs.any{it.id==resident&&!it.incognito});assertTrue(c.tabs.none{it.id==closed});assertEquals(listOf(server.url("a")),c.store.tabs())}
         val initialId=c.active!!.id
-        repeat(3){back();initial(private=true);ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(2,c.tabs.size)}}
+        leaveInitialAndReopen(private=true);ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(2,c.tabs.size)}
     }
     @Test fun legacySavedTabsRemainOrdinaryAndAnUnloadedExternalTabCanBeClosed(){
         ui.runOnIdle{

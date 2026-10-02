@@ -19,7 +19,7 @@ METHODS = (
     "webViewJavascriptBridgeSurvivesOptimization",
     "externalRootBackClosesItsTabAndKeepsTheBrowserOnOneInitialPage",
     "coldExternalRootBackAndProcessRestoreKeepOneInitialPage",
-    "regularRootBackClosesOnlyItsPageAndRepeatedBackStaysOnTheInitialPage",
+    "regularRootBackClosesItsPageThenInitialBackLeavesTheBrowser",
     "savedRuleEditorAndAiRevisionEntryWorkInOptimizedRelease",
     "menuHistoryAndPrivateTabCollectionsStillOpen",
     "closeAllRegularTabsWorksInOptimizedRelease",
