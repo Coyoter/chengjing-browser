@@ -27,8 +27,23 @@ internal fun BrowserController.goBackInPage():Boolean {
 internal fun BrowserTab.canReceiveExternalLink():Boolean =
     !incognito&&imageContent==null&&url.isEmpty()&&pendingUrl.isEmpty()&&web.historyUrls().first.all{BrowserBackHistory.isHome(it)}
 
-/** Close only the externally opened tab or the current unused homepage before leaving. */
+/** A blank-looking page with real back/forward history is still an existing browsing tab. */
+internal fun BrowserTab.isInitialNewTab():Boolean =
+    imageContent==null&&BrowserBackHistory.isHome(url)&&BrowserBackHistory.isHome(pendingUrl)&&
+        web.historyUrls().first.all{BrowserBackHistory.isHome(it)}
+
+internal fun BrowserController.backInBrowser(){
+    if(!goBackInPage())finishBackNavigation()
+}
+
+/** At the history boundary, close the current page and show a usable new-tab page in its profile. */
 internal fun BrowserController.finishBackNavigation(){
-    val tab=active?:return
-    if(tab.openedExternally||tab.canReceiveExternalLink())closeTab(tab.id,replaceLast=false)
+    val tab=active?:run{newTab(incognito=false);return}
+    // Repeated Back on the initial page stays here without destroying/recreating blank tabs.
+    if(tab.isInitialNewTab())return
+    val initial=tabs.firstOrNull{it.id!=tab.id&&it.incognito==tab.incognito&&it.isInitialNewTab()}
+    val incognito=tab.incognito
+    closeTab(tab.id,replaceLast=false)
+    if(initial!=null)switchTab(initial.id)else newTab(incognito=incognito)
+    sheet=""
 }

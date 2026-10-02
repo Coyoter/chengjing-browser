@@ -158,10 +158,7 @@ class MainActivity:AppCompatActivity(){
         controller.openExternalTab(url)
     }
     internal fun backFromPage(){
-        if(controller.goBackInPage())return
-        controller.finishBackNavigation()
-        // Let Android reveal the caller's task (or the launcher), without creating a homepage.
-        if(!moveTaskToBack(true))finish()
+        controller.backInBrowser()
     }
     override fun onSaveInstanceState(outState:Bundle){
         outState.putBoolean("browser-launch-consumed",browserReady&&!incomingIntentPending)

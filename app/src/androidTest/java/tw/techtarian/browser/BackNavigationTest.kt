@@ -34,55 +34,97 @@ class BackNavigationTest {
     private fun incoming(path:String="external"){
         ui.runOnIdle{deliver(path)};waitFor(path)
     }
-    @Test fun regularRootBackKeepsTheWebpageAndDoesNotCreateHome(){
-        regular();val key=c.active!!.previewKey
-        ui.runOnIdle{assertFalse(c.goBackInPage());c.finishBackNavigation();assertEquals(listOf(server.url("a")),c.store.tabs());assertEquals(key,c.active!!.previewKey)}
+    private fun back(){
+        val automation=InstrumentationRegistry.getInstrumentation().uiAutomation
+        android.os.ParcelFileDescriptor.AutoCloseInputStream(automation.executeShellCommand("input keyevent KEYCODE_BACK")).use{it.readBytes()}
+        ui.waitForIdle()
+        ui.runOnIdle{assertEquals(androidx.lifecycle.Lifecycle.State.RESUMED,ui.activity.lifecycle.currentState)}
     }
-    @Test fun repeatedExternalLinksCloseWithoutAccumulatingEmptyTabs(){
-        regular();val resident=c.active!!.previewKey
+    private fun initial(private:Boolean=false){
+        ui.waitUntil(10000){c.active?.url==""&&c.active?.pendingUrl==""&&c.active?.incognito==private}
+        ui.runOnIdle{assertTrue(c.active!!.isInitialNewTab());assertFalse(c.active!!.openedExternally);assertFalse(c.active!!.canBack)}
+        ui.onNodeWithTag(if(private)"incognito-indicator" else "browser-home").assertIsDisplayed()
+        ui.onNodeWithContentDescription("上一頁").assertIsNotEnabled()
+    }
+    @Test fun systemBackTraversesHistoryThenClosesTheRootPageAndKeepsTheAppOpen(){
+        regular("a");val closed=c.active!!.id;val key=c.active!!.previewKey
+        regular("b");back();waitFor("a")
+        back();initial()
+        ui.runOnIdle{assertEquals(listOf(""),c.store.tabs());assertEquals(1,c.tabs.size);assertNotEquals(closed,c.active!!.id);assertNotEquals(key,c.active!!.previewKey)}
+        PreviewFixture(ui).screenshot("root-back-new-tab")
+        val initialId=c.active!!.id
+        repeat(5){back();initial();ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(1,c.tabs.size)}}
+    }
+    @Test fun repeatedExternalLinksCloseToOneInitialTabAndPreserveOtherPages(){
+        regular();val resident=c.active!!.id
         repeat(4){
-            incoming();ui.runOnIdle{
-                assertEquals(2,c.tabs.size);assertTrue(c.active!!.openedExternally);assertFalse(c.goBackInPage())
-                c.finishBackNavigation();assertEquals(listOf(server.url("a")),c.store.tabs());assertEquals(resident,c.active!!.previewKey)
-            }
+            incoming();val external=c.active!!.id
+            ui.runOnIdle{assertEquals(2,c.tabs.size);assertTrue(c.active!!.openedExternally);assertFalse(c.goBackInPage())}
+            back();initial()
+            ui.runOnIdle{assertEquals(2,c.tabs.size);assertEquals(listOf(server.url("a"),""),c.store.tabs());assertTrue(c.tabs.any{it.id==resident});assertTrue(c.tabs.none{it.id==external})}
         }
     }
-    @Test fun anExternalLinkCanReuseUnusedHomeAndLeaveNoSavedPlaceholder(){
+    @Test fun closingARootPageReusesAnExistingInitialTab(){
+        regular("a");val resident=c.active!!.id
+        var initialId=0
+        ui.runOnIdle{initialId=c.newTab()!!.id;c.newTab(server.url("b"))};waitFor("b")
+        val closed=c.active!!.id
+        ui.onNodeWithContentDescription("上一頁").assertIsEnabled().performClick();initial()
+        ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(2,c.tabs.size);assertTrue(c.tabs.any{it.id==resident});assertTrue(c.tabs.none{it.id==closed})}
+    }
+    @Test fun anExternalLinkCanReuseUnusedHomeAndReturnToOneSavedInitialTab(){
         val homeKey=c.active!!.previewKey
-        incoming();ui.runOnIdle{
-            assertEquals(1,c.tabs.size);assertEquals(homeKey,c.active!!.previewKey)
-            c.finishBackNavigation();assertTrue(c.tabs.isEmpty());assertTrue(c.store.tabs().isEmpty())
-        }
-        ui.activityRule.scenario.recreate()
-        ui.runOnIdle{assertEquals(1,c.tabs.size);assertEquals("",c.active!!.url);assertFalse(c.active!!.openedExternally)}
+        incoming();val closed=c.active!!.id
+        ui.runOnIdle{assertEquals(1,c.tabs.size);assertEquals(homeKey,c.active!!.previewKey)}
+        back();initial()
+        ui.runOnIdle{assertEquals(listOf(""),c.store.tabs());assertEquals(1,c.tabs.size);assertNotEquals(closed,c.active!!.id)}
+        val initialKey=c.active!!.previewKey
+        ui.activityRule.scenario.recreate();initial()
+        ui.runOnIdle{assertEquals(1,c.tabs.size);assertEquals(initialKey,c.active!!.previewKey)}
     }
-    @Test fun incomingIntentIsNotReplayedAfterRecreationAndItsOriginSurvives(){
+    @Test fun incomingIntentIsNotReplayedAfterRecreationAndClosedSourceMarkerIsRemoved(){
         incoming();val key=c.active!!.previewKey
         ui.runOnIdle{assertNull(ui.activity.intent.data);assertTrue(c.store.savedTabRecords().single().openedExternally)}
         ui.activityRule.scenario.recreate();waitFor("external")
-        ui.runOnIdle{assertEquals(1,c.tabs.size);assertEquals(key,c.active!!.previewKey);assertTrue(c.active!!.openedExternally);c.finishBackNavigation();assertTrue(c.store.tabs().isEmpty())}
+        ui.runOnIdle{assertEquals(1,c.tabs.size);assertEquals(key,c.active!!.previewKey);assertTrue(c.active!!.openedExternally)}
+        back();initial()
+        ui.runOnIdle{assertEquals(listOf(""),c.store.tabs());assertFalse(c.store.savedTabRecords().single().openedExternally)}
     }
     @Test fun backTraversesRealPagesAndSkipsTheNativeHomeEntry(){
         regular("a")
         ui.onNodeWithTag("home-button").performClick();ui.waitUntil(10000){c.active?.url==""&&c.active?.pendingUrl==""}
         regular("b")
         ui.onNodeWithContentDescription("上一頁").assertIsEnabled().performClick();waitFor("a")
-        ui.onNodeWithContentDescription("上一頁").assertIsNotEnabled()
-        ui.runOnIdle{assertFalse(c.goBackInPage());assertEquals(1,c.tabs.size)}
+        ui.onNodeWithContentDescription("上一頁").assertIsEnabled().performClick();initial()
+        ui.runOnIdle{assertEquals(1,c.tabs.size)}
     }
-    @Test fun aHomeWithRealHistoryIsNotOverwrittenByIncomingLinks(){
-        regular("a");val original=c.active!!.previewKey
+    @Test fun aHomeWithRealHistoryIsPreservedButIsNotReusedAsTheInitialTab(){
+        regular("a");val original=c.active!!.id
         ui.onNodeWithTag("home-button").performClick();ui.waitUntil(10000){c.active?.url==""&&c.active?.pendingUrl==""}
-        incoming();ui.runOnIdle{assertEquals(2,c.tabs.size);assertNotEquals(original,c.active!!.previewKey);c.finishBackNavigation();assertEquals(original,c.active!!.previewKey);assertTrue(c.goBackInPage())};waitFor("a")
+        incoming();ui.runOnIdle{assertEquals(2,c.tabs.size);assertNotEquals(original,c.active!!.id)}
+        back();initial()
+        ui.runOnIdle{assertNotEquals(original,c.active!!.id);assertEquals(2,c.tabs.size);c.switchTab(original);assertTrue(c.goBackInPage())};waitFor("a")
+    }
+    @Test fun privateRootBackShowsAPrivateInitialTabAndKeepsRegularPages(){
+        Assume.assumeTrue(c.privateSession.supported)
+        regular("a");val resident=c.active!!.id
+        ui.runOnIdle{c.newTab(server.url("private"),incognito=true)};waitFor("private")
+        val closed=c.active!!.id
+        back();initial(private=true)
+        ui.runOnIdle{assertEquals(2,c.tabs.size);assertTrue(c.tabs.any{it.id==resident&&!it.incognito});assertTrue(c.tabs.none{it.id==closed});assertEquals(listOf(server.url("a")),c.store.tabs())}
+        val initialId=c.active!!.id
+        repeat(3){back();initial(private=true);ui.runOnIdle{assertEquals(initialId,c.active!!.id);assertEquals(2,c.tabs.size)}}
     }
     @Test fun legacySavedTabsRemainOrdinaryAndAnUnloadedExternalTabCanBeClosed(){
         ui.runOnIdle{
             c.store.saveTabs(listOf(server.url("legacy")))
             assertFalse(c.store.savedTabRecords().single().openedExternally)
             deliver("pending")
-            c.finishBackNavigation();assertTrue(c.tabs.isEmpty());assertTrue(c.store.tabs().isEmpty())
+            c.finishBackNavigation();assertEquals(1,c.tabs.size);assertEquals(listOf(""),c.store.tabs())
         }
+        initial()
     }
+
 }
 
 class ColdExternalBackNavigationTest {
