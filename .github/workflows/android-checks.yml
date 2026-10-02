@@ -47,7 +47,7 @@ jobs:
         run: python3 scripts/verify-localization.py
       - name: Compile QA app and instrumentation, run unit tests and lint
         run: |
-          ./gradlew --no-daemon --stacktrace -PqaInstall=true :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug :release-smoke:assembleDebug
+          ./gradlew --no-daemon --stacktrace -Pkotlin.compiler.execution.strategy=in-process -PqaInstall=true :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug :release-smoke:assembleDebug
       - name: Prepare an isolated Android emulator
         run: |
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
@@ -70,6 +70,15 @@ jobs:
           # Use software graphics/codecs without Vulkan in this disposable runner; retain all real video/menu/download tests.
           "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader -feature -Vulkan,-HardwareDecoder > "$RUNNER_TEMP/emulator.log" 2>&1 &
           EMULATOR_PID=$!
+          echo "$EMULATOR_PID" > "$RUNNER_TEMP/emulator.pid"
+          (
+            while kill -0 "$EMULATOR_PID" 2>/dev/null; do
+              date -u
+              free -m
+              ps -eo pid,rss,comm --sort=-rss | head -10
+              sleep 15
+            done
+          ) > "$RUNNER_TEMP/host-memory.log" 2>&1 &
           sleep 3
           if ! kill -0 "$EMULATOR_PID" 2>/dev/null; then cat "$RUNNER_TEMP/emulator.log"; exit 1; fi
           if ! timeout 180 adb wait-for-device; then cat "$RUNNER_TEMP/emulator.log"; exit 1; fi
@@ -90,7 +99,7 @@ jobs:
       - name: Run focused on-device regressions
         run: |
           adb install -r release-smoke/build/outputs/apk/debug/release-smoke-debug.apk
-          ./gradlew --no-daemon --stacktrace -PqaInstall=true \
+          ./gradlew --no-daemon --stacktrace -Dorg.gradle.jvmargs="-Xmx1g -Dfile.encoding=UTF-8" -Pkotlin.compiler.execution.strategy=in-process -PqaInstall=true \
             -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.SyncRecoveryTest,tw.techtarian.browser.WebsiteLocationTest,tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.ImageActionsTest,tw.techtarian.browser.PageDownloadsTest,tw.techtarian.browser.AppearanceTest,tw.techtarian.browser.SearchEngineSettingsTest,tw.techtarian.browser.RuleEditingJourneyTest,tw.techtarian.browser.CollectionsPrivacyTest,tw.techtarian.browser.TabPreviewStoreTest,tw.techtarian.browser.TabPreviewPersistenceTest,tw.techtarian.browser.CloseAllTabsTest,tw.techtarian.browser.HomeSettingsTest,tw.techtarian.browser.BackNavigationTest,tw.techtarian.browser.ColdExternalBackNavigationTest,tw.techtarian.browser.HomeLayoutTest,tw.techtarian.browser.BrowsingDataTest,tw.techtarian.browser.ExternalLinksTest,tw.techtarian.browser.TabPreviewRenderingTest,tw.techtarian.browser.FindInPageTest,tw.techtarian.browser.AddressEditingTest,tw.techtarian.browser.LanguageSettingsTest \
             :app:connectedDebugAndroidTest
       - name: Verify thumbnails survive actual process restart and close-tab cleanup
@@ -123,6 +132,9 @@ jobs:
           fi
           if [ -f "$RUNNER_TEMP/emulator.log" ]; then cp "$RUNNER_TEMP/emulator.log" validation/; fi
           if [ -f "$RUNNER_TEMP/avd-list.txt" ]; then cp "$RUNNER_TEMP/avd-list.txt" validation/; fi
+          if [ -f "$RUNNER_TEMP/host-memory.log" ]; then cp "$RUNNER_TEMP/host-memory.log" validation/; fi
+          free -m > validation/host-memory-final.txt
+          sudo dmesg -T | tail -120 > validation/host-kernel.txt || true
       - name: Save validation reports and QA-only APK
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

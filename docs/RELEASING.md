@@ -14,6 +14,8 @@ main 的版本檔或 release workflow 更新會觸發發布流程。也可手動
 
 雲端 QA 模擬器使用 `-gpu swiftshader -feature -Vulkan,-HardwareDecoder`，以軟體 GLES 繪圖及 Android 軟體影片解碼執行測試。2026-10-02 的 Linux runner 在原生影片測試出現繪圖 color buffer 錯誤後整台模擬器失聯，因此依 [Android 官方的網頁繪圖相容性建議](https://developer.android.com/studio/run/emulator-troubleshooting?hl=en) 關閉 Vulkan，並改用 [目前支援的 SwiftShader 模式](https://developer.android.com/studio/run/emulator-acceleration)。這是針對測試環境的調整；影片播放、原生三點選單、下載確認及檔案內容核對仍完整執行，正式 APK 的影片及繪圖設定維持相同。[Android 模擬器的解碼設定](https://android.googlesource.com/platform/external/qemu/+/ba29194f97e72ffe770bd56e4e5c5c620598004b/android/data/advancedFeatures.ini)。
 
+QA 編譯使用同一個 Gradle 程序執行 Kotlin，完成後釋放編譯記憶體；模擬器回歸階段將 Gradle 堆積限制為 1 GB。這只限制雲端測試工具，不改變正式 APK 的記憶體設定。驗證附件保留主機記憶體取樣與 kernel 記錄，以便區分應用斷言、模擬器錯誤及主機終止程序。
+
 scripts/publish-release.py 將 Tag 指向建置的精確提交，先建立 Draft，上傳六個附件並比對遠端 SHA-256，再發布為 Latest。不移動既有 Tag、不覆蓋附件；若 main 已前進或同名附件內容不同，停止並保留 Draft 供檢查。
 
 這只發布 GitHub Release，不會提交 Google Play，也不自動部署公開隱私政策。
