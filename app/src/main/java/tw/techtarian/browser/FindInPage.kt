@@ -49,24 +49,24 @@ internal class FindInPage(private val controller:BrowserController) {
     val canMove get()=isOpen&&!searching&&matches>0
     val resultLabel get()=when {
         query.isEmpty()->"0 / 0"
-        searching->"搜尋中"
-        matches==0->"找不到"
+        searching->bt(R.string.msg_f4597bc5a2c9)
+        matches==0->bt(R.string.msg_8d71eb661bb2)
         else->"$current / $matches"
     }
     val resultDescription get()=when {
-        query.isEmpty()->"請輸入要尋找的文字"
-        searching->"正在搜尋頁面"
-        matches==0->"找不到符合的文字"
-        else->"第 $current 筆，共 $matches 筆"
+        query.isEmpty()->bt(R.string.msg_1599a1be38ac)
+        searching->bt(R.string.msg_28010afeecd8)
+        matches==0->bt(R.string.msg_5c1ebaf7a70b)
+        else->bt(R.string.msg_b9242dd83c2a ,current,matches)
     }
 
     fun open():Boolean {
         val tab=controller.active?:return false
         if(tab.url.isEmpty()||tab.error.isNotEmpty()||tab.imageContent!=null){
-            controller.notice="先開啟網頁，再尋找頁面文字";return false
+            controller.notice=bt(R.string.msg_d1989441806e);return false
         }
         // Do not discard unsaved Sky Eye edits just to begin a search.
-        if(controller.eye||tab.web.selecting){controller.notice="請先離開天眼，再尋找頁面文字";return false}
+        if(controller.eye||tab.web.selecting){controller.notice=bt(R.string.msg_c570255d2708);return false}
         close()
         controller.sheet=""
         owner=tab
@@ -166,7 +166,7 @@ internal class FindInPage(private val controller:BrowserController) {
                             else->false
                         }
                     },
-                    placeholder={Text("尋找頁面文字",maxLines=1,overflow=TextOverflow.Ellipsis)},
+                    placeholder={Text(bt(R.string.msg_f7ff0dc054ff),maxLines=1,overflow=TextOverflow.Ellipsis)},
                     singleLine=true,shape=RoundedCornerShape(12.dp),
                     keyboardOptions=KeyboardOptions(autoCorrectEnabled=false,imeAction=ImeAction.Search),
                     keyboardActions=KeyboardActions(onSearch={find.submit();focus.clearFocus();keyboard?.hide()}))
@@ -180,17 +180,17 @@ internal class FindInPage(private val controller:BrowserController) {
             // Put descriptions on the actual buttons rather than decorative child icons,
             // so accessibility exposes the same enabled/disabled state users interact with.
             val previous:@Composable ()->Unit={
-                IconButton(onClick={next(false)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-previous").semantics{contentDescription="上一筆符合文字"}){
+                IconButton(onClick={next(false)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-previous").semantics{contentDescription=bt(R.string.msg_f782a6845afa)}){
                     Icon(Icons.Outlined.KeyboardArrowUp,null)
                 }
             }
             val following:@Composable ()->Unit={
-                IconButton(onClick={next(true)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-next").semantics{contentDescription="下一筆符合文字"}){
+                IconButton(onClick={next(true)},enabled=find.canMove,modifier=Modifier.size(48.dp).testTag("find-next").semantics{contentDescription=bt(R.string.msg_f4e245ba6df0)}){
                     Icon(Icons.Outlined.KeyboardArrowDown,null)
                 }
             }
             val close:@Composable ()->Unit={
-                IconButton(onClick={finish()},modifier=Modifier.size(48.dp).testTag("find-close").semantics{contentDescription="關閉頁面搜尋"}){
+                IconButton(onClick={finish()},modifier=Modifier.size(48.dp).testTag("find-close").semantics{contentDescription=bt(R.string.msg_f41b8847f832)}){
                     Icon(Icons.Outlined.Close,null)
                 }
             }

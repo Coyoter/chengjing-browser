@@ -22,7 +22,7 @@ object AddressHistory {
     private fun normalize(text:String)=Normalizer.normalize(text,Normalizer.Form.NFKC).lowercase(Locale.ROOT).trim()
     fun suggestions(input:String,searches:List<String>,pages:List<Pair<String,String>>):List<AddressSuggestion>{
         val query=normalize(input);val terms=query.split(Regex("\\s+")).filter{it.isNotEmpty()}
-        val rows=searches.map{AddressSuggestion(it,"再次搜尋",it,true)}+pages.map{(url,title)->AddressSuggestion(title.ifBlank{url},url,url,false)}
+        val rows=searches.map{AddressSuggestion(it,bt(R.string.msg_f9e84d906437),it,true)}+pages.map{(url,title)->AddressSuggestion(title.ifBlank{url},url,url,false)}
         return rows.distinctBy{it.search to it.input}.filter{row->val hay=normalize(row.title+" "+row.subtitle);terms.all{it in hay}}
             .sortedByDescending{row->val label=normalize(row.title);when{query.isEmpty()->0;label==query->3;label.startsWith(query)->2;query in label->1;else->0}}.take(6)
     }

@@ -38,7 +38,7 @@ assert not adb('shell', 'pm', 'path', 'com.google.android.gms').strip() or 'pack
 adb('install', '-r', '-t', 'app/build/outputs/apk/debug/app-debug.apk')
 adb('install', '-r', '-t', 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk')
 result = subprocess.run(['adb', 'shell', 'am', 'instrument', '-w', '-r', '-e', 'class', TEST,
-                         APP + '.test/androidx.test.runner.AndroidJUnitRunner'], text=True, capture_output=True, timeout=180)
+                         APP + '.test/tw.techtarian.browser.BrowserTestRunner'], text=True, capture_output=True, timeout=180)
 output = result.stdout + result.stderr
 (OUT / 'instrumentation.txt').write_text(output)
 print(output, flush=True)

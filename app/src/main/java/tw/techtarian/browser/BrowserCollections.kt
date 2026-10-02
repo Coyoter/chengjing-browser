@@ -39,7 +39,7 @@ internal class BrowserDownloads(private val context:Context) {
                 val local=text(DownloadManager.COLUMN_LOCAL_URI)
                 val title=text(DownloadManager.COLUMN_TITLE)
                 if(local.contains("/Android/data/${context.packageName}/")||title=="澄境 · Gemma 4 本機模型")continue
-                result.add(DownloadItem(number(DownloadManager.COLUMN_ID),title.ifBlank{"未命名檔案"},
+                result.add(DownloadItem(number(DownloadManager.COLUMN_ID),title.ifBlank{bt(R.string.msg_ad62e8203c00)},
                     text(DownloadManager.COLUMN_URI),text(DownloadManager.COLUMN_MEDIA_TYPE),
                     number(DownloadManager.COLUMN_STATUS).toInt(),number(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR),number(DownloadManager.COLUMN_TOTAL_SIZE_BYTES),createdAt=number(DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP)))
             }
@@ -47,14 +47,14 @@ internal class BrowserDownloads(private val context:Context) {
         return (result+SavedImageDownloads(context).list()).sortedByDescending{it.createdAt}
     }
     fun open(item:DownloadItem):String?=try {
-        val uri=item.contentUri?.let{android.net.Uri.parse(it)}?:manager.getUriForDownloadedFile(item.id)?:error("下載尚未完成或檔案已移除")
-        context.contentResolver.openFileDescriptor(uri,"r")?.use{}?:error("檔案已移除")
+        val uri=item.contentUri?.let{android.net.Uri.parse(it)}?:manager.getUriForDownloadedFile(item.id)?:error(bt(R.string.msg_ff8fd6c6b9ab))
+        context.contentResolver.openFileDescriptor(uri,"r")?.use{}?:error(bt(R.string.msg_53b79b2dbdd8))
         val intent=Intent(Intent.ACTION_VIEW).setDataAndType(uri,item.mime.ifBlank{"*/*"})
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        context.startActivity(Intent.createChooser(intent,"開啟下載檔案").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        context.startActivity(Intent.createChooser(intent,bt(R.string.msg_813f4217faf8)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         null
-    }catch(_:android.content.ActivityNotFoundException){"沒有可開啟此檔案的應用程式"}
-    catch(_:Exception){"檔案無法開啟，可能已被移動或刪除"}
+    }catch(_:android.content.ActivityNotFoundException){bt(R.string.msg_15ae9c5747c0)}
+    catch(_:Exception){bt(R.string.msg_04c451cd747f)}
 }
 
 @Composable internal fun ColumnScope.DownloadsScreen(c:BrowserController) {
@@ -69,18 +69,18 @@ internal class BrowserDownloads(private val context:Context) {
         lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
             while(true) {
                 runCatching{withContext(Dispatchers.IO){downloads.list()}}.onSuccess{rows=it;error=""}
-                    .onFailure{error="暫時無法讀取系統下載，請稍後重試"}
+                    .onFailure{error=bt(R.string.msg_8d24156413ef)}
                 loading=false
                 delay(1800)
             }
         }
     }
-    CollectionHeader("下載", "由澄境瀏覽器下載的圖片、影片、音訊與檔案。", query,{query=it})
+    CollectionHeader(bt(R.string.msg_d477c75aa656), bt(R.string.msg_4138d7e93958), query,{query=it})
     if(loading)LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal=20.dp))
     if(error.isNotEmpty())Text(error,Modifier.padding(20.dp),color=MaterialTheme.colorScheme.error)
     val pageDownloads=c.context.pageDownloads
     val filtered=(pageDownloads.items+rows).filter{it.title.contains(query,true)||it.source.contains(query,true)}
-    if(!loading&&filtered.isEmpty())CollectionEmpty(if(query.isEmpty())"還沒有下載項目"else"找不到相符的下載", "長按圖片、使用播放器的下載選單，或點擊網站的下載連結。")
+    if(!loading&&filtered.isEmpty())CollectionEmpty(if(query.isEmpty())bt(R.string.msg_775f5ca1d653)else bt(R.string.msg_007f2f5ca394), bt(R.string.msg_d5b8f871bef6))
     LazyColumn(Modifier.fillMaxWidth().weight(1f).testTag("download-list"),contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
         items(filtered,key={it.id}){item->
             Surface(shape=RoundedCornerShape(18.dp),color=MaterialTheme.colorScheme.surface) {
@@ -92,11 +92,11 @@ internal class BrowserDownloads(private val context:Context) {
                             Text(item.title,maxLines=2,overflow=TextOverflow.Ellipsis,fontWeight=FontWeight.Medium)
                             Text(Domains.scope(item.source),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
                         }
-                        if(item.status==DownloadManager.STATUS_SUCCESSFUL)IconButton(onClick={openError=downloads.open(item)}){Icon(Icons.Outlined.OpenInNew,"開啟 ${item.title}")}
-                        if(item.status==DownloadManager.STATUS_RUNNING&&pageDownloads.items.any{it.id==item.id})IconButton(onClick={pageDownloads.cancel(item.id)}){Icon(Icons.Outlined.Close,"取消 ${item.title}")}
+                        if(item.status==DownloadManager.STATUS_SUCCESSFUL)IconButton(onClick={openError=downloads.open(item)}){Icon(Icons.Outlined.OpenInNew,bt(R.string.msg_d011ffe066da ,item.title))}
+                        if(item.status==DownloadManager.STATUS_RUNNING&&pageDownloads.items.any{it.id==item.id})IconButton(onClick={pageDownloads.cancel(item.id)}){Icon(Icons.Outlined.Close,bt(R.string.msg_ff4b7178267f ,item.title))}
                     }
-                    val status=if(item.detail.startsWith("已取消"))"已取消"else when(item.status){DownloadManager.STATUS_SUCCESSFUL->"已完成";DownloadManager.STATUS_FAILED->"下載失敗";DownloadManager.STATUS_PAUSED->"已暫停，等待系統重試";DownloadManager.STATUS_RUNNING->"下載中";else->"等待下載"}
-                    val size=if(item.status==DownloadManager.STATUS_RUNNING&&item.total>0)"${Formatter.formatFileSize(c.context,item.done)}／${Formatter.formatFileSize(c.context,item.total)}"else if(item.total>0)Formatter.formatFileSize(c.context,item.total)else if(item.done>0)Formatter.formatFileSize(c.context,item.done)else"大小待確認"
+                    val status=if(item.detail.startsWith("已取消"))bt(R.string.msg_a37778f17c5f)else when(item.status){DownloadManager.STATUS_SUCCESSFUL->bt(R.string.msg_f28461bb49c8);DownloadManager.STATUS_FAILED->bt(R.string.msg_c71d5c1216da);DownloadManager.STATUS_PAUSED->bt(R.string.msg_204249cd633a);DownloadManager.STATUS_RUNNING->bt(R.string.msg_235d5f021172);else->bt(R.string.msg_efed99b86212)}
+                    val size=if(item.status==DownloadManager.STATUS_RUNNING&&item.total>0)"${Formatter.formatFileSize(c.context,item.done)}／${Formatter.formatFileSize(c.context,item.total)}"else if(item.total>0)Formatter.formatFileSize(c.context,item.total)else if(item.done>0)Formatter.formatFileSize(c.context,item.done)else bt(R.string.msg_13352b8fd7dd)
                     Text("$status · $size",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
                     if(item.detail.isNotBlank())Text(item.detail,fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
                     if(item.status==DownloadManager.STATUS_RUNNING) {
@@ -107,7 +107,7 @@ internal class BrowserDownloads(private val context:Context) {
             }
         }
     }
-    openError?.let{message->AlertDialog(onDismissRequest={openError=null},title={Text("下載檔案")},text={Text(message)},confirmButton={TextButton(onClick={openError=null}){Text("知道了")}})}
+    openError?.let{message->AlertDialog(onDismissRequest={openError=null},title={Text(bt(R.string.msg_d8673fd7efab))},text={Text(message)},confirmButton={TextButton(onClick={openError=null}){Text(bt(R.string.msg_de32e20193ad))}})}
 }
 
 @Composable internal fun ColumnScope.HistoryScreen(c:BrowserController) {
@@ -115,10 +115,10 @@ internal class BrowserDownloads(private val context:Context) {
     var revision by remember{mutableIntStateOf(0)}
     var clear by remember{mutableStateOf(false)}
     val rows=remember(revision,c.revision){c.store.history()}
-    CollectionHeader("瀏覽記錄","最近 250 個頁面，只保留在這支手機。無痕瀏覽不會加入。",query,{query=it})
-    if(rows.isNotEmpty())TextButton(onClick={clear=true},modifier=Modifier.padding(horizontal=12.dp)){Icon(Icons.Outlined.DeleteOutline,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text("清除瀏覽記錄")}
+    CollectionHeader(bt(R.string.msg_0baa9a64e9b1),bt(R.string.msg_4e445f09300c),query,{query=it})
+    if(rows.isNotEmpty())TextButton(onClick={clear=true},modifier=Modifier.padding(horizontal=12.dp)){Icon(Icons.Outlined.DeleteOutline,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text(bt(R.string.msg_c24268c66266))}
     val filtered=rows.filter{it.first.contains(query,true)||it.second.contains(query,true)}
-    if(filtered.isEmpty())CollectionEmpty(if(query.isEmpty())"尚無瀏覽記錄"else"找不到相符的頁面","一般分頁瀏覽過的頁面會出現在這裡。")
+    if(filtered.isEmpty())CollectionEmpty(if(query.isEmpty())bt(R.string.msg_b2b9874c2118)else bt(R.string.msg_eb41ae435db9),bt(R.string.msg_539989302fd2))
     LazyColumn(Modifier.fillMaxWidth().weight(1f).testTag("history-list"),contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         items(filtered,key={it.first}){(url,title)->
             Surface(shape=RoundedCornerShape(16.dp),color=MaterialTheme.colorScheme.surface) {
@@ -129,18 +129,18 @@ internal class BrowserDownloads(private val context:Context) {
                         Spacer(Modifier.height(4.dp))
                         Text(url,fontSize=12.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=MaterialTheme.colorScheme.onSurfaceVariant)
                     }
-                    IconButton(onClick={c.store.removeHistory(url);revision++;c.revision++}){Icon(Icons.Outlined.Close,"移除此筆瀏覽記錄")}
+                    IconButton(onClick={c.store.removeHistory(url);revision++;c.revision++}){Icon(Icons.Outlined.Close,bt(R.string.msg_3352ef9c5026))}
                 }
             }
         }
     }
-    if(clear)AlertDialog(onDismissRequest={clear=false},title={Text("清除瀏覽記錄？")},text={Text("將清除本機瀏覽與搜尋記錄，不會刪除書籤、收藏或網站登入資料。")},confirmButton={TextButton(onClick={c.store.clearHistory();revision++;c.revision++;clear=false}){Text("清除")}},dismissButton={TextButton(onClick={clear=false}){Text("取消")}})
+    if(clear)AlertDialog(onDismissRequest={clear=false},title={Text(bt(R.string.msg_46afe15d4929))},text={Text(bt(R.string.msg_40038fcf0ae7))},confirmButton={TextButton(onClick={c.store.clearHistory();revision++;c.revision++;clear=false}){Text(bt(R.string.msg_bce2377283c2))}},dismissButton={TextButton(onClick={clear=false}){Text(bt(R.string.msg_2cd0f3be8738))}})
 }
 
 @Composable private fun CollectionHeader(title:String,description:String,query:String,onQuery:(String)->Unit) {
     Column(Modifier.fillMaxWidth().padding(horizontal=20.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
         Text(description,fontSize=13.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-        OutlinedTextField(query,onQuery,modifier=Modifier.fillMaxWidth(),singleLine=true,label={Text("搜尋$title")},leadingIcon={Icon(Icons.Outlined.Search,null)},shape=RoundedCornerShape(16.dp))
+        OutlinedTextField(query,onQuery,modifier=Modifier.fillMaxWidth(),singleLine=true,label={Text(bt(R.string.msg_0e65bfb6d2ae ,title))},leadingIcon={Icon(Icons.Outlined.Search,null)},shape=RoundedCornerShape(16.dp))
     }
 }
 @Composable internal fun CollectionEmpty(title:String,description:String) {

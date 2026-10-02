@@ -29,9 +29,9 @@ object ChromiumVersions {
     fun parse(raw:String,platform:String="webview"):String{
         require(platform in setOf("webview","android"))
         val rows=JSONObject(raw).getJSONArray("versions")
-        require(rows.length()>0){"官方尚未提供版本資料"}
+        require(rows.length()>0){bt(R.string.msg_8e57db190d94)}
         val row=rows.getJSONObject(0);val version=row.getString("version")
-        require(row.getString("name")=="chrome/platforms/$platform/channels/stable/versions/$version"&&compare(version,version)==0){"官方版本資料格式異常"}
+        require(row.getString("name")=="chrome/platforms/$platform/channels/stable/versions/$version"&&compare(version,version)==0){bt(R.string.msg_df93d17ea7a2)}
         return version
     }
     fun installed(context:Context):InstalledEngine{
@@ -41,8 +41,8 @@ object ChromiumVersions {
         val packageVersion=info?.versionName.orEmpty().takeIf{compare(it,it)==0}
         // Default UA belongs to the real engine, not the user-configurable per-WebView UA.
         val engine=if(googleProvider&&packageVersion!=null)packageVersion else Regex("Chrome/([0-9.]+)").find(WebSettings.getDefaultUserAgent(context))?.groupValues?.get(1).orEmpty()
-        val provider=runCatching{info?.applicationInfo?.loadLabel(context.packageManager)?.toString()}.getOrNull()?:packageName.ifBlank{"系統 WebView"}
-        return InstalledEngine(engine.ifBlank{"無法讀取"},provider,packageName,if(packageName in setOf("com.android.chrome","com.chrome.beta","com.chrome.dev","com.chrome.canary"))"android"else"webview")
+        val provider=runCatching{info?.applicationInfo?.loadLabel(context.packageManager)?.toString()}.getOrNull()?:packageName.ifBlank{bt(R.string.msg_b4a2d538390f)}
+        return InstalledEngine(engine.ifBlank{bt(R.string.msg_b7d90d419331)},provider,packageName,if(packageName in setOf("com.android.chrome","com.chrome.beta","com.chrome.dev","com.chrome.canary"))"android"else"webview")
     }
 }
 class EngineVersionRepository(context:Context,private val platform:String="webview"){
@@ -56,13 +56,13 @@ class EngineVersionRepository(context:Context,private val platform:String="webvi
     }
     suspend fun refresh():StableEngine=withContext(Dispatchers.IO){
         val version=client.newCall(Request.Builder().url(ChromiumVersions.endpoint.replace("/webview/","/$platform/")).build()).execute().use{response->
-            check(response.isSuccessful){"官方版本查詢暫時無法連線"}
-            val raw=response.body?.byteStream()?.readBounded(65537)?:error("官方未回傳版本資料")
-            require(raw.size<=65536){"版本資料過大"}
+            check(response.isSuccessful){bt(R.string.msg_737d4fde158c)}
+            val raw=response.body?.byteStream()?.readBounded(65537)?:error(bt(R.string.msg_6090d27dccad))
+            require(raw.size<=65536){bt(R.string.msg_3bbd188b2227)}
             ChromiumVersions.parse(String(raw,Charsets.UTF_8),platform)
         }
         val result=StableEngine(version,System.currentTimeMillis())
-        check(prefs.edit().putString("stable:$platform",version).putLong("checked-at:$platform",result.checkedAt).commit()){ "版本資訊儲存失敗" }
+        check(prefs.edit().putString("stable:$platform",version).putLong("checked-at:$platform",result.checkedAt).commit()){ bt(R.string.msg_f3ac0161d2ad) }
         result
     }
 }

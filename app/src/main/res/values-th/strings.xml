@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"ค้นหาอีกครั้ง"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"บัญชี Google"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"สแนปช็อตอุปกรณ์ซิงค์มากเกินไป โปรดติดต่อฝ่ายสนับสนุน"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"รอการซิงค์"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"ยังไม่ได้เชื่อมต่อกับ Google"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"ยกเลิกการอนุญาต Google แล้ว"</string>
+  <string name="msg_37f027ce9096" formatted="false">"ข้อมูลในเครื่องยังคงเหมือนเดิม คุณสามารถกด “ซิงค์ทันที” อีกครั้งในภายหลัง"</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"รอการเชื่อมต่อเครือข่าย"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"ข้อมูลในเครื่องถูกเก็บไว้ เมื่อเชื่อมต่ออีกครั้งให้กด “ซิงค์ทันที”"</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"ต้องเข้าสู่ระบบ Google ใหม่"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"โปรดกด “ซิงค์ทันที” เพื่อยืนยันบัญชี Google"</string>
+  <string name="msg_35b24a76557b" formatted="false">"การตั้งค่าการเข้าสู่ระบบ Google ไม่เข้ากัน"</string>
+  <string name="msg_f164f003f815" formatted="false">"โปรดอัปเดตเป็นเวอร์ชันล่าสุด หากยังเชื่อมต่อไม่ได้ โปรดติดต่อฝ่ายสนับสนุน"</string>
+  <string name="msg_ebfa487493ba" formatted="false">"การอนุญาต Google ยังไม่เสร็จสมบูรณ์"</string>
+  <string name="msg_9dba61428261" formatted="false">"โปรดกด “ซิงค์ทันที” แล้วลองอีกครั้ง ข้อมูลในเครื่องถูกเก็บไว้แล้ว"</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"กำลังเชื่อมต่อกับ Google..."</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"ข้อมูลในเครื่องยังคงเหมือนเดิม โปรดลองอีกครั้ง"</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"กำลังซิงค์บุ๊กมาร์ก..."</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"การเชื่อมต่อถูกยกเลิก"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"การเขียนและอ่านข้อมูลบนคลาวด์ไม่ตรงกัน โปรดลองอีกครั้ง"</string>
+  <string name="msg_9359e2513325" formatted="false">"กำลังซิงค์รายการโปรดและความคืบหน้าการอ่าน..."</string>
+  <string name="msg_294092e535b2" formatted="false">"การเขียนและอ่านรายการโปรดและความคืบหน้าการอ่านไม่ตรงกัน โปรดลองอีกครั้ง"</string>
+  <string name="msg_f2e9df262458" formatted="false">"กำลังซิงค์การตั้งค่าเว็บไซต์ SkyEye..."</string>
+  <string name="msg_ef86e477373a" formatted="false">"การเขียนและอ่านการตั้งค่า SkyEye ไม่ตรงกัน โปรดลองอีกครั้ง"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"ซิงค์บุ๊กมาร์ก %1$s รายการ, รายการโปรดและความคืบหน้าการอ่าน %2$s รายการแล้ว"</string>
+  <string name="msg_2830de0d843f" formatted="false">" และการตั้งค่าเว็บไซต์ %1$s รายการ; จะใช้หลังรีโหลดหน้า"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"หยุดซิงค์แล้ว ข้อมูลบุ๊กมาร์กและรายการโปรดในเครื่องและคลาวด์ยังคงอยู่"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"บุ๊กมาร์ก"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"รหัสบุ๊กมาร์กไม่ถูกต้อง"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"โปรดป้อน URL บุ๊กมาร์ก"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"URL สูงสุด 16,000 ตัวอักษร"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"โปรดป้อน URL ที่ขึ้นต้นด้วย https:// หรือ http://"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"รูปแบบ URL ไม่ถูกต้อง"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"URL หลังเข้ารหัสเกิน 16,000 ตัวอักษร โปรดย่อ URL"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"ไฟล์บุ๊กมาร์กใหญ่เกินไป โปรดนำเข้าเป็นชุด (สูงสุด 8 MB)"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"นำเข้าบุ๊กมาร์กได้สูงสุด 20,000 รายการต่อครั้ง"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;บุ๊กมาร์ก ChengJing&lt;/TITLE&gt;&lt;H1&gt;บุ๊กมาร์ก ChengJing&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"ไฟล์บุ๊กมาร์กคลาวด์ใหญ่เกินไป"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"รูปแบบบุ๊กมาร์กคลาวด์ไม่เข้ากัน"</string>
+  <string name="msg_40ad29b56199" formatted="false">"บันทึกบุ๊กมาร์กล้มเหลว"</string>
+  <string name="msg_a782f2754c83" formatted="false">"หน้าแรก"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"เปิดใช้งานข้อยกเว้นใบรับรอง คลิกเพื่อดู"</string>
+  <string name="msg_7c24b540153b" formatted="false">"ใบรับรองผิดปกติ คลิกเพื่อดู"</string>
+  <string name="msg_58f5b551d138" formatted="false">"ข้อมูลเว็บไซต์"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"ค้นหาหรือป้อน URL"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"ไปที่"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"หยุดโหลด"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"รีเฟรช"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"เพิ่มแท็บใหม่"</string>
+  <string name="msg_75bc594490fc" formatted="false">"แท็บ, %1$s รายการ"</string>
+  <string name="msg_ad62e8203c00" formatted="false">"ไฟล์ไม่มีชื่อ"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"การดาวน์โหลดยังไม่เสร็จหรือไฟล์ถูกลบ"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"ไฟล์ถูกลบแล้ว"</string>
+  <string name="msg_813f4217faf8" formatted="false">"เปิดไฟล์ที่ดาวน์โหลด"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"ไม่มีแอปที่เปิดไฟล์นี้ได้"</string>
+  <string name="msg_04c451cd747f" formatted="false">"ไม่สามารถเปิดไฟล์ได้ อาจถูกย้ายหรือลบแล้ว"</string>
+  <string name="msg_8d24156413ef" formatted="false">"ไม่สามารถอ่านการดาวน์โหลดของระบบได้ชั่วคราว โปรดลองใหม่อีกครั้งในภายหลัง"</string>
+  <string name="msg_d477c75aa656" formatted="false">"ดาวน์โหลด"</string>
+  <string name="msg_4138d7e93958" formatted="false">"รูปภาพ วิดีโอ เสียง และไฟล์ที่ดาวน์โหลดโดย ChengJing Browser"</string>
+  <string name="msg_775f5ca1d653" formatted="false">"ยังไม่มีรายการดาวน์โหลด"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"ไม่พบการดาวน์โหลดที่ตรงกัน"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"กดค้างที่รูปภาพ ใช้เมนูดาวน์โหลดของเครื่องเล่น หรือคลิกลิงก์ดาวน์โหลดบนเว็บไซต์"</string>
+  <string name="msg_d011ffe066da" formatted="false">"เปิด %1$s"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"ยกเลิก %1$s"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"ยกเลิกแล้ว"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"เสร็จสิ้น"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"ดาวน์โหลดล้มเหลว"</string>
+  <string name="msg_204249cd633a" formatted="false">"หยุดชั่วคราว รอระบบลองใหม่"</string>
+  <string name="msg_235d5f021172" formatted="false">"กำลังดาวน์โหลด"</string>
+  <string name="msg_efed99b86212" formatted="false">"รอดาวน์โหลด"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"ขนาดรอการยืนยัน"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"ดาวน์โหลดไฟล์"</string>
+  <string name="msg_de32e20193ad" formatted="false">"รับทราบ"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"ประวัติการเข้าชม"</string>
+  <string name="msg_4e445f09300c" formatted="false">"เก็บไว้เฉพาะ 250 หน้า ล่าสุดบนโทรศัพท์นี้ โหมดไม่ระบุตัวตนจะไม่ถูกบันทึก"</string>
+  <string name="msg_c24268c66266" formatted="false">"ล้างประวัติการเข้าชม"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"ยังไม่มีประวัติการเข้าชม"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"ไม่พบหน้าที่ตรงกัน"</string>
+  <string name="msg_539989302fd2" formatted="false">"หน้าที่เปิดในแท็บปกติจะปรากฏที่นี่"</string>
+  <string name="msg_3352ef9c5026" formatted="false">"ลบประวัติการเข้าชมนี้"</string>
+  <string name="msg_46afe15d4929" formatted="false">"ล้างประวัติการเข้าชมหรือไม่?"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"จะล้างประวัติการเข้าชมและค้นหาบนเครื่องนี้ ไม่ลบบุ๊กมาร์ก รายการโปรด หรือข้อมูลเข้าสู่ระบบเว็บไซต์"</string>
+  <string name="msg_bce2377283c2" formatted="false">"ล้าง"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"ยกเลิก"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"ค้นหา %1$s"</string>
+  <string name="msg_052052ba842e" formatted="false">"แท็บใหม่"</string>
+  <string name="msg_778dda35c10f" formatted="false">"ไม่สามารถบันทึกภาพรวมแท็บได้ ภาพรวมเดิมยังคงอยู่"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"กำลังบันทึกภาพรวม กรุณารอแล้วปิดแอปอีกครั้ง"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"การดาวน์โหลดจะถูกเก็บไว้ในโทรศัพท์"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"ไฟล์และประวัติการดาวน์โหลดระบบจะไม่ถูกลบในโหมดไม่ระบุตัวตน ยืนยันดาวน์โหลดหรือไม่?"</string>
+  <string name="msg_49e07d37a692" formatted="false">"ไม่สามารถบันทึกข้อมูลแท็บได้ กรุณาตรวจสอบพื้นที่เก็บข้อมูลโทรศัพท์"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"ใช้ตัวอักษรภาษาอังกฤษ ตัวเลข และสัญลักษณ์บรรทัดเดียว สูงสุด 1,024 ตัวอักษร"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"กรุณาอัปเดต Android System WebView เพื่อใช้โหมดไม่ระบุตัวตนแบบแยกข้อมูล"</string>
+  <string name="msg_4369d178c9de" formatted="false">"เปิดแท็บได้สูงสุด 20 แท็บ กรุณาปิดแท็บที่ไม่ใช้ก่อน"</string>
+  <string name="msg_b860234cdca4" formatted="false">"ไม่สามารถสร้างเซสชันไม่ระบุตัวตนแบบแยกข้อมูลได้ ไม่มีหน้าเว็บเปิดอยู่"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · รูปภาพแคช"</string>
+  <string name="msg_b210350f38fc" formatted="false">"รูปภาพ"</string>
+  <string name="msg_2988ade50b61" formatted="false">"การรันโปรแกรมที่กำหนดเองล้มเหลว; สามารถแก้ไขหรือตั้งข้อยกเว้นใน SkyEye"</string>
+  <string name="msg_a782840b186d" formatted="false">"เปิดแอปภายนอก"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"ไม่สามารถเปิดลิงก์รูปแบบนี้ได้"</string>
+  <string name="msg_216baff9f183" formatted="false">"เปลี่ยนอัตโนมัติ"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"หน้าแรก ChengJing"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"เว็บไซต์นี้ไม่สามารถสร้างการเชื่อมต่อเข้ารหัสได้ กรุณาลองใหม่ภายหลัง"</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"ไม่สามารถเปิดหน้าเว็บได้ชั่วคราว กรุณาตรวจสอบเครือข่ายหรือ URL แล้วลองใหม่"</string>
+  <string name="msg_5e2122abec02" formatted="false">"ใบรับรองหมดอายุ"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"ใบรับรองยังไม่เริ่มใช้งาน"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"โดเมนใบรับรองไม่ตรงกัน"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"แหล่งที่มาของใบรับรองไม่น่าเชื่อถือ"</string>
+  <string name="msg_557874fe9910" formatted="false">"วันที่ใบรับรองผิดปกติ"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"การตรวจสอบใบรับรองล้มเหลว"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"ใบรับรองของเว็บไซต์นี้ไม่ผ่านการตรวจสอบ การเชื่อมต่อถูกยกเลิก สามารถแตะไอคอนการเชื่อมต่อในแถบ URL เพื่อดูสาเหตุและตั้งค่าข้อยกเว้นเว็บไซต์"</string>
+  <string name="msg_31648c936ef3" formatted="false">"กระบวนการหน้าเว็บหยุดทำงาน กรุณาปิดแท็บนี้แล้วเปิดใหม่"</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"หน้าเว็บในเครื่อง"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"ออกจากหน้าเว็บหรือไม่?"</string>
+  <string name="msg_3bf1281815df" formatted="false">"ข้อความเว็บไซต์ · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"ออก"</string>
+  <string name="msg_20db9f87b860" formatted="false">"ตกลง"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"อยู่ในหน้านี้"</string>
+  <string name="msg_e9ea75903633" formatted="false">"หน้าต่างใหม่/ป๊อปอัป"</string>
+  <string name="msg_2138c825b189" formatted="false">"เวอร์ชันนี้ยังไม่เปิดให้เว็บไซต์ใช้กล้องและไมโครโฟน"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"ตัวเลือกไฟล์ไม่พร้อมใช้งาน"</string>
+  <string name="msg_beffea44da0c" formatted="false">"ไม่สามารถเปิดตัวเลือกไฟล์ได้"</string>
+  <string name="msg_ad37ef430462" formatted="false">"ลิงก์นี้ไม่มีไฟล์ให้ดาวน์โหลด"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\nนี่คือไฟล์แคชของหน้าเว็บ กรุณาเก็บหน้าเว็บต้นทางไว้จนกว่าจะดาวน์โหลดเสร็จ อย่ารีเฟรช"</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\nไฟล์และประวัติการดาวน์โหลดจะถูกเก็บไว้ในโทรศัพท์ ไม่ถูกลบในโหมดไม่ระบุตัวตน"</string>
+  <string name="msg_d71c2bea9463" formatted="false">"ดาวน์โหลดไฟล์หรือไม่?"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"เปิดหน้าเว็บก่อนแล้วจึงเพิ่มในรายการโปรด"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"หน้าถูกเปลี่ยน กรุณาลองอีกครั้ง"</string>
+  <string name="msg_c0af0b409136" formatted="false">"ไม่สามารถเพิ่มในรายการโปรด: %1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"เปิดเว็บไซต์ก่อนแล้วใช้ SkyEye"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"กำลังแสดงเว็บไซต์ต้นฉบับ กรุณายกเลิกข้อยกเว้นก่อน"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"กรุณาอัปเดต Android System WebView ใน Play Store ก่อนเพื่อเปิดใช้ SkyEye เต็มรูปแบบ"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"หน้าเว็บยังไม่พร้อม กรุณารีเฟรชแล้วลองใหม่"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"ไม่สามารถใช้กฎนี้ได้"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"ไม่พบ %1$s ในหน้าปัจจุบัน กรุณาเลือกองค์ประกอบใหม่"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"ข้อผิดพลาดไวยากรณ์ JavaScript: %1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"ลบตัวอย่างแล้ว; กด “บันทึก” เพื่อยืนยัน"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"บันทึกแล้ว จะใช้กับ %1$s และโดเมนย่อย"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"แสดงเว็บไซต์ต้นฉบับชั่วคราว กฎยังคงอยู่"</string>
+  <string name="msg_a4038cb71105" formatted="false">"คืนค่าการใช้กฎ SkyEye แล้ว"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"กู้คืนการบันทึกครั้งล่าสุดแล้ว"</string>
+  <string name="msg_13256df2ec81" formatted="false">"ย้อนกลับ"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"ถัดไป"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"SkyEye"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"อัปเดตความคืบหน้าการบันทึก"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"บันทึกอย่างรวดเร็ว"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"ถูกบันทึกแล้ว"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"ยังไม่ถูกบันทึก"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"บันทึกที่คั่นหน้าและตำแหน่งอ่านแล้ว"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"เมนูเบราว์เซอร์"</string>
+  <string name="msg_bcbd40877710" formatted="false">"ส่วนประกอบเว็บไซต์"</string>
+  <string name="msg_8508e17dc836" formatted="false">"กฎส่วนประกอบว่างเปล่าหรือยาวเกินไป"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"กรุณาใส่ตัวเลือกส่วนประกอบ ไม่ใช่สไตล์ทั้งหมด"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"ไม่สามารถลบทั้งหน้าได้ กรุณาลดขอบเขตการเลือก"</string>
+  <string name="msg_2b76681815f4" formatted="false">"AI แนะนำแก้ไขส่วนประกอบจำนวนมากเกินไป กรุณาอธิบายขอบเขตที่เล็กลง"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"ปรับโดย AI"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"AI พยายามแก้ไขกฎที่ไม่มีอยู่"</string>
+  <string name="msg_af099dc62317" formatted="false">"โดเมนเดียวสูงสุด 100 กฎ"</string>
+  <string name="msg_6c1546728176" formatted="false">"ปรับกฎส่วนประกอบ"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"ตั้งค่าการยกเว้นใบรับรองได้เฉพาะเว็บไซต์ HTTPS"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"บันทึกการตั้งค่าไม่สำเร็จ"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"บันทึกการตั้งค่าเครื่องมือค้นหาไม่สำเร็จ"</string>
+  <string name="msg_1615b8429815" formatted="false">"บันทึกเครื่องมือค้นหาที่กำหนดเองไม่สำเร็จ"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"บันทึกบนมือถือไม่สำเร็จ กฎยังไม่ได้บันทึก"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"การรวมการตั้งค่าเว็บไซต์ไม่เสร็จสิ้น ข้อมูลในเครื่องถูกเก็บไว้แล้ว"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"บันทึกประวัติการเข้าชมไม่สำเร็จ กรุณาตรวจสอบพื้นที่เก็บข้อมูลมือถือ"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_71171b556a11" formatted="false">"เว็บเพจ\nปรับตามนิสัยของคุณ"</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"ท่องเว็บตามปกติ พร้อมเปิด SkyEye\nเพิ่มสไตล์ โค้ด หรือปรับส่วนประกอบ"</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"คำคมวันนี้"</string>
+  <string name="msg_27268090a840" formatted="false">"ทางลัด"</string>
+  <string name="msg_f06e679b9530" formatted="false">"วิกิพีเดีย"</string>
+  <string name="msg_217d775e8c90" formatted="false">"อ่านต่อ"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"โฟลเดอร์ที่คั่นหน้า"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"ที่คั่นหน้าทั้งหมด"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"แชร์ภาพ"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"ไม่ได้รับอนุญาตให้บันทึก ภาพไม่ได้ดาวน์โหลด"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"ภาพจะถูกเก็บไว้แม้นอกโหมดไม่ระบุตัวตน"</string>
+  <string name="msg_0816eeae6881" formatted="false">"แอปดาวน์โหลด คลิปบอร์ด หรือรับภาพอาจเก็บไฟล์ไว้ ไม่ถูกลบในโหมดไม่ระบุตัวตน"</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"ดำเนินการต่อ"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"ไม่พบภาพที่ใช้ได้ ไฟล์ไม่ได้บันทึก กรุณากดค้างใหม่ภายหลัง"</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"หน้าเปลี่ยน กรุณากดค้างภาพใหม่"</string>
+  <string name="msg_e409173288a1" formatted="false">"กำลังดึงภาพ…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"เปิดภาพชั่วคราวในแท็บใหม่แล้ว"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"คัดลอกภาพแล้ว สามารถวางในแอปที่รองรับภาพ"</string>
+  <string name="msg_8746e6a72700" formatted="false">"กรุณาอนุญาตการบันทึกภาพก่อนหน้าให้เสร็จ"</string>
+  <string name="msg_7151072d822c" formatted="false">"ภาพดาวน์โหลดไปยัง Downloads/ChengJing แล้ว ดูได้ใน ‘ดาวน์โหลด’"</string>
+  <string name="msg_fb43036835f6" formatted="false">"ไม่ได้รับอนุญาตให้บันทึก ไฟล์ไม่ได้ดาวน์โหลด"</string>
+  <string name="msg_18763274dfce" formatted="false">"กรุณาเลือกไฟล์ดาวน์โหลดใหม่"</string>
+  <string name="msg_38116168b889" formatted="false">"ลิงก์นี้ไม่สามารถใช้บริการดาวน์โหลดของระบบได้ กรุณาดาวน์โหลดใหม่ในหน้าเดิม"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"กรุณาอนุญาตการบันทึกไฟล์ก่อนหน้าให้เสร็จ"</string>
+  <string name="msg_1022567a481f" formatted="false">"ไม่สามารถเปิดการอนุญาตบันทึก กรุณาลองใหม่"</string>
+  <string name="msg_067c7812968e" formatted="false">"ChengJing Browser · ดาวน์โหลดภาพ"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"ChengJing Browser · ดาวน์โหลดไฟล์"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"เพิ่มในคิวดาวน์โหลดระบบแล้ว ดูผลลัพธ์ได้ใน ‘ดาวน์โหลด’ เมนูสามจุด"</string>
+  <string name="msg_46248e4d3641" formatted="false">"ไม่สามารถเพิ่มไฟล์ดาวน์โหลดได้ กรุณาตรวจสอบพื้นที่เก็บข้อมูลและบริการดาวน์โหลดระบบ"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"กำลังเปิด ChengJing Browser"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"ChengJing"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"เบราว์เซอร์"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"แก้ไขกฎเว็บไซต์"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"แก้ไขกฎโดย AI"</string>
+  <string name="msg_371d839ac65c" formatted="false">"สิทธิ์ของบุคคลที่สาม"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"โค้ดส่วนประกอบ"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"SkyEye AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"การเชื่อมต่อเว็บไซต์"</string>
+  <string name="msg_930e319f7845" formatted="false">"ความเป็นส่วนตัวและข้อมูล"</string>
+  <string name="msg_0d8619aae051" formatted="false">"การตั้งค่า"</string>
+  <string name="msg_842433f0a425" formatted="false">"แท็บ"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"การตั้งค่า SkyEye"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"เลือกส่วนประกอบหนึ่ง"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"แก้ไขเว็บไซต์"</string>
+  <string name="msg_e13bbc197118" formatted="false">"โค้ดที่กำหนดเอง"</string>
+  <string name="msg_634ad289a228" formatted="false">"ช่วยเหลือ AI"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"การระบุเบราว์เซอร์"</string>
+  <string name="msg_14bd2c678335" formatted="false">"เครื่องมือค้นหาเริ่มต้น"</string>
+  <string name="msg_905d98bd5535" formatted="false">"รายการโครงสร้าง"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"ซิงค์ Google"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"กฎโดเมน"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"ค้นหาข้อความในหน้า"</string>
+  <string name="msg_9d08608859f8" formatted="false">"บันทึกการบล็อก"</string>
+  <string name="msg_9357d631d10f" formatted="false">"ย้อนกลับ"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"ท่องเว็บตามนิสัยของคุณ"</string>
+  <string name="msg_de961bb8936f" formatted="false">"ปิดเมนู"</string>
+  <string name="msg_60a53514eb92" formatted="false">"รายการโปรด"</string>
+  <string name="msg_97afce0d452c" formatted="false">"เครื่องมือท่องเว็บ"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"เพิ่มแท็บไม่ระบุตัวตน"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"เซสชันท่องเว็บแยกจากแท็บปกติ"</string>
+  <string name="msg_8dce3f317048" formatted="false">"ดูรายการดาวน์โหลดของ ChengJing"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"ลบข้อมูลการท่องเว็บ"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"เลือกช่วงเวลาและรายการที่จะลบ"</string>
+  <string name="msg_431596791167" formatted="false">"หน้าปัจจุบัน"</string>
+  <string name="msg_3e40d2036259" formatted="false">"บันทึกหน้าปัจจุบัน"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"เพิ่มบุ๊กมาร์ก"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"โฟลเดอร์ไม่จัดหมวดหมู่ในบุ๊กมาร์ก"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"หน้านี้ถูกเพิ่มในบุ๊กมาร์กแล้ว"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"แชร์"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"ใช้ระบบแชร์ของ Android"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"สลับเป็นเว็บไซต์เวอร์ชันมือถือ"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"สลับเป็นเว็บไซต์เวอร์ชันเดสก์ท็อป"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"SkyEye และเว็บไซต์"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s กฎที่ถูกลบ"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"คืนค่ากฎ SkyEye"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"แสดงเว็บไซต์ต้นฉบับชั่วคราว"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"กำลังแสดงเว็บไซต์ต้นฉบับ"</string>
+  <string name="msg_43d22862b439" formatted="false">"หยุดการตั้งค่าสำหรับโดเมนนี้"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"กฎโดเมนทั้งหมด"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"บล็อกการรบกวน %1$s ครั้ง"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"ดูบันทึกแท็บนี้"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"การตั้งค่าและข้อมูล"</string>
+  <string name="msg_e7ed17309495" formatted="false">"การตั้งค่ารูปลักษณ์ การท่องเว็บ และ AI"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"ChengJing Browser %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"รูปลักษณ์"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"การท่องเว็บ"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"เปิดเว็บก่อนแล้วแชร์ลิงก์"</string>
+  <string name="msg_9e2276893fae" formatted="false">"อุปกรณ์นี้ไม่สามารถเปิดแผงแชร์ระบบได้"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"ระบบไม่สามารถแชร์หน้านี้ได้ชั่วคราว"</string>
+  <string name="msg_beed38829f24" formatted="false">"หน้าจอนี้ไม่สามารถดาวน์โหลดรูปภาพได้"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"เปิดในแท็บใหม่"</string>
+  <string name="msg_d55104374e08" formatted="false">"คัดลอกลิงก์"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"ลิงก์"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"เปิดรูปภาพในแท็บใหม่"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"ดูตัวอย่างรูปภาพ"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"คัดลอกรูปภาพ"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"ดาวน์โหลดรูปภาพ"</string>
+  <string name="msg_75136c12a08a" formatted="false">"ไม่สามารถรับ URL รูปภาพได้ กรุณากดรูปภาพค้างใหม่"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"คัดลอกลิงก์รูปภาพ"</string>
+  <string name="msg_559552ccc661" formatted="false">"ลิงก์รูปภาพ"</string>
+  <string name="msg_17d52a476d32" formatted="false">"คัดลอกแล้ว %1$s"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"อนุญาตสิทธิ์การจัดเก็บแล้ว กรุณาเลือกไฟล์ที่จะดาวน์โหลดใหม่"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"หน้าแหล่งที่มาเปลี่ยน กรุณาดาวน์โหลดใหม่"</string>
+  <string name="msg_167523d3b80d" formatted="false">"มีไฟล์ชั่วคราวสองรายการกำลังดาวน์โหลด กรุณาลองใหม่ภายหลัง"</string>
+  <string name="msg_57d25840bf76" formatted="false">"กำลังดาวน์โหลดไฟล์เว็บ สามารถดูความคืบหน้าหรือยกเลิกได้ที่ ‘ดาวน์โหลด’ กรุณาเก็บแท็บแหล่งที่มาไว้"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"หน้าแหล่งที่มาเปลี่ยน การดาวน์โหลดหยุดแล้ว"</string>
+  <string name="msg_13491974a87a" formatted="false">"ดาวน์โหลดไปที่ Downloads/ChengJing แล้ว เปิดได้ที่ ‘ดาวน์โหลด’"</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"อ่านไฟล์ชั่วคราวหมดเวลา กรุณาเก็บแท็บแหล่งที่มาไว้แล้วดาวน์โหลดใหม่"</string>
+  <string name="msg_639f890d3c20" formatted="false">"ยกเลิกแล้ว; ไม่เก็บไฟล์ไม่สมบูรณ์"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"ดาวน์โหลดไม่สมบูรณ์ กรุณาตรวจสอบพื้นที่จัดเก็บแล้วลองใหม่"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"แท็บแหล่งที่มาปิดหรือโหลดใหม่ การดาวน์โหลดหยุดแล้ว; ไม่เก็บไฟล์ไม่สมบูรณ์"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"ป้อนเนื้อหา"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"ปิดเมนูกดค้าง"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"โปรดอัปเดต Android System WebView ก่อน แล้วลบคุกกี้และข้อมูลเว็บไซต์"</string>
+  <string name="msg_7877a2c231c9" formatted="false">"ไม่สามารถบันทึกการเปลี่ยนแปลงแท็บได้"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"การล้างภาพรวมแท็บยังไม่เสร็จสมบูรณ์"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"ลบข้อมูลการท่องเว็บที่เลือกแล้ว; คุกกี้ แคช และข้อมูลเว็บไซต์ทั้งหมดถูกล้างเรียบร้อย"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"ลบข้อมูลการท่องเว็บที่เลือกของ %1$s แล้ว"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"การล้างข้อมูลเว็บไซต์ยังไม่ยืนยันเสร็จสมบูรณ์ กรุณาลองใหม่ภายหลัง หรือปิดแล้วเปิดแอปใหม่"</string>
+  <string name="msg_f795969c320e" formatted="false">"การลบไม่สมบูรณ์ อาจลบข้อมูลบางส่วนได้ กรุณาลองใหม่ หรือปิดแล้วเปิดแอปใหม่"</string>
+  <string name="msg_6846f5758df9" formatted="false">"15 นาทีที่ผ่านมา"</string>
+  <string name="msg_789842abff7d" formatted="false">"ทรัพยากรเว็บไซต์"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"หน้านี้เคยพบข้อผิดพลาดใบรับรอง ไม่สามารถยืนยันตัวตนของการเชื่อมต่อนี้ได้ เมื่อไม่เปิดใช้งานข้อยกเว้นเว็บไซต์ การเชื่อมต่อที่ผิดปกติจะถูกบล็อก\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"ยังไม่ได้เปิดเว็บไซต์"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"กำลังใช้การเชื่อมต่อเข้ารหัส HTTPS"</string>
+  <string name="msg_c6905e1adffd" formatted="false">"การเชื่อมต่อ HTTP ไม่ได้เข้ารหัส ไม่มีใบรับรองเว็บไซต์ที่ตรวจสอบได้"</string>
+  <string name="msg_87178db80ada" formatted="false">"เปิดเว็บไซต์ก่อนเพื่อดูข้อมูลการเชื่อมต่อ"</string>
+  <string name="msg_3e26c53efe37" formatted="false">"เว็บไซต์ปัจจุบัน"</string>
+  <string name="msg_9c5784103466" formatted="false">"แหล่งข้อมูลอื่นที่หน้าใช้"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"อนุญาตข้อยกเว้นใบรับรอง"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"เปิดใช้งาน; จะยังคงอยู่หลังรีสตาร์ท"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"ปิดเป็นค่าเริ่มต้น หยุดเชื่อมต่อเมื่อการตรวจสอบล้มเหลว"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"ใช้เฉพาะชื่อโฮสต์ HTTPS นี้ (รวมพอร์ตต่างๆ) ไม่รวมซับโดเมนหรือแหล่งที่มาของบุคคลที่สาม จะยังคงอยู่จนกว่าคุณจะปิด"</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"ข้อยกเว้นใบรับรองลดความปลอดภัยในการยืนยันตัวตนเว็บไซต์ ไม่สามารถแก้ปัญหาเซิร์ฟเวอร์ที่ไม่สามารถสร้างการเชื่อมต่อเข้ารหัสได้"</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"อนุญาตข้อยกเว้นใบรับรองสำหรับเว็บไซต์นี้หรือไม่?"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\nการตั้งค่านี้จะถูกเก็บถาวรจนกว่าคุณจะปิด แม้ใบรับรองเว็บไซต์จะหมดอายุหรือไม่สามารถยืนยันตัวตนได้ ก็อาจโหลดได้ ข้อมูลล็อกอินและข้อมูลที่ป้อนอาจถูกเข้าถึงโดยบุคคลที่ไม่คาดคิด โปรดเปิดใช้งานเฉพาะเมื่อคุณเข้าใจและยอมรับความเสี่ยง"</string>
+  <string name="msg_d848bdedee10" formatted="false">"ฉันเข้าใจ อนุญาตเว็บไซต์นี้"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"รักษาการตรวจสอบ"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"รูปแบบไฟล์ฝังไม่ถูกต้อง"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"URL ไฟล์ฝังไม่ถูกต้อง"</string>
+  <string name="msg_a5fc04346035" formatted="false">"URL ข้อมูลฝังมีขนาดใหญ่เกินไป โปรดใช้ลิงก์ดาวน์โหลดไฟล์ของเว็บไซต์แทน"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"การเข้ารหัสไฟล์ฝังไม่สมบูรณ์"</string>
+  <string name="msg_c74489c545f7" formatted="false">"การเข้ารหัสไฟล์ฝังไม่ถูกต้อง"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"ช่วงเวลา"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s หน้า, %2$s รายการประวัติการค้นหา"</string>
+  <string name="msg_8394223e0a97" formatted="false">"แท็บที่ยังไม่ปิด"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s แท็บทั่วไป · ปิดตามเวลาการเข้าชมล่าสุด"</string>
+  <string name="msg_1f86b4081196" formatted="false">"คุกกี้ แคช และข้อมูลเว็บไซต์"</string>
+  <string name="msg_c44aefb98491" formatted="false">"ล้างทั้งหมดไม่จำกัดเวลา อาจออกจากระบบเว็บไซต์"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"โปรดอัปเดต Android System WebView ก่อนจึงจะล้างได้"</string>
+  <string name="msg_ab54697044d0" formatted="false">"ช่วงเวลานี้ใช้กับประวัติการท่องเว็บและแท็บเท่านั้น คุกกี้ แคช และข้อมูลเว็บไซต์ล้างได้ทั้งหมดเท่านั้น"</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"ข้อมูลเวอร์ชันเก่าที่ไม่มีบันทึกเวลา โปรดเลือก “ไม่จำกัดเวลา” เพื่อทำการลบ"</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"เก็บบุ๊กมาร์ก รายการโปรด ไฟล์ดาวน์โหลด และการตั้งค่า SkyEye ข้อมูลโหมดไม่ระบุตัวตนโปรดปิดแท็บไม่ระบุตัวตนก่อนล้าง"</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"กำลังลบ…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"ลบข้อมูล"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"เว็บไซต์ปัจจุบัน · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"อยากลองอะไร? ถาม AI ได้เลย"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"อธิบายแนวคิดโดยรวม ไม่จำกัดเฉพาะส่วนที่เลือก"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"ไม่สามารถอ่านส่วนประกอบได้ กรุณาเลือกใหม่"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\nตรงกับส่วนประกอบ %2$s ชิ้น; บันทึกแล้วจะใช้กับ %3$s และซับโดเมนที่ตรงกับโครงสร้างนี้"</string>
+  <string name="msg_16a3beab3f94" formatted="false">"คุณสมบัติ CSS ของส่วนประกอบ"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"JavaScript ของส่วนประกอบ"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// element แทนส่วนประกอบที่ตรงกับกฎปัจจุบัน\nelement.setAttribute(\'title\', \'คำแนะนำการอ่านของฉัน\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"HTML ภายในส่วนประกอบ"</string>
+  <string name="msg_f8ff75626431" formatted="false">"เพิ่ม HTML (วางไว้ท้ายสุดภายในส่วนประกอบ)"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;คำเตือนการอ่านของฉัน&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"สคริปต์ใน HTML ของ %1$s จะไม่ทำงาน หากต้องการโต้ตอบโปรดใช้ JavaScript JS สามารถอ่านเว็บหรือส่งคำขอได้ โปรดใช้เฉพาะเนื้อหาที่คุณเข้าใจ"</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"นี่จะเขียนทับเนื้อหาภายในที่ตรงกับส่วนประกอบ อาจส่งผลต่อการโต้ตอบเดิม"</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"สามารถกรอก CSS/JS/HTML ได้ตามต้องการ"</string>
+  <string name="msg_381994932dcc" formatted="false">"หน้าเว็บเปลี่ยน กรุณาเลือกใหม่"</string>
+  <string name="msg_ac2471607490" formatted="false">"โปรดกรอกเนื้อหาที่จะเพิ่มก่อน"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"การแก้ไขเว็บไซต์ถึงขีดจำกัดแล้ว กรุณาจัดการการแก้ไขที่บันทึกไว้ก่อน"</string>
+  <string name="msg_9104269ef996" formatted="false">"บันทึกและใช้แล้ว; สามารถกู้คืนการบันทึกครั้งล่าสุดในตั้งค่า SkyEye"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"กำลังโหลดส่วนประกอบ…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"บันทึกและใช้"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"ทำให้การแก้ไขเดิมตรงใจมากขึ้น"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"ให้ AI ตรวจสอบการแก้ไขนี้"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nAI จะอ่าน HTML ของหน้าที่โหลดครั้งนี้ ก่อนใช้ SkyEye และเนื้อหาที่แก้ไขปัจจุบัน จากนั้นแก้ไขกฎนี้ตามคำขอใหม่ของคุณ"</string>
+  <string name="msg_b654f1e4475a" formatted="false">"CSS / JS / HTML ของเว็บไซต์"</string>
+  <string name="msg_b243a787a694" formatted="false">"เว็บไซต์ปัจจุบัน: %1$s\nสามารถแนะนำการปรับปรุงเลย์เอาต์โดยรวมได้ การวิเคราะห์อิงจากโครงสร้างจำกัดของหน้าที่เปิดอยู่ ไม่ได้ตรวจสอบทุกหน้าในเว็บไซต์"</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"ส่วนประกอบที่เลือก: %1$s\nการแก้ไขส่วนประกอบมุ่งเป้าไปที่ตัวเลือกนี้: %2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"อยากปรับอย่างไรครั้งนี้?"</string>
+  <string name="msg_4df18c378546" formatted="false">"คุณต้องการให้เว็บไซต์นี้เปลี่ยนแปลงอย่างไร?"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"ต้องการแก้ไขส่วนประกอบนี้อย่างไร? ต้องตรวจสอบที่ไหน?"</string>
+  <string name="msg_53c859901fee" formatted="false">"HTML จะลบเนื้อหาในฟอร์ม, สคริปต์ และคุณสมบัติของเหตุการณ์ โดยให้ตัวอักษรสูงสุด %1$s ตัว; อาจรวมข้อความในหน้าเว็บ แต่ไม่ครอบคลุมหน้าอื่นหรือเนื้อหาไดนามิกในภายหลัง"</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"CSS/HTML จะถูกใช้กับส่วนประกอบที่เลือก; JavaScript ยังคงมีสิทธิ์เข้าถึงโค้ดในหน้าเว็บ โปรดตรวจสอบขอบเขตผลกระทบจริง"</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"ใช้ Gemma 4 วิเคราะห์ในเครื่องโดยไม่ต้องใช้ API Key โครงสร้างเว็บ, โค้ด และความต้องการของการวิเคราะห์ครั้งนี้จะไม่ถูกส่งขึ้นคลาวด์"</string>
+  <string name="msg_b45dad973407" formatted="false">"ครั้งนี้จะส่งโดเมน, HTML ต้นฉบับที่ทำความสะอาดแล้ว (อาจมีข้อความส่วนตัวในหน้า), กฎที่กำหนดเองนี้ และคำขอใหม่ไปยัง OpenRouter และผู้ให้บริการโมเดลที่เลือก ไม่อ่านคุกกี้หรือค่าฟอร์ม"</string>
+  <string name="msg_fbd9319f336c" formatted="false">"การวิเคราะห์ครั้งนี้จะส่งโดเมน, โครงสร้างส่วนประกอบจำกัด, โค้ดที่กำหนดเองที่บันทึกไว้ และความต้องการที่คุณป้อนไปยัง OpenRouter และผู้ให้บริการโมเดลที่เลือก โค้ดหรือปัญหาอาจมีเนื้อหาส่วนตัว โปรดยืนยันก่อน; ไม่อ่านคุกกี้, ค่าฟอร์ม หรือเนื้อหาบทความโดยอัตโนมัติ"</string>
+  <string name="msg_87bc9921ff32" formatted="false">"ยอมรับการส่งข้อมูลข้างต้นสำหรับการวิเคราะห์ครั้งนี้"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"เลือกวิธีการทำงานของ AI"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"ตั้งค่า OpenRouter API Key"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"หน้าเว็บมีการเปลี่ยนแปลง กรุณาเปิด AI ใหม่"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"ไม่สามารถอ่าน HTML ต้นฉบับของกฎนี้ได้ กรุณาเปิดหน้าเว็บที่มีส่วนประกอบนี้ โหลดใหม่แล้วลองอีกครั้ง"</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"หน้าพร้อมใช้งานยังไม่เสร็จ กรุณาโหลดใหม่แล้วลองอีกครั้ง"</string>
+  <string name="msg_d1127956fd88" formatted="false">"หน้าเว็บมีการเปลี่ยนแปลง กรุณาวิเคราะห์ใหม่"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"ยกเลิกการวิเคราะห์แล้ว"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"กำลังวิเคราะห์…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"ใช้ Gemma 4 วิเคราะห์"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"ส่งและรับคำแนะนำ"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"ยกเลิกการวิเคราะห์"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"คำแนะนำ AI"</string>
+  <string name="msg_f8236285164f" formatted="false">"ไม่มีการแก้ไขที่สามารถนำไปใช้ได้ในครั้งนี้"</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"ขอบเขตการบันทึก: %1$s และซับโดเมนของมัน คำแนะนำ AI ยังไม่ได้รับการตรวจสอบจริงบนเว็บไซต์ของคุณ โปรดตรวจสอบโค้ดและการเปลี่ยนแปลงก่อนนำไปใช้"</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"ย่อเนื้อหาการแก้ไข"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"ดูเนื้อหาการแก้ไขทั้งหมด"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"การตั้งค่าเปลี่ยนแปลง กรุณาวิเคราะห์ใหม่"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"ใช้คำแนะนำ AI แล้ว; สามารถกู้คืนการบันทึกครั้งล่าสุดได้ในตั้งค่า SkyEye"</string>
+  <string name="msg_4522951c203c" formatted="false">"อัปเดตกฎเดิมและใช้"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"ใช้คำแนะนำด้วยคลิกเดียว"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"สามารถกู้คืนการตั้งค่าครั้งก่อน; คำขอที่โปรแกรมส่งหรือการดำเนินการบนเว็บไซต์ไม่สามารถย้อนกลับได้พร้อมกัน"</string>
+  <string name="msg_b727b2493599" formatted="false">"เว็บไซต์นี้มีการตั้งค่ามาก กรุณาแคบลงเป็นส่วนประกอบเดียว หรือเลือกวิเคราะห์ด้วยโมเดลคลาวด์"</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"ข้อมูลในเครื่องถูกเก็บไว้; ครั้งหน้าที่เปิดแอปจะซิงค์อีกครั้ง หรือกด “ซิงค์ทันที”"</string>
+  <string name="msg_0d3a30703357" formatted="false">"Google กำลังยุ่งชั่วคราว"</string>
+  <string name="msg_61b008bafedd" formatted="false">"ลองใหม่ในภายหลัง %1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"ต้องยืนยันสิทธิ์ Google ใหม่"</string>
+  <string name="msg_2a19048f4610" formatted="false">"กด “ซิงค์ทันที” เพื่อยืนยันสิทธิ์ใหม่ ข้อมูลในเครื่องถูกเก็บไว้แล้ว"</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"สิทธิ์ซิงค์ Google ถูกจำกัด"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"โปรดยืนยันการเข้าถึงแอปและการตั้งค่าผู้ดูแลของบัญชี Google แล้วกด “ซิงค์ทันที” ข้อมูลในเครื่องถูกเก็บไว้แล้ว"</string>
+  <string name="msg_0108ca4bc750" formatted="false">"กรุณาใช้บัญชี Google เดิม"</string>
+  <string name="msg_5b29df305534" formatted="false">"ข้อมูลซิงค์ของโทรศัพท์นี้ถูกผูกกับบัญชีอื่น กรุณาเลือกบัญชีเดิมเพื่อหลีกเลี่ยงข้อมูลของผู้อื่นปน"</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"ไม่สามารถยืนยันความปลอดภัยการเชื่อมต่อ Google"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"โปรดตรวจสอบวันที่ เวลา และการตั้งค่าเครือข่ายของโทรศัพท์แล้วลองใหม่ ข้อมูลในเครื่องถูกเก็บไว้แล้ว"</string>
+  <string name="msg_e813605409d0" formatted="false">"การเชื่อมต่อช้า ยังซิงค์ไม่เสร็จ"</string>
+  <string name="msg_328257927000" formatted="false">"การซิงค์ไม่เสร็จ"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"ข้อมูลคลาวด์ยังไม่ได้รับการยืนยัน ข้อมูลในเครื่องถูกเก็บไว้ กรุณาลองใหม่ภายหลัง หากเกิดซ้ำโปรดติดต่อฝ่ายสนับสนุน"</string>
+  <string name="msg_e19c932091a7" formatted="false">"ไม่พบเวอร์ชันทางการชั่วคราว กรุณาลองใหม่ภายหลัง"</string>
+  <string name="msg_85284e05ae9e" formatted="false">"แกนเบราว์เซอร์"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"ปัจจุบัน Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"เวอร์ชันทางการล่าสุด"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"กำลังค้นหา…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"ไม่มีข้อมูล"</string>
+  <string name="msg_8b9b22849066" formatted="false">"ยังไม่ได้ค้นหา"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"ปัจจุบันให้บริการโดย %1$s; เทียบกับเวอร์ชันทางการ %2$s ที่ Google ประกาศ"</string>
+  <string name="msg_e5d3e9548003" formatted="false">"เวอร์ชันปัจจุบันไม่สามารถเปรียบเทียบโดยตรง"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"เวอร์ชันทางการใหม่กว่า สามารถตรวจสอบการอัปเดตแกนได้"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"แกนปัจจุบันเหมือนกับเวอร์ชันทางการ"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"เวอร์ชันแกนปัจจุบันใหม่กว่า"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"เวลาค้นหา %1$s:"</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"เก็บผลลัพธ์ครั้งก่อน · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"กำลังค้นหา…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"ตรวจสอบเวอร์ชันใหม่อีกครั้ง"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"ไม่สามารถเปิดหน้าการอัปเดตได้ กรุณาตรวจสอบ WebView ในการตั้งค่าระบบ"</string>
+  <string name="msg_243aeef7919a" formatted="false">"เปิดหน้าการอัปเดตแกน"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"การอัปเดตจัดส่งโดยระบบหรือร้านค้า อาจปล่อยเป็นชุด"</string>
+  <string name="msg_8e57db190d94" formatted="false">"ยังไม่มีข้อมูลเวอร์ชันทางการ"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"ข้อมูลเวอร์ชันทางการมีรูปแบบผิดปกติ"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"WebView ของระบบ"</string>
+  <string name="msg_b7d90d419331" formatted="false">"ไม่สามารถอ่านได้"</string>
+  <string name="msg_737d4fde158c" formatted="false">"ไม่สามารถเชื่อมต่อเพื่อค้นหาข้อมูลเวอร์ชันทางการชั่วคราว"</string>
+  <string name="msg_6090d27dccad" formatted="false">"ทางการไม่ได้ส่งข้อมูลเวอร์ชันกลับมา"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"ข้อมูลเวอร์ชันมีขนาดใหญ่เกินไป"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"บันทึกข้อมูลเวอร์ชันล้มเหลว"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"ไม่พบแอปที่สามารถเปิดลิงก์นี้ได้ โปรดตรวจสอบว่าติดตั้งแอปที่เกี่ยวข้องแล้ว"</string>
+  <string name="msg_34b996e6bd60" formatted="false">"เปิดในแอปอื่นหรือไม่?"</string>
+  <string name="msg_140169f1183b" formatted="false">"คุณกำลังจะออกจากโหมดไม่ระบุตัวตนของ ChengJing แอปอื่นอาจบันทึกลิงก์และประวัติการใช้งานนี้"</string>
+  <string name="msg_f290f9167ad0" formatted="false">"เปิด"</string>
+  <string name="msg_0db216962632" formatted="false">"รูปแบบที่อยู่เว็บที่บันทึกไม่ถูกต้อง"</string>
+  <string name="msg_62b58243569c" formatted="false">"รูปแบบรหัสประจำตัวที่บันทึกไม่ถูกต้อง"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"รูปแบบเวลาที่บันทึกไม่ถูกต้อง"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"เวลาที่บันทึกอยู่นอกขอบเขต"</string>
+  <string name="msg_71a221e87e34" formatted="false">"ข้อมูลซิงค์ที่บันทึกมากเกินไป เนื้อหาบนอุปกรณ์ถูกเก็บไว้แล้ว"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"ข้อมูลซิงค์ที่บันทึกเกินขนาดที่กำหนด"</string>
+  <string name="msg_220275e1f7de" formatted="false">"รูปแบบซิงค์ที่บันทึกนี้ต้องอัปเดตแอปเพื่ออ่าน"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"บันทึกที่บันทึกล้มเหลว"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"กำลังค้นหา"</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"ไม่พบ"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"โปรดป้อนข้อความที่ต้องการค้นหา"</string>
+  <string name="msg_28010afeecd8" formatted="false">"กำลังค้นหาบนหน้าเว็บ"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"ไม่พบข้อความที่ตรงกัน"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"รายการที่ %1$s จากทั้งหมด %2$s รายการ"</string>
+  <string name="msg_d1989441806e" formatted="false">"เปิดเว็บก่อนแล้วจึงค้นหาข้อความบนหน้า"</string>
+  <string name="msg_c570255d2708" formatted="false">"โปรดออกจาก SkyEye ก่อนแล้วจึงค้นหาข้อความบนหน้า"</string>
+  <string name="msg_f782a6845afa" formatted="false">"ข้อความที่ตรงกันก่อนหน้า"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"ข้อความที่ตรงกันถัดไป"</string>
+  <string name="msg_f41b8847f832" formatted="false">"ปิดการค้นหาบนหน้า"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B พร้อมใช้งานแล้ว"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"ยังไม่ได้ดาวน์โหลดโมเดลบนเครื่อง"</string>
+  <string name="msg_191155f69eeb" formatted="false">"โมเดลบนเครื่องต้องการอุปกรณ์ 64 บิต"</string>
+  <string name="msg_301286dd890b" formatted="false">"พื้นที่ไม่เพียงพอ โปรดสำรองพื้นที่ว่างประมาณ 3 GB"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"โมเดลบนเครื่อง ChengJing · Gemma 4"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"ดาวน์โหลดประมาณ 2.59 GB; ตรวจสอบความสมบูรณ์ของโมเดลหลังดาวน์โหลด"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"งานดาวน์โหลดไม่อยู่ โปรดดาวน์โหลดใหม่"</string>
+  <string name="msg_24d557606dbb" formatted="false">"กำลังตรวจสอบความสมบูรณ์ของโมเดล..."</string>
+  <string name="msg_d46682705f49" formatted="false">"ดาวน์โหลดโมเดลล้มเหลว (%1$s) โปรดดาวน์โหลดใหม่"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"ดาวน์โหลดถูกหยุดชั่วคราว; โปรดตรวจสอบ Wi-Fi, เครือข่าย หรือพื้นที่เก็บข้อมูล"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"กำลังดาวน์โหลด Gemma 4 · %1$s%%"</string>
+  <string name="msg_119f097a0356" formatted="false">"ยังดาวน์โหลดไม่เสร็จ"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"การตรวจสอบความสมบูรณ์ของโมเดลไม่ผ่าน โปรดลบแล้วดาวน์โหลดใหม่"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"โปรดดาวน์โหลดโมเดล Gemma 4 บนเครื่องก่อน"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"หน่วยความจำที่ใช้ได้ไม่เพียงพอ โปรดปิดแท็บหรือแอปอื่นบางส่วนก่อนใช้โมเดลบนเครื่อง"</string>
+  <string name="msg_305f7b160fa8" formatted="false">"คำตอบของโมเดลยาวเกินไป โปรดลดขอบเขตคำถาม"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"โหมดการทำงาน AI"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · บนเครื่องมือถือ"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · โมเดลบนคลาวด์"</string>
+  <string name="msg_7397e02a13de" formatted="false">"โหมดบนเครื่องไม่ต้องใช้ API Key; โหมดคลาวด์เลือกโมเดลจากผู้ให้บริการได้เอง"</string>
+  <string name="msg_770c4bcb536a" formatted="false">"ครั้งแรกต้องดาวน์โหลดโมเดลประมาณ 2.59 GB และสำรองพื้นที่เก็บข้อมูลประมาณ 3 GB ต้องใช้อุปกรณ์ 64 บิต แนะนำให้มีหน่วยความจำอย่างน้อย 6 GB; ใช้พลังงานมือถือขณะวิเคราะห์ ข้อมูลวิเคราะห์จะเก็บไว้บนเครื่องหลังดาวน์โหลด"</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"ยกเลิกการดาวน์โหลดโมเดล"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"โมเดลผ่านการตรวจสอบความสมบูรณ์แล้ว ใช้งานแบบออฟไลน์ได้"</string>
+  <string name="msg_1300b82064c4" formatted="false">"ลบโมเดลเพื่อเพิ่มพื้นที่"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"อนุญาตดาวน์โหลดผ่านเครือข่ายมือถือ"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"ดาวน์โหลดโมเดล Gemma 4 บนเครื่อง"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"อุปกรณ์นี้ไม่รองรับการประมวลผลบนเครื่อง สามารถเลือกใช้ OpenRouter แทนได้"</string>
+  <string name="msg_6cbc25f77915" formatted="false">"โมเดล: Google Gemma 4, Apache 2.0. ไฟล์โมเดลดาวน์โหลดจากลิงก์เอกสาร Google ของ LiteRT Community"</string>
+  <string name="msg_0cc2d828db73" formatted="false">"โปรดป้อน URL HTTP หรือ HTTPS ที่ถูกต้อง"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"การบันทึกไม่เสร็จสมบูรณ์ โปรดลองอีกครั้งในภายหลัง"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"การตั้งค่าหน้าแรก"</string>
+  <string name="msg_d03a088f3260" formatted="false">"แสดงปุ่มหน้าแรก"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"วางไว้ด้านหน้าของแถบที่อยู่"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"ไม่สามารถบันทึกการตั้งค่าหน้าแรกได้"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"กำหนด URL เอง"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"URL หน้าแรก"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"บันทึกแล้ว"</string>
+  <string name="msg_0edd4290c301" formatted="false">"บันทึกหน้าแรก"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"ต้องยืนยันการส่งออกก่อนดูตัวอย่างแบบไม่ระบุตัวตน"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"รูปภาพเกิน 32 MB โปรดดาวน์โหลดจากเว็บไซต์ต้นทางแทน"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"เซสชันไม่ระบุตัวตนถูกปิดแล้ว"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"เนื้อหาที่ได้รับไม่ใช่รูปภาพที่รองรับ ไฟล์ไม่ได้รับการบันทึก"</string>
+  <string name="msg_5f8355918e25" formatted="false">"แคชรูปภาพล้มเหลว"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"ไม่สามารถใช้ URL รูปภาพได้"</string>
+  <string name="msg_4926037b836c" formatted="false">"ไม่สามารถใช้การเปลี่ยนเส้นทางรูปภาพได้"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"ดาวน์โหลดรูปภาพล้มเหลว (HTTP %1$s) ไฟล์ไม่ได้รับการบันทึก"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"รูปภาพไม่มีเนื้อหา"</string>
+  <string name="msg_cc6f13303851" formatted="false">"จำนวนการเปลี่ยนเส้นทางของรูปภาพมากเกินไป ไฟล์ไม่ได้ถูกบันทึก"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"รูปภาพมีขนาดเกิน 32 MB"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"แคชรูปภาพหมดอายุ กรุณากลับไปที่หน้าก่อนหน้าแล้วเปิดใหม่"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"ปิดการแสดงตัวอย่างรูปภาพ"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · ซูมด้วยสองนิ้ว แตะสองครั้งเพื่อขยาย"</string>
+  <string name="msg_c660e164fa68" formatted="false">"นี่คือแท็บรูปภาพแคชของเว็บเพจ จะไม่ถูกเก็บหลังปิดแอป หากต้องการเก็บไว้ กรุณาดาวน์โหลด"</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"รูปภาพ ซูมและเลื่อนด้วยสองนิ้วได้"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"ย้อนกลับ"</string>
+  <string name="msg_607089b311be" formatted="false">"ไม่ระบุหมวดหมู่"</string>
+  <string name="msg_e371aca7156b" formatted="false">"นำเข้าที่คั่นหน้า Chrome"</string>
+  <string name="msg_901fcc465532" formatted="false">"ปิดการเก็บ"</string>
+  <string name="msg_714be9fccc36" formatted="false">"ปิดที่คั่นหน้า"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s รายการ"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s ที่คั่นหน้า"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"ค้นหาการเก็บ"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"ค้นหาที่คั่นหน้าและโฟลเดอร์ทั้งหมด"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"ล้างการค้นหา"</string>
+  <string name="msg_4220592340ad" formatted="false">"เพิ่มลงในการเก็บแล้ว"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"อัปเดตความคืบหน้าการเก็บแล้ว"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"อัปเดตความคืบหน้าของการเก็บนี้"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"บันทึกการเก็บใหม่แล้ว"</string>
+  <string name="msg_74894a77754e" formatted="false">"เพิ่มรายการใหม่อีกหนึ่ง"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"จดจำ URL ตอนบทและตำแหน่งอ่าน เก็บไว้ในโทรศัพท์นี้"</string>
+  <string name="msg_6d9532de6549" formatted="false">"ยังไม่มีการเก็บ"</string>
+  <string name="msg_9c88b8194478" formatted="false">"ไม่พบการเก็บที่ตรงกัน"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"ขณะอ่าน สามารถเก็บจากเมนูโดยไม่ต้องเลือกโฟลเดอร์"</string>
+  <string name="msg_299775d315e8" formatted="false">"ลองเปลี่ยนชื่อหรือ URL ดู"</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · หน้านี้ %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"เปลี่ยนชื่อการเก็บ %1$s"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"ลบการเก็บ %1$s"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"ที่คั่นหน้า › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"ไม่พบที่คั่นหน้าที่ตรงกัน"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"ยังไม่มีที่คั่นหน้าในนี้"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"การค้นหาจะรวมทุกโฟลเดอร์"</string>
+  <string name="msg_a581a0c5331f" formatted="false">"สามารถนำเข้าที่คั่นหน้า Chrome จากมุมขวาบน"</string>
+  <string name="msg_11ae55de6d31" formatted="false">"แก้ไขที่คั่นหน้า %1$s"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"ลบที่คั่นหน้า %1$s"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"เพิ่มลงในโฟลเดอร์นี้แล้ว"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"โฟลเดอร์นี้มีที่คั่นหน้าแล้ว"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"เพิ่มเว็บเพจปัจจุบัน"</string>
+  <string name="msg_c631952bb114" formatted="false">"ส่งออก"</string>
+  <string name="msg_27001df08520" formatted="false">"แก้ไขที่คั่นหน้า"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"ตั้งชื่อการเก็บ"</string>
+  <string name="msg_a5274f381305" formatted="false">"ชื่อ"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"URL"</string>
+  <string name="msg_aabc6623539f" formatted="false">"โฟลเดอร์"</string>
+  <string name="msg_a2c701b369be" formatted="false">"อ่าน / เทคโนโลยี"</string>
+  <string name="msg_b631887c06ef" formatted="false">"ใช้ “ / ” เพื่อแยกระดับโฟลเดอร์"</string>
+  <string name="msg_978626066ea1" formatted="false">"บันทึกล้มเหลว กรุณาลองอีกครั้ง"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"บันทึก"</string>
+  <string name="msg_9c9624b64441" formatted="false">"ตำแหน่งเว็บไซต์"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"เว็บคอมโพเนนต์บนมือถือยังไม่รองรับการระบุตำแหน่งโดยตรง กรุณาอัปเดต Android System WebView"</string>
+  <string name="msg_68f8f532449b" formatted="false">"สิทธิ์โหมดไม่ระบุตัวตนจะถูกเก็บจนกว่าจะปิดแท็บไม่ระบุตัวตนทั้งหมด"</string>
+  <string name="msg_db3dea807cf5" formatted="false">"ใช้ได้เฉพาะเว็บไซต์นี้ เว็บไซต์อื่นต้องขอสิทธิ์แยกต่างหาก"</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"หลังเปลี่ยนจะโหลดเว็บไซต์นี้ใหม่ และหยุดคำขอระบุตำแหน่งก่อนหน้า"</string>
+  <string name="msg_d47077aa2c28" formatted="false">"สิทธิ์ระบุตำแหน่งมือถือ"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"ตั้งค่าบริการระบุตำแหน่งมือถือ"</string>
+  <string name="msg_824602facd05" formatted="false">"ไม่สามารถเปิดไฟล์ที่คั่นหน้าได้"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"ไฟล์ที่คั่นหน้ามีขนาดเกิน 8 MB กรุณานำเข้าเป็นชุด"</string>
+  <string name="msg_7193e8524414" formatted="false">"ไม่พบที่คั่นหน้า HTTP / HTTPS ในไฟล์"</string>
+  <string name="msg_01fd7b112086" formatted="false">"นำเข้า %1$s ที่คั่นหน้าหรือไม่?"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"จะเก็บโฟลเดอร์ไว้ ที่คั่นหน้าที่มีอยู่จะไม่เพิ่มซ้ำ"</string>
+  <string name="msg_20809c5d8596" formatted="false">"นำเข้า"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"นำเข้า %1$s ที่คั่นหน้าแล้ว"</string>
+  <string name="msg_3778200c90e5" formatted="false">"ที่คั่นหน้าเหล่านี้ถูกนำเข้าแล้ว จะไม่เพิ่มซ้ำ"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"นำเข้าไม่สำเร็จ กรุณาลองใหม่ภายหลัง"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"นำเข้าไม่สำเร็จ"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"ไม่สามารถเขียนไฟล์ได้"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"ส่งออกที่คั่นหน้าแล้ว"</string>
+  <string name="msg_fef661198324" formatted="false">"ส่งออกที่คั่นหน้าล้มเหลว"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"ยกเลิกการดูตัวอย่างที่ยังไม่ได้บันทึก"</string>
+  <string name="msg_79606cdda212" formatted="false">"โหมดไม่ระบุตัวตน"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s กฎ · ยังไม่ได้บันทึก"</string>
+  <string name="msg_8d44a1395388" formatted="false">"เปิดใช้งาน SkyEye · แตะที่ส่วนประกอบของเว็บไซต์"</string>
+  <string name="msg_315a88f3155e" formatted="false">"ออกจาก SkyEye"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"อยู่ในข้อยกเว้น · เว็บไซต์ต้นทาง"</string>
+  <string name="msg_c550069b0749" formatted="false">"กู้คืนกฎ"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"ไม่สามารถเชื่อมต่อเว็บไซต์นี้ได้ชั่วคราว"</string>
+  <string name="msg_70dd895b66db" formatted="false">"โหลดใหม่"</string>
+  <string name="msg_ed51242141b1" formatted="false">"ตัวเลือกของคุณ อยู่ในโทรศัพท์ของคุณ"</string>
+  <string name="msg_f1c970051cf5" formatted="false">"ยังไม่ได้บันทึกกฎโดเมนใดๆ"</string>
+  <string name="msg_baeab929c3dd" formatted="false">"แตะเพื่อแก้ไข · แก้ไข %1$s ส่วนประกอบ"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"แท็บนี้มี %1$s ครั้ง เก็บไว้ล่าสุด 30 รายการ"</string>
+  <string name="msg_b3471f8f134f" formatted="false">"เปิด URL นี้ด้วยตัวเอง"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"เลือกส่วนประกอบต่อ"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"เปิด SkyEye・เลือกส่วนประกอบ"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"เลิกทำครั้งล่าสุด"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"บันทึกกฎ"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"ส่วนประกอบและโค้ด"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"ดูส่วนประกอบลอย, ซ่อน และฝัง"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"การแก้ไขเว็บไซต์ที่บันทึกไว้"</string>
+  <string name="msg_0590277f2647" formatted="false">"แตะกฎเพื่อแก้ไขต่อหรือให้ AI ปรับ"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"พฤติกรรมเว็บไซต์"</string>
+  <string name="msg_830509b36cfe" formatted="false">"ป้องกันการเปลี่ยนเส้นทางและป๊อปอัป"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"ปิดได้เมื่อกระบวนการล็อกอินได้รับผลกระทบ"</string>
+  <string name="msg_7007cf22f796" formatted="false">"ตั้งค่าการป้องกันโดเมนถูกบันทึกแล้ว"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"หยุดตั้งค่านี้สำหรับโดเมนนี้จนกว่าจะปิดแอป"</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"คืนค่าการบันทึกครั้งล่าสุด"</string>
+  <string name="msg_97efebc05b15" formatted="false">"ส่วนประกอบที่เลือก · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · ตัวเลือกนี้ตรงกับ %3$s ส่วนประกอบในขณะนี้"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"หน้าฝังสามารถปรับกรอบได้; เนื้อหาภายในข้ามแหล่งที่มาไม่สามารถเข้าถึงที่นี่"</string>
+  <string name="msg_2bc121aa5664" formatted="false">"ต้องการแก้ไขส่วนประกอบนี้อย่างไร?"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"เพิ่ม CSS / JS / HTML ที่กำหนดเอง"</string>
+  <string name="msg_6791c9f39720" formatted="false">"เพิ่มสไตล์, ปฏิสัมพันธ์ หรือเนื้อหาหน้า"</string>
+  <string name="msg_704bb9551f08" formatted="false">"ลบส่วนประกอบเว็บไซต์นี้"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"ดูตัวอย่างก่อน แล้วเลือกว่าจะบันทึกหรือไม่"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"แก้ไขโค้ดนี้"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"แก้ไข HTML ภายในส่วนประกอบ"</string>
+  <string name="msg_31d97b13527a" formatted="false">"ฉันแก้ไขถูกไหม? ให้ AI ตรวจสอบ"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"เสนอการแก้ไขเฉพาะส่วนประกอบที่เลือก"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"เลือกชั้นนอก"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"เลือกส่วนประกอบอื่น"</string>
+  <string name="msg_76ae194967b7" formatted="false">"โค้ดเว็บไซต์"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"แก้ไขเนื้อหาที่บันทึกไว้ หรือให้ AI ปรับอีกครั้ง"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"ส่วนประกอบที่กำหนดเอง"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"แก้ไข HTML"</string>
+  <string name="msg_96f3303604ab" formatted="false">"โค้ดส่วนประกอบที่กำหนดเอง"</string>
+  <string name="msg_27688f7df99c" formatted="false">"ส่วนประกอบที่ถูกซ่อน"</string>
+  <string name="msg_215e19833aad" formatted="false">"กู้คืน %1$s"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"กู้คืนส่วนประกอบนี้แล้ว"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"ยังไม่ได้บันทึกการแก้ไข สามารถเลือกส่วนประกอบผ่าน SkyEye หรือเพิ่มโค้ดเว็บไซต์"</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"คืนค่าการเลื่อนหน้า"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"เปิดใช้งานเมื่อไม่สามารถเลื่อนหลังลบหน้าปกได้"</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"กฎถูกบันทึกในเครื่อง หากโครงสร้างโดเมนเปลี่ยนแปลง สามารถเลือกใหม่หรือให้ AI ปรับ"</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"โค้ดจะใช้กับโดเมนนี้และโดเมนย่อย JavaScript สามารถอ่านหน้าและส่งคำขอเครือข่ายได้ โปรดใช้เฉพาะเนื้อหาที่เชื่อถือได้ โหมดข้อยกเว้นจะหยุดการใช้งาน"</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"เมื่อบันทึกจะเก็บการแก้ไขส่วนประกอบที่ดูตัวอย่างใน SkyEye ด้วย"</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"สไตล์ CSS"</string>
+  <string name="msg_628f36411710" formatted="false">"// เพิ่มหรือปรับเนื้อหาหน้า; รันครั้งละหนึ่งครั้งหลังโหลด"</string>
+  <string name="msg_b22612d48c02" formatted="false">"เพิ่ม HTML เว็บไซต์ (วางไว้ท้ายหน้า)"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;คำแนะนำการอ่านของฉัน&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"หน้าเปลี่ยนแปลงแล้ว กรุณาปิดแล้วเปิดตัวแก้ไขใหม่"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"บันทึกและโหลดใหม่แล้ว"</string>
+  <string name="msg_7106b4590cce" formatted="false">"บันทึกล้มเหลว: %1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"รวมส่วนประกอบที่มองไม่เห็นเดิม แสดงสูงสุด 80 ส่วนประกอบลอย, ซ่อน และฝัง"</string>
+  <string name="msg_2111f387ba60" formatted="false">"ไม่พบส่วนประกอบประเภทนี้ในขณะนี้; ยังสามารถแตะส่วนประกอบทั่วไปในหน้าเว็บได้โดยตรง"</string>
+  <string name="msg_167bc0947798" formatted="false">"ซ่อนเดิม"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"ส่วนประกอบลอย/ตรึง"</string>
+  <string name="msg_047f31f927fe" formatted="false">"หน้าฝัง"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"ธีม"</string>
+  <string name="msg_dee60aee2501" formatted="false">"โทนสีอ่อน"</string>
+  <string name="msg_a6b75d068032" formatted="false">"โหมดมืด"</string>
+  <string name="msg_6df543c4a401" formatted="false">"ระบบ"</string>
+  <string name="msg_381e6e45713f" formatted="false">"ติดตามระบบจะสลับตามการตั้งค่าโหมดมืดของโทรศัพท์"</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"ตำแหน่งแถบที่อยู่"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"แถบที่อยู่ด้านบน"</string>
+  <string name="msg_629f91b2430d" formatted="false">"แถบที่อยู่ด้านล่าง"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"แถบที่อยู่ด้านล่าง SkyEye และแถบนำทางด้านบน"</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"แถบที่อยู่ด้านบน SkyEye และแถบนำทางด้านล่าง"</string>
+  <string name="msg_03c481a6ab85" formatted="false">"ค้นหา"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"การแสดงเว็บไซต์"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"ตัวระบุเบราว์เซอร์ (User-Agent)"</string>
+  <string name="msg_12acb73519ef" formatted="false">"Android WebView ดั้งเดิม"</string>
+  <string name="msg_0eac99137858" formatted="false">"ตัวระบุแบบกำหนดเอง"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"Chrome บนมือถือ"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"ข้อมูลและการซิงค์"</string>
+  <string name="msg_c7845aa27319" formatted="false">"คู่มือการใช้งาน"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"การใช้ข้อมูล การเก็บรักษา และการลบ"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"สนามฝึก SkyEye"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"ฝึกปรับแต่งส่วนประกอบ เพิ่ม CSS และ JS"</string>
+  <string name="msg_f329c206f45a" formatted="false">"ChengJing Browser %1$s · เวอร์ชัน Android"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"เชื่อมต่อ OpenRouter"</string>
+  <string name="msg_8831bba1231d" formatted="false">"กุญแจถูกบันทึกแล้ว"</string>
+  <string name="msg_454792f22b74" formatted="false">"เชื่อมต่อ AI ของคุณ"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"บันทึกแบบเข้ารหัสในโทรศัพท์เครื่องนี้"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"ให้ AI ช่วยตรวจสอบกฎของ SkyEye"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"ป้อน API Key ใหม่เพื่อแทนที่"</string>
+  <string name="msg_349c23511e2e" formatted="false">"API Key ถูกบันทึกแบบเข้ารหัสแล้ว"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"บันทึกกุญแจล้มเหลว: %1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"บันทึก API Key"</string>
+  <string name="msg_308f90d89d99" formatted="false">"API Key ถูกลบแล้ว"</string>
+  <string name="msg_4df897d4de83" formatted="false">"ลบ API Key ที่บันทึกไว้"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"โมเดล"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"หรือป้อนชื่อโมเดลเอง"</string>
+  <string name="msg_33190323da75" formatted="false">"ได้รับโมเดลข้อความทั่วไปล่าสุดจากแต่ละซีรีส์"</string>
+  <string name="msg_a822357ce405" formatted="false">"ไม่สามารถอัปเดตโมเดลได้ ตัวเลือกเดิมยังใช้ได้"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"กำลังอัปเดต…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"อัปเดตรายการโมเดลล่าสุด"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"กดวิเคราะห์เพื่อเรียก OpenRouter ค่าบริการขึ้นกับโมเดลที่เลือก กุญแจไม่ถูกส่งให้เว็บไซต์ ข้อมูลที่ส่งจะถูกจัดการโดย OpenRouter และผู้ให้บริการโมเดล"</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"นำบุ๊กมาร์ก ความคืบหน้าการอ่าน และการตั้งค่า SkyEye ไปยังโทรศัพท์เครื่องถัดไป"</string>
+  <string name="msg_dbf504aee158" formatted="false">"เสร็จสิ้นครั้งล่าสุด:"</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"บุ๊กมาร์ก โฟลเดอร์ รายการโปรด และประวัติการลบจะถูกเก็บในพื้นที่แอปเฉพาะของ Google Drive โดยไม่เข้าถึงไฟล์อื่นของคุณ"</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"รายการโปรดและความคืบหน้าการอ่าน"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"ชื่อรายการโปรด URL ปัจจุบัน ชื่อหน้า ตำแหน่งเลื่อน และเปอร์เซ็นต์การอ่านจะซิงค์ร่วมกัน โปรดอัปเดตทุกอุปกรณ์เป็นเวอร์ชันที่รองรับการซิงค์รายการโปรด"</string>
+  <string name="msg_4c197d7a57af" formatted="false">"รายการโปรดเดียวกันจะใช้บันทึกล่าสุดที่สมบูรณ์ การเปลี่ยนชื่อและลบจะซิงค์ด้วย ไม่บังคับเก็บเปอร์เซ็นต์การอ่านสูงสุด หน้าเปิดอยู่จะไม่บังคับเปลี่ยนตำแหน่ง ครั้งถัดไปเปิดจากรายการโปรดจะใช้ตำแหน่งซิงค์"</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"การตั้งค่าเว็บไซต์ SkyEye"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"เมื่อเปิด การตั้งค่าโดเมน กฎส่วนประกอบ CSS/JS/HTML แบบกำหนดเอง และพฤติกรรมเว็บไซต์จะซิงค์ไปยัง Google Drive ของคุณ โค้ดอาจมีข้อมูลส่วนตัว โปรดยืนยันว่าไม่มีรหัสผ่านหรือกุญแจ"</string>
+  <string name="msg_86b823816a78" formatted="false">"ซิงค์การตั้งค่าเว็บไซต์ SkyEye"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"เว็บไซต์เดียวกันจะใช้การตั้งค่าที่สมบูรณ์และใหม่กว่า การตั้งค่าที่ลบจะเก็บสถานะลบ อุปกรณ์อื่นจะใช้เมื่อติดตั้งเว็บไซต์ครั้งถัดไป ข้อยกเว้นชั่วคราวและใบรับรองจะเก็บไว้ในเครื่องเท่านั้น"</string>
+  <string name="msg_d9c03b110d35" formatted="false">"หลังเชื่อมต่อ บุ๊กมาร์กและรายการโปรดในโทรศัพท์นี้จะรวมกับบัญชี Google ที่เลือก แอปจะซิงค์อัตโนมัติเมื่อเปิดและเมื่อแก้ไขบุ๊กมาร์ก บันทึกความคืบหน้ารายการโปรด เปลี่ยนชื่อ หรือลบ รายการออฟไลน์จะเก็บในเครื่องก่อน ซิงค์เมื่อออนไลน์ครั้งถัดไป"</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"กำลังดำเนินการ…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"ซิงค์ทันที"</string>
+  <string name="msg_aee33ff22038" formatted="false">"เชื่อมต่อด้วยบัญชี Google"</string>
+  <string name="msg_9746a274324c" formatted="false">"หยุดซิงค์และออกจากระบบ"</string>
+  <string name="msg_b69bae05d706" formatted="false">"การออกจากระบบจะเก็บข้อมูลในเครื่องและคลาวด์ ข้อมูลซิงค์ในเครื่องผูกกับบัญชี Google ที่ซิงค์ครั้งแรก เพื่อป้องกันข้อมูลผสมจากบัญชีอื่น"</string>
+  <string name="msg_efb208e781f4" formatted="false">"บางเว็บไซต์จะแสดงรูปแบบต่างกันตามข้อมูลตัวระบุ"</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"Chrome บนมือถือ (ค่าเริ่มต้น)"</string>
+  <string name="msg_3138f64b4547" formatted="false">"กำหนด User-Agent เอง"</string>
+  <string name="msg_b1c83027f591" formatted="false">"วาง User-Agent แบบบรรทัดเดียวเต็มรูปแบบ"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"บันทึกแล้วจะโหลดหน้าปัจจุบันใหม่ หน้าอื่นที่เปิดใหม่หรือรีเฟรชจะใช้การตั้งค่านี้ เว็บไซต์อาจเปลี่ยนรูปแบบ การรองรับขึ้นกับแกนเบราว์เซอร์ปัจจุบัน"</string>
+  <string name="msg_73b390a73f19" formatted="false">"อัปเดตตัวระบุเบราว์เซอร์แล้ว"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"ไม่สามารถบันทึกได้"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"บันทึกและโหลดใหม่"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"แกนเบราว์เซอร์ปัจจุบัน: Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"ไม่ทราบ"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"ยังไม่ได้รับตำแหน่งโทรศัพท์ โปรดย้ายไปที่ที่สัญญาณดีกว่าแล้วลองใหม่"</string>
+  <string name="msg_2e6933e93990" formatted="false">"แหล่งตำแหน่งโทรศัพท์ถูกปิด โปรดตรวจสอบบริการตำแหน่งระบบ"</string>
+  <string name="msg_aa939329dc62" formatted="false">"โทรศัพท์ยังไม่ได้รับอนุญาตให้ใช้ตำแหน่ง"</string>
+  <string name="msg_f4e900470989" formatted="false">"ไม่มีตำแหน่งที่ตรงตามเวลาที่กำหนด เวลารอการระบุตำแหน่งหมดแล้ว"</string>
+  <string name="msg_8e6878344350" formatted="false">"โทรศัพท์ไม่มีแหล่งตำแหน่งที่ใช้ได้ โปรดตรวจสอบบริการตำแหน่งระบบ"</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"สิทธิ์ตำแหน่งโทรศัพท์เปลี่ยน โปรดขอตำแหน่งใหม่"</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"หน้านี้ไม่ได้รับอนุญาตให้ใช้ตำแหน่ง"</string>
+  <string name="msg_c293d0f61960" formatted="false">"หน้าปัจจุบันไม่ได้อยู่ในพื้นหน้า"</string>
+  <string name="msg_5677d9b33fef" formatted="false">"คำขอตำแหน่งมากเกินไป กรุณาลองใหม่อีกครั้งในภายหลัง"</string>
+  <string name="msg_54e70324667a" formatted="false">"รอการอนุญาตตำแหน่งจากเว็บไซต์และโทรศัพท์"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"ยังไม่ได้อนุญาตเว็บไซต์นี้ให้ใช้ตำแหน่งโทรศัพท์"</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"บริการตำแหน่งโทรศัพท์ยังไม่เปิดใช้งาน"</string>
+  <string name="msg_e4222762e387" formatted="false">"การอนุญาตตำแหน่งของโทรศัพท์หรือเว็บไซต์ถูกเพิกถอนแล้ว"</string>
+  <string name="msg_ea7546eddc85" formatted="false">"ได้ส่งคำขอตำแหน่งไปยังโทรศัพท์ กำลังรอตำแหน่ง"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"ได้รับตำแหน่งแล้ว และได้ส่งให้เว็บไซต์ปัจจุบัน"</string>
+  <string name="msg_8116207548a5" formatted="false">"ไม่สามารถอัปเดตรายการโมเดล (%1$s)"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"รายการโมเดลว่างเปล่า กรุณาลองใหม่อีกครั้งในภายหลัง"</string>
+  <string name="msg_71eb343e162c" formatted="false">"กรุณาเพิ่ม OpenRouter API Key ในการตั้งค่าก่อน"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"กรุณาเลือกโมเดล"</string>
+  <string name="msg_d3346c882f37" formatted="false">"API Key ไม่ถูกต้อง กรุณากรอกใหม่"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"เครดิต OpenRouter ไม่เพียงพอ"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"คำขอบ่อยเกินไป กรุณาลองใหม่อีกครั้งในภายหลัง"</string>
+  <string name="msg_3861043f8477" formatted="false">"บริการ AI ไม่สามารถทำคำขอเสร็จ (%1$s) กฎเดิมยังคงอยู่"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"กรุณาตั้งค่า OpenRouter Key และโมเดลก่อน"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"API Key ไม่ถูกต้อง"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"คำขอบ่อยเกินไป กรุณาลองใหม่อีกครั้งในภายหลัง"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"บริการ AI ไม่สามารถทำคำขอเสร็จ (%1$s)"</string>
+  <string name="msg_4a16359069dd" formatted="false">"กรุณาเลือกส่วนประกอบที่ถูกต้อง"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"วิธีการจัดการ HTML ไม่ถูกต้อง"</string>
+  <string name="msg_e714012d82ce" formatted="false">"โค้ดครั้งเดียวยาวเกินไป กรุณาแบ่งเป็นการแก้ไขขนาดเล็กกว่า"</string>
+  <string name="msg_8579576181cb" formatted="false">"กรุณากรอก CSS ของส่วนประกอบโดยตรง เช่น color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"คำแนะนำมากเกินไปในครั้งเดียว กรุณาลดขอบเขตปัญหา"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"กฎของส่วนประกอบไม่ถูกต้อง"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI ระบุการแก้ไขที่ไม่มีอยู่"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI ระบุกฎส่วนประกอบที่ไม่มีอยู่"</string>
+  <string name="msg_63b576365f0f" formatted="false">"คำแนะนำ AI ของส่วนประกอบเกินขอบเขตที่เลือก"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"AI ของส่วนประกอบไม่สามารถแก้ไขการตั้งค่าระดับเว็บไซต์ได้"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"การปรับส่วนประกอบ AI"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"เนื้อหาคำแนะนำใหญ่เกินไป กรุณาลดขอบเขต"</string>
+  <string name="msg_8715000a9841" formatted="false">"อัปเดต CSS ของเว็บไซต์"</string>
+  <string name="msg_b350f6663586" formatted="false">"อัปเดต JavaScript ของเว็บไซต์"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"อัปเดต HTML ใหม่ของเว็บไซต์"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"แก้ไข"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"เพิ่ม"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"ลบส่วนประกอบ: %1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"คืนค่า %1$s การแก้ไข"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"ปรับการตั้งค่าการเลื่อนหน้า"</string>
+  <string name="msg_15766e2591bd" formatted="false">"กรุณายืนยันเนื้อหาการแก้ไขด้านล่าง"</string>
+  <string name="msg_64244a373f7b" formatted="false">"แท็บต้นทางถูกปิดหรือโหลดใหม่ การดาวน์โหลดหยุดชะงัก กรุณาลองใหม่ในหน้าเดิม"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"ไฟล์ฝังตัวใหญ่เกินไป"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"รูปแบบไฟล์ฝังตัวไม่ถูกต้อง ไม่ได้บันทึกไฟล์"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"ไม่สามารถอ่านไฟล์แคชนี้ กรุณาลองใหม่ในหน้าเดิม; วิดีโอสตรีมแบบแบ่งส่วนหรือป้องกันต้องใช้วิธีดาวน์โหลดจากเว็บไซต์"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"ขีดจำกัดการดาวน์โหลดแคชเว็บปัจจุบันคือ 2 GB กรุณาใช้ลิงก์ดาวน์โหลดตรงจากเว็บไซต์"</string>
+  <string name="msg_533949b0c241" formatted="false">"ไฟล์ฝังตัวไม่สมบูรณ์"</string>
+  <string name="msg_283a28e03a50" formatted="false">"ไฟล์แคชหมดอายุ กรุณาดาวน์โหลดใหม่"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"อ่านไฟล์แคชล้มเหลว กรุณาดาวน์โหลดใหม่"</string>
+  <string name="msg_ffba3145db56" formatted="false">"ขนาดเนื้อหาดาวน์โหลดไม่ถูกต้อง"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"เนื้อหาดาวน์โหลดไม่สมบูรณ์ ไม่ได้เก็บไฟล์"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"ไม่สามารถบันทึกสถานะการดาวน์โหลด"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"การดาวน์โหลดครั้งก่อนถูกขัดจังหวะ ไม่ได้เก็บไฟล์ที่ไม่สมบูรณ์ กรุณากลับไปที่หน้าเดิมและดาวน์โหลดใหม่"</string>
+  <string name="msg_bcd36261f503" formatted="false">"ไม่สามารถบันทึกไฟล์ดาวน์โหลดให้เสร็จสิ้น"</string>
+  <string name="msg_815187d9a1da" formatted="false">"ไม่สามารถดาวน์โหลดไฟล์ให้เสร็จสิ้น"</string>
+  <string name="msg_02beb82da20a" formatted="false">"ไม่สามารถสร้างไฟล์ดาวน์โหลดได้ กรุณาตรวจสอบพื้นที่เก็บข้อมูล"</string>
+  <string name="msg_bdd00d629528" formatted="false">"ไม่สามารถเขียนไฟล์ดาวน์โหลดได้"</string>
+  <string name="msg_d3e09805962f" formatted="false">"ไม่สามารถสร้างโฟลเดอร์ดาวน์โหลดได้"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"รูปแบบภาพฝังตัวไม่สามารถใช้งานได้"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"ภาพฝังตัวใหญ่เกินไป"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"ภาพฝังตัวเกิน 32 MB"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"ไม่สามารถอ่านภาพแคชนี้ กรุณากดค้างใหม่ในหน้าเดิม"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"เปิดนโยบายความเป็นส่วนตัวออนไลน์"</string>
+  <string name="msg_080988523f29" formatted="false">"โหมดไม่ระบุตัวตนถูกปิด; การล้างข้อมูลเว็บไซต์ไม่เสร็จสิ้น กรุณาปิดและเปิดแอปใหม่"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"กฎหรือเนื้อหาหน้านี้มีจำนวนมาก กรุณาใช้โมเดลคลาวด์วิเคราะห์"</string>
+  <string name="msg_5d279b988da8" formatted="false">"คำแนะนำ AI เกินขอบเขตการแก้ไขของกฎนี้ กรุณาส่งคำขอใหม่"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"โค้ดคำแนะนำยาวเกินไป กรุณาลดขอบเขตการแก้ไข"</string>
+  <string name="msg_272100161734" formatted="false">"อัปเดตสไตล์ CSS"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"อัปเดต JavaScript"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"อัปเดตเนื้อหา HTML"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"ปรับวิธีใช้ HTML"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"โปรดตรวจสอบการแก้ไขก่อนใช้งาน"</string>
+  <string name="msg_997de297c6b3" formatted="false">"ไม่สามารถบันทึกประวัติการดาวน์โหลดได้"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"ไม่สามารถสร้างไฟล์ดาวน์โหลดได้"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"หน้าเว็บมีการเปลี่ยนแปลง โปรดเปิดกฎนี้ใหม่"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"กฎได้รับการอัปเดต โปรดเปิดใหม่เพื่อหลีกเลี่ยงการเขียนทับการแก้ไขอื่น"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"กฎถูกอัปเดตโดยการดำเนินการอื่น โปรดเปิดใหม่"</string>
+  <string name="msg_30b5133da158" formatted="false">"ทำให้การแก้ไขก้าวหน้าขึ้น"</string>
+  <string name="msg_dfb02399c259" formatted="false">"โปรดให้ AI แก้ไขกฎนี้"</string>
+  <string name="msg_a73d81627121" formatted="false">"รวม HTML ต้นฉบับ โค้ดปัจจุบัน และไอเดียใหม่ของคุณ"</string>
+  <string name="msg_6882b571d47c" formatted="false">"สามารถแก้ไขเนื้อหาด้านล่างได้โดยตรง การบันทึกจะอัปเดตกฎเดิม การแก้ไขเว็บไซต์อื่นจะถูกเก็บไว้"</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"เพิ่มที่ส่วนท้ายขององค์ประกอบ"</string>
+  <string name="msg_c7518df827c2" formatted="false">"แทนที่เนื้อหาองค์ประกอบ"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"ใช้กับโดเมนและซับโดเมนนี้ JavaScript สามารถเข้าถึงหน้าเว็บหรือส่งคำขอได้ โปรดตรวจสอบเนื้อหาก่อนบันทึก"</string>
+  <string name="msg_5ef814324284" formatted="false">"เนื้อหาที่แก้ไขถูกเปลี่ยนแปลง โปรดบันทึกอีกครั้ง"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"อัปเดตกฎเดิมและนำไปใช้แล้ว"</string>
+  <string name="msg_f5272b216037" formatted="false">"ลบกฎนี้"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"ต้องการลบกฎนี้หรือไม่?"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"%1$s จะถูกลบ การตั้งค่าอื่นจะถูกเก็บไว้"</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"CSS, JavaScript และ HTML ที่กำหนดเองของเว็บไซต์นี้"</string>
+  <string name="msg_60f997e432a2" formatted="false">"การแก้ไของค์ประกอบนี้"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"ลบกฎนี้แล้ว"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"ลบ"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"เปลี่ยนไปใช้เครื่องมือค้นหาที่กำหนดเองแล้ว"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"กำลังใช้งาน · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"ค้นหาจากแถบ URL · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"เปลี่ยนไปใช้ %1$s แล้ว"</string>
+  <string name="msg_02da895c96ea" formatted="false">"วิธีค้นหาของตัวเอง"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"กำหนดเอง"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"เชื่อมต่อกับบริการค้นหาที่คุณคุ้นเคย"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"ค้นหาในเว็บไซต์ที่ต้องการ แล้วแทนที่ข้อความค้นหาใน URL ด้วย {query}"</string>
+  <string name="msg_83e506018140" formatted="false">"แม่แบบ URL การค้นหา"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} จะถูกแทนที่ด้วยข้อความค้นหาที่เข้ารหัสอย่างปลอดภัย"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"ตัวอย่าง: %1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"บันทึกและใช้"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"แตะเพื่อสลับ ข้อความค้นหาจะส่งไปยังบริการที่เลือกเมื่อส่งการค้นหาเท่านั้น"</string>
+  <string name="msg_455ece81de56" formatted="false">"Baidu"</string>
+  <string name="msg_af8a52509166" formatted="false">"วิกิพีเดียภาษาจีน"</string>
+  <string name="msg_db79062a760b" formatted="false">"ยังไม่ได้ตั้งค่าแม่แบบ URL"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"กรุณาใส่แม่แบบ URL การค้นหา"</string>
+  <string name="msg_e2d127e64801" formatted="false">"แม่แบบ URL ต้องไม่เกิน 2,048 ตัวอักษร"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"แม่แบบ URL ต้องเป็น URL บรรทัดเดียวที่สมบูรณ์"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"แม่แบบ URL ต้องมี {query} อย่างน้อยหนึ่งครั้ง"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"{query} ต้องอยู่ในเส้นทาง URL หรือพารามิเตอร์ค้นหา"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"กรุณาใส่ URL HTTPS ที่สมบูรณ์"</string>
+  <string name="msg_00f486ce580a" formatted="false">"เพื่อปกป้องเนื้อหาการค้นหา ต้องใช้ HTTPS เท่านั้น"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"URL ต้องไม่มีชื่อผู้ใช้หรือรหัสผ่าน"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"แม่แบบ URL ต้องไม่มี # แองเคอร์"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"URL ต้องมีชื่อโฮสต์ที่ถูกต้อง"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"ไม่สามารถลบแคชไอคอนเว็บไซต์ได้"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"จำนวนการตั้งค่าเว็บไซต์มากเกินไป"</string>
+  <string name="msg_a17da897bf76" formatted="false">"การตั้งค่าเว็บไซต์เกิน 8 MB กรุณาจัดการโค้ดกำหนดเองที่ใหญ่กว่า"</string>
+  <string name="msg_51bb558b264b" formatted="false">"สแนปช็อตการตั้งค่าเว็บไซต์ใหญ่เกินไป"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"เวอร์ชันการตั้งค่าเว็บไซต์ไม่เข้ากัน"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"โดเมนหรือเวลาการตั้งค่าเว็บไซต์ไม่ถูกต้อง"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"การตั้งค่าเว็บไซต์เกินขีดจำกัด"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"ทั่วไป"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"ไม่ระบุตัวตน"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"หน้าไม่ระบุตัวตนจะไม่สร้างภาพย่อและไม่บันทึกประวัติการเข้าชม เมื่อปิดแท็บไม่ระบุตัวตนทั้งหมดจะล้างข้อมูลเว็บไซต์"</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"เปิดการท่องเว็บไม่ระบุตัวตนชั่วคราว"</string>
+  <string name="msg_de2a64702660" formatted="false">"ยังไม่มีแท็บทั่วไป"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"สถานะการเข้าสู่ระบบแยกจากแท็บทั่วไป เว็บไซต์และผู้ให้บริการเครือข่ายยังอาจระบุการใช้งานของคุณได้"</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"เพิ่มแท็บใหม่เพื่อให้การอ่านถัดไปมีพื้นที่ของตัวเอง"</string>
+  <string name="msg_89d55dea3269" formatted="false">"หน้าไม่ระบุตัวตน"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"ปิดแท็บ %1$s"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"แท็บปัจจุบัน · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"ตอนนี้ อยู่แค่ตอนนี้เท่านั้น"</string>
+  <string name="msg_ec4537100d5f" formatted="false">"ไม่บันทึกประวัติการเข้าชมและค้นหา ไม่กู้คืนแท็บไม่ระบุตัวตน สถานะการเข้าสู่ระบบแยกจากแท็บทั่วไป ล้างคุกกี้ แคช และข้อมูลเว็บไซต์เมื่อปิดแท็บไม่ระบุตัวตนทั้งหมด"</string>
+  <string name="msg_c4759e2fd146" formatted="false">"โหมดไม่ระบุตัวตนไม่เท่ากับการไม่ระบุชื่อ เว็บไซต์ นายจ้าง หรือผู้ให้บริการอินเทอร์เน็ตยังอาจเห็นกิจกรรมของคุณ ไฟล์ที่คุณดาวน์โหลดเอง บุ๊กมาร์กและรายการโปรดที่บันทึกไว้จะยังคงอยู่; การแชร์ระบบและคำขอ AI จะส่งเนื้อหาที่เลือกไปยังบริการที่เกี่ยวข้อง"</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"เมนูแท็บ"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"ปิดแท็บทั้งหมด"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"ปิดแท็บไม่ระบุตัวตนทั้งหมดหรือไม่?"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"ปิดแท็บทั่วไปทั้งหมดหรือไม่?"</string>
+  <string name="msg_1401b7462a88" formatted="false">"จะปิดแท็บ %1$s แท็บในกลุ่มนี้โดยไม่ส่งผลต่อกลุ่มอื่น"</string>
+  <string name="msg_9b14332369fd" formatted="false">"ข้อมูลเว็บไซต์ในโหมดไม่ระบุตัวตนจะถูกลบเมื่อปิดทั้งหมด ไฟล์ดาวน์โหลด บุ๊กมาร์ก และรายการโปรดยังคงอยู่"</string>
+  <string name="msg_e818d7092124" formatted="false">"แท็บและภาพสแนปช็อตเหล่านี้จะไม่ถูกกู้คืนเมื่อเปิดใหม่ ประวัติการเข้าชม ไฟล์ดาวน์โหลด บุ๊กมาร์ก และรายการโปรดยังคงอยู่"</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"ปิดทั้งหมด"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"ยังไม่ได้ขอตำแหน่ง"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"โทรศัพท์ยังไม่ได้อนุญาตให้ใช้ตำแหน่ง; สามารถเปิดการตั้งค่าสิทธิ์แอปจากข้อมูลเว็บไซต์ได้"</string>
+  <string name="msg_b225c190262b" formatted="false">"บริการตำแหน่งบนโทรศัพท์ยังไม่เปิดใช้งาน กรุณาเปิดการตั้งค่าตำแหน่งจากข้อมูลเว็บไซต์แล้วลองใหม่"</string>
+  <string name="msg_c706cb8f6217" formatted="false">"อนุญาตให้เว็บไซต์นี้เข้าถึงตำแหน่งหรือไม่?"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\nเว็บไซต์สามารถใช้ตำแหน่งของคุณเพื่อให้บริการสถานที่ใกล้เคียงและฟังก์ชันอื่นๆ สามารถเปลี่ยนแปลงได้จากข้อมูลเว็บไซต์ในแถบที่อยู่"</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\nสิทธิ์ในโหมดไม่ระบุตัวตนจะถูกเก็บไว้จนกว่าจะปิดแท็บไม่ระบุตัวตนทั้งหมด"</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"อนุญาตตำแหน่ง"</string>
+  <string name="msg_e69e259269d3" formatted="false">"ไม่อนุญาตตอนนี้"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"ชั่วโมงที่ผ่านมา"</string>
+  <string name="msg_322773403765" formatted="false">"24 ชั่วโมงที่ผ่านมา"</string>
+  <string name="msg_27905bacccf9" formatted="false">"7 วันที่ผ่านมา"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"4 สัปดาห์ที่ผ่านมา"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"ไม่จำกัดเวลา"</string>
+  <string name="msg_b39b740c9370" formatted="false">"ถามก่อน"</string>
+  <string name="msg_0bffd418918b" formatted="false">"อนุญาต"</string>
+  <string name="msg_454b7b66304a" formatted="false">"บล็อก"</string>
+  <string name="language_title" formatted="false">"ภาษาอินเทอร์เฟซ"</string>
+  <string name="language_system" formatted="false">"ตามภาษาของโทรศัพท์"</string>
+  <string name="language_support" formatted="false">"เปิดครั้งแรกจะแสดงตามภาษาของโทรศัพท์ หากภาษาไม่รองรับจะใช้ภาษาอังกฤษ"</string>
+  <string name="language_selected" formatted="false">"ใช้งานปัจจุบัน: %1$s"</string>
+  <string name="language_system_detail" formatted="false">"อัตโนมัติ · %1$s"</string>
+  <string name="language_picker" formatted="false">"เลือกภาษาอินเทอร์เฟซ"</string>
+  <string name="language_note" formatted="false">"การตั้งค่านี้เปลี่ยนเฉพาะอินเทอร์เฟซของ ChengJing เท่านั้น ไม่แปลเนื้อหาเว็บไซต์"</string>
+  <string name="language_changed" formatted="false">"เปลี่ยนภาษาอินเทอร์เฟซแล้ว"</string>
+  <string name="language_native_hint" formatted="false">"แสดงเป็นภาษาต้นฉบับเพื่อให้ง่ายต่อการค้นหาภาษาที่คุ้นเคย"</string>
+  <string name="home_quote_000" formatted="false">"หลังฟ้าร้อง ฝนก็จะตกเสมอ"</string>
+  <string name="home_quote_001" formatted="false">"หลังจากวันนี้ ก็คือวันพรุ่งนี้"</string>
+  <string name="home_quote_002" formatted="false">"หลังจากวันพรุ่งนี้ คือภาพยนตร์เรื่องหนึ่ง"</string>
+  <string name="home_quote_003" formatted="false">"ราคาตกก็ซื้อ ราคาขึ้นก็ขาย การลงทุนก็แค่นี้แหละ"</string>
+  <string name="home_quote_004" formatted="false">"ถ้าคุณไม่ชอบไปทำงาน คุณก็น่าจะชอบเลิกงานมาก"</string>
+  <string name="home_quote_005" formatted="false">"ตราบใดที่คุณพยายาม คุณจะพบว่าสิ่งต่างๆ อาจยากขึ้น"</string>
+  <string name="home_quote_006" formatted="false">"ทำลายโจรในภูเขาง่าย แต่ทำลายโจรในใจยาก"</string>
+  <string name="home_quote_007" formatted="false">"ความพยายามไม่แน่ใจว่าจะสำเร็จ แต่การยอมแพ้ง่ายมาก"</string>
+  <string name="home_quote_008" formatted="false">"ลดกาแฟวันละแก้ว ปีหนึ่งคุณจะลดได้ 365 แก้ว"</string>
+  <string name="home_quote_009" formatted="false">"อย่าคิดมาก คุณก็แค่กออ้อที่มีความคิด"</string>
+  <string name="home_quote_010" formatted="false">"เจอปัญหาอย่ากลัว เผชิญมัน แล้วคุณจะรู้ว่าคุณแก้ไม่ได้จริงๆ"</string>
+  <string name="home_quote_011" formatted="false">"ไม่กังวลเรื่องสิ่งของไม่เท่ากัน แต่กังวลใจคนไม่เท่าเทียม"</string>
+  <string name="home_quote_012" formatted="false">"เมื่อคุณคิดว่าตัวเองไม่มีอะไร อย่าลืมว่าคุณยังเหนื่อยเต็มที่"</string>
+  <string name="home_quote_013" formatted="false">"ก่อนนอนอย่าสไลด์มือถือ ไม่งั้นคุณจะรู้ว่าฟ้าสางแล้ว"</string>
+  <string name="home_quote_014" formatted="false">"ขงจื้อกล่าว: คนดีหาความดีในตัวเอง คนเลวหาความดีในคนอื่น"</string>
+  <string name="home_quote_015" formatted="false">"เรือถึงสะพานก็ตรงเอง ถ้าไม่ตรงก็จมไปแล้ว"</string>
+  <string name="home_quote_016" formatted="false">"คนที่ประสบความสำเร็จมักมีสิ่งหนึ่งเหมือนกัน คือพวกเขาประสบความสำเร็จ"</string>
+  <string name="home_quote_017" formatted="false">"อย่าร้องไห้ อย่าหัวเราะ จงเข้าใจ"</string>
+  <string name="home_quote_018" formatted="false">"ตราบใดที่คุณเดินไปข้างหน้า คุณจะไม่หยุดอยู่กับที่"</string>
+  <string name="home_quote_019" formatted="false">"หลงทาง คือจุดเริ่มต้นของการสำรวจ"</string>
+  <string name="home_quote_020" formatted="false">"ความพยายามอาจไม่ถูกเห็น แต่ขี้เกียจแค่ครั้งเดียวก็ถูกจับได้"</string>
+  <string name="home_quote_021" formatted="false">"ความล้มเหลวคือแม่ของความสำเร็จ แต่คุณอาจหาไม่เจอพ่อเลย"</string>
+  <string name="home_quote_022" formatted="false">"อิสรภาพก็คือการถูกคนอื่นเกลียด"</string>
+  <string name="home_quote_023" formatted="false">"ความสุขไม่ต่างจากการหยุดชั่วคราวของความเจ็บปวด"</string>
+  <string name="home_quote_024" formatted="false">"เมื่อคุณตัดสินใจเริ่ม นั่นหมายความว่ายังไม่เสร็จ"</string>
+  <string name="home_quote_025" formatted="false">"ความสำเร็จไม่มีทางลัด แต่หลายคนติดรถติดในทางลัด"</string>
+  <string name="home_quote_026" formatted="false">"ความวิตกกังวล คืออาการเวียนหัวจากอิสรภาพ"</string>
+  <string name="home_quote_027" formatted="false">"แค่ก้าวแรก คุณก็จะเห็นก้าวที่สองอยู่ข้างหลัง"</string>
+  <string name="home_quote_028" formatted="false">"กรุณาไปให้พ้น อย่าบังแสงแดดของฉัน"</string>
+  <string name="home_quote_029" formatted="false">"โพธิ์ไม่มีต้นจริง กระจกใสก็ไม่ใช่แท่น ของเดิมไม่มีสิ่งใด ที่ไหนจะมีฝุ่น"</string>
+  <string name="home_quote_030" formatted="false">"ความทุกข์ที่คุณเจอคือการเตรียมตัวรับความทุกข์มากขึ้นในอนาคต"</string>
+  <string name="home_quote_031" formatted="false">"ผู้สู้กับปีศาจ ต้องระวังอย่าให้ตัวเองกลายเป็นปีศาจ"</string>
+  <string name="home_quote_032" formatted="false">"ปีนสูงเท่าไหร่ ตกก็เจ็บมากเท่านั้น"</string>
+  <string name="home_quote_033" formatted="false">"ความรู้คือพลัง"</string>
+  <string name="home_quote_034" formatted="false">"ถ้าคุณตั้งใจ แม้ทำผิดก็เป็นความผิดที่ตั้งใจ"</string>
+  <string name="home_quote_035" formatted="false">"สามัญสำนึกบางครั้งก็ไม่ใช่สามัญสำนึก"</string>
+  <string name="home_quote_036" formatted="false">"เด็กกลัวความมืดเป็นเรื่องเข้าใจได้ โศกนาฏกรรมจริงคือผู้ใหญ่กลัวแสงสว่าง"</string>
+  <string name="home_quote_037" formatted="false">"จินตนาการวันโลกาวินาศง่ายกว่าจินตนาการจุดจบของทุนนิยม"</string>
+  <string name="home_quote_038" formatted="false">"ตราบใดที่คุณไม่อาย คนที่อายคือคนอื่น"</string>
+  <string name="home_quote_039" formatted="false">"การเดินพันลี้ เริ่มต้นที่ก้าวแรก"</string>
+  <string name="home_quote_040" formatted="false">"ผู้อื่น คือ นรก"</string>
+  <string name="home_quote_041" formatted="false">"ถ้าคุณลดมาตรฐานลงพอ ทุกวินาทีจะเป็นความประหลาดใจ"</string>
+  <string name="home_quote_042" formatted="false">"สิ่งที่ทรมานเราไม่ใช่ความจริง แต่คือจินตนาการ"</string>
+  <string name="home_quote_043" formatted="false">"อย่าว่าตัวเองมาก เพราะคนอื่นจะว่าคุณเอง"</string>
+  <string name="home_quote_044" formatted="false">"เจอปัญหาอย่ารีบ เพราะรีบก็ไม่มีประโยชน์"</string>
+  <string name="home_quote_045" formatted="false">"เกิดในความทุกข์ ตายในความสุข"</string>
+  <string name="home_quote_046" formatted="false">"แค่กินอิ่ม ก็ไม่หิว"</string>
+  <string name="home_quote_047" formatted="false">"ทางสายใหญ่ล่มสลาย มีแต่ความเมตตาและความยุติธรรม ปัญญาเกิดขึ้น มีแต่การหลอกลวงใหญ่"</string>
+  <string name="home_quote_048" formatted="false">"เสื้อผ้าใส่นานก็เก่า เว้นแต่คุณจะซื้อใหม่"</string>
+  <string name="home_quote_049" formatted="false">"เมื่อน้ำเดือด น้ำก็คือน้ำเดือด"</string>
+  <string name="home_quote_050" formatted="false">"เวลาฟ้าไม่เท่าที่ดิน ดินไม่เท่าคน"</string>
+  <string name="home_quote_051" formatted="false">"เมื่อคุณอยากเจอฉัน การพบกันของเราถึงจะมีความหมาย"</string>
+  <string name="home_quote_052" formatted="false">"คนอื่นหัวเราะว่าฉันบ้า ฉันหัวเราะว่าคนอื่นเห็นออก"</string>
+  <string name="home_quote_053" formatted="false">"ทนความทุกข์สุดขีด ถึงรู้ว่ายังมีความทุกข์มากกว่า"</string>
+  <string name="home_quote_054" formatted="false">"ตราบใดที่คุณยังมีชีวิต ก็ยังมีโอกาสทำผิดต่อไป"</string>
+  <string name="home_quote_055" formatted="false">"คุณควบคุมทิศทางลมไม่ได้ แต่ปิดหน้าต่างได้"</string>
+  <string name="home_quote_056" formatted="false">"การจัดการชีวิตที่ดีที่สุด มักคือไม่มีการจัดการ"</string>
+  <string name="home_quote_057" formatted="false">"ทุกอย่างถ้าทำซ้ำมากพอ จะกลายเป็นกิจวัตร"</string>
+  <string name="home_quote_058" formatted="false">"สิ่งที่เห็นทั้งหมดเป็นมายา ยกเว้นแจ้งเตือนเงินเดือนเข้า"</string>
+  <string name="home_quote_059" formatted="false">"คุณคิดว่าคุณเลือก แต่ระบบรู้แล้วว่าคุณจะคลิกอะไร"</string>
+  <string name="home_quote_060" formatted="false">"โลกกว้างใหญ่ ปัญหาของคุณไม่ติดอันดับ"</string>
+  <string name="home_quote_061" formatted="false">"เกิดมามีประโยชน์แน่นอน เงินหมดก็กลับมาใหม่"</string>
+  <string name="home_quote_062" formatted="false">"มาแล้ว ก็นั่งพักก่อน"</string>
+  <string name="home_quote_063" formatted="false">"ปัญหาที่แก้ด้วยเงิน ต้องมีเงินก่อน"</string>
+  <string name="home_quote_064" formatted="false">"ชนะโดยไม่ต้องรบ คือยอดฝีมือ"</string>
+  <string name="home_quote_065" formatted="false">"ความล้มเหลวไม่น่ากลัว น่ากลัวคือความล้มเหลวที่ต้องเขียนรายงาน"</string>
+  <string name="home_quote_066" formatted="false">"ชีวิตสั้นเกินไป จึงไม่เหมาะกับการประชุมยาว"</string>
+  <string name="home_quote_067" formatted="false">"ชีวิตไม่มีทางเดินเปล่า ทุกก้าวนับเป็นก้าวเดิน"</string>
+  <string name="home_quote_068" formatted="false">"สิ่งต่างๆ ไม่ได้ง่ายขึ้น แต่คุณชินกับความยาก"</string>
+  <string name="home_quote_069" formatted="false">"เสียงใหญ่เงียบ รูปใหญ่ไม่มีรูป การประชุมใหญ่ส่วนมากไม่มีข้อสรุป"</string>
+  <string name="home_quote_070" formatted="false">"สบตาและยิ้มให้กัน ใจตรงกันไม่มีที่ติ"</string>
+  <string name="home_quote_071" formatted="false">"ผู้ชนะคนอื่นมีพลัง ผู้ชนะตัวเองแกร่งกว่า"</string>
+  <string name="home_quote_072" formatted="false">"เก้าอี้ของคุณกำหนดท่านั่งของคุณ"</string>
+  <string name="home_quote_073" formatted="false">"ความสุขที่ยิ่งใหญ่ที่สุด คือไม่ต้องพิสูจน์ว่าตัวเองมีความสุข"</string>
+  <string name="home_quote_074" formatted="false">"ชีวิตเกิดมามีอิสระ แต่กลับต้องลงชื่อเข้าใช้ทุกที่"</string>
+  <string name="home_quote_075" formatted="false">"ถ้าคุณไม่มีเวลาพักผ่อน ร่างกายจะจัดการนัดหมายให้เอง"</string>
+  <string name="home_quote_076" formatted="false">"ชีวิตสอนคุณหลายอย่าง ค่าเล่าเรียนมักไม่ถูก"</string>
+  <string name="home_quote_077" formatted="false">"ชีวิตไม่ใช่แค่ขาวหรือดำ"</string>
+  <string name="home_quote_078" formatted="false">"ความดีสูงสุดเหมือนน้ำ น้ำช่วยชีวิตสรรพสิ่งโดยไม่แย่งชิง"</string>
+  <string name="home_quote_079" formatted="false">"ฟังคำพูดของคุณ เหมือนฟังคำพูดของคุณ"</string>
+  <string name="home_quote_080" formatted="false">"เรื่องที่ควรทำทุกเรื่อง ควรบันทึกก่อนเสมอ"</string>
+  <string name="home_quote_081" formatted="false">"โลกไม่หยุดหมุนเพราะคุณ ไม่ต้องรู้สึกผิดมากนัก"</string>
+  <string name="home_quote_082" formatted="false">"ปรัชญาลึกซึ้ง เมื่ออธิบายแล้วมักเรียบง่าย"</string>
+  <string name="home_quote_083" formatted="false">"ชีวิตไม่มีประสบการณ์ที่ไร้ค่า"</string>
+  <string name="home_quote_084" formatted="false">"ถ้าคุณกลัวทำผิด จะพลาดวิธีผิดใหม่ๆ มากมาย"</string>
+  <string name="home_quote_085" formatted="false">"ชีวิตมีความเป็นไปได้มากมาย แต่วันนี้มีเพียงครั้งเดียว"</string>
+  <string name="home_quote_086" formatted="false">"How are you？I\'m fine, thank you."</string>
+  <string name="home_quote_087" formatted="false">"อดีตแก้ไขไม่ได้ อนาคตยังตามทันได้"</string>
+  <string name="home_quote_088" formatted="false">"เป็นตัวของตัวเอง"</string>
+  <string name="msg_485107965fef" formatted="false">"รูปแบบกฎขององค์ประกอบไม่ถูกต้อง"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"ไม่สามารถลบทั้งหน้าได้"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"ไม่พบตัวเลือกองค์ประกอบที่ถูกต้อง"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"องค์ประกอบที่เลือกไม่มีอยู่แล้ว"</string>
+  <string name="msg_db7282021ef2" formatted="false">"HTML ต้นฉบับยังไม่พร้อม กรุณารีเฟรชหน้าแล้วเปิดกฎใหม่"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"ไม่พบองค์ประกอบ"</string>
+  <string name="msg_837653b6c57e" formatted="false">"องค์ประกอบใหญ่เกินไป กรุณาเลือกขอบเขตที่เล็กกว่า"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"สนามฝึก SkyEye · ChengJing"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"ChengJing・สนามฝึก SkyEye"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"เว็บสาธิตในเครื่อง"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"แบนเนอร์ข้อมูลทั่วไป · คุณสามารถเลือกเก็บไว้"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"ช้าลงหน่อย มองให้ชัด"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"ปรับเว็บให้เป็นแบบที่คุณคุ้นเคย"</string>
+  <string name="practice_8b7c761ab887" formatted="false">"นี่คือเว็บฝึกในมือถือ คุณสามารถปรับแต่งส่วนประกอบ และเพิ่มสไตล์หรือเนื้อหาของคุณเองได้"</string>
+  <string name="practice_7e28a385715a" formatted="false">"แตะที่แถบเครื่องมือ ‘SkyEye’ เปิดแล้วเลือกส่วนประกอบ หากเลือกได้แค่ข้อความ ให้กด ‘เลือกชั้นนอก’ จนกรอบครอบคลุมส่วนประกอบทั้งหมด จากนั้นดูตัวอย่างและลบออก"</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"ตัวเอกของเว็บควรเป็นเนื้อหาที่คุณอยากดู"</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"เพิ่มสิ่งของของคุณเองสักหน่อย"</string>
+  <string name="practice_b4a4214feada" formatted="false">"เปิด SkyEye เลือก ‘เพิ่ม CSS’ เพื่อปรับสไตล์ เช่น ทำให้ย่อหน้ากว้างขึ้น:"</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"เลือก ‘เพิ่ม JS’ เพื่อเพิ่มการแจ้งเตือนการอ่านในหน้าเว็บ:"</string>
+  <string name="practice_9e58ae908fca" formatted="false">"ลบออกแล้วจะเป็นอย่างไร?"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"บันทึกกฎ แล้วไปหน้าที่สอง แม้เนื้อหาส่วนประกอบจะต่างกัน หากโครงสร้างเหมือนกัน ก็จะไม่รบกวนคุณ"</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"ไปหน้าที่สองในโดเมนเดียวกัน →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"คุณยังสามารถแตะเมนู ‘แสดงเว็บไซต์ต้นฉบับชั่วคราว’ เพื่อดูเว็บต้นฉบับชั่วคราว กฎทั้งหมดยังอยู่ ไม่ต้องตั้งค่าใหม่"</string>
+  <string name="practice_66cf62365956" formatted="false">"คอนเทนเนอร์แจ้งเตือนที่ซ่อนไว้เดิม"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"ตัวอย่างส่วนประกอบลอย"</string>
+  <string name="practice_e8b18630d135" formatted="false">"บล็อกลอยนี้กำลังบังเนื้อหาการอ่าน"</string>
+  <string name="practice_975cfbbfce74" formatted="false">"ลองใช้ SkyEye ลบบล็อกสีเขียวทั้งหมดดู"</string>
+  <string name="practice_29692e6a4f70" formatted="false">"อย่าลืมหยุดพักบ้าง"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"ปิดส่วนประกอบ"</string>
+  <string name="practice_df9256123dae" formatted="false">"เนื้อหาใหม่ ยังคงสดชื่น"</string>
+  <string name="practice_efbee8398901" formatted="false">"ส่วนประกอบที่เปลี่ยนเนื้อหา ยังคงโครงสร้างเดิม"</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"หน้าที่สอง · สนามฝึก SkyEye"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"ส่วนประกอบแจ้งเตือนโหลดช้า ก็เลือกได้ด้วย SkyEye"</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

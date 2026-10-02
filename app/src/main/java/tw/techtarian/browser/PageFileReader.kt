@@ -14,7 +14,7 @@ internal class PageFileReader(private val tab:BrowserTab,private val current:()-
     private val key="__cj_file_"+UUID.randomUUID().toString().replace("-","")
     private var data:InputStream?=null
     private var dataOffset=0L
-    private fun checkPage(){check(current()){"來源分頁已關閉或重新載入，下載已停止；請在原頁重試"}}
+    private fun checkPage(){check(current()){bt(R.string.msg_64244a373f7b)}}
     private suspend fun js(code:String):String=withContext(Dispatchers.Main.immediate){
         checkPage()
         withTimeout(15000){suspendCancellableCoroutine{continuation->tab.web.evaluateJavascript(code){if(continuation.isActive)continuation.resume(it?:"null")}}}
@@ -28,8 +28,8 @@ internal class PageFileReader(private val tab:BrowserTab,private val current:()-
           val name=runCatching{JSONTokener(js("""(()=>{const v=visualViewport;let e=document.elementFromPoint($x/$width*(v?v.width:innerWidth)+(v?v.offsetLeft:0),$y/$height*(v?v.height:innerHeight)+(v?v.offsetTop:0));while(e?.shadowRoot){const child=e.shadowRoot.elementFromPoint($x/$width*innerWidth,$y/$height*innerHeight);if(!child||child===e)break;e=child;}const a=e?.closest('a[download]')||document.activeElement?.closest('a[download]');return a?.href?.startsWith('data:')?(a.getAttribute('download')||'').slice(0,1000):'';})()""")).nextValue() as? String}.getOrNull().orEmpty()
           return withContext(Dispatchers.IO){
             val source=DataDownload(url);var size=0L
-            try{source.open().use{input->val buffer=ByteArray(64*1024);while(true){currentCoroutineContext().ensureActive();val n=input.read(buffer);if(n<0)break;size+=n;require(size<=DownloadFormat.MAX_PAGE_BYTES){"內嵌檔案過大"}}}}
-            catch(cancelled:CancellationException){throw cancelled}catch(_:Exception){error("內嵌檔案格式不正確，未儲存檔案")}
+            try{source.open().use{input->val buffer=ByteArray(64*1024);while(true){currentCoroutineContext().ensureActive();val n=input.read(buffer);if(n<0)break;size+=n;require(size<=DownloadFormat.MAX_PAGE_BYTES){bt(R.string.msg_ca9b7c74ba11)}}}}
+            catch(cancelled:CancellationException){throw cancelled}catch(_:Exception){error(bt(R.string.msg_1321c64c4bf3))}
             data=source.open();Info(size,source.mime,name)
           }
         }
@@ -44,9 +44,9 @@ internal class PageFileReader(private val tab:BrowserTab,private val current:()-
         return withTimeout(60000){
             while(true){
                 val state=JSONObject(js("(()=>{const j=window[$quoted];return {ready:!!j?.ready,error:!j||j.error,size:j?.blob?.size||0,mime:j?.blob?.type||'',name:j?.name||''}})()"))
-                check(!state.optBoolean("error")){"讀不到這份暫存檔案。請在原頁重試；分段串流或受保護影片需使用網站提供的下載方式"}
+                check(!state.optBoolean("error")){bt(R.string.msg_a7dbe0173896)}
                 if(state.optBoolean("ready")){
-                    val size=state.getLong("size");require(size in 0..DownloadFormat.MAX_PAGE_BYTES){"網頁暫存下載目前上限為 2 GB，請使用網站的直接下載連結"}
+                    val size=state.getLong("size");require(size in 0..DownloadFormat.MAX_PAGE_BYTES){bt(R.string.msg_99c9e8673ecc)}
                     return@withTimeout Info(size,state.optString("mime"),state.optString("name").take(1000))
                 }
                 delay(50)
@@ -58,21 +58,21 @@ internal class PageFileReader(private val tab:BrowserTab,private val current:()-
         data?.let{input->return withContext(Dispatchers.IO){
             check(offset==dataOffset)
             val result=ByteArray(count);var n=0
-            while(n<count){val read=input.read(result,n,count-n);check(read>0){"內嵌檔案不完整"};n+=read}
+            while(n<count){val read=input.read(result,n,count-n);check(read>0){bt(R.string.msg_533949b0c241)};n+=read}
             dataOffset+=n;result
         }}
         val q=JSONObject.quote(key)
         val started=js("""(()=>{const j=window[$q];if(!j?.blob)return false;j.chunk=null;j.error=false;
             const reader=new FileReader();j.reader=reader;reader.onload=()=>{j.chunk=String(reader.result).split(',')[1]||''};reader.onerror=()=>{j.error=true};reader.onabort=()=>{j.error=true};reader.readAsDataURL(j.blob.slice($offset,${offset+count}));return true;})()""")
-        check(started=="true"){"暫存檔案已失效，請重新下載"}
+        check(started=="true"){bt(R.string.msg_283a28e03a50)}
         return withTimeout(15000){
             while(true){
                 checkPage()
                 val state=JSONObject(js("(()=>{const j=window[$q];if(!j||j.error)return {error:true};if(j.chunk===null)return {};const data=j.chunk;j.chunk=null;return {data};})()"))
-                check(!state.optBoolean("error")){"暫存檔案讀取失敗，請重新下載"}
+                check(!state.optBoolean("error")){bt(R.string.msg_b6e88feeefd6)}
                 if(state.has("data")){
-                    val data=state.getString("data");require(data.length<=(count+2)/3*4+4){"下載內容大小不正確"}
-                    return@withTimeout Base64.decode(data,Base64.DEFAULT).also{check(it.size==count){"下載內容不完整，未保留檔案"}}
+                    val data=state.getString("data");require(data.length<=(count+2)/3*4+4){bt(R.string.msg_ffba3145db56)}
+                    return@withTimeout Base64.decode(data,Base64.DEFAULT).also{check(it.size==count){bt(R.string.msg_4ec5671c213d)}}
                 }
                 delay(10)
             }

@@ -36,16 +36,16 @@ import androidx.compose.ui.unit.sp
         val problem=SearchEngines.templateError(custom)
         if(problem!=null){error=problem;return}
         runCatching{store.useCustomSearch(custom)}
-            .onSuccess{custom=store.customSearchTemplate;error=null;focus.clearFocus();c.notice="已改用自訂搜尋引擎"}
-            .onFailure{error=it.localizedMessage?:"搜尋引擎設定未能儲存"}
+            .onSuccess{custom=store.customSearchTemplate;error=null;focus.clearFocus();c.notice=bt(R.string.msg_52a8d83058e5)}
+            .onFailure{error=it.localizedMessage?:bt(R.string.msg_cbcde29f8851)}
     }
     Surface(Modifier.fillMaxWidth().testTag("search-engine-summary"),shape=RoundedCornerShape(18.dp),color=MaterialTheme.colorScheme.primaryContainer){
         Row(Modifier.padding(horizontal=16.dp,vertical=12.dp),verticalAlignment=Alignment.CenterVertically){
             Box(Modifier.size(40.dp).clip(CircleShape),contentAlignment=Alignment.Center){Icon(Icons.Outlined.Search,null,tint=MaterialTheme.colorScheme.primary)}
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)){
-                Text("目前使用 · ${SearchEngines.label(current)}",fontSize=16.sp,fontWeight=FontWeight.SemiBold)
-                Text("網址列搜尋 · ${SearchEngines.description(current)}",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
+                Text(bt(R.string.msg_8cafe5b09384 ,SearchEngines.label(current)),fontSize=16.sp,fontWeight=FontWeight.SemiBold)
+                Text(bt(R.string.msg_2426fa40ef4a ,SearchEngines.description(current)),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
             }
         }
     }
@@ -54,41 +54,41 @@ import androidx.compose.ui.unit.sp
         row.forEach{engine->
             SearchEngineChoice(engine.label,engine.description,current.engineId==engine.id,"search-engine:${engine.id}",Modifier.weight(1f)){
                 runCatching{store.useSearchEngine(engine.id)}
-                    .onSuccess{editingCustom=false;error=null;focus.clearFocus();c.notice="已改用 ${engine.label}"}
-                    .onFailure{error=it.localizedMessage?:"搜尋引擎設定未能儲存"}
+                    .onSuccess{editingCustom=false;error=null;focus.clearFocus();c.notice=bt(R.string.msg_be0567146f09 ,engine.label)}
+                    .onFailure{error=it.localizedMessage?:bt(R.string.msg_cbcde29f8851)}
             }
         }}}
     }
-    MenuGroup("自己的搜尋方式"){
+    MenuGroup(bt(R.string.msg_02da895c96ea)){
         Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).selectable(selected=current.engineId=="custom",role=Role.RadioButton,onClick={editingCustom=!editingCustom;error=null}).testTag("search-engine:custom").padding(14.dp),verticalAlignment=Alignment.CenterVertically){
             Icon(Icons.Outlined.Tune,null,tint=MaterialTheme.colorScheme.primary)
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)){
-                Text("自訂",fontSize=15.sp,fontWeight=FontWeight.Medium)
-                Text(if(current.engineId=="custom")SearchEngines.description(current)else"連接你習慣的搜尋服務",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
+                Text(bt(R.string.msg_1fe9883907ba),fontSize=15.sp,fontWeight=FontWeight.Medium)
+                Text(if(current.engineId=="custom")SearchEngines.description(current)else bt(R.string.msg_bb6bc86decb3),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
             }
             RadioButton(selected=current.engineId=="custom",onClick=null)
         }
         if(editingCustom)Column(Modifier.padding(start=14.dp,end=14.dp,bottom=14.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
-            Text("在想用的網站搜尋一次，再將網址裡的搜尋文字換成 {query}。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(bt(R.string.msg_dc995c2434f1),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
             val problem=SearchEngines.templateError(custom)
             OutlinedTextField(
-                value=custom,onValueChange={custom=it;error=null},singleLine=false,minLines=2,maxLines=3,isError=custom.isNotBlank()&&problem!=null,
+                textStyle=androidx.compose.ui.text.TextStyle(textDirection=androidx.compose.ui.text.style.TextDirection.Ltr),value=custom,onValueChange={custom=it;error=null},singleLine=false,minLines=2,maxLines=3,isError=custom.isNotBlank()&&problem!=null,
                 modifier=Modifier.fillMaxWidth().testTag("custom-search-template"),
-                label={Text("搜尋網址範本")},placeholder={Text("https://example.com/search?q={query}")},
-                supportingText={Text(error?:problem?.takeIf{custom.isNotBlank()}?:"{query} 會換成已安全編碼的搜尋文字",modifier=Modifier.testTag("custom-search-guidance"))},
+                label={Text(bt(R.string.msg_83e506018140))},placeholder={Text("https://example.com/search?q={query}")},
+                supportingText={Text(error?:problem?.takeIf{custom.isNotBlank()}?:bt(R.string.msg_af76c84d5e7a),modifier=Modifier.testTag("custom-search-guidance"))},
                 keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Uri,imeAction=ImeAction.Done),
                 keyboardActions=KeyboardActions(onDone={saveCustom()})
             )
             if(problem==null){
-                val preview=SearchEngines.searchUrl("澄境 瀏覽器",SearchSettings("custom",custom))
-                Text("預覽：$preview",fontSize=11.sp,lineHeight=16.sp,maxLines=2,overflow=TextOverflow.Ellipsis,color=MaterialTheme.colorScheme.onSurfaceVariant,modifier=Modifier.testTag("custom-search-preview"))
+                val preview=SearchEngines.searchUrl(bt(R.string.msg_900bf4297a3f),SearchSettings("custom",custom))
+                Text(bt(R.string.msg_d8c4a048d060 ,preview),fontSize=11.sp,lineHeight=16.sp,maxLines=2,overflow=TextOverflow.Ellipsis,color=MaterialTheme.colorScheme.onSurfaceVariant,modifier=Modifier.testTag("custom-search-preview"))
             }
-            Button(onClick={saveCustom()},enabled=problem==null,modifier=Modifier.fillMaxWidth().testTag("save-custom-search"),shape=RoundedCornerShape(14.dp)){Text("儲存並使用")}
+            Button(onClick={saveCustom()},enabled=problem==null,modifier=Modifier.fillMaxWidth().testTag("save-custom-search"),shape=RoundedCornerShape(14.dp)){Text(bt(R.string.msg_de86abbf6f8d))}
         }
     }
     if(error!=null&&!editingCustom)Text(error.orEmpty(),color=MaterialTheme.colorScheme.error,fontSize=12.sp)
-    Text("點選即可切換。只有送出搜尋時，搜尋文字才會傳給所選服務。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text(bt(R.string.msg_74bd6f0287b8),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
 
 @Composable private fun SearchEngineChoice(label:String,description:String,selected:Boolean,tag:String,modifier:Modifier,onClick:()->Unit){

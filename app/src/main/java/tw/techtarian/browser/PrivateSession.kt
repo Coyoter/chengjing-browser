@@ -28,7 +28,7 @@ internal class PrivateSession(private val notice:(String)->Unit) {
         }
     }
     fun attach(web:WebView) {
-        check(supported){"請更新 Android System WebView，才能使用資料隔離的無痕分頁"}
+        check(supported){bt(R.string.msg_98603eac2c1f)}
         val session=name?:"$PREFIX${UUID.randomUUID()}".also{name=it}
         WebViewCompat.setProfile(web,session)
         profile=WebViewCompat.getProfile(web)
@@ -52,7 +52,7 @@ internal class PrivateSession(private val notice:(String)->Unit) {
                 }
             } catch(_:Exception) {
                 clearing=false
-                notice("無痕工作階段已關閉；網站資料清理未完成，請關閉並重新開啟 App")
+                notice(bt(R.string.msg_080988523f29))
             }
         }
     }

@@ -3,13 +3,15 @@ package tw.techtarian.browser
 import org.json.JSONArray
 import org.json.JSONObject
 
-internal enum class BrowsingTimeRange(val label:String,val durationMillis:Long?) {
-    LAST_15_MINUTES("過去 15 分鐘",15*60_000L),
-    LAST_HOUR("過去 1 小時",60*60_000L),
-    LAST_DAY("過去 24 小時",24*60*60_000L),
-    LAST_WEEK("過去 7 天",7*24*60*60_000L),
-    LAST_FOUR_WEEKS("過去 4 週",28*24*60*60_000L),
-    ALL_TIME("不限時間",null);
+internal enum class BrowsingTimeRange(private val labelResource:Int,val durationMillis:Long?) {
+    LAST_15_MINUTES(R.string.msg_6846f5758df9,15*60_000L),
+    LAST_HOUR(R.string.msg_243d5a95aaad,60*60_000L),
+    LAST_DAY(R.string.msg_322773403765,24*60*60_000L),
+    LAST_WEEK(R.string.msg_27905bacccf9,7*24*60*60_000L),
+    LAST_FOUR_WEEKS(R.string.msg_7d5941c88cb3,28*24*60*60_000L),
+    ALL_TIME(R.string.msg_75d9ba5b232a,null);
+
+    val label:String get()=bt(labelResource)
 
     fun window(now:Long)=BrowsingWindow(durationMillis?.let{(now-it).coerceAtLeast(1)},now)
 }

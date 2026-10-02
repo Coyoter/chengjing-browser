@@ -11,11 +11,11 @@ import androidx.compose.ui.unit.sp
 
 @Composable internal fun AiProviderPanel(c:BrowserController){
     c.revision
-    SettingsGroup("AI 執行方式"){
-        listOf("gemma" to "Gemma 4 · 手機本機","openrouter" to "OpenRouter · 雲端模型").forEach{(id,label)->
+    SettingsGroup(bt(R.string.msg_70ba6da30f88)){
+        listOf("gemma" to bt(R.string.msg_5e770f2435f5),"openrouter" to bt(R.string.msg_c8f05005fd37)).forEach{(id,label)->
             Row(Modifier.fillMaxWidth().clickable{c.store.aiProvider=id;c.revision++},verticalAlignment=Alignment.CenterVertically){RadioButton(c.store.aiProvider==id,{c.store.aiProvider=id;c.revision++});Text(label,fontSize=15.sp)}
         }
-        Text("本機模式不需要 API Key；雲端模式可自行選擇服務商提供的模型。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(bt(R.string.msg_7397e02a13de),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 @Composable internal fun GemmaSetupPanel(c:BrowserController){
@@ -23,19 +23,19 @@ import androidx.compose.ui.unit.sp
     var metered by remember{mutableStateOf(false)}
     SettingsGroup("Gemma 4 E2B"){
         Text(model.status,fontSize=15.sp)
-        Text("初次需下載約 2.59 GB 模型，保留約 3 GB 儲存空間。需要 64 位元裝置，建議至少 6 GB 記憶體；分析時會使用手機電量。下載後，分析資料留在本機。",fontSize=12.sp,lineHeight=19.sp)
+        Text(bt(R.string.msg_770c4bcb536a),fontSize=12.sp,lineHeight=19.sp)
         if(model.downloading){
             LinearProgressIndicator(progress={model.progress},modifier=Modifier.fillMaxWidth())
-            TextButton(onClick={model.removeModel()}){Text("取消模型下載")}
+            TextButton(onClick={model.removeModel()}){Text(bt(R.string.msg_0e9aa6d873a0))}
         }else if(model.ready){
-            Text("模型已完成完整性檢查，可離線使用。",fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
-            TextButton(onClick={model.removeModel()}){Text("移除模型以釋放空間")}
+            Text(bt(R.string.msg_d2cbf779f4a2),fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
+            TextButton(onClick={model.removeModel()}){Text(bt(R.string.msg_1300b82064c4))}
         }else{
-            Row(verticalAlignment=Alignment.CenterVertically){Checkbox(metered,{metered=it});Text("允許使用行動網路下載",fontSize=13.sp)}
-            Button(enabled=model.supported,onClick={model.startDownload(metered)},modifier=Modifier.fillMaxWidth().testTag("download-gemma")){Text("下載 Gemma 4 本機模型")}
-            if(!model.supported)Text("此裝置不支援本機推論，可選用 OpenRouter。",fontSize=12.sp)
+            Row(verticalAlignment=Alignment.CenterVertically){Checkbox(metered,{metered=it});Text(bt(R.string.msg_28b9d535ae3d),fontSize=13.sp)}
+            Button(enabled=model.supported,onClick={model.startDownload(metered)},modifier=Modifier.fillMaxWidth().testTag("download-gemma")){Text(bt(R.string.msg_fe9c98caa8a4))}
+            if(!model.supported)Text(bt(R.string.msg_4d8ae165e6e6),fontSize=12.sp)
         }
         if(model.error.isNotBlank())Text(model.error,color=MaterialTheme.colorScheme.error,fontSize=12.sp)
-        Text("模型：Google Gemma 4，Apache 2.0。模型檔下載自 Google 文件連結的 LiteRT Community。",fontSize=11.sp,lineHeight=17.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(bt(R.string.msg_6cbc25f77915),fontSize=11.sp,lineHeight=17.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }

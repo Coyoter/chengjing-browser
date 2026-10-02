@@ -7,7 +7,7 @@ class BookmarkTree(rows:List<Bookmark>) {
         val bookmarks=mutableListOf<Bookmark>()
         var total=0
     }
-    val root=Node("書籤",emptyList())
+    val root=Node(bt(R.string.msg_1eb1e5b30e73),emptyList())
     init{
         rows.forEach{bookmark->
             var node=root;node.total++

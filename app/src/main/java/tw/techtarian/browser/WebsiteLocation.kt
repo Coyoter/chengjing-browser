@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.compose.runtime.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
-internal enum class LocationChoice(val label:String){ASK("詢問"),ALLOW("允許"),BLOCK("封鎖")}
+internal enum class LocationChoice(private val labelResource:Int){ASK(R.string.msg_b39b740c9370),ALLOW(R.string.msg_0bffd418918b),BLOCK(R.string.msg_454b7b66304a); val label:String get()=bt(labelResource)}
 
 internal object LocationOrigin{
     fun of(raw:String):String?{
@@ -42,7 +42,7 @@ internal class LocationDecisions(context:Context){
 internal class WebsiteLocation(private val activity:MainActivity){
     private val c get()=activity.controller
     private var native:NativeWebsiteLocation?=null
-    var status by mutableStateOf("尚未要求定位")
+    var status by mutableStateOf(bt(R.string.msg_89fe0a3e10b2))
         internal set
     internal val activeProviders get()=native?.activeProviders.orEmpty()
     internal val registrationCount get()=native?.registrationCount?:0
@@ -62,7 +62,7 @@ internal class WebsiteLocation(private val activity:MainActivity){
         val request=pending?:return@register
         if(!valid(request)){finish(request,false);return@register}
         if(!hasPermission()){
-            c.notice="手機尚未允許定位；可從網站資訊開啟 App 權限設定。"
+            c.notice=bt(R.string.msg_d95cf1ab61c3)
             finish(request,false)
         }else grant(request)
     }
@@ -82,7 +82,7 @@ internal class WebsiteLocation(private val activity:MainActivity){
     private fun grant(request:Request){
         if(!valid(request)){finish(request,false);return}
         if(!locationEnabled()){
-            c.notice="手機定位服務尚未開啟，請從網站資訊開啟定位設定後再試。"
+            c.notice=bt(R.string.msg_b225c190262b)
             finish(request,false);return
         }
         if(!hasPermission()){
@@ -108,10 +108,10 @@ internal class WebsiteLocation(private val activity:MainActivity){
             LocationChoice.BLOCK->finish(request,false)
             LocationChoice.ALLOW->grant(request)
             LocationChoice.ASK->c.prompts.confirm(
-                "允許這個網站取得位置？",
-                "$origin\n\n網站可使用你的位置提供附近地點等功能。可在網址列的網站資訊變更。"+
-                    if(tab.incognito)"\n\n無痕授權只保留到關閉全部無痕分頁。"else"",
-                "允許定位",owner=tab.id,valid={valid(request)},cancelLabel="暫不允許",
+                bt(R.string.msg_c706cb8f6217),
+                bt(R.string.msg_1433f3722ead ,origin)+
+                    if(tab.incognito)bt(R.string.msg_2a7b4e63b0f4)else"",
+                bt(R.string.msg_b77fbff9e7eb),owner=tab.id,valid={valid(request)},cancelLabel=bt(R.string.msg_e69e259269d3),
                 onCancel={finish(request,false)},confirm={grant(request)})
         }
     }

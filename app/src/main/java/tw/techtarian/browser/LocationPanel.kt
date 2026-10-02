@@ -16,10 +16,10 @@ import androidx.compose.ui.unit.sp
     val location=(c.context as MainActivity).websiteLocation
     val origin=LocationOrigin.of(tab.url)?:return
     c.revision
-    SettingsGroup("網站定位"){
+    SettingsGroup(bt(R.string.msg_9c9624b64441)){
         Text(location.status,fontSize=13.sp,lineHeight=21.sp,modifier=Modifier.testTag("location-status"))
-        if(!location.nativeAttached(tab.id))Text("手機的網頁元件尚不支援直接定位，請更新 Android System WebView。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-        Text(if(tab.incognito)"無痕授權只保留到關閉全部無痕分頁。"else"只套用此網站；其他網站需另行取得授權。",fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        if(!location.nativeAttached(tab.id))Text(bt(R.string.msg_88c8eedbe2ec),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(if(tab.incognito)bt(R.string.msg_68f8f532449b)else bt(R.string.msg_db3dea807cf5),fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         LocationChoice.entries.forEach{choice->
             Row(Modifier.fillMaxWidth().heightIn(min=48.dp).selectable(location.choice(tab)==choice,role=Role.RadioButton){location.setChoice(tab,choice)}
                 .testTag("location-choice:${choice.name}"),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)){
@@ -27,8 +27,8 @@ import androidx.compose.ui.unit.sp
                 Text(choice.label,style=MaterialTheme.typography.bodyLarge)
             }
         }
-        Text("變更後會重新載入這個網站，立即停止先前的定位請求。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-        TextButton(onClick={location.openAppSettings()}){Text("手機定位權限")}
-        TextButton(onClick={location.openLocationSettings()}){Text("手機定位服務設定")}
+        Text(bt(R.string.msg_5eb5c24ef2b0),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        TextButton(onClick={location.openAppSettings()}){Text(bt(R.string.msg_d47077aa2c28))}
+        TextButton(onClick={location.openLocationSettings()}){Text(bt(R.string.msg_357f6ad5cd3b))}
     }
 }

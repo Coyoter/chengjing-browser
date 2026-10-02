@@ -5,11 +5,11 @@ import java.util.Base64
 
 /** Decodes data URLs incrementally, without duplicating the complete payload in memory. */
 internal class DataDownload(private val url:String) {
-    private val comma=url.indexOf(',').also{require(it in 5..1024){"內嵌檔案格式不正確"}}
+    private val comma=url.indexOf(',').also{require(it in 5..1024){bt(R.string.msg_dff17a885a0a)}}
     private val header=url.substring(5,comma)
     private val base64=header.split(';').any{it.equals("base64",true)}
     val mime=DownloadFormat.mime(header.substringBefore(';'))?:"text/plain"
-    init{require(url.startsWith("data:")){"內嵌檔案網址不正確"};require(url.length<=48*1024*1024){"內嵌資料網址過大，請使用網站的檔案下載連結"}}
+    init{require(url.startsWith("data:")){bt(R.string.msg_e9071d9f9b1a)};require(url.length<=48*1024*1024){bt(R.string.msg_a5fc04346035)}}
     fun open():InputStream {
         val input=object:InputStream(){
             var position=comma+1;var pending=ByteArray(0);var pendingIndex=0
@@ -19,8 +19,8 @@ internal class DataDownload(private val url:String) {
                         pendingIndex<pending.size->pending[pendingIndex++].toInt() and 255
                         position>=url.length->return -1
                         url[position]=='%'->{
-                            require(position+2<url.length){"內嵌檔案編碼不完整"}
-                            val byte=url.substring(position+1,position+3).toIntOrNull(16)?:error("內嵌檔案編碼不正確")
+                            require(position+2<url.length){bt(R.string.msg_5c9b07483f0c)}
+                            val byte=url.substring(position+1,position+3).toIntOrNull(16)?:error(bt(R.string.msg_c74489c545f7))
                             position+=3;byte
                         }
                         url[position].code<128->url[position++].code

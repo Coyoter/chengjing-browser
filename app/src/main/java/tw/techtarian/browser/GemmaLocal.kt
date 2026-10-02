@@ -30,17 +30,18 @@ class GemmaLocal(private val context:Context){
     var ready by mutableStateOf(modelFile.length()==MODEL_BYTES&&prefs.getString("verified","")==MODEL_SHA);private set
     var downloading by mutableStateOf(false);private set
     var progress by mutableFloatStateOf(0f);private set
-    var status by mutableStateOf(if(ready)"Gemma 4 E2B 已就緒"else"尚未下載本機模型");private set
+    private var statusCaption by mutableStateOf(if(ready)bcaption(R.string.msg_d51c2c4b68a5)else bcaption(R.string.msg_a3fa6a7c4ade))
+    val status:String get()=statusCaption.text()
     var error by mutableStateOf("");private set
     init{if(!ready&&prefs.getLong("download",-1)>0)watchDownload()}
     fun startDownload(metered:Boolean){
         if(downloading||ready)return
         runCatching{
-            check(supported){"本機模型需要 64 位元裝置"}
+            check(supported){bt(R.string.msg_191155f69eeb)}
             modelFile.parentFile!!.mkdirs()
-            check(modelFile.parentFile!!.usableSpace>MODEL_BYTES+300_000_000){"空間不足，請先保留約 3 GB 可用儲存空間"}
+            check(modelFile.parentFile!!.usableSpace>MODEL_BYTES+300_000_000){bt(R.string.msg_301286dd890b)}
             if(modelFile.exists())modelFile.delete()
-            val request=DownloadManager.Request(Uri.parse(MODEL_URL)).setTitle("澄境 · Gemma 4 本機模型").setDescription("下載約 2.59 GB；完成後會核對模型完整性")
+            val request=DownloadManager.Request(Uri.parse(MODEL_URL)).setTitle(bt(R.string.msg_47c372fa46d0)).setDescription(bt(R.string.msg_fbf4a411952a))
                 .setAllowedOverMetered(metered).setAllowedOverRoaming(false).setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
                 .setDestinationUri(Uri.fromFile(modelFile))
             val id=downloads.enqueue(request);prefs.edit().putLong("download",id).remove("verified").apply();error="";watchDownload()
@@ -56,18 +57,18 @@ class GemmaLocal(private val context:Context){
                     val state=withContext(Dispatchers.IO){downloads.query(DownloadManager.Query().setFilterById(id)).use{cursor->
                         if(!cursor.moveToFirst())return@use null
                         Triple(cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS)),cursor.getLong(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)),cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON)))
-                    }}?:error("下載工作已不存在，請重新下載")
+                    }}?:error(bt(R.string.msg_a73e367bf7e5))
                     progress=(state.second.toFloat()/MODEL_BYTES).coerceIn(0f,1f)
                     when(state.first){
-                        DownloadManager.STATUS_SUCCESSFUL->{status="正在核對模型完整性…";verifyModel();break}
-                        DownloadManager.STATUS_FAILED->error("模型下載失敗（${state.third}），請重新下載")
-                        DownloadManager.STATUS_PAUSED->status="下載已暫停；請確認 Wi-Fi、網路或儲存空間"
-                        else->status="正在下載 Gemma 4 · ${(progress*100).toInt()}%"
+                        DownloadManager.STATUS_SUCCESSFUL->{statusCaption=bcaption(R.string.msg_24d557606dbb);verifyModel();break}
+                        DownloadManager.STATUS_FAILED->error(bt(R.string.msg_d46682705f49 ,state.third))
+                        DownloadManager.STATUS_PAUSED->statusCaption=bcaption(R.string.msg_4d3cc3455aba)
+                        else->statusCaption=bcaption(R.string.msg_4b01fe99a31d ,(progress*100).toInt())
                     }
                     delay(1500)
                 }
             }catch(e:CancellationException){throw e}
-            catch(e:Exception){error=e.localizedMessage.orEmpty();prefs.edit().remove("download").apply();status="尚未完成下載"}
+            catch(e:Exception){error=e.localizedMessage.orEmpty();prefs.edit().remove("download").apply();statusCaption=bcaption(R.string.msg_119f097a0356)}
             finally{downloading=false}
         }
     }
@@ -78,19 +79,19 @@ class GemmaLocal(private val context:Context){
             modelFile.inputStream().use{input->while(true){currentCoroutineContext().ensureActive();val n=input.read(buffer);if(n<0)break;digest.update(buffer,0,n)}}
             digest.digest().joinToString(""){"%02x".format(it)}==MODEL_SHA
         }
-        check(valid){"模型完整性檢查未通過，請刪除後重新下載"}
-        prefs.edit().putString("verified",MODEL_SHA).remove("download").apply();ready=true;progress=1f;status="Gemma 4 E2B 已就緒";error=""
+        check(valid){bt(R.string.msg_b919f9f006b6)}
+        prefs.edit().putString("verified",MODEL_SHA).remove("download").apply();ready=true;progress=1f;statusCaption=bcaption(R.string.msg_d51c2c4b68a5);error=""
     }
     fun removeModel(){
         poll?.cancel();val id=prefs.getLong("download",-1);if(id>0)downloads.remove(id)
-        modelFile.delete();prefs.edit().clear().apply();ready=false;downloading=false;progress=0f;status="尚未下載本機模型";error=""
+        modelFile.delete();prefs.edit().clear().apply();ready=false;downloading=false;progress=0f;statusCaption=bcaption(R.string.msg_a3fa6a7c4ade);error=""
     }
     fun cancelInference(){conversation?.cancelProcess()}
     suspend fun develop(problem:String,structure:String,current:SiteRules,selected:String?,revision:Boolean=false,editId:String?=null):DeveloperProposal=withContext(Dispatchers.IO){
         lock.withLock{
-            check(supported&&ready&&modelFile.length()==MODEL_BYTES){"請先下載 Gemma 4 本機模型"}
+            check(supported&&ready&&modelFile.length()==MODEL_BYTES){bt(R.string.msg_2b11bfcde893)}
             val memory=ActivityManager.MemoryInfo();context.getSystemService(ActivityManager::class.java).getMemoryInfo(memory)
-            check(memory.availMem>=1_800_000_000L){"目前可用記憶體不足，請先關閉部分分頁或其他 App，再使用本機模型。"}
+            check(memory.availMem>=1_800_000_000L){bt(R.string.msg_6f5224f357d7)}
             val prompt=(if(revision)RuleRevision.context(problem,structure,current,editId,true)else DeveloperPrompt.context(problem,structure,current,selected,true)).toString()
             Engine.setNativeMinLogSeverity(LogSeverity.ERROR)
             val config=EngineConfig(modelPath=modelFile.absolutePath,backend=Backend.CPU(threadCount=4),maxNumTokens=8192,cacheDir=File(context.cacheDir,"gemma").apply{mkdirs()}.absolutePath)
@@ -100,7 +101,7 @@ class GemmaLocal(private val context:Context){
                     conversation=chat
                     try{
                         val text=StringBuilder()
-                        chat.sendMessageAsync(prompt).collect{message->currentCoroutineContext().ensureActive();text.append(message.toString());check(text.length<=48000){"模型回覆過長，請縮小問題範圍"}}
+                        chat.sendMessageAsync(prompt).collect{message->currentCoroutineContext().ensureActive();text.append(message.toString());check(text.length<=48000){bt(R.string.msg_305f7b160fa8)}}
                         if(revision)RuleRevision.parse(text.toString(),current,editId)else if(selected==null)DeveloperProposals.parse(text.toString(),current,null)else DeveloperPrompt.localElementProposal(text.toString(),current,selected)
                     }finally{chat.cancelProcess();conversation=null}
                 }

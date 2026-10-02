@@ -11,7 +11,7 @@ class CertificateWarnings {
     @Synchronized fun record(pageUrl: String, resourceUrl: String, reason: String) {
         val resource = origin(resourceUrl)
         val page = origin(pageUrl).ifEmpty { resource }
-        val host = resourceUrl.toHttpUrlOrNull()?.host ?: "網站資源"
+        val host = resourceUrl.toHttpUrlOrNull()?.host ?: bt(R.string.msg_789842abff7d)
         val detail = "$host：$reason"
         val resourceHost=tlsHost(resourceUrl)
         if (resourceHost.isNotEmpty()) resources[resourceHost] = detail
@@ -37,7 +37,7 @@ class CertificateWarnings {
         if (origin.isEmpty()) return ""
         val details = (pages[origin].orEmpty() + listOfNotNull(resources[tlsHost(url)])).distinct()
         if (details.isEmpty()) return ""
-        return "此頁面曾遇到憑證異常，無法確認該連線的對象身分。未開啟網站例外時，異常連線會被阻止。\n" + details.take(5).joinToString("\n")
+        return bt(R.string.msg_cb0227da0af8) + details.take(5).joinToString("\n")
     }
 
     private fun origin(url: String): String = url.toHttpUrlOrNull()?.newBuilder()

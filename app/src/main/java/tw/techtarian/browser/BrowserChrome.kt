@@ -52,7 +52,7 @@ import androidx.compose.ui.unit.sp
     LaunchedEffect(editing,address){if(editing)address.edit{selectAll()}}
     Row(Modifier.fillMaxWidth().testTag("browser-topbar").padding(horizontal=if(showHome)8.dp else 24.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
         if(showHome)IconButton(onClick=onHome,modifier=Modifier.size(48.dp).testTag("home-button")){
-            Icon(Icons.Outlined.Home,"首頁",Modifier.size(22.dp))
+            Icon(Icons.Outlined.Home,bt(R.string.msg_a782f2754c83),Modifier.size(22.dp))
         }
         // Visual capsule is 44 dp. The centered controls retain a 48 dp touch target.
         Box(Modifier.weight(1f).height(48.dp),contentAlignment=Alignment.Center){
@@ -60,34 +60,34 @@ import androidx.compose.ui.unit.sp
             Row(Modifier.fillMaxWidth().height(48.dp),verticalAlignment=Alignment.CenterVertically){
                 IconButton(onClick=onSecurity,modifier=Modifier.size(48.dp)){
                     Icon(if(certificateWarning||certificateException)Icons.Outlined.WarningAmber else if(secure)Icons.Outlined.Lock else if(blank)Icons.Outlined.Search else Icons.Outlined.WarningAmber,
-                        if(certificateException)"憑證例外已開啟，點擊查看"else if(certificateWarning)"憑證異常，點擊查看"else"網站資訊",Modifier.size(20.dp),
+                        if(certificateException)bt(R.string.msg_b09f65e3a56e)else if(certificateWarning)bt(R.string.msg_7c24b540153b)else bt(R.string.msg_58f5b551d138),Modifier.size(20.dp),
                         tint=if(certificateWarning||certificateException)colors.error else colors.onSurface)
                 }
                 BasicTextField(
                     state=address,
                     modifier=Modifier.weight(1f).height(44.dp).testTag("address-input").onFocusChanged{onFocus(it.isFocused)},
                     lineLimits=TextFieldLineLimits.SingleLine,
-                    textStyle=TextStyle(color=colors.onSurface,fontSize=14.sp,lineHeight=20.sp,
+                    textStyle=TextStyle(textDirection=androidx.compose.ui.text.style.TextDirection.Ltr,color=colors.onSurface,fontSize=14.sp,lineHeight=20.sp,
                         platformStyle=PlatformTextStyle(includeFontPadding=false),
                         lineHeightStyle=LineHeightStyle(LineHeightStyle.Alignment.Center,LineHeightStyle.Trim.Both)),
                     cursorBrush=SolidColor(colors.primary),
                     keyboardOptions=KeyboardOptions(imeAction=ImeAction.Go),
                     onKeyboardAction={onGo()},
                     decorator={inner->Box(Modifier.fillMaxSize(),contentAlignment=Alignment.CenterStart){
-                        if(address.text.isEmpty())Text("搜尋或輸入網址",color=colors.onSurfaceVariant,fontSize=14.sp,lineHeight=20.sp,maxLines=1,overflow=TextOverflow.Ellipsis,
+                        if(address.text.isEmpty())Text(bt(R.string.msg_ac43b65a5965),color=colors.onSurfaceVariant,fontSize=14.sp,lineHeight=20.sp,maxLines=1,overflow=TextOverflow.Ellipsis,
                             style=TextStyle(platformStyle=PlatformTextStyle(includeFontPadding=false)))
                         inner()
                     }},
                 )
                 IconButton(onClick=if(editing)onGo else onReload,modifier=Modifier.size(48.dp)){
                     Icon(if(editing)Icons.AutoMirrored.Outlined.ArrowForward else if(loading)Icons.Outlined.Close else Icons.Outlined.Refresh,
-                        if(editing)"前往"else if(loading)"停止載入"else"重新整理",Modifier.size(20.dp))
+                        if(editing)bt(R.string.msg_fa96079c3b2f)else if(loading)bt(R.string.msg_f5d0ca4834db)else bt(R.string.msg_5f451c71b46a),Modifier.size(20.dp))
                 }
             }
         }
         Spacer(Modifier.width(4.dp))
         IconButton(onClick=onNewTab,modifier=Modifier.size(48.dp).testTag("new-tab-button")){
-            Icon(Icons.Outlined.Add,"新增分頁",Modifier.size(24.dp))
+            Icon(Icons.Outlined.Add,bt(R.string.msg_a38d62ae74d4),Modifier.size(24.dp))
         }
         TabCountButton(tabs,onTabs)
     }
@@ -99,7 +99,7 @@ import androidx.compose.ui.unit.sp
     val numeral=remember(count,density.density,density.fontScale){
         with(density){TabNumeral(count.toString(),12.sp.toPx(),16.dp.toPx())}
     }
-    Box(Modifier.size(48.dp).testTag("tab-switcher").semantics{contentDescription="分頁，$count 個"}.clickable(role=Role.Button,onClick=onClick),contentAlignment=Alignment.Center){
+    Box(Modifier.size(48.dp).testTag("tab-switcher").semantics{contentDescription=bt(R.string.msg_75bc594490fc ,count)}.clickable(role=Role.Button,onClick=onClick),contentAlignment=Alignment.Center){
         Canvas(Modifier.size(24.dp).testTag("tab-count-badge")){
             val stroke=1.5.dp.toPx()
             drawRoundRect(color,topLeft=androidx.compose.ui.geometry.Offset(stroke/2,stroke/2),

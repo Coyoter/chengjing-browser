@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"Tìm kiếm lại"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"Tài khoản Google"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"Quá nhiều ảnh chụp thiết bị đồng bộ, vui lòng liên hệ hỗ trợ"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"Đang chờ đồng bộ"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"Chưa liên kết Google"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"Đã hủy ủy quyền Google"</string>
+  <string name="msg_37f027ce9096" formatted="false">"Dữ liệu cục bộ không thay đổi, bạn có thể nhấn \"Đồng bộ ngay\" sau."</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"Đang chờ kết nối mạng"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"Dữ liệu cục bộ đã được giữ lại, khi kết nối trở lại bạn có thể nhấn \"Đồng bộ ngay\"."</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"Cần đăng nhập lại Google"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"Vui lòng nhấn \"Đồng bộ ngay\" để xác nhận tài khoản Google."</string>
+  <string name="msg_35b24a76557b" formatted="false">"Cài đặt đăng nhập Google không tương thích"</string>
+  <string name="msg_f164f003f815" formatted="false">"Vui lòng cập nhật lên phiên bản mới nhất; nếu vẫn không thể liên kết, vui lòng liên hệ hỗ trợ."</string>
+  <string name="msg_ebfa487493ba" formatted="false">"Ủy quyền Google chưa hoàn tất"</string>
+  <string name="msg_9dba61428261" formatted="false">"Vui lòng nhấn \"Đồng bộ ngay\" và thử lại. Dữ liệu cục bộ đã được giữ lại."</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"Đang liên kết Google…"</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"Dữ liệu cục bộ không thay đổi, vui lòng thử lại."</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"Đang đồng bộ dấu trang…"</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"Kết nối đã bị hủy"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"Ghi và đọc lại trên đám mây không nhất quán, vui lòng thử lại"</string>
+  <string name="msg_9359e2513325" formatted="false">"Đang đồng bộ mục yêu thích và tiến trình đọc…"</string>
+  <string name="msg_294092e535b2" formatted="false">"Ghi và đọc lại mục yêu thích và tiến trình đọc không nhất quán, vui lòng thử lại"</string>
+  <string name="msg_f2e9df262458" formatted="false">"Đang đồng bộ cài đặt trang web SkyEye…"</string>
+  <string name="msg_ef86e477373a" formatted="false">"Ghi và đọc lại cài đặt SkyEye không nhất quán, vui lòng thử lại"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"Đã đồng bộ %1$s dấu trang, %2$s mục yêu thích và tiến trình đọc"</string>
+  <string name="msg_2830de0d843f" formatted="false">" và %1$s cài đặt trang web; áp dụng sau khi tải lại trang"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"Đã dừng đồng bộ, dữ liệu dấu trang và mục yêu thích trên thiết bị và đám mây đều được giữ lại"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"Dấu trang"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"Mã nhận dạng dấu trang không hợp lệ"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"Vui lòng nhập URL dấu trang"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"URL tối đa 16.000 ký tự"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"Vui lòng nhập URL bắt đầu bằng https:// hoặc http://"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"Định dạng URL không hợp lệ"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"URL mã hóa vượt quá 16.000 ký tự, vui lòng rút ngắn URL"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"Tệp dấu trang quá lớn, vui lòng nhập theo từng phần (tối đa 8 MB)"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"Tối đa nhập 20.000 dấu trang mỗi lần"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;Dấu trang ChengJing&lt;/TITLE&gt;&lt;H1&gt;Dấu trang ChengJing&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"Tệp dấu trang đám mây quá lớn"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"Định dạng dấu trang đám mây không tương thích"</string>
+  <string name="msg_40ad29b56199" formatted="false">"Lưu dấu trang thất bại"</string>
+  <string name="msg_a782f2754c83" formatted="false">"Trang chủ"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"Ngoại lệ chứng chỉ đã bật, nhấn để xem"</string>
+  <string name="msg_7c24b540153b" formatted="false">"Chứng chỉ bất thường, nhấn để xem"</string>
+  <string name="msg_58f5b551d138" formatted="false">"Thông tin trang web"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"Tìm kiếm hoặc nhập URL"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"Đi đến"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"Dừng tải"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"Tải lại"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"Thêm tab mới"</string>
+  <string name="msg_75bc594490fc" formatted="false">"Tab, %1$s cái"</string>
+  <string name="msg_ad62e8203c00" formatted="false">"Tệp chưa đặt tên"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"Tải xuống chưa hoàn tất hoặc tệp đã bị xóa"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"Tệp đã bị xóa"</string>
+  <string name="msg_813f4217faf8" formatted="false">"Mở tệp tải xuống"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"Không có ứng dụng nào để mở tệp này"</string>
+  <string name="msg_04c451cd747f" formatted="false">"Không thể mở tệp, có thể đã bị di chuyển hoặc xóa"</string>
+  <string name="msg_8d24156413ef" formatted="false">"Tạm thời không thể đọc tải xuống hệ thống, vui lòng thử lại sau"</string>
+  <string name="msg_d477c75aa656" formatted="false">"Tải xuống"</string>
+  <string name="msg_4138d7e93958" formatted="false">"Hình ảnh, video, âm thanh và tệp tải xuống từ ChengJing Browser."</string>
+  <string name="msg_775f5ca1d653" formatted="false">"Chưa có mục tải xuống nào"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"Không tìm thấy tải xuống phù hợp"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"Nhấn giữ hình ảnh, dùng menu tải xuống của trình phát hoặc nhấn liên kết tải xuống trên trang web."</string>
+  <string name="msg_d011ffe066da" formatted="false">"Mở %1$s"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"Hủy %1$s"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"Đã hủy"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"Đã hoàn thành"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"Tải xuống thất bại"</string>
+  <string name="msg_204249cd633a" formatted="false">"Đã tạm dừng, chờ hệ thống thử lại"</string>
+  <string name="msg_235d5f021172" formatted="false">"Đang tải xuống"</string>
+  <string name="msg_efed99b86212" formatted="false">"Đang chờ tải xuống"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"Kích thước chưa được xác nhận"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"Tải tệp"</string>
+  <string name="msg_de32e20193ad" formatted="false">"Đã hiểu"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"Lịch sử duyệt web"</string>
+  <string name="msg_4e445f09300c" formatted="false">"250 trang gần đây nhất chỉ được lưu trên điện thoại này. Chế độ ẩn danh sẽ không được thêm vào."</string>
+  <string name="msg_c24268c66266" formatted="false">"Xóa lịch sử duyệt web"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"Chưa có lịch sử duyệt web"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"Không tìm thấy trang phù hợp"</string>
+  <string name="msg_539989302fd2" formatted="false">"Các trang đã duyệt trong tab thông thường sẽ xuất hiện ở đây."</string>
+  <string name="msg_3352ef9c5026" formatted="false">"Xóa mục lịch sử duyệt này"</string>
+  <string name="msg_46afe15d4929" formatted="false">"Xóa lịch sử duyệt web?"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"Lịch sử duyệt và tìm kiếm trên thiết bị sẽ bị xóa, không xóa dấu trang, mục yêu thích hoặc dữ liệu đăng nhập trang web."</string>
+  <string name="msg_bce2377283c2" formatted="false">"Xóa"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"Hủy"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"Tìm kiếm %1$s"</string>
+  <string name="msg_052052ba842e" formatted="false">"Tab mới"</string>
+  <string name="msg_778dda35c10f" formatted="false">"Ảnh chụp tab không thể lưu, ảnh chụp hiện có được giữ lại"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"Ảnh chụp đang được lưu, vui lòng đợi trước khi đóng ứng dụng"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"Tải xuống sẽ được giữ trên điện thoại"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"Tệp và lịch sử tải xuống hệ thống sẽ không bị xóa khi đóng tab ẩn danh. Bạn có chắc muốn tải xuống không?"</string>
+  <string name="msg_49e07d37a692" formatted="false">"Dữ liệu tab không thể lưu, vui lòng kiểm tra dung lượng lưu trữ điện thoại"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"Vui lòng sử dụng chữ cái, số và ký hiệu tiếng Anh một dòng, tối đa 1.024 ký tự"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"Vui lòng cập nhật Android System WebView để sử dụng tab ẩn danh cách ly dữ liệu"</string>
+  <string name="msg_4369d178c9de" formatted="false">"Hiện tại có thể mở tối đa 20 tab, vui lòng đóng các tab không dùng trước"</string>
+  <string name="msg_b860234cdca4" formatted="false">"Không thể tạo phiên làm việc ẩn danh cách ly, chưa mở trang web"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · Ảnh tạm"</string>
+  <string name="msg_b210350f38fc" formatted="false">"Ảnh"</string>
+  <string name="msg_2988ade50b61" formatted="false">"Chạy chương trình tùy chỉnh thất bại; có thể chỉnh sửa hoặc chuyển ngoại lệ trong cài đặt SkyEye"</string>
+  <string name="msg_a782840b186d" formatted="false">"Chuyển sang App bên ngoài"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"Định dạng liên kết này không thể mở"</string>
+  <string name="msg_216baff9f183" formatted="false">"Tự động chuyển hướng"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"Trang chủ ChengJing"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"Trang web này không thể hoàn thành kết nối mã hóa, vui lòng thử lại sau."</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"Trang web tạm thời không thể mở, vui lòng kiểm tra mạng hoặc địa chỉ và thử lại."</string>
+  <string name="msg_5e2122abec02" formatted="false">"Chứng chỉ đã hết hạn"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"Chứng chỉ chưa có hiệu lực"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"Tên miền chứng chỉ không khớp"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"Nguồn chứng chỉ không đáng tin cậy"</string>
+  <string name="msg_557874fe9910" formatted="false">"Ngày chứng chỉ bất thường"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"Xác minh chứng chỉ không thành công"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"Chứng chỉ của trang web này không được xác minh, kết nối đã dừng. Bạn có thể nhấn biểu tượng kết nối trên thanh địa chỉ để xem lý do và cài đặt ngoại lệ trang web."</string>
+  <string name="msg_31648c936ef3" formatted="false">"Quá trình trang web đã dừng, vui lòng đóng tab này và mở lại."</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"Trang web cục bộ"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"Rời khỏi trang web?"</string>
+  <string name="msg_3bf1281815df" formatted="false">"Thông báo trang web · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"Rời đi"</string>
+  <string name="msg_20db9f87b860" formatted="false">"Xác nhận"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"Ở lại trang này"</string>
+  <string name="msg_e9ea75903633" formatted="false">"Cửa sổ mới / Popup"</string>
+  <string name="msg_2138c825b189" formatted="false">"Phiên bản này chưa cho phép trang web sử dụng camera và micro"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"Bộ chọn tệp không khả dụng"</string>
+  <string name="msg_beffea44da0c" formatted="false">"Không thể mở bộ chọn tệp"</string>
+  <string name="msg_ad37ef430462" formatted="false">"Liên kết này không cung cấp tệp để tải xuống"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\nĐây là tệp tạm của trang web, vui lòng giữ trang nguồn cho đến khi tải xong, không làm mới trang."</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\nTệp và lịch sử tải xuống sẽ được giữ trên điện thoại, không bị xóa khi đóng tab ẩn danh."</string>
+  <string name="msg_d71c2bea9463" formatted="false">"Tải tệp?"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"Mở trang web trước, sau đó thêm vào mục yêu thích"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"Trang đã thay đổi, vui lòng thử lại"</string>
+  <string name="msg_c0af0b409136" formatted="false">"Thêm yêu thích không thành công: %1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"Mở một trang web trước khi sử dụng SkyEye"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"Hiện đang hiển thị trang web gốc, vui lòng kết thúc ngoại lệ trước"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"Vui lòng cập nhật Android System WebView trên Play Store để kích hoạt đầy đủ SkyEye"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"Trang web chưa sẵn sàng, vui lòng tải lại và thử lại"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"Không thể sử dụng quy tắc này"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"Không tìm thấy %1$s trên trang hiện tại, vui lòng chọn lại thành phần"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"Lỗi cú pháp JavaScript: %1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"Đã xem trước xóa; xác nhận rồi nhấn “Lưu”"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"Đã lưu, sẽ áp dụng cho %1$s và các tên miền con"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"Tạm thời hiển thị trang web gốc; quy tắc vẫn được giữ"</string>
+  <string name="msg_a4038cb71105" formatted="false">"Đã khôi phục áp dụng quy tắc SkyEye"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"Đã khôi phục lần lưu trước"</string>
+  <string name="msg_13256df2ec81" formatted="false">"Trang trước"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"Trang sau"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"SkyEye"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"Cập nhật tiến độ yêu thích"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"Yêu thích nhanh"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"Đã yêu thích"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"Chưa yêu thích"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"Đã lưu yêu thích và vị trí đọc"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"Menu trình duyệt"</string>
+  <string name="msg_bcbd40877710" formatted="false">"Thành phần trang web"</string>
+  <string name="msg_8508e17dc836" formatted="false">"Quy tắc thành phần trống hoặc quá dài"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"Vui lòng nhập bộ chọn thành phần, không phải toàn bộ kiểu dáng"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"Không thể xóa toàn bộ trang, vui lòng thu hẹp phạm vi chọn"</string>
+  <string name="msg_2b76681815f4" formatted="false">"AI đề xuất chỉnh sửa quá nhiều thành phần cùng lúc, vui lòng mô tả phạm vi nhỏ hơn"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"Điều chỉnh AI"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"AI cố gắng chỉnh sửa quy tắc không tồn tại"</string>
+  <string name="msg_af099dc62317" formatted="false">"Tối đa 100 quy tắc cho một miền"</string>
+  <string name="msg_6c1546728176" formatted="false">"Điều chỉnh quy tắc thành phần"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"Chỉ trang HTTPS mới có thể đặt ngoại lệ chứng chỉ"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"Lưu cài đặt thất bại"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"Không thể lưu cài đặt công cụ tìm kiếm"</string>
+  <string name="msg_1615b8429815" formatted="false">"Không thể lưu công cụ tìm kiếm tùy chỉnh"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"Lưu trên điện thoại thất bại, quy tắc chưa được lưu"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"Hợp nhất cài đặt trang web chưa hoàn thành, dữ liệu cục bộ đã được giữ lại"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"Không thể lưu lịch sử duyệt, vui lòng kiểm tra dung lượng lưu trữ điện thoại"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"Trình duyệt ChengJing"</string>
+  <string name="msg_71171b556a11" formatted="false">"Trang web,\nđiều chỉnh theo thói quen của bạn."</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"Duyệt bình thường, cũng có thể mở SkyEye,\nthêm kiểu dáng, mã hoặc điều chỉnh thành phần."</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"Câu hôm nay"</string>
+  <string name="msg_27268090a840" formatted="false">"Đi nhanh"</string>
+  <string name="msg_f06e679b9530" formatted="false">"Wikipedia"</string>
+  <string name="msg_217d775e8c90" formatted="false">"Tiếp tục đọc"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"Thư mục dấu trang"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"Tất cả yêu thích"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"Chia sẻ hình ảnh"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"Không được phép lưu, hình ảnh không được tải xuống"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"Hình ảnh sẽ được giữ ngoài chế độ duyệt ẩn danh"</string>
+  <string name="msg_0816eeae6881" formatted="false">"Ứng dụng tải xuống, clipboard hoặc nhận hình ảnh có thể giữ tệp, không bị xóa khi đóng tab ẩn danh."</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"Tiếp tục"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"Không thể lấy hình ảnh khả dụng, không lưu tệp. Vui lòng nhấn giữ lại sau."</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"Trang đã thay đổi, vui lòng nhấn giữ lại hình ảnh"</string>
+  <string name="msg_e409173288a1" formatted="false">"Đang lấy hình ảnh…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"Đã mở hình ảnh tạm trong tab mới"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"Đã sao chép hình ảnh, có thể dán vào ứng dụng hỗ trợ hình ảnh"</string>
+  <string name="msg_8746e6a72700" formatted="false">"Vui lòng hoàn thành cấp phép lưu hình ảnh trước"</string>
+  <string name="msg_7151072d822c" formatted="false">"Hình ảnh đã tải xuống thư mục Downloads/ChengJing, xem trong \"Tải xuống\""</string>
+  <string name="msg_fb43036835f6" formatted="false">"Không được phép lưu, tệp không được tải xuống"</string>
+  <string name="msg_18763274dfce" formatted="false">"Vui lòng chọn lại tệp muốn tải xuống"</string>
+  <string name="msg_38116168b889" formatted="false">"URL này không thể dùng dịch vụ tải xuống hệ thống, vui lòng tải lại trên trang gốc"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"Vui lòng hoàn thành cấp phép lưu tệp trước"</string>
+  <string name="msg_1022567a481f" formatted="false">"Không thể mở cấp phép lưu, vui lòng thử lại"</string>
+  <string name="msg_067c7812968e" formatted="false">"Trình duyệt ChengJing · Tải hình ảnh"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"Trình duyệt ChengJing · Tải tệp"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"Đã thêm vào hàng đợi tải xuống hệ thống, xem kết quả trong \"Tải xuống\" của menu ba chấm"</string>
+  <string name="msg_46248e4d3641" formatted="false">"Không thể thêm tệp tải xuống, vui lòng kiểm tra dung lượng lưu trữ và dịch vụ tải xuống hệ thống"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"Đang mở trình duyệt ChengJing"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"ChengJing"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"Trình duyệt"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"Chỉnh sửa quy tắc trang web"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"AI chỉnh sửa quy tắc"</string>
+  <string name="msg_371d839ac65c" formatted="false">"Ủy quyền bên thứ ba"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"Mã thành phần"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"SkyEye AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"Kết nối trang web"</string>
+  <string name="msg_930e319f7845" formatted="false">"Quyền riêng tư và dữ liệu"</string>
+  <string name="msg_0d8619aae051" formatted="false">"Cài đặt"</string>
+  <string name="msg_842433f0a425" formatted="false">"Tab"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"Cài đặt SkyEye"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"Đã chọn một thành phần"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"Chỉnh sửa trang web"</string>
+  <string name="msg_e13bbc197118" formatted="false">"Mã tùy chỉnh"</string>
+  <string name="msg_634ad289a228" formatted="false">"Hỗ trợ AI"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"Nhận diện trình duyệt"</string>
+  <string name="msg_14bd2c678335" formatted="false">"Công cụ tìm kiếm mặc định"</string>
+  <string name="msg_905d98bd5535" formatted="false">"Danh sách cấu trúc"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"Đồng bộ Google"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"Quy tắc miền"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"Tìm văn bản trên trang"</string>
+  <string name="msg_9d08608859f8" formatted="false">"Lịch sử chặn"</string>
+  <string name="msg_9357d631d10f" formatted="false">"Quay lại"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"Duyệt theo thói quen của bạn"</string>
+  <string name="msg_de961bb8936f" formatted="false">"Đóng menu"</string>
+  <string name="msg_60a53514eb92" formatted="false">"Yêu thích"</string>
+  <string name="msg_97afce0d452c" formatted="false">"Công cụ duyệt"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"Thêm tab ẩn danh"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"Phiên duyệt riêng biệt với tab thường"</string>
+  <string name="msg_8dce3f317048" formatted="false">"Xem mục đã tải về của ChengJing Browser"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"Xóa dữ liệu duyệt"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"Chọn khoảng thời gian và mục cần xóa"</string>
+  <string name="msg_431596791167" formatted="false">"Trang hiện tại"</string>
+  <string name="msg_3e40d2036259" formatted="false">"Thêm trang hiện tại vào yêu thích"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"Thêm dấu trang"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"Thư mục chưa phân loại trong dấu trang"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"Trang này đã có trong dấu trang"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"Chia sẻ"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"Sử dụng chia sẻ hệ thống Android"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"Chuyển sang phiên bản di động"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"Chuyển sang phiên bản máy tính"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"SkyEye và trang web"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s quy tắc đã xóa"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"Khôi phục áp dụng quy tắc SkyEye"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"Tạm thời hiển thị trang gốc"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"Đang hiển thị trang gốc"</string>
+  <string name="msg_43d22862b439" formatted="false">"Tạm dừng cài đặt miền này"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"Tất cả quy tắc miền"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"Đã chặn %1$s lần gây nhiễu"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"Xem lịch sử tab này"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"Tùy chọn và dữ liệu"</string>
+  <string name="msg_e7ed17309495" formatted="false">"Giao diện, duyệt web và cài đặt AI"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"ChengJing Browser %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"Giao diện"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"Duyệt web"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"Mở trang rồi chia sẻ liên kết"</string>
+  <string name="msg_9e2276893fae" formatted="false">"Thiết bị này không thể mở bảng chia sẻ hệ thống"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"Hệ thống tạm thời không thể chia sẻ trang này"</string>
+  <string name="msg_beed38829f24" formatted="false">"Màn hình này không thể tải ảnh xuống"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"Mở trong tab mới"</string>
+  <string name="msg_d55104374e08" formatted="false">"Sao chép liên kết"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"Liên kết"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"Mở ảnh trong tab mới"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"Xem trước ảnh"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"Sao chép ảnh"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"Tải ảnh xuống"</string>
+  <string name="msg_75136c12a08a" formatted="false">"Không lấy được URL ảnh, vui lòng nhấn giữ lại ảnh"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"Sao chép liên kết ảnh"</string>
+  <string name="msg_559552ccc661" formatted="false">"Liên kết ảnh"</string>
+  <string name="msg_17d52a476d32" formatted="false">"Đã sao chép %1$s"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"Quyền lưu đã được cấp, vui lòng chọn lại tệp cần tải"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"Trang nguồn đã thay đổi, vui lòng tải lại"</string>
+  <string name="msg_167523d3b80d" formatted="false">"Hiện có hai tệp tạm đang tải, vui lòng thử lại sau"</string>
+  <string name="msg_57d25840bf76" formatted="false">"Đang tải tệp trang web, xem tiến trình hoặc hủy trong \"Tải xuống\"; giữ lại tab nguồn"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"Trang nguồn đã thay đổi, tải xuống đã dừng"</string>
+  <string name="msg_13491974a87a" formatted="false">"Đã tải xuống vào Downloads/ChengJing, mở trong \"Tải xuống\""</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"Đọc tệp tạm hết thời gian, giữ lại tab nguồn và tải lại"</string>
+  <string name="msg_639f890d3c20" formatted="false">"Đã hủy; không giữ tệp chưa hoàn chỉnh"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"Tải chưa hoàn thành, kiểm tra dung lượng lưu trữ và thử lại"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"Tab nguồn đã đóng hoặc tải lại, tải xuống dừng; không giữ tệp chưa hoàn chỉnh"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"Nhập nội dung"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"Đóng menu nhấn giữ"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"Vui lòng cập nhật Android System WebView trước, sau đó xóa Cookie và dữ liệu trang web."</string>
+  <string name="msg_7877a2c231c9" formatted="false">"Không thể lưu thay đổi tab"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"Ảnh chụp nhanh tab chưa được dọn dẹp xong"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"Đã xóa dữ liệu duyệt web đã chọn; Cookie, bộ nhớ đệm và dữ liệu trang web đã được xóa hoàn toàn"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"Đã xóa dữ liệu duyệt web đã chọn của %1$s"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"Việc dọn dẹp dữ liệu trang web chưa được xác nhận hoàn tất. Vui lòng thử lại sau hoặc đóng và mở lại ứng dụng."</string>
+  <string name="msg_f795969c320e" formatted="false">"Xóa chưa hoàn thành, một số dữ liệu có thể đã bị xóa. Vui lòng thử lại hoặc đóng và mở lại ứng dụng."</string>
+  <string name="msg_6846f5758df9" formatted="false">"15 phút trước"</string>
+  <string name="msg_789842abff7d" formatted="false">"Tài nguyên trang web"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"Trang này đã gặp sự cố chứng chỉ, không thể xác nhận danh tính kết nối. Khi không bật ngoại lệ trang web, kết nối bất thường sẽ bị chặn.\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"Chưa mở trang web"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"Hiện đang sử dụng kết nối mã hóa HTTPS."</string>
+  <string name="msg_c6905e1adffd" formatted="false">"Kết nối HTTP không được mã hóa, không có chứng chỉ trang web xác thực."</string>
+  <string name="msg_87178db80ada" formatted="false">"Mở trang web trước để xem thông tin kết nối."</string>
+  <string name="msg_3e26c53efe37" formatted="false">"Trang web hiện tại"</string>
+  <string name="msg_9c5784103466" formatted="false">"Nguồn khác được trang sử dụng"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"Cho phép ngoại lệ chứng chỉ"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"Đã bật; sẽ được giữ sau khi khởi động lại"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"Mặc định tắt, ngắt kết nối khi xác thực thất bại"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"Chỉ áp dụng cho tên máy chủ HTTPS này (bao gồm các cổng khác nhau), không bao gồm các tên miền phụ hoặc nguồn bên thứ ba khác. Sẽ được giữ cho đến khi bạn tắt."</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"Ngoại lệ chứng chỉ làm giảm bảo đảm xác thực danh tính trang web; nó không thể sửa lỗi máy chủ không thể thiết lập kết nối mã hóa."</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"Cho phép ngoại lệ chứng chỉ cho trang web này?"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\nCài đặt này sẽ được giữ vĩnh viễn cho đến khi bạn tắt. Ngay cả khi chứng chỉ trang web hết hạn hoặc danh tính không thể xác thực, trang vẫn có thể tải; thông tin đăng nhập và nội dung nhập có thể bị truy cập bởi đối tượng không mong muốn. Vui lòng chỉ bật khi bạn hiểu và chấp nhận rủi ro."</string>
+  <string name="msg_d848bdedee10" formatted="false">"Tôi hiểu, cho phép trang web này"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"Giữ xác thực"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"Định dạng tệp nhúng không hợp lệ"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"URL tệp nhúng không hợp lệ"</string>
+  <string name="msg_a5fc04346035" formatted="false">"URL dữ liệu nhúng quá lớn, vui lòng sử dụng liên kết tải tệp của trang web"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"Mã hóa tệp nhúng không đầy đủ"</string>
+  <string name="msg_c74489c545f7" formatted="false">"Mã hóa tệp nhúng không chính xác"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"Khoảng thời gian"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s trang, %2$s mục lịch sử tìm kiếm"</string>
+  <string name="msg_8394223e0a97" formatted="false">"Tab chưa đóng"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s tab thường · Đóng theo thời gian truy cập cuối"</string>
+  <string name="msg_1f86b4081196" formatted="false">"Cookie, bộ nhớ đệm và dữ liệu trang web"</string>
+  <string name="msg_c44aefb98491" formatted="false">"Xóa toàn bộ không giới hạn thời gian, có thể đăng xuất khỏi trang web"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"Vui lòng cập nhật Android System WebView trước khi xóa"</string>
+  <string name="msg_ab54697044d0" formatted="false">"Khoảng thời gian áp dụng cho lịch sử duyệt và tab. Cookie, bộ nhớ đệm và dữ liệu trang web chỉ có thể xóa toàn bộ."</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"Dữ liệu phiên bản cũ không ghi lại thời gian, vui lòng chọn “Không giới hạn thời gian” để xóa."</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"Giữ lại dấu trang, yêu thích, tệp tải xuống và cài đặt SkyEye. Dữ liệu ẩn danh vui lòng đóng tab ẩn danh để xóa."</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"Đang xóa…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"Xóa dữ liệu"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"Trang web hiện tại · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"Bạn muốn thử gì? Hỏi AI trực tiếp"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"Mô tả ý tưởng tổng thể, không giới hạn thành phần đã chọn"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"Không thể đọc thành phần, vui lòng chọn lại"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\nHiện có %2$s thành phần phù hợp; lưu để áp dụng cho %3$s và các tên miền phụ phù hợp cấu trúc này."</string>
+  <string name="msg_16a3beab3f94" formatted="false">"Thuộc tính CSS thành phần"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"JavaScript thành phần"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// element đại diện cho thành phần hiện phù hợp\n element.setAttribute(\'title\', \'Gợi ý đọc của tôi\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"HTML bên trong thành phần"</string>
+  <string name="msg_f8ff75626431" formatted="false">"Thêm HTML (đặt cuối bên trong thành phần)"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;Gợi ý đọc của tôi&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"Script trong HTML %1$s sẽ không chạy; cần tương tác vui lòng dùng JavaScript. JS có thể đọc trang hoặc gửi yêu cầu, chỉ áp dụng nội dung bạn hiểu."</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"Điều này sẽ thay thế nội dung bên trong thành phần phù hợp, có thể ảnh hưởng đến tương tác gốc."</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"CSS/JS/HTML có thể điền tùy chọn."</string>
+  <string name="msg_381994932dcc" formatted="false">"Trang đã thay đổi, vui lòng chọn lại"</string>
+  <string name="msg_ac2471607490" formatted="false">"Vui lòng nhập nội dung muốn thêm trước"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"Sửa đổi trang web đã đạt giới hạn, vui lòng dọn dẹp các sửa đổi đã lưu trước"</string>
+  <string name="msg_9104269ef996" formatted="false">"Đã lưu và áp dụng; có thể phục hồi lần lưu trước trong cài đặt SkyEye"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"Đang đọc thành phần…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"Lưu và áp dụng"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"Làm cho sửa đổi hiện tại phù hợp hơn"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"Yêu cầu AI kiểm tra sửa đổi này"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nAI sẽ đọc HTML tải trang lần này, trước khi áp dụng SkyEye và nội dung chỉnh sửa hiện tại, rồi chỉnh sửa quy tắc theo yêu cầu mới của bạn."</string>
+  <string name="msg_b654f1e4475a" formatted="false">"CSS / JS / HTML trang web"</string>
+  <string name="msg_b243a787a694" formatted="false">"Trang web hiện tại: %1$s\nBạn có thể đề xuất thay đổi bố cục tổng thể. Phân tích dựa trên cấu trúc giới hạn của trang đang mở, không đại diện cho toàn bộ trang web."</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"Thành phần đã chọn: %1$s\nSửa đổi thành phần nhắm vào bộ chọn này: %2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"Bạn muốn điều chỉnh thế nào lần này?"</string>
+  <string name="msg_4df18c378546" formatted="false">"Bạn muốn trang web này thay đổi gì?"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"Bạn muốn thay đổi thành phần này như thế nào? Cần kiểm tra chỗ nào?"</string>
+  <string name="msg_53c859901fee" formatted="false">"HTML sẽ loại bỏ nội dung biểu mẫu, script và thuộc tính sự kiện, cung cấp tối đa %1$s ký tự; có thể bao gồm văn bản trang, không bao gồm các trang khác hoặc nội dung động sau đó."</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"CSS/HTML sẽ áp dụng cho thành phần được chọn; JavaScript vẫn có quyền truy cập mã trang, vui lòng kiểm tra phạm vi ảnh hưởng thực tế."</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"Sử dụng Gemma 4 phân tích cục bộ, không cần API Key, cấu trúc trang web, mã và yêu cầu phân tích lần này sẽ không được gửi lên đám mây."</string>
+  <string name="msg_b45dad973407" formatted="false">"Lần này sẽ gửi tên miền, HTML gốc đã được làm sạch (có thể bao gồm văn bản trang riêng tư), quy tắc tùy chỉnh này và yêu cầu mới đến OpenRouter và nhà cung cấp mô hình đã chọn. Không đọc Cookie hoặc giá trị biểu mẫu."</string>
+  <string name="msg_fbd9319f336c" formatted="false">"Phân tích lần này sẽ gửi tên miền, cấu trúc thành phần giới hạn, mã tùy chỉnh đã lưu và yêu cầu bạn nhập đến OpenRouter và nhà cung cấp mô hình đã chọn. Mã hoặc vấn đề có thể chứa nội dung riêng tư, vui lòng xác nhận trước; không tự động đọc Cookie, giá trị biểu mẫu hoặc nội dung bài viết."</string>
+  <string name="msg_87bc9921ff32" formatted="false">"Đồng ý gửi dữ liệu trên cho phân tích lần này"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"Chọn phương thức thực thi AI"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"Cài đặt OpenRouter API Key"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"Trang web đã thay đổi, vui lòng mở lại AI"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"Không thể đọc HTML gốc của quy tắc này. Vui lòng mở trang web chứa thành phần đó, tải lại rồi thử lại."</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"Trang chưa sẵn sàng, vui lòng tải lại rồi thử lại"</string>
+  <string name="msg_d1127956fd88" formatted="false">"Trang web đã thay đổi, vui lòng phân tích lại"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"Đã hủy phân tích"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"Đang phân tích…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"Phân tích bằng Gemma 4"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"Gửi và nhận đề xuất"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"Hủy phân tích"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"Đề xuất AI"</string>
+  <string name="msg_f8236285164f" formatted="false">"Lần này không tạo ra sửa đổi có thể áp dụng."</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"Phạm vi lưu: %1$s và các tên miền con. Đề xuất AI chưa được xác thực thực tế trên trang web của bạn; vui lòng xem mã và thay đổi trước khi áp dụng."</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"Thu gọn nội dung sửa đổi"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"Xem nội dung sửa đổi đầy đủ"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"Cài đặt đã thay đổi, vui lòng phân tích lại"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"Đã áp dụng đề xuất AI; có thể phục hồi lần lưu trước trong cài đặt SkyEye"</string>
+  <string name="msg_4522951c203c" formatted="false">"Cập nhật quy tắc gốc và áp dụng"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"Áp dụng đề xuất chỉ với một cú nhấp"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"Có thể phục hồi cài đặt trước đó; các yêu cầu đã gửi hoặc thao tác trên trang web không thể hoàn tác cùng lúc."</string>
+  <string name="msg_b727b2493599" formatted="false">"Cài đặt trang web này khá nhiều, vui lòng thu hẹp xuống một thành phần hoặc chọn phân tích mô hình đám mây."</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"Dữ liệu cục bộ đã được giữ lại; lần mở app tiếp theo sẽ đồng bộ lại, hoặc bạn có thể nhấn “Đồng bộ ngay”."</string>
+  <string name="msg_0d3a30703357" formatted="false">"Google đang tạm bận"</string>
+  <string name="msg_61b008bafedd" formatted="false">"Vui lòng thử lại sau. %1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"Cần xác nhận lại ủy quyền Google"</string>
+  <string name="msg_2a19048f4610" formatted="false">"Vui lòng nhấn “Đồng bộ ngay” để xác nhận lại ủy quyền. Dữ liệu cục bộ đã được giữ lại."</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"Quyền đồng bộ Google bị hạn chế"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"Vui lòng kiểm tra quyền truy cập ứng dụng và cài đặt quản trị của tài khoản Google, sau đó nhấn “Đồng bộ ngay”. Dữ liệu cục bộ đã được giữ lại."</string>
+  <string name="msg_0108ca4bc750" formatted="false">"Vui lòng sử dụng tài khoản Google ban đầu"</string>
+  <string name="msg_5b29df305534" formatted="false">"Dữ liệu đồng bộ trên điện thoại này đã liên kết với tài khoản khác, vui lòng chọn tài khoản ban đầu để tránh trộn lẫn dữ liệu của người khác."</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"Không thể xác nhận kết nối Google an toàn"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"Vui lòng kiểm tra ngày giờ điện thoại và cài đặt mạng rồi thử lại. Dữ liệu cục bộ đã được giữ lại."</string>
+  <string name="msg_e813605409d0" formatted="false">"Kết nối chậm, đồng bộ chưa hoàn thành"</string>
+  <string name="msg_328257927000" formatted="false">"Đồng bộ chưa hoàn thành"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"Dữ liệu đám mây chưa được xác nhận, dữ liệu cục bộ đã được giữ lại. Vui lòng thử lại sau; nếu vẫn xảy ra, vui lòng liên hệ hỗ trợ."</string>
+  <string name="msg_e19c932091a7" formatted="false">"Tạm thời không tìm thấy phiên bản chính thức, vui lòng thử lại sau."</string>
+  <string name="msg_85284e05ae9e" formatted="false">"Nhân lõi trình duyệt"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"Hiện tại Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"Phiên bản chính thức mới nhất"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"Đang truy vấn…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"Chưa có dữ liệu"</string>
+  <string name="msg_8b9b22849066" formatted="false">"Chưa truy vấn"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"Hiện do %1$s cung cấp; so sánh với phiên bản chính thức %2$s do Google công bố."</string>
+  <string name="msg_e5d3e9548003" formatted="false">"Phiên bản hiện tại không thể so sánh trực tiếp"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"Phiên bản chính thức mới hơn, có thể kiểm tra cập nhật nhân lõi"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"Nhân lõi hiện tại giống với phiên bản chính thức"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"Phiên bản nhân lõi hiện tại mới hơn"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"Thời gian truy vấn %1$s:"</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"Giữ kết quả lần trước · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"Đang truy vấn…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"Kiểm tra lại phiên bản"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"Không thể mở trang cập nhật, vui lòng kiểm tra WebView trong cài đặt hệ thống."</string>
+  <string name="msg_243aeef7919a" formatted="false">"Mở trang cập nhật nhân lõi"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"Cập nhật do hệ thống hoặc cửa hàng cung cấp, có thể phát hành theo đợt."</string>
+  <string name="msg_8e57db190d94" formatted="false">"Chưa có dữ liệu phiên bản chính thức"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"Dữ liệu phiên bản chính thức bị lỗi định dạng"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"WebView hệ thống"</string>
+  <string name="msg_b7d90d419331" formatted="false">"Không thể đọc"</string>
+  <string name="msg_737d4fde158c" formatted="false">"Tạm thời không thể kết nối để truy vấn phiên bản chính thức"</string>
+  <string name="msg_6090d27dccad" formatted="false">"Phiên bản chính thức không trả về dữ liệu"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"Dữ liệu phiên bản quá lớn"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"Lưu thông tin phiên bản thất bại"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"Không tìm thấy ứng dụng để mở liên kết này, vui lòng đảm bảo đã cài đặt ứng dụng tương ứng"</string>
+  <string name="msg_34b996e6bd60" formatted="false">"Mở bằng ứng dụng khác?"</string>
+  <string name="msg_140169f1183b" formatted="false">"Bạn sẽ rời khỏi chế độ duyệt web ẩn danh của ChengJing. Ứng dụng khác có thể lưu liên kết và lịch sử sử dụng này."</string>
+  <string name="msg_f290f9167ad0" formatted="false">"Mở"</string>
+  <string name="msg_0db216962632" formatted="false">"Định dạng địa chỉ web yêu thích không hợp lệ"</string>
+  <string name="msg_62b58243569c" formatted="false">"Định dạng mã nhận dạng yêu thích không hợp lệ"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"Định dạng thời gian yêu thích không hợp lệ"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"Thời gian yêu thích vượt quá phạm vi cho phép"</string>
+  <string name="msg_71a221e87e34" formatted="false">"Dữ liệu đồng bộ yêu thích quá nhiều, nội dung trên thiết bị đã được giữ lại"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"Dữ liệu đồng bộ yêu thích vượt quá giới hạn kích thước"</string>
+  <string name="msg_220275e1f7de" formatted="false">"Định dạng đồng bộ yêu thích này cần cập nhật ứng dụng để đọc"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"Lưu yêu thích thất bại"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"Đang tìm kiếm"</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"Không tìm thấy"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"Vui lòng nhập văn bản cần tìm"</string>
+  <string name="msg_28010afeecd8" formatted="false">"Đang tìm kiếm trên trang"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"Không tìm thấy văn bản phù hợp"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"Kết quả %1$s trong tổng số %2$s"</string>
+  <string name="msg_d1989441806e" formatted="false">"Mở trang web trước rồi tìm kiếm văn bản trên trang"</string>
+  <string name="msg_c570255d2708" formatted="false">"Vui lòng thoát SkyEye trước khi tìm kiếm văn bản trên trang"</string>
+  <string name="msg_f782a6845afa" formatted="false">"Kết quả phù hợp trước"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"Kết quả phù hợp tiếp theo"</string>
+  <string name="msg_f41b8847f832" formatted="false">"Đóng tìm kiếm trang"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B đã sẵn sàng"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"Chưa tải mô hình cục bộ"</string>
+  <string name="msg_191155f69eeb" formatted="false">"Mô hình cục bộ yêu cầu thiết bị 64 bit"</string>
+  <string name="msg_301286dd890b" formatted="false">"Không đủ dung lượng, vui lòng giữ khoảng 3 GB bộ nhớ trống"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"Mô hình cục bộ ChengJing · Gemma 4"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"Tải xuống khoảng 2,59 GB; sẽ kiểm tra tính toàn vẹn mô hình sau khi hoàn thành"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"Tác vụ tải xuống không tồn tại, vui lòng tải lại"</string>
+  <string name="msg_24d557606dbb" formatted="false">"Đang kiểm tra tính toàn vẹn mô hình…"</string>
+  <string name="msg_d46682705f49" formatted="false">"Tải mô hình thất bại (%1$s), vui lòng tải lại"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"Tải xuống đã tạm dừng; vui lòng kiểm tra Wi-Fi, mạng hoặc dung lượng lưu trữ"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"Đang tải Gemma 4 · %1$s%%"</string>
+  <string name="msg_119f097a0356" formatted="false">"Chưa hoàn thành tải xuống"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"Kiểm tra tính toàn vẹn mô hình không thành công, vui lòng xóa và tải lại"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"Vui lòng tải mô hình cục bộ Gemma 4 trước"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"Bộ nhớ khả dụng hiện tại không đủ, vui lòng đóng một số tab hoặc ứng dụng khác trước khi sử dụng mô hình cục bộ."</string>
+  <string name="msg_305f7b160fa8" formatted="false">"Phản hồi mô hình quá dài, vui lòng thu hẹp phạm vi câu hỏi"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"Phương thức thực thi AI"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · Cục bộ trên điện thoại"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · Mô hình đám mây"</string>
+  <string name="msg_7397e02a13de" formatted="false">"Chế độ cục bộ không cần API Key; chế độ đám mây cho phép chọn mô hình do nhà cung cấp dịch vụ cung cấp."</string>
+  <string name="msg_770c4bcb536a" formatted="false">"Lần đầu cần tải khoảng 2,59 GB mô hình, giữ khoảng 3 GB dung lượng lưu trữ. Yêu cầu thiết bị 64 bit, khuyến nghị ít nhất 6 GB RAM; khi phân tích sẽ sử dụng pin điện thoại. Sau khi tải, dữ liệu phân tích được lưu trên thiết bị."</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"Hủy tải mô hình"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"Mô hình đã hoàn tất kiểm tra tính toàn vẹn, có thể sử dụng ngoại tuyến."</string>
+  <string name="msg_1300b82064c4" formatted="false">"Xóa mô hình để giải phóng dung lượng"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"Cho phép tải xuống qua mạng di động"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"Tải mô hình cục bộ Gemma 4"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"Thiết bị này không hỗ trợ suy luận cục bộ, có thể chọn OpenRouter."</string>
+  <string name="msg_6cbc25f77915" formatted="false">"Mô hình: Google Gemma 4, Apache 2.0. Tệp mô hình tải từ liên kết tài liệu Google của LiteRT Community."</string>
+  <string name="msg_0cc2d828db73" formatted="false">"Vui lòng nhập URL HTTP hoặc HTTPS hợp lệ"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"Lưu chưa hoàn thành, vui lòng thử lại sau"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"Cài đặt trang chủ"</string>
+  <string name="msg_d03a088f3260" formatted="false">"Hiển thị nút trang chủ"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"Đặt trước thanh địa chỉ"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"Không thể lưu cài đặt trang chủ"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"URL tùy chỉnh"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"URL trang chủ"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"Đã lưu"</string>
+  <string name="msg_0edd4290c301" formatted="false">"Lưu trang chủ"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"Xem trước ẩn danh phải xác nhận xuất trước"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"Ảnh vượt quá 32 MB, vui lòng tải từ trang gốc"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"Phiên làm việc ẩn danh đã đóng"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"Nội dung nhận được không phải ảnh được hỗ trợ, không lưu tệp"</string>
+  <string name="msg_5f8355918e25" formatted="false">"Lưu tạm ảnh thất bại"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"URL ảnh không thể sử dụng"</string>
+  <string name="msg_4926037b836c" formatted="false">"Chuyển hướng ảnh không thể sử dụng"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"Tải ảnh thất bại (HTTP %1$s), không lưu tệp"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"Ảnh không có nội dung"</string>
+  <string name="msg_cc6f13303851" formatted="false">"Quá nhiều lần chuyển hướng hình ảnh, không lưu được tệp"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"Hình ảnh vượt quá 32 MB"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"Bộ nhớ đệm hình ảnh đã hết hạn, vui lòng quay lại trang gốc để mở lại"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"Đóng xem trước hình ảnh"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · Thu phóng bằng hai ngón tay, chạm hai lần để phóng to"</string>
+  <string name="msg_c660e164fa68" formatted="false">"Đây là trang hình ảnh bộ nhớ đệm web, sẽ không được giữ lại sau khi mở lại ứng dụng. Nếu cần giữ, vui lòng tải xuống."</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"Hình ảnh, có thể thu phóng và kéo bằng hai ngón tay"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"Quay lại"</string>
+  <string name="msg_607089b311be" formatted="false">"Chưa phân loại"</string>
+  <string name="msg_e371aca7156b" formatted="false">"Nhập dấu trang Chrome"</string>
+  <string name="msg_901fcc465532" formatted="false">"Đóng mục yêu thích"</string>
+  <string name="msg_714be9fccc36" formatted="false">"Đóng dấu trang"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s mục"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s dấu trang"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"Tìm kiếm mục yêu thích"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"Tìm kiếm tất cả dấu trang và thư mục"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"Xóa tìm kiếm"</string>
+  <string name="msg_4220592340ad" formatted="false">"Đã thêm vào mục yêu thích"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"Đã cập nhật tiến độ mục yêu thích"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"Cập nhật tiến độ cho mục yêu thích này"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"Đã lưu thêm một mục yêu thích"</string>
+  <string name="msg_74894a77754e" formatted="false">"Thêm mục mới"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"Ghi nhớ URL chương và vị trí đọc, lưu trên điện thoại này."</string>
+  <string name="msg_6d9532de6549" formatted="false">"Chưa có mục yêu thích nào"</string>
+  <string name="msg_9c88b8194478" formatted="false">"Không tìm thấy mục yêu thích phù hợp"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"Khi đọc, thêm mục yêu thích từ menu, không cần chọn thư mục."</string>
+  <string name="msg_299775d315e8" formatted="false">"Thử đổi tên hoặc URL khác."</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · Trang này %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"Đổi tên mục yêu thích %1$s"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"Xóa mục yêu thích %1$s"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"Dấu trang › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"Không tìm thấy dấu trang phù hợp"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"Chưa có dấu trang nào ở đây"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"Tìm kiếm sẽ bao gồm tất cả thư mục."</string>
+  <string name="msg_a581a0c5331f" formatted="false">"Có thể nhập dấu trang Chrome từ góc trên bên phải."</string>
+  <string name="msg_11ae55de6d31" formatted="false">"Chỉnh sửa dấu trang %1$s"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"Xóa dấu trang %1$s"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"Đã thêm vào thư mục này"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"Thư mục này đã có dấu trang này"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"Thêm trang web hiện tại"</string>
+  <string name="msg_c631952bb114" formatted="false">"Xuất"</string>
+  <string name="msg_27001df08520" formatted="false">"Chỉnh sửa dấu trang"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"Đặt tên mục yêu thích"</string>
+  <string name="msg_a5274f381305" formatted="false">"Tên"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"URL"</string>
+  <string name="msg_aabc6623539f" formatted="false">"Thư mục"</string>
+  <string name="msg_a2c701b369be" formatted="false">"Đọc / Công nghệ"</string>
+  <string name="msg_b631887c06ef" formatted="false">"Dùng “/” để phân tách cấp thư mục"</string>
+  <string name="msg_978626066ea1" formatted="false">"Lưu thất bại, vui lòng thử lại"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"Lưu"</string>
+  <string name="msg_9c9624b64441" formatted="false">"Định vị trang web"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"Thành phần web trên điện thoại chưa hỗ trợ định vị trực tiếp, vui lòng cập nhật Android System WebView."</string>
+  <string name="msg_68f8f532449b" formatted="false">"Quyền ẩn danh chỉ giữ đến khi đóng tất cả tab ẩn danh."</string>
+  <string name="msg_db3dea807cf5" formatted="false">"Chỉ áp dụng cho trang web này; các trang khác cần cấp quyền riêng."</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"Sau khi thay đổi, trang web này sẽ được tải lại, yêu cầu định vị trước đó sẽ bị dừng ngay lập tức."</string>
+  <string name="msg_d47077aa2c28" formatted="false">"Quyền định vị điện thoại"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"Cài đặt dịch vụ định vị điện thoại"</string>
+  <string name="msg_824602facd05" formatted="false">"Không thể mở tệp dấu trang"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"Tệp dấu trang vượt quá 8 MB, vui lòng nhập theo từng phần"</string>
+  <string name="msg_7193e8524414" formatted="false">"Không tìm thấy dấu trang HTTP / HTTPS trong tệp"</string>
+  <string name="msg_01fd7b112086" formatted="false">"Nhập %1$s dấu trang?"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"Sẽ giữ lại thư mục; dấu trang đã tồn tại sẽ không được thêm lại."</string>
+  <string name="msg_20809c5d8596" formatted="false">"Nhập"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"Đã nhập %1$s dấu trang"</string>
+  <string name="msg_3778200c90e5" formatted="false">"Những dấu trang này đã được nhập, không thêm lại"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"Nhập chưa hoàn thành, vui lòng thử lại sau"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"Nhập chưa hoàn thành"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"Không thể ghi tệp"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"Dấu trang đã được xuất"</string>
+  <string name="msg_fef661198324" formatted="false">"Xuất dấu trang thất bại"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"Đã hủy bản xem trước chưa lưu"</string>
+  <string name="msg_79606cdda212" formatted="false">"Duyệt web ẩn danh"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s quy tắc · Chưa lưu"</string>
+  <string name="msg_8d44a1395388" formatted="false">"SkyEye đã bật · Nhấn vào thành phần trang web"</string>
+  <string name="msg_315a88f3155e" formatted="false">"Thoát SkyEye"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"Trong ngoại lệ · Trang web gốc"</string>
+  <string name="msg_c550069b0749" formatted="false">"Phục hồi quy tắc"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"Tạm thời không thể kết nối đến trang web này"</string>
+  <string name="msg_70dd895b66db" formatted="false">"Tải lại"</string>
+  <string name="msg_ed51242141b1" formatted="false">"Lựa chọn của bạn, giữ trên điện thoại của bạn."</string>
+  <string name="msg_f1c970051cf5" formatted="false">"Chưa lưu quy tắc miền nào."</string>
+  <string name="msg_baeab929c3dd" formatted="false">"Nhấn để chỉnh sửa · %1$s thành phần đã thay đổi"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"Trang này có tổng cộng %1$s lần, giữ lại 30 mục gần nhất."</string>
+  <string name="msg_b3471f8f134f" formatted="false">"Tự mở URL này"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"Tiếp tục chọn thành phần"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"Mở SkyEye・Chọn thành phần"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"Hoàn tác lần trước"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"Lưu quy tắc"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"Thành phần và mã"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"Xem thành phần nổi, ẩn và nhúng"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"Sửa đổi trang web đã lưu"</string>
+  <string name="msg_0590277f2647" formatted="false">"Nhấn quy tắc để tiếp tục chỉnh sửa hoặc nhờ AI điều chỉnh"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"Hành vi trang web"</string>
+  <string name="msg_830509b36cfe" formatted="false">"Ngăn chuyển hướng và cửa sổ bật lên"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"Có thể tắt khi quy trình đăng nhập bị ảnh hưởng."</string>
+  <string name="msg_7007cf22f796" formatted="false">"Cài đặt bảo vệ miền đã lưu"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"Tạm dừng cài đặt miền này cho đến khi đóng ứng dụng."</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"Khôi phục lần lưu trước"</string>
+  <string name="msg_97efebc05b15" formatted="false">"Thành phần đã chọn · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · Bộ chọn này hiện khớp với %3$s thành phần"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"Trang nhúng có thể điều chỉnh khung; nội dung bên trong nguồn chéo không thể truy cập tại đây."</string>
+  <string name="msg_2bc121aa5664" formatted="false">"Bạn muốn chỉnh sửa thành phần này như thế nào?"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"Thêm CSS / JS / HTML tùy chỉnh"</string>
+  <string name="msg_6791c9f39720" formatted="false">"Thêm kiểu, tương tác hoặc nội dung trang"</string>
+  <string name="msg_704bb9551f08" formatted="false">"Xóa thành phần trang web này"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"Xem trước trước, sau đó chọn lưu hay không"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"Chỉnh sửa đoạn mã này"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"Chỉnh sửa HTML bên trong thành phần"</string>
+  <string name="msg_31d97b13527a" formatted="false">"Tôi chỉnh như vậy có đúng không? Hãy để AI kiểm tra"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"Chỉ đề xuất sửa đổi cho thành phần đã chọn"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"Chọn lớp ngoài cùng"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"Chọn thành phần khác"</string>
+  <string name="msg_76ae194967b7" formatted="false">"Mã trang web"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"Chỉnh sửa nội dung đã lưu hoặc để AI chỉnh sửa thêm"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"Thành phần tùy chỉnh"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"Chỉnh sửa HTML"</string>
+  <string name="msg_96f3303604ab" formatted="false">"Mã thành phần tùy chỉnh"</string>
+  <string name="msg_27688f7df99c" formatted="false">"Thành phần đã ẩn"</string>
+  <string name="msg_215e19833aad" formatted="false">"Phục hồi %1$s"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"Đã phục hồi thành phần này"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"Chưa lưu thay đổi. Có thể chọn thành phần qua SkyEye hoặc thêm mã trang web."</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"Khôi phục cuộn trang"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"Chỉ bật khi không thể cuộn sau khi loại bỏ lớp phủ."</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"Quy tắc được lưu trên thiết bị. Nếu cấu trúc miền thay đổi, có thể chọn lại hoặc nhờ AI điều chỉnh."</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"Mã sẽ áp dụng cho miền này và các miền con. JavaScript có thể đọc trang và gửi yêu cầu mạng, chỉ dùng nội dung đáng tin cậy. Chế độ ngoại lệ sẽ tạm dừng áp dụng."</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"Khi lưu sẽ đồng thời giữ các chỉnh sửa thành phần đang xem trước trong SkyEye."</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"Kiểu CSS"</string>
+  <string name="msg_628f36411710" formatted="false">"// Thêm hoặc điều chỉnh nội dung trang; chạy một lần sau mỗi lần tải"</string>
+  <string name="msg_b22612d48c02" formatted="false">"Thêm HTML trang web (đặt cuối trang)"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;Mẹo đọc của tôi&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"Trang đã thay đổi, vui lòng đóng và mở lại trình chỉnh sửa"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"Đã lưu và tải lại"</string>
+  <string name="msg_7106b4590cce" formatted="false">"Lưu thất bại: %1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"Bao gồm cả thành phần không nhìn thấy. Hiển thị tối đa 80 thành phần nổi, ẩn và nhúng."</string>
+  <string name="msg_2111f387ba60" formatted="false">"Hiện không tìm thấy thành phần loại này; vẫn có thể nhấn trực tiếp vào thành phần thông thường trên trang."</string>
+  <string name="msg_167bc0947798" formatted="false">"Đã ẩn ban đầu"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"Thành phần nổi / cố định"</string>
+  <string name="msg_047f31f927fe" formatted="false">"Trang nhúng"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"Chủ đề"</string>
+  <string name="msg_dee60aee2501" formatted="false">"Sáng"</string>
+  <string name="msg_a6b75d068032" formatted="false">"Chế độ tối"</string>
+  <string name="msg_6df543c4a401" formatted="false">"Hệ thống"</string>
+  <string name="msg_381e6e45713f" formatted="false">"Theo hệ thống sẽ chuyển đổi dựa trên cài đặt chế độ tối của điện thoại."</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"Vị trí thanh địa chỉ"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"Thanh địa chỉ ở trên"</string>
+  <string name="msg_629f91b2430d" formatted="false">"Thanh địa chỉ ở dưới"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"Thanh địa chỉ ở dưới, SkyEye và thanh điều hướng ở trên."</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"Thanh địa chỉ ở trên, SkyEye và thanh điều hướng ở dưới."</string>
+  <string name="msg_03c481a6ab85" formatted="false">"Tìm kiếm"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"Hiển thị trang web"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"Nhận dạng trình duyệt (User-Agent)"</string>
+  <string name="msg_12acb73519ef" formatted="false">"Android WebView gốc"</string>
+  <string name="msg_0eac99137858" formatted="false">"Nhận dạng tùy chỉnh"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"Chrome phiên bản di động"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"Dữ liệu và đồng bộ"</string>
+  <string name="msg_c7845aa27319" formatted="false">"Hướng dẫn sử dụng"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"Mục đích sử dụng, lưu trữ và cách xóa dữ liệu"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"Khu luyện tập SkyEye"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"Luyện tập điều chỉnh thành phần, thêm CSS và JS"</string>
+  <string name="msg_f329c206f45a" formatted="false">"ChengJing Browser %1$s · Phiên bản Android"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"Kết nối OpenRouter"</string>
+  <string name="msg_8831bba1231d" formatted="false">"Khóa đã được lưu"</string>
+  <string name="msg_454792f22b74" formatted="false">"Liên kết AI của bạn"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"Đã mã hóa và lưu trên điện thoại này"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"Cho AI hỗ trợ kiểm tra quy tắc SkyEye"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"Nhập API Key mới để thay thế"</string>
+  <string name="msg_349c23511e2e" formatted="false">"API Key đã được mã hóa lưu trữ"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"Lưu khóa thất bại: %1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"Lưu API Key"</string>
+  <string name="msg_308f90d89d99" formatted="false">"API Key đã bị xóa"</string>
+  <string name="msg_4df897d4de83" formatted="false">"Xóa API Key đã lưu"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"Mô hình"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"Hoặc nhập tên mô hình thủ công"</string>
+  <string name="msg_33190323da75" formatted="false">"Đã lấy các mô hình văn bản chung mới nhất của từng dòng"</string>
+  <string name="msg_a822357ce405" formatted="false">"Không thể cập nhật mô hình, các lựa chọn hiện tại vẫn có thể sử dụng"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"Đang cập nhật…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"Cập nhật danh sách mô hình mới nhất"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"Phân tích sẽ gọi OpenRouter, chi phí tính theo mô hình đã chọn. Khóa không được gửi cho trang web; dữ liệu gửi đi sẽ do OpenRouter và nhà cung cấp mô hình xử lý."</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"Mang theo dấu trang, tiến độ yêu thích và cài đặt SkyEye sang điện thoại mới."</string>
+  <string name="msg_dbf504aee158" formatted="false">"Hoàn thành lần cuối:"</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"Dấu trang, thư mục, yêu thích và lịch sử xóa được lưu trong không gian ẩn dành riêng cho ứng dụng trên Google Drive, không truy cập các tệp khác của bạn."</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"Yêu thích và tiến độ đọc"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"Tên yêu thích, URL đang đọc, tiêu đề trang, vị trí cuộn và phần trăm đọc sẽ được đồng bộ cùng nhau. Vui lòng cập nhật mỗi thiết bị lên phiên bản hỗ trợ đồng bộ yêu thích."</string>
+  <string name="msg_4c197d7a57af" formatted="false">"Yêu thích cùng tên sẽ lấy bản ghi đầy đủ lưu gần nhất làm chuẩn; đổi tên và xóa cũng đồng bộ, không ép giữ phần trăm đọc cao nhất. Trang đang mở sẽ không bị chuyển hướng cưỡng bức, lần mở yêu thích tiếp theo sẽ dùng vị trí đồng bộ."</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"Cài đặt trang web SkyEye"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"Khi bật, miền, quy tắc thành phần, CSS/JS/HTML tùy chỉnh và cài đặt hành vi trang web sẽ đồng bộ lên Google Drive của bạn. Mã có thể chứa nội dung riêng tư, vui lòng kiểm tra không có mật khẩu hoặc khóa."</string>
+  <string name="msg_86b823816a78" formatted="false">"Đồng bộ cài đặt trang web SkyEye"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"Cùng một trang web lấy cài đặt đầy đủ mới hơn làm chuẩn; cài đặt đã xóa cũng giữ trạng thái xóa. Thiết bị khác nhận được sẽ áp dụng khi tải trang tiếp theo. Ngoại lệ tạm thời và chứng chỉ ngoại lệ chỉ lưu trên máy."</string>
+  <string name="msg_d9c03b110d35" formatted="false">"Sau khi liên kết, dấu trang và yêu thích trên điện thoại này sẽ hợp nhất với tài khoản Google bạn chọn. Khi mở app, hoặc sửa dấu trang, lưu tiến độ yêu thích, đổi tên hoặc xóa yêu thích sẽ tự động đồng bộ; khi offline lưu trên máy, lần kết nối sau sẽ đồng bộ."</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"Đang xử lý…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"Đồng bộ ngay"</string>
+  <string name="msg_aee33ff22038" formatted="false">"Liên kết bằng tài khoản Google"</string>
+  <string name="msg_9746a274324c" formatted="false">"Dừng đồng bộ và đăng xuất"</string>
+  <string name="msg_b69bae05d706" formatted="false">"Đăng xuất sẽ giữ dữ liệu trên máy và đám mây. Dữ liệu đồng bộ trên máy gắn với tài khoản Google đồng bộ đầu tiên, tránh trộn dữ liệu khi đổi tài khoản."</string>
+  <string name="msg_efb208e781f4" formatted="false">"Một số trang web cung cấp giao diện khác nhau dựa trên thông tin nhận dạng."</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"Chrome phiên bản di động (mặc định)"</string>
+  <string name="msg_3138f64b4547" formatted="false">"User-Agent tùy chỉnh"</string>
+  <string name="msg_b1c83027f591" formatted="false">"Dán User-Agent đầy đủ trên một dòng"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"Sau khi lưu sẽ tải lại trang hiện tại; các trang mới mở hoặc tải lại cũng dùng cài đặt này. Trang web có thể chuyển sang giao diện khác, mức độ hỗ trợ phụ thuộc trình duyệt hiện tại."</string>
+  <string name="msg_73b390a73f19" formatted="false">"Đã cập nhật nhận dạng trình duyệt"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"Không thể lưu"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"Lưu và tải lại"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"Trình duyệt hiện tại: Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"Không xác định"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"Chưa có kết quả định vị điện thoại, vui lòng chuyển đến nơi có tín hiệu tốt hơn và thử lại."</string>
+  <string name="msg_2e6933e93990" formatted="false">"Nguồn định vị điện thoại đã tắt, vui lòng kiểm tra dịch vụ định vị hệ thống."</string>
+  <string name="msg_aa939329dc62" formatted="false">"Điện thoại chưa cho phép định vị."</string>
+  <string name="msg_f4e900470989" formatted="false">"Không có vị trí hợp lệ theo thời gian, thời gian chờ định vị đã kết thúc."</string>
+  <string name="msg_8e6878344350" formatted="false">"Điện thoại không có nguồn định vị khả dụng, vui lòng kiểm tra dịch vụ định vị hệ thống."</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"Quyền định vị điện thoại đã thay đổi, vui lòng yêu cầu định vị lại."</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"Trang này không được phép sử dụng định vị."</string>
+  <string name="msg_c293d0f61960" formatted="false">"Trang hiện không ở chế độ nền trước."</string>
+  <string name="msg_5677d9b33fef" formatted="false">"Quá nhiều yêu cầu định vị, vui lòng thử lại sau."</string>
+  <string name="msg_54e70324667a" formatted="false">"Đang chờ cấp quyền định vị cho trang web và điện thoại"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"Chưa cho phép trang web này sử dụng vị trí điện thoại."</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"Dịch vụ định vị điện thoại chưa được bật."</string>
+  <string name="msg_e4222762e387" formatted="false">"Quyền định vị trên điện thoại hoặc trang web đã bị thu hồi."</string>
+  <string name="msg_ea7546eddc85" formatted="false">"Đã gửi yêu cầu định vị đến điện thoại, đang chờ vị trí"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"Đã lấy được vị trí, đã cung cấp cho trang web hiện tại"</string>
+  <string name="msg_8116207548a5" formatted="false">"Không thể cập nhật danh sách mô hình (%1$s)"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"Danh sách mô hình trống, vui lòng thử lại sau"</string>
+  <string name="msg_71eb343e162c" formatted="false">"Vui lòng thêm OpenRouter API Key trong cài đặt trước"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"Vui lòng chọn mô hình"</string>
+  <string name="msg_d3346c882f37" formatted="false">"API Key không hợp lệ, vui lòng nhập lại"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"Hạn mức OpenRouter không đủ"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"Yêu cầu quá thường xuyên, vui lòng thử lại sau"</string>
+  <string name="msg_3861043f8477" formatted="false">"Dịch vụ AI chưa hoàn thành yêu cầu (%1$s), quy tắc ban đầu giữ nguyên"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"Vui lòng thiết lập khóa OpenRouter và mô hình trước"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"API Key không hợp lệ"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"Yêu cầu quá thường xuyên, vui lòng thử lại sau"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"Dịch vụ AI chưa hoàn thành yêu cầu (%1$s)"</string>
+  <string name="msg_4a16359069dd" formatted="false">"Vui lòng chọn thành phần hợp lệ"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"Cách thao tác HTML không chính xác"</string>
+  <string name="msg_e714012d82ce" formatted="false">"Mã quá dài trong một lần, vui lòng chia nhỏ sửa đổi"</string>
+  <string name="msg_8579576181cb" formatted="false">"CSS thành phần hãy điền trực tiếp thuộc tính, ví dụ color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"Đề xuất quá nhiều trong một lần, vui lòng thu hẹp phạm vi vấn đề"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"Quy tắc thành phần không chính xác"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI chỉ định sửa đổi không tồn tại"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI chỉ định quy tắc thành phần không tồn tại"</string>
+  <string name="msg_63b576365f0f" formatted="false">"Đề xuất AI cho thành phần vượt quá phạm vi lựa chọn"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"AI thành phần không được thay đổi cài đặt cấp trang web"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"Điều chỉnh thành phần AI"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"Nội dung đề xuất quá lớn, vui lòng thu hẹp phạm vi"</string>
+  <string name="msg_8715000a9841" formatted="false">"Cập nhật CSS trang web"</string>
+  <string name="msg_b350f6663586" formatted="false">"Cập nhật JavaScript trang web"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"Cập nhật thêm HTML trang web"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"Chỉnh sửa"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"Thêm mới"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"Xóa thành phần: %1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"Khôi phục %1$s sửa đổi"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"Điều chỉnh cài đặt cuộn trang"</string>
+  <string name="msg_15766e2591bd" formatted="false">"Vui lòng xác nhận nội dung sửa đổi bên dưới"</string>
+  <string name="msg_64244a373f7b" formatted="false">"Trang nguồn đã đóng hoặc tải lại, tải xuống đã dừng; vui lòng thử lại trên trang gốc"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"Tệp nhúng quá lớn"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"Định dạng tệp nhúng không hợp lệ, không lưu tệp"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"Không thể đọc tệp tạm này. Vui lòng thử lại trên trang gốc; video phân đoạn hoặc được bảo vệ cần dùng cách tải xuống do trang cung cấp"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"Giới hạn tải xuống tạm thời của trang web hiện là 2 GB, vui lòng dùng liên kết tải trực tiếp của trang"</string>
+  <string name="msg_533949b0c241" formatted="false">"Tệp nhúng không đầy đủ"</string>
+  <string name="msg_283a28e03a50" formatted="false">"Tệp tạm đã hết hạn, vui lòng tải lại"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"Đọc tệp tạm thất bại, vui lòng tải lại"</string>
+  <string name="msg_ffba3145db56" formatted="false">"Kích thước nội dung tải xuống không chính xác"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"Nội dung tải xuống không đầy đủ, không giữ tệp"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"Không thể lưu trạng thái tải xuống"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"Tải xuống lần trước bị gián đoạn, không giữ tệp không đầy đủ; vui lòng quay lại trang gốc để tải lại"</string>
+  <string name="msg_bcd36261f503" formatted="false">"Tệp tải xuống không thể lưu hoàn chỉnh"</string>
+  <string name="msg_815187d9a1da" formatted="false">"Không thể hoàn thành tải xuống tệp"</string>
+  <string name="msg_02beb82da20a" formatted="false">"Không thể tạo tệp tải xuống, vui lòng kiểm tra dung lượng lưu trữ"</string>
+  <string name="msg_bdd00d629528" formatted="false">"Không thể ghi tệp tải xuống"</string>
+  <string name="msg_d3e09805962f" formatted="false">"Không thể tạo thư mục tải xuống"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"Định dạng ảnh nhúng không thể sử dụng"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"Ảnh nhúng quá lớn"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"Ảnh nhúng vượt quá 32 MB"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"Không thể đọc ảnh tạm này, vui lòng nhấn giữ lại trên trang gốc"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"Mở chính sách quyền riêng tư trực tuyến"</string>
+  <string name="msg_080988523f29" formatted="false">"Phiên làm việc ẩn danh đã đóng; việc xóa dữ liệu trang web chưa hoàn tất, vui lòng đóng và mở lại ứng dụng"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"Quy tắc hoặc nội dung trang này khá nhiều, vui lòng chọn mô hình đám mây để phân tích."</string>
+  <string name="msg_5d279b988da8" formatted="false">"Đề xuất AI vượt quá phạm vi sửa đổi của quy tắc này, vui lòng gửi lại yêu cầu"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"Mã đề xuất quá dài, vui lòng thu hẹp phạm vi sửa đổi"</string>
+  <string name="msg_272100161734" formatted="false">"Cập nhật kiểu CSS"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"Cập nhật JavaScript"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"Cập nhật nội dung HTML"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"Điều chỉnh cách áp dụng HTML"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"Vui lòng kiểm tra nội dung đã chỉnh sửa trước khi áp dụng"</string>
+  <string name="msg_997de297c6b3" formatted="false">"Không thể lưu lịch sử tải xuống"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"Không thể tạo tệp tải xuống"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"Trang web đã thay đổi, vui lòng mở lại quy tắc này"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"Quy tắc đã được cập nhật, vui lòng mở lại để tránh ghi đè các chỉnh sửa khác"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"Quy tắc đã được cập nhật bởi thao tác khác, vui lòng mở lại"</string>
+  <string name="msg_30b5133da158" formatted="false">"Đưa chỉnh sửa lên một bước tiến mới"</string>
+  <string name="msg_dfb02399c259" formatted="false">"Vui lòng để AI chỉnh sửa quy tắc này"</string>
+  <string name="msg_a73d81627121" formatted="false">"Kết hợp HTML gốc, mã hiện tại và ý tưởng mới của bạn"</string>
+  <string name="msg_6882b571d47c" formatted="false">"Bạn có thể chỉnh sửa trực tiếp nội dung bên dưới. Lưu sẽ cập nhật quy tắc gốc; các chỉnh sửa trên trang khác sẽ được giữ lại."</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"Thêm vào cuối thành phần"</string>
+  <string name="msg_c7518df827c2" formatted="false">"Thay thế nội dung thành phần"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"Áp dụng cho miền này và các miền con. JavaScript có thể truy cập trang hoặc gửi yêu cầu, vui lòng xác nhận nội dung trước khi lưu."</string>
+  <string name="msg_5ef814324284" formatted="false">"Nội dung đã chỉnh sửa thay đổi, vui lòng lưu lại lần nữa"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"Đã cập nhật và áp dụng quy tắc gốc"</string>
+  <string name="msg_f5272b216037" formatted="false">"Xóa quy tắc này"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"Xóa quy tắc này?"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"%1$s sẽ bị xóa, các thiết lập khác sẽ được giữ lại."</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"CSS, JavaScript và HTML tùy chỉnh của trang web này"</string>
+  <string name="msg_60f997e432a2" formatted="false">"Chỉnh sửa thành phần này"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"Đã xóa quy tắc này"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"Xóa"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"Đã chuyển sang công cụ tìm kiếm tùy chỉnh"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"Đang sử dụng · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"Tìm kiếm thanh địa chỉ · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"Đã chuyển sang %1$s"</string>
+  <string name="msg_02da895c96ea" formatted="false">"Phương thức tìm kiếm của riêng bạn"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"Tùy chỉnh"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"Kết nối với dịch vụ tìm kiếm bạn quen dùng"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"Tìm kiếm một lần trên trang bạn muốn, sau đó thay thế từ khóa tìm kiếm trong URL bằng {query}."</string>
+  <string name="msg_83e506018140" formatted="false">"Mẫu URL tìm kiếm"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} sẽ được thay bằng từ khóa tìm kiếm đã được mã hóa an toàn"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"Xem trước: %1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"Lưu và sử dụng"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"Nhấn để chuyển đổi. Chỉ khi gửi tìm kiếm, từ khóa mới được gửi đến dịch vụ đã chọn."</string>
+  <string name="msg_455ece81de56" formatted="false">"Baidu"</string>
+  <string name="msg_af8a52509166" formatted="false">"Wikipedia tiếng Trung"</string>
+  <string name="msg_db79062a760b" formatted="false">"Chưa thiết lập mẫu URL"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"Vui lòng nhập mẫu URL tìm kiếm"</string>
+  <string name="msg_e2d127e64801" formatted="false">"Mẫu URL không được vượt quá 2.048 ký tự"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"Mẫu URL phải là một URL hoàn chỉnh trên một dòng"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"Mẫu URL phải chứa {query} một lần"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"{query} phải nằm trong đường dẫn URL hoặc tham số truy vấn"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"Vui lòng nhập URL HTTPS đầy đủ"</string>
+  <string name="msg_00f486ce580a" formatted="false">"Để bảo vệ nội dung tìm kiếm, chỉ được dùng HTTPS"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"URL không được chứa tên đăng nhập hoặc mật khẩu"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"Mẫu URL không được chứa dấu # (mỏ neo)"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"URL cần có tên máy chủ hợp lệ"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"Không thể xóa bộ nhớ đệm biểu tượng trang web"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"Quá nhiều thiết lập trang web"</string>
+  <string name="msg_a17da897bf76" formatted="false">"Thiết lập trang web vượt quá 8 MB, vui lòng dọn dẹp mã tùy chỉnh lớn hơn trước"</string>
+  <string name="msg_51bb558b264b" formatted="false">"Ảnh chụp nhanh thiết lập trang web quá lớn"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"Phiên bản thiết lập trang web không tương thích"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"Tên miền hoặc thời gian thiết lập trang web không chính xác"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"Thiết lập trang web vượt quá giới hạn"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"Thông thường"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"Ẩn danh"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"Trang ẩn danh không tạo ảnh thu nhỏ, không lưu lịch sử duyệt. Dọn dẹp dữ liệu trang web khi đóng tất cả tab ẩn danh."</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"Mở một phiên duyệt ẩn danh"</string>
+  <string name="msg_de2a64702660" formatted="false">"Chưa có tab thường nào"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"Sử dụng trạng thái đăng nhập khác với tab thường; trang web và nhà cung cấp mạng vẫn có thể nhận dạng hoạt động của bạn."</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"Thêm tab mới để có không gian riêng cho việc đọc tiếp theo."</string>
+  <string name="msg_89d55dea3269" formatted="false">"Trang riêng tư"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"Đóng tab %1$s"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"Tab hiện tại · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"Chỉ có khoảnh khắc này, chỉ ở khoảnh khắc này."</string>
+  <string name="msg_ec4537100d5f" formatted="false">"Không lưu lịch sử duyệt và tìm kiếm, không phục hồi tab ẩn danh. Trạng thái đăng nhập tách biệt với tab thường, dọn dẹp cookie, bộ nhớ đệm và dữ liệu trang khi đóng tất cả tab ẩn danh."</string>
+  <string name="msg_c4759e2fd146" formatted="false">"Chế độ ẩn danh không đồng nghĩa với ẩn danh hoàn toàn. Trang web, nhà tuyển dụng hoặc nhà cung cấp mạng vẫn có thể thấy hoạt động của bạn. Các tệp bạn chủ động tải xuống, dấu trang và mục yêu thích sẽ được giữ lại; chia sẻ hệ thống và yêu cầu AI vẫn sẽ gửi nội dung đã chọn đến dịch vụ liên quan."</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"Menu tab"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"Đóng tất cả tab"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"Đóng tất cả tab ẩn danh?"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"Đóng tất cả tab thường?"</string>
+  <string name="msg_1401b7462a88" formatted="false">"Sẽ đóng %1$s tab trong nhóm này, không ảnh hưởng đến nhóm khác."</string>
+  <string name="msg_9b14332369fd" formatted="false">"Dữ liệu trang web ẩn danh sẽ được xóa sau khi đóng hết. Tệp tải xuống, dấu trang và mục yêu thích vẫn được giữ lại."</string>
+  <string name="msg_e818d7092124" formatted="false">"Các tab và ảnh chụp nhanh này sẽ không được khôi phục khi khởi động lại; lịch sử duyệt, tệp tải xuống, dấu trang và mục yêu thích vẫn được giữ lại."</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"Đóng tất cả"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"Chưa yêu cầu vị trí"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"Điện thoại chưa cho phép định vị; bạn có thể bật quyền ứng dụng từ thông tin trang web."</string>
+  <string name="msg_b225c190262b" formatted="false">"Dịch vụ định vị trên điện thoại chưa bật, vui lòng bật định vị trong thông tin trang web rồi thử lại."</string>
+  <string name="msg_c706cb8f6217" formatted="false">"Cho phép trang web này truy cập vị trí?"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\nTrang web có thể sử dụng vị trí của bạn để cung cấp các chức năng như địa điểm gần đó. Có thể thay đổi trong thông tin trang web trên thanh địa chỉ."</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\nQuyền ẩn danh chỉ được giữ đến khi đóng tất cả tab ẩn danh."</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"Cho phép định vị"</string>
+  <string name="msg_e69e259269d3" formatted="false">"Tạm không cho phép"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"1 giờ qua"</string>
+  <string name="msg_322773403765" formatted="false">"24 giờ qua"</string>
+  <string name="msg_27905bacccf9" formatted="false">"7 ngày qua"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"4 tuần qua"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"Không giới hạn thời gian"</string>
+  <string name="msg_b39b740c9370" formatted="false">"Hỏi lại"</string>
+  <string name="msg_0bffd418918b" formatted="false">"Cho phép"</string>
+  <string name="msg_454b7b66304a" formatted="false">"Chặn"</string>
+  <string name="language_title" formatted="false">"Ngôn ngữ giao diện"</string>
+  <string name="language_system" formatted="false">"Theo ngôn ngữ điện thoại"</string>
+  <string name="language_support" formatted="false">"Lần đầu mở sẽ hiển thị theo ngôn ngữ điện thoại; nếu không hỗ trợ, sẽ dùng tiếng Anh."</string>
+  <string name="language_selected" formatted="false">"Đang dùng: %1$s"</string>
+  <string name="language_system_detail" formatted="false">"Tự động · %1$s"</string>
+  <string name="language_picker" formatted="false">"Chọn ngôn ngữ giao diện"</string>
+  <string name="language_note" formatted="false">"Cài đặt này chỉ thay đổi giao diện ChengJing, không dịch nội dung trang web."</string>
+  <string name="language_changed" formatted="false">"Đã chuyển ngôn ngữ giao diện"</string>
+  <string name="language_native_hint" formatted="false">"Hiển thị tên ngôn ngữ bằng chính ngôn ngữ đó để dễ tìm lại ngôn ngữ quen thuộc."</string>
+  <string name="home_quote_000" formatted="false">"Sau cơn sấm, trời sẽ mưa"</string>
+  <string name="home_quote_001" formatted="false">"Sau hôm nay, sẽ là ngày mai"</string>
+  <string name="home_quote_002" formatted="false">"Sau ngày mai, là một bộ phim"</string>
+  <string name="home_quote_003" formatted="false">"Giá xuống mua, giá lên bán, đầu tư đơn giản vậy thôi"</string>
+  <string name="home_quote_004" formatted="false">"Nếu bạn không thích đi làm, chắc chắn bạn sẽ rất thích tan làm"</string>
+  <string name="home_quote_005" formatted="false">"Chỉ cần bạn cố gắng, bạn sẽ nhận ra mọi việc có thể còn khó hơn"</string>
+  <string name="home_quote_006" formatted="false">"Phá kẻ cướp ngoài núi dễ, phá kẻ cướp trong lòng khó"</string>
+  <string name="home_quote_007" formatted="false">"Kiên trì chưa chắc thành công, nhưng từ bỏ thì thật nhẹ nhàng"</string>
+  <string name="home_quote_008" formatted="false">"Mỗi ngày uống ít hơn một ly cà phê, một năm bạn sẽ uống ít hơn 365 ly"</string>
+  <string name="home_quote_009" formatted="false">"Đừng bận tâm nữa, bạn chỉ là một cây lau suy nghĩ"</string>
+  <string name="home_quote_010" formatted="false">"Gặp khó khăn đừng sợ, đối mặt rồi bạn sẽ thấy mình chẳng thể giải quyết"</string>
+  <string name="home_quote_011" formatted="false">"Không lo vật không đều, lo người lòng không bình"</string>
+  <string name="home_quote_012" formatted="false">"Khi bạn cảm thấy mình chẳng có gì, đừng quên bạn còn đầy mệt mỏi"</string>
+  <string name="home_quote_013" formatted="false">"Trước khi ngủ đừng lướt điện thoại, nếu không bạn sẽ sớm nhận ra trời đã sáng"</string>
+  <string name="home_quote_014" formatted="false">"Tử viết: Quân tử cầu ở mình, tiểu nhân cầu ở người"</string>
+  <string name="home_quote_015" formatted="false">"Thuyền đến cầu tự nhiên thẳng, nếu không thẳng thì đã chìm"</string>
+  <string name="home_quote_016" formatted="false">"Người thành công thường có điểm chung là họ đều thành công"</string>
+  <string name="home_quote_017" formatted="false">"Đừng khóc, đừng cười, hãy thấu hiểu"</string>
+  <string name="home_quote_018" formatted="false">"Chỉ cần bạn tiếp tục bước, bạn sẽ không đứng yên một chỗ"</string>
+  <string name="home_quote_019" formatted="false">"Lạc đường mới là khởi đầu của khám phá"</string>
+  <string name="home_quote_020" formatted="false">"Nỗ lực chưa chắc được nhìn thấy, nhưng lười biếng chỉ một lần là bị phát hiện"</string>
+  <string name="home_quote_021" formatted="false">"Thất bại là mẹ thành công, nhưng bạn có thể mãi không tìm thấy cha"</string>
+  <string name="home_quote_022" formatted="false">"Tự do là bị người khác ghét"</string>
+  <string name="home_quote_023" formatted="false">"Hạnh phúc chỉ là tạm dừng của đau khổ"</string>
+  <string name="home_quote_024" formatted="false">"Khi bạn quyết định bắt đầu, nghĩa là bạn chưa hoàn thành"</string>
+  <string name="home_quote_025" formatted="false">"Thành công không có đường tắt, nhưng nhiều người bị tắc trên đường tắt"</string>
+  <string name="home_quote_026" formatted="false">"Lo âu là chóng mặt do tự do sinh ra"</string>
+  <string name="home_quote_027" formatted="false">"Chỉ cần bạn bước bước đầu, bạn sẽ thấy bước thứ hai vẫn ở phía sau"</string>
+  <string name="home_quote_028" formatted="false">"Làm ơn tránh ra, đừng chắn ánh nắng của tôi"</string>
+  <string name="home_quote_029" formatted="false">"Bồ đề bản vô thụ, minh kính diệc phi đài. Bản lai vô nhất vật, hà xứ nhơ trần ai"</string>
+  <string name="home_quote_030" formatted="false">"Nỗi khổ bạn đang chịu là để chuẩn bị cho những khổ đau lớn hơn sau này"</string>
+  <string name="home_quote_031" formatted="false">"Người chiến đấu với quái vật, hãy cẩn thận đừng biến thành quái vật"</string>
+  <string name="home_quote_032" formatted="false">"Leo càng cao, ngã càng đau"</string>
+  <string name="home_quote_033" formatted="false">"Kiến thức là sức mạnh"</string>
+  <string name="home_quote_034" formatted="false">"Chỉ cần bạn tận tâm, dù làm sai cũng là làm sai bằng tận tâm"</string>
+  <string name="home_quote_035" formatted="false">"Kiến thức thông thường đôi khi không phải là kiến thức thông thường"</string>
+  <string name="home_quote_036" formatted="false">"Trẻ con sợ bóng tối là điều dễ hiểu; bi kịch thật sự là người lớn sợ ánh sáng"</string>
+  <string name="home_quote_037" formatted="false">"Tưởng tượng ngày tận thế dễ hơn tưởng tượng sự kết thúc của chủ nghĩa tư bản"</string>
+  <string name="home_quote_038" formatted="false">"Chỉ cần bạn không ngượng ngùng, người ngượng ngùng là người khác"</string>
+  <string name="home_quote_039" formatted="false">"Hành trình ngàn dặm bắt đầu từ bước chân đầu tiên"</string>
+  <string name="home_quote_040" formatted="false">"Người khác, chính là địa ngục"</string>
+  <string name="home_quote_041" formatted="false">"Chỉ cần bạn hạ tiêu chuẩn đủ thấp, từng giây đều là bất ngờ"</string>
+  <string name="home_quote_042" formatted="false">"Áp lực thường không phải từ thực tế, mà từ tưởng tượng"</string>
+  <string name="home_quote_043" formatted="false">"Đừng quá khắt khe với bản thân, vì người khác sẽ giúp bạn khắt khe"</string>
+  <string name="home_quote_044" formatted="false">"Gặp khó khăn đừng vội, dù vội cũng vô ích"</string>
+  <string name="home_quote_045" formatted="false">"Sinh ra trong lo lắng, chết trong an nhàn"</string>
+  <string name="home_quote_046" formatted="false">"Chỉ cần ăn no, sẽ không bị đói"</string>
+  <string name="home_quote_047" formatted="false">"Đạo lớn suy, có nhân nghĩa; trí tuệ xuất, có đại ngụy"</string>
+  <string name="home_quote_048" formatted="false">"Quần áo mặc lâu sẽ cũ, trừ khi bạn mua cái mới"</string>
+  <string name="home_quote_049" formatted="false">"Nước sôi rồi, nước là nước sôi"</string>
+  <string name="home_quote_050" formatted="false">"Thiên thời không bằng địa lợi, địa lợi không bằng nhân hòa"</string>
+  <string name="home_quote_051" formatted="false">"Khi bạn cũng muốn gặp tôi, cuộc gặp mới có ý nghĩa"</string>
+  <string name="home_quote_052" formatted="false">"Người khác cười tôi quá điên, tôi cười người khác nhìn ra"</string>
+  <string name="home_quote_053" formatted="false">"Ăn khổ mới biết còn khổ hơn"</string>
+  <string name="home_quote_054" formatted="false">"Chỉ cần bạn còn sống, vẫn còn cơ hội tiếp tục sai lầm"</string>
+  <string name="home_quote_055" formatted="false">"Bạn không thể kiểm soát hướng gió, nhưng có thể đóng cửa sổ"</string>
+  <string name="home_quote_056" formatted="false">"Sắp xếp tốt nhất của cuộc đời thường là không có sắp xếp"</string>
+  <string name="home_quote_057" formatted="false">"Bất cứ việc gì lặp lại đủ nhiều lần đều trở thành thói quen"</string>
+  <string name="home_quote_058" formatted="false">"Tất cả hình tướng đều là hư vọng; trừ thông báo lương vào tài khoản"</string>
+  <string name="home_quote_059" formatted="false">"Bạn nghĩ mình đang chọn, thực ra thuật toán đã biết bạn sẽ chọn gì"</string>
+  <string name="home_quote_060" formatted="false">"Thế giới rất lớn, lớn đến mức vấn đề của bạn không nằm trong hàng đầu"</string>
+  <string name="home_quote_061" formatted="false">"Thiên sinh ngã tài tất hữu dụng, thiên kim tán tận hựu phục lai"</string>
+  <string name="home_quote_062" formatted="false">"Đã đến thì ngồi lại một lát"</string>
+  <string name="home_quote_063" formatted="false">"Vấn đề giải quyết bằng tiền đều cần phải có tiền trước"</string>
+  <string name="home_quote_064" formatted="false">"Không đánh mà khiến người ta quy phục, là điều thiện nhất"</string>
+  <string name="home_quote_065" formatted="false">"Thất bại không đáng sợ, đáng sợ là thất bại còn phải viết kiểm điểm"</string>
+  <string name="home_quote_066" formatted="false">"Cuộc đời ngắn ngủi, nên không thích hợp cho những cuộc họp dài"</string>
+  <string name="home_quote_067" formatted="false">"Cuộc đời không có bước đi nào là vô ích, mỗi bước đều tính là bước chân"</string>
+  <string name="home_quote_068" formatted="false">"Việc không phải trở nên dễ dàng hơn, mà là bạn quen với khó khăn"</string>
+  <string name="home_quote_069" formatted="false">"Âm thanh lớn thì im lặng, tượng lớn thì vô hình, cuộc họp lớn thường không có kết luận"</string>
+  <string name="home_quote_070" formatted="false">"Nhìn nhau mỉm cười, tâm đầu ý hợp"</string>
+  <string name="home_quote_071" formatted="false">"Người thắng người có sức mạnh, tự thắng mình mới là người mạnh mẽ"</string>
+  <string name="home_quote_072" formatted="false">"Chiếc ghế của bạn quyết định tư thế ngồi của bạn"</string>
+  <string name="home_quote_073" formatted="false">"Hạnh phúc lớn nhất là không cần chứng minh mình hạnh phúc"</string>
+  <string name="home_quote_074" formatted="false">"Con người sinh ra tự do, nhưng lại đăng nhập thành viên khắp nơi"</string>
+  <string name="home_quote_075" formatted="false">"Nếu bạn không có thời gian nghỉ ngơi, cơ thể sẽ tự sắp xếp lịch khám cho bạn"</string>
+  <string name="home_quote_076" formatted="false">"Cuộc sống sẽ dạy bạn nhiều điều, học phí thường không rẻ"</string>
+  <string name="home_quote_077" formatted="false">"Cuộc đời không chỉ có trắng hoặc đen"</string>
+  <string name="home_quote_078" formatted="false">"Thượng thiện như nước, nước lợi ích muôn vật mà không tranh giành"</string>
+  <string name="home_quote_079" formatted="false">"Nghe lời bạn nói, như nghe một bài học"</string>
+  <string name="home_quote_080" formatted="false">"Bất cứ việc gì đáng làm đều đáng để lưu trữ trước"</string>
+  <string name="home_quote_081" formatted="false">"Thế giới sẽ không ngừng quay vì bạn, nên đừng quá áy náy"</string>
+  <string name="home_quote_082" formatted="false">"Lẽ sâu sắc nhất, khi nói ra thường rất đơn giản"</string>
+  <string name="home_quote_083" formatted="false">"Cuộc đời không có trải nghiệm nào là vô ích"</string>
+  <string name="home_quote_084" formatted="false">"Nếu bạn sợ mắc lỗi, bạn sẽ bỏ lỡ nhiều cách sai mới"</string>
+  <string name="home_quote_085" formatted="false">"Cuộc đời có vô số khả năng, nhưng hôm nay chỉ sống một lần"</string>
+  <string name="home_quote_086" formatted="false">"How are you？I\'m fine, thank you."</string>
+  <string name="home_quote_087" formatted="false">"Việc đã qua không thể can gián, việc tới vẫn có thể đuổi theo"</string>
+  <string name="home_quote_088" formatted="false">"Hãy trở thành chính bạn"</string>
+  <string name="msg_485107965fef" formatted="false">"Định dạng quy tắc thành phần không hợp lệ"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"Không thể xóa toàn bộ trang"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"Không tìm thấy bộ chọn thành phần hợp lệ"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"Thành phần đã chọn không còn tồn tại"</string>
+  <string name="msg_db7282021ef2" formatted="false">"HTML gốc chưa sẵn sàng, vui lòng tải lại trang rồi mở quy tắc"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"Không tìm thấy thành phần"</string>
+  <string name="msg_837653b6c57e" formatted="false">"Thành phần quá lớn, vui lòng chọn phạm vi nhỏ hơn"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"Sân tập SkyEye · ChengJing"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"ChengJing・Sân tập SkyEye"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"Trang web demo trên thiết bị"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"Biểu ngữ thông tin chung · Bạn có thể chọn giữ lại"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"Chậm lại một chút, nhìn rõ hơn"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"Điều chỉnh trang web theo thói quen của bạn."</string>
+  <string name="practice_8b7c761ab887" formatted="false">"Đây là trang web tập luyện trên điện thoại. Bạn có thể điều chỉnh các thành phần, cũng như thêm kiểu dáng và nội dung trang của riêng bạn."</string>
+  <string name="practice_7e28a385715a" formatted="false">"Nhấn \'SkyEye\' trên thanh công cụ, sau đó chọn thành phần. Nếu chỉ chọn được chữ, nhấn \'Chọn lớp ngoài\' cho đến khi bao quanh toàn bộ thành phần, rồi xem trước và loại bỏ."</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"Nhân vật chính của trang web nên là nội dung bạn muốn xem."</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"Thêm một chút thứ của riêng bạn"</string>
+  <string name="practice_b4a4214feada" formatted="false">"Mở SkyEye, chọn \'Thêm CSS\' để điều chỉnh kiểu dáng. Ví dụ làm đoạn văn rộng rãi hơn:"</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"Chọn \'Thêm JS\' để thêm nhắc nhở đọc vào trang:"</string>
+  <string name="practice_9e58ae908fca" formatted="false">"Sau khi loại bỏ thì sao?"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"Lưu quy tắc, rồi sang trang thứ hai. Dù nội dung thành phần khác, chỉ cần cấu trúc giống nhau, nó vẫn không làm phiền bạn."</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"Đi đến trang thứ hai cùng miền →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"Bạn cũng có thể chọn \'Tạm thời hiển thị trang gốc\' trong menu để xem lại trang gốc tạm thời. Tất cả quy tắc vẫn còn, không cần thiết lập lại."</string>
+  <string name="practice_66cf62365956" formatted="false">"Hộp gợi ý ban đầu bị ẩn"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"Thành phần nổi demo"</string>
+  <string name="practice_e8b18630d135" formatted="false">"Khối nổi này đang chắn nội dung đọc."</string>
+  <string name="practice_975cfbbfce74" formatted="false">"Thử dùng SkyEye để loại bỏ toàn bộ khối màu xanh lá."</string>
+  <string name="practice_29692e6a4f70" formatted="false">"Nhớ nghỉ ngơi một chút"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"Đóng thành phần"</string>
+  <string name="practice_df9256123dae" formatted="false">"Nội dung mới, vẫn tươi mát."</string>
+  <string name="practice_efbee8398901" formatted="false">"Thành phần đổi nội dung vẫn giữ cấu trúc giống nhau."</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"Trang hai · Sân tập SkyEye"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"Thành phần gợi ý tải muộn cũng có thể được SkyEye chọn."</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

@@ -46,7 +46,7 @@ internal class BrowserPrompts {
     }
     fun closeFor(owner:Int){current?.takeIf{it.owner==owner}?.let{cancel(it)}}
     fun confirm(title:String,message:String,confirmLabel:String,owner:Int?=null,
-                valid:()->Boolean={true},onCancel:()->Unit={},cancelLabel:String="取消",confirm:()->Unit){
+                valid:()->Boolean={true},onCancel:()->Unit={},cancelLabel:String=bt(R.string.msg_2cd0f3be8738),confirm:()->Unit){
         show(BrowserPrompt.Confirm(title,message,confirmLabel,confirm,cancelLabel,owner,valid,onCancel))
     }
 }
@@ -68,7 +68,7 @@ internal class BrowserPrompts {
                 title={Text(prompt.title)},
                 text={Column(Modifier.heightIn(max=(LocalConfiguration.current.screenHeightDp*.5f).dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(16.dp)){
                     Text(prompt.message)
-                    if(prompt.input!=null)OutlinedTextField(input,{input=it},singleLine=true,modifier=Modifier.fillMaxWidth().testTag("website-prompt-input"),label={Text("輸入內容")})
+                    if(prompt.input!=null)OutlinedTextField(input,{input=it},singleLine=true,modifier=Modifier.fillMaxWidth().testTag("website-prompt-input"),label={Text(bt(R.string.msg_1cf2c46210c9))})
                 }},
                 confirmButton={TextButton(onClick={c.prompts.act(prompt){prompt.submit?.invoke(input)?:prompt.confirm()}}){Text(prompt.confirmLabel)}},
                 dismissButton={if(prompt.showCancel)TextButton(onClick={c.prompts.cancel(prompt)}){Text(prompt.cancelLabel)}}
@@ -92,7 +92,7 @@ internal class BrowserPrompts {
                         Text(prompt.title,style=MaterialTheme.typography.titleMedium,maxLines=2,overflow=TextOverflow.Ellipsis)
                         if(prompt.subtitle.isNotBlank())Text(prompt.subtitle,style=MaterialTheme.typography.bodySmall,color=colors.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
                     }
-                    IconButton(onClick=dismiss){Icon(Icons.Outlined.Close,"關閉長按選單")}
+                    IconButton(onClick=dismiss){Icon(Icons.Outlined.Close,bt(R.string.msg_b187dd0c2f23))}
                 }
                 HorizontalDivider(color=colors.outlineVariant.copy(alpha=.6f))
                 Column(Modifier.weight(1f,fill=false).verticalScroll(rememberScrollState()).padding(vertical=8.dp)){

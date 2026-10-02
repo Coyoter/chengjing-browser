@@ -15,7 +15,7 @@ data class Bookmark(val id:String,val url:String,val title:String,val folder:Str
         fun from(j:JSONObject):Bookmark {
             val url=j.getString("url");val folder=j.optString("folder").take(2000)
             require(url.toHttpUrlOrNull()!=null && url.length<=16000)
-            require(j.getString("id")==id(url,folder)) { "書籤識別碼不正確" }
+            require(j.getString("id")==id(url,folder)) { bt(R.string.msg_5629289d8a7e) }
             return Bookmark(j.getString("id"),url,j.optString("title",url).take(2000),folder,j.getLong("updated"),j.optBoolean("deleted"))
         }
     }
@@ -23,11 +23,11 @@ data class Bookmark(val id:String,val url:String,val title:String,val folder:Str
 object BookmarkFormat {
     fun editedUrl(value:String):String {
         val url=value.trim()
-        require(url.isNotEmpty()){ "請輸入書籤網址" }
-        require(url.length<=16000){ "網址最多 16,000 字" }
-        require(Regex("^https?://",RegexOption.IGNORE_CASE).containsMatchIn(url) && url.none{it.isISOControl()}){ "請輸入以 https:// 或 http:// 開頭的網址" }
-        val normalized=requireNotNull(url.toHttpUrlOrNull()){ "網址格式不正確" }.toString()
-        require(normalized.length<=16000){ "網址編碼後超過 16,000 字，請縮短網址" }
+        require(url.isNotEmpty()){ bt(R.string.msg_d487b7f200d9) }
+        require(url.length<=16000){ bt(R.string.msg_2fe99f184b4e) }
+        require(Regex("^https?://",RegexOption.IGNORE_CASE).containsMatchIn(url) && url.none{it.isISOControl()}){ bt(R.string.msg_edfa17cb068f) }
+        val normalized=requireNotNull(url.toHttpUrlOrNull()){ bt(R.string.msg_b8efbdc1ae19) }.toString()
+        require(normalized.length<=16000){ bt(R.string.msg_dff55efd6b87) }
         return normalized
     }
     fun editChanges(entry:Bookmark,title:String,folder:String,url:String,now:Long):List<Bookmark>{
@@ -40,7 +40,7 @@ object BookmarkFormat {
         rows.maxWith(compareBy<Bookmark>{it.updated}.thenBy{it.deleted}.thenBy{it.title})
     }.sortedBy{it.id}
     fun parseHtml(html:String,now:Long=System.currentTimeMillis()):List<Bookmark>{
-        require(html.length<=8_000_000){"書籤檔案太大，請分批匯入（上限 8 MB）"}
+        require(html.length<=8_000_000){bt(R.string.msg_3fc5c67e5c51)}
         val stack=mutableListOf<String>();var pending="";val entries=mutableListOf<Bookmark>()
         val token=Regex("<h3\\b[^>]*>[\\s\\S]*?</h3\\s*>|<a\\b[^>]*>[\\s\\S]*?</a\\s*>|</?dl\\b[^>]*>",RegexOption.IGNORE_CASE)
         for(m in token.findAll(html)){
@@ -54,14 +54,14 @@ object BookmarkFormat {
                     entries.add(Bookmark(Bookmark.id(url,folder),url,a.text().ifBlank{url}.take(2000),folder,now))
                 }
             }
-            require(entries.size<=20000){"一次最多匯入 20,000 個書籤"}
+            require(entries.size<=20000){bt(R.string.msg_64f5f60d4647)}
         }
         return merge(entries)
     }
     fun html(rows:List<Bookmark>):String {
         fun esc(s:String)=s.replace("&","&amp;").replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;")
         return buildString{
-            append("<!DOCTYPE NETSCAPE-Bookmark-file-1>\n<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\">\n<TITLE>澄境書籤</TITLE><H1>澄境書籤</H1>\n<DL><p>\n")
+            append(bt(R.string.msg_7f30348bc05e))
             rows.filterNot{it.deleted}.groupBy{it.folder}.forEach{(folder,items)->
                 val parts=folder.split(" / ").filter{it.isNotEmpty()}
                 parts.forEach{append("<DT><H3>${esc(it)}</H3>\n<DL><p>\n")}
@@ -73,8 +73,8 @@ object BookmarkFormat {
     }
     fun snapshot(rows:List<Bookmark>)=JSONObject().put("schema",1).put("app","chengjing-browser-bookmarks-v1").put("bookmarks",JSONArray(rows.map{it.json()})).toString()
     fun readSnapshot(raw:String):List<Bookmark>{
-        require(raw.length<=12_000_000){"雲端書籤檔案過大"};val j=JSONObject(raw)
-        require(j.optInt("schema")==1&&j.optString("app")=="chengjing-browser-bookmarks-v1"){"雲端書籤格式不相容"}
+        require(raw.length<=12_000_000){bt(R.string.msg_f17237028cc4)};val j=JSONObject(raw)
+        require(j.optInt("schema")==1&&j.optString("app")=="chengjing-browser-bookmarks-v1"){bt(R.string.msg_d2d3bff81d2d)}
         val rows=j.getJSONArray("bookmarks");require(rows.length()<=40000)
         return (0 until rows.length()).map{Bookmark.from(rows.getJSONObject(it))}
     }
@@ -86,7 +86,7 @@ class BookmarkStore(context:Context){
     @Synchronized fun all():List<Bookmark> = prefs.getString("data",null)?.let{BookmarkFormat.readSnapshot(it)}?:emptyList()
     fun visible()=all().filterNot{it.deleted}.sortedByDescending{it.updated}
     private fun tick()=maxOf(System.currentTimeMillis(),(all().maxOfOrNull{it.updated}?:0)+1)
-    @Synchronized fun replace(rows:List<Bookmark>){check(prefs.edit().putString("data",BookmarkFormat.snapshot(rows)).commit()){ "書籤儲存失敗" }}
+    @Synchronized fun replace(rows:List<Bookmark>){check(prefs.edit().putString("data",BookmarkFormat.snapshot(rows)).commit()){ bt(R.string.msg_40ad29b56199) }}
     @Synchronized fun toggle(url:String,title:String){
         val existing=visible().filter{it.url==url};val now=tick()
         val changes=if(existing.isEmpty())listOf(Bookmark(Bookmark.id(url,""),url,title,"",now))else existing.map{it.copy(updated=now,deleted=true)}

@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"Erneut suchen"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"Google-Konto"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"Zu viele Synchronisierungs-Snapshots, bitte Support kontaktieren"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"Warte auf Synchronisierung"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"Noch nicht mit Google verbunden"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"Google-Autorisierung abgebrochen"</string>
+  <string name="msg_37f027ce9096" formatted="false">"Lokale Daten bleiben unverändert, Sie können später erneut auf „Jetzt synchronisieren“ tippen."</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"Warte auf Netzwerkverbindung"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"Lokale Daten wurden behalten, nach Wiederherstellung der Verbindung können Sie „Jetzt synchronisieren“ drücken."</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"Erneute Anmeldung bei Google erforderlich"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"Bitte tippen Sie auf „Jetzt synchronisieren“, um Ihr Google-Konto zu bestätigen."</string>
+  <string name="msg_35b24a76557b" formatted="false">"Google-Anmeldeeinstellungen sind nicht kompatibel"</string>
+  <string name="msg_f164f003f815" formatted="false">"Bitte auf die neueste Version aktualisieren; falls die Verbindung weiterhin nicht möglich ist, Support kontaktieren."</string>
+  <string name="msg_ebfa487493ba" formatted="false">"Google-Autorisierung nicht abgeschlossen"</string>
+  <string name="msg_9dba61428261" formatted="false">"Bitte tippen Sie erneut auf „Jetzt synchronisieren“. Lokale Daten wurden behalten."</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"Verbinde mit Google…"</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"Lokale Daten bleiben unverändert, bitte versuchen Sie es erneut."</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"Synchronisiere Lesezeichen…"</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"Verbindung abgebrochen"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"Cloud-Schreib- und Lesevorgang stimmen nicht überein, bitte erneut versuchen"</string>
+  <string name="msg_9359e2513325" formatted="false">"Synchronisiere Favoriten und Lesefortschritt…"</string>
+  <string name="msg_294092e535b2" formatted="false">"Favoriten- und Lesefortschritt-Schreib- und Lesevorgang stimmen nicht überein, bitte erneut versuchen"</string>
+  <string name="msg_f2e9df262458" formatted="false">"Synchronisiere SkyEye-Webseiteneinstellungen…"</string>
+  <string name="msg_ef86e477373a" formatted="false">"SkyEye-Einstellungen Schreib- und Lesevorgang stimmen nicht überein, bitte erneut versuchen"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"%1$s Lesezeichen, %2$s Favoriten und Lesefortschritt synchronisiert"</string>
+  <string name="msg_2830de0d843f" formatted="false">", %1$s Webseiteneinstellungen; nach Neuladen der Seite wirksam"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"Synchronisierung gestoppt, lokale und Cloud-Lesezeichen sowie Favoriten bleiben erhalten"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"Lesezeichen"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"Ungültige Lesezeichen-ID"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"Bitte Lesezeichen-URL eingeben"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"URL maximal 16.000 Zeichen"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"Bitte eine URL eingeben, die mit https:// oder http:// beginnt"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"Ungültiges URL-Format"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"URL-codiert länger als 16.000 Zeichen, bitte URL kürzen"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"Lesezeichen-Datei zu groß, bitte in Teilen importieren (max. 8 MB)"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"Maximal 20.000 Lesezeichen auf einmal importieren"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;ChengJing Lesezeichen&lt;/TITLE&gt;&lt;H1&gt;ChengJing Lesezeichen&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"Cloud-Lesezeichen-Datei zu groß"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"Cloud-Lesezeichen-Format nicht kompatibel"</string>
+  <string name="msg_40ad29b56199" formatted="false">"Lesezeichen-Speicherung fehlgeschlagen"</string>
+  <string name="msg_a782f2754c83" formatted="false">"Startseite"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"Zertifikatsausnahme aktiviert, klicken zum Anzeigen"</string>
+  <string name="msg_7c24b540153b" formatted="false">"Zertifikatsfehler, klicken zum Anzeigen"</string>
+  <string name="msg_58f5b551d138" formatted="false">"Website-Informationen"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"Suchen oder URL eingeben"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"Los"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"Ladevorgang stoppen"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"Neu laden"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"Neuer Tab"</string>
+  <string name="msg_75bc594490fc" formatted="false">"Tabs, %1$s Stück"</string>
+  <string name="msg_ad62e8203c00" formatted="false">"Unbenannte Datei"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"Download noch nicht abgeschlossen oder Datei entfernt"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"Datei wurde entfernt"</string>
+  <string name="msg_813f4217faf8" formatted="false">"Download-Datei öffnen"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"Keine App zum Öffnen dieser Datei verfügbar"</string>
+  <string name="msg_04c451cd747f" formatted="false">"Datei kann nicht geöffnet werden, möglicherweise verschoben oder gelöscht"</string>
+  <string name="msg_8d24156413ef" formatted="false">"System-Downloads vorübergehend nicht lesbar, bitte später erneut versuchen"</string>
+  <string name="msg_d477c75aa656" formatted="false">"Download"</string>
+  <string name="msg_4138d7e93958" formatted="false">"Bilder, Videos, Audios und Dateien, heruntergeladen mit ChengJing Browser."</string>
+  <string name="msg_775f5ca1d653" formatted="false">"Noch keine Downloads"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"Keine passenden Downloads gefunden"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"Langes Drücken auf Bilder, Download-Menü im Player verwenden oder Download-Link auf der Website anklicken."</string>
+  <string name="msg_d011ffe066da" formatted="false">"%1$s öffnen"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"%1$s abbrechen"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"Abgebrochen"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"Abgeschlossen"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"Download fehlgeschlagen"</string>
+  <string name="msg_204249cd633a" formatted="false">"Pausiert, warte auf Systemsversuch"</string>
+  <string name="msg_235d5f021172" formatted="false">"Wird heruntergeladen"</string>
+  <string name="msg_efed99b86212" formatted="false">"Warte auf Download"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"Größe noch zu bestätigen"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"Datei herunterladen"</string>
+  <string name="msg_de32e20193ad" formatted="false">"Verstanden"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"Verlauf"</string>
+  <string name="msg_4e445f09300c" formatted="false">"Die letzten 250 Seiten werden nur auf diesem Gerät gespeichert. Inkognito-Browsing wird nicht hinzugefügt."</string>
+  <string name="msg_c24268c66266" formatted="false">"Verlauf löschen"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"Kein Verlauf vorhanden"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"Keine passenden Seiten gefunden"</string>
+  <string name="msg_539989302fd2" formatted="false">"Seiten, die im normalen Tab besucht wurden, erscheinen hier."</string>
+  <string name="msg_3352ef9c5026" formatted="false">"Diesen Verlaufseintrag entfernen"</string>
+  <string name="msg_46afe15d4929" formatted="false">"Verlauf löschen?"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"Der lokale Browserverlauf und Suchverlauf werden gelöscht, Lesezeichen, Favoriten oder Website-Anmeldedaten bleiben erhalten."</string>
+  <string name="msg_bce2377283c2" formatted="false">"Löschen"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"Abbrechen"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"%1$s suchen"</string>
+  <string name="msg_052052ba842e" formatted="false">"Neuer Tab"</string>
+  <string name="msg_778dda35c10f" formatted="false">"Tab-Snapshot konnte nicht gespeichert werden, vorhandener Snapshot bleibt erhalten"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"Snapshot wird noch gespeichert, bitte schließen Sie die App später"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"Downloads bleiben auf dem Gerät"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"Dateien und System-Downloadverlauf werden nicht mit Inkognito-Tabs gelöscht. Download bestätigen?"</string>
+  <string name="msg_49e07d37a692" formatted="false">"Tab-Daten konnten nicht gespeichert werden, bitte prüfen Sie den Gerätespeicher"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"Bitte verwenden Sie eine einzelne Zeile mit Buchstaben, Zahlen und Symbolen, maximal 1.024 Zeichen"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"Bitte aktualisieren Sie Android System WebView, um isolierte Inkognito-Tabs zu verwenden"</string>
+  <string name="msg_4369d178c9de" formatted="false">"Es können maximal 20 Tabs geöffnet sein, bitte schließen Sie nicht benötigte Tabs"</string>
+  <string name="msg_b860234cdca4" formatted="false">"Isolierte Inkognito-Sitzung konnte nicht erstellt werden, keine Webseite geöffnet"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · Zwischengespeichertes Bild"</string>
+  <string name="msg_b210350f38fc" formatted="false">"Bild"</string>
+  <string name="msg_2988ade50b61" formatted="false">"Benutzerdefinierte App-Ausführung fehlgeschlagen; kann in SkyEye-Einstellungen geändert oder Ausnahme gewechselt werden"</string>
+  <string name="msg_a782840b186d" formatted="false">"Externe App-Weiterleitung"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"Dieser Linktyp kann nicht geöffnet werden"</string>
+  <string name="msg_216baff9f183" formatted="false">"Automatische Weiterleitung"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"ChengJing Startseite"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"Diese Website kann keine verschlüsselte Verbindung herstellen, bitte versuchen Sie es später erneut."</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"Webseite kann vorübergehend nicht geöffnet werden, bitte überprüfen Sie Netzwerk oder URL und versuchen Sie es erneut."</string>
+  <string name="msg_5e2122abec02" formatted="false">"Zertifikat ist abgelaufen"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"Zertifikat ist noch nicht gültig"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"Zertifikat-Domain stimmt nicht überein"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"Zertifikatsquelle ist nicht vertrauenswürdig"</string>
+  <string name="msg_557874fe9910" formatted="false">"Zertifikatsdatum ist ungültig"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"Zertifikatsprüfung fehlgeschlagen"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"Das Zertifikat dieser Website wurde nicht verifiziert, Verbindung abgebrochen. Klicken Sie auf das Verbindungssymbol in der Adressleiste, um Gründe und Ausnahmeeinstellungen zu sehen."</string>
+  <string name="msg_31648c936ef3" formatted="false">"Webprozess wurde beendet, bitte schließen Sie diesen Tab und öffnen Sie ihn erneut."</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"Lokale Webseite"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"Seite verlassen?"</string>
+  <string name="msg_3bf1281815df" formatted="false">"Website-Nachricht · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"Verlassen"</string>
+  <string name="msg_20db9f87b860" formatted="false">"Bestätigen"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"Auf dieser Seite bleiben"</string>
+  <string name="msg_e9ea75903633" formatted="false">"Neues Fenster/Popup"</string>
+  <string name="msg_2138c825b189" formatted="false">"Diese Version erlaubt Websites noch nicht, Kamera und Mikrofon zu verwenden"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"Dateiauswahl nicht verfügbar"</string>
+  <string name="msg_beffea44da0c" formatted="false">"Dateiauswahl konnte nicht geöffnet werden"</string>
+  <string name="msg_ad37ef430462" formatted="false">"Dieser Link bietet keine herunterladbaren Dateien"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\nDies ist eine zwischengespeicherte Webdatei, bitte behalten Sie die Quellseite bis zum Abschluss des Downloads und laden Sie sie nicht neu."</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\nDateien und Downloadverlauf bleiben auf dem Gerät und werden nicht mit Inkognito-Tabs gelöscht."</string>
+  <string name="msg_d71c2bea9463" formatted="false">"Datei herunterladen?"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"Öffnen Sie zuerst die Webseite, dann zum Favoriten hinzufügen"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"Seite hat sich geändert, bitte erneut versuchen"</string>
+  <string name="msg_c0af0b409136" formatted="false">"Favorit konnte nicht hinzugefügt werden: %1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"Öffnen Sie zuerst eine Website, dann verwenden Sie SkyEye"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"Derzeit wird die Originalwebsite angezeigt, bitte beenden Sie zuerst die Ausnahme"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"Bitte aktualisieren Sie Android System WebView im Play Store, um SkyEye vollständig zu aktivieren"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"Webseite ist noch nicht bereit, bitte neu laden und erneut versuchen"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"Diese Regel kann nicht verwendet werden"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"Auf der aktuellen Seite wurde %1$s nicht gefunden, bitte wählen Sie das Element erneut aus"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"JavaScript-Syntaxfehler: %1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"Vorschau entfernt; nach Bestätigung auf „Speichern“ drücken"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"Gespeichert, %1$s und seine Subdomains werden angewendet"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"Originalwebsite wird vorübergehend angezeigt; Regel bleibt erhalten"</string>
+  <string name="msg_a4038cb71105" formatted="false">"SkyEye-Regeln wurden wiederhergestellt"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"Letzte Speicherung wiederhergestellt"</string>
+  <string name="msg_13256df2ec81" formatted="false">"Zurück"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"Weiter"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"SkyEye"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"Lesezeichen-Fortschritt aktualisieren"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"Schnelles Lesezeichen"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"Gespeichert"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"Noch nicht gespeichert"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"Lesezeichen und Leseposition gespeichert"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"Browser-Menü"</string>
+  <string name="msg_bcbd40877710" formatted="false">"Website-Komponenten"</string>
+  <string name="msg_8508e17dc836" formatted="false">"Komponentenregel ist leer oder zu lang"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"Bitte geben Sie einen Komponenten-Selektor ein, keinen kompletten Stilblock"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"Die gesamte Seite kann nicht entfernt werden, bitte Auswahlbereich verkleinern"</string>
+  <string name="msg_2b76681815f4" formatted="false">"AI empfiehlt nicht, zu viele Komponenten auf einmal zu ändern, bitte beschreiben Sie einen kleineren Bereich"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"AI-Anpassung"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"AI versucht, eine nicht vorhandene Regel zu ändern"</string>
+  <string name="msg_af099dc62317" formatted="false">"Maximal 100 Regeln pro Domain"</string>
+  <string name="msg_6c1546728176" formatted="false">"Komponentenregel anpassen"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"Nur HTTPS-Websites können Zertifikats-Ausnahmen festlegen"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"Speichern der Einstellungen fehlgeschlagen"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"Suchmaschineneinstellungen konnten nicht gespeichert werden"</string>
+  <string name="msg_1615b8429815" formatted="false">"Benutzerdefinierte Suchmaschine konnte nicht gespeichert werden"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"Speichern auf dem Handy fehlgeschlagen, Regeln wurden nicht gespeichert"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"Website-Einstellungen wurden nicht zusammengeführt, lokale Daten wurden behalten"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"Verlauf konnte nicht gespeichert werden, bitte Speicherplatz prüfen"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_71171b556a11" formatted="false">"Webseiten,\nangepasst an deine Gewohnheiten."</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"Weiter surfen und SkyEye öffnen,\nneue Stile, Codes oder Komponenten anpassen."</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"Zitat des Tages"</string>
+  <string name="msg_27268090a840" formatted="false">"Schnellzugriff"</string>
+  <string name="msg_f06e679b9530" formatted="false">"Wikipedia"</string>
+  <string name="msg_217d775e8c90" formatted="false">"Weiterlesen"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"Lesezeichenordner"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"Alle Lesezeichen"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"Bild teilen"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"Speicherberechtigung nicht erteilt, Bild wurde nicht heruntergeladen"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"Bilder bleiben außerhalb des Inkognito-Modus erhalten"</string>
+  <string name="msg_0816eeae6881" formatted="false">"Apps zum Herunterladen, Clipboard oder Empfangen von Bildern können Dateien behalten, die nicht mit Inkognito-Tabs gelöscht werden."</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"Weiter"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"Keine verfügbaren Bilder gefunden, keine Datei gespeichert. Bitte später erneut lange drücken."</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"Seite hat sich geändert, bitte Bild erneut lange drücken"</string>
+  <string name="msg_e409173288a1" formatted="false">"Bild wird geladen…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"Temporäres Bild in neuem Tab geöffnet"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"Bild kopiert, kann in Apps mit Bildunterstützung eingefügt werden"</string>
+  <string name="msg_8746e6a72700" formatted="false">"Bitte zuerst die Speicherberechtigung für das vorherige Bild abschließen"</string>
+  <string name="msg_7151072d822c" formatted="false">"Bild wurde in Downloads/ChengJing gespeichert, im Ordner „Downloads“ ansehen"</string>
+  <string name="msg_fb43036835f6" formatted="false">"Speicherberechtigung nicht erteilt, Datei wurde nicht heruntergeladen"</string>
+  <string name="msg_18763274dfce" formatted="false">"Bitte wählen Sie die herunterzuladende Datei erneut aus"</string>
+  <string name="msg_38116168b889" formatted="false">"Diese URL kann nicht vom System-Downloaddienst verarbeitet werden, bitte auf der Originalseite erneut herunterladen"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"Bitte zuerst die Speicherberechtigung für die vorherige Datei abschließen"</string>
+  <string name="msg_1022567a481f" formatted="false">"Speicherberechtigung konnte nicht geöffnet werden, bitte erneut versuchen"</string>
+  <string name="msg_067c7812968e" formatted="false">"ChengJing Browser · Bild-Download"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"ChengJing Browser · Datei-Download"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"Zur System-Download-Warteschlange hinzugefügt, Ergebnisse im Drei-Punkte-Menü unter „Downloads“ ansehen"</string>
+  <string name="msg_46248e4d3641" formatted="false">"Datei konnte nicht zum Download hinzugefügt werden, bitte Speicherplatz und System-Downloaddienst prüfen"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"ChengJing Browser wird gestartet"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"ChengJing"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"Browser"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"Website-Regeln bearbeiten"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"AI-Regeln anpassen"</string>
+  <string name="msg_371d839ac65c" formatted="false">"Drittanbieter-Lizenzen"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"Komponenten-Code"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"SkyEye AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"Website-Verbindung"</string>
+  <string name="msg_930e319f7845" formatted="false">"Datenschutz &amp; Daten"</string>
+  <string name="msg_0d8619aae051" formatted="false">"Einstellungen"</string>
+  <string name="msg_842433f0a425" formatted="false">"Tabs"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"SkyEye-Einstellungen"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"Eine Komponente ausgewählt"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"Website bearbeiten"</string>
+  <string name="msg_e13bbc197118" formatted="false">"Benutzerdefinierter Code"</string>
+  <string name="msg_634ad289a228" formatted="false">"KI-Unterstützung"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"Browser-Erkennung"</string>
+  <string name="msg_14bd2c678335" formatted="false">"Standard-Suchmaschine"</string>
+  <string name="msg_905d98bd5535" formatted="false">"Strukturierte Liste"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"Google-Synchronisierung"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"Domain-Regeln"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"Seitentext suchen"</string>
+  <string name="msg_9d08608859f8" formatted="false">"Blockierprotokoll"</string>
+  <string name="msg_9357d631d10f" formatted="false">"Zurück"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"Surfen nach deinen Gewohnheiten"</string>
+  <string name="msg_de961bb8936f" formatted="false">"Menü schließen"</string>
+  <string name="msg_60a53514eb92" formatted="false">"Favoriten"</string>
+  <string name="msg_97afce0d452c" formatted="false">"Browser-Tools"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"Inkognito-Tab hinzufügen"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"Getrennte Browsersitzung vom normalen Tab"</string>
+  <string name="msg_8dce3f317048" formatted="false">"ChengJing Browser Downloads ansehen"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"Browserdaten löschen"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"Zeitraum und zu löschende Elemente auswählen"</string>
+  <string name="msg_431596791167" formatted="false">"Aktuelle Seite"</string>
+  <string name="msg_3e40d2036259" formatted="false">"Aktuelle Seite zu Favoriten hinzufügen"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"Lesezeichen hinzufügen"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"Unkategorisierter Lesezeichenordner"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"Diese Seite ist bereits als Lesezeichen gespeichert"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"Teilen"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"Android-Systemfreigabe verwenden"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"Zur mobilen Website wechseln"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"Zur Desktop-Website wechseln"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"SkyEye und Websites"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s entfernte Regeln"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"SkyEye-Regeln wiederherstellen"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"Original-Website vorübergehend anzeigen"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"Original-Website wird aktuell angezeigt"</string>
+  <string name="msg_43d22862b439" formatted="false">"Einstellungen für diese Domain pausieren"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"Alle Domain-Regeln"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"%1$s Störungen blockiert"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"Verlauf dieses Tabs ansehen"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"Einstellungen &amp; Daten"</string>
+  <string name="msg_e7ed17309495" formatted="false">"Design, Surfen &amp; KI-Einstellungen"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"ChengJing Browser %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"Design"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"Surfen"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"Seite zuerst öffnen, dann Link teilen"</string>
+  <string name="msg_9e2276893fae" formatted="false">"Dieses Gerät kann das Systemfreigabefenster nicht öffnen"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"System kann diese Seite momentan nicht teilen"</string>
+  <string name="msg_beed38829f24" formatted="false">"Bild-Download auf diesem Bildschirm nicht möglich"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"In neuem Tab öffnen"</string>
+  <string name="msg_d55104374e08" formatted="false">"Link kopieren"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"Link"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"Bild in neuem Tab öffnen"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"Bildvorschau"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"Bild kopieren"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"Bild herunterladen"</string>
+  <string name="msg_75136c12a08a" formatted="false">"Bild-URL nicht verfügbar, bitte Bild erneut lange drücken"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"Bildlink kopieren"</string>
+  <string name="msg_559552ccc661" formatted="false">"Bildlink"</string>
+  <string name="msg_17d52a476d32" formatted="false">"%1$s kopiert"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"Speicherberechtigung erteilt, bitte Datei zum Download erneut auswählen"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"Quellseite hat sich geändert, bitte erneut herunterladen"</string>
+  <string name="msg_167523d3b80d" formatted="false">"Zwei temporäre Dateien werden bereits heruntergeladen, bitte später erneut versuchen"</string>
+  <string name="msg_57d25840bf76" formatted="false">"Webdatei wird heruntergeladen, Fortschritt oder Abbruch unter „Downloads“ einsehbar; Quell-Tab bitte offen halten"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"Quellseite hat sich geändert, Download gestoppt"</string>
+  <string name="msg_13491974a87a" formatted="false">"Heruntergeladen nach Downloads/ChengJing, unter „Downloads“ öffnen"</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"Timeout beim Laden der temporären Datei, Quell-Tab offen halten und erneut herunterladen"</string>
+  <string name="msg_639f890d3c20" formatted="false">"Abgebrochen; unvollständige Datei nicht gespeichert"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"Download unvollständig, Speicherplatz prüfen und erneut versuchen"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"Quell-Tab geschlossen oder neu geladen, Download gestoppt; unvollständige Datei nicht gespeichert"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"Inhalt eingeben"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"Langes Drücken-Menü schließen"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"Bitte aktualisieren Sie zuerst Android System WebView und löschen Sie dann Cookies und Websitedaten."</string>
+  <string name="msg_7877a2c231c9" formatted="false">"Tab-Änderung konnte nicht gespeichert werden"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"Tab-Snapshot wurde noch nicht vollständig bereinigt"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"Ausgewählte Browserdaten gelöscht; Cookies, Cache und Websitedaten wurden vollständig entfernt"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"Ausgewählte Browserdaten von %1$s wurden gelöscht"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"Die Bereinigung der Websitedaten wurde noch nicht bestätigt. Bitte versuchen Sie es später erneut oder starten Sie die App neu."</string>
+  <string name="msg_f795969c320e" formatted="false">"Löschung nicht abgeschlossen, einige Daten könnten bereits entfernt sein. Bitte erneut versuchen oder App neu starten."</string>
+  <string name="msg_6846f5758df9" formatted="false">"Letzte 15 Minuten"</string>
+  <string name="msg_789842abff7d" formatted="false">"Website-Ressourcen"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"Auf dieser Seite gab es ein Zertifikatsproblem, die Identität der Verbindung konnte nicht bestätigt werden. Ohne Ausnahme für die Website wird die fehlerhafte Verbindung blockiert.\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"Website noch nicht geöffnet"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"Derzeit wird eine HTTPS-verschlüsselte Verbindung verwendet."</string>
+  <string name="msg_c6905e1adffd" formatted="false">"HTTP-Verbindung ist unverschlüsselt, kein verifizierbares Website-Zertifikat vorhanden."</string>
+  <string name="msg_87178db80ada" formatted="false">"Öffnen Sie zuerst die Website, um Verbindungsinformationen anzuzeigen."</string>
+  <string name="msg_3e26c53efe37" formatted="false">"Aktuelle Website"</string>
+  <string name="msg_9c5784103466" formatted="false">"Andere Quellen, die von der Seite verwendet werden"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"Zertifikatsausnahme zulassen"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"Aktiviert; bleibt nach Neustart erhalten"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"Standardmäßig deaktiviert, Verbindung bei Verifizierungsfehler abbrechen"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"Nur für diesen HTTPS-Hostnamen (inklusive verschiedener Ports) anwenden, nicht für Subdomains oder Drittquellen. Bleibt bis zum Schließen erhalten."</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"Zertifikatsausnahmen verringern die Sicherheit der Website-Identitätsprüfung; sie beheben nicht das Problem, dass der Server keine verschlüsselte Verbindung herstellen kann."</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"Zertifikatsausnahme für diese Website erlauben?"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\nDiese Einstellung bleibt dauerhaft erhalten, bis Sie sie deaktivieren. Selbst bei ungültigem Zertifikat oder nicht verifizierbarer Identität kann die Seite geladen werden; Anmeldeinformationen und Eingaben könnten von unerwarteten Parteien abgegriffen werden. Bitte nur aktivieren, wenn Sie die Risiken verstehen und akzeptieren."</string>
+  <string name="msg_d848bdedee10" formatted="false">"Ich verstehe, diese Website erlauben"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"Verifizierung beibehalten"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"Eingebettetes Dateiformat ist ungültig"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"URL der eingebetteten Datei ist ungültig"</string>
+  <string name="msg_a5fc04346035" formatted="false">"URL der eingebetteten Daten ist zu groß, bitte verwenden Sie den Download-Link der Website"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"Kodierung der eingebetteten Datei ist unvollständig"</string>
+  <string name="msg_c74489c545f7" formatted="false">"Kodierung der eingebetteten Datei ist ungültig"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"Zeitraum"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s Seiten, %2$s Suchverläufe"</string>
+  <string name="msg_8394223e0a97" formatted="false">"Nicht geschlossene Tabs"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s normale Tabs · nach letzter Besuchszeit geschlossen"</string>
+  <string name="msg_1f86b4081196" formatted="false">"Cookies, Cache und Websitedaten"</string>
+  <string name="msg_c44aefb98491" formatted="false">"Unbegrenzt · Alles löschen, kann zum Ausloggen von Websites führen"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"Bitte aktualisieren Sie zuerst Android System WebView, um löschen zu können"</string>
+  <string name="msg_ab54697044d0" formatted="false">"Der Zeitraum gilt für den Browserverlauf und Tabs. Cookies, Cache und Websitedaten können nur vollständig gelöscht werden."</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"Alte Daten ohne Zeitstempel bitte mit „Unbegrenzt“ löschen."</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"Lesezeichen, Favoriten, Downloads und SkyEye-Einstellungen bleiben erhalten. Inkognito-Daten bitte durch Schließen der Inkognito-Tabs löschen."</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"Lösche…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"Daten löschen"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"Aktuelle Website · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"Was möchten Sie ausprobieren? Fragen Sie direkt AI"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"Beschreiben Sie Ihre Gesamtidee, nicht nur das ausgewählte Element"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"Element konnte nicht gelesen werden, bitte erneut auswählen"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\nDerzeit passen %2$s Elemente; nach dem Speichern wird die Regel auf %3$s und passende Subdomains angewendet."</string>
+  <string name="msg_16a3beab3f94" formatted="false">"CSS-Eigenschaften des Elements"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"JavaScript des Elements"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// element repräsentiert das aktuell passende Element\nelement.setAttribute(\'title\', \'Mein Lesetipp\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"Interner HTML-Code des Elements"</string>
+  <string name="msg_f8ff75626431" formatted="false">"HTML hinzufügen (am Ende des Elements)"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;Meine Leseerinnerung&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"Skripte im %1$s HTML werden nicht ausgeführt; für Interaktionen bitte JavaScript verwenden. JS kann Webseiten lesen oder Anfragen senden, bitte nur Inhalte anwenden, die Sie verstehen."</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"Dies ersetzt den internen Inhalt des Elements und kann bestehende Interaktionen beeinflussen."</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"CSS/JS/HTML können beliebig ausgefüllt werden."</string>
+  <string name="msg_381994932dcc" formatted="false">"Die Webseite hat sich geändert, bitte erneut auswählen"</string>
+  <string name="msg_ac2471607490" formatted="false">"Bitte geben Sie zuerst den hinzuzufügenden Inhalt ein"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"Website-Änderungen haben das Limit erreicht, bitte verwalten Sie gespeicherte Änderungen zuerst"</string>
+  <string name="msg_9104269ef996" formatted="false">"Gespeichert und angewendet; kann in SkyEye-Einstellungen rückgängig gemacht werden"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"Lade Elemente…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"Speichern und anwenden"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"Machen Sie die Änderungen noch passender"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"Bitte AI diese Änderung prüfen lassen"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nAI liest das aktuelle Seiten-HTML vor Anwendung von SkyEye und die aktuelle Bearbeitung, um die Regel nach Ihrer neuen Anforderung zu überarbeiten."</string>
+  <string name="msg_b654f1e4475a" formatted="false">"Website CSS / JS / HTML"</string>
+  <string name="msg_b243a787a694" formatted="false">"Aktuelle Website: %1$s\nSie können Vorschläge zum Gesamtlayout machen. Die Analyse basiert auf der aktuellen Seitenstruktur und umfasst nicht alle Seiten der Website."</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"Ausgewähltes Element: %1$s\nElementänderungen zielen auf diesen Selektor: %2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"Wie möchten Sie es diesmal anpassen?"</string>
+  <string name="msg_4df18c378546" formatted="false">"Welche Änderungen wünschen Sie für diese Website?"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"Wie soll dieses Element geändert werden? Wo muss geprüft werden?"</string>
+  <string name="msg_53c859901fee" formatted="false">"HTML entfernt Formularinhalte, Skripte und Ereigniseigenschaften, bietet maximal %1$s Zeichen; kann Seiteninhalt enthalten, jedoch keine anderen Seiten oder nachträgliche dynamische Inhalte."</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"CSS/HTML wird auf das ausgewählte Element angewendet; JavaScript behält Zugriff auf den Seiten-Code, bitte prüfen Sie den tatsächlichen Einflussbereich."</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"Verwenden Sie Gemma 4 für lokale Analysen ohne API-Schlüssel; die Struktur, der Code und die Anforderungen der aktuellen Analyse werden nicht in die Cloud gesendet."</string>
+  <string name="msg_b45dad973407" formatted="false">"Domain, bereinigtes Original-HTML (kann private Seiteninhalte enthalten), diese benutzerdefinierte Regel und neue Anforderungen werden an OpenRouter und den ausgewählten Modellanbieter gesendet. Cookies oder Formularwerte werden nicht gelesen."</string>
+  <string name="msg_fbd9319f336c" formatted="false">"Domain, begrenzte Elementstruktur, gespeicherter benutzerdefinierter Code und Ihre Eingaben werden an OpenRouter und den ausgewählten Modellanbieter gesendet. Code oder Probleme können private Inhalte enthalten, bitte vorher prüfen; Cookies, Formularwerte oder Artikelinhalte werden nicht automatisch gelesen."</string>
+  <string name="msg_87bc9921ff32" formatted="false">"Zustimmung zur Übermittlung der oben genannten Daten für diese Analyse"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"AI-Ausführungsmodus wählen"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"OpenRouter API-Schlüssel einstellen"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"Die Webseite hat sich geändert, bitte AI neu starten"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"Original-HTML dieser Regel kann nicht gelesen werden. Bitte öffnen Sie die Seite mit dem Element, laden Sie sie neu und versuchen Sie es erneut."</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"Seite ist noch nicht bereit, bitte neu laden und erneut versuchen"</string>
+  <string name="msg_d1127956fd88" formatted="false">"Die Webseite hat sich geändert, bitte neu analysieren"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"Analyse abgebrochen"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"Analyse läuft…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"Mit Gemma 4 analysieren"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"Senden und Vorschläge erhalten"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"Analyse abbrechen"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"AI-Vorschläge"</string>
+  <string name="msg_f8236285164f" formatted="false">"Keine anwendbaren Änderungen wurden generiert."</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"Speicherbereich: %1$s und seine Subdomains. AI-Vorschläge sind noch nicht auf Ihrer Website verifiziert; bitte prüfen Sie Code und Änderungen vor Anwendung."</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"Änderungen einklappen"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"Vollständige Änderungen anzeigen"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"Einstellungen geändert, bitte neu analysieren"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"AI-Vorschläge angewendet; können in SkyEye-Einstellungen auf letzte Speicherung zurückgesetzt werden"</string>
+  <string name="msg_4522951c203c" formatted="false">"Originalregel aktualisieren und anwenden"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"Vorschläge mit einem Klick anwenden"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"Letzte Einstellung kann rückgängig gemacht werden; vom Programm gesendete Anfragen oder Website-Aktionen können nicht zurückgenommen werden."</string>
+  <string name="msg_b727b2493599" formatted="false">"Diese Website hat viele Einstellungen, bitte auf ein einzelnes Element eingrenzen oder Cloud-Modellanalyse wählen."</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"Lokale Daten wurden gespeichert; beim nächsten App-Start wird synchronisiert, oder drücken Sie „Jetzt synchronisieren“."</string>
+  <string name="msg_0d3a30703357" formatted="false">"Google ist vorübergehend beschäftigt"</string>
+  <string name="msg_61b008bafedd" formatted="false">"Bitte später erneut versuchen. %1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"Google-Autorisierung muss neu bestätigt werden"</string>
+  <string name="msg_2a19048f4610" formatted="false">"Bitte „Jetzt synchronisieren“ drücken, um die Autorisierung neu zu bestätigen. Lokale Daten wurden gespeichert."</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"Google-Synchronisierungsberechtigung eingeschränkt"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"Bitte prüfen Sie den Anwendungszugriff und Administrator-Einstellungen Ihres Google-Kontos, dann „Jetzt synchronisieren“ drücken. Lokale Daten wurden gespeichert."</string>
+  <string name="msg_0108ca4bc750" formatted="false">"Bitte verwenden Sie das ursprüngliche Google-Konto"</string>
+  <string name="msg_5b29df305534" formatted="false">"Die Synchronisationsdaten dieses Telefons sind an ein anderes Konto gebunden, bitte wählen Sie das ursprüngliche Konto, um Datenvermischung zu vermeiden."</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"Google-Verbindungssicherheit kann nicht bestätigt werden"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"Bitte prüfen Sie Datum, Uhrzeit und Netzwerkeinstellungen des Telefons und versuchen Sie es erneut. Lokale Daten wurden gespeichert."</string>
+  <string name="msg_e813605409d0" formatted="false">"Verbindung ist langsam, Synchronisation noch nicht abgeschlossen"</string>
+  <string name="msg_328257927000" formatted="false">"Synchronisation nicht abgeschlossen"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"Cloud-Daten sind noch nicht bestätigt, lokale Daten wurden gespeichert. Bitte später erneut versuchen; bei anhaltenden Problemen Support kontaktieren."</string>
+  <string name="msg_e19c932091a7" formatted="false">"Offizielle Version vorübergehend nicht verfügbar, bitte später erneut versuchen."</string>
+  <string name="msg_85284e05ae9e" formatted="false">"Browser-Kern"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"Derzeit Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"Neueste offizielle Version"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"Abfrage läuft…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"Keine Daten verfügbar"</string>
+  <string name="msg_8b9b22849066" formatted="false">"Noch nicht abgefragt"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"Derzeit bereitgestellt von %1$s; im Vergleich zur offiziellen %2$s-Version von Google."</string>
+  <string name="msg_e5d3e9548003" formatted="false">"Aktuelle Version kann nicht direkt verglichen werden"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"Offizielle Version ist neuer, Kern-Update kann geprüft werden"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"Aktueller Kern entspricht der offiziellen Version"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"Aktuelle Kernversion ist neuer"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"Abfragezeit %1$s:"</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"Letztes Ergebnis behalten · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"Abfrage läuft…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"Version neu prüfen"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"Update-Seite kann nicht geöffnet werden, bitte WebView in den Systemeinstellungen prüfen."</string>
+  <string name="msg_243aeef7919a" formatted="false">"Kern-Update-Seite öffnen"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"Updates werden vom System oder Store bereitgestellt, möglicherweise gestaffelt."</string>
+  <string name="msg_8e57db190d94" formatted="false">"Offizielle Versionsdaten noch nicht verfügbar"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"Offizielle Versionsdatenformat fehlerhaft"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"System-WebView"</string>
+  <string name="msg_b7d90d419331" formatted="false">"Kann nicht gelesen werden"</string>
+  <string name="msg_737d4fde158c" formatted="false">"Offizielle Versionsabfrage vorübergehend nicht erreichbar"</string>
+  <string name="msg_6090d27dccad" formatted="false">"Offizielle Versionsdaten nicht zurückgegeben"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"Versionsdaten zu groß"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"Speichern der Versionsinformationen fehlgeschlagen"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"Keine App gefunden, die diesen Link öffnen kann. Bitte stellen Sie sicher, dass die entsprechende Anwendung installiert ist."</string>
+  <string name="msg_34b996e6bd60" formatted="false">"In einer anderen App öffnen?"</string>
+  <string name="msg_140169f1183b" formatted="false">"Sie verlassen den Inkognito-Modus von ChengJing. Andere Apps könnten diesen Link und Nutzungsdaten speichern."</string>
+  <string name="msg_f290f9167ad0" formatted="false">"Öffnen"</string>
+  <string name="msg_0db216962632" formatted="false">"Das Lesezeichenformat ist ungültig"</string>
+  <string name="msg_62b58243569c" formatted="false">"Die Lesezeichen-ID ist ungültig"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"Das Lesezeichen-Datum ist ungültig"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"Das Lesezeichen-Datum liegt außerhalb des zulässigen Bereichs"</string>
+  <string name="msg_71a221e87e34" formatted="false">"Zu viele Lesezeichen-Synchronisationsdaten, lokale Inhalte wurden beibehalten"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"Lesezeichen-Synchronisationsdaten überschreiten die Größenbeschränkung"</string>
+  <string name="msg_220275e1f7de" formatted="false">"Dieses Lesezeichen-Synchronisationsformat erfordert ein App-Update zum Lesen"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"Lesezeichen konnte nicht gespeichert werden"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"Suche läuft"</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"Nicht gefunden"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"Bitte geben Sie den zu suchenden Text ein"</string>
+  <string name="msg_28010afeecd8" formatted="false">"Seite wird durchsucht"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"Kein passender Text gefunden"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"Eintrag %1$s von %2$s"</string>
+  <string name="msg_d1989441806e" formatted="false">"Öffnen Sie zuerst die Webseite, um den Text auf der Seite zu suchen"</string>
+  <string name="msg_c570255d2708" formatted="false">"Bitte verlassen Sie zuerst SkyEye, um den Text auf der Seite zu suchen"</string>
+  <string name="msg_f782a6845afa" formatted="false">"Vorheriger Treffer"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"Nächster Treffer"</string>
+  <string name="msg_f41b8847f832" formatted="false">"Seitensuche schließen"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B ist bereit"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"Lokales Modell noch nicht heruntergeladen"</string>
+  <string name="msg_191155f69eeb" formatted="false">"Lokales Modell erfordert ein 64-Bit-Gerät"</string>
+  <string name="msg_301286dd890b" formatted="false">"Nicht genügend Speicherplatz, bitte reservieren Sie etwa 3 GB freien Speicher"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"ChengJing · Gemma 4 Lokales Modell"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"Download ca. 2,59 GB; nach Abschluss wird die Modellintegrität überprüft"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"Download-Aufgabe existiert nicht mehr, bitte erneut herunterladen"</string>
+  <string name="msg_24d557606dbb" formatted="false">"Modellintegrität wird überprüft…"</string>
+  <string name="msg_d46682705f49" formatted="false">"Modell-Download fehlgeschlagen (%1$s), bitte erneut herunterladen"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"Download pausiert; bitte überprüfen Sie WLAN, Netzwerk oder Speicherplatz"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"Lade Gemma 4 · %1$s%% herunter"</string>
+  <string name="msg_119f097a0356" formatted="false">"Download noch nicht abgeschlossen"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"Modellintegritätsprüfung fehlgeschlagen, bitte löschen und erneut herunterladen"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"Bitte laden Sie zuerst das Gemma 4 Lokale Modell herunter"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"Nicht genügend verfügbarer Arbeitsspeicher, bitte schließen Sie einige Tabs oder andere Apps, bevor Sie das lokale Modell verwenden."</string>
+  <string name="msg_305f7b160fa8" formatted="false">"Modellantwort zu lang, bitte Eingabebereich verkleinern"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"KI-Ausführungsmodus"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · Lokales Handy-Modell"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · Cloud-Modell"</string>
+  <string name="msg_7397e02a13de" formatted="false">"Im lokalen Modus ist kein API-Schlüssel erforderlich; im Cloud-Modus können Sie Modelle von verschiedenen Anbietern wählen."</string>
+  <string name="msg_770c4bcb536a" formatted="false">"Erster Download erfordert ca. 2,59 GB Modell, bitte ca. 3 GB Speicher freihalten. Erfordert 64-Bit-Gerät, empfohlen mindestens 6 GB RAM; beim Analysieren wird Akkuleistung verwendet. Nach dem Download bleiben die Analysedaten lokal."</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"Modell-Download abbrechen"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"Modell hat die Integritätsprüfung bestanden und kann offline verwendet werden."</string>
+  <string name="msg_1300b82064c4" formatted="false">"Modell entfernen, um Speicher freizugeben"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"Mobile Daten für Download erlauben"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"Gemma 4 Lokales Modell herunterladen"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"Dieses Gerät unterstützt kein lokales Inferenz, OpenRouter kann verwendet werden."</string>
+  <string name="msg_6cbc25f77915" formatted="false">"Modell: Google Gemma 4, Apache 2.0. Modelldatei von Google-Dokument-Link der LiteRT Community heruntergeladen."</string>
+  <string name="msg_0cc2d828db73" formatted="false">"Bitte geben Sie eine gültige HTTP- oder HTTPS-URL ein"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"Speicherung nicht abgeschlossen, bitte später erneut versuchen"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"Startseiten-Einstellungen"</string>
+  <string name="msg_d03a088f3260" formatted="false">"Startseiten-Schaltfläche anzeigen"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"Vor der Adressleiste platzieren"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"Startseiten-Einstellungen konnten nicht gespeichert werden"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"Benutzerdefinierte URL"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"Startseiten-URL"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"Gespeichert"</string>
+  <string name="msg_0edd4290c301" formatted="false">"Startseite speichern"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"Inkognito-Vorschau erfordert vorherigen Export"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"Bild übersteigt 32 MB, bitte direkt von der Originalseite herunterladen"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"Inkognito-Sitzung wurde geschlossen"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"Der erhaltene Inhalt ist kein unterstütztes Bild, Datei wurde nicht gespeichert"</string>
+  <string name="msg_5f8355918e25" formatted="false">"Bild-Cache fehlgeschlagen"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"Bild-URL ist nicht verwendbar"</string>
+  <string name="msg_4926037b836c" formatted="false">"Bild-Weiterleitung ist nicht verwendbar"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"Bild-Download fehlgeschlagen (HTTP %1$s), Datei wurde nicht gespeichert"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"Bild enthält keinen Inhalt"</string>
+  <string name="msg_cc6f13303851" formatted="false">"Zu viele Bildweiterleitungen, Datei nicht gespeichert"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"Bild größer als 32 MB"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"Bildcache ist abgelaufen, bitte kehren Sie zur vorherigen Seite zurück und öffnen Sie es erneut"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"Bildvorschau schließen"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · Zwei-Finger-Zoom, Doppeltippen zum Vergrößern"</string>
+  <string name="msg_c660e164fa68" formatted="false">"Dies ist ein temporärer Bild-Cache-Tab der Webseite, der nach dem Neustart der App nicht erhalten bleibt. Zum Behalten bitte herunterladen."</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"Bild, kann mit zwei Fingern gezoomt und verschoben werden"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"Zurück"</string>
+  <string name="msg_607089b311be" formatted="false">"Unkategorisiert"</string>
+  <string name="msg_e371aca7156b" formatted="false">"Chrome-Lesezeichen importieren"</string>
+  <string name="msg_901fcc465532" formatted="false">"Favoriten schließen"</string>
+  <string name="msg_714be9fccc36" formatted="false">"Lesezeichen schließen"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s Einträge"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s Lesezeichen"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"Favoriten durchsuchen"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"Alle Lesezeichen und Ordner durchsuchen"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"Suche löschen"</string>
+  <string name="msg_4220592340ad" formatted="false">"Zu Favoriten hinzugefügt"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"Favoritenfortschritt aktualisiert"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"Fortschritt dieses Favoriten aktualisieren"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"Favorit separat gespeichert"</string>
+  <string name="msg_74894a77754e" formatted="false">"Zusätzlich hinzufügen"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"Merken Sie sich Kapitel-URL und Leseposition, gespeichert auf diesem Gerät."</string>
+  <string name="msg_6d9532de6549" formatted="false">"Noch keine Favoriten"</string>
+  <string name="msg_9c88b8194478" formatted="false">"Keine passenden Favoriten gefunden"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"Beim Lesen aus dem Menü favorisieren, kein Ordner auswählen nötig."</string>
+  <string name="msg_299775d315e8" formatted="false">"Versuchen Sie es mit einem anderen Namen oder einer anderen URL."</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · Diese Seite %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"Favorit %1$s umbenennen"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"Favorit %1$s löschen"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"Lesezeichen › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"Keine passenden Lesezeichen gefunden"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"Hier gibt es noch keine Lesezeichen"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"Die Suche umfasst alle Ordner."</string>
+  <string name="msg_a581a0c5331f" formatted="false">"Chrome-Lesezeichen können oben rechts importiert werden."</string>
+  <string name="msg_11ae55de6d31" formatted="false">"Lesezeichen %1$s bearbeiten"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"Lesezeichen %1$s löschen"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"Zu diesem Ordner hinzugefügt"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"Dieses Lesezeichen ist bereits in diesem Ordner"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"Aktuelle Webseite hinzufügen"</string>
+  <string name="msg_c631952bb114" formatted="false">"Exportieren"</string>
+  <string name="msg_27001df08520" formatted="false">"Lesezeichen bearbeiten"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"Favoriten benennen"</string>
+  <string name="msg_a5274f381305" formatted="false">"Name"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"URL"</string>
+  <string name="msg_aabc6623539f" formatted="false">"Ordner"</string>
+  <string name="msg_a2c701b369be" formatted="false">"Lesen / Technik"</string>
+  <string name="msg_b631887c06ef" formatted="false">"Ordnerhierarchie mit „/“ trennen"</string>
+  <string name="msg_978626066ea1" formatted="false">"Speichern fehlgeschlagen, bitte erneut versuchen"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"Speichern"</string>
+  <string name="msg_9c9624b64441" formatted="false">"Website-Standort"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"Die Webkomponente des Telefons unterstützt keine direkte Standortbestimmung, bitte Android System WebView aktualisieren."</string>
+  <string name="msg_68f8f532449b" formatted="false">"Inkognito-Berechtigung bleibt nur bis zum Schließen aller Inkognito-Tabs erhalten."</string>
+  <string name="msg_db3dea807cf5" formatted="false">"Nur für diese Website anwenden; für andere Websites ist eine separate Berechtigung erforderlich."</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"Nach Änderung wird diese Website neu geladen, vorherige Standortanfragen werden sofort gestoppt."</string>
+  <string name="msg_d47077aa2c28" formatted="false">"Telefon-Standortberechtigung"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"Telefon-Standortdiensteinstellungen"</string>
+  <string name="msg_824602facd05" formatted="false">"Lesezeichen-Datei kann nicht geöffnet werden"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"Lesezeichen-Datei größer als 8 MB, bitte in Teilen importieren"</string>
+  <string name="msg_7193e8524414" formatted="false">"Keine HTTP/HTTPS-Lesezeichen in der Datei gefunden"</string>
+  <string name="msg_01fd7b112086" formatted="false">"%1$s Lesezeichen importieren?"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"Ordner werden beibehalten; vorhandene Lesezeichen werden nicht doppelt hinzugefügt."</string>
+  <string name="msg_20809c5d8596" formatted="false">"Importieren"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"%1$s Lesezeichen importiert"</string>
+  <string name="msg_3778200c90e5" formatted="false">"Diese Lesezeichen wurden bereits importiert, keine Duplikate hinzugefügt"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"Import unvollständig, bitte später erneut versuchen"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"Import unvollständig"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"Datei kann nicht geschrieben werden"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"Lesezeichen exportiert"</string>
+  <string name="msg_fef661198324" formatted="false">"Lesezeichen-Export fehlgeschlagen"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"Vorschau ohne Speicherung abgebrochen"</string>
+  <string name="msg_79606cdda212" formatted="false">"Inkognito-Modus"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s Regeln · Nicht gespeichert"</string>
+  <string name="msg_8d44a1395388" formatted="false">"SkyEye aktiviert · Klicken Sie auf Website-Komponenten"</string>
+  <string name="msg_315a88f3155e" formatted="false">"SkyEye verlassen"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"In Ausnahmen · Original-Website"</string>
+  <string name="msg_c550069b0749" formatted="false">"Regeln wiederherstellen"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"Vorübergehend keine Verbindung zur Website"</string>
+  <string name="msg_70dd895b66db" formatted="false">"Neu laden"</string>
+  <string name="msg_ed51242141b1" formatted="false">"Deine Wahl bleibt auf deinem Telefon."</string>
+  <string name="msg_f1c970051cf5" formatted="false">"Noch keine Domain-Regeln gespeichert."</string>
+  <string name="msg_baeab929c3dd" formatted="false">"Zum Bearbeiten tippen · %1$s Komponenten ändern"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"Dieser Tab hat %1$s Einträge, die letzten 30 werden gespeichert."</string>
+  <string name="msg_b3471f8f134f" formatted="false">"Diese URL manuell öffnen"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"Weiter Komponenten auswählen"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"SkyEye öffnen · Komponenten auswählen"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"Letzte Aktion rückgängig machen"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"Regeln speichern"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"Komponenten und Code"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"Schwebende, versteckte und eingebettete Komponenten anzeigen"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"Gespeicherte Website-Änderungen"</string>
+  <string name="msg_0590277f2647" formatted="false">"Regel antippen, um weiter zu bearbeiten oder AI anzupassen"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"Website-Verhalten"</string>
+  <string name="msg_830509b36cfe" formatted="false">"Weiterleitungen und Pop-ups verhindern"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"Bei Beeinträchtigung des Anmeldevorgangs deaktivieren."</string>
+  <string name="msg_7007cf22f796" formatted="false">"Domain-Schutz-Einstellungen gespeichert"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"Diese Domain-Einstellung pausieren, bis die App geschlossen wird."</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"Letzten Speicherstand wiederherstellen"</string>
+  <string name="msg_97efebc05b15" formatted="false">"Ausgewählte Komponenten · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · Dieser Selektor passt aktuell zu %3$s Komponenten"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"Rahmen von eingebetteten Seiten kann angepasst werden; Inhalte aus fremden Quellen sind hier nicht zugänglich."</string>
+  <string name="msg_2bc121aa5664" formatted="false">"Wie möchtest du diese Komponente ändern?"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"Benutzerdefiniertes CSS / JS / HTML hinzufügen"</string>
+  <string name="msg_6791c9f39720" formatted="false">"Stile, Interaktionen oder Seiteninhalte hinzufügen"</string>
+  <string name="msg_704bb9551f08" formatted="false">"Diese Website-Komponente entfernen"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"Zuerst Vorschau, dann speichern oder verwerfen"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"Diesen Code ändern"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"HTML innerhalb der Komponente bearbeiten"</string>
+  <string name="msg_31d97b13527a" formatted="false">"Ist meine Änderung korrekt? Bitte AI prüfen"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"Nur für ausgewählte Komponenten Änderungen vorschlagen"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"Eine Ebene nach außen wählen"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"Andere Komponente auswählen"</string>
+  <string name="msg_76ae194967b7" formatted="false">"Website-Code"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"Gespeicherte Inhalte bearbeiten oder AI zur weiteren Anpassung nutzen"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"Benutzerdefinierte Komponenten"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"HTML bearbeiten"</string>
+  <string name="msg_96f3303604ab" formatted="false">"Benutzerdefinierter Komponenten-Code"</string>
+  <string name="msg_27688f7df99c" formatted="false">"Versteckte Komponenten"</string>
+  <string name="msg_215e19833aad" formatted="false">"%1$s wiederherstellen"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"Diese Komponente wurde wiederhergestellt"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"Änderungen noch nicht gespeichert. Wähle Komponenten mit SkyEye oder füge Website-Code hinzu."</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"Seiten-Scroll wiederherstellen"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"Nur aktivieren, wenn nach Entfernen von Overlays kein Scrollen möglich ist."</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"Regeln werden lokal gespeichert. Bei Strukturänderungen der Domain kann neu ausgewählt oder AI zur Anpassung genutzt werden."</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"Code gilt für diese Domain und Subdomains. JavaScript kann Seiten lesen und Netzwerk-Anfragen senden, bitte nur vertrauenswürdige Inhalte verwenden. Im Ausnahmemodus wird die Anwendung pausiert."</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"Beim Speichern werden auch die aktuellen SkyEye-Vorschauänderungen übernommen."</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"CSS-Stile"</string>
+  <string name="msg_628f36411710" formatted="false">"// Seite hinzufügen oder anpassen; wird bei jedem Laden einmal ausgeführt"</string>
+  <string name="msg_b22612d48c02" formatted="false">"Website-HTML hinzufügen (am Seitenende)"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;Meine Lesetipps&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"Seite wurde geändert, bitte Editor schließen und neu öffnen"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"Gespeichert und neu geladen"</string>
+  <string name="msg_7106b4590cce" formatted="false">"Speichern fehlgeschlagen: %1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"Inklusive unsichtbarer Komponenten. Maximal 80 schwebende, versteckte und eingebettete Komponenten werden angezeigt."</string>
+  <string name="msg_2111f387ba60" formatted="false">"Keine solchen Komponenten gefunden; du kannst weiterhin normale Komponenten auf der Webseite direkt auswählen."</string>
+  <string name="msg_167bc0947798" formatted="false">"Ursprünglich versteckt"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"Schwebende / feste Komponenten"</string>
+  <string name="msg_047f31f927fe" formatted="false">"Eingebettete Seite"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"Thema"</string>
+  <string name="msg_dee60aee2501" formatted="false">"Hell"</string>
+  <string name="msg_a6b75d068032" formatted="false">"Dunkel"</string>
+  <string name="msg_6df543c4a401" formatted="false">"System"</string>
+  <string name="msg_381e6e45713f" formatted="false">"Folgt den Dunkelmodus-Einstellungen des Telefons."</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"Position der Adressleiste"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"Adressleiste oben"</string>
+  <string name="msg_629f91b2430d" formatted="false">"Adressleiste unten"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"Adressleiste unten, SkyEye und Navigationsleiste oben."</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"Adressleiste oben, SkyEye und Navigationsleiste unten."</string>
+  <string name="msg_03c481a6ab85" formatted="false">"Suche"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"Website-Anzeige"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"Browser-Erkennung (User-Agent)"</string>
+  <string name="msg_12acb73519ef" formatted="false">"Original Android WebView"</string>
+  <string name="msg_0eac99137858" formatted="false">"Benutzerdefinierte Erkennung"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"Chrome Mobilversion"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"Daten &amp; Synchronisierung"</string>
+  <string name="msg_c7845aa27319" formatted="false">"Anleitung"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"Datennutzung, Speicherung und Löschung"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"SkyEye Übungsplatz"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"Übe Komponenten-Anpassungen, füge CSS &amp; JS hinzu"</string>
+  <string name="msg_f329c206f45a" formatted="false">"ChengJing Browser %1$s · Android-Version"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"OpenRouter Verbindung"</string>
+  <string name="msg_8831bba1231d" formatted="false">"Schlüssel gespeichert"</string>
+  <string name="msg_454792f22b74" formatted="false">"Verbinde deine KI"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"Verschlüsselt auf diesem Telefon gespeichert"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"Lass die KI bei der Überprüfung der SkyEye-Regeln helfen"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"Gib einen neuen API-Schlüssel zum Ersetzen ein"</string>
+  <string name="msg_349c23511e2e" formatted="false">"API-Schlüssel verschlüsselt gespeichert"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"Schlüsselspeicherung fehlgeschlagen: %1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"API-Schlüssel speichern"</string>
+  <string name="msg_308f90d89d99" formatted="false">"API-Schlüssel entfernt"</string>
+  <string name="msg_4df897d4de83" formatted="false">"Gespeicherten API-Schlüssel entfernen"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"Modell"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"Oder Modellnamen manuell eingeben"</string>
+  <string name="msg_33190323da75" formatted="false">"Neueste verfügbare Standard-Textmodelle aller Serien erhalten"</string>
+  <string name="msg_a822357ce405" formatted="false">"Modellaktualisierung fehlgeschlagen, vorhandene Optionen bleiben nutzbar"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"Aktualisiere…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"Neueste Modellliste aktualisieren"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"OpenRouter wird nur bei Analyse aufgerufen, Kosten richten sich nach gewähltem Modell. Schlüssel wird nicht an Websites weitergegeben; gesendete Daten werden von OpenRouter und Modellanbietern verarbeitet."</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"Übertrage Lesezeichen, Favoritenfortschritt und SkyEye-Einstellungen auf dein neues Telefon."</string>
+  <string name="msg_dbf504aee158" formatted="false">"Zuletzt abgeschlossen:"</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"Lesezeichen, Ordner, Favoriten und Löschprotokolle werden im versteckten App-spezifischen Bereich von Google Drive gespeichert, ohne Zugriff auf andere Dateien."</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"Favoriten &amp; Lesefortschritt"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"Name der Favoriten, aktuelle URL, Seitentitel, Scrollposition und Lesefortschritt werden synchronisiert. Bitte aktualisiere alle Geräte auf eine Version, die Favoritensynchronisierung unterstützt."</string>
+  <string name="msg_4c197d7a57af" formatted="false">"Für denselben Favoriten gilt der zuletzt gespeicherte vollständige Datensatz; Umbenennungen und Löschungen werden synchronisiert, ohne den höchsten Lesefortschritt zu erzwingen. Geöffnete Seiten werden nicht zwangsweise umgeleitet, beim nächsten Öffnen des Favoriten wird die synchronisierte Position verwendet."</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"SkyEye Website-Einstellungen"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"Nach Aktivierung werden Domain-, Komponentenregeln, benutzerdefiniertes CSS/JS/HTML und Website-Verhaltenseinstellungen mit deinem Google Drive synchronisiert. Der Code kann private Inhalte enthalten, bitte überprüfe, dass keine Passwörter oder Schlüssel enthalten sind."</string>
+  <string name="msg_86b823816a78" formatted="false">"SkyEye Website-Einstellungen synchronisieren"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"Für dieselbe Website gilt die neueste vollständige Einstellung; gelöschte Einstellungen bleiben als gelöscht erhalten. Andere Geräte übernehmen die Einstellungen beim nächsten Laden der Website. Temporäre Ausnahmen und Zertifikatsausnahmen bleiben lokal."</string>
+  <string name="msg_d9c03b110d35" formatted="false">"Nach Verknüpfung werden Lesezeichen und Favoriten dieses Telefons mit dem gewählten Google-Konto zusammengeführt. Synchronisierung erfolgt automatisch beim App-Start sowie bei Änderungen an Lesezeichen, Favoritenfortschritt, Umbenennungen oder Löschungen; offline bleiben Daten lokal und werden bei nächster Verbindung synchronisiert."</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"Verarbeite…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"Jetzt synchronisieren"</string>
+  <string name="msg_aee33ff22038" formatted="false">"Mit Google-Konto verbinden"</string>
+  <string name="msg_9746a274324c" formatted="false">"Synchronisierung stoppen und abmelden"</string>
+  <string name="msg_b69bae05d706" formatted="false">"Abmeldung behält lokale und Cloud-Daten. Lokale Synchronisierungsdaten sind an das erste Google-Konto gebunden, um Datenvermischung bei Kontowechsel zu vermeiden."</string>
+  <string name="msg_efb208e781f4" formatted="false">"Einige Websites bieten je nach Erkennung unterschiedliche Layouts an."</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"Chrome Mobilversion (Standard)"</string>
+  <string name="msg_3138f64b4547" formatted="false">"Benutzerdefinierter User-Agent"</string>
+  <string name="msg_b1c83027f591" formatted="false">"Füge vollständigen einzeiligen User-Agent ein"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"Nach dem Speichern wird die aktuelle Seite neu geladen; neu geöffnete oder aktualisierte Seiten verwenden diese Einstellung. Websites können ein anderes Layout verwenden, die Unterstützung hängt vom aktuellen Browserkern ab."</string>
+  <string name="msg_73b390a73f19" formatted="false">"Browser-Erkennung aktualisiert"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"Speichern fehlgeschlagen"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"Speichern und neu laden"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"Aktueller Browserkern: Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"Unbekannt"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"Standort des Telefons noch nicht ermittelt, bitte an einen Ort mit besserem Empfang wechseln und erneut versuchen."</string>
+  <string name="msg_2e6933e93990" formatted="false">"Standortdienste des Telefons sind deaktiviert, bitte System-Standortdienste prüfen."</string>
+  <string name="msg_aa939329dc62" formatted="false">"Standortzugriff für das Telefon nicht erlaubt."</string>
+  <string name="msg_f4e900470989" formatted="false">"Kein aktueller Standort verfügbar, Standortabfragezeit abgelaufen."</string>
+  <string name="msg_8e6878344350" formatted="false">"Keine verfügbaren Standortquellen auf dem Telefon, bitte System-Standortdienste prüfen."</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"Standortberechtigung des Telefons wurde geändert, bitte Standort erneut anfordern."</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"Dieser Seite wurde die Standortnutzung nicht erlaubt."</string>
+  <string name="msg_c293d0f61960" formatted="false">"Die aktuelle Seite ist nicht im Vordergrund."</string>
+  <string name="msg_5677d9b33fef" formatted="false">"Zu viele Standortanfragen, bitte später erneut versuchen."</string>
+  <string name="msg_54e70324667a" formatted="false">"Warten auf Standortberechtigung von Website und Gerät"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"Diese Website hat noch keine Erlaubnis, den Standort des Geräts zu verwenden."</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"Der Standortdienst des Geräts ist nicht aktiviert."</string>
+  <string name="msg_e4222762e387" formatted="false">"Standortberechtigung für Gerät oder Website wurde widerrufen."</string>
+  <string name="msg_ea7546eddc85" formatted="false">"Standortanfrage an das Gerät gesendet, warte auf Position"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"Position erhalten und der aktuellen Website bereitgestellt"</string>
+  <string name="msg_8116207548a5" formatted="false">"Modellliste konnte nicht aktualisiert werden (%1$s)"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"Modellliste ist leer, bitte später erneut versuchen"</string>
+  <string name="msg_71eb343e162c" formatted="false">"Bitte zuerst OpenRouter API-Schlüssel in den Einstellungen hinzufügen"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"Bitte Modell auswählen"</string>
+  <string name="msg_d3346c882f37" formatted="false">"Ungültiger API-Schlüssel, bitte erneut eingeben"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"OpenRouter Guthaben erschöpft"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"Zu viele Anfragen, bitte später erneut versuchen"</string>
+  <string name="msg_3861043f8477" formatted="false">"AI-Dienst hat Anfrage (%1$s) nicht abgeschlossen, ursprüngliche Regeln bleiben unverändert"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"Bitte zuerst OpenRouter Schlüssel und Modell einstellen"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"Ungültiger API-Schlüssel"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"Zu viele Anfragen, bitte später erneut versuchen"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"AI-Dienst hat Anfrage (%1$s) nicht abgeschlossen"</string>
+  <string name="msg_4a16359069dd" formatted="false">"Bitte gültige Komponente auswählen"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"HTML-Bedienung ist fehlerhaft"</string>
+  <string name="msg_e714012d82ce" formatted="false">"Einzelner Codeabschnitt zu lang, bitte in kleinere Änderungen aufteilen"</string>
+  <string name="msg_8579576181cb" formatted="false">"CSS für Komponenten bitte direkt als Eigenschaft eingeben, z. B. color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"Zu viele Vorschläge auf einmal, bitte Problem eingrenzen"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"Komponentenregel ist fehlerhaft"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI hat eine nicht existierende Änderung angegeben"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI hat eine nicht existierende Komponentenregel angegeben"</string>
+  <string name="msg_63b576365f0f" formatted="false">"AI-Vorschlag für Komponente überschreitet den Auswahlbereich"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"AI-Komponente darf keine Website-Ebeneneinstellungen ändern"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"AI-Komponentenanpassung"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"Vorschlagsinhalt zu umfangreich, bitte Bereich eingrenzen"</string>
+  <string name="msg_8715000a9841" formatted="false">"Website-CSS aktualisieren"</string>
+  <string name="msg_b350f6663586" formatted="false">"Website-JavaScript aktualisieren"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"Website-neues HTML aktualisieren"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"Bearbeiten"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"Hinzufügen"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"Komponente entfernen: %1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"%1$s Änderungen wiederherstellen"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"Seitenscroll-Einstellungen anpassen"</string>
+  <string name="msg_15766e2591bd" formatted="false">"Bitte überprüfen Sie die untenstehenden Änderungen"</string>
+  <string name="msg_64244a373f7b" formatted="false">"Quell-Tab wurde geschlossen oder neu geladen, Download gestoppt; bitte im Original-Tab erneut versuchen"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"Eingebettete Datei zu groß"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"Eingebettetes Dateiformat ungültig, Datei nicht gespeichert"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"Cache-Datei kann nicht gelesen werden. Bitte im Original-Tab erneut versuchen; Segment-Streaming oder geschützte Videos erfordern den Download über die Website"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"Maximale Cache-Downloadgröße derzeit 2 GB, bitte direkten Download-Link der Website verwenden"</string>
+  <string name="msg_533949b0c241" formatted="false">"Eingebettete Datei unvollständig"</string>
+  <string name="msg_283a28e03a50" formatted="false">"Cache-Datei ist ungültig, bitte erneut herunterladen"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"Cache-Datei konnte nicht gelesen werden, bitte erneut herunterladen"</string>
+  <string name="msg_ffba3145db56" formatted="false">"Download-Inhalt hat falsche Größe"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"Download-Inhalt unvollständig, Datei nicht gespeichert"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"Download-Status kann nicht gespeichert werden"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"Letzter Download wurde unterbrochen, unvollständige Datei nicht gespeichert; bitte im Original-Tab erneut herunterladen"</string>
+  <string name="msg_bcd36261f503" formatted="false">"Download-Datei konnte nicht vollständig gespeichert werden"</string>
+  <string name="msg_815187d9a1da" formatted="false">"Download der Datei konnte nicht abgeschlossen werden"</string>
+  <string name="msg_02beb82da20a" formatted="false">"Download-Datei kann nicht erstellt werden, bitte Speicherplatz prüfen"</string>
+  <string name="msg_bdd00d629528" formatted="false">"Download-Datei kann nicht geschrieben werden"</string>
+  <string name="msg_d3e09805962f" formatted="false">"Download-Ordner kann nicht erstellt werden"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"Eingebettetes Bildformat nicht verwendbar"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"Eingebettetes Bild zu groß"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"Eingebettetes Bild überschreitet 32 MB"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"Cache-Bild kann nicht gelesen werden, bitte im Original-Tab erneut lange drücken"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"Online-Datenschutzerklärung öffnen"</string>
+  <string name="msg_080988523f29" formatted="false">"Inkognito-Sitzung beendet; Website-Datenbereinigung nicht abgeschlossen, bitte App schließen und neu starten"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"Diese Regel oder Seiteninhalt ist umfangreich, bitte Cloud-Modell für Analyse verwenden."</string>
+  <string name="msg_5d279b988da8" formatted="false">"AI-Vorschlag überschreitet den Änderungsbereich dieser Regel, bitte neue Anfrage stellen"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"Vorgeschlagener Code zu lang, bitte Änderungsbereich eingrenzen"</string>
+  <string name="msg_272100161734" formatted="false">"CSS-Stile aktualisieren"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"JavaScript aktualisieren"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"HTML-Inhalt aktualisieren"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"HTML-Anwendungsmethode anpassen"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"Bitte überprüfen Sie die Änderungen, bevor Sie sie anwenden"</string>
+  <string name="msg_997de297c6b3" formatted="false">"Download-Verlauf konnte nicht gespeichert werden"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"Download-Datei konnte nicht erstellt werden"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"Die Webseite hat sich geändert, bitte öffnen Sie diese Regel erneut"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"Regel wurde aktualisiert, bitte öffnen Sie sie erneut, um Überschreibungen anderer Änderungen zu vermeiden"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"Regel wurde durch eine andere Aktion aktualisiert, bitte öffnen Sie sie erneut"</string>
+  <string name="msg_30b5133da158" formatted="false">"Machen Sie die Änderung einen Schritt weiter"</string>
+  <string name="msg_dfb02399c259" formatted="false">"Bitte AI diese Regel ändern lassen"</string>
+  <string name="msg_a73d81627121" formatted="false">"Kombinieren Sie den ursprünglichen HTML-Code, den aktuellen Code und Ihre neuen Ideen"</string>
+  <string name="msg_6882b571d47c" formatted="false">"Sie können den Inhalt unten direkt bearbeiten. Speichern aktualisiert die Originalregel; andere Webseitenänderungen bleiben erhalten."</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"Am Ende des Elements hinzufügen"</string>
+  <string name="msg_c7518df827c2" formatted="false">"Elementinhalt ersetzen"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"Gilt für diese Domain und Subdomains. JavaScript kann auf die Seite zugreifen oder Anfragen senden, bitte Inhalt vor dem Speichern überprüfen."</string>
+  <string name="msg_5ef814324284" formatted="false">"Bearbeiteter Inhalt wurde geändert, bitte erneut speichern"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"Originalregel wurde aktualisiert und angewendet"</string>
+  <string name="msg_f5272b216037" formatted="false">"Diese Regel löschen"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"Diese Regel löschen?"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"%1$s wird entfernt, andere Einstellungen bleiben erhalten."</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"Benutzerdefiniertes CSS, JavaScript und HTML für diese Webseite"</string>
+  <string name="msg_60f997e432a2" formatted="false">"Diese Elementänderung"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"Diese Regel wurde gelöscht"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"Löschen"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"Benutzerdefinierte Suchmaschine verwendet"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"Aktuell verwendet · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"Adressleisten-Suche · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"Verwendet %1$s"</string>
+  <string name="msg_02da895c96ea" formatted="false">"Eigene Suchmethode"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"Benutzerdefiniert"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"Verbinden Sie sich mit Ihrem bevorzugten Suchdienst"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"Suchen Sie einmal auf der gewünschten Webseite und ersetzen Sie dann den Suchtext in der URL durch {query}."</string>
+  <string name="msg_83e506018140" formatted="false">"Such-URL-Vorlage"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} wird durch sicher codierten Suchtext ersetzt"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"Vorschau: %1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"Speichern und verwenden"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"Zum Umschalten antippen. Suchtext wird nur beim Absenden an den ausgewählten Dienst gesendet."</string>
+  <string name="msg_455ece81de56" formatted="false">"Baidu"</string>
+  <string name="msg_af8a52509166" formatted="false">"Chinesische Wikipedia"</string>
+  <string name="msg_db79062a760b" formatted="false">"URL-Vorlage noch nicht festgelegt"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"Bitte Such-URL-Vorlage eingeben"</string>
+  <string name="msg_e2d127e64801" formatted="false">"URL-Vorlage darf 2.048 Zeichen nicht überschreiten"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"URL-Vorlage muss eine vollständige einzeilige URL sein"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"URL-Vorlage muss {query} einmal enthalten"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"{query} muss im URL-Pfad oder in den Abfrageparametern stehen"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"Bitte vollständige HTTPS-URL eingeben"</string>
+  <string name="msg_00f486ce580a" formatted="false">"Zum Schutz der Suchinhalte darf nur HTTPS verwendet werden"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"URL darf keine Benutzername oder Passwort enthalten"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"URL-Vorlage darf keine # Anker enthalten"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"URL benötigt einen gültigen Hostnamen"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"Website-Icon-Cache konnte nicht gelöscht werden"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"Zu viele Website-Einstellungen"</string>
+  <string name="msg_a17da897bf76" formatted="false">"Website-Einstellungen überschreiten 8 MB, bitte größere benutzerdefinierte Codes zuerst bereinigen"</string>
+  <string name="msg_51bb558b264b" formatted="false">"Website-Einstellungssnapshot zu groß"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"Website-Einstellungsversion nicht kompatibel"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"Website-Einstellungsdomain oder Zeit ist ungültig"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"Website-Einstellungen überschreiten das Limit"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"Normal"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"Inkognito"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"Inkognito-Seiten erzeugen keine Thumbnails und werden nicht im Verlauf gespeichert. Nach Schließen aller Inkognito-Tabs werden Websitedaten gelöscht."</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"Inkognito-Browsing starten"</string>
+  <string name="msg_de2a64702660" formatted="false">"Noch keine normalen Tabs"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"Verwendet andere Anmeldestatus als normale Tabs; Webseiten und Netzwerkanbieter können Ihre Aktivitäten weiterhin erkennen."</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"Neuen Tab hinzufügen, damit das nächste Lesen seinen eigenen Platz hat."</string>
+  <string name="msg_89d55dea3269" formatted="false">"Privater Tab"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"Tab %1$s schließen"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"Aktueller Tab · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"Im Moment, nur im Moment."</string>
+  <string name="msg_ec4537100d5f" formatted="false">"Speichert keine Browser- oder Suchverläufe, stellt Inkognito-Tabs nicht wieder her. Anmeldestatus getrennt von normalen Tabs, löscht Cookies, Cache und Websitedaten nach Schließen aller Inkognito-Tabs."</string>
+  <string name="msg_c4759e2fd146" formatted="false">"Inkognito bedeutet nicht anonym. Websites, Arbeitgeber oder Internetanbieter können Ihre Aktivitäten weiterhin sehen. Dateien, die Sie aktiv herunterladen, sowie gespeicherte Lesezeichen und Favoriten bleiben erhalten; Systemfreigaben und KI-Anfragen geben ausgewählte Inhalte an die jeweiligen Dienste weiter."</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"Tab-Menü"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"Alle Tabs schließen"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"Alle Inkognito-Tabs schließen?"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"Alle normalen Tabs schließen?"</string>
+  <string name="msg_1401b7462a88" formatted="false">"Es werden %1$s Tabs in dieser Gruppe geschlossen, die andere Gruppe bleibt unberührt."</string>
+  <string name="msg_9b14332369fd" formatted="false">"Inkognito-Websitedaten werden nach dem Schließen aller Tabs gelöscht. Heruntergeladene Dateien, Lesezeichen und Favoriten bleiben erhalten."</string>
+  <string name="msg_e818d7092124" formatted="false">"Diese Tabs und Schnappschüsse werden beim nächsten Start nicht wiederhergestellt; Browserverlauf, heruntergeladene Dateien, Lesezeichen und Favoriten bleiben erhalten."</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"Alle schließen"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"Standort noch nicht angefordert"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"Der Standortzugriff ist auf dem Telefon noch nicht erlaubt; Sie können die App-Berechtigungen in den Website-Informationen aktivieren."</string>
+  <string name="msg_b225c190262b" formatted="false">"Der Standortdienst des Telefons ist noch nicht aktiviert. Bitte aktivieren Sie die Standortfreigabe in den Website-Informationen und versuchen Sie es erneut."</string>
+  <string name="msg_c706cb8f6217" formatted="false">"Darf diese Website Ihren Standort abrufen?"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\nDie Website kann Ihren Standort nutzen, um Funktionen wie nahegelegene Orte anzubieten. Dies kann in den Website-Informationen in der Adressleiste geändert werden."</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\nInkognito-Berechtigungen gelten nur bis zum Schließen aller Inkognito-Tabs."</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"Standort erlauben"</string>
+  <string name="msg_e69e259269d3" formatted="false">"Vorübergehend nicht erlauben"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"Letzte 1 Stunde"</string>
+  <string name="msg_322773403765" formatted="false">"Letzte 24 Stunden"</string>
+  <string name="msg_27905bacccf9" formatted="false">"Letzte 7 Tage"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"Letzte 4 Wochen"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"Unbegrenzt"</string>
+  <string name="msg_b39b740c9370" formatted="false">"Fragen"</string>
+  <string name="msg_0bffd418918b" formatted="false">"Erlauben"</string>
+  <string name="msg_454b7b66304a" formatted="false">"Blockieren"</string>
+  <string name="language_title" formatted="false">"Benutzeroberflächensprache"</string>
+  <string name="language_system" formatted="false">"Systemsprache verwenden"</string>
+  <string name="language_support" formatted="false">"Beim ersten Start wird die Sprache des Telefons verwendet; nicht unterstützte Sprachen werden auf Englisch angezeigt."</string>
+  <string name="language_selected" formatted="false">"Aktuell verwendet: %1$s"</string>
+  <string name="language_system_detail" formatted="false">"Automatisch · %1$s"</string>
+  <string name="language_picker" formatted="false">"Benutzeroberflächensprache wählen"</string>
+  <string name="language_note" formatted="false">"Diese Einstellung ändert nur die ChengJing-Benutzeroberfläche, nicht die Webseiteninhalte."</string>
+  <string name="language_changed" formatted="false">"Benutzeroberflächensprache geändert"</string>
+  <string name="language_native_hint" formatted="false">"Zeigt die Sprache im Originaltext an, um vertraute Sprachen leichter zu finden."</string>
+  <string name="home_quote_000" formatted="false">"Nach dem Donner folgt immer Regen"</string>
+  <string name="home_quote_001" formatted="false">"Nach heute kommt morgen"</string>
+  <string name="home_quote_002" formatted="false">"Nach morgen kommt ein Film"</string>
+  <string name="home_quote_003" formatted="false">"Kaufe bei Fall, verkaufe bei Steigen, so einfach ist Investieren"</string>
+  <string name="home_quote_004" formatted="false">"Wenn du nicht gern arbeitest, wirst du das Feierabend umso mehr lieben"</string>
+  <string name="home_quote_005" formatted="false">"Wenn du dich anstrengst, wirst du feststellen, dass Dinge eigentlich noch schwieriger sein können"</string>
+  <string name="home_quote_006" formatted="false">"Es ist leicht, den Dieb im Berg zu besiegen, schwer, den Dieb im Herzen zu besiegen"</string>
+  <string name="home_quote_007" formatted="false">"Durchhalten führt nicht immer zum Erfolg, aber Aufgeben ist wirklich sehr einfach"</string>
+  <string name="home_quote_008" formatted="false">"Trinke jeden Tag eine Tasse Kaffee weniger, und du sparst im Jahr 365 Tassen"</string>
+  <string name="home_quote_009" formatted="false">"Mach dir keine Sorgen, du bist nur ein denkendes Schilfrohr"</string>
+  <string name="home_quote_010" formatted="false">"Hab keine Angst vor Schwierigkeiten, wenn du ihnen begegnest, wirst du feststellen, dass du sie nicht lösen kannst"</string>
+  <string name="home_quote_011" formatted="false">"Nicht die Ungleichheit der Dinge bereitet Sorgen, sondern das ungleiche Herz der Menschen"</string>
+  <string name="home_quote_012" formatted="false">"Wenn du denkst, du hast nichts, vergiss nicht, dass du voller Erschöpfung bist"</string>
+  <string name="home_quote_013" formatted="false">"Vor dem Schlafengehen nicht am Handy scrollen, sonst merkst du schnell, dass es schon Morgen ist"</string>
+  <string name="home_quote_014" formatted="false">"Konfuzius sagte: Der Edle sucht bei sich selbst, der Kleine sucht bei anderen"</string>
+  <string name="home_quote_015" formatted="false">"Das Boot richtet sich von selbst, wenn es die Brücke erreicht; wenn nicht, ist es gesunken"</string>
+  <string name="home_quote_016" formatted="false">"Erfolgreiche Menschen haben oft eines gemeinsam: Sie sind erfolgreich"</string>
+  <string name="home_quote_017" formatted="false">"Nicht weinen, nicht lachen, sondern verstehen"</string>
+  <string name="home_quote_018" formatted="false">"Solange du weitergehst, bleibst du nicht stehen"</string>
+  <string name="home_quote_019" formatted="false">"Sich zu verlaufen ist der Anfang der Entdeckung"</string>
+  <string name="home_quote_020" formatted="false">"Anstrengung wird nicht immer gesehen, aber Faulheit wird sofort erwischt"</string>
+  <string name="home_quote_021" formatted="false">"Misserfolg ist die Mutter des Erfolgs, aber du findest vielleicht nie den Vater"</string>
+  <string name="home_quote_022" formatted="false">"Freiheit bedeutet, von anderen gehasst zu werden"</string>
+  <string name="home_quote_023" formatted="false">"Glück ist nur eine vorübergehende Pause vom Schmerz"</string>
+  <string name="home_quote_024" formatted="false">"Wenn du dich entscheidest anzufangen, heißt das, du bist noch nicht fertig"</string>
+  <string name="home_quote_025" formatted="false">"Erfolg hat keinen Shortcut, aber viele stecken im Stau auf dem Shortcut"</string>
+  <string name="home_quote_026" formatted="false">"Angst ist der Schwindel, den Freiheit verursacht"</string>
+  <string name="home_quote_027" formatted="false">"Wenn du den ersten Schritt machst, wirst du sehen, dass der zweite noch hinter dir ist"</string>
+  <string name="home_quote_028" formatted="false">"Bitte geh weg, blockiere nicht mein Sonnenlicht"</string>
+  <string name="home_quote_029" formatted="false">"Bodhi hat keinen Baum, der klare Spiegel keinen Ständer. Ursprünglich gibt es nichts, woher sollte Staub kommen?"</string>
+  <string name="home_quote_030" formatted="false">"Das Leid, das du jetzt erträgst, bereitet dich auf noch mehr Leid vor"</string>
+  <string name="home_quote_031" formatted="false">"Wer gegen Monster kämpft, sollte aufpassen, nicht selbst zum Monster zu werden"</string>
+  <string name="home_quote_032" formatted="false">"Je höher du kletterst, desto schmerzhafter der Fall"</string>
+  <string name="home_quote_033" formatted="false">"Wissen ist Macht"</string>
+  <string name="home_quote_034" formatted="false">"Solange du es mit Herz machst, ist selbst eine schlechte Tat eine mit Herz gemachte"</string>
+  <string name="home_quote_035" formatted="false">"Manchmal ist gesunder Menschenverstand eben doch kein gesunder Menschenverstand"</string>
+  <string name="home_quote_036" formatted="false">"Kinder fürchten die Dunkelheit, das ist verständlich; die wahre Tragödie ist, dass Erwachsene das Licht fürchten"</string>
+  <string name="home_quote_037" formatted="false">"Das Ende der Welt vorzustellen ist leichter als das Ende des Kapitalismus"</string>
+  <string name="home_quote_038" formatted="false">"Solange du dich nicht schämst, sind es die anderen, die sich schämen"</string>
+  <string name="home_quote_039" formatted="false">"Eine Reise von tausend Meilen beginnt mit dem ersten Schritt"</string>
+  <string name="home_quote_040" formatted="false">"Der Andere ist die Hölle"</string>
+  <string name="home_quote_041" formatted="false">"Wenn du deine Ansprüche niedrig genug hältst, ist jede Sekunde eine Überraschung"</string>
+  <string name="home_quote_042" formatted="false">"Was uns quält, ist oft nicht die Realität, sondern die Vorstellung"</string>
+  <string name="home_quote_043" formatted="false">"Sei nicht zu streng mit dir selbst, andere werden das schon übernehmen"</string>
+  <string name="home_quote_044" formatted="false">"Bei Schwierigkeiten nicht hetzen, Eile bringt sowieso nichts"</string>
+  <string name="home_quote_045" formatted="false">"Im Leid geboren, im Wohlstand gestorben"</string>
+  <string name="home_quote_046" formatted="false">"Solange du satt bist, wirst du nicht hungern"</string>
+  <string name="home_quote_047" formatted="false">"Wenn der große Weg verloren geht, gibt es Menschlichkeit und Gerechtigkeit; wenn Weisheit auftaucht, gibt es große Täuschung"</string>
+  <string name="home_quote_048" formatted="false">"Kleidung wird alt, wenn man sie lange trägt, außer man kauft neue"</string>
+  <string name="home_quote_049" formatted="false">"Wenn Wasser kocht, ist es eben kochend"</string>
+  <string name="home_quote_050" formatted="false">"Das richtige Timing ist weniger wichtig als der Ort, und der Ort weniger als die Harmonie unter Menschen"</string>
+  <string name="home_quote_051" formatted="false">"Wenn du mich auch sehen willst, hat unser Treffen Bedeutung"</string>
+  <string name="home_quote_052" formatted="false">"Andere lachen, weil ich verrückt bin; ich lache, weil sie es merken"</string>
+  <string name="home_quote_053" formatted="false">"Wer den bittersten Schmerz erträgt, weiß, dass es noch bitterer geht"</string>
+  <string name="home_quote_054" formatted="false">"Solange du lebst, hast du die Chance, weiter Fehler zu machen"</string>
+  <string name="home_quote_055" formatted="false">"Du kannst den Wind nicht kontrollieren, aber du kannst das Fenster schließen"</string>
+  <string name="home_quote_056" formatted="false">"Die beste Lebensplanung ist oft keine Planung"</string>
+  <string name="home_quote_057" formatted="false">"Alles, was oft genug wiederholt wird, wird zur Routine"</string>
+  <string name="home_quote_058" formatted="false">"Alle Erscheinungen sind Illusionen; Gehaltsabrechnungen ausgenommen"</string>
+  <string name="home_quote_059" formatted="false">"Du denkst, du triffst eine Wahl, aber der Algorithmus weiß längst, was du anklickst"</string>
+  <string name="home_quote_060" formatted="false">"Die Welt ist so groß, dass deine Probleme kaum eine Rolle spielen"</string>
+  <string name="home_quote_061" formatted="false">"Ich bin von Natur aus talentiert und werde gebraucht, auch wenn ich mein Vermögen verliere, kommt es zurück"</string>
+  <string name="home_quote_062" formatted="false">"Da du schon mal hier bist, setz dich doch erst mal"</string>
+  <string name="home_quote_063" formatted="false">"Probleme, die mit Geld gelöst werden können, brauchen zuerst Geld"</string>
+  <string name="home_quote_064" formatted="false">"Den Feind ohne Kampf zu besiegen, ist die höchste Kunst"</string>
+  <string name="home_quote_065" formatted="false">"Scheitern ist nicht schlimm, schlimm ist es, wenn man nach dem Scheitern noch einen Bericht schreiben muss"</string>
+  <string name="home_quote_066" formatted="false">"Das Leben ist kurz, deshalb sind zu lange Meetings ungeeignet"</string>
+  <string name="home_quote_067" formatted="false">"Kein Schritt im Leben ist umsonst, jeder zählt"</string>
+  <string name="home_quote_068" formatted="false">"Die Dinge sind nicht einfacher geworden, du hast dich nur an die Schwierigkeit gewöhnt"</string>
+  <string name="home_quote_069" formatted="false">"Große Musik ist still, große Gestalten sind formlos, große Meetings enden meist ohne Ergebnis"</string>
+  <string name="home_quote_070" formatted="false">"Sich anlächeln, im Herzen unzertrennlich"</string>
+  <string name="home_quote_071" formatted="false">"Wer andere besiegt, ist stark; wer sich selbst besiegt, ist mächtig"</string>
+  <string name="home_quote_072" formatted="false">"Dein Stuhl bestimmt deine Sitzhaltung"</string>
+  <string name="home_quote_073" formatted="false">"Das größte Glück ist, sein Glück nicht beweisen zu müssen"</string>
+  <string name="home_quote_074" formatted="false">"Der Mensch ist frei geboren, doch überall muss er sich anmelden"</string>
+  <string name="home_quote_075" formatted="false">"Wenn du keine Zeit zum Ausruhen hast, sorgt dein Körper selbst für einen Arzttermin"</string>
+  <string name="home_quote_076" formatted="false">"Das Leben lehrt dich viel, die Lehrgebühren sind meist nicht billig"</string>
+  <string name="home_quote_077" formatted="false">"Das Leben ist nicht nur schwarz oder weiß"</string>
+  <string name="home_quote_078" formatted="false">"Das höchste Gut ist wie Wasser, das allen nützt und nicht streitet"</string>
+  <string name="home_quote_079" formatted="false">"Ein Wort von dir zu hören ist wie ein Wort zu hören"</string>
+  <string name="home_quote_080" formatted="false">"Alles, was es wert ist, getan zu werden, ist es wert, zuerst gespeichert zu werden"</string>
+  <string name="home_quote_081" formatted="false">"Die Welt dreht sich nicht wegen dir, also brauchst du kein schlechtes Gewissen zu haben"</string>
+  <string name="home_quote_082" formatted="false">"Die tiefsten Wahrheiten sind oft sehr einfach, wenn man sie offenlegt"</string>
+  <string name="home_quote_083" formatted="false">"Im Leben gibt es keine nutzlosen Erfahrungen"</string>
+  <string name="home_quote_084" formatted="false">"Wenn du Angst hast, Fehler zu machen, verpasst du viele neue Arten von Fehlern"</string>
+  <string name="home_quote_085" formatted="false">"Das Leben bietet unzählige Möglichkeiten, aber heute kannst du nur einmal leben"</string>
+  <string name="home_quote_086" formatted="false">"How are you? I\'m fine, thank you."</string>
+  <string name="home_quote_087" formatted="false">"Vergangenes kann man nicht ändern, Zukünftiges kann man noch verfolgen"</string>
+  <string name="home_quote_088" formatted="false">"Sei du selbst"</string>
+  <string name="msg_485107965fef" formatted="false">"Das Komponentenregel-Format ist ungültig"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"Die gesamte Seite kann nicht entfernt werden"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"Kein gültiger Komponenten-Selektor gefunden"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"Die ausgewählte Komponente existiert nicht mehr"</string>
+  <string name="msg_db7282021ef2" formatted="false">"Das ursprüngliche HTML ist noch nicht bereit, bitte lade die Seite neu und öffne die Regel erneut"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"Komponente nicht gefunden"</string>
+  <string name="msg_837653b6c57e" formatted="false">"Die Komponente ist zu groß, bitte wähle einen kleineren Bereich"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"SkyEye Übungsplatz · ChengJing"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"ChengJing · SkyEye Übungsplatz"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"Lokale Demo-Webseite"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"Allgemeines Informationsbanner · Du kannst es behalten"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"Langsamer, genau hinschauen"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"Passe die Webseite an deine Gewohnheiten an."</string>
+  <string name="practice_8b7c761ab887" formatted="false">"Dies ist eine Übungswebseite auf dem Handy. Du kannst Komponenten anpassen und eigene Stile sowie Seiteninhalte hinzufügen."</string>
+  <string name="practice_7e28a385715a" formatted="false">"Tippe in der Werkzeugleiste auf „SkyEye“, wähle dann eine Komponente aus. Wenn nur Text ausgewählt wird, tippe auf „Äußere Ebene wählen“, bis die gesamte Komponente umrahmt ist, dann Vorschau zum Entfernen."</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"Der Hauptfokus der Webseite sollte der Inhalt sein, den du sehen möchtest."</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"Füge etwas Eigenes hinzu"</string>
+  <string name="practice_b4a4214feada" formatted="false">"Öffne SkyEye, wähle „CSS hinzufügen“, um Stile anzupassen. Zum Beispiel, um Absätze großzügiger zu gestalten:"</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"Wähle „JS hinzufügen“, um eine Lesewarnung auf der Seite einzufügen:"</string>
+  <string name="practice_9e58ae908fca" formatted="false">"Was passiert nach dem Entfernen?"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"Speichere die Regel und gehe zur zweiten Seite. Auch wenn der Inhalt der Komponenten anders ist, stört sie dich nicht, solange die Struktur gleich bleibt."</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"Zur zweiten Seite derselben Domain →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"Du kannst auch im Menü „Originalseite vorübergehend anzeigen“ wählen, um die Originalseite kurz zu sehen. Alle Regeln bleiben erhalten, keine Neu-Einstellung nötig."</string>
+  <string name="practice_66cf62365956" formatted="false">"Ursprünglich versteckter Hinweiscontainer"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"Demo schwebende Komponente"</string>
+  <string name="practice_e8b18630d135" formatted="false">"Dieser schwebende Bereich verdeckt den Lesebereich."</string>
+  <string name="practice_975cfbbfce74" formatted="false">"Versuche mit SkyEye, den gesamten grünen Bereich zu entfernen."</string>
+  <string name="practice_29692e6a4f70" formatted="false">"Denk daran, eine Pause zu machen"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"Komponente schließen"</string>
+  <string name="practice_df9256123dae" formatted="false">"Neuer Inhalt, weiterhin klar und übersichtlich."</string>
+  <string name="practice_efbee8398901" formatted="false">"Komponente mit geändertem Inhalt, aber gleicher Struktur."</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"Zweite Seite · SkyEye Übungsplatz"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"Auch verzögert geladene Hinweis-Komponenten können mit SkyEye ausgewählt werden."</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

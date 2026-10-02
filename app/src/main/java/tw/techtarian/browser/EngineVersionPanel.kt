@@ -24,12 +24,12 @@ import java.util.Date
     val scope=rememberCoroutineScope()
     suspend fun check(){
         busy=true;error=""
-        try{stable=repository.refresh()}catch(e:CancellationException){throw e}catch(_:Exception){error="暫時查不到官方版本，請稍後重試。"}finally{busy=false}
+        try{stable=repository.refresh()}catch(e:CancellationException){throw e}catch(_:Exception){error=bt(R.string.msg_e19c932091a7)}finally{busy=false}
     }
     LaunchedEffect(Unit){if(stable==null||System.currentTimeMillis()-stable!!.checkedAt !in 0L..21_600_000L)check()}
-    SettingsGroup("瀏覽核心"){
+    SettingsGroup(bt(R.string.msg_85284e05ae9e)){
         Row(Modifier.fillMaxWidth().testTag("engine-version-comparison"),horizontalArrangement=Arrangement.spacedBy(8.dp)){
-            listOf("目前 Chromium" to installed.version,"最新正式版" to (stable?.version?:if(busy)"查詢中…"else if(error.isNotEmpty())"暫無資料"else"尚未查詢")).forEachIndexed{index,(label,value)->
+            listOf(bt(R.string.msg_08a4dcb36197) to installed.version,bt(R.string.msg_870241d98eb8) to (stable?.version?:if(busy)bt(R.string.msg_b8bf2f806c91)else if(error.isNotEmpty())bt(R.string.msg_fb27d9cf6a63)else bt(R.string.msg_8b9b22849066))).forEachIndexed{index,(label,value)->
                 Surface(Modifier.weight(1f),shape=RoundedCornerShape(12.dp),color=MaterialTheme.colorScheme.background){
                     Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(6.dp)){
                         Text(label,fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
@@ -38,17 +38,17 @@ import java.util.Date
                 }
             }
         }
-        Text("目前由 ${installed.provider} 提供；對照 Google 公布的 ${if(installed.platform=="webview")"Android WebView"else"Android Chrome"} 正式版。",fontSize=12.sp,lineHeight=18.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(bt(R.string.msg_1fe80e799fd9 ,installed.provider,if(installed.platform=="webview")"Android WebView"else"Android Chrome"),fontSize=12.sp,lineHeight=18.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         stable?.let{version->
             val compared=ChromiumVersions.compare(installed.version,version.version)
-            Text(when{compared==null->"目前版本無法直接比較";compared<0->"官方正式版較新，可檢查核心更新";compared==0->"目前核心與官方正式版相同";else->"目前核心版本較新"},fontSize=13.sp,color=MaterialTheme.colorScheme.primary)
-            Text("${if(error.isNotEmpty())"保留上次結果 · "else""}查詢時間："+DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(Date(version.checkedAt)),fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(when{compared==null->bt(R.string.msg_e5d3e9548003);compared<0->bt(R.string.msg_72b9cc4cb174);compared==0->bt(R.string.msg_de1fbbd2f6c0);else->bt(R.string.msg_9b349d42dab8)},fontSize=13.sp,color=MaterialTheme.colorScheme.primary)
+            Text(bt(R.string.msg_a616b4a608fc ,if(error.isNotEmpty())bt(R.string.msg_43f5b26eb0ca)else"")+DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(Date(version.checkedAt)),fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         }
         if(error.isNotEmpty())Text(error,fontSize=12.sp,color=MaterialTheme.colorScheme.error)
         Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween){
-            TextButton(enabled=!busy,onClick={scope.launch{check()}}){Text(if(busy)"正在查詢…"else"重新檢查版本",fontSize=12.sp)}
-            TextButton(enabled=installed.packageName.isNotEmpty(),onClick={runCatching{openEngineUpdate(c.context,installed)}.onFailure{error="無法開啟更新頁，請在系統設定查看 WebView。"}}){Text("開啟核心更新頁",fontSize=12.sp)}
+            TextButton(enabled=!busy,onClick={scope.launch{check()}}){Text(if(busy)bt(R.string.msg_4f521b4e22a0)else bt(R.string.msg_73d3eac9c403),fontSize=12.sp)}
+            TextButton(enabled=installed.packageName.isNotEmpty(),onClick={runCatching{openEngineUpdate(c.context,installed)}.onFailure{error=bt(R.string.msg_ff0bbcba22df)}}){Text(bt(R.string.msg_243aeef7919a),fontSize=12.sp)}
         }
-        Text("更新由系統或商店提供，可能分批推出。",fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(bt(R.string.msg_eb5b5c578249),fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }

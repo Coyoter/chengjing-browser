@@ -39,7 +39,7 @@ internal class BrowserLaunchSurface(context:Context, private val dark:Boolean):V
         addUpdateListener{phase=it.animatedValue as Float;invalidate()}
     }
     init{
-        contentDescription="正在開啟澄境瀏覽器"
+        contentDescription=bt(R.string.msg_184fa0f9f597)
         importantForAccessibility=IMPORTANT_FOR_ACCESSIBILITY_YES
         setBackgroundColor(palette.getColor(R.color.browser_background,null))
     }
@@ -62,15 +62,15 @@ internal class BrowserLaunchSurface(context:Context, private val dark:Boolean):V
         paint.style=Paint.Style.FILL
         paint.typeface=medium
         paint.textSize=sp(34f)
-        paint.textSize=min(paint.textSize,paint.textSize*available/paint.measureText("澄境"))
+        paint.textSize=min(paint.textSize,paint.textSize*available/paint.measureText(bt(R.string.msg_33adaf9128dd)))
         paint.color=palette.getColor(R.color.browser_on_background,null)
-        canvas.drawText("澄境",x,baseline,paint)
+        canvas.drawText(bt(R.string.msg_33adaf9128dd),x,baseline,paint)
         val titleBottom=baseline+paint.fontMetrics.descent
         paint.typeface=regular
         paint.textSize=sp(14f)
         paint.color=palette.getColor(R.color.browser_on_surface_variant,null)
         val subtitleBaseline=titleBottom+dp(12f)-paint.fontMetrics.ascent
-        canvas.drawText("瀏覽器",x,subtitleBaseline,paint)
+        canvas.drawText(bt(R.string.msg_44a8bcb30ad4),x,subtitleBaseline,paint)
         val subtitleBottom=subtitleBaseline+paint.fontMetrics.descent
         paint.textSize=sp(9f)
         val caption="CHENGJING BROWSER"

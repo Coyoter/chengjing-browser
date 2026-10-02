@@ -67,34 +67,35 @@ class MainActivity:AppCompatActivity(){
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
             val result=runCatching{
-                val data=contentResolver.openInputStream(uri)?.use{it.readBounded(8_000_001)}?:error("無法開啟書籤檔案")
-                require(data.size<=8_000_000){"書籤檔案超過 8 MB，請分批匯入"}
-                val rows=BookmarkFormat.parseHtml(String(data,Charsets.UTF_8));require(rows.isNotEmpty()){ "檔案中找不到 HTTP / HTTPS 書籤" };rows
+                val data=contentResolver.openInputStream(uri)?.use{it.readBounded(8_000_001)}?:error(bt(R.string.msg_824602facd05))
+                require(data.size<=8_000_000){bt(R.string.msg_0aae4ed21a92)}
+                val rows=BookmarkFormat.parseHtml(String(data,Charsets.UTF_8));require(rows.isNotEmpty()){ bt(R.string.msg_7193e8524414) };rows
             }
             kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main){result.onSuccess{rows->
-                controller.prompts.confirm("匯入 ${rows.size} 個書籤？","會保留資料夾；已存在的書籤不會重複新增。","匯入"){
+                controller.prompts.confirm(bt(R.string.msg_01fd7b112086 ,rows.size),bt(R.string.msg_d11135ca0ab4),bt(R.string.msg_20809c5d8596)){
                     runCatching{store.bookmarkStore.importRows(rows)}.onSuccess{count->
                         controller.revision++;controller.sheet="bookmarks"
-                        controller.notice=if(count>0)"已匯入 $count 個書籤"else"這些書籤已經匯入，不會重複新增"
-                    }.onFailure{controller.notice="匯入未完成，請稍後再試"}
+                        controller.notice=if(count>0)bt(R.string.msg_ef3ade3905f2 ,count)else bt(R.string.msg_3778200c90e5)
+                    }.onFailure{controller.notice=bt(R.string.msg_f7fbddb4f56e)}
                 }
-            }.onFailure{controller.notice=it.localizedMessage?:"匯入未完成"}}
+            }.onFailure{controller.notice=it.localizedMessage?:bt(R.string.msg_06da96fbc1c9)}}
         }
     }
-    private val exportBookmarks=registerForActivityResult(ActivityResultContracts.CreateDocument("text/html")){uri->if(uri!=null)runCatching{contentResolver.openOutputStream(uri)?.use{it.write(BookmarkFormat.html(store.bookmarkStore.visible()).toByteArray())}?:error("無法寫入檔案")}.onSuccess{controller.notice="書籤已匯出"}.onFailure{controller.notice="書籤匯出失敗"}}
+    private val exportBookmarks=registerForActivityResult(ActivityResultContracts.CreateDocument("text/html")){uri->if(uri!=null)runCatching{contentResolver.openOutputStream(uri)?.use{it.write(BookmarkFormat.html(store.bookmarkStore.visible()).toByteArray())}?:error(bt(R.string.msg_90b894bfd26f))}.onSuccess{controller.notice=bt(R.string.msg_7377414b1f6d)}.onFailure{controller.notice=bt(R.string.msg_fef661198324)}}
     fun importBookmarks(){importBookmarks.launch(arrayOf("text/html","application/xhtml+xml","text/plain","application/octet-stream"))}
     fun exportBookmarks(){exportBookmarks.launch("ChengJing-Bookmarks.html")}
     private val files=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->controller.fileCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result.resultCode,result.data));controller.fileCallback=null}
     override fun onCreate(savedInstanceState:Bundle?){
         delegate.localNightMode=BrowserAppearance.mode(BrowserAppearance.savedChoice(this))
-        super.onCreate(savedInstanceState);setTheme(R.style.AppTheme);enableEdgeToEdge()
+        super.onCreate(savedInstanceState);AppLanguages.initialize(this);setTheme(R.style.AppTheme);enableEdgeToEdge()
         updateSplashTheme(BrowserAppearance.savedChoice(this))
+        androidx.core.content.ContextCompat.registerReceiver(this,languageReceiver,android.content.IntentFilter(Intent.ACTION_LOCALE_CHANGED),androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED)
         imageActions.initialize()
         pageDownloads.initialize()
         if(android.os.Build.VERSION.SDK_INT>=31)splashScreen.setOnExitAnimationListener{it.remove()}
         @Suppress("DEPRECATION")
-        val taskIcon=if(android.os.Build.VERSION.SDK_INT>=33)android.app.ActivityManager.TaskDescription.Builder().setLabel("澄境瀏覽器").setIcon(R.mipmap.ic_launcher).build()
-            else android.app.ActivityManager.TaskDescription("澄境瀏覽器",R.mipmap.ic_launcher)
+        val taskIcon=if(android.os.Build.VERSION.SDK_INT>=33)android.app.ActivityManager.TaskDescription.Builder().setLabel(bt(R.string.msg_bb11ab4df9b9)).setIcon(R.mipmap.ic_launcher).build()
+            else android.app.ActivityManager.TaskDescription(bt(R.string.msg_bb11ab4df9b9),R.mipmap.ic_launcher)
         setTaskDescription(taskIcon)
         store=BrowserStore(this);controller=BrowserController(this,store)
         bookmarkSync=BookmarkSync(this,store.bookmarkStore)
@@ -120,6 +121,13 @@ class MainActivity:AppCompatActivity(){
             }
         }}
     }
+    internal fun applyLanguage(choice:String){
+        AppLanguages.select(this,choice)
+        if(browserReady)controller.refreshScripts()
+    }
+    private val languageReceiver=object:android.content.BroadcastReceiver(){
+        override fun onReceive(context:android.content.Context?,intent:Intent?){AppLanguages.refresh(this@MainActivity)}
+    }
     internal fun applyAppearance(choice:String){
         store.theme=choice
         syncAppearance(choice)
@@ -131,6 +139,7 @@ class MainActivity:AppCompatActivity(){
     }
     override fun onConfigurationChanged(configuration:android.content.res.Configuration){
         super.onConfigurationChanged(configuration)
+        AppLanguages.refresh(this)
         notifyWebAppearance(configuration)
     }
     private fun notifyWebAppearance(configuration:android.content.res.Configuration){
@@ -176,8 +185,9 @@ class MainActivity:AppCompatActivity(){
         // A backgrounded/closed launch must not replace saved tabs with an empty list.
         if(browserReady){controller.checkpointTabs();android.webkit.CookieManager.getInstance().flush()}
     }
-    override fun onResume(){super.onResume();websiteLocation.resume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
-    override fun onDestroy(){if(::bookmarkSync.isInitialized)bookmarkSync.destroy();websiteLocation.close();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
+    override fun onResume(){super.onResume();AppLanguages.refresh(this);websiteLocation.resume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
+    override fun onDestroy(){
+        runCatching{unregisterReceiver(languageReceiver)};if(::bookmarkSync.isInitialized)bookmarkSync.destroy();websiteLocation.close();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -227,7 +237,7 @@ class MainActivity:AppCompatActivity(){
             finding->c.findInPage.close()
             c.sheet.isNotEmpty()->c.sheet=""
             active?.imageContent!=null->c.closeTab(active.id)
-            c.eye->{c.stopEye();c.notice="已取消尚未儲存的預覽"}
+            c.eye->{c.stopEye();c.notice=bt(R.string.msg_b3adc3b24fd6)}
             else->activity.backFromPage()
         }
     }
@@ -257,24 +267,24 @@ class MainActivity:AppCompatActivity(){
                     if(finding)FindInPageBar(c.findInPage)else if(addressAtBottom)controlsBar()else addressBar()
                     if(!finding&&!addressAtBottom&&editingAddress)AddressSuggestionPanel(c,suggestionRows){c.navigate(it);editingAddress=false;focus.clearFocus()}
                     if(!addressAtBottom&&(active?.progress?:100)<100)LinearProgressIndicator(progress={(active?.progress?:0)/100f},modifier=Modifier.fillMaxWidth().height(2.dp),trackColor=Color.Transparent)
-                    if(active?.incognito==true)Text("無痕瀏覽",Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(horizontal=18.dp,vertical=5.dp).testTag("incognito-indicator"),fontSize=11.sp,color=cs.onSurfaceVariant)
+                    if(active?.incognito==true)Text(bt(R.string.msg_79606cdda212),Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(horizontal=18.dp,vertical=5.dp).testTag("incognito-indicator"),fontSize=11.sp,color=cs.onSurfaceVariant)
                     if(c.eye) {
                         Row(Modifier.fillMaxWidth().background(cs.primaryContainer).padding(horizontal=12.dp,vertical=4.dp),verticalAlignment=Alignment.CenterVertically){
                             Icon(Icons.Outlined.Visibility,null,tint=cs.primary,modifier=Modifier.size(18.dp));Spacer(Modifier.width(8.dp))
-                            Text(if(c.dirty)"${c.draft?.rules?.size?:0} 條規則 · 尚未儲存"else"天眼已開啟 · 點選網站元件",Modifier.weight(1f),fontSize=12.sp,color=cs.onPrimaryContainer)
-                            if(c.dirty)TextButton(onClick={c.saveDraft()}){Text("儲存")}
-                            Tool(Icons.Outlined.Close,"離開天眼"){c.stopEye()}
+                            Text(if(c.dirty)bt(R.string.msg_c37a45eae0ca ,c.draft?.rules?.size?:0)else bt(R.string.msg_8d44a1395388),Modifier.weight(1f),fontSize=12.sp,color=cs.onPrimaryContainer)
+                            if(c.dirty)TextButton(onClick={c.saveDraft()}){Text(bt(R.string.msg_dba44ed3f54f))}
+                            Tool(Icons.Outlined.Close,bt(R.string.msg_315a88f3155e)){c.stopEye()}
                         }
                         TextButton(onClick={c.aiElement=null;c.sheet="develop-ai"},modifier=Modifier.fillMaxWidth().height(48.dp).background(cs.primaryContainer)){
-                            Icon(Icons.Outlined.AutoAwesome,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text("想做什麼嘗試？直接問 AI")
+                            Icon(Icons.Outlined.AutoAwesome,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text(bt(R.string.msg_9cde4de25fb1))
                         }
                     } else if(c.isException) {
-                        Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text("例外中 · 原始網站",Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text("恢復規則")}}
+                        Row(Modifier.fillMaxWidth().background(cs.surfaceVariant).padding(start=16.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){Text(bt(R.string.msg_b28cb43f9599),Modifier.weight(1f),fontSize=12.sp);TextButton(onClick={c.exception()}){Text(bt(R.string.msg_c550069b0749))}}
                     }
                     Box(Modifier.weight(1f).fillMaxWidth()){
                         if(active?.imageContent!=null)ImageViewer(c,active.imageContent!!,Modifier.fillMaxSize(),temporaryTab=true){c.closeTab(active.id)}
                         else if(active?.url.isNullOrEmpty()){if(active?.incognito==true)IncognitoHome()else BrowserHome(c,store)}
-                        else if(active?.error?.isNotEmpty()==true)Column(Modifier.fillMaxSize().padding(32.dp),verticalArrangement=Arrangement.Center,horizontalAlignment=Alignment.CenterHorizontally){Icon(Icons.Outlined.CloudOff,null,Modifier.size(48.dp),tint=cs.primary);Spacer(Modifier.height(24.dp));Text("暫時連不上這個網站",style=MaterialTheme.typography.titleLarge);Spacer(Modifier.height(12.dp));Text(active.error,color=cs.onSurfaceVariant);Spacer(Modifier.height(20.dp));Button(onClick={c.reload()}){Text("重新載入")}}
+                        else if(active?.error?.isNotEmpty()==true)Column(Modifier.fillMaxSize().padding(32.dp),verticalArrangement=Arrangement.Center,horizontalAlignment=Alignment.CenterHorizontally){Icon(Icons.Outlined.CloudOff,null,Modifier.size(48.dp),tint=cs.primary);Spacer(Modifier.height(24.dp));Text(bt(R.string.msg_60db4174fe1b),style=MaterialTheme.typography.titleLarge);Spacer(Modifier.height(12.dp));Text(active.error,color=cs.onSurfaceVariant);Spacer(Modifier.height(20.dp));Button(onClick={c.reload()}){Text(bt(R.string.msg_70dd895b66db))}}
                         else active?.let{tab->key(tab.id){AndroidView(factory={(tab.refreshContainer.parent as? android.view.ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer},update={it.setColorSchemeColors(cs.primary.toArgb());it.setProgressBackgroundColorSchemeColor(cs.surface.toArgb())},modifier=Modifier.fillMaxSize().testTag("web-content"))}}
                     }
                     if(!finding&&addressAtBottom){
@@ -318,19 +328,19 @@ class MainActivity:AppCompatActivity(){
                         "search-engine"->SearchEnginePanel(c)
                         "inventory"->InventoryPanel(c)
                         "sync"->SyncPanel(c,store)
-                        "domains"->{SheetTitle("網域規則","你的選擇，留在你的手機。")
-                            val sites=store.all();if(sites.isEmpty())Text("尚未儲存任何網域規則。")
-                            sites.forEach{site->MenuRow(Icons.Outlined.Language,site.domain,"點選編輯 · ${site.rules.size+site.edits.size} 項元件修改"){
+                        "domains"->{SheetTitle(bt(R.string.msg_f6b20e44de57),bt(R.string.msg_ed51242141b1))
+                            val sites=store.all();if(sites.isEmpty())Text(bt(R.string.msg_f1c970051cf5))
+                            sites.forEach{site->MenuRow(Icons.Outlined.Language,site.domain,bt(R.string.msg_baeab929c3dd ,site.rules.size+site.edits.size)){
                                 if(c.domain==site.domain||c.newTab("https://${site.domain}/")!=null)c.sheet="rules"
                             }}
                         }
-                        "blocked"->{SheetTitle("攔截紀錄","本分頁共 ${active?.blockedTotal?:0} 次，保留最近 30 筆。")
+                        "blocked"->{SheetTitle(bt(R.string.msg_9d08608859f8),bt(R.string.msg_a37dc280e3d8 ,active?.blockedTotal?:0))
                             active?.blockedEvents?.toList()?.forEach{event->
                                 Column(verticalArrangement=Arrangement.spacedBy(6.dp)){
                                     Text(event.kind,fontWeight=FontWeight.SemiBold)
                                     Text(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT).format(java.util.Date(event.time)),fontSize=12.sp,color=cs.onSurfaceVariant)
                                     if(event.url.isNotEmpty())Text(event.url,fontSize=12.sp,maxLines=3,overflow=TextOverflow.Ellipsis,color=cs.onSurfaceVariant)
-                                    if(event.url.startsWith("https://")||event.url.startsWith("http://"))TextButton(onClick={c.navigate(event.url)}){Text("自行開啟此網址")}
+                                    if(event.url.startsWith("https://")||event.url.startsWith("http://"))TextButton(onClick={c.navigate(event.url)}){Text(bt(R.string.msg_b3471f8f134f))}
                                 }
                             }
                         }
@@ -351,129 +361,130 @@ class MainActivity:AppCompatActivity(){
 @Composable private fun SwitchRow(title:String,description:String,checked:Boolean,onChange:(Boolean)->Unit){Row(Modifier.fillMaxWidth().heightIn(min=80.dp).padding(horizontal=14.dp,vertical=10.dp),verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f).padding(end=12.dp)){Text(title,fontSize=16.sp);Text(description,fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Switch(checked,onChange)}}
 
 @Composable private fun EyePanel(c:BrowserController){
-    SheetTitle("天眼",c.domain)
-    Button(onClick={if(c.eye)c.sheet=""else c.beginEye()},enabled=!c.isException,modifier=Modifier.fillMaxWidth().height(50.dp)){Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(10.dp));Text(if(c.eye)"繼續選取元件"else"開啟天眼・選取元件")}
-    if(c.eye && c.dirty)Row(horizontalArrangement=Arrangement.spacedBy(8.dp)){OutlinedButton(onClick={c.undoDraft()},Modifier.weight(1f)){Text("撤回上一個")};Button(onClick={c.saveDraft();c.sheet=""},Modifier.weight(1f)){Text("儲存規則")}}
+    SheetTitle(bt(R.string.msg_9a5282c7dd65),c.domain)
+    Button(onClick={if(c.eye)c.sheet=""else c.beginEye()},enabled=!c.isException,modifier=Modifier.fillMaxWidth().height(50.dp)){Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(10.dp));Text(if(c.eye)bt(R.string.msg_d48d785df0f0)else bt(R.string.msg_6579f0f4fbf3))}
+    if(c.eye && c.dirty)Row(horizontalArrangement=Arrangement.spacedBy(8.dp)){OutlinedButton(onClick={c.undoDraft()},Modifier.weight(1f)){Text(bt(R.string.msg_6595fa6d2a4f))};Button(onClick={c.saveDraft();c.sheet=""},Modifier.weight(1f)){Text(bt(R.string.msg_cd2a4fc27eef))}}
     WebsiteAiEntry(c)
-    MenuGroup("元件與程式碼"){
-        MenuRow(Icons.Outlined.Layers,"結構清單","查看浮動、隱藏與內嵌元件"){if(!c.eye)c.beginEye();if(c.eye)c.sheet="inventory"}
-        MenuRow(Icons.Outlined.Tune,"已儲存的網站修改","點選規則，繼續編輯或請 AI 調整"){c.sheet="rules"}
-        MenuRow(Icons.Outlined.Code,"網站 CSS / JS / HTML"){c.sheet="code"}
+    MenuGroup(bt(R.string.msg_bb52909d1d93)){
+        MenuRow(Icons.Outlined.Layers,bt(R.string.msg_905d98bd5535),bt(R.string.msg_35eeaf58d612)){if(!c.eye)c.beginEye();if(c.eye)c.sheet="inventory"}
+        MenuRow(Icons.Outlined.Tune,bt(R.string.msg_a4d95a4ce539),bt(R.string.msg_0590277f2647)){c.sheet="rules"}
+        MenuRow(Icons.Outlined.Code,bt(R.string.msg_b654f1e4475a)){c.sheet="code"}
     }
-    MenuGroup("網站行為"){
-        SwitchRow("防止跳轉與彈窗","登入流程受影響時可關閉。",c.site.guard){c.saveSite(c.site.copy(guard=it));c.notice="網域防護設定已儲存"}
-        SwitchRow("暫時顯示原始網站","暫停此網域設定，直到關閉 App。",c.isException){c.exception()}
+    MenuGroup(bt(R.string.msg_1db1bf486d98)){
+        SwitchRow(bt(R.string.msg_830509b36cfe),bt(R.string.msg_6114c2b64ad4),c.site.guard){c.saveSite(c.site.copy(guard=it));c.notice=bt(R.string.msg_7007cf22f796)}
+        SwitchRow(bt(R.string.msg_3603b8ca2f4f),bt(R.string.msg_63ba28a2e7b0),c.isException){c.exception()}
     }
-    if(c.store.hasPrevious(c.domain))TextButton(onClick={c.restoreRules(c.domain);c.sheet=""}){Icon(Icons.AutoMirrored.Outlined.Undo,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text("復原上一次儲存")}
+    if(c.store.hasPrevious(c.domain))TextButton(onClick={c.restoreRules(c.domain);c.sheet=""}){Icon(Icons.AutoMirrored.Outlined.Undo,null,Modifier.size(18.dp));Spacer(Modifier.width(8.dp));Text(bt(R.string.msg_e2ddf71b1142))}
 }
 @Composable private fun SelectionPanel(c:BrowserController){
     val selection=c.selection?:return
     val scope=rememberCoroutineScope()
     WebsiteAiEntry(c)
-    Text("所選元件 · ${selection.label}",fontSize=16.sp,fontWeight=FontWeight.Medium)
-    Text("${selection.width} × ${selection.height} · 此選擇器目前符合 ${selection.count} 個元件",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
-    if(selection.frame)Text("內嵌頁面可調整外框；跨來源的內部內容無法在此存取。",fontSize=12.sp)
-    MenuGroup("想怎麼修改這個元件？"){
-        MenuRow(Icons.Outlined.Code,"新增自訂 CSS / JS / HTML","加入樣式、互動或頁面內容"){c.editingHtml=false;c.sheet="element-editor"}
-        MenuRow(Icons.Outlined.VisibilityOff,"移除此網站元件","先預覽，再選擇是否儲存"){scope.launch{c.removeSelected()}}
-        MenuRow(Icons.Outlined.Edit,"修改這段代碼","編輯元件內部 HTML"){c.editingHtml=true;c.sheet="element-editor"}
-        MenuRow(Icons.Outlined.AutoAwesome,"我這樣改對嗎？請 AI 檢查","僅針對所選元件提出修改"){c.aiElement=selection;c.sheet="develop-ai"}
+    Text(bt(R.string.msg_97efebc05b15 ,selection.label),fontSize=16.sp,fontWeight=FontWeight.Medium)
+    Text(bt(R.string.msg_f36fed06504d ,selection.width,selection.height,selection.count),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    if(selection.frame)Text(bt(R.string.msg_bf8f470b6f54),fontSize=12.sp)
+    MenuGroup(bt(R.string.msg_2bc121aa5664)){
+        MenuRow(Icons.Outlined.Code,bt(R.string.msg_d1d6117a0915),bt(R.string.msg_6791c9f39720)){c.editingHtml=false;c.sheet="element-editor"}
+        MenuRow(Icons.Outlined.VisibilityOff,bt(R.string.msg_704bb9551f08),bt(R.string.msg_cfe9a42f67d5)){scope.launch{c.removeSelected()}}
+        MenuRow(Icons.Outlined.Edit,bt(R.string.msg_5bc8760e7c08),bt(R.string.msg_eb10b6a32675)){c.editingHtml=true;c.sheet="element-editor"}
+        MenuRow(Icons.Outlined.AutoAwesome,bt(R.string.msg_31d97b13527a),bt(R.string.msg_ce96b28b44db)){c.aiElement=selection;c.sheet="develop-ai"}
     }
-    if(selection.canParent)OutlinedButton(onClick={c.parentSelection()},Modifier.fillMaxWidth()){Text("選取外面一層")}
-    TextButton(onClick={c.selection=null;c.sheet=""},Modifier.fillMaxWidth()){Text("改選其他元件")}
+    if(selection.canParent)OutlinedButton(onClick={c.parentSelection()},Modifier.fillMaxWidth()){Text(bt(R.string.msg_2c0eb0d16c95))}
+    TextButton(onClick={c.selection=null;c.sheet=""},Modifier.fillMaxWidth()){Text(bt(R.string.msg_2b0197cc2a08))}
 }
 @Composable private fun RulePanel(c:BrowserController){
     val site=c.site
-    SheetTitle("網站修改",c.domain)
-    if(site.css.isNotBlank()||site.js.isNotBlank()||site.html.isNotBlank())MenuGroup("網站程式碼"){
-        MenuRow(Icons.Outlined.Code,"網站 CSS / JS / HTML","編輯已儲存內容，或交給 AI 再修改"){c.editSavedRule()}
+    SheetTitle(bt(R.string.msg_58f73b892e2d),c.domain)
+    if(site.css.isNotBlank()||site.js.isNotBlank()||site.html.isNotBlank())MenuGroup(bt(R.string.msg_76ae194967b7)){
+        MenuRow(Icons.Outlined.Code,bt(R.string.msg_b654f1e4475a),bt(R.string.msg_b5ac67412c4e)){c.editSavedRule()}
     }
-    if(site.edits.isNotEmpty())MenuGroup("自訂元件"){
-        site.edits.forEach{edit->MenuRow(Icons.Outlined.Code,if(edit.mode=="replace")"編輯 HTML"else"自訂元件程式碼",edit.selector){c.editSavedRule(edit.id)}}
+    if(site.edits.isNotEmpty())MenuGroup(bt(R.string.msg_d10980fb5a78)){
+        site.edits.forEach{edit->MenuRow(Icons.Outlined.Code,if(edit.mode=="replace")bt(R.string.msg_96bf25ee29d2)else bt(R.string.msg_96f3303604ab),edit.selector){c.editSavedRule(edit.id)}}
     }
-    if(site.rules.isNotEmpty())MenuGroup("已隱藏的元件"){
-        site.rules.forEach{rule->Row(Modifier.padding(14.dp),verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f)){Text(rule.label,fontSize=14.sp);Text(rule.selector,fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Tool(Icons.AutoMirrored.Outlined.Undo,"恢復 ${rule.label}"){c.saveSite(c.site.copy(rules=c.site.rules.filterNot{it.selector==rule.selector}));c.notice="已恢復這個元件"}}}
+    if(site.rules.isNotEmpty())MenuGroup(bt(R.string.msg_27688f7df99c)){
+        site.rules.forEach{rule->Row(Modifier.padding(14.dp),verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f)){Text(rule.label,fontSize=14.sp);Text(rule.selector,fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)};Tool(Icons.AutoMirrored.Outlined.Undo,bt(R.string.msg_215e19833aad ,rule.label)){c.saveSite(c.site.copy(rules=c.site.rules.filterNot{it.selector==rule.selector}));c.notice=bt(R.string.msg_f9aa2d52b8f2)}}}
     }
-    if(site.rules.isEmpty()&&site.edits.isEmpty()&&site.css.isBlank()&&site.js.isBlank()&&site.html.isBlank())Text("尚未儲存修改。可透過天眼選取元件，或新增網站程式碼。")
-    SwitchRow("恢復頁面捲動","移除蓋版後仍無法捲動時，才開啟。",site.unlockScroll){c.saveSite(site.copy(unlockScroll=it))}
-    Text("規則保存在本機。網域的結構如果改版，可以重新選取或請 AI 調整。",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    if(site.rules.isEmpty()&&site.edits.isEmpty()&&site.css.isBlank()&&site.js.isBlank()&&site.html.isBlank())Text(bt(R.string.msg_4d38e86915a8))
+    SwitchRow(bt(R.string.msg_60c4ef25cb60),bt(R.string.msg_96a669b3fccc),site.unlockScroll){c.saveSite(site.copy(unlockScroll=it))}
+    Text(bt(R.string.msg_c6ee9069ad36),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
 @Composable private fun CodePanel(c:BrowserController,initialFocus:String){
     val original=remember{c.draft?:c.site};val tabId=remember{c.activeId};val includeDraft=remember{c.dirty}
     var css by remember{mutableStateOf(original.css)};var js by remember{mutableStateOf(original.js)};var html by remember{mutableStateOf(original.html)};var error by remember{mutableStateOf("")}
     val cssFocus=remember{FocusRequester()};val jsFocus=remember{FocusRequester()}
     LaunchedEffect(Unit){when(initialFocus){"css"->cssFocus.requestFocus();"js"->jsFocus.requestFocus()}}
-    SheetTitle("自訂程式碼",original.domain)
-    Text("程式碼會套用到此網域及子網域。JavaScript 可讀取頁面並發出網路請求，請只使用信任的內容。例外模式會暫停套用。",fontSize=13.sp,lineHeight=21.sp)
-    if(includeDraft)Text("儲存時會一併保留目前天眼預覽的元件修改。",fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
-    OutlinedTextField(css,{css=it;error=""},label={Text("CSS 樣式")},placeholder={Text("main { line-height: 1.8; }")},modifier=Modifier.fillMaxWidth().testTag("custom-css-input").focusRequester(cssFocus),minLines=4,maxLines=7)
-    OutlinedTextField(js,{js=it;error=""},label={Text("JavaScript")},placeholder={Text("// 新增或調整頁面內容；每次載入後執行一次")},modifier=Modifier.fillMaxWidth().testTag("custom-js-input").focusRequester(jsFocus),minLines=4,maxLines=7)
-    CodeInput("網站新增 HTML（放在頁面最後方）",html,{html=it},"custom-html-input","<p>我的閱讀提示</p>")
+    SheetTitle(bt(R.string.msg_e13bbc197118),original.domain)
+    Text(bt(R.string.msg_1e9b4e76ed63),fontSize=13.sp,lineHeight=21.sp)
+    if(includeDraft)Text(bt(R.string.msg_b2e95f75aae0),fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
+    OutlinedTextField(css,{css=it;error=""},label={Text(bt(R.string.msg_9e1d4222ab1b))},placeholder={Text("main { line-height: 1.8; }")},modifier=Modifier.fillMaxWidth().testTag("custom-css-input").focusRequester(cssFocus),textStyle=androidx.compose.ui.text.TextStyle(textDirection=androidx.compose.ui.text.style.TextDirection.Ltr),minLines=4,maxLines=7)
+    OutlinedTextField(js,{js=it;error=""},label={Text("JavaScript")},placeholder={Text(bt(R.string.msg_628f36411710))},modifier=Modifier.fillMaxWidth().testTag("custom-js-input").focusRequester(jsFocus),textStyle=androidx.compose.ui.text.TextStyle(textDirection=androidx.compose.ui.text.style.TextDirection.Ltr),minLines=4,maxLines=7)
+    CodeInput(bt(R.string.msg_b22612d48c02),html,{html=it},"custom-html-input",bt(R.string.msg_5bec1d40904a))
     if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,fontSize=12.sp)
     Button(onClick={
-        if(c.activeId!=tabId||c.domain!=original.domain){error="頁面已變更，請關閉後重新開啟編輯器"}
-        else runCatching{c.saveSite(original.copy(css=css,js=js,html=html),reload=true)}.onSuccess{c.sheet="";c.notice="已儲存並重新載入"}.onFailure{error="儲存失敗：${it.localizedMessage}"}
-    },Modifier.fillMaxWidth()){Text("儲存並套用")}
+        if(c.activeId!=tabId||c.domain!=original.domain){error=bt(R.string.msg_63cf6247c550)}
+        else runCatching{c.saveSite(original.copy(css=css,js=js,html=html),reload=true)}.onSuccess{c.sheet="";c.notice=bt(R.string.msg_213c519f9a8d)}.onFailure{error=bt(R.string.msg_7106b4590cce ,it.localizedMessage)}
+    },Modifier.fillMaxWidth()){Text(bt(R.string.msg_d5ae259c7a80))}
 }
 @Composable private fun InventoryPanel(c:BrowserController){
     var elements by remember{mutableStateOf<List<JSONObject>>(emptyList())};var loading by remember{mutableStateOf(true)}
     LaunchedEffect(Unit){val raw=c.js("window.__chengjingEye?.inventory()");elements=runCatching{val a=JSONArray(raw);(0 until a.length()).map{a.getJSONObject(it)}}.getOrDefault(emptyList());loading=false}
-    SheetTitle("結構清單","包括原本看不見的元件。最多顯示 80 個浮動、隱藏及內嵌元件。")
+    SheetTitle(bt(R.string.msg_905d98bd5535),bt(R.string.msg_817f13599962))
     if(loading)LinearProgressIndicator(Modifier.fillMaxWidth())
-    if(!loading&&elements.isEmpty())Text("目前沒有找到這類元件；仍可直接點選網頁中的一般元件。")
-    elements.forEach{j->MenuRow(if(j.optBoolean("hidden"))Icons.Outlined.VisibilityOff else Icons.Outlined.Layers,j.optString("label"),if(j.optBoolean("hidden"))"原本隱藏"else if(j.optBoolean("fixed"))"浮動／固定元件"else"內嵌頁面"){c.chooseSelector(j.getString("selector"))}}
+    if(!loading&&elements.isEmpty())Text(bt(R.string.msg_2111f387ba60))
+    elements.forEach{j->MenuRow(if(j.optBoolean("hidden"))Icons.Outlined.VisibilityOff else Icons.Outlined.Layers,j.optString("label"),if(j.optBoolean("hidden"))bt(R.string.msg_167bc0947798)else if(j.optBoolean("fixed"))bt(R.string.msg_dc2e23f523ad)else bt(R.string.msg_047f31f927fe)){c.chooseSelector(j.getString("selector"))}}
 }
 @Composable private fun SettingsPanel(category:String,store:BrowserStore,theme:String,onTheme:(String)->Unit,c:BrowserController,addressAtBottom:Boolean,onAddressPosition:(Boolean)->Unit){
     val scope=rememberCoroutineScope();var key by remember{mutableStateOf("")};var hasKey by remember{mutableStateOf(store.hasKey())};var model by remember{mutableStateOf(store.model)};var models by remember{mutableStateOf(OpenRouter.defaults)};var loading by remember{mutableStateOf(false)}
     when(category){
         "appearance"->{
-            SettingsGroup("主題"){
+            LanguageSettings(c.context as MainActivity)
+            SettingsGroup(bt(R.string.msg_e9666224fbb7)){
                 Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)){
-                    listOf(Triple("light","淺色",Icons.Outlined.LightMode),Triple("dark","深色",Icons.Outlined.DarkMode),Triple("system","系統",Icons.Outlined.BrightnessAuto)).forEach{(id,label,icon)->AppearanceOption(label,theme==id,Modifier.weight(1f),icon=icon){onTheme(id)}}
+                    listOf(Triple("light",bt(R.string.msg_dee60aee2501),Icons.Outlined.LightMode),Triple("dark",bt(R.string.msg_a6b75d068032),Icons.Outlined.DarkMode),Triple("system",bt(R.string.msg_6df543c4a401),Icons.Outlined.BrightnessAuto)).forEach{(id,label,icon)->AppearanceOption(label,theme==id,Modifier.weight(1f),icon=icon){onTheme(id)}}
                 }
-                Text("跟隨系統會依手機的深色設定切換。",fontSize=12.sp,lineHeight=18.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(bt(R.string.msg_381e6e45713f),fontSize=12.sp,lineHeight=18.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
             }
-            SettingsGroup("網址列位置"){
+            SettingsGroup(bt(R.string.msg_4afb08d71d8d)){
                 Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)){
-                    AppearanceOption("網址列在上方",!addressAtBottom,Modifier.weight(1f),addressBottom=false){onAddressPosition(false)}
-                    AppearanceOption("網址列在下方",addressAtBottom,Modifier.weight(1f),addressBottom=true){onAddressPosition(true)}
+                    AppearanceOption(bt(R.string.msg_80a24fd604b8),!addressAtBottom,Modifier.weight(1f),addressBottom=false){onAddressPosition(false)}
+                    AppearanceOption(bt(R.string.msg_629f91b2430d),addressAtBottom,Modifier.weight(1f),addressBottom=true){onAddressPosition(true)}
                 }
-                Text(if(addressAtBottom)"網址列在下方，天眼與導覽工具列在上方。"else"網址列在上方，天眼與導覽工具列在下方。",fontSize=12.sp,lineHeight=18.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(if(addressAtBottom)bt(R.string.msg_b8b124ce8c68)else bt(R.string.msg_1ff1261a38e8),fontSize=12.sp,lineHeight=18.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
         "browsing"->{
             HomeSettings(c)
-            MenuGroup("搜尋"){
-                MenuRow(Icons.Outlined.Search,"預設搜尋引擎","${SearchEngines.label(store.searchSettings)} · ${SearchEngines.description(store.searchSettings)}"){c.sheet="search-engine"}
+            MenuGroup(bt(R.string.msg_03c481a6ab85)){
+                MenuRow(Icons.Outlined.Search,bt(R.string.msg_14bd2c678335),"${SearchEngines.label(store.searchSettings)} · ${SearchEngines.description(store.searchSettings)}"){c.sheet="search-engine"}
             }
-            MenuGroup("網站顯示"){
-                MenuRow(Icons.Outlined.Language,"瀏覽器識別（User-Agent）",when(store.userAgentMode){"webview"->"原始 Android WebView";"custom"->"自訂識別";else->"Chrome 手機版"}){c.sheet="user-agent"}
+            MenuGroup(bt(R.string.msg_4052ba88aa30)){
+                MenuRow(Icons.Outlined.Language,bt(R.string.msg_586fbcc82bec),when(store.userAgentMode){"webview"->bt(R.string.msg_12acb73519ef);"custom"->bt(R.string.msg_0eac99137858);else->bt(R.string.msg_2a9edef138f8)}){c.sheet="user-agent"}
             }
-            MenuGroup("資料與同步"){
-                MenuRow(Icons.Outlined.CloudSync,"Google 同步"){c.sheet="sync"}
-                MenuRow(Icons.Outlined.Folder,"書籤資料夾"){c.sheet="bookmarks"}
-                MenuRow(Icons.Outlined.History,"瀏覽記錄"){c.sheet="history"}
+            MenuGroup(bt(R.string.msg_93ad935f13c4)){
+                MenuRow(Icons.Outlined.CloudSync,bt(R.string.msg_4d94c28a53c4)){c.sheet="sync"}
+                MenuRow(Icons.Outlined.Folder,bt(R.string.msg_b1d2dc2fb2e6)){c.sheet="bookmarks"}
+                MenuRow(Icons.Outlined.History,bt(R.string.msg_0baa9a64e9b1)){c.sheet="history"}
             }
-            MenuGroup("使用說明"){
-                MenuRow(Icons.Outlined.Info,"第三方授權"){c.sheet="legal"}
-                MenuRow(Icons.Outlined.PrivacyTip,"隱私與資料","資料用途、保存與刪除方式"){c.sheet="privacy"}
-                MenuRow(Icons.Outlined.Science,"天眼練習場","練習調整元件、新增 CSS 與 JS"){c.navigate("https://practice.chengjing.invalid/")}
+            MenuGroup(bt(R.string.msg_c7845aa27319)){
+                MenuRow(Icons.Outlined.Info,bt(R.string.msg_371d839ac65c)){c.sheet="legal"}
+                MenuRow(Icons.Outlined.PrivacyTip,bt(R.string.msg_930e319f7845),bt(R.string.msg_56cb31e79eb1)){c.sheet="privacy"}
+                MenuRow(Icons.Outlined.Science,bt(R.string.msg_e2bdb7ac0e1d),bt(R.string.msg_3a3d370702f1)){c.navigate("https://practice.chengjing.invalid/")}
             }
-            Text("澄境瀏覽器 ${BuildConfig.VERSION_NAME} · Android 版",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(bt(R.string.msg_f329c206f45a ,BuildConfig.VERSION_NAME),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
         }
         "ai"->{
             AiProviderPanel(c)
             if(store.aiProvider=="gemma")GemmaSetupPanel(c)else{
-            SettingsGroup("OpenRouter 連線"){
+            SettingsGroup(bt(R.string.msg_d7dd64f83835)){
                 Row(verticalAlignment=Alignment.CenterVertically){
                     Icon(if(hasKey)Icons.Outlined.VerifiedUser else Icons.Outlined.Key,null,tint=MaterialTheme.colorScheme.primary,modifier=Modifier.size(22.dp));Spacer(Modifier.width(12.dp))
-                    Column(Modifier.weight(1f)){Text(if(hasKey)"金鑰已儲存"else"連結你的 AI",fontSize=15.sp,fontWeight=FontWeight.Medium);Text(if(hasKey)"已加密保存在這支手機"else"讓 AI 協助檢查天眼規則",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)}
+                    Column(Modifier.weight(1f)){Text(if(hasKey)bt(R.string.msg_8831bba1231d)else bt(R.string.msg_454792f22b74),fontSize=15.sp,fontWeight=FontWeight.Medium);Text(if(hasKey)bt(R.string.msg_0b2e6e02b110)else bt(R.string.msg_b69f5d8ebb3b),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)}
                 }
-                OutlinedTextField(key,{key=it},label={Text(if(hasKey)"輸入新的 API Key 以替換"else"API Key")},visualTransformation=PasswordVisualTransformation(),singleLine=true,modifier=Modifier.fillMaxWidth().testTag("openrouter-api-key"))
-                if(key.isNotEmpty())Button(onClick={runCatching{store.saveKey(key)}.onSuccess{key="";hasKey=true;c.notice="API Key 已加密儲存"}.onFailure{c.notice="金鑰儲存失敗：${it.localizedMessage}"}},Modifier.fillMaxWidth()){Text("儲存 API Key")}
-                if(hasKey)TextButton(onClick={store.saveKey("");hasKey=false;c.notice="API Key 已移除"}){Text("移除已儲存的 API Key")}
+                OutlinedTextField(key,{key=it},label={Text(if(hasKey)bt(R.string.msg_a5cc92dedb6d)else"API Key")},visualTransformation=PasswordVisualTransformation(),singleLine=true,modifier=Modifier.fillMaxWidth().testTag("openrouter-api-key"))
+                if(key.isNotEmpty())Button(onClick={runCatching{store.saveKey(key)}.onSuccess{key="";hasKey=true;c.notice=bt(R.string.msg_349c23511e2e)}.onFailure{c.notice=bt(R.string.msg_9793d5aa34a9 ,it.localizedMessage)}},Modifier.fillMaxWidth()){Text(bt(R.string.msg_c9937515f133))}
+                if(hasKey)TextButton(onClick={store.saveKey("");hasKey=false;c.notice=bt(R.string.msg_308f90d89d99)}){Text(bt(R.string.msg_4df897d4de83))}
             }
-            SettingsGroup("模型"){
+            SettingsGroup(bt(R.string.msg_c98e118e0a43)){
                 models.forEach{id->
                     Row(Modifier.fillMaxWidth().height(60.dp).clip(RoundedCornerShape(12.dp)).background(if(model==id)MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.background).clickable{model=id;store.model=id}.padding(end=12.dp),verticalAlignment=Alignment.CenterVertically){
                         RadioButton(selected=model==id,onClick={model=id;store.model=id})
@@ -483,10 +494,10 @@ class MainActivity:AppCompatActivity(){
                         }
                     }
                 }
-                OutlinedTextField(model,{model=it;store.model=it},label={Text("或自行輸入模型名稱")},singleLine=true,modifier=Modifier.fillMaxWidth())
-                TextButton(enabled=!loading,onClick={loading=true;scope.launch{runCatching{OpenRouter().models()}.onSuccess{models=it;c.notice="已取得各系列最新可用的一般文字模型"}.onFailure{c.notice="無法更新模型，現有選項仍可使用"};loading=false}}){Text(if(loading)"更新中…"else"更新最新模型清單")}
+                OutlinedTextField(model,{model=it;store.model=it},label={Text(bt(R.string.msg_4e8050ee2fde))},singleLine=true,modifier=Modifier.fillMaxWidth())
+                TextButton(enabled=!loading,onClick={loading=true;scope.launch{runCatching{OpenRouter().models()}.onSuccess{models=it;c.notice=bt(R.string.msg_33190323da75)}.onFailure{c.notice=bt(R.string.msg_a822357ce405)};loading=false}}){Text(if(loading)bt(R.string.msg_a0bacec44f47)else bt(R.string.msg_233cb3dae5da))}
             }
-            Text("按下分析才會呼叫 OpenRouter，費用依所選模型計算。金鑰不會交給網站；送出的資料會由 OpenRouter 與模型供應商處理。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(bt(R.string.msg_8d8cdcd65552),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
@@ -496,50 +507,50 @@ class MainActivity:AppCompatActivity(){
     val sync=(c.context as MainActivity).bookmarkSync
     LaunchedEffect(sync){sync.resume()}
     c.revision
-    SheetTitle("Google 同步","把書籤、收藏進度與天眼設定帶到下一支手機。")
+    SheetTitle(bt(R.string.msg_4d94c28a53c4),bt(R.string.msg_f1f50baf49b4))
     Surface(modifier=Modifier.fillMaxWidth(),color=MaterialTheme.colorScheme.primaryContainer,shape=RoundedCornerShape(18.dp)){
         Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
             Icon(if(sync.busy)Icons.Outlined.CloudSync else if(!sync.connected||sync.details.isNotBlank())Icons.Outlined.CloudOff else Icons.Outlined.CloudDone,null,tint=if(sync.requiresAttention)MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
             Text(sync.status,fontWeight=FontWeight.SemiBold,modifier=Modifier.testTag("sync-status"))
             if(sync.details.isNotBlank())Text(sync.details,fontSize=13.sp,color=if(sync.requiresAttention)MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,lineHeight=21.sp,modifier=Modifier.testTag("sync-details"))
             if(sync.connected)Text(store.bookmarkStore.accountLabel,fontSize=13.sp)
-            if(store.bookmarkStore.lastSync>0)Text("上次完成："+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(java.util.Date(store.bookmarkStore.lastSync)),fontSize=12.sp)
+            if(store.bookmarkStore.lastSync>0)Text(bt(R.string.msg_dbf504aee158)+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(java.util.Date(store.bookmarkStore.lastSync)),fontSize=12.sp)
         }
     }
-    Text("書籤、資料夾、收藏及刪除紀錄會存入 Google Drive 的應用程式專用隱藏空間，不會取得你其他檔案的存取權。",fontSize=14.sp,lineHeight=23.sp)
-    SettingsGroup("收藏與閱讀進度"){
-        Text("收藏的名稱、目前閱讀網址、頁面標題、捲動位置與閱讀百分比會一起同步。請在每支裝置更新至支援收藏同步的版本。",fontSize=13.sp,lineHeight=21.sp)
-        Text("同一收藏以最近儲存的完整紀錄為準；重新命名與刪除也會同步，不會強迫保留最高閱讀百分比。正在開啟的頁面不會被強制跳轉，下次從收藏開啟時使用同步後的位置。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text(bt(R.string.msg_bb02b225cf7e),fontSize=14.sp,lineHeight=23.sp)
+    SettingsGroup(bt(R.string.msg_da8c7e82d56f)){
+        Text(bt(R.string.msg_462b5f8ed149),fontSize=13.sp,lineHeight=21.sp)
+        Text(bt(R.string.msg_4c197d7a57af),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     }
     var siteSync by remember{mutableStateOf(store.syncSiteSettings)}
-    SettingsGroup("天眼網站設定"){
-        Text("開啟後，網域、元件規則、自訂 CSS／JS／HTML 及網站行為設定會同步至你自己的 Google Drive。程式碼可能包含私人內容，請先確認沒有密碼或金鑰。",fontSize=13.sp,lineHeight=21.sp)
+    SettingsGroup(bt(R.string.msg_bd81a5f18ff4)){
+        Text(bt(R.string.msg_55f5a4c4b0b3),fontSize=13.sp,lineHeight=21.sp)
         Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){
-            Text("同步天眼網站設定",Modifier.weight(1f),fontSize=15.sp)
+            Text(bt(R.string.msg_86b823816a78),Modifier.weight(1f),fontSize=15.sp)
             Switch(siteSync,{value->store.syncSiteSettings=value;siteSync=value;if(sync.connected)sync.changed()},enabled=!sync.busy,modifier=Modifier.testTag("sync-site-settings"))
         }
-        Text("同一網站以較新的完整設定為準；已清除的設定也會保留刪除狀態。其他裝置收到後，在下次載入網站時套用。暫時例外與憑證例外只留在本機。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(bt(R.string.msg_da8b0b8c9bc6),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     }
-    Text("連結後，這支手機的書籤與收藏會與你選擇的 Google 帳戶合併。App 開啟時，以及修改書籤、儲存收藏進度、重新命名或刪除收藏後會自動同步；離線時先留在手機，下次連線再同步。",fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text(bt(R.string.msg_d9c03b110d35),fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     Button(enabled=!sync.busy,onClick={sync.authorize(true)},modifier=Modifier.fillMaxWidth().height(50.dp)){
         if(sync.busy){CircularProgressIndicator(Modifier.size(18.dp),strokeWidth=2.dp);Spacer(Modifier.width(10.dp))}
-        Text(if(sync.busy)"處理中…"else if(sync.connected)"立即同步"else"使用 Google 帳戶連結")
+        Text(if(sync.busy)bt(R.string.msg_d166e71ff3ae)else if(sync.connected)bt(R.string.msg_36e7a43a1c67)else bt(R.string.msg_aee33ff22038))
     }
-    if(sync.connected)TextButton(onClick={sync.disconnect()},Modifier.fillMaxWidth()){Text("停止同步並登出")}
-    Text("登出會保留本機與雲端資料。本機同步資料綁定首次同步的 Google 帳戶，避免切換帳戶時混入別人的資料。",fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    if(sync.connected)TextButton(onClick={sync.disconnect()},Modifier.fillMaxWidth()){Text(bt(R.string.msg_9746a274324c))}
+    Text(bt(R.string.msg_b69bae05d706),fontSize=12.sp,lineHeight=19.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
 
 @Composable private fun UserAgentPanel(c:BrowserController){
     var mode by remember{mutableStateOf(c.store.userAgentMode)}
     var custom by remember{mutableStateOf(c.store.customUserAgent)}
     var error by remember{mutableStateOf("")}
-    SheetTitle("瀏覽器識別","有些網站會依識別資訊，提供不同的版型。")
-    listOf("chrome" to "Chrome 手機版（預設）","webview" to "原始 Android WebView","custom" to "自訂 User-Agent").forEach{(value,label)->
+    SheetTitle(bt(R.string.msg_871eaa84c97d),bt(R.string.msg_efb208e781f4))
+    listOf("chrome" to bt(R.string.msg_7fd85e60aef6),"webview" to bt(R.string.msg_12acb73519ef),"custom" to bt(R.string.msg_3138f64b4547)).forEach{(value,label)->
         Row(Modifier.fillMaxWidth().clickable{mode=value},verticalAlignment=Alignment.CenterVertically){RadioButton(mode==value,{mode=value});Text(label,fontSize=15.sp)}
     }
-    if(mode=="custom")OutlinedTextField(custom,{custom=it},Modifier.fillMaxWidth().testTag("custom-user-agent"),label={Text("User-Agent")},minLines=3,maxLines=5,supportingText={Text("貼上完整的單行 User-Agent")})
-    Text("儲存後會重新載入目前頁面；新開啟或重新整理的其他頁面也會使用這個設定。網站可能改用另一種版型，支援程度仍受目前瀏覽核心影響。",fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    if(mode=="custom")OutlinedTextField(custom,{custom=it},Modifier.fillMaxWidth().testTag("custom-user-agent"),label={Text("User-Agent")},minLines=3,maxLines=5,supportingText={Text(bt(R.string.msg_b1c83027f591))})
+    Text(bt(R.string.msg_efa2a61e6723),fontSize=13.sp,lineHeight=21.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
     if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,fontSize=13.sp)
-    Button(onClick={runCatching{c.setUserAgent(mode,custom)}.onSuccess{c.sheet="";c.notice="已更新瀏覽器識別"}.onFailure{error=it.localizedMessage?:"無法儲存"}},Modifier.fillMaxWidth()){Text("儲存並重新載入")}
-    Text("目前瀏覽核心：Android WebView ${androidx.webkit.WebViewCompat.getCurrentWebViewPackage(c.context)?.versionName?:"未知"}",fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Button(onClick={runCatching{c.setUserAgent(mode,custom)}.onSuccess{c.sheet="";c.notice=bt(R.string.msg_73b390a73f19)}.onFailure{error=it.localizedMessage?:bt(R.string.msg_a51b36be9b6a)}},Modifier.fillMaxWidth()){Text(bt(R.string.msg_bb7b020c8cf9))}
+    Text(bt(R.string.msg_7818a40d2a66 ,androidx.webkit.WebViewCompat.getCurrentWebViewPackage(c.context)?.versionName?:bt(R.string.msg_4d8c1c5b4283)),fontSize=11.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }

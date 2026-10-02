@@ -87,13 +87,13 @@ internal fun BrowserController.openExternalLink(tab:BrowserTab,raw:String,allowe
             }else if(link.fallback!=null){
                 tab.externalOpenerId=null
                 tab.pendingUrl=link.fallback;tab.web.loadUrl(link.fallback)
-            }else {discardEmptyPopup();notice="找不到可開啟此連結的 App，請確認已安裝對應的應用程式"}
+            }else {discardEmptyPopup();notice=bt(R.string.msg_cb4875469aaa)}
         }
     }
     if(tab.incognito){
         val activity=context as? Activity?:return false
         if(activity.isFinishing||activity.isDestroyed)return false
-        prompts.confirm("在其他 App 開啟？","將離開澄境的無痕瀏覽。其他 App 可能保存這個連結與使用記錄。","開啟",
+        prompts.confirm(bt(R.string.msg_34b996e6bd60),bt(R.string.msg_140169f1183b),bt(R.string.msg_f290f9167ad0),
             owner=tab.id,valid={tab in tabs&&tab.id==activeId&&tab.url==page&&tab.navigationGeneration==generation},
             onCancel={discardEmptyPopup()},confirm=launch)
         return true

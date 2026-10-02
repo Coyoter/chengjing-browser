@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"Cari lagi"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"Akun Google"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"Snapshot perangkat sinkronisasi terlalu banyak, silakan hubungi dukungan"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"Menunggu sinkronisasi"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"Belum terhubung ke Google"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"Otorisasi Google dibatalkan"</string>
+  <string name="msg_37f027ce9096" formatted="false">"Data lokal tetap tidak berubah, Anda dapat menekan \"Sinkronkan Sekarang\" nanti."</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"Menunggu koneksi jaringan"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"Data lokal telah disimpan, tekan \"Sinkronkan Sekarang\" setelah koneksi pulih."</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"Perlu masuk ulang ke Google"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"Silakan tekan \"Sinkronkan Sekarang\" untuk mengonfirmasi akun Google."</string>
+  <string name="msg_35b24a76557b" formatted="false">"Pengaturan masuk Google tidak kompatibel"</string>
+  <string name="msg_f164f003f815" formatted="false">"Harap perbarui ke versi terbaru; jika masih tidak bisa terhubung, hubungi dukungan."</string>
+  <string name="msg_ebfa487493ba" formatted="false">"Otorisasi Google belum selesai"</string>
+  <string name="msg_9dba61428261" formatted="false">"Silakan tekan \"Sinkronkan Sekarang\" dan coba lagi. Data lokal telah disimpan."</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"Menghubungkan ke Google…"</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"Data lokal tetap tidak berubah, silakan coba lagi."</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"Menyinkronkan bookmark…"</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"Koneksi dibatalkan"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"Penulisan dan pembacaan ulang cloud tidak konsisten, silakan coba lagi"</string>
+  <string name="msg_9359e2513325" formatted="false">"Menyinkronkan koleksi dan kemajuan baca…"</string>
+  <string name="msg_294092e535b2" formatted="false">"Penulisan dan pembacaan ulang koleksi dan kemajuan baca tidak konsisten, silakan coba lagi"</string>
+  <string name="msg_f2e9df262458" formatted="false">"Menyinkronkan pengaturan situs SkyEye…"</string>
+  <string name="msg_ef86e477373a" formatted="false">"Penulisan dan pembacaan ulang pengaturan SkyEye tidak konsisten, silakan coba lagi"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"Telah menyinkronkan %1$s bookmark, %2$s koleksi dan kemajuan baca"</string>
+  <string name="msg_2830de0d843f" formatted="false">", %1$s pengaturan situs; akan diterapkan setelah muat ulang halaman"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"Sinkronisasi dihentikan, bookmark dan koleksi lokal serta cloud tetap disimpan"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"Bookmark"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"ID bookmark tidak valid"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"Silakan masukkan URL bookmark"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"URL maksimal 16.000 karakter"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"Silakan masukkan URL yang diawali dengan https:// atau http://"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"Format URL tidak valid"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"URL setelah dikodekan melebihi 16.000 karakter, silakan perpendek URL"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"File bookmark terlalu besar, silakan impor secara bertahap (batas 8 MB)"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"Maksimal impor 20.000 bookmark sekaligus"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;Bookmark ChengJing&lt;/TITLE&gt;&lt;H1&gt;Bookmark ChengJing&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"File bookmark cloud terlalu besar"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"Format bookmark cloud tidak kompatibel"</string>
+  <string name="msg_40ad29b56199" formatted="false">"Gagal menyimpan bookmark"</string>
+  <string name="msg_a782f2754c83" formatted="false">"Beranda"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"Pengecualian sertifikat diaktifkan, klik untuk melihat"</string>
+  <string name="msg_7c24b540153b" formatted="false">"Sertifikat bermasalah, klik untuk melihat"</string>
+  <string name="msg_58f5b551d138" formatted="false">"Info situs"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"Cari atau masukkan URL"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"Pergi"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"Berhenti memuat"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"Muat ulang"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"Tab baru"</string>
+  <string name="msg_75bc594490fc" formatted="false">"Tab, %1$s buah"</string>
+  <string name="msg_ad62e8203c00" formatted="false">"File tanpa nama"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"Unduhan belum selesai atau file telah dihapus"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"File telah dihapus"</string>
+  <string name="msg_813f4217faf8" formatted="false">"Buka file unduhan"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"Tidak ada aplikasi yang dapat membuka file ini"</string>
+  <string name="msg_04c451cd747f" formatted="false">"File tidak dapat dibuka, mungkin telah dipindahkan atau dihapus"</string>
+  <string name="msg_8d24156413ef" formatted="false">"Tidak dapat membaca unduhan sistem sementara, silakan coba lagi nanti"</string>
+  <string name="msg_d477c75aa656" formatted="false">"Unduhan"</string>
+  <string name="msg_4138d7e93958" formatted="false">"Gambar, video, audio, dan file yang diunduh oleh ChengJing Browser."</string>
+  <string name="msg_775f5ca1d653" formatted="false">"Belum ada item unduhan"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"Tidak ditemukan unduhan yang cocok"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"Tekan lama gambar, gunakan menu unduhan pemutar, atau klik tautan unduhan di situs."</string>
+  <string name="msg_d011ffe066da" formatted="false">"Buka %1$s"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"Batalkan %1$s"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"Dibatalkan"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"Selesai"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"Gagal mengunduh"</string>
+  <string name="msg_204249cd633a" formatted="false">"Dijeda, menunggu sistem mencoba lagi"</string>
+  <string name="msg_235d5f021172" formatted="false">"Sedang mengunduh"</string>
+  <string name="msg_efed99b86212" formatted="false">"Menunggu unduhan"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"Ukuran belum dikonfirmasi"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"Unduh berkas"</string>
+  <string name="msg_de32e20193ad" formatted="false">"Mengerti"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"Riwayat penelusuran"</string>
+  <string name="msg_4e445f09300c" formatted="false">"250 halaman terakhir hanya disimpan di ponsel ini. Penelusuran penyamaran tidak akan ditambahkan."</string>
+  <string name="msg_c24268c66266" formatted="false">"Hapus riwayat penelusuran"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"Belum ada riwayat penelusuran"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"Halaman yang cocok tidak ditemukan"</string>
+  <string name="msg_539989302fd2" formatted="false">"Halaman yang dibuka di tab biasa akan muncul di sini."</string>
+  <string name="msg_3352ef9c5026" formatted="false">"Hapus riwayat penelusuran ini"</string>
+  <string name="msg_46afe15d4929" formatted="false">"Hapus riwayat penelusuran?"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"Riwayat penelusuran dan pencarian lokal akan dihapus, tetapi bookmark, favorit, dan data masuk situs tidak akan dihapus."</string>
+  <string name="msg_bce2377283c2" formatted="false">"Hapus"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"Batal"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"Cari %1$s"</string>
+  <string name="msg_052052ba842e" formatted="false">"Tab baru"</string>
+  <string name="msg_778dda35c10f" formatted="false">"Snapshot tab gagal disimpan, snapshot yang ada tetap disimpan"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"Snapshot masih disimpan, silakan tutup aplikasi nanti"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"Unduhan akan disimpan di ponsel"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"Berkas dan riwayat unduhan sistem tidak akan dihapus dengan tab penyamaran. Yakin ingin mengunduh?"</string>
+  <string name="msg_49e07d37a692" formatted="false">"Data tab gagal disimpan, periksa ruang penyimpanan ponsel"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"Gunakan huruf, angka, dan simbol satu baris, maksimal 1.024 karakter"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"Perbarui Android System WebView untuk menggunakan tab penyamaran dengan isolasi data"</string>
+  <string name="msg_4369d178c9de" formatted="false">"Maksimal 20 tab dapat dibuka, tutup tab yang tidak digunakan terlebih dahulu"</string>
+  <string name="msg_b860234cdca4" formatted="false">"Tidak dapat membuat sesi penyamaran terisolasi, tidak ada halaman yang dibuka"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · Gambar cache"</string>
+  <string name="msg_b210350f38fc" formatted="false">"Gambar"</string>
+  <string name="msg_2988ade50b61" formatted="false">"Eksekusi program kustom gagal; ubah atau ganti pengecualian di pengaturan SkyEye"</string>
+  <string name="msg_a782840b186d" formatted="false">"Alihkan ke aplikasi eksternal"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"Format tautan ini tidak dapat dibuka"</string>
+  <string name="msg_216baff9f183" formatted="false">"Alih otomatis"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"Beranda ChengJing"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"Situs ini tidak dapat menyelesaikan koneksi terenkripsi, coba lagi nanti."</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"Halaman tidak dapat dibuka sementara, periksa jaringan atau alamat dan coba lagi."</string>
+  <string name="msg_5e2122abec02" formatted="false">"Sertifikat telah kedaluwarsa"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"Sertifikat belum berlaku"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"Domain sertifikat tidak cocok"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"Sumber sertifikat tidak dipercaya"</string>
+  <string name="msg_557874fe9910" formatted="false">"Tanggal sertifikat tidak valid"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"Verifikasi sertifikat gagal"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"Sertifikat situs ini gagal diverifikasi, koneksi dihentikan. Ketuk ikon koneksi di bilah alamat untuk melihat alasan dan pengaturan pengecualian situs."</string>
+  <string name="msg_31648c936ef3" formatted="false">"Proses halaman berhenti, tutup tab ini lalu buka kembali."</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"Halaman lokal"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"Tinggalkan halaman?"</string>
+  <string name="msg_3bf1281815df" formatted="false">"Pesan situs · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"Tinggalkan"</string>
+  <string name="msg_20db9f87b860" formatted="false">"Konfirmasi"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"Tetap di halaman ini"</string>
+  <string name="msg_e9ea75903633" formatted="false">"Jendela baru / popup"</string>
+  <string name="msg_2138c825b189" formatted="false">"Versi ini belum mengizinkan situs menggunakan kamera dan mikrofon"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"Pemilih berkas tidak tersedia"</string>
+  <string name="msg_beffea44da0c" formatted="false">"Tidak dapat membuka pemilih berkas"</string>
+  <string name="msg_ad37ef430462" formatted="false">"Tautan ini tidak menyediakan berkas untuk diunduh"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\nIni adalah berkas cache halaman web, jangan segarkan halaman sumber sampai unduhan selesai."</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\nBerkas dan riwayat unduhan akan disimpan di ponsel, tidak akan dihapus dengan tab penyamaran."</string>
+  <string name="msg_d71c2bea9463" formatted="false">"Unduh berkas?"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"Buka halaman terlebih dahulu, lalu tambahkan ke favorit"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"Halaman telah berubah, coba lagi"</string>
+  <string name="msg_c0af0b409136" formatted="false">"Favorit gagal disimpan: %1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"Buka situs terlebih dahulu, lalu gunakan SkyEye"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"Sedang menampilkan situs asli, akhiri pengecualian terlebih dahulu"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"Perbarui Android System WebView di Play Store untuk mengaktifkan SkyEye penuh"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"Halaman belum siap, muat ulang dan coba lagi"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"Aturan ini tidak dapat digunakan"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"Elemen %1$s tidak ditemukan di halaman saat ini, pilih ulang elemen"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"Kesalahan sintaks JavaScript: %1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"Pratinjau penghapusan selesai; tekan \"Simpan\" untuk konfirmasi"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"Disimpan, akan diterapkan pada %1$s dan subdomainnya"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"Menampilkan situs asli sementara; aturan tetap berlaku"</string>
+  <string name="msg_a4038cb71105" formatted="false">"Penerapan aturan SkyEye dipulihkan"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"Pemulihan penyimpanan terakhir berhasil"</string>
+  <string name="msg_13256df2ec81" formatted="false">"Sebelumnya"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"Berikutnya"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"SkyEye"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"Perbarui kemajuan favorit"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"Favorit cepat"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"Sudah difavoritkan"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"Belum difavoritkan"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"Favorit dan posisi baca telah disimpan"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"Menu browser"</string>
+  <string name="msg_bcbd40877710" formatted="false">"Elemen situs"</string>
+  <string name="msg_8508e17dc836" formatted="false">"Aturan elemen kosong atau terlalu panjang"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"Masukkan pemilih elemen, bukan seluruh gaya"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"Tidak bisa menghapus seluruh halaman, perkecil area seleksi"</string>
+  <string name="msg_2b76681815f4" formatted="false">"AI menyarankan terlalu banyak elemen diubah sekaligus, deskripsikan area yang lebih kecil"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"Penyesuaian AI"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"AI mencoba mengubah aturan yang tidak ada"</string>
+  <string name="msg_af099dc62317" formatted="false">"Maksimal 100 aturan per domain"</string>
+  <string name="msg_6c1546728176" formatted="false">"Sesuaikan aturan elemen"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"Hanya situs HTTPS yang dapat mengatur pengecualian sertifikat"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"Gagal menyimpan pengaturan"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"Pengaturan mesin pencari gagal disimpan"</string>
+  <string name="msg_1615b8429815" formatted="false">"Mesin pencari kustom gagal disimpan"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"Penyimpanan ponsel gagal, aturan belum tersimpan"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"Penggabungan pengaturan situs belum selesai, data lokal disimpan"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"Riwayat penjelajahan gagal disimpan, periksa ruang penyimpanan ponsel"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_71171b556a11" formatted="false">"Halaman web,\ndisesuaikan dengan kebiasaan Anda."</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"Jelajahi seperti biasa, juga bisa buka SkyEye,\ntambah gaya, kode, atau sesuaikan elemen."</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"Kutipan hari ini"</string>
+  <string name="msg_27268090a840" formatted="false">"Akses cepat"</string>
+  <string name="msg_f06e679b9530" formatted="false">"Wikipedia"</string>
+  <string name="msg_217d775e8c90" formatted="false">"Lanjutkan membaca"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"Folder bookmark"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"Semua favorit"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"Bagikan gambar"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"Izin simpan tidak diberikan, gambar tidak diunduh"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"Gambar akan tetap ada di luar mode penyamaran"</string>
+  <string name="msg_0816eeae6881" formatted="false">"Aplikasi unduh, clipboard, atau penerima gambar mungkin menyimpan file, tidak terhapus dengan tab penyamaran."</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"Lanjutkan"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"Tidak dapat menemukan gambar yang tersedia, file tidak disimpan. Silakan tekan lama lagi nanti."</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"Halaman berubah, silakan tekan lama gambar lagi"</string>
+  <string name="msg_e409173288a1" formatted="false">"Mengambil gambar…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"Gambar sementara dibuka di tab baru"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"Gambar disalin, bisa ditempel di aplikasi yang mendukung gambar"</string>
+  <string name="msg_8746e6a72700" formatted="false">"Selesaikan izin simpan gambar sebelumnya terlebih dahulu"</string>
+  <string name="msg_7151072d822c" formatted="false">"Gambar telah diunduh ke Downloads/ChengJing, bisa dilihat di \"Unduhan\""</string>
+  <string name="msg_fb43036835f6" formatted="false">"Izin simpan tidak diberikan, file tidak diunduh"</string>
+  <string name="msg_18763274dfce" formatted="false">"Silakan pilih ulang file yang akan diunduh"</string>
+  <string name="msg_38116168b889" formatted="false">"URL ini tidak bisa diunduh lewat layanan sistem, silakan unduh ulang di halaman asli"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"Selesaikan izin simpan file sebelumnya terlebih dahulu"</string>
+  <string name="msg_1022567a481f" formatted="false">"Tidak bisa membuka izin simpan, silakan coba lagi"</string>
+  <string name="msg_067c7812968e" formatted="false">"ChengJing Browser · Unduh Gambar"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"ChengJing Browser · Unduh File"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"Telah masuk antrean unduhan sistem, bisa dilihat di \"Unduhan\" menu tiga titik"</string>
+  <string name="msg_46248e4d3641" formatted="false">"Tidak bisa menambahkan unduhan file, periksa ruang penyimpanan dan layanan unduhan sistem"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"Membuka ChengJing Browser"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"ChengJing"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"Browser"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"Edit aturan situs"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"Revisi aturan AI"</string>
+  <string name="msg_371d839ac65c" formatted="false">"Lisensi pihak ketiga"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"Kode elemen"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"SkyEye AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"Koneksi situs"</string>
+  <string name="msg_930e319f7845" formatted="false">"Privasi &amp; data"</string>
+  <string name="msg_0d8619aae051" formatted="false">"Pengaturan"</string>
+  <string name="msg_842433f0a425" formatted="false">"Tab"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"Pengaturan SkyEye"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"Pilih satu elemen"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"Modifikasi Situs Web"</string>
+  <string name="msg_e13bbc197118" formatted="false">"Kode Kustom"</string>
+  <string name="msg_634ad289a228" formatted="false">"Bantuan AI"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"Identifikasi Browser"</string>
+  <string name="msg_14bd2c678335" formatted="false">"Mesin Pencari Default"</string>
+  <string name="msg_905d98bd5535" formatted="false">"Daftar Struktur"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"Sinkronisasi Google"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"Aturan Domain"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"Cari Teks Halaman"</string>
+  <string name="msg_9d08608859f8" formatted="false">"Catatan Pemblokiran"</string>
+  <string name="msg_9357d631d10f" formatted="false">"Kembali ke Sebelumnya"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"Jelajahi Sesuai Kebiasaan Anda"</string>
+  <string name="msg_de961bb8936f" formatted="false">"Tutup Menu"</string>
+  <string name="msg_60a53514eb92" formatted="false">"Favorit"</string>
+  <string name="msg_97afce0d452c" formatted="false">"Alat Jelajah"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"Tambah Tab Penyamaran"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"Sesi Jelajah Terpisah dari Tab Biasa"</string>
+  <string name="msg_8dce3f317048" formatted="false">"Lihat Item Unduhan ChengJing"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"Hapus Data Jelajah"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"Pilih Rentang Waktu dan Item yang Akan Dihapus"</string>
+  <string name="msg_431596791167" formatted="false">"Halaman Saat Ini"</string>
+  <string name="msg_3e40d2036259" formatted="false">"Favoritkan Halaman Saat Ini"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"Tambahkan ke Bookmark"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"Folder Tak Terkategori di Bookmark"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"Halaman Ini Sudah Ada di Bookmark"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"Bagikan"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"Gunakan Berbagi Sistem Android"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"Beralih ke Situs Versi Mobile"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"Beralih ke Situs Versi Desktop"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"SkyEye dan Situs Web"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s Aturan Dihapus"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"Pulihkan Penerapan Aturan SkyEye"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"Tampilkan Situs Asli Sementara"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"Sedang Menampilkan Situs Asli"</string>
+  <string name="msg_43d22862b439" formatted="false">"Jeda Pengaturan Domain Ini"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"Semua Aturan Domain"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"%1$s Gangguan Diblokir"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"Lihat Catatan Tab Ini"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"Preferensi dan Data"</string>
+  <string name="msg_e7ed17309495" formatted="false">"Tampilan, Jelajah, dan Pengaturan AI"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"ChengJing Browser %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"Tampilan"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"Jelajah"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"Buka Halaman Terlebih Dahulu, Lalu Bagikan Tautan"</string>
+  <string name="msg_9e2276893fae" formatted="false">"Perangkat Ini Tidak Dapat Membuka Panel Berbagi Sistem"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"Sistem Sementara Tidak Bisa Berbagi Halaman Ini"</string>
+  <string name="msg_beed38829f24" formatted="false">"Layar Ini Tidak Bisa Memulai Unduhan Gambar"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"Buka di Tab Baru"</string>
+  <string name="msg_d55104374e08" formatted="false">"Salin Tautan"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"Tautan"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"Buka Gambar di Tab Baru"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"Pratinjau Gambar"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"Salin Gambar"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"Unduh Gambar"</string>
+  <string name="msg_75136c12a08a" formatted="false">"Tidak Dapat Mendapatkan URL Gambar, Silakan Tekan Lama Lagi"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"Salin Tautan Gambar"</string>
+  <string name="msg_559552ccc661" formatted="false">"Tautan Gambar"</string>
+  <string name="msg_17d52a476d32" formatted="false">"%1$s Disalin"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"Izin Penyimpanan Diberikan, Silakan Pilih Ulang File untuk Diunduh"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"Halaman Sumber Berubah, Silakan Unduh Ulang"</string>
+  <string name="msg_167523d3b80d" formatted="false">"Saat Ini Ada Dua File Cache yang Sedang Diunduh, Silakan Coba Lagi Nanti"</string>
+  <string name="msg_57d25840bf76" formatted="false">"Sedang Mengunduh File Halaman, Bisa Dilihat atau Dibatalkan di \"Unduhan\"; Harap Simpan Tab Sumber"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"Halaman Sumber Berubah, Unduhan Dihentikan"</string>
+  <string name="msg_13491974a87a" formatted="false">"Sudah Diunduh ke Downloads/ChengJing, Bisa Dibuka di \"Unduhan\""</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"Timeout Membaca File Cache, Harap Simpan Tab Sumber dan Unduh Ulang"</string>
+  <string name="msg_639f890d3c20" formatted="false">"Dibatalkan; File Tidak Lengkap Tidak Disimpan"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"Unduhan Tidak Selesai, Periksa Ruang Penyimpanan dan Coba Lagi"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"Tab Sumber Ditutup atau Dimuat Ulang, Unduhan Dihentikan; File Tidak Lengkap Tidak Disimpan"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"Masukkan Konten"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"Tutup Menu Tekan Lama"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"Harap perbarui Android System WebView terlebih dahulu, lalu hapus Cookie dan data situs."</string>
+  <string name="msg_7877a2c231c9" formatted="false">"Perubahan tab gagal disimpan"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"Snapshot tab belum selesai dibersihkan"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"Data penjelajahan yang dipilih telah dihapus; Cookie, cache, dan data situs telah dibersihkan sepenuhnya"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"Data penjelajahan yang dipilih untuk %1$s telah dihapus"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"Pembersihan data situs belum dikonfirmasi selesai. Silakan coba lagi nanti, atau tutup dan buka kembali aplikasi."</string>
+  <string name="msg_f795969c320e" formatted="false">"Penghapusan belum selesai, beberapa data mungkin sudah terhapus. Silakan coba lagi, atau tutup dan buka kembali aplikasi."</string>
+  <string name="msg_6846f5758df9" formatted="false">"15 menit terakhir"</string>
+  <string name="msg_789842abff7d" formatted="false">"Sumber daya situs"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"Halaman ini pernah mengalami masalah sertifikat, sehingga identitas koneksi tidak dapat diverifikasi. Koneksi bermasalah akan diblokir jika pengecualian situs tidak diaktifkan.\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"Situs belum dibuka"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"Saat ini menggunakan koneksi terenkripsi HTTPS."</string>
+  <string name="msg_c6905e1adffd" formatted="false">"Koneksi HTTP tidak terenkripsi, tidak ada sertifikat situs yang dapat diverifikasi."</string>
+  <string name="msg_87178db80ada" formatted="false">"Buka situs terlebih dahulu untuk melihat informasi koneksi."</string>
+  <string name="msg_3e26c53efe37" formatted="false">"Situs saat ini"</string>
+  <string name="msg_9c5784103466" formatted="false">"Sumber lain yang digunakan halaman"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"Izinkan pengecualian sertifikat"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"Diaktifkan; akan tetap ada setelah restart"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"Nonaktif secara default, hentikan koneksi jika verifikasi gagal"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"Hanya berlaku untuk nama host HTTPS ini (termasuk port berbeda), tidak termasuk subdomain lain atau sumber pihak ketiga. Akan tetap ada sampai Anda menonaktifkannya."</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"Pengecualian sertifikat mengurangi jaminan verifikasi identitas situs; ini tidak memperbaiki masalah server yang tidak dapat membuat koneksi terenkripsi."</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"Izinkan pengecualian sertifikat untuk situs ini?"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\nPengaturan ini akan disimpan permanen sampai Anda menonaktifkannya. Situs mungkin tetap dimuat meskipun sertifikat tidak valid atau identitas tidak dapat diverifikasi; informasi login dan input dapat diakses oleh pihak yang tidak diinginkan. Aktifkan hanya jika Anda memahami dan menerima risikonya."</string>
+  <string name="msg_d848bdedee10" formatted="false">"Saya mengerti, izinkan situs ini"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"Pertahankan verifikasi"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"Format berkas tersemat tidak valid"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"URL berkas tersemat tidak valid"</string>
+  <string name="msg_a5fc04346035" formatted="false">"URL data tersemat terlalu besar, gunakan tautan unduhan berkas situs"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"Pengkodean berkas tersemat tidak lengkap"</string>
+  <string name="msg_c74489c545f7" formatted="false">"Pengkodean berkas tersemat tidak valid"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"Rentang waktu"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s halaman, %2$s riwayat pencarian"</string>
+  <string name="msg_8394223e0a97" formatted="false">"Tab yang belum ditutup"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s tab biasa · Ditutup berdasarkan waktu terakhir dikunjungi"</string>
+  <string name="msg_1f86b4081196" formatted="false">"Cookie, cache, dan data situs"</string>
+  <string name="msg_c44aefb98491" formatted="false">"Tanpa batas waktu · Hapus semua, mungkin akan keluar dari situs"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"Harap perbarui Android System WebView terlebih dahulu untuk menghapus"</string>
+  <string name="msg_ab54697044d0" formatted="false">"Rentang waktu berlaku untuk riwayat penjelajahan dan tab. Cookie, cache, dan data situs hanya bisa dihapus semua."</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"Data versi lama tanpa pencatatan waktu, pilih \"Tanpa batas waktu\" untuk menghapus."</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"Simpan bookmark, favorit, file unduhan, dan pengaturan SkyEye. Data mode penyamaran harus dihapus dengan menutup tab penyamaran."</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"Menghapus…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"Hapus data"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"Situs saat ini · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"Ingin mencoba apa? Tanyakan langsung ke AI"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"Jelaskan ide secara keseluruhan, tidak terbatas pada komponen yang dipilih"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"Komponen tidak dapat dibaca, silakan pilih ulang"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\nSaat ini cocok dengan %2$s komponen; setelah disimpan akan diterapkan ke %3$s dan subdomain yang cocok dengan struktur ini."</string>
+  <string name="msg_16a3beab3f94" formatted="false">"Properti CSS komponen"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"JavaScript komponen"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// element mewakili komponen yang cocok dengan aturan saat ini\nelement.setAttribute(\'title\', \'Petunjuk baca saya\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"HTML internal komponen"</string>
+  <string name="msg_f8ff75626431" formatted="false">"Tambahkan HTML (ditempatkan di akhir dalam komponen)"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;Pengingat baca saya&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"Script dalam HTML %1$s tidak akan dijalankan; gunakan JavaScript untuk interaksi. JS dapat membaca halaman atau mengirim permintaan, gunakan hanya yang Anda pahami."</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"Ini akan mengganti konten internal komponen yang cocok, mungkin memengaruhi interaksi asli."</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"CSS/JS/HTML dapat diisi sesuai keinginan."</string>
+  <string name="msg_381994932dcc" formatted="false">"Halaman telah berubah, silakan pilih ulang"</string>
+  <string name="msg_ac2471607490" formatted="false">"Harap isi konten yang ingin ditambahkan terlebih dahulu"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"Modifikasi situs telah mencapai batas, harap rapikan modifikasi yang sudah disimpan terlebih dahulu"</string>
+  <string name="msg_9104269ef996" formatted="false">"Telah disimpan dan diterapkan; dapat dipulihkan di pengaturan SkyEye dari penyimpanan terakhir"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"Memuat komponen…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"Simpan dan terapkan"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"Buat modifikasi asli lebih sesuai keinginan"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"Minta AI memeriksa modifikasi ini"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nAI akan membaca HTML halaman saat ini saat dimuat, sebelum menerapkan SkyEye, dan konten yang sedang diedit, lalu merevisi aturan ini sesuai permintaan baru Anda."</string>
+  <string name="msg_b654f1e4475a" formatted="false">"CSS / JS / HTML situs"</string>
+  <string name="msg_b243a787a694" formatted="false">"Situs saat ini: %1$s\nAnda dapat memberikan saran untuk tata letak keseluruhan. Analisis didasarkan pada struktur terbatas halaman yang dibuka saat ini, tidak mewakili pemeriksaan semua halaman situs."</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"Komponen yang dipilih: %1$s\nModifikasi komponen menargetkan selector ini: %2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"Bagaimana Anda ingin menyesuaikannya kali ini?"</string>
+  <string name="msg_4df18c378546" formatted="false">"Perubahan apa yang Anda inginkan untuk situs ini?"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"Bagaimana Anda ingin mengubah komponen ini? Apa yang perlu diperiksa?"</string>
+  <string name="msg_53c859901fee" formatted="false">"HTML akan menghapus konten formulir, skrip, dan atribut event, menyediakan maksimal %1$s karakter; mungkin termasuk teks halaman, tidak mencakup halaman lain atau konten dinamis selanjutnya."</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"CSS/HTML akan diterapkan ke komponen yang dipilih; JavaScript masih memiliki akses ke kode halaman, harap periksa dampak sebenarnya."</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"Menggunakan Gemma 4 untuk analisis lokal tanpa perlu API Key, struktur halaman, kode, dan kebutuhan analisis kali ini tidak dikirim ke cloud."</string>
+  <string name="msg_b45dad973407" formatted="false">"Domain, HTML asli yang sudah dibersihkan (mungkin termasuk teks halaman pribadi), aturan kustom ini, dan permintaan baru akan dikirim ke OpenRouter dan penyedia model yang dipilih. Cookie atau nilai formulir tidak dibaca."</string>
+  <string name="msg_fbd9319f336c" formatted="false">"Analisis kali ini akan mengirim domain, struktur komponen terbatas, kode kustom yang tersimpan, dan kebutuhan yang Anda masukkan ke OpenRouter dan penyedia model yang dipilih. Kode atau masalah mungkin berisi konten pribadi, harap konfirmasi terlebih dahulu; tidak secara aktif membaca Cookie, nilai formulir, atau isi artikel."</string>
+  <string name="msg_87bc9921ff32" formatted="false">"Setuju mengirim data di atas untuk analisis kali ini"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"Pilih metode eksekusi AI"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"Atur OpenRouter API Key"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"Halaman telah berubah, silakan buka kembali AI"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"Tidak dapat membaca HTML asli aturan ini. Silakan buka halaman yang memuat komponen tersebut, muat ulang, lalu coba lagi."</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"Halaman belum siap, silakan muat ulang dan coba lagi"</string>
+  <string name="msg_d1127956fd88" formatted="false">"Halaman telah berubah, silakan analisis ulang"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"Analisis dibatalkan"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"Sedang menganalisis…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"Gunakan Gemma 4 untuk analisis"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"Kirim dan dapatkan saran"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"Batalkan analisis"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"Saran AI"</string>
+  <string name="msg_f8236285164f" formatted="false">"Tidak ada modifikasi yang dapat diterapkan kali ini."</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"Ruang simpan: %1$s dan subdomainnya. Saran AI belum diverifikasi secara nyata di situs Anda; harap tinjau kode dan perubahan sebelum diterapkan."</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"Tutup isi modifikasi"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"Lihat isi modifikasi lengkap"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"Pengaturan telah berubah, silakan analisis ulang"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"Saran AI telah diterapkan; Anda dapat mengembalikan penyimpanan terakhir di pengaturan SkyEye"</string>
+  <string name="msg_4522951c203c" formatted="false">"Perbarui aturan asli dan terapkan"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"Terapkan saran dengan satu klik"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"Pengaturan sebelumnya dapat dikembalikan; permintaan yang sudah dikirim program atau operasi situs tidak dapat dibatalkan bersamaan."</string>
+  <string name="msg_b727b2493599" formatted="false">"Pengaturan situs ini cukup banyak, silakan persempit ke satu komponen atau pilih analisis model cloud."</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"Data lokal telah disimpan; akan disinkronkan lagi saat membuka aplikasi berikutnya, atau tekan “Sinkronkan Sekarang”."</string>
+  <string name="msg_0d3a30703357" formatted="false">"Google sedang sibuk sementara"</string>
+  <string name="msg_61b008bafedd" formatted="false">"Coba lagi nanti. %1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"Perlu konfirmasi ulang otorisasi Google"</string>
+  <string name="msg_2a19048f4610" formatted="false">"Silakan tekan “Sinkronkan Sekarang” untuk konfirmasi ulang otorisasi. Data lokal telah disimpan."</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"Izin sinkronisasi Google terbatas"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"Harap periksa akses aplikasi akun Google dan pengaturan administrator, lalu tekan “Sinkronkan Sekarang”. Data lokal telah disimpan."</string>
+  <string name="msg_0108ca4bc750" formatted="false">"Harap gunakan akun Google asli"</string>
+  <string name="msg_5b29df305534" formatted="false">"Data sinkronisasi ponsel ini terikat dengan akun lain, silakan pilih akun asli untuk menghindari pencampuran data orang lain."</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"Tidak dapat memastikan keamanan koneksi Google"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"Periksa pengaturan tanggal, waktu, dan jaringan ponsel lalu coba lagi. Data lokal telah disimpan."</string>
+  <string name="msg_e813605409d0" formatted="false">"Koneksi lambat, sinkronisasi belum selesai"</string>
+  <string name="msg_328257927000" formatted="false">"Sinkronisasi belum selesai"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"Data cloud belum terverifikasi, data lokal telah disimpan. Silakan coba lagi nanti; jika terus terjadi, hubungi dukungan."</string>
+  <string name="msg_e19c932091a7" formatted="false">"Versi resmi tidak ditemukan sementara, silakan coba lagi nanti."</string>
+  <string name="msg_85284e05ae9e" formatted="false">"Inti browser"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"Saat ini Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"Versi resmi terbaru"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"Sedang mencari…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"Tidak ada data"</string>
+  <string name="msg_8b9b22849066" formatted="false">"Belum mencari"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"Saat ini disediakan oleh %1$s; dibandingkan dengan versi resmi %2$s yang diumumkan Google."</string>
+  <string name="msg_e5d3e9548003" formatted="false">"Versi saat ini tidak dapat dibandingkan langsung"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"Versi resmi lebih baru, periksa pembaruan inti"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"Inti saat ini sama dengan versi resmi"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"Versi inti saat ini lebih baru"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"Waktu pencarian %1$s:"</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"Simpan hasil terakhir · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"Sedang mencari…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"Periksa ulang versi"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"Tidak dapat membuka halaman pembaruan, silakan periksa WebView di pengaturan sistem."</string>
+  <string name="msg_243aeef7919a" formatted="false">"Buka halaman pembaruan inti"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"Pembaruan disediakan oleh sistem atau toko, mungkin diluncurkan secara bertahap."</string>
+  <string name="msg_8e57db190d94" formatted="false">"Versi resmi belum menyediakan data"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"Format data versi resmi tidak valid"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"WebView sistem"</string>
+  <string name="msg_b7d90d419331" formatted="false">"Tidak dapat dibaca"</string>
+  <string name="msg_737d4fde158c" formatted="false">"Tidak dapat terhubung ke pencarian versi resmi sementara"</string>
+  <string name="msg_6090d27dccad" formatted="false">"Versi resmi tidak mengembalikan data"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"Data versi terlalu besar"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"Gagal menyimpan informasi versi"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"Tidak dapat menemukan aplikasi untuk membuka tautan ini, harap pastikan aplikasi terkait sudah terpasang"</string>
+  <string name="msg_34b996e6bd60" formatted="false">"Buka di aplikasi lain?"</string>
+  <string name="msg_140169f1183b" formatted="false">"Anda akan meninggalkan penelusuran pribadi ChengJing. Aplikasi lain mungkin menyimpan tautan dan riwayat penggunaan ini."</string>
+  <string name="msg_f290f9167ad0" formatted="false">"Buka"</string>
+  <string name="msg_0db216962632" formatted="false">"Format URL favorit tidak valid"</string>
+  <string name="msg_62b58243569c" formatted="false">"Format ID favorit tidak valid"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"Format waktu favorit tidak valid"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"Waktu favorit di luar jangkauan"</string>
+  <string name="msg_71a221e87e34" formatted="false">"Data sinkronisasi favorit terlalu banyak, konten lokal dipertahankan"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"Data sinkronisasi favorit melebihi batas ukuran"</string>
+  <string name="msg_220275e1f7de" formatted="false">"Format sinkronisasi favorit ini memerlukan pembaruan aplikasi untuk dibaca"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"Gagal menyimpan favorit"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"Sedang mencari"</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"Tidak ditemukan"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"Silakan masukkan teks yang ingin dicari"</string>
+  <string name="msg_28010afeecd8" formatted="false">"Sedang mencari di halaman"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"Tidak ditemukan teks yang cocok"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"Item %1$s dari %2$s"</string>
+  <string name="msg_d1989441806e" formatted="false">"Buka halaman terlebih dahulu, lalu cari teks di halaman"</string>
+  <string name="msg_c570255d2708" formatted="false">"Tutup SkyEye terlebih dahulu, lalu cari teks di halaman"</string>
+  <string name="msg_f782a6845afa" formatted="false">"Kecocokan teks sebelumnya"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"Kecocokan teks berikutnya"</string>
+  <string name="msg_f41b8847f832" formatted="false">"Tutup pencarian halaman"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B siap digunakan"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"Model lokal belum diunduh"</string>
+  <string name="msg_191155f69eeb" formatted="false">"Model lokal memerlukan perangkat 64-bit"</string>
+  <string name="msg_301286dd890b" formatted="false">"Ruang penyimpanan tidak cukup, harap sediakan sekitar 3 GB ruang kosong"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"Model lokal ChengJing · Gemma 4"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"Unduhan sekitar 2,59 GB; setelah selesai akan memeriksa integritas model"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"Tugas unduhan tidak ada, silakan unduh ulang"</string>
+  <string name="msg_24d557606dbb" formatted="false">"Memeriksa integritas model…"</string>
+  <string name="msg_d46682705f49" formatted="false">"Gagal mengunduh model (%1$s), silakan unduh ulang"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"Unduhan dijeda; harap periksa Wi-Fi, jaringan, atau ruang penyimpanan"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"Mengunduh Gemma 4 · %1$s%%"</string>
+  <string name="msg_119f097a0356" formatted="false">"Unduhan belum selesai"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"Pemeriksaan integritas model gagal, silakan hapus dan unduh ulang"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"Silakan unduh model lokal Gemma 4 terlebih dahulu"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"Memori yang tersedia tidak cukup, harap tutup beberapa tab atau aplikasi lain sebelum menggunakan model lokal."</string>
+  <string name="msg_305f7b160fa8" formatted="false">"Balasan model terlalu panjang, harap perkecil ruang pertanyaan"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"Metode eksekusi AI"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · Lokal ponsel"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · Model cloud"</string>
+  <string name="msg_7397e02a13de" formatted="false">"Mode lokal tidak memerlukan API Key; mode cloud dapat memilih model dari penyedia layanan."</string>
+  <string name="msg_770c4bcb536a" formatted="false">"Pertama kali perlu mengunduh model sekitar 2,59 GB, sediakan sekitar 3 GB ruang penyimpanan. Memerlukan perangkat 64-bit, disarankan minimal 6 GB RAM; saat analisis akan menggunakan daya baterai ponsel. Setelah unduhan, data analisis disimpan secara lokal."</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"Batalkan unduhan model"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"Model telah melewati pemeriksaan integritas, dapat digunakan secara offline."</string>
+  <string name="msg_1300b82064c4" formatted="false">"Hapus model untuk mengosongkan ruang"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"Izinkan unduhan menggunakan data seluler"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"Unduh model lokal Gemma 4"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"Perangkat ini tidak mendukung inferensi lokal, dapat menggunakan OpenRouter."</string>
+  <string name="msg_6cbc25f77915" formatted="false">"Model: Google Gemma 4, Apache 2.0. File model diunduh dari tautan dokumen Google LiteRT Community."</string>
+  <string name="msg_0cc2d828db73" formatted="false">"Silakan masukkan URL HTTP atau HTTPS yang valid"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"Penyimpanan belum selesai, silakan coba lagi nanti"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"Pengaturan beranda"</string>
+  <string name="msg_d03a088f3260" formatted="false">"Tampilkan tombol beranda"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"Tempatkan di depan bilah alamat"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"Pengaturan beranda gagal disimpan"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"URL kustom"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"URL beranda"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"Tersimpan"</string>
+  <string name="msg_0edd4290c301" formatted="false">"Simpan beranda"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"Pratinjau pribadi harus dikonfirmasi ekspornya terlebih dahulu"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"Gambar melebihi 32 MB, silakan unduh dari situs asli"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"Sesi pribadi telah ditutup"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"Konten yang diperoleh bukan gambar yang didukung, file tidak disimpan"</string>
+  <string name="msg_5f8355918e25" formatted="false">"Gagal menyimpan cache gambar"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"URL gambar tidak dapat digunakan"</string>
+  <string name="msg_4926037b836c" formatted="false">"Pengalihan gambar tidak dapat digunakan"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"Gagal mengunduh gambar (HTTP %1$s), file tidak disimpan"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"Gambar tidak berisi konten"</string>
+  <string name="msg_cc6f13303851" formatted="false">"Terlalu banyak pengalihan gambar, file tidak disimpan"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"Gambar melebihi 32 MB"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"Cache gambar sudah kedaluwarsa, silakan kembali ke halaman asal dan buka kembali"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"Tutup pratinjau gambar"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · Cubit dua jari untuk memperbesar, ketuk dua kali untuk zoom"</string>
+  <string name="msg_c660e164fa68" formatted="false">"Ini adalah tab gambar cache web, tidak disimpan setelah aplikasi dibuka ulang. Jika ingin menyimpan, silakan unduh."</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"Gambar, dapat diperbesar dan digeser dengan dua jari"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"Kembali ke tingkat sebelumnya"</string>
+  <string name="msg_607089b311be" formatted="false">"Tidak dikategorikan"</string>
+  <string name="msg_e371aca7156b" formatted="false">"Impor bookmark Chrome"</string>
+  <string name="msg_901fcc465532" formatted="false">"Tutup favorit"</string>
+  <string name="msg_714be9fccc36" formatted="false">"Tutup bookmark"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s entri"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s bookmark"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"Cari favorit"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"Cari semua bookmark dan folder"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"Bersihkan pencarian"</string>
+  <string name="msg_4220592340ad" formatted="false">"Sudah ditambahkan ke favorit"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"Progres favorit diperbarui"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"Perbarui progres favorit ini"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"Favorit disimpan sebagai entri baru"</string>
+  <string name="msg_74894a77754e" formatted="false">"Tambahkan entri baru"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"Ingat URL bab dan posisi baca, disimpan di ponsel ini."</string>
+  <string name="msg_6d9532de6549" formatted="false">"Belum ada favorit"</string>
+  <string name="msg_9c88b8194478" formatted="false">"Tidak ditemukan favorit yang cocok"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"Favorit saat membaca dari menu, tidak perlu memilih folder."</string>
+  <string name="msg_299775d315e8" formatted="false">"Coba nama atau URL lain."</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · Halaman ini %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"Ganti nama favorit %1$s"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"Hapus favorit %1$s"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"Bookmark › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"Tidak ditemukan bookmark yang cocok"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"Belum ada bookmark di sini"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"Pencarian mencakup semua folder."</string>
+  <string name="msg_a581a0c5331f" formatted="false">"Dapat mengimpor bookmark Chrome dari pojok kanan atas."</string>
+  <string name="msg_11ae55de6d31" formatted="false">"Edit bookmark %1$s"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"Hapus bookmark %1$s"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"Sudah ditambahkan ke folder ini"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"Bookmark ini sudah ada di folder ini"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"Tambahkan halaman saat ini"</string>
+  <string name="msg_c631952bb114" formatted="false">"Ekspor"</string>
+  <string name="msg_27001df08520" formatted="false">"Edit bookmark"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"Beri nama favorit"</string>
+  <string name="msg_a5274f381305" formatted="false">"Nama"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"URL"</string>
+  <string name="msg_aabc6623539f" formatted="false">"Folder"</string>
+  <string name="msg_a2c701b369be" formatted="false">"Baca / Teknologi"</string>
+  <string name="msg_b631887c06ef" formatted="false">"Pisahkan tingkat folder dengan “ / ”"</string>
+  <string name="msg_978626066ea1" formatted="false">"Gagal menyimpan, silakan coba lagi"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"Simpan"</string>
+  <string name="msg_9c9624b64441" formatted="false">"Lokasi situs"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"Komponen web ponsel belum mendukung lokasi langsung, silakan perbarui Android System WebView."</string>
+  <string name="msg_68f8f532449b" formatted="false">"Otorisasi mode penyamaran hanya bertahan sampai semua tab penyamaran ditutup."</string>
+  <string name="msg_db3dea807cf5" formatted="false">"Hanya berlaku untuk situs ini; situs lain perlu otorisasi terpisah."</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"Setelah perubahan, situs ini akan dimuat ulang dan permintaan lokasi sebelumnya dihentikan."</string>
+  <string name="msg_d47077aa2c28" formatted="false">"Izin lokasi ponsel"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"Pengaturan layanan lokasi ponsel"</string>
+  <string name="msg_824602facd05" formatted="false">"Tidak dapat membuka file bookmark"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"File bookmark melebihi 8 MB, silakan impor secara bertahap"</string>
+  <string name="msg_7193e8524414" formatted="false">"Tidak ditemukan bookmark HTTP / HTTPS dalam file"</string>
+  <string name="msg_01fd7b112086" formatted="false">"Impor %1$s bookmark?"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"Folder akan dipertahankan; bookmark yang sudah ada tidak akan ditambahkan ulang."</string>
+  <string name="msg_20809c5d8596" formatted="false">"Impor"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"%1$s bookmark sudah diimpor"</string>
+  <string name="msg_3778200c90e5" formatted="false">"Bookmark ini sudah diimpor, tidak akan ditambahkan ulang"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"Impor belum selesai, silakan coba lagi nanti"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"Impor belum selesai"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"Tidak dapat menulis file"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"Bookmark sudah diekspor"</string>
+  <string name="msg_fef661198324" formatted="false">"Ekspor bookmark gagal"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"Pratinjau yang belum disimpan dibatalkan"</string>
+  <string name="msg_79606cdda212" formatted="false">"Penjelajahan pribadi"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s aturan · Belum disimpan"</string>
+  <string name="msg_8d44a1395388" formatted="false">"SkyEye aktif · Ketuk komponen situs"</string>
+  <string name="msg_315a88f3155e" formatted="false">"Keluar dari SkyEye"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"Dalam pengecualian · Situs asli"</string>
+  <string name="msg_c550069b0749" formatted="false">"Pulihkan aturan"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"Sementara tidak dapat terhubung ke situs ini"</string>
+  <string name="msg_70dd895b66db" formatted="false">"Muat ulang"</string>
+  <string name="msg_ed51242141b1" formatted="false">"Pilihan Anda tetap di ponsel Anda."</string>
+  <string name="msg_f1c970051cf5" formatted="false">"Belum ada aturan domain yang disimpan."</string>
+  <string name="msg_baeab929c3dd" formatted="false">"Ketuk untuk edit · %1$s komponen diubah"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"Tab ini memiliki %1$s kali, menyimpan 30 terbaru."</string>
+  <string name="msg_b3471f8f134f" formatted="false">"Buka URL ini sendiri"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"Lanjutkan memilih komponen"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"Buka SkyEye・pilih komponen"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"Batalkan yang terakhir"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"Simpan aturan"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"Komponen dan kode"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"Lihat komponen mengambang, tersembunyi, dan tersemat"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"Modifikasi situs yang disimpan"</string>
+  <string name="msg_0590277f2647" formatted="false">"Ketuk aturan untuk lanjutkan edit atau minta AI sesuaikan"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"Perilaku situs"</string>
+  <string name="msg_830509b36cfe" formatted="false">"Cegah pengalihan dan popup"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"Matikan jika proses login terganggu."</string>
+  <string name="msg_7007cf22f796" formatted="false">"Pengaturan perlindungan domain disimpan"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"Jeda pengaturan domain ini sampai aplikasi ditutup."</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"Pulihkan penyimpanan terakhir"</string>
+  <string name="msg_97efebc05b15" formatted="false">"Komponen terpilih · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · Selector ini cocok dengan %3$s komponen saat ini"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"Halaman tersemat dapat sesuaikan bingkai; konten internal lintas sumber tidak dapat diakses di sini."</string>
+  <string name="msg_2bc121aa5664" formatted="false">"Bagaimana Anda ingin mengubah komponen ini?"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"Tambah CSS / JS / HTML kustom"</string>
+  <string name="msg_6791c9f39720" formatted="false">"Tambahkan gaya, interaksi, atau konten halaman"</string>
+  <string name="msg_704bb9551f08" formatted="false">"Hapus komponen situs ini"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"Pratinjau dulu, lalu pilih simpan atau tidak"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"Ubah kode ini"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"Edit HTML dalam komponen"</string>
+  <string name="msg_31d97b13527a" formatted="false">"Apakah perubahan saya benar? Minta AI periksa"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"Hanya ubah untuk komponen terpilih"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"Pilih lapisan luar"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"Pilih komponen lain"</string>
+  <string name="msg_76ae194967b7" formatted="false">"Kode situs"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"Edit konten tersimpan, atau serahkan ke AI untuk ubah lagi"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"Komponen kustom"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"Edit HTML"</string>
+  <string name="msg_96f3303604ab" formatted="false">"Kode komponen kustom"</string>
+  <string name="msg_27688f7df99c" formatted="false">"Komponen tersembunyi"</string>
+  <string name="msg_215e19833aad" formatted="false">"Pulihkan %1$s"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"Komponen ini telah dipulihkan"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"Perubahan belum disimpan. Pilih komponen lewat SkyEye atau tambah kode situs."</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"Pulihkan gulir halaman"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"Aktifkan hanya jika tidak bisa gulir setelah menutup overlay."</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"Aturan disimpan secara lokal. Jika struktur domain berubah, pilih ulang atau minta AI sesuaikan."</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"Kode diterapkan ke domain ini dan subdomain. JavaScript dapat baca halaman dan buat permintaan jaringan, gunakan hanya konten terpercaya. Mode pengecualian akan hentikan penerapan."</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"Saat simpan, perubahan komponen pratinjau SkyEye saat ini juga disimpan."</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"Gaya CSS"</string>
+  <string name="msg_628f36411710" formatted="false">"// Tambah atau sesuaikan konten halaman; dijalankan sekali setiap muat ulang"</string>
+  <string name="msg_b22612d48c02" formatted="false">"HTML tambahan situs (ditempatkan di akhir halaman)"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;Tips membaca saya&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"Halaman berubah, tutup dan buka ulang editor"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"Disimpan dan dimuat ulang"</string>
+  <string name="msg_7106b4590cce" formatted="false">"Gagal simpan: %1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"Termasuk komponen yang awalnya tersembunyi. Maksimal tampilkan 80 komponen mengambang, tersembunyi, dan tersemat."</string>
+  <string name="msg_2111f387ba60" formatted="false">"Tidak ditemukan komponen jenis ini; Anda masih bisa ketuk komponen biasa di halaman."</string>
+  <string name="msg_167bc0947798" formatted="false">"Awalnya tersembunyi"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"Komponen mengambang / tetap"</string>
+  <string name="msg_047f31f927fe" formatted="false">"Halaman tersemat"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"Tema"</string>
+  <string name="msg_dee60aee2501" formatted="false">"Terang"</string>
+  <string name="msg_a6b75d068032" formatted="false">"Gelap"</string>
+  <string name="msg_6df543c4a401" formatted="false">"Sistem"</string>
+  <string name="msg_381e6e45713f" formatted="false">"Ikuti sistem akan beralih sesuai pengaturan gelap ponsel."</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"Posisi bilah alamat"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"Bilah alamat di atas"</string>
+  <string name="msg_629f91b2430d" formatted="false">"Bilah alamat di bawah"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"Bilah alamat di bawah, SkyEye dan bilah navigasi di atas."</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"Bilah alamat di atas, SkyEye dan bilah navigasi di bawah."</string>
+  <string name="msg_03c481a6ab85" formatted="false">"Cari"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"Tampilan situs"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"Identifikasi browser (User-Agent)"</string>
+  <string name="msg_12acb73519ef" formatted="false">"Android WebView asli"</string>
+  <string name="msg_0eac99137858" formatted="false">"Identifikasi kustom"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"Chrome versi ponsel"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"Data dan sinkronisasi"</string>
+  <string name="msg_c7845aa27319" formatted="false">"Panduan penggunaan"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"Penggunaan data, penyimpanan, dan penghapusan"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"Arena latihan SkyEye"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"Latih penyesuaian komponen, tambah CSS dan JS"</string>
+  <string name="msg_f329c206f45a" formatted="false">"ChengJing Browser %1$s · Versi Android"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"Koneksi OpenRouter"</string>
+  <string name="msg_8831bba1231d" formatted="false">"Kunci telah disimpan"</string>
+  <string name="msg_454792f22b74" formatted="false">"Hubungkan AI Anda"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"Tersimpan terenkripsi di ponsel ini"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"Biarkan AI membantu memeriksa aturan SkyEye"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"Masukkan API Key baru untuk mengganti"</string>
+  <string name="msg_349c23511e2e" formatted="false">"API Key tersimpan terenkripsi"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"Gagal menyimpan kunci: %1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"Simpan API Key"</string>
+  <string name="msg_308f90d89d99" formatted="false">"API Key telah dihapus"</string>
+  <string name="msg_4df897d4de83" formatted="false">"Hapus API Key yang tersimpan"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"Model"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"Atau masukkan nama model sendiri"</string>
+  <string name="msg_33190323da75" formatted="false">"Telah tersedia model teks umum terbaru dari berbagai seri"</string>
+  <string name="msg_a822357ce405" formatted="false">"Tidak dapat memperbarui model, opsi yang ada masih dapat digunakan"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"Memperbarui…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"Perbarui daftar model terbaru"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"Analisis akan memanggil OpenRouter, biaya dihitung sesuai model yang dipilih. Kunci tidak diberikan ke situs; data yang dikirim diproses oleh OpenRouter dan penyedia model."</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"Bawa bookmark, kemajuan favorit, dan pengaturan SkyEye ke ponsel berikutnya."</string>
+  <string name="msg_dbf504aee158" formatted="false">"Selesai terakhir:"</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"Bookmark, folder, favorit, dan riwayat penghapusan disimpan di ruang tersembunyi khusus aplikasi Google Drive, tanpa akses ke file lain Anda."</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"Favorit dan kemajuan baca"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"Nama favorit, URL baca saat ini, judul halaman, posisi gulir, dan persentase baca disinkronkan bersama. Pastikan setiap perangkat diperbarui ke versi yang mendukung sinkronisasi favorit."</string>
+  <string name="msg_4c197d7a57af" formatted="false">"Favorit yang sama menggunakan catatan lengkap terbaru; penggantian nama dan penghapusan juga disinkronkan, tanpa memaksa mempertahankan persentase baca tertinggi. Halaman yang sedang dibuka tidak dipaksa berpindah, posisi sinkronisasi digunakan saat membuka favorit berikutnya."</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"Pengaturan situs SkyEye"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"Setelah diaktifkan, domain, aturan komponen, CSS/JS/HTML kustom, dan pengaturan perilaku situs disinkronkan ke Google Drive Anda. Kode mungkin berisi konten pribadi, pastikan tidak ada kata sandi atau kunci."</string>
+  <string name="msg_86b823816a78" formatted="false">"Sinkronkan pengaturan situs SkyEye"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"Situs yang sama menggunakan pengaturan lengkap terbaru; pengaturan yang dihapus juga tetap tercatat sebagai dihapus. Perangkat lain akan menerapkan saat memuat situs berikutnya. Pengecualian sementara dan sertifikat hanya tersimpan lokal."</string>
+  <string name="msg_d9c03b110d35" formatted="false">"Setelah terhubung, bookmark dan favorit ponsel ini digabung dengan akun Google yang Anda pilih. Sinkronisasi otomatis saat aplikasi dibuka, bookmark diubah, kemajuan favorit disimpan, atau favorit diganti nama/dihapus; saat offline disimpan lokal, sinkron saat online berikutnya."</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"Sedang memproses…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"Sinkronkan sekarang"</string>
+  <string name="msg_aee33ff22038" formatted="false">"Hubungkan dengan akun Google"</string>
+  <string name="msg_9746a274324c" formatted="false">"Berhenti sinkronisasi dan keluar"</string>
+  <string name="msg_b69bae05d706" formatted="false">"Keluar akan menyimpan data lokal dan cloud. Data sinkron lokal terikat pada akun Google sinkronisasi pertama untuk menghindari pencampuran data saat ganti akun."</string>
+  <string name="msg_efb208e781f4" formatted="false">"Beberapa situs menyediakan tampilan berbeda berdasarkan informasi identifikasi."</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"Chrome versi ponsel (default)"</string>
+  <string name="msg_3138f64b4547" formatted="false">"User-Agent kustom"</string>
+  <string name="msg_b1c83027f591" formatted="false">"Tempel User-Agent satu baris lengkap"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"Setelah disimpan, halaman saat ini akan dimuat ulang; halaman baru atau segarkan juga menggunakan pengaturan ini. Situs mungkin beralih ke tampilan lain, dukungan tergantung inti browser saat ini."</string>
+  <string name="msg_73b390a73f19" formatted="false">"Identifikasi browser diperbarui"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"Tidak dapat menyimpan"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"Simpan dan muat ulang"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"Inti browser saat ini: Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"Tidak diketahui"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"Lokasi ponsel belum diperoleh, pindah ke area dengan sinyal lebih baik dan coba lagi."</string>
+  <string name="msg_2e6933e93990" formatted="false">"Sumber lokasi ponsel dimatikan, periksa layanan lokasi sistem."</string>
+  <string name="msg_aa939329dc62" formatted="false">"Ponsel belum mengizinkan lokasi."</string>
+  <string name="msg_f4e900470989" formatted="false">"Tidak ada lokasi valid dalam waktu, waktu tunggu lokasi berakhir."</string>
+  <string name="msg_8e6878344350" formatted="false">"Ponsel tidak memiliki sumber lokasi yang tersedia, periksa layanan lokasi sistem."</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"Izin lokasi ponsel berubah, mohon minta lokasi ulang."</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"Halaman ini tidak diizinkan menggunakan lokasi."</string>
+  <string name="msg_c293d0f61960" formatted="false">"Halaman saat ini tidak berada di latar depan."</string>
+  <string name="msg_5677d9b33fef" formatted="false">"Terlalu banyak permintaan lokasi, silakan coba lagi nanti."</string>
+  <string name="msg_54e70324667a" formatted="false">"Menunggu izin lokasi dari situs dan ponsel"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"Situs ini belum diizinkan menggunakan lokasi ponsel."</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"Layanan lokasi ponsel belum diaktifkan."</string>
+  <string name="msg_e4222762e387" formatted="false">"Izin lokasi ponsel atau situs telah dicabut."</string>
+  <string name="msg_ea7546eddc85" formatted="false">"Permintaan lokasi telah dikirim ke ponsel, menunggu posisi"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"Lokasi diperoleh dan diberikan ke situs saat ini"</string>
+  <string name="msg_8116207548a5" formatted="false">"Gagal memperbarui daftar model (%1$s)"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"Daftar model kosong, silakan coba lagi nanti"</string>
+  <string name="msg_71eb343e162c" formatted="false">"Harap tambahkan OpenRouter API Key di pengaturan terlebih dahulu"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"Silakan pilih model"</string>
+  <string name="msg_d3346c882f37" formatted="false">"API Key tidak valid, silakan masukkan ulang"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"Kuota OpenRouter tidak mencukupi"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"Permintaan terlalu sering, silakan coba lagi nanti"</string>
+  <string name="msg_3861043f8477" formatted="false">"Layanan AI gagal menyelesaikan permintaan (%1$s), aturan asli tetap berlaku"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"Harap atur kunci dan model OpenRouter terlebih dahulu"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"API Key tidak valid"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"Permintaan terlalu sering, silakan coba lagi nanti"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"Layanan AI gagal menyelesaikan permintaan (%1$s)"</string>
+  <string name="msg_4a16359069dd" formatted="false">"Silakan pilih komponen yang valid"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"Cara operasi HTML tidak benar"</string>
+  <string name="msg_e714012d82ce" formatted="false">"Kode terlalu panjang dalam satu kali, silakan bagi menjadi modifikasi yang lebih kecil"</string>
+  <string name="msg_8579576181cb" formatted="false">"CSS komponen harap isi langsung atribut, misalnya color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"Terlalu banyak saran sekaligus, silakan perkecil ruang lingkup masalah"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"Aturan komponen tidak benar"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI menunjuk modifikasi yang tidak ada"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI menunjuk aturan komponen yang tidak ada"</string>
+  <string name="msg_63b576365f0f" formatted="false">"Saran AI komponen melebihi ruang lingkup pilihan"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"AI komponen tidak boleh mengubah pengaturan tingkat situs"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"Penyesuaian komponen AI"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"Konten saran terlalu besar, silakan perkecil ruang lingkup"</string>
+  <string name="msg_8715000a9841" formatted="false">"Perbarui CSS situs"</string>
+  <string name="msg_b350f6663586" formatted="false">"Perbarui JavaScript situs"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"Perbarui HTML baru situs"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"Edit"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"Tambah"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"Hapus komponen: %1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"Pulihkan %1$s modifikasi"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"Sesuaikan pengaturan gulir halaman"</string>
+  <string name="msg_15766e2591bd" formatted="false">"Harap konfirmasi isi modifikasi di bawah"</string>
+  <string name="msg_64244a373f7b" formatted="false">"Tab sumber telah ditutup atau dimuat ulang, unduhan dihentikan; silakan coba lagi di halaman asli"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"File tersemat terlalu besar"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"Format file tersemat tidak benar, file tidak disimpan"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"Tidak dapat membaca file cache ini. Silakan coba lagi di halaman asli; streaming bertahap atau video terlindungi harus menggunakan metode unduhan yang disediakan situs"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"Batas unduhan cache halaman saat ini adalah 2 GB, silakan gunakan tautan unduhan langsung dari situs"</string>
+  <string name="msg_533949b0c241" formatted="false">"File tersemat tidak lengkap"</string>
+  <string name="msg_283a28e03a50" formatted="false">"File cache sudah kedaluwarsa, silakan unduh ulang"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"Gagal membaca file cache, silakan unduh ulang"</string>
+  <string name="msg_ffba3145db56" formatted="false">"Ukuran konten unduhan tidak benar"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"Konten unduhan tidak lengkap, file tidak disimpan"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"Tidak dapat menyimpan status unduhan"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"Unduhan terakhir terputus, file tidak lengkap tidak disimpan; silakan kembali ke halaman asli untuk mengunduh ulang"</string>
+  <string name="msg_bcd36261f503" formatted="false">"File unduhan gagal disimpan"</string>
+  <string name="msg_815187d9a1da" formatted="false">"Tidak dapat menyelesaikan file unduhan"</string>
+  <string name="msg_02beb82da20a" formatted="false">"Tidak dapat membuat file unduhan, periksa ruang penyimpanan"</string>
+  <string name="msg_bdd00d629528" formatted="false">"Tidak dapat menulis file unduhan"</string>
+  <string name="msg_d3e09805962f" formatted="false">"Tidak dapat membuat folder unduhan"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"Format gambar tersemat tidak dapat digunakan"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"Gambar tersemat terlalu besar"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"Gambar tersemat melebihi 32 MB"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"Tidak dapat membaca gambar cache ini, silakan tekan lama ulang di halaman asli"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"Buka kebijakan privasi online"</string>
+  <string name="msg_080988523f29" formatted="false">"Sesi penyamaran telah ditutup; pembersihan data situs belum selesai, silakan tutup dan buka kembali aplikasi"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"Aturan ini atau konten halaman terlalu banyak, silakan gunakan model cloud untuk analisis."</string>
+  <string name="msg_5d279b988da8" formatted="false">"Saran AI melebihi ruang lingkup modifikasi aturan ini, silakan ajukan permintaan ulang"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"Kode saran terlalu panjang, silakan perkecil ruang lingkup modifikasi"</string>
+  <string name="msg_272100161734" formatted="false">"Perbarui gaya CSS"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"Perbarui JavaScript"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"Perbarui konten HTML"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"Sesuaikan cara penerapan HTML"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"Periksa perubahan sebelum diterapkan"</string>
+  <string name="msg_997de297c6b3" formatted="false">"Riwayat unduhan gagal disimpan"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"Tidak dapat membuat file unduhan"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"Halaman telah berubah, buka ulang aturan ini"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"Aturan diperbarui, buka ulang untuk menghindari menimpa perubahan lain"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"Aturan diperbarui oleh operasi lain, buka ulang"</string>
+  <string name="msg_30b5133da158" formatted="false">"Perdalam modifikasi"</string>
+  <string name="msg_dfb02399c259" formatted="false">"Minta AI untuk mengubah aturan ini"</string>
+  <string name="msg_a73d81627121" formatted="false">"Gabungkan HTML asli, kode saat ini, dan ide baru Anda"</string>
+  <string name="msg_6882b571d47c" formatted="false">"Edit langsung di bawah. Simpan untuk memperbarui aturan asli; modifikasi situs lain tetap ada."</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"Tambahkan di akhir komponen"</string>
+  <string name="msg_c7518df827c2" formatted="false">"Ganti isi komponen"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"Berlaku untuk domain dan subdomain ini. JavaScript dapat mengakses halaman atau mengirim permintaan, pastikan konten sebelum menyimpan."</string>
+  <string name="msg_5ef814324284" formatted="false">"Konten diedit berubah, simpan lagi"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"Aturan asli diperbarui dan diterapkan"</string>
+  <string name="msg_f5272b216037" formatted="false">"Hapus aturan ini"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"Hapus aturan ini?"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"%1$s akan dihapus, pengaturan lain tetap."</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"CSS, JavaScript, dan HTML khusus untuk situs ini"</string>
+  <string name="msg_60f997e432a2" formatted="false">"Modifikasi komponen ini"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"Aturan ini telah dihapus"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"Hapus"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"Berpindah ke mesin pencari khusus"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"Sedang digunakan · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"Pencarian di bilah alamat · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"Berpindah ke %1$s"</string>
+  <string name="msg_02da895c96ea" formatted="false">"Cara pencarian sendiri"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"Kustom"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"Hubungkan layanan pencarian favorit Anda"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"Cari sekali di situs yang diinginkan, lalu ganti teks pencarian di URL dengan {query}."</string>
+  <string name="msg_83e506018140" formatted="false">"Template URL pencarian"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} akan diganti dengan teks pencarian yang sudah aman dikodekan"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"Pratinjau: %1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"Simpan dan gunakan"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"Ketuk untuk beralih. Teks pencarian hanya dikirim ke layanan yang dipilih saat pencarian dikirim."</string>
+  <string name="msg_455ece81de56" formatted="false">"Baidu"</string>
+  <string name="msg_af8a52509166" formatted="false">"Wikipedia Bahasa Mandarin"</string>
+  <string name="msg_db79062a760b" formatted="false">"Template URL belum diatur"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"Masukkan template URL pencarian"</string>
+  <string name="msg_e2d127e64801" formatted="false">"Template URL tidak boleh lebih dari 2.048 karakter"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"Template URL harus berupa URL satu baris lengkap"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"Template URL harus mengandung {query} sekali"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"{query} harus berada di jalur URL atau parameter kueri"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"Masukkan URL HTTPS lengkap"</string>
+  <string name="msg_00f486ce580a" formatted="false">"Hanya HTTPS yang diperbolehkan untuk melindungi pencarian"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"URL tidak boleh mengandung nama pengguna atau kata sandi"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"Template URL tidak boleh mengandung anchor #"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"URL harus memiliki nama host yang valid"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"Cache ikon situs gagal dihapus"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"Terlalu banyak pengaturan situs"</string>
+  <string name="msg_a17da897bf76" formatted="false">"Pengaturan situs melebihi 8 MB, harap bersihkan kode khusus yang besar terlebih dahulu"</string>
+  <string name="msg_51bb558b264b" formatted="false">"Snapshot pengaturan situs terlalu besar"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"Versi pengaturan situs tidak kompatibel"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"Domain atau waktu pengaturan situs tidak benar"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"Pengaturan situs melebihi batas"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"Biasa"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"Pribadi"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"Halaman pribadi tidak membuat thumbnail atau menyimpan riwayat. Setelah menutup semua tab pribadi, data situs akan dibersihkan."</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"Mulai sesi penjelajahan pribadi"</string>
+  <string name="msg_de2a64702660" formatted="false">"Belum ada tab biasa"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"Status login berbeda dari tab biasa; situs dan penyedia jaringan masih dapat mengenali aktivitas Anda."</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"Tambahkan tab baru agar bacaan berikutnya punya tempat sendiri."</string>
+  <string name="msg_89d55dea3269" formatted="false">"Halaman pribadi"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"Tutup tab %1$s"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"Tab saat ini · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"Saat ini, hanya tinggal saat ini."</string>
+  <string name="msg_ec4537100d5f" formatted="false">"Tidak menyimpan riwayat jelajah dan pencarian, tidak memulihkan tab pribadi. Status login terpisah dari tab biasa, setelah menutup semua tab pribadi, cookie, cache, dan data situs dibersihkan."</string>
+  <string name="msg_c4759e2fd146" formatted="false">"Mode penyamaran tidak sama dengan anonim. Situs web, pemberi kerja, atau penyedia jaringan masih dapat melihat aktivitas Anda. File yang Anda unduh secara aktif, bookmark, dan koleksi akan disimpan; berbagi sistem dan permintaan AI tetap akan mengirimkan konten yang dipilih ke layanan terkait."</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"Menu tab"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"Tutup semua tab"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"Tutup semua tab penyamaran?"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"Tutup semua tab biasa?"</string>
+  <string name="msg_1401b7462a88" formatted="false">"Akan menutup %1$s tab di grup ini tanpa memengaruhi grup lain."</string>
+  <string name="msg_9b14332369fd" formatted="false">"Data situs penyamaran akan dibersihkan setelah semua tab ditutup. File unduhan, bookmark, dan koleksi tetap disimpan."</string>
+  <string name="msg_e818d7092124" formatted="false">"Tab dan snapshot ini tidak akan dipulihkan saat berikutnya dibuka; riwayat penjelajahan, file unduhan, bookmark, dan koleksi tetap disimpan."</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"Tutup semua"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"Lokasi belum diminta"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"Ponsel belum mengizinkan lokasi; Anda dapat mengaktifkan izin aplikasi dari info situs."</string>
+  <string name="msg_b225c190262b" formatted="false">"Layanan lokasi ponsel belum aktif, silakan aktifkan pengaturan lokasi dari info situs lalu coba lagi."</string>
+  <string name="msg_c706cb8f6217" formatted="false">"Izinkan situs ini mengakses lokasi?"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\nSitus dapat menggunakan lokasi Anda untuk menyediakan fitur seperti tempat terdekat. Dapat diubah di info situs pada bilah alamat."</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\nIzin penyamaran hanya berlaku sampai semua tab penyamaran ditutup."</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"Izinkan lokasi"</string>
+  <string name="msg_e69e259269d3" formatted="false">"Jangan izinkan untuk sekarang"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"1 jam terakhir"</string>
+  <string name="msg_322773403765" formatted="false">"24 jam terakhir"</string>
+  <string name="msg_27905bacccf9" formatted="false">"7 hari terakhir"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"4 minggu terakhir"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"Tanpa batas waktu"</string>
+  <string name="msg_b39b740c9370" formatted="false">"Tanya"</string>
+  <string name="msg_0bffd418918b" formatted="false">"Izinkan"</string>
+  <string name="msg_454b7b66304a" formatted="false">"Blokir"</string>
+  <string name="language_title" formatted="false">"Bahasa antarmuka"</string>
+  <string name="language_system" formatted="false">"Ikuti bahasa ponsel"</string>
+  <string name="language_support" formatted="false">"Pertama kali dibuka akan menggunakan bahasa ponsel; jika tidak didukung, gunakan bahasa Inggris."</string>
+  <string name="language_selected" formatted="false">"Sedang digunakan: %1$s"</string>
+  <string name="language_system_detail" formatted="false">"Otomatis · %1$s"</string>
+  <string name="language_picker" formatted="false">"Pilih bahasa antarmuka"</string>
+  <string name="language_note" formatted="false">"Pengaturan ini hanya mengubah antarmuka ChengJing, tidak menerjemahkan konten situs web."</string>
+  <string name="language_changed" formatted="false">"Bahasa antarmuka telah diubah"</string>
+  <string name="language_native_hint" formatted="false">"Ditampilkan dalam bahasa asli masing-masing untuk memudahkan menemukan bahasa yang familiar."</string>
+  <string name="home_quote_000" formatted="false">"Setelah petir, pasti akan turun hujan"</string>
+  <string name="home_quote_001" formatted="false">"Setelah hari ini, adalah besok"</string>
+  <string name="home_quote_002" formatted="false">"Setelah besok, adalah sebuah film"</string>
+  <string name="home_quote_003" formatted="false">"Beli saat turun, jual saat naik, investasi sesederhana itu"</string>
+  <string name="home_quote_004" formatted="false">"Jika kamu tidak suka bekerja, kamu pasti sangat suka pulang kerja"</string>
+  <string name="home_quote_005" formatted="false">"Selama kamu mau berusaha, kamu akan menemukan bahwa hal-hal bisa jadi lebih sulit"</string>
+  <string name="home_quote_006" formatted="false">"Mudah mengalahkan pencuri di gunung, sulit mengalahkan pencuri dalam hati"</string>
+  <string name="home_quote_007" formatted="false">"Bertekun belum tentu berhasil, tapi menyerah sangatlah mudah"</string>
+  <string name="home_quote_008" formatted="false">"Kurangi satu cangkir kopi setiap hari, dalam setahun kamu bisa mengurangi 365 cangkir kopi"</string>
+  <string name="home_quote_009" formatted="false">"Jangan terlalu memusingkan, kamu hanyalah sebatang alang-alang yang bisa berpikir"</string>
+  <string name="home_quote_010" formatted="false">"Jangan takut menghadapi kesulitan, hadapi dan kamu akan sadar kamu tidak bisa menyelesaikannya"</string>
+  <string name="home_quote_011" formatted="false">"Jangan khawatir tentang ketidaksempurnaan benda, khawatirlah tentang ketidakadilan hati manusia"</string>
+  <string name="home_quote_012" formatted="false">"Saat kamu merasa tidak memiliki apa-apa, jangan lupa kamu masih penuh kelelahan"</string>
+  <string name="home_quote_013" formatted="false">"Jangan main ponsel sebelum tidur, nanti kamu akan cepat sadar hari sudah pagi"</string>
+  <string name="home_quote_014" formatted="false">"Konfusius berkata: Orang bijak mencari dalam dirinya, orang bodoh mencari pada orang lain"</string>
+  <string name="home_quote_015" formatted="false">"Perahu akan lurus saat sampai jembatan, jika tidak lurus, berarti tenggelam"</string>
+  <string name="home_quote_016" formatted="false">"Orang sukses biasanya punya satu kesamaan, yaitu mereka semua berhasil"</string>
+  <string name="home_quote_017" formatted="false">"Jangan menangis, jangan tertawa, tapi pahamilah"</string>
+  <string name="home_quote_018" formatted="false">"Selama kamu terus melangkah maju, kamu tidak akan tetap di tempat"</string>
+  <string name="home_quote_019" formatted="false">"Tersesat adalah awal dari penjelajahan"</string>
+  <string name="home_quote_020" formatted="false">"Usaha tidak selalu terlihat, tapi malas sekali saja pasti ketahuan"</string>
+  <string name="home_quote_021" formatted="false">"Kegagalan adalah ibu kesuksesan, tapi kamu mungkin tidak pernah menemukan ayahnya"</string>
+  <string name="home_quote_022" formatted="false">"Kebebasan itu artinya dibenci oleh orang lain"</string>
+  <string name="home_quote_023" formatted="false">"Kebahagiaan hanyalah berhentinya rasa sakit sementara"</string>
+  <string name="home_quote_024" formatted="false">"Saat kamu memutuskan untuk mulai, berarti kamu belum selesai"</string>
+  <string name="home_quote_025" formatted="false">"Tidak ada jalan pintas menuju sukses, tapi banyak yang macet di jalan pintas"</string>
+  <string name="home_quote_026" formatted="false">"Kecemasan adalah pusing yang muncul dari kebebasan"</string>
+  <string name="home_quote_027" formatted="false">"Begitu kamu melangkah pertama, kamu akan sadar langkah kedua masih di belakang"</string>
+  <string name="home_quote_028" formatted="false">"Tolong pergi, jangan menghalangi sinar matahariku"</string>
+  <string name="home_quote_029" formatted="false">"Bodhi sejatinya tiada pohon, cermin terang pun bukan panggung. Pada dasarnya tiada satu pun benda, dari mana datangnya debu?"</string>
+  <string name="home_quote_030" formatted="false">"Penderitaan yang kamu alami sekarang adalah persiapan untuk penderitaan yang lebih banyak di masa depan"</string>
+  <string name="home_quote_031" formatted="false">"Orang yang melawan monster harus berhati-hati agar tidak menjadi monster"</string>
+  <string name="home_quote_032" formatted="false">"Semakin tinggi memanjat, semakin sakit jatuhnya"</string>
+  <string name="home_quote_033" formatted="false">"Pengetahuan adalah kekuatan"</string>
+  <string name="home_quote_034" formatted="false">"Selama kamu sungguh-sungguh, meski melakukan kesalahan itu tetap dilakukan dengan sungguh-sungguh"</string>
+  <string name="home_quote_035" formatted="false">"Kadang-kadang pengetahuan umum bukanlah pengetahuan umum"</string>
+  <string name="home_quote_036" formatted="false">"Anak takut gelap itu wajar; tragedi sebenarnya adalah orang dewasa takut cahaya"</string>
+  <string name="home_quote_037" formatted="false">"Membayangkan kiamat lebih mudah daripada membayangkan akhir kapitalisme"</string>
+  <string name="home_quote_038" formatted="false">"Selama kamu tidak malu, yang malu adalah orang lain"</string>
+  <string name="home_quote_039" formatted="false">"Perjalanan seribu mil dimulai dari satu langkah"</string>
+  <string name="home_quote_040" formatted="false">"Orang lain adalah neraka"</string>
+  <string name="home_quote_041" formatted="false">"Selama kamu menurunkan standar cukup rendah, setiap detik adalah kejutan"</string>
+  <string name="home_quote_042" formatted="false">"Yang menyiksa kita sering bukan kenyataan, tapi imajinasi"</string>
+  <string name="home_quote_043" formatted="false">"Jangan terlalu keras pada diri sendiri, karena orang lain akan melakukannya"</string>
+  <string name="home_quote_044" formatted="false">"Jangan buru-buru saat menghadapi kesulitan, bagaimanapun terburu-buru juga tidak berguna"</string>
+  <string name="home_quote_045" formatted="false">"Lahir dari kesusahan, mati dalam kenyamanan"</string>
+  <string name="home_quote_046" formatted="false">"Selama kenyang, tidak akan kelaparan"</string>
+  <string name="home_quote_047" formatted="false">"Jalan besar hilang, muncullah kebajikan dan keadilan; kebijaksanaan muncul, muncul pula kebohongan besar"</string>
+  <string name="home_quote_048" formatted="false">"Pakaian yang dipakai lama akan usang, kecuali kamu membeli yang baru"</string>
+  <string name="home_quote_049" formatted="false">"Setelah air mendidih, air itu memang mendidih"</string>
+  <string name="home_quote_050" formatted="false">"Waktu tidak sebaik lokasi, lokasi tidak sebaik harmoni manusia"</string>
+  <string name="home_quote_051" formatted="false">"Saat kamu juga ingin bertemu denganku, pertemuan kita baru bermakna"</string>
+  <string name="home_quote_052" formatted="false">"Orang lain tertawa karena aku gila, aku tertawa karena mereka bisa melihatnya"</string>
+  <string name="home_quote_053" formatted="false">"Merasakan pahitnya penderitaan, baru tahu ada yang lebih pahit"</string>
+  <string name="home_quote_054" formatted="false">"Selama kamu hidup, masih ada kesempatan untuk terus membuat kesalahan"</string>
+  <string name="home_quote_055" formatted="false">"Kamu tidak bisa mengendalikan arah angin, tapi bisa menutup jendela"</string>
+  <string name="home_quote_056" formatted="false">"Pengaturan terbaik dalam hidup seringkali adalah tanpa pengaturan"</string>
+  <string name="home_quote_057" formatted="false">"Apa pun yang diulang cukup sering akan menjadi rutinitas"</string>
+  <string name="home_quote_058" formatted="false">"Segala yang tampak adalah ilusi; kecuali notifikasi gaji masuk"</string>
+  <string name="home_quote_059" formatted="false">"Kamu pikir kamu memilih, sebenarnya algoritma sudah tahu yang akan kamu klik"</string>
+  <string name="home_quote_060" formatted="false">"Dunia sangat besar, masalahmu bahkan tidak masuk daftar"</string>
+  <string name="home_quote_061" formatted="false">"Bakat bawaan pasti berguna, meski harta habis akan kembali"</string>
+  <string name="home_quote_062" formatted="false">"Kalau sudah datang, duduklah dulu"</string>
+  <string name="home_quote_063" formatted="false">"Masalah yang bisa diselesaikan dengan uang, harus punya uang dulu"</string>
+  <string name="home_quote_064" formatted="false">"Menang tanpa bertempur adalah yang terbaik dari yang terbaik"</string>
+  <string name="home_quote_065" formatted="false">"Kegagalan tidak menakutkan, yang menakutkan adalah harus menulis laporan kegagalan"</string>
+  <string name="home_quote_066" formatted="false">"Hidup singkat, jadi tidak cocok mengadakan rapat terlalu lama"</string>
+  <string name="home_quote_067" formatted="false">"Tidak ada langkah yang sia-sia dalam hidup, setiap langkah dihitung"</string>
+  <string name="home_quote_068" formatted="false">"Bukan karena hal menjadi lebih mudah, tapi kamu terbiasa dengan kesulitannya"</string>
+  <string name="home_quote_069" formatted="false">"Suara besar jarang terdengar, bentuk besar tak terlihat, rapat besar biasanya tanpa kesimpulan"</string>
+  <string name="home_quote_070" formatted="false">"Saling menatap dan tersenyum, hati saling memahami"</string>
+  <string name="home_quote_071" formatted="false">"Mengalahkan orang lain itu kuat, mengalahkan diri sendiri itu hebat"</string>
+  <string name="home_quote_072" formatted="false">"Kursimu menentukan cara dudukmu"</string>
+  <string name="home_quote_073" formatted="false">"Kebahagiaan terbesar adalah tidak perlu membuktikan bahwa kamu bahagia"</string>
+  <string name="home_quote_074" formatted="false">"Manusia dilahirkan bebas, tapi selalu harus login keanggotaan di mana-mana"</string>
+  <string name="home_quote_075" formatted="false">"Jika kamu tidak punya waktu istirahat, tubuh akan mengatur janji periksa untukmu"</string>
+  <string name="home_quote_076" formatted="false">"Hidup mengajarkan banyak hal, biayanya biasanya tidak murah"</string>
+  <string name="home_quote_077" formatted="false">"Hidup bukan hanya hitam atau putih"</string>
+  <string name="home_quote_078" formatted="false">"Kebaikan tertinggi seperti air, air bermanfaat bagi semua tanpa bersaing"</string>
+  <string name="home_quote_079" formatted="false">"Mendengar kata-katamu seperti mendengar kata-kata yang bermakna"</string>
+  <string name="home_quote_080" formatted="false">"Segala hal yang layak dilakukan, layak untuk disimpan dulu"</string>
+  <string name="home_quote_081" formatted="false">"Dunia tidak berhenti berputar karena kamu, jadi jangan merasa terlalu bersalah"</string>
+  <string name="home_quote_082" formatted="false">"Kebenaran terdalam biasanya menjadi sederhana setelah dijelaskan"</string>
+  <string name="home_quote_083" formatted="false">"Tidak ada pengalaman hidup yang sia-sia"</string>
+  <string name="home_quote_084" formatted="false">"Jika kamu takut salah, kamu akan melewatkan banyak cara baru untuk salah"</string>
+  <string name="home_quote_085" formatted="false">"Hidup penuh kemungkinan, tapi hari ini hanya bisa dijalani sekali"</string>
+  <string name="home_quote_086" formatted="false">"How are you？I\'m fine, thank you."</string>
+  <string name="home_quote_087" formatted="false">"Yang telah berlalu tidak bisa diubah, yang akan datang masih bisa dikejar"</string>
+  <string name="home_quote_088" formatted="false">"Jadilah dirimu sendiri"</string>
+  <string name="msg_485107965fef" formatted="false">"Format aturan komponen tidak valid"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"Tidak bisa menghapus seluruh halaman"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"Tidak dapat menemukan pemilih komponen yang valid"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"Komponen yang dipilih sudah tidak ada"</string>
+  <string name="msg_db7282021ef2" formatted="false">"HTML asli belum siap, silakan muat ulang halaman dan buka aturan lagi"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"Komponen tidak ditemukan"</string>
+  <string name="msg_837653b6c57e" formatted="false">"Komponen terlalu besar, silakan pilih area yang lebih kecil"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"Lapangan Latihan SkyEye · ChengJing"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"ChengJing・Lapangan Latihan SkyEye"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"Halaman Demo Lokal"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"Spanduk Informasi Umum · Anda Bisa Memilih untuk Menyimpannya"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"Pelan-pelan, lihat dengan jelas"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"Sesuaikan halaman web sesuai kebiasaan Anda."</string>
+  <string name="practice_8b7c761ab887" formatted="false">"Ini adalah halaman latihan di ponsel. Anda dapat menyesuaikan komponen, serta menambahkan gaya dan konten halaman sendiri."</string>
+  <string name="practice_7e28a385715a" formatted="false">"Ketuk \'SkyEye\' di toolbar, lalu pilih komponen. Jika hanya memilih teks, tekan \'Pilih Lapisan Luar\' sampai seluruh komponen terbingkai, lalu pratinjau penghapusan."</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"Fokus halaman web seharusnya pada konten yang ingin Anda lihat."</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"Tambahkan sedikit hal milik Anda sendiri"</string>
+  <string name="practice_b4a4214feada" formatted="false">"Buka SkyEye, pilih \'Tambah CSS\' untuk mengubah gaya. Misalnya, buat paragraf lebih longgar:"</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"Pilih \'Tambah JS\' untuk menambahkan pengingat baca di halaman:"</string>
+  <string name="practice_9e58ae908fca" formatted="false">"Setelah dihapus?"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"Simpan aturan, lalu lanjut ke halaman kedua. Meskipun isi komponen berbeda, selama strukturnya sama, aturan tidak akan mengganggu Anda."</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"Pergi ke halaman kedua domain yang sama →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"Anda juga bisa memilih \'Tampilkan Situs Asli Sementara\' dari menu untuk melihat situs asli sementara. Semua aturan tetap ada, tidak perlu pengaturan ulang."</string>
+  <string name="practice_66cf62365956" formatted="false">"Kontainer petunjuk yang awalnya tersembunyi"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"Demo Komponen Mengambang"</string>
+  <string name="practice_e8b18630d135" formatted="false">"Blok mengambang ini menghalangi konten bacaan."</string>
+  <string name="practice_975cfbbfce74" formatted="false">"Coba gunakan SkyEye untuk menghapus seluruh blok hijau."</string>
+  <string name="practice_29692e6a4f70" formatted="false">"Ingat untuk beristirahat sejenak"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"Tutup komponen"</string>
+  <string name="practice_df9256123dae" formatted="false">"Konten baru, tetap segar."</string>
+  <string name="practice_efbee8398901" formatted="false">"Komponen dengan konten yang diganti, tetap dengan struktur yang sama."</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"Halaman Kedua · Lapangan Latihan SkyEye"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"Komponen petunjuk yang dimuat tertunda juga bisa dipilih oleh SkyEye."</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

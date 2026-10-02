@@ -115,7 +115,7 @@ class SiteIcons(context:Context){
         try{
             withContext(Dispatchers.IO){disk.withLock{
                 cache.evictAll();attempts.evictAll()
-                directory.listFiles()?.filter{it.isFile}?.forEach{check(it.delete()||!it.exists()){"網站圖示快取未能刪除"}}
+                directory.listFiles()?.filter{it.isFile}?.forEach{check(it.delete()||!it.exists()){bt(R.string.msg_0af0c63a1df0)}}
             }}
         }finally{clearing=false;withContext(Dispatchers.Main.immediate){revision++}}
     }

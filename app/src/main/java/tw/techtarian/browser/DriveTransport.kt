@@ -85,18 +85,20 @@ internal class SyncHttpException(val code:Int,val reasons:Set<String> = emptySet
 internal class SyncAccountMismatch:IllegalStateException()
 
 /** User copy never includes exception strings, URLs, account identifiers, or API response bodies. */
-internal data class SyncProblem(val title:String,val message:String,val requiresAction:Boolean){
+internal data class SyncProblem(internal val titleCaption:BrowserCaption,internal val messageCaption:BrowserCaption,val requiresAction:Boolean){
+    val title:String get()=titleCaption.text()
+    val message:String get()=messageCaption.text()
     companion object{
-        private const val KEPT="本機資料已保留；下次開啟 App 會再同步，也可按「立即同步」。"
+        private val KEPT get()=bcaption(R.string.msg_e7b33daf9a2d)
         fun from(error:Exception):SyncProblem=when{
-            error is SyncHttpException&&error.retryable->SyncProblem("Google 暫時忙碌","稍後再試即可。$KEPT",false)
-            error is SyncHttpException&&error.code==401->SyncProblem("需要重新確認 Google 授權","請按「立即同步」重新確認授權。本機資料已保留。",true)
-            error is SyncHttpException&&error.code==403->SyncProblem("Google 同步權限受限","請確認 Google 帳戶的應用程式存取權與管理員設定，再按「立即同步」。本機資料已保留。",true)
-            error is SyncAccountMismatch->SyncProblem("請使用原本的 Google 帳戶","此手機的同步資料已綁定另一個帳戶，請選擇原本帳戶，避免混入其他人的資料。",true)
-            error is SSLException->SyncProblem("無法確認 Google 連線安全","請檢查手機日期時間與網路設定後再試。本機資料已保留。",true)
-            error is InterruptedIOException->SyncProblem("連線較慢，尚未完成同步",KEPT,false)
-            error is IOException&&error !is SyncHttpException&&error !is ProtocolException->SyncProblem("等待網路連線",KEPT,false)
-            else->SyncProblem("同步未完成","雲端資料尚未通過確認，本機資料已保留。請稍後再試；若持續發生，請聯絡支援。",true)
+            error is SyncHttpException&&error.retryable->SyncProblem(bcaption(R.string.msg_0d3a30703357),bcaption(R.string.msg_61b008bafedd ,KEPT),false)
+            error is SyncHttpException&&error.code==401->SyncProblem(bcaption(R.string.msg_9fe553752239),bcaption(R.string.msg_2a19048f4610),true)
+            error is SyncHttpException&&error.code==403->SyncProblem(bcaption(R.string.msg_b212a1bec5a1),bcaption(R.string.msg_bdd0b148c46c),true)
+            error is SyncAccountMismatch->SyncProblem(bcaption(R.string.msg_0108ca4bc750),bcaption(R.string.msg_5b29df305534),true)
+            error is SSLException->SyncProblem(bcaption(R.string.msg_e8cda0bcb8d9),bcaption(R.string.msg_84e4b5bb6ec9),true)
+            error is InterruptedIOException->SyncProblem(bcaption(R.string.msg_e813605409d0),KEPT,false)
+            error is IOException&&error !is SyncHttpException&&error !is ProtocolException->SyncProblem(bcaption(R.string.msg_19e90c6c1d3f),KEPT,false)
+            else->SyncProblem(bcaption(R.string.msg_328257927000),bcaption(R.string.msg_f0ef4b5b4105),true)
         }
     }
 }

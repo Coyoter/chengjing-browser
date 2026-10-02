@@ -18,14 +18,14 @@ class BookmarkDrive internal constructor(private val token:String,private val tr
             .header("Authorization","Bearer $token").method(method,body).build())
     fun account():Pair<String,String>{
         val j=JSONObject(request("https://www.googleapis.com/drive/v3/about?fields=user(permissionId,displayName,emailAddress)")).getJSONObject("user")
-        return j.getString("permissionId") to j.optString("emailAddress",j.optString("displayName","Google 帳戶"))
+        return j.getString("permissionId") to j.optString("emailAddress",j.optString("displayName",bt(R.string.msg_d468ceb219bd)))
     }
     fun files(tag:String=appTag):List<JSONObject>{
         val result=mutableListOf<JSONObject>();var cursor=""
         do{
             val url="https://www.googleapis.com/drive/v3/files".toHttpUrl().newBuilder().addQueryParameter("spaces","appDataFolder").addQueryParameter("q","trashed=false and appProperties has { key='app' and value='$tag' }").addQueryParameter("fields","files(id,appProperties),nextPageToken").addQueryParameter("pageSize","100").apply{if(cursor.isNotEmpty())addQueryParameter("pageToken",cursor)}.build().toString()
             val j=JSONObject(request(url));val rows=j.getJSONArray("files");for(i in 0 until rows.length())result.add(rows.getJSONObject(i));cursor=j.optString("nextPageToken")
-            require(result.size<=200){"同步裝置快照過多，請聯絡支援"}
+            require(result.size<=200){bt(R.string.msg_227b6f4ded40)}
         }while(cursor.isNotEmpty())
         return result
     }

@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"Искать снова"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"Аккаунт Google"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"Слишком много снимков синхронизации устройств, обратитесь в службу поддержки"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"Ожидание синхронизации"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"Google не подключен"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"Авторизация Google отменена"</string>
+  <string name="msg_37f027ce9096" formatted="false">"Локальные данные сохранены, вы можете нажать «Синхронизировать сейчас» позже."</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"Ожидание подключения к сети"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"Локальные данные сохранены, после восстановления соединения нажмите «Синхронизировать сейчас»."</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"Требуется повторный вход в Google"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"Нажмите «Синхронизировать сейчас» для подтверждения аккаунта Google."</string>
+  <string name="msg_35b24a76557b" formatted="false">"Настройки входа Google несовместимы"</string>
+  <string name="msg_f164f003f815" formatted="false">"Пожалуйста, обновитесь до последней версии; если проблема не решится, обратитесь в службу поддержки."</string>
+  <string name="msg_ebfa487493ba" formatted="false">"Авторизация Google не завершена"</string>
+  <string name="msg_9dba61428261" formatted="false">"Нажмите «Синхронизировать сейчас» и попробуйте снова. Локальные данные сохранены."</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"Подключение к Google…"</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"Локальные данные сохранены, попробуйте снова."</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"Синхронизация закладок…"</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"Подключение отменено"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"Несоответствие записи и чтения в облаке, повторите попытку"</string>
+  <string name="msg_9359e2513325" formatted="false">"Синхронизация избранного и прогресса чтения…"</string>
+  <string name="msg_294092e535b2" formatted="false">"Несоответствие записи и чтения избранного и прогресса чтения, повторите попытку"</string>
+  <string name="msg_f2e9df262458" formatted="false">"Синхронизация настроек SkyEye…"</string>
+  <string name="msg_ef86e477373a" formatted="false">"Несоответствие записи и чтения настроек SkyEye, повторите попытку"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"Синхронизировано %1$s закладок, %2$s избранного и прогресса чтения"</string>
+  <string name="msg_2830de0d843f" formatted="false">", %1$s настроек сайтов; применятся после перезагрузки страницы"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"Синхронизация остановлена, локальные и облачные закладки и избранное сохранены"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"Закладки"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"Неверный идентификатор закладки"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"Пожалуйста, введите URL закладки"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"Максимум 16 000 символов в URL"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"Пожалуйста, введите URL, начинающийся с https:// или http://"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"Неверный формат URL"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"URL после кодирования превышает 16 000 символов, сократите URL"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"Файл закладок слишком большой, импортируйте по частям (максимум 8 МБ)"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"Максимум 20 000 закладок за один импорт"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;ChengJing Закладки&lt;/TITLE&gt;&lt;H1&gt;ChengJing Закладки&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"Файл облачных закладок слишком большой"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"Формат облачных закладок несовместим"</string>
+  <string name="msg_40ad29b56199" formatted="false">"Ошибка сохранения закладок"</string>
+  <string name="msg_a782f2754c83" formatted="false">"Главная"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"Исключение сертификата включено, нажмите для просмотра"</string>
+  <string name="msg_7c24b540153b" formatted="false">"Проблема с сертификатом, нажмите для просмотра"</string>
+  <string name="msg_58f5b551d138" formatted="false">"Информация о сайте"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"Поиск или ввод URL"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"Перейти"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"Остановить загрузку"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"Обновить"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"Новая вкладка"</string>
+  <string name="msg_75bc594490fc" formatted="false">"Вкладки, %1$s шт."</string>
+  <string name="msg_ad62e8203c00" formatted="false">"Безымянный файл"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"Загрузка не завершена или файл удалён"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"Файл удалён"</string>
+  <string name="msg_813f4217faf8" formatted="false">"Открыть загруженный файл"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"Нет приложения для открытия этого файла"</string>
+  <string name="msg_04c451cd747f" formatted="false">"Невозможно открыть файл, возможно, он был перемещён или удалён"</string>
+  <string name="msg_8d24156413ef" formatted="false">"Временно невозможно получить доступ к системным загрузкам, попробуйте позже"</string>
+  <string name="msg_d477c75aa656" formatted="false">"Загрузки"</string>
+  <string name="msg_4138d7e93958" formatted="false">"Изображения, видео, аудио и файлы, загруженные через ChengJing Browser."</string>
+  <string name="msg_775f5ca1d653" formatted="false">"Пока нет загрузок"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"Совпадающие загрузки не найдены"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"Длительное нажатие на изображение, использование меню загрузки в плеере или нажатие на ссылку загрузки на сайте."</string>
+  <string name="msg_d011ffe066da" formatted="false">"Открыть %1$s"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"Отменить %1$s"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"Отменено"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"Завершено"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"Ошибка загрузки"</string>
+  <string name="msg_204249cd633a" formatted="false">"Приостановлено, ожидание повторной попытки системы"</string>
+  <string name="msg_235d5f021172" formatted="false">"Загрузка"</string>
+  <string name="msg_efed99b86212" formatted="false">"Ожидание загрузки"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"Размер требует подтверждения"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"Скачать файл"</string>
+  <string name="msg_de32e20193ad" formatted="false">"Понятно"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"История просмотров"</string>
+  <string name="msg_4e445f09300c" formatted="false">"Последние 250 страниц сохраняются только на этом устройстве. Режим инкогнито не учитывается."</string>
+  <string name="msg_c24268c66266" formatted="false">"Очистить историю просмотров"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"История просмотров отсутствует"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"Совпадающие страницы не найдены"</string>
+  <string name="msg_539989302fd2" formatted="false">"Обычные посещённые страницы отображаются здесь."</string>
+  <string name="msg_3352ef9c5026" formatted="false">"Удалить эту запись из истории"</string>
+  <string name="msg_46afe15d4929" formatted="false">"Очистить историю просмотров?"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"Будут удалены локальные данные истории просмотров и поиска, закладки, избранное и данные входа на сайты сохранятся."</string>
+  <string name="msg_bce2377283c2" formatted="false">"Очистить"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"Отмена"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"Поиск в %1$s"</string>
+  <string name="msg_052052ba842e" formatted="false">"Новая вкладка"</string>
+  <string name="msg_778dda35c10f" formatted="false">"Снимок вкладки не сохранён, существующий снимок сохранён"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"Снимок сохраняется, подождите перед закрытием приложения"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"Загрузки сохраняются на устройстве"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"Файлы и системные записи загрузок не удаляются при очистке инкогнито. Продолжить загрузку?"</string>
+  <string name="msg_49e07d37a692" formatted="false">"Не удалось сохранить данные вкладки, проверьте свободное место на устройстве"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"Используйте однострочные латинские буквы, цифры и символы, максимум 1024 знака"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"Обновите Android System WebView для использования изолированных вкладок инкогнито"</string>
+  <string name="msg_4369d178c9de" formatted="false">"Максимум открытых вкладок — 20, закройте ненужные"</string>
+  <string name="msg_b860234cdca4" formatted="false">"Не удалось создать изолированную сессию инкогнито, нет открытых страниц"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · Кэшированное изображение"</string>
+  <string name="msg_b210350f38fc" formatted="false">"Изображение"</string>
+  <string name="msg_2988ade50b61" formatted="false">"Ошибка выполнения пользовательской программы; настройте или переключите исключения в SkyEye"</string>
+  <string name="msg_a782840b186d" formatted="false">"Переход во внешнее приложение"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"Этот формат ссылки не поддерживается"</string>
+  <string name="msg_216baff9f183" formatted="false">"Автоматический переход"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"Главная ChengJing"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"Невозможно установить защищённое соединение с сайтом, попробуйте позже."</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"Страница временно недоступна, проверьте сеть или адрес и попробуйте снова."</string>
+  <string name="msg_5e2122abec02" formatted="false">"Срок действия сертификата истёк"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"Сертификат ещё не действителен"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"Несовпадение домена сертификата"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"Источник сертификата не доверен"</string>
+  <string name="msg_557874fe9910" formatted="false">"Аномалия даты сертификата"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"Проверка сертификата не пройдена"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"Сертификат сайта не прошёл проверку, соединение прервано. Нажмите на значок соединения в адресной строке для деталей и настроек исключений."</string>
+  <string name="msg_31648c936ef3" formatted="false">"Процесс страницы остановлен, закройте вкладку и откройте заново."</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"Локальная страница"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"Покинуть страницу?"</string>
+  <string name="msg_3bf1281815df" formatted="false">"Сообщение сайта · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"Покинуть"</string>
+  <string name="msg_20db9f87b860" formatted="false">"Подтвердить"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"Остаться на странице"</string>
+  <string name="msg_e9ea75903633" formatted="false">"Новое окно/всплывающее окно"</string>
+  <string name="msg_2138c825b189" formatted="false">"В этой версии сайт не может использовать камеру и микрофон"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"Выбор файла недоступен"</string>
+  <string name="msg_beffea44da0c" formatted="false">"Не удалось открыть выбор файла"</string>
+  <string name="msg_ad37ef430462" formatted="false">"По этой ссылке нет доступных для загрузки файлов"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\nЭто кэшированный файл страницы, не закрывайте исходную вкладку и не обновляйте страницу до завершения загрузки."</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\nФайлы и записи загрузок сохраняются на устройстве и не удаляются при очистке инкогнито."</string>
+  <string name="msg_d71c2bea9463" formatted="false">"Скачать файл?"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"Откройте страницу, затем добавьте в избранное"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"Страница изменилась, попробуйте снова"</string>
+  <string name="msg_c0af0b409136" formatted="false">"Не удалось добавить в избранное: %1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"Откройте сайт, затем используйте SkyEye"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"Отображается оригинальный сайт, сначала завершите исключение"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"Обновите Android System WebView в Play Маркете для полной работы SkyEye"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"Страница ещё не готова, перезагрузите и попробуйте снова"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"Правило недоступно"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"На странице не найден %1$s, выберите элемент заново"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"Ошибка синтаксиса JavaScript: %1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"Предварительный просмотр удалён; подтвердите и нажмите «Сохранить»"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"Сохранено, будет применено к %1$s и его поддоменам"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"Временно отображается оригинальный сайт; правило сохранено"</string>
+  <string name="msg_a4038cb71105" formatted="false">"Правила SkyEye восстановлены"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"Восстановлено последнее сохранение"</string>
+  <string name="msg_13256df2ec81" formatted="false">"Назад"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"Вперед"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"SkyEye"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"Обновить прогресс закладок"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"Быстрая закладка"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"Добавлено в закладки"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"Еще не в закладках"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"Закладки и позиция чтения сохранены"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"Меню браузера"</string>
+  <string name="msg_bcbd40877710" formatted="false">"Веб-компоненты"</string>
+  <string name="msg_8508e17dc836" formatted="false">"Правила компонентов пусты или слишком длинные"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"Введите селектор компонента, а не весь стиль"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"Нельзя удалить всю страницу, уменьшите область выбора"</string>
+  <string name="msg_2b76681815f4" formatted="false">"AI предлагает изменить слишком много компонентов за раз, уточните меньшую область"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"AI корректировка"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"AI пытается изменить несуществующее правило"</string>
+  <string name="msg_af099dc62317" formatted="false">"Максимум 100 правил на один домен"</string>
+  <string name="msg_6c1546728176" formatted="false">"Настроить правила компонентов"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"Только HTTPS-сайты могут иметь исключения сертификатов"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"Ошибка сохранения настроек"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"Не удалось сохранить настройки поисковой системы"</string>
+  <string name="msg_1615b8429815" formatted="false">"Не удалось сохранить пользовательский поисковик"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"Ошибка сохранения на устройстве, правила не сохранены"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"Объединение настроек сайта не завершено, локальные данные сохранены"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"Не удалось сохранить историю просмотров, проверьте свободное место на устройстве"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_71171b556a11" formatted="false">"Веб-страницы\nадаптированы под ваши привычки."</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"Продолжайте обычный просмотр и включайте SkyEye,\nдобавляйте стили, коды или настраивайте компоненты."</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"Цитата дня"</string>
+  <string name="msg_27268090a840" formatted="false">"Быстрый переход"</string>
+  <string name="msg_f06e679b9530" formatted="false">"Википедия"</string>
+  <string name="msg_217d775e8c90" formatted="false">"Продолжить чтение"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"Папка закладок"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"Все закладки"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"Поделиться изображением"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"Разрешение на сохранение не предоставлено, изображение не загружено"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"Изображения сохраняются вне режима инкогнито"</string>
+  <string name="msg_0816eeae6881" formatted="false">"Приложения для загрузки, буфера обмена или приема изображений могут сохранять файлы, которые не удаляются при закрытии инкогнито-вкладок."</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"Продолжить"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"Нет доступных изображений для сохранения. Попробуйте снова нажать и удерживать позже."</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"Страница изменилась, пожалуйста, снова нажмите и удерживайте изображение"</string>
+  <string name="msg_e409173288a1" formatted="false">"Получение изображения…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"Временное изображение открыто в новой вкладке"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"Изображение скопировано, можно вставить в поддерживаемое приложение"</string>
+  <string name="msg_8746e6a72700" formatted="false">"Пожалуйста, сначала завершите разрешение на сохранение предыдущего изображения"</string>
+  <string name="msg_7151072d822c" formatted="false">"Изображение загружено в Downloads/ChengJing, можно просмотреть в «Загрузках»"</string>
+  <string name="msg_fb43036835f6" formatted="false">"Разрешение на сохранение не предоставлено, файл не загружен"</string>
+  <string name="msg_18763274dfce" formatted="false">"Пожалуйста, выберите файл для загрузки заново"</string>
+  <string name="msg_38116168b889" formatted="false">"Этот URL нельзя загрузить через системную службу загрузок, загрузите заново на исходной странице"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"Пожалуйста, сначала завершите разрешение на сохранение предыдущего файла"</string>
+  <string name="msg_1022567a481f" formatted="false">"Не удалось открыть разрешение на сохранение, попробуйте снова"</string>
+  <string name="msg_067c7812968e" formatted="false">"ChengJing Browser · Загрузка изображений"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"ChengJing Browser · Загрузка файлов"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"Добавлено в системную очередь загрузок, результаты можно посмотреть в меню с тремя точками в разделе «Загрузки»"</string>
+  <string name="msg_46248e4d3641" formatted="false">"Не удалось добавить файл для загрузки, проверьте свободное место и системную службу загрузок"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"Запуск ChengJing Browser"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"ChengJing"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"Браузер"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"Редактировать правила сайта"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"AI корректировка правил"</string>
+  <string name="msg_371d839ac65c" formatted="false">"Сторонние разрешения"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"Код компонента"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"SkyEye AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"Подключение к сайту"</string>
+  <string name="msg_930e319f7845" formatted="false">"Конфиденциальность и данные"</string>
+  <string name="msg_0d8619aae051" formatted="false">"Настройки"</string>
+  <string name="msg_842433f0a425" formatted="false">"Вкладки"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"Настройки SkyEye"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"Выбран компонент"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"Изменение сайта"</string>
+  <string name="msg_e13bbc197118" formatted="false">"Пользовательский код"</string>
+  <string name="msg_634ad289a228" formatted="false">"Помощь AI"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"Определение браузера"</string>
+  <string name="msg_14bd2c678335" formatted="false">"Поисковая система по умолчанию"</string>
+  <string name="msg_905d98bd5535" formatted="false">"Структурированный список"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"Синхронизация Google"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"Правила домена"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"Поиск текста на странице"</string>
+  <string name="msg_9d08608859f8" formatted="false">"Журнал блокировок"</string>
+  <string name="msg_9357d631d10f" formatted="false">"Вернуться назад"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"Просмотр в соответствии с вашими привычками"</string>
+  <string name="msg_de961bb8936f" formatted="false">"Закрыть меню"</string>
+  <string name="msg_60a53514eb92" formatted="false">"Избранное"</string>
+  <string name="msg_97afce0d452c" formatted="false">"Инструменты просмотра"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"Открыть инкогнито вкладку"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"Отдельная сессия просмотра от обычных вкладок"</string>
+  <string name="msg_8dce3f317048" formatted="false">"Просмотр загруженных элементов ChengJing"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"Удалить данные просмотра"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"Выберите период и элементы для удаления"</string>
+  <string name="msg_431596791167" formatted="false">"Текущая страница"</string>
+  <string name="msg_3e40d2036259" formatted="false">"Добавить текущую страницу в избранное"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"Добавить в закладки"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"Неразмеченная папка закладок"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"Эта страница уже в закладках"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"Поделиться"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"Использовать системный обмен Android"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"Переключиться на мобильную версию сайта"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"Переключиться на десктопную версию сайта"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"SkyEye и сайты"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s удалённых правил"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"Восстановить применение правил SkyEye"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"Временно показать оригинальный сайт"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"Сейчас отображается оригинальный сайт"</string>
+  <string name="msg_43d22862b439" formatted="false">"Приостановить настройки для этого домена"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"Все правила доменов"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"Заблокировано %1$s вмешательств"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"Просмотреть журнал этой вкладки"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"Настройки и данные"</string>
+  <string name="msg_e7ed17309495" formatted="false">"Внешний вид, просмотр и настройки AI"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"ChengJing %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"Внешний вид"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"Просмотр"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"Сначала откройте страницу, затем поделитесь ссылкой"</string>
+  <string name="msg_9e2276893fae" formatted="false">"На этом устройстве нельзя открыть системное окно обмена"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"Система временно не может поделиться этой страницей"</string>
+  <string name="msg_beed38829f24" formatted="false">"На этом экране нельзя скачать изображение"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"Открыть в новой вкладке"</string>
+  <string name="msg_d55104374e08" formatted="false">"Копировать ссылку"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"Ссылка"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"Открыть изображение в новой вкладке"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"Предпросмотр изображения"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"Копировать изображение"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"Скачать изображение"</string>
+  <string name="msg_75136c12a08a" formatted="false">"Не удалось получить URL изображения, пожалуйста, нажмите и удерживайте изображение снова"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"Копировать ссылку на изображение"</string>
+  <string name="msg_559552ccc661" formatted="false">"Ссылка на изображение"</string>
+  <string name="msg_17d52a476d32" formatted="false">"Скопировано %1$s"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"Разрешение на сохранение предоставлено, выберите файл для загрузки снова"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"Исходная страница изменилась, загрузите заново"</string>
+  <string name="msg_167523d3b80d" formatted="false">"Сейчас загружаются два временных файла, попробуйте позже"</string>
+  <string name="msg_57d25840bf76" formatted="false">"Загрузка веб-файла идет, прогресс и отмену можно посмотреть в «Загрузках»; сохраните исходную вкладку"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"Исходная страница изменилась, загрузка остановлена"</string>
+  <string name="msg_13491974a87a" formatted="false">"Загружено в Downloads/ChengJing, откройте в «Загрузках»"</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"Время ожидания временного файла истекло, сохраните исходную вкладку и загрузите заново"</string>
+  <string name="msg_639f890d3c20" formatted="false">"Отменено; неполные файлы не сохранены"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"Загрузка не завершена, проверьте место для хранения и попробуйте снова"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"Исходная вкладка закрыта или перезагружена, загрузка остановлена; неполные файлы не сохранены"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"Введите содержимое"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"Закрыть меню длительного нажатия"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"Пожалуйста, сначала обновите Android System WebView, затем удалите файлы cookie и данные сайта."</string>
+  <string name="msg_7877a2c231c9" formatted="false">"Не удалось сохранить изменение вкладки"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"Снимок вкладки еще не очищен"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"Выбранные данные просмотра удалены; файлы cookie, кэш и данные сайта полностью очищены"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"Выбранные данные просмотра для %1$s удалены"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"Очистка данных сайта еще не подтверждена. Пожалуйста, попробуйте позже или закройте и снова откройте приложение."</string>
+  <string name="msg_f795969c320e" formatted="false">"Удаление не завершено, некоторые данные могли быть удалены. Пожалуйста, попробуйте снова или перезапустите приложение."</string>
+  <string name="msg_6846f5758df9" formatted="false">"Последние 15 минут"</string>
+  <string name="msg_789842abff7d" formatted="false">"Ресурсы сайта"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"На этой странице была обнаружена ошибка сертификата, невозможно подтвердить личность соединения. Если исключения для сайта не включены, соединение с ошибкой будет заблокировано.\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"Сайт еще не открыт"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"В настоящее время используется зашифрованное соединение HTTPS."</string>
+  <string name="msg_c6905e1adffd" formatted="false">"HTTP-соединение не зашифровано, отсутствует проверяемый сертификат сайта."</string>
+  <string name="msg_87178db80ada" formatted="false">"Откройте сайт, чтобы просмотреть информацию о соединении."</string>
+  <string name="msg_3e26c53efe37" formatted="false">"Текущий сайт"</string>
+  <string name="msg_9c5784103466" formatted="false">"Другие источники, используемые на странице"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"Разрешить исключение сертификата"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"Включено; сохранится после перезапуска"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"По умолчанию выключено, при ошибке проверки соединение прерывается"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"Применяется только к этому HTTPS-хосту (включая разные порты), не включает другие поддомены или сторонние источники. Сохранится до вашего отключения."</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"Исключение сертификата снижает защиту проверки подлинности сайта; оно не исправляет проблемы с невозможностью сервера установить зашифрованное соединение."</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"Разрешить исключение сертификата для этого сайта?"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\nЭта настройка сохранится навсегда, пока вы не отключите её. Даже если сертификат сайта недействителен или личность не подтверждена, загрузка может продолжиться; данные для входа и введённая информация могут быть получены нежелательными лицами. Включайте только если понимаете и принимаете риски."</string>
+  <string name="msg_d848bdedee10" formatted="false">"Я понимаю, разрешить для этого сайта"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"Сохранять проверку"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"Неправильный формат встроенного файла"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"Неправильный URL встроенного файла"</string>
+  <string name="msg_a5fc04346035" formatted="false">"URL встроенных данных слишком большой, используйте ссылку для скачивания файла с сайта"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"Кодировка встроенного файла неполная"</string>
+  <string name="msg_c74489c545f7" formatted="false">"Кодировка встроенного файла неправильная"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"Диапазон времени"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s страниц, %2$s записей поиска"</string>
+  <string name="msg_8394223e0a97" formatted="false">"Вкладки, которые не были закрыты"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s обычных вкладок · закрыты по времени последнего просмотра"</string>
+  <string name="msg_1f86b4081196" formatted="false">"Файлы cookie, кэш и данные сайта"</string>
+  <string name="msg_c44aefb98491" formatted="false">"Без ограничения по времени · Очистить всё, возможно выход из сайтов"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"Пожалуйста, сначала обновите Android System WebView для очистки"</string>
+  <string name="msg_ab54697044d0" formatted="false">"Диапазон времени применяется к истории просмотра и вкладкам. Файлы cookie, кэш и данные сайта можно очистить только полностью."</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"Данные старой версии без отметок времени, выберите «Без ограничения времени» для удаления."</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"Сохраняются закладки, избранное, загруженные файлы и настройки SkyEye. Для инкогнито-данных закройте инкогнито-вкладки для очистки."</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"Удаление…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"Удалить данные"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"Текущий сайт · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"Что хотите попробовать? Спросите AI напрямую"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"Опишите общую идею, не ограничиваясь выбранными элементами"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"Не удалось прочитать элемент, пожалуйста, выберите заново"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\nВ настоящее время соответствует %2$s элементам; после сохранения применится к %3$s и поддоменам, соответствующим этой структуре."</string>
+  <string name="msg_16a3beab3f94" formatted="false">"CSS-свойства элемента"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"JavaScript элемента"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// element представляет текущий элемент, соответствующий правилу\nelement.setAttribute(\'title\', \'Моё напоминание для чтения\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"Внутренний HTML элемента"</string>
+  <string name="msg_f8ff75626431" formatted="false">"Добавить HTML (в конец элемента)"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;Моё напоминание для чтения&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"Скрипты в %1$s HTML не выполняются; для интерактивности используйте JavaScript. JS может читать страницу или делать запросы, применяйте только то, что понимаете."</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"Это заменит внутреннее содержимое соответствующих элементов, что может повлиять на исходное взаимодействие."</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"CSS/JS/HTML можно заполнять по желанию."</string>
+  <string name="msg_381994932dcc" formatted="false">"Страница изменилась, пожалуйста, выберите заново"</string>
+  <string name="msg_ac2471607490" formatted="false">"Пожалуйста, сначала введите содержимое для добавления"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"Достигнут лимит изменений сайта, пожалуйста, сначала упорядочьте сохранённые изменения"</string>
+  <string name="msg_9104269ef996" formatted="false">"Сохранено и применено; можно восстановить последнее сохранение в настройках SkyEye"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"Загрузка элемента…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"Сохранить и применить"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"Сделать исходные изменения более подходящими"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"Проверьте это изменение с помощью AI"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nAI прочитает HTML текущей загрузки страницы, применённый перед SkyEye, и текущее редактирование, затем отредактирует правило согласно вашим новым требованиям."</string>
+  <string name="msg_b654f1e4475a" formatted="false">"CSS / JS / HTML сайта"</string>
+  <string name="msg_b243a787a694" formatted="false">"Текущий сайт: %1$s\nМожно предложить изменения для общего макета. Анализ основан на ограниченной структуре текущей открытой страницы и не охватывает все страницы сайта."</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"Выбранный элемент: %1$s\nИзменения элемента нацелены на этот селектор: %2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"Как вы хотите изменить это в этот раз?"</string>
+  <string name="msg_4df18c378546" formatted="false">"Что вы хотите изменить на этом сайте?"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"Как вы хотите изменить этот элемент? Что нужно проверить?"</string>
+  <string name="msg_53c859901fee" formatted="false">"HTML удалит содержимое формы, скрипты и атрибуты событий, максимум предоставляется %1$s символов; может включать текст страницы, но не охватывает другие страницы или последующий динамический контент."</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"CSS/HTML будет применён к выбранному элементу; JavaScript по-прежнему имеет доступ к коду страницы, пожалуйста, проверьте фактический диапазон воздействия."</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"Используется локальный анализ Gemma 4 без необходимости API Key; структура страницы, код и требования этого анализа не отправляются в облако."</string>
+  <string name="msg_b45dad973407" formatted="false">"В этот раз домен, очищенный исходный HTML (возможно, содержащий личный текст страницы), это пользовательское правило и новые требования будут отправлены OpenRouter и выбранным поставщикам моделей. Cookie и значения форм не считываются."</string>
+  <string name="msg_fbd9319f336c" formatted="false">"В этот раз домен, ограниченная структура элементов, сохранённый пользовательский код и ваши введённые требования будут отправлены OpenRouter и выбранным поставщикам моделей. Код или вопросы могут содержать личную информацию, пожалуйста, подтвердите заранее; Cookie, значения форм и содержимое статей не считываются автоматически."</string>
+  <string name="msg_87bc9921ff32" formatted="false">"Согласен отправить вышеуказанные данные для этого анализа"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"Выберите способ выполнения AI"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"Настроить OpenRouter API Key"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"Страница изменилась, пожалуйста, перезапустите AI"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"Не удалось прочитать исходный HTML этого правила. Пожалуйста, откройте страницу с этим элементом, перезагрузите и попробуйте снова."</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"Страница ещё не готова, пожалуйста, перезагрузите и попробуйте снова"</string>
+  <string name="msg_d1127956fd88" formatted="false">"Страница изменилась, пожалуйста, повторите анализ"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"Анализ отменён"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"Анализируется…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"Использовать Gemma 4 для анализа"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"Отправить и получить рекомендации"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"Отменить анализ"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"Рекомендации AI"</string>
+  <string name="msg_f8236285164f" formatted="false">"На этот раз не было создано применимых изменений."</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"Область сохранения: %1$s и его поддомены. Рекомендации AI ещё не проверены на вашем сайте; пожалуйста, просмотрите код и изменения перед применением."</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"Свернуть изменения"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"Просмотреть полные изменения"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"Настройки изменены, пожалуйста, повторите анализ"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"Рекомендации AI применены; можно восстановить последнее сохранение в настройках SkyEye"</string>
+  <string name="msg_4522951c203c" formatted="false">"Обновить исходное правило и применить"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"Применить рекомендации одним кликом"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"Можно восстановить предыдущую настройку; запросы, отправленные программой, или действия на сайте отменить нельзя."</string>
+  <string name="msg_b727b2493599" formatted="false">"Настроек на этом сайте слишком много, пожалуйста, сузьте выбор до одного элемента или используйте облачный анализ модели."</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"Локальные данные сохранены; при следующем запуске приложения они будут синхронизированы, также можно нажать «Синхронизировать сейчас»."</string>
+  <string name="msg_0d3a30703357" formatted="false">"Google временно занят"</string>
+  <string name="msg_61b008bafedd" formatted="false">"Попробуйте позже. %1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"Требуется повторное подтверждение авторизации Google"</string>
+  <string name="msg_2a19048f4610" formatted="false">"Пожалуйста, нажмите «Синхронизировать сейчас» для повторного подтверждения авторизации. Локальные данные сохранены."</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"Ограничены права синхронизации Google"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"Пожалуйста, проверьте доступ приложений и настройки администратора вашей учётной записи Google, затем нажмите «Синхронизировать сейчас». Локальные данные сохранены."</string>
+  <string name="msg_0108ca4bc750" formatted="false">"Пожалуйста, используйте исходную учётную запись Google"</string>
+  <string name="msg_5b29df305534" formatted="false">"Данные синхронизации этого телефона связаны с другой учётной записью, пожалуйста, выберите исходную учётную запись, чтобы избежать смешивания с чужими данными."</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"Не удалось подтвердить безопасность соединения Google"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"Пожалуйста, проверьте дату, время и сетевые настройки телефона и попробуйте снова. Локальные данные сохранены."</string>
+  <string name="msg_e813605409d0" formatted="false">"Соединение медленное, синхронизация не завершена"</string>
+  <string name="msg_328257927000" formatted="false">"Синхронизация не завершена"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"Облачные данные ещё не подтверждены, локальные данные сохранены. Пожалуйста, попробуйте позже; если проблема сохраняется, свяжитесь с поддержкой."</string>
+  <string name="msg_e19c932091a7" formatted="false">"Официальная версия временно недоступна, попробуйте позже."</string>
+  <string name="msg_85284e05ae9e" formatted="false">"Ядро браузера"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"В настоящее время Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"Последняя официальная версия"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"Идёт поиск…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"Данных нет"</string>
+  <string name="msg_8b9b22849066" formatted="false">"Ещё не запрашивалось"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"В настоящее время предоставлено %1$s; сравнение с официальной версией %2$s от Google."</string>
+  <string name="msg_e5d3e9548003" formatted="false">"Текущая версия не может быть напрямую сравнена"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"Официальная версия новее, можно проверить обновления ядра"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"Текущее ядро совпадает с официальной версией"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"Текущая версия ядра новее"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"Время запроса %1$s:"</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"Сохранить последний результат · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"Идёт запрос…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"Проверить версию снова"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"Не удалось открыть страницу обновления, пожалуйста, проверьте WebView в системных настройках."</string>
+  <string name="msg_243aeef7919a" formatted="false">"Открыть страницу обновления ядра"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"Обновления предоставляются системой или магазином, могут выпускаться поэтапно."</string>
+  <string name="msg_8e57db190d94" formatted="false">"Официальные данные о версии ещё не предоставлены"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"Формат официальных данных о версии некорректен"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"Системный WebView"</string>
+  <string name="msg_b7d90d419331" formatted="false">"Не удалось прочитать"</string>
+  <string name="msg_737d4fde158c" formatted="false">"Временно не удаётся подключиться к официальному запросу версии"</string>
+  <string name="msg_6090d27dccad" formatted="false">"Официальные данные о версии не получены"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"Данные о версии слишком большие"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"Не удалось сохранить информацию о версии"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"Не найдено приложение для открытия этой ссылки. Пожалуйста, убедитесь, что соответствующее приложение установлено."</string>
+  <string name="msg_34b996e6bd60" formatted="false">"Открыть в другом приложении?"</string>
+  <string name="msg_140169f1183b" formatted="false">"Вы покинете режим инкогнито ChengJing. Другие приложения могут сохранить эту ссылку и историю использования."</string>
+  <string name="msg_f290f9167ad0" formatted="false">"Открыть"</string>
+  <string name="msg_0db216962632" formatted="false">"Неверный формат сохранённого URL"</string>
+  <string name="msg_62b58243569c" formatted="false">"Неверный формат идентификатора сохранения"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"Неверный формат времени сохранения"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"Время сохранения выходит за пределы допустимого диапазона"</string>
+  <string name="msg_71a221e87e34" formatted="false">"Слишком много данных синхронизации закладок, локальный контент сохранён"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"Данные синхронизации закладок превышают лимит размера"</string>
+  <string name="msg_220275e1f7de" formatted="false">"Для чтения этого формата синхронизации закладок требуется обновить приложение"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"Ошибка сохранения закладки"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"Поиск..."</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"Не найдено"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"Пожалуйста, введите текст для поиска"</string>
+  <string name="msg_28010afeecd8" formatted="false">"Поиск на странице"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"Совпадений не найдено"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"Результат %1$s из %2$s"</string>
+  <string name="msg_d1989441806e" formatted="false">"Сначала откройте веб-страницу, затем ищите текст на странице"</string>
+  <string name="msg_c570255d2708" formatted="false">"Пожалуйста, сначала выйдите из SkyEye, затем ищите текст на странице"</string>
+  <string name="msg_f782a6845afa" formatted="false">"Предыдущее совпадение"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"Следующее совпадение"</string>
+  <string name="msg_f41b8847f832" formatted="false">"Закрыть поиск на странице"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B готова"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"Локальная модель не загружена"</string>
+  <string name="msg_191155f69eeb" formatted="false">"Локальная модель требует 64-битное устройство"</string>
+  <string name="msg_301286dd890b" formatted="false">"Недостаточно места, пожалуйста, освободите около 3 ГБ свободного пространства"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"ChengJing · Gemma 4 локальная модель"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"Загрузка около 2,59 ГБ; после завершения будет проверена целостность модели"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"Задача загрузки не существует, пожалуйста, загрузите заново"</string>
+  <string name="msg_24d557606dbb" formatted="false">"Проверка целостности модели…"</string>
+  <string name="msg_d46682705f49" formatted="false">"Ошибка загрузки модели (%1$s), пожалуйста, загрузите заново"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"Загрузка приостановлена; проверьте Wi-Fi, сеть или место для хранения"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"Загрузка Gemma 4 · %1$s%%"</string>
+  <string name="msg_119f097a0356" formatted="false">"Загрузка не завершена"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"Проверка целостности модели не пройдена, пожалуйста, удалите и загрузите заново"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"Пожалуйста, сначала загрузите локальную модель Gemma 4"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"Недостаточно доступной памяти, закройте некоторые вкладки или другие приложения перед использованием локальной модели."</string>
+  <string name="msg_305f7b160fa8" formatted="false">"Ответ модели слишком длинный, пожалуйста, сузьте область вопроса"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"Режим работы ИИ"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · локально на телефоне"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · облачная модель"</string>
+  <string name="msg_7397e02a13de" formatted="false">"Локальный режим не требует API ключа; в облачном режиме можно выбрать модель от выбранного провайдера."</string>
+  <string name="msg_770c4bcb536a" formatted="false">"Первоначально требуется загрузить модель около 2,59 ГБ, освободите около 3 ГБ места. Требуется 64-битное устройство, рекомендуется минимум 6 ГБ оперативной памяти; при анализе будет использоваться заряд телефона. После загрузки данные анализа остаются локально."</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"Отменить загрузку модели"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"Модель прошла проверку целостности и готова к офлайн-использованию."</string>
+  <string name="msg_1300b82064c4" formatted="false">"Удалить модель для освобождения места"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"Разрешить загрузку через мобильную сеть"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"Загрузить локальную модель Gemma 4"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"Это устройство не поддерживает локальное инференс, можно использовать OpenRouter."</string>
+  <string name="msg_6cbc25f77915" formatted="false">"Модель: Google Gemma 4, Apache 2.0. Файл модели загружен с LiteRT Community по ссылке из Google Docs."</string>
+  <string name="msg_0cc2d828db73" formatted="false">"Пожалуйста, введите действительный HTTP или HTTPS URL"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"Сохранение не завершено, попробуйте позже"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"Настройки домашней страницы"</string>
+  <string name="msg_d03a088f3260" formatted="false">"Показать кнопку домашней страницы"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"Расположить перед адресной строкой"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"Не удалось сохранить настройки домашней страницы"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"Пользовательский URL"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"URL домашней страницы"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"Сохранено"</string>
+  <string name="msg_0edd4290c301" formatted="false">"Сохранить домашнюю страницу"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"Для предварительного просмотра инкогнито необходимо сначала подтвердить экспорт"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"Изображение превышает 32 МБ, пожалуйста, скачайте с оригинального сайта"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"Сессия инкогнито закрыта"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"Полученный контент не является поддерживаемым изображением, файл не сохранён"</string>
+  <string name="msg_5f8355918e25" formatted="false">"Ошибка кэширования изображения"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"URL изображения недоступен"</string>
+  <string name="msg_4926037b836c" formatted="false">"Перенаправление изображения недоступно"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"Ошибка загрузки изображения (HTTP %1$s), файл не сохранён"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"Изображение пустое"</string>
+  <string name="msg_cc6f13303851" formatted="false">"Слишком много перенаправлений изображения, файл не сохранён"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"Изображение превышает 32 МБ"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"Кэш изображения устарел, пожалуйста, вернитесь на предыдущую страницу и откройте заново"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"Закрыть просмотр изображения"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · масштабирование двумя пальцами, двойной тап для увеличения"</string>
+  <string name="msg_c660e164fa68" formatted="false">"Это вкладка с кэшированными изображениями веб-страницы, после перезапуска приложения они не сохраняются. Для сохранения загрузите их."</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"Изображение, можно масштабировать и перетаскивать двумя пальцами"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"Назад"</string>
+  <string name="msg_607089b311be" formatted="false">"Без категории"</string>
+  <string name="msg_e371aca7156b" formatted="false">"Импортировать закладки Chrome"</string>
+  <string name="msg_901fcc465532" formatted="false">"Закрыть избранное"</string>
+  <string name="msg_714be9fccc36" formatted="false">"Закрыть закладки"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s элементов"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s закладок"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"Поиск в избранном"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"Поиск по всем закладкам и папкам"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"Очистить поиск"</string>
+  <string name="msg_4220592340ad" formatted="false">"Добавлено в избранное"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"Прогресс избранного обновлён"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"Обновить прогресс этого избранного"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"Создана новая запись избранного"</string>
+  <string name="msg_74894a77754e" formatted="false">"Добавить ещё одну запись"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"Запомнить URL главы и позицию чтения, сохранить на этом устройстве."</string>
+  <string name="msg_6d9532de6549" formatted="false">"Пока нет избранного"</string>
+  <string name="msg_9c88b8194478" formatted="false">"Не найдено подходящего избранного"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"При чтении можно добавить в избранное из меню без выбора папки."</string>
+  <string name="msg_299775d315e8" formatted="false">"Попробуйте другое имя или URL."</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · Страница %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"Переименовать избранное %1$s"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"Удалить избранное %1$s"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"Закладки › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"Не найдено подходящих закладок"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"Здесь пока нет закладок"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"Поиск охватывает все папки."</string>
+  <string name="msg_a581a0c5331f" formatted="false">"Можно импортировать закладки Chrome через верхний правый угол."</string>
+  <string name="msg_11ae55de6d31" formatted="false">"Редактировать закладку %1$s"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"Удалить закладку %1$s"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"Добавлено в эту папку"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"Эта закладка уже есть в этой папке"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"Добавить текущую страницу"</string>
+  <string name="msg_c631952bb114" formatted="false">"Экспорт"</string>
+  <string name="msg_27001df08520" formatted="false">"Редактировать закладки"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"Назвать избранное"</string>
+  <string name="msg_a5274f381305" formatted="false">"Имя"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"URL"</string>
+  <string name="msg_aabc6623539f" formatted="false">"Папка"</string>
+  <string name="msg_a2c701b369be" formatted="false">"Чтение / Технологии"</string>
+  <string name="msg_b631887c06ef" formatted="false">"Используйте « / » для разделения уровней папок"</string>
+  <string name="msg_978626066ea1" formatted="false">"Ошибка сохранения, попробуйте ещё раз"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"Сохранить"</string>
+  <string name="msg_9c9624b64441" formatted="false">"Определение сайта"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"Веб-компоненты телефона пока не поддерживают прямое определение, обновите Android System WebView."</string>
+  <string name="msg_68f8f532449b" formatted="false">"Разрешение инкогнито сохраняется только до закрытия всех инкогнито-вкладок."</string>
+  <string name="msg_db3dea807cf5" formatted="false">"Применяется только к этому сайту; для других сайтов требуется отдельное разрешение."</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"После изменения сайт будет перезагружен, текущие запросы на определение будут остановлены."</string>
+  <string name="msg_d47077aa2c28" formatted="false">"Разрешение на определение местоположения"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"Настройки службы определения местоположения телефона"</string>
+  <string name="msg_824602facd05" formatted="false">"Не удалось открыть файл закладок"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"Файл закладок превышает 8 МБ, импортируйте по частям"</string>
+  <string name="msg_7193e8524414" formatted="false">"В файле не найдены закладки HTTP / HTTPS"</string>
+  <string name="msg_01fd7b112086" formatted="false">"Импортировать %1$s закладок?"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"Папки сохранятся; существующие закладки не будут дублироваться."</string>
+  <string name="msg_20809c5d8596" formatted="false">"Импорт"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"Импортировано %1$s закладок"</string>
+  <string name="msg_3778200c90e5" formatted="false">"Эти закладки уже импортированы, дублирование не произойдёт"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"Импорт не завершён, попробуйте позже"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"Импорт не завершён"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"Не удалось записать файл"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"Закладки экспортированы"</string>
+  <string name="msg_fef661198324" formatted="false">"Ошибка экспорта закладок"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"Предварительный просмотр отменён, изменения не сохранены"</string>
+  <string name="msg_79606cdda212" formatted="false">"Режим инкогнито"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s правил · не сохранено"</string>
+  <string name="msg_8d44a1395388" formatted="false">"SkyEye включён · нажмите на элемент сайта"</string>
+  <string name="msg_315a88f3155e" formatted="false">"Выйти из SkyEye"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"В исключениях · исходный сайт"</string>
+  <string name="msg_c550069b0749" formatted="false">"Восстановить правила"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"Временно не удаётся подключиться к этому сайту"</string>
+  <string name="msg_70dd895b66db" formatted="false">"Перезагрузить"</string>
+  <string name="msg_ed51242141b1" formatted="false">"Ваш выбор остаётся на вашем телефоне."</string>
+  <string name="msg_f1c970051cf5" formatted="false">"Правила доменов ещё не сохранены."</string>
+  <string name="msg_baeab929c3dd" formatted="false">"Нажмите для редактирования · изменено %1$s элементов"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"На этой вкладке всего %1$s раз, сохранены последние 30."</string>
+  <string name="msg_b3471f8f134f" formatted="false">"Открыть этот URL вручную"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"Продолжить выбор элементов"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"Включить SkyEye · выбрать элемент"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"Отменить последнее действие"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"Сохранить правила"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"Элементы и код"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"Просмотр плавающих, скрытых и встроенных элементов"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"Сохранённые изменения сайта"</string>
+  <string name="msg_0590277f2647" formatted="false">"Нажмите правило для продолжения редактирования или корректировки AI"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"Поведение сайта"</string>
+  <string name="msg_830509b36cfe" formatted="false">"Блокировка перенаправлений и всплывающих окон"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"Отключите, если процесс входа нарушается."</string>
+  <string name="msg_7007cf22f796" formatted="false">"Настройки защиты домена сохранены"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"Приостановить настройки домена до закрытия приложения."</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"Восстановить последнее сохранение"</string>
+  <string name="msg_97efebc05b15" formatted="false">"Выбранные элементы · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · этот селектор соответствует %3$s элементам"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"Встроенные страницы можно настроить по рамке; внутреннее содержимое с другого источника недоступно здесь."</string>
+  <string name="msg_2bc121aa5664" formatted="false">"Как вы хотите изменить этот элемент?"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"Добавить пользовательский CSS / JS / HTML"</string>
+  <string name="msg_6791c9f39720" formatted="false">"Добавить стили, интерактивность или содержимое страницы"</string>
+  <string name="msg_704bb9551f08" formatted="false">"Удалить этот элемент сайта"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"Сначала предварительный просмотр, затем решите, сохранять ли"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"Изменить этот код"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"Редактировать внутренний HTML элемента"</string>
+  <string name="msg_31d97b13527a" formatted="false">"Правильно ли я изменил? Проверьте AI"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"Вносить изменения только в выбранный элемент"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"Выбрать внешний уровень"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"Выбрать другой элемент"</string>
+  <string name="msg_76ae194967b7" formatted="false">"Код сайта"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"Редактировать сохранённое содержимое или передать AI для доработки"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"Пользовательские элементы"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"Редактировать HTML"</string>
+  <string name="msg_96f3303604ab" formatted="false">"Код пользовательского элемента"</string>
+  <string name="msg_27688f7df99c" formatted="false">"Скрытые элементы"</string>
+  <string name="msg_215e19833aad" formatted="false">"Восстановить %1$s"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"Этот элемент восстановлен"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"Изменения не сохранены. Вы можете выбрать элементы через SkyEye или добавить код сайта."</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"Восстановить прокрутку страницы"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"Включайте только если после удаления оверлея прокрутка всё ещё недоступна."</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"Правила сохраняются локально. Если структура домена изменится, выберите заново или попросите AI подкорректировать."</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"Код применяется к этому домену и поддоменам. JavaScript может читать страницу и делать сетевые запросы, используйте только доверенный код. Режим исключений приостанавливает применение."</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"При сохранении также сохраняются изменения элементов, просмотренных в SkyEye."</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"CSS стили"</string>
+  <string name="msg_628f36411710" formatted="false">"// Добавить или изменить содержимое страницы; выполняется при каждой загрузке"</string>
+  <string name="msg_b22612d48c02" formatted="false">"Добавить HTML на сайт (в конец страницы)"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;Мои подсказки для чтения&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"Страница изменилась, закройте и откройте редактор заново"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"Сохранено и перезагружено"</string>
+  <string name="msg_7106b4590cce" formatted="false">"Ошибка сохранения: %1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"Включая изначально невидимые элементы. Отображается до 80 плавающих, скрытых и встроенных элементов."</string>
+  <string name="msg_2111f387ba60" formatted="false">"Таких элементов не найдено; можно напрямую выбрать обычные элементы на странице."</string>
+  <string name="msg_167bc0947798" formatted="false">"Изначально скрытые"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"Плавающие/фиксированные элементы"</string>
+  <string name="msg_047f31f927fe" formatted="false">"Встроенные страницы"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"Тема"</string>
+  <string name="msg_dee60aee2501" formatted="false">"Светлая"</string>
+  <string name="msg_a6b75d068032" formatted="false">"Тёмный"</string>
+  <string name="msg_6df543c4a401" formatted="false">"Система"</string>
+  <string name="msg_381e6e45713f" formatted="false">"Следовать системе будет переключаться в зависимости от настроек тёмной темы телефона."</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"Положение адресной строки"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"Адресная строка сверху"</string>
+  <string name="msg_629f91b2430d" formatted="false">"Адресная строка снизу"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"Адресная строка снизу, SkyEye и панель навигации сверху."</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"Адресная строка сверху, SkyEye и панель навигации снизу."</string>
+  <string name="msg_03c481a6ab85" formatted="false">"Поиск"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"Отображение сайта"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"Идентификатор браузера (User-Agent)"</string>
+  <string name="msg_12acb73519ef" formatted="false">"Оригинальный Android WebView"</string>
+  <string name="msg_0eac99137858" formatted="false">"Пользовательский идентификатор"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"Мобильная версия Chrome"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"Данные и синхронизация"</string>
+  <string name="msg_c7845aa27319" formatted="false">"Инструкция по использованию"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"Использование данных, хранение и удаление"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"Площадка для SkyEye"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"Практика настройки компонентов, добавление CSS и JS"</string>
+  <string name="msg_f329c206f45a" formatted="false">"ChengJing Browser %1$s · версия для Android"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"Подключение OpenRouter"</string>
+  <string name="msg_8831bba1231d" formatted="false">"Ключ сохранён"</string>
+  <string name="msg_454792f22b74" formatted="false">"Связать ваш ИИ"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"Зашифровано и сохранено на этом телефоне"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"Позвольте ИИ помочь проверить правила SkyEye"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"Введите новый API Key для замены"</string>
+  <string name="msg_349c23511e2e" formatted="false">"API Key зашифрован и сохранён"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"Ошибка сохранения ключа: %1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"Сохранить API Key"</string>
+  <string name="msg_308f90d89d99" formatted="false">"API Key удалён"</string>
+  <string name="msg_4df897d4de83" formatted="false">"Удалить сохранённый API Key"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"Модель"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"Или введите название модели вручную"</string>
+  <string name="msg_33190323da75" formatted="false">"Получены последние доступные текстовые модели всех серий"</string>
+  <string name="msg_a822357ce405" formatted="false">"Не удалось обновить модели, текущие варианты остаются доступными"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"Обновление…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"Обновить список последних моделей"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"OpenRouter вызывается только при нажатии «Анализировать», стоимость зависит от выбранной модели. Ключ не передаётся сайту; отправленные данные обрабатываются OpenRouter и поставщиками моделей."</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"Перенесите закладки, прогресс и настройки SkyEye на новый телефон."</string>
+  <string name="msg_dbf504aee158" formatted="false">"Последнее завершение:"</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"Закладки, папки, избранное и история удаления сохраняются в скрытом пространстве приложения Google Drive, без доступа к другим вашим файлам."</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"Избранное и прогресс чтения"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"Название избранного, текущий URL, заголовок страницы, позиция прокрутки и процент прочитанного синхронизируются вместе. Обновите каждое устройство до версии с поддержкой синхронизации избранного."</string>
+  <string name="msg_4c197d7a57af" formatted="false">"Для одного избранного учитывается последний полный сохранённый прогресс; переименование и удаление также синхронизируются, без принудительного сохранения максимального процента прочитанного. Открытая страница не будет принудительно переключена, при следующем открытии избранного используется синхронизированная позиция."</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"Настройки сайтов SkyEye"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"После включения домены, правила компонентов, пользовательский CSS/JS/HTML и настройки поведения сайтов синхронизируются с вашим Google Drive. Код может содержать личные данные, убедитесь, что нет паролей или ключей."</string>
+  <string name="msg_86b823816a78" formatted="false">"Синхронизировать настройки сайтов SkyEye"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"Для одного сайта учитывается самая новая полная настройка; удалённые настройки сохраняют статус удаления. Другие устройства применяют их при следующей загрузке сайта. Временные и сертификатные исключения остаются локальными."</string>
+  <string name="msg_d9c03b110d35" formatted="false">"После связывания закладки и избранное этого телефона объединятся с выбранной учётной записью Google. При запуске приложения, изменении закладок, сохранении прогресса, переименовании или удалении избранного синхронизация происходит автоматически; офлайн данные остаются на телефоне и синхронизируются при следующем подключении."</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"Обработка…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"Синхронизировать сейчас"</string>
+  <string name="msg_aee33ff22038" formatted="false">"Связать с учётной записью Google"</string>
+  <string name="msg_9746a274324c" formatted="false">"Остановить синхронизацию и выйти"</string>
+  <string name="msg_b69bae05d706" formatted="false">"Выход сохраняет локальные и облачные данные. Локальные синхронизированные данные привязаны к первой учётной записи Google, чтобы избежать смешивания данных при смене аккаунтов."</string>
+  <string name="msg_efb208e781f4" formatted="false">"Некоторые сайты предоставляют разные версии в зависимости от идентификатора."</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"Мобильная версия Chrome (по умолчанию)"</string>
+  <string name="msg_3138f64b4547" formatted="false">"Пользовательский User-Agent"</string>
+  <string name="msg_b1c83027f591" formatted="false">"Вставьте полный однострочный User-Agent"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"После сохранения текущая страница перезагрузится; новые или обновлённые страницы также будут использовать эту настройку. Сайт может переключиться на другой вариант, поддержка зависит от текущего движка браузера."</string>
+  <string name="msg_73b390a73f19" formatted="false">"Идентификатор браузера обновлён"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"Не удалось сохранить"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"Сохранить и перезагрузить"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"Текущий движок браузера: Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"Неизвестно"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"Определение местоположения телефона не удалось, попробуйте в месте с лучшим сигналом."</string>
+  <string name="msg_2e6933e93990" formatted="false">"Источник определения местоположения телефона отключён, проверьте системные службы геолокации."</string>
+  <string name="msg_aa939329dc62" formatted="false">"Телефон не разрешил определение местоположения."</string>
+  <string name="msg_f4e900470989" formatted="false">"Нет актуальных данных о местоположении, время ожидания истекло."</string>
+  <string name="msg_8e6878344350" formatted="false">"Нет доступных источников определения местоположения, проверьте системные службы геолокации."</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"Разрешения на определение местоположения телефона изменились, запросите разрешение снова."</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"Доступ к геолокации на этой странице не разрешён."</string>
+  <string name="msg_c293d0f61960" formatted="false">"Текущая страница не на переднем плане."</string>
+  <string name="msg_5677d9b33fef" formatted="false">"Слишком много запросов на геолокацию, попробуйте позже."</string>
+  <string name="msg_54e70324667a" formatted="false">"Ожидание разрешения сайта и телефона на использование геолокации"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"Разрешение на использование местоположения телефона для этого сайта ещё не предоставлено."</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"Служба геолокации телефона не включена."</string>
+  <string name="msg_e4222762e387" formatted="false">"Разрешение на геолокацию телефона или сайта отозвано."</string>
+  <string name="msg_ea7546eddc85" formatted="false">"Запрос геолокации отправлен телефону, ожидается позиция"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"Позиция получена и предоставлена текущему сайту"</string>
+  <string name="msg_8116207548a5" formatted="false">"Не удалось обновить список моделей (%1$s)"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"Список моделей пуст, попробуйте позже"</string>
+  <string name="msg_71eb343e162c" formatted="false">"Сначала добавьте OpenRouter API Key в настройках"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"Пожалуйста, выберите модель"</string>
+  <string name="msg_d3346c882f37" formatted="false">"Неверный API Key, введите заново"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"Недостаточно средств OpenRouter"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"Слишком частые запросы, попробуйте позже"</string>
+  <string name="msg_3861043f8477" formatted="false">"AI-сервис не завершил запрос (%1$s), исходные правила сохранены"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"Сначала настройте OpenRouter ключ и модель"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"Неверный API Key"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"Слишком частые запросы, попробуйте позже"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"AI-сервис не завершил запрос (%1$s)"</string>
+  <string name="msg_4a16359069dd" formatted="false">"Пожалуйста, выберите действительный компонент"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"Неправильный способ работы с HTML"</string>
+  <string name="msg_e714012d82ce" formatted="false">"Код слишком длинный, разбейте на меньшие изменения"</string>
+  <string name="msg_8579576181cb" formatted="false">"CSS компонента указывайте напрямую, например color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"Слишком много предложений за раз, сузьте область вопроса"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"Неправильные правила компонента"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI указал несуществующее изменение"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI указал несуществующее правило компонента"</string>
+  <string name="msg_63b576365f0f" formatted="false">"Рекомендации AI по компоненту выходят за пределы выбранного диапазона"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"AI компонента не может изменять настройки уровня сайта"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"Настройка AI компонента"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"Содержимое предложения слишком большое, сузьте область"</string>
+  <string name="msg_8715000a9841" formatted="false">"Обновить CSS сайта"</string>
+  <string name="msg_b350f6663586" formatted="false">"Обновить JavaScript сайта"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"Обновить добавленный HTML сайта"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"Редактировать"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"Добавить"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"Удалить компонент: %1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"Восстановить %1$s изменений"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"Настроить прокрутку страницы"</string>
+  <string name="msg_15766e2591bd" formatted="false">"Пожалуйста, подтвердите изменения ниже"</string>
+  <string name="msg_64244a373f7b" formatted="false">"Исходная вкладка закрыта или перезагружена, загрузка остановлена; попробуйте снова на исходной странице"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"Встроенный файл слишком большой"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"Неверный формат встроенного файла, файл не сохранён"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"Не удалось прочитать этот временный файл. Попробуйте снова на исходной странице; для потокового или защищённого видео используйте способ загрузки, предоставленный сайтом"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"Максимальный размер временной загрузки — 2 ГБ, используйте прямую ссылку сайта для загрузки"</string>
+  <string name="msg_533949b0c241" formatted="false">"Встроенный файл неполный"</string>
+  <string name="msg_283a28e03a50" formatted="false">"Временный файл устарел, загрузите заново"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"Ошибка чтения временного файла, загрузите заново"</string>
+  <string name="msg_ffba3145db56" formatted="false">"Неверный размер загружаемого содержимого"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"Загружаемое содержимое неполное, файл не сохранён"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"Не удалось сохранить состояние загрузки"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"Последняя загрузка прервана, неполный файл не сохранён; вернитесь на исходную страницу и загрузите заново"</string>
+  <string name="msg_bcd36261f503" formatted="false">"Не удалось сохранить загружаемый файл"</string>
+  <string name="msg_815187d9a1da" formatted="false">"Не удалось завершить загрузку файла"</string>
+  <string name="msg_02beb82da20a" formatted="false">"Не удалось создать файл загрузки, проверьте свободное место"</string>
+  <string name="msg_bdd00d629528" formatted="false">"Не удалось записать файл загрузки"</string>
+  <string name="msg_d3e09805962f" formatted="false">"Не удалось создать папку загрузки"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"Формат встроенного изображения не поддерживается"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"Встроенное изображение слишком большое"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"Встроенное изображение превышает 32 МБ"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"Не удалось прочитать это временное изображение, попробуйте долго нажать заново на исходной странице"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"Открыть онлайн-политику конфиденциальности"</string>
+  <string name="msg_080988523f29" formatted="false">"Режим инкогнито отключён; очистка данных сайта не завершена, закройте и откройте приложение заново"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"Это правило или содержимое страницы слишком объёмное, используйте облачную модель для анализа."</string>
+  <string name="msg_5d279b988da8" formatted="false">"Рекомендации AI выходят за рамки этого правила, пожалуйста, уточните запрос"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"Код предложения слишком длинный, сузьте область изменений"</string>
+  <string name="msg_272100161734" formatted="false">"Обновить CSS стили"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"Обновить JavaScript"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"Обновить содержимое HTML"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"Настроить способ применения HTML"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"Проверьте изменения перед применением"</string>
+  <string name="msg_997de297c6b3" formatted="false">"Не удалось сохранить историю загрузок"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"Не удалось создать файл загрузки"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"Веб-страница изменилась, пожалуйста, заново откройте это правило"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"Правило обновлено, пожалуйста, заново откройте, чтобы избежать перезаписи других изменений"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"Правило обновлено другим действием, пожалуйста, заново откройте"</string>
+  <string name="msg_30b5133da158" formatted="false">"Дайте изменениям новый импульс"</string>
+  <string name="msg_dfb02399c259" formatted="false">"Пожалуйста, измените это правило с помощью AI"</string>
+  <string name="msg_a73d81627121" formatted="false">"Объедините исходный HTML, текущий код и ваши новые идеи"</string>
+  <string name="msg_6882b571d47c" formatted="false">"Можно редактировать содержимое ниже. Сохранение обновит исходное правило; изменения для других сайтов сохранятся."</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"Добавить в конец компонента"</string>
+  <string name="msg_c7518df827c2" formatted="false">"Заменить содержимое компонента"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"Применяется к этому домену и поддоменам. JavaScript может получить доступ к странице или отправлять запросы, пожалуйста, проверьте содержимое перед сохранением."</string>
+  <string name="msg_5ef814324284" formatted="false">"Содержимое изменено, пожалуйста, сохраните снова"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"Исходное правило обновлено и применено"</string>
+  <string name="msg_f5272b216037" formatted="false">"Удалить это правило"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"Удалить это правило?"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"%1$s будет удалено, остальные настройки сохранятся."</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"Пользовательский CSS, JavaScript и HTML для этого сайта"</string>
+  <string name="msg_60f997e432a2" formatted="false">"Это изменение компонента"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"Это правило удалено"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"Удалить"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"Используется пользовательская поисковая система"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"Текущий выбор · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"Поиск в адресной строке · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"Используется %1$s"</string>
+  <string name="msg_02da895c96ea" formatted="false">"Свой способ поиска"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"Пользовательский"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"Подключитесь к поисковому сервису, который вы предпочитаете"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"Сначала выполните поиск на нужном сайте, затем замените поисковый текст в URL на {query}."</string>
+  <string name="msg_83e506018140" formatted="false">"Шаблон URL для поиска"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} заменяется на безопасно закодированный поисковый запрос"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"Предпросмотр: %1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"Сохранить и использовать"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"Нажмите, чтобы переключить. Поисковый текст отправляется выбранному сервису только при выполнении поиска."</string>
+  <string name="msg_455ece81de56" formatted="false">"Baidu"</string>
+  <string name="msg_af8a52509166" formatted="false">"Китайская Википедия"</string>
+  <string name="msg_db79062a760b" formatted="false">"Шаблон URL не установлен"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"Пожалуйста, введите шаблон URL для поиска"</string>
+  <string name="msg_e2d127e64801" formatted="false">"Шаблон URL не должен превышать 2048 символов"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"Шаблон URL должен быть полным однострочным URL"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"Шаблон URL должен содержать {query} один раз"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"{query} должен находиться в пути URL или в параметрах запроса"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"Пожалуйста, введите полный HTTPS URL"</string>
+  <string name="msg_00f486ce580a" formatted="false">"Для защиты содержимого поиска разрешён только HTTPS"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"URL не должен содержать имя пользователя или пароль"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"Шаблон URL не должен содержать якорь #"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"URL должен иметь действительное имя хоста"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"Не удалось удалить кэш иконок сайта"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"Слишком много настроек сайта"</string>
+  <string name="msg_a17da897bf76" formatted="false">"Настройки сайта превышают 8 МБ, пожалуйста, сначала очистите большие пользовательские скрипты"</string>
+  <string name="msg_51bb558b264b" formatted="false">"Снимок настроек сайта слишком большой"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"Версия настроек сайта несовместима"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"Домен или время настроек сайта некорректны"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"Настройки сайта превышают лимит"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"Обычный"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"Инкогнито"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"Страницы инкогнито не создают миниатюры и не добавляют историю. После закрытия всех вкладок инкогнито очищаются данные сайта."</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"Открыть сессию инкогнито"</string>
+  <string name="msg_de2a64702660" formatted="false">"Пока нет обычных вкладок"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"Использует отдельное состояние входа от обычных вкладок; сайты и провайдеры всё ещё могут отслеживать вашу активность."</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"Добавьте вкладку, чтобы у следующего чтения было своё место."</string>
+  <string name="msg_89d55dea3269" formatted="false">"Приватная страница"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"Закрыть вкладку %1$s"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"Текущие вкладки · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"В этот момент остаётся только этот момент."</string>
+  <string name="msg_ec4537100d5f" formatted="false">"Не сохраняет историю просмотров и поиска, не восстанавливает вкладки инкогнито. Состояние входа отделено от обычных вкладок, после закрытия всех вкладок инкогнито очищаются cookie, кэш и данные сайта."</string>
+  <string name="msg_c4759e2fd146" formatted="false">"Инкогнито не означает анонимность. Веб-сайты, работодатели или интернет-провайдеры всё ещё могут видеть вашу активность. Файлы, которые вы скачали, сохранённые закладки и избранное сохраняются; системный обмен и запросы AI передают выбранный контент соответствующим сервисам."</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"Меню вкладок"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"Закрыть все вкладки"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"Закрыть все вкладки инкогнито?"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"Закрыть все обычные вкладки?"</string>
+  <string name="msg_1401b7462a88" formatted="false">"Будет закрыто %1$s вкладок в этой группе, другая группа не затронута."</string>
+  <string name="msg_9b14332369fd" formatted="false">"Данные сайтов в режиме инкогнито будут очищены после закрытия всех вкладок. Загруженные файлы, закладки и избранное сохранятся."</string>
+  <string name="msg_e818d7092124" formatted="false">"Эти вкладки и снимки не будут восстановлены при следующем запуске; история просмотров, загруженные файлы, закладки и избранное сохранятся."</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"Закрыть все"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"Определение местоположения не запрашивалось"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"На телефоне не разрешено определение местоположения; можно включить разрешения в настройках приложения через информацию о сайте."</string>
+  <string name="msg_b225c190262b" formatted="false">"Служба определения местоположения на телефоне не включена, пожалуйста, включите её в настройках через информацию о сайте и попробуйте снова."</string>
+  <string name="msg_c706cb8f6217" formatted="false">"Разрешить этому сайту доступ к вашему местоположению?"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\nСайт может использовать ваше местоположение для предоставления информации о ближайших местах и других функций. Можно изменить в информации о сайте на панели адреса."</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\nРазрешения в режиме инкогнито сохраняются только до закрытия всех вкладок инкогнито."</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"Разрешить определение местоположения"</string>
+  <string name="msg_e69e259269d3" formatted="false">"Временно не разрешать"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"За последний час"</string>
+  <string name="msg_322773403765" formatted="false">"За последние 24 часа"</string>
+  <string name="msg_27905bacccf9" formatted="false">"За последние 7 дней"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"За последние 4 недели"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"Без ограничений по времени"</string>
+  <string name="msg_b39b740c9370" formatted="false">"Спросить"</string>
+  <string name="msg_0bffd418918b" formatted="false">"Разрешить"</string>
+  <string name="msg_454b7b66304a" formatted="false">"Блокировать"</string>
+  <string name="language_title" formatted="false">"Язык интерфейса"</string>
+  <string name="language_system" formatted="false">"Следовать языку телефона"</string>
+  <string name="language_support" formatted="false">"При первом запуске интерфейс отображается на языке телефона; если язык не поддерживается, используется английский."</string>
+  <string name="language_selected" formatted="false">"Текущий язык: %1$s"</string>
+  <string name="language_system_detail" formatted="false">"Автоматически · %1$s"</string>
+  <string name="language_picker" formatted="false">"Выбрать язык интерфейса"</string>
+  <string name="language_note" formatted="false">"Эта настройка изменяет только интерфейс ChengJing, не переводит содержимое сайтов."</string>
+  <string name="language_changed" formatted="false">"Язык интерфейса изменён"</string>
+  <string name="language_native_hint" formatted="false">"Отображается на родном языке для удобства поиска знакомого языка."</string>
+  <string name="home_quote_000" formatted="false">"После грома всегда идет дождь"</string>
+  <string name="home_quote_001" formatted="false">"После сегодняшнего дня наступит завтра"</string>
+  <string name="home_quote_002" formatted="false">"После завтра — фильм"</string>
+  <string name="home_quote_003" formatted="false">"Покупай на падении, продавай на росте — вот и весь инвестиционный секрет"</string>
+  <string name="home_quote_004" formatted="false">"Если тебе не нравится работать, тебе точно понравится уходить с работы"</string>
+  <string name="home_quote_005" formatted="false">"Если ты стараешься, ты обнаружишь, что дела могут стать еще сложнее"</string>
+  <string name="home_quote_006" formatted="false">"Легко победить врага снаружи, трудно — врага внутри"</string>
+  <string name="home_quote_007" formatted="false">"Упорство не гарантирует успех, но сдаться очень просто"</string>
+  <string name="home_quote_008" formatted="false">"Пей на одну чашку кофе меньше в день — за год это 365 чашек"</string>
+  <string name="home_quote_009" formatted="false">"Не заморачивайся, ты всего лишь мыслящий тростник"</string>
+  <string name="home_quote_010" formatted="false">"Не бойся трудностей, столкнись с ними — и поймешь, что не сможешь их решить"</string>
+  <string name="home_quote_011" formatted="false">"Не беспокойся о несовершенстве вещей, беспокойся о несправедливости в сердцах людей"</string>
+  <string name="home_quote_012" formatted="false">"Когда чувствуешь, что у тебя ничего нет, не забывай о своей усталости"</string>
+  <string name="home_quote_013" formatted="false">"Не листай телефон перед сном, иначе быстро увидишь рассвет"</string>
+  <string name="home_quote_014" formatted="false">"Конфуций сказал: благородный человек требует от себя, мелкий — от других"</string>
+  <string name="home_quote_015" formatted="false">"Когда лодка подходит к мосту, она сама выпрямится; если нет — значит утонула"</string>
+  <string name="home_quote_016" formatted="false">"Успешные люди имеют одно общее — они успешны"</string>
+  <string name="home_quote_017" formatted="false">"Не плачь, не смейся, понимай"</string>
+  <string name="home_quote_018" formatted="false">"Если продолжаешь идти вперед, ты не стоишь на месте"</string>
+  <string name="home_quote_019" formatted="false">"Потеряться — это начало исследования"</string>
+  <string name="home_quote_020" formatted="false">"Усилия не всегда замечают, а лень поймают с полпинка"</string>
+  <string name="home_quote_021" formatted="false">"Неудача — мать успеха, но ты можешь так и не найти отца"</string>
+  <string name="home_quote_022" formatted="false">"Свобода — это когда тебя ненавидят другие"</string>
+  <string name="home_quote_023" formatted="false">"Счастье — это временная остановка страданий"</string>
+  <string name="home_quote_024" formatted="false">"Когда решаешь начать, значит еще не закончил"</string>
+  <string name="home_quote_025" formatted="false">"Успеха нет в обходных путях, но многие застревают на них"</string>
+  <string name="home_quote_026" formatted="false">"Тревога — головокружение от свободы"</string>
+  <string name="home_quote_027" formatted="false">"Сделай первый шаг — увидишь, что второй еще впереди"</string>
+  <string name="home_quote_028" formatted="false">"Пожалуйста, уйди, не закрывай мне солнце"</string>
+  <string name="home_quote_029" formatted="false">"Праджня нет дерева, зеркало не пьедестал. Изначально нет ничего, откуда взяться пыли"</string>
+  <string name="home_quote_030" formatted="false">"Твои нынешние страдания — подготовка к большим страданиям в будущем"</string>
+  <string name="home_quote_031" formatted="false">"Борясь с монстрами, будь осторожен, чтобы не стать монстром"</string>
+  <string name="home_quote_032" formatted="false">"Чем выше поднимаешься, тем больнее падать"</string>
+  <string name="home_quote_033" formatted="false">"Знание — сила"</string>
+  <string name="home_quote_034" formatted="false">"Если делаешь с душой, даже плохое — с душой"</string>
+  <string name="home_quote_035" formatted="false">"Здравый смысл не всегда здравый"</string>
+  <string name="home_quote_036" formatted="false">"Дети боятся темноты — это понятно; настоящая трагедия — взрослые боятся света"</string>
+  <string name="home_quote_037" formatted="false">"Представить конец света легче, чем конец капитализма"</string>
+  <string name="home_quote_038" formatted="false">"Если тебе не стыдно, стыдно другим"</string>
+  <string name="home_quote_039" formatted="false">"Путь в тысячу ли начинается с первого шага"</string>
+  <string name="home_quote_040" formatted="false">"Другие — это ад"</string>
+  <string name="home_quote_041" formatted="false">"Если понизить стандарты достаточно, каждый момент будет сюрпризом"</string>
+  <string name="home_quote_042" formatted="false">"Мучит нас не реальность, а воображение"</string>
+  <string name="home_quote_043" formatted="false">"Не будь слишком строг к себе — другие сделают это за тебя"</string>
+  <string name="home_quote_044" formatted="false">"Не спеши при трудностях — спешка не поможет"</string>
+  <string name="home_quote_045" formatted="false">"Живем в тревогах, умираем в комфорте"</string>
+  <string name="home_quote_046" formatted="false">"Если сыт, не будешь голодным"</string>
+  <string name="home_quote_047" formatted="false">"Когда путь забыт, появляются добродетель и справедливость; когда появляется мудрость — великое лицемерие"</string>
+  <string name="home_quote_048" formatted="false">"Одежда изнашивается, если не купить новую"</string>
+  <string name="home_quote_049" formatted="false">"Вода закипела — значит она кипит"</string>
+  <string name="home_quote_050" formatted="false">"Время не так важно, как место; место не так важно, как люди"</string>
+  <string name="home_quote_051" formatted="false">"Встреча имеет смысл, когда ты тоже хочешь меня увидеть"</string>
+  <string name="home_quote_052" formatted="false">"Другие смеются над моей безумностью, я смеюсь, что они это видят"</string>
+  <string name="home_quote_053" formatted="false">"Терпя горечь, узнаешь, что есть и хуже"</string>
+  <string name="home_quote_054" formatted="false">"Пока жив, есть шанс ошибаться дальше"</string>
+  <string name="home_quote_055" formatted="false">"Ты не можешь контролировать ветер, но можешь закрыть окно"</string>
+  <string name="home_quote_056" formatted="false">"Лучший план жизни — это отсутствие плана"</string>
+  <string name="home_quote_057" formatted="false">"Любое дело, повторенное достаточно раз, становится рутиной"</string>
+  <string name="home_quote_058" formatted="false">"Все явления — иллюзия; кроме уведомлений о зарплате"</string>
+  <string name="home_quote_059" formatted="false">"Думаешь, выбираешь сам, но алгоритм уже знает, что ты нажмешь"</string>
+  <string name="home_quote_060" formatted="false">"Мир огромен, и твои проблемы не на первом месте"</string>
+  <string name="home_quote_061" formatted="false">"Рожденный талантливым обязательно пригодится, даже если потеряешь все деньги, они вернутся"</string>
+  <string name="home_quote_062" formatted="false">"Раз уж пришел, посиди немного"</string>
+  <string name="home_quote_063" formatted="false">"Проблемы, решаемые деньгами, требуют сначала иметь деньги"</string>
+  <string name="home_quote_064" formatted="false">"Побеждать без боя — высшее мастерство"</string>
+  <string name="home_quote_065" formatted="false">"Неудача не страшна, страшно писать отчеты о ней"</string>
+  <string name="home_quote_066" formatted="false">"Жизнь коротка, не стоит проводить слишком много совещаний"</string>
+  <string name="home_quote_067" formatted="false">"В жизни нет пустых шагов, каждый считается"</string>
+  <string name="home_quote_068" formatted="false">"Дела не стали проще, ты просто привык к трудностям"</string>
+  <string name="home_quote_069" formatted="false">"Великая музыка тиха, великий слон бесформен, большие собрания обычно без итогов"</string>
+  <string name="home_quote_070" formatted="false">"Взглянув друг на друга и улыбнувшись, мы понимаем друг друга без слов"</string>
+  <string name="home_quote_071" formatted="false">"Побеждать других — сила, побеждать себя — мощь"</string>
+  <string name="home_quote_072" formatted="false">"Твой стул определяет твою осанку"</string>
+  <string name="home_quote_073" formatted="false">"Величайшее счастье — не нуждаться в доказательствах своего счастья"</string>
+  <string name="home_quote_074" formatted="false">"Человек рожден свободным, но везде регистрируется как участник"</string>
+  <string name="home_quote_075" formatted="false">"Если у тебя нет времени отдыхать, тело само запишет тебя к врачу"</string>
+  <string name="home_quote_076" formatted="false">"Жизнь многому учит, и плата за уроки обычно высока"</string>
+  <string name="home_quote_077" formatted="false">"Жизнь не черно-белая"</string>
+  <string name="home_quote_078" formatted="false">"Величайшее благо подобно воде: она питает всё и не соперничает"</string>
+  <string name="home_quote_079" formatted="false">"Слушать твоё слово — всё равно что слушать слово"</string>
+  <string name="home_quote_080" formatted="false">"Любое дело, достойное выполнения, стоит сначала сохранить"</string>
+  <string name="home_quote_081" formatted="false">"Мир не остановится из-за тебя, так что не стоит испытывать вину"</string>
+  <string name="home_quote_082" formatted="false">"Самые глубокие истины после объяснения обычно оказываются простыми"</string>
+  <string name="home_quote_083" formatted="false">"В жизни нет бесполезного опыта"</string>
+  <string name="home_quote_084" formatted="false">"Если боишься ошибиться, пропустишь много новых способов ошибиться"</string>
+  <string name="home_quote_085" formatted="false">"В жизни бесконечные возможности, но сегодня проживается лишь один раз"</string>
+  <string name="home_quote_086" formatted="false">"How are you？I\'m fine, thank you."</string>
+  <string name="home_quote_087" formatted="false">"Прошлое не исправить, но будущее ещё можно догнать"</string>
+  <string name="home_quote_088" formatted="false">"Стань собой"</string>
+  <string name="msg_485107965fef" formatted="false">"Неверный формат правила компонента"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"Нельзя удалить всю страницу"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"Не найден действительный селектор компонента"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"Выбранный компонент больше не существует"</string>
+  <string name="msg_db7282021ef2" formatted="false">"Исходный HTML ещё не готов, перезагрузите страницу и откройте правило снова"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"Компонент не найден"</string>
+  <string name="msg_837653b6c57e" formatted="false">"Компонент слишком большой, выберите меньшую область"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"Площадка SkyEye · ChengJing"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"ChengJing · Площадка SkyEye"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"Демонстрационная страница на устройстве"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"Общая информационная панель · Вы можете сохранить её"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"Медленнее, внимательно смотрите"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"Настройте страницу под свои привычки."</string>
+  <string name="practice_8b7c761ab887" formatted="false">"Это тренировочная страница на телефоне. Вы можете настраивать элементы, добавлять свои стили и содержимое."</string>
+  <string name="practice_7e28a385715a" formatted="false">"Нажмите «SkyEye» на панели инструментов, затем выберите элемент. Если выбран только текст, нажмите «Выбрать внешний слой», пока не выделите весь элемент, затем просмотрите и удалите."</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"Главным на странице должно быть то, что вы хотите видеть."</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"Добавьте немного своего"</string>
+  <string name="practice_b4a4214feada" formatted="false">"Откройте SkyEye, выберите «Добавить CSS», чтобы изменить стиль. Например, сделать абзацы более просторными:"</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"Выберите «Добавить JS», чтобы добавить на страницу напоминание о чтении:"</string>
+  <string name="practice_9e58ae908fca" formatted="false">"Что дальше после удаления?"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"Сохраните правило и перейдите на вторую страницу. Хотя содержимое элементов разное, если структура совпадает, они не будут вас беспокоить."</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"Перейти на вторую страницу того же домена →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"Также можно выбрать в меню «Временно показать оригинальный сайт», чтобы временно вернуться к исходной странице. Все правила сохраняются, перенастраивать не нужно."</string>
+  <string name="practice_66cf62365956" formatted="false">"Изначально скрытый контейнер подсказок"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"Демонстрация плавающего элемента"</string>
+  <string name="practice_e8b18630d135" formatted="false">"Этот плавающий блок перекрывает содержимое для чтения."</string>
+  <string name="practice_975cfbbfce74" formatted="false">"Попробуйте с помощью SkyEye удалить весь зелёный блок."</string>
+  <string name="practice_29692e6a4f70" formatted="false">"Не забывайте делать перерывы"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"Закрыть элемент"</string>
+  <string name="practice_df9256123dae" formatted="false">"Новое содержимое — всё так же чисто."</string>
+  <string name="practice_efbee8398901" formatted="false">"Элемент с изменённым содержимым, но той же структурой."</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"Вторая страница · Площадка SkyEye"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"Отложенно загружаемый элемент подсказки тоже можно выбрать SkyEye."</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

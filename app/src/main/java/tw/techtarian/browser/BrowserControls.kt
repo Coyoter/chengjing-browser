@@ -30,18 +30,18 @@ import kotlinx.coroutines.launch
     val scope=rememberCoroutineScope()
     Surface(color=cs.surface){
         Row(Modifier.fillMaxWidth().testTag("browser-controls").height(64.dp).padding(horizontal=8.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically){
-            Tool(Icons.AutoMirrored.Outlined.ArrowBack,"上一頁",active?.let{it.imageContent==null&&!it.isInitialNewTab()}==true){c.backInBrowser()}
-            Tool(Icons.AutoMirrored.Outlined.ArrowForward,"下一頁",active?.canForward==true){c.stopEye();active?.web?.goForward()}
+            Tool(Icons.AutoMirrored.Outlined.ArrowBack,bt(R.string.msg_13256df2ec81),active?.let{it.imageContent==null&&!it.isInitialNewTab()}==true){c.backInBrowser()}
+            Tool(Icons.AutoMirrored.Outlined.ArrowForward,bt(R.string.msg_ae9d525462f3),active?.canForward==true){c.stopEye();active?.web?.goForward()}
             FilledTonalButton(onClick={onAction();c.beginEye()},contentPadding=PaddingValues(horizontal=18.dp,vertical=10.dp)){
-                Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text("天眼",fontWeight=FontWeight.SemiBold)
+                Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text(bt(R.string.msg_9a5282c7dd65),fontWeight=FontWeight.SemiBold)
                 if(c.site.rules.isNotEmpty()){Spacer(Modifier.width(6.dp));Text("${c.site.rules.size}",fontSize=12.sp)}
             }
-            Tool(if(pageFavorite!=null)Icons.Filled.Star else Icons.Outlined.StarOutline,if(active?.favoriteId!=null||pageFavorite!=null)"更新收藏進度"else"快速收藏",c.domain.isNotEmpty(),modifier=Modifier.testTag("quick-favorite").semantics{stateDescription=if(pageFavorite!=null)"已收藏"else"尚未收藏"}){
+            Tool(if(pageFavorite!=null)Icons.Filled.Star else Icons.Outlined.StarOutline,if(active?.favoriteId!=null||pageFavorite!=null)bt(R.string.msg_20e1c9c1dc3d)else bt(R.string.msg_ffe396ff08e7),c.domain.isNotEmpty(),modifier=Modifier.testTag("quick-favorite").semantics{stateDescription=if(pageFavorite!=null)bt(R.string.msg_471dd4d7f869)else bt(R.string.msg_ec338ce1ab04)}){
                 onAction()
-                scope.launch{if(c.saveFavorite()!=null)c.notice="已保存收藏與閱讀位置"}
+                scope.launch{if(c.saveFavorite()!=null)c.notice=bt(R.string.msg_b0e946efd4a1)}
             }
             Box(Modifier.size(48.dp)){
-                Tool(Icons.Outlined.MoreHoriz,"瀏覽器選單"){onAction();active?.blockedUnread=false;c.sheet="menu"}
+                Tool(Icons.Outlined.MoreHoriz,bt(R.string.msg_f7e587d4b7a5)){onAction();active?.blockedUnread=false;c.sheet="menu"}
                 if(active?.blockedUnread==true)Box(Modifier.size(5.dp).testTag("blocking-indicator").align(Alignment.TopEnd).offset(x=(-8).dp,y=8.dp).background(cs.primary,CircleShape))
             }
         }

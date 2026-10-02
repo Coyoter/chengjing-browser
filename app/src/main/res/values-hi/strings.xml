@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"फिर से खोजें"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"Google खाता"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"सिंक डिवाइस स्नैपशॉट बहुत अधिक हैं, कृपया सहायता से संपर्क करें"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"सिंक का इंतजार कर रहे हैं"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"Google से अभी तक जुड़ा नहीं है"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"Google प्राधिकरण रद्द कर दिया गया"</string>
+  <string name="msg_37f027ce9096" formatted="false">"स्थानीय डेटा अपरिवर्तित रहेगा, बाद में आप \"अभी सिंक करें\" दबा सकते हैं।"</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"नेटवर्क कनेक्शन का इंतजार कर रहे हैं"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"स्थानीय डेटा सुरक्षित है, कनेक्शन बहाल होने पर \"अभी सिंक करें\" दबाएं।"</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"Google में पुनः लॉगिन आवश्यक है"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"Google खाता पुष्टि के लिए कृपया \"अभी सिंक करें\" दबाएं।"</string>
+  <string name="msg_35b24a76557b" formatted="false">"Google लॉगिन सेटिंग असंगत है"</string>
+  <string name="msg_f164f003f815" formatted="false">"कृपया नवीनतम संस्करण में अपडेट करें; यदि फिर भी कनेक्ट नहीं हो रहा है, तो सहायता से संपर्क करें।"</string>
+  <string name="msg_ebfa487493ba" formatted="false">"Google प्राधिकरण पूरा नहीं हुआ"</string>
+  <string name="msg_9dba61428261" formatted="false">"कृपया \"अभी सिंक करें\" दबाकर पुनः प्रयास करें। स्थानीय डेटा सुरक्षित है।"</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"Google से कनेक्ट हो रहा है…"</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"स्थानीय डेटा अपरिवर्तित है, कृपया पुनः प्रयास करें।"</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"बुकमार्क सिंक हो रहा है…"</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"कनेक्शन रद्द कर दिया गया"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"क्लाउड राइट-रीड असंगत है, कृपया पुनः प्रयास करें"</string>
+  <string name="msg_9359e2513325" formatted="false">"संग्रह और पढ़ाई की प्रगति सिंक हो रही है…"</string>
+  <string name="msg_294092e535b2" formatted="false">"संग्रह और पढ़ाई की प्रगति राइट-रीड असंगत है, कृपया पुनः प्रयास करें"</string>
+  <string name="msg_f2e9df262458" formatted="false">"SkyEye वेबसाइट सेटिंग्स सिंक हो रही हैं…"</string>
+  <string name="msg_ef86e477373a" formatted="false">"SkyEye सेटिंग्स राइट-रीड असंगत है, कृपया पुनः प्रयास करें"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"%1$s बुकमार्क, %2$s संग्रह और पढ़ाई की प्रगति सिंक हो चुकी है"</string>
+  <string name="msg_2830de0d843f" formatted="false">", %1$s वेबसाइट सेटिंग्स; पृष्ठ पुनः लोड करने पर लागू होंगी"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"सिंक बंद कर दी गई है, स्थानीय और क्लाउड बुकमार्क तथा संग्रह सुरक्षित हैं"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"बुकमार्क"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"बुकमार्क पहचान कोड गलत है"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"कृपया बुकमार्क URL दर्ज करें"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"URL अधिकतम 16,000 अक्षर हो सकता है"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"कृपया https:// या http:// से शुरू होने वाला URL दर्ज करें"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"URL प्रारूप गलत है"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"URL कोडिंग के बाद 16,000 अक्षर से अधिक है, कृपया URL छोटा करें"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"बुकमार्क फ़ाइल बहुत बड़ी है, कृपया 8 MB की सीमा के भीतर भागों में आयात करें"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"एक बार में अधिकतम 20,000 बुकमार्क आयात करें"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;ChengJing बुकमार्क&lt;/TITLE&gt;&lt;H1&gt;ChengJing बुकमार्क&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"क्लाउड बुकमार्क फ़ाइल बहुत बड़ी है"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"क्लाउड बुकमार्क प्रारूप असंगत है"</string>
+  <string name="msg_40ad29b56199" formatted="false">"बुकमार्क सहेजने में विफल"</string>
+  <string name="msg_a782f2754c83" formatted="false">"होम"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"प्रमाणपत्र अपवाद चालू है, देखने के लिए क्लिक करें"</string>
+  <string name="msg_7c24b540153b" formatted="false">"प्रमाणपत्र त्रुटि, देखने के लिए क्लिक करें"</string>
+  <string name="msg_58f5b551d138" formatted="false">"वेबसाइट जानकारी"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"खोजें या URL दर्ज करें"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"जाएँ"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"लोडिंग रोकें"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"पुनः लोड करें"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"नया टैब जोड़ें"</string>
+  <string name="msg_75bc594490fc" formatted="false">"टैब, %1$s"</string>
+  <string name="msg_ad62e8203c00" formatted="false">"अनामित फ़ाइल"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"डाउनलोड पूरा नहीं हुआ या फ़ाइल हटा दी गई है"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"फ़ाइल हटा दी गई है"</string>
+  <string name="msg_813f4217faf8" formatted="false">"डाउनलोड की गई फ़ाइल खोलें"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"इस फ़ाइल को खोलने के लिए कोई ऐप नहीं है"</string>
+  <string name="msg_04c451cd747f" formatted="false">"फ़ाइल नहीं खोली जा सकती, संभवतः हटा दी गई या स्थानांतरित की गई है"</string>
+  <string name="msg_8d24156413ef" formatted="false">"सिस्टम डाउनलोड अस्थायी रूप से पढ़ा नहीं जा सकता, कृपया बाद में पुनः प्रयास करें"</string>
+  <string name="msg_d477c75aa656" formatted="false">"डाउनलोड"</string>
+  <string name="msg_4138d7e93958" formatted="false">"ChengJing ब्राउज़र द्वारा डाउनलोड की गई छवियाँ, वीडियो, ऑडियो और फ़ाइलें।"</string>
+  <string name="msg_775f5ca1d653" formatted="false">"अभी तक कोई डाउनलोड आइटम नहीं है"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"कोई मेल खाने वाला डाउनलोड नहीं मिला"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"छवि को लंबा दबाएं, प्लेयर के डाउनलोड मेनू का उपयोग करें, या वेबसाइट के डाउनलोड लिंक पर क्लिक करें।"</string>
+  <string name="msg_d011ffe066da" formatted="false">"%1$s खोलें"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"%1$s रद्द करें"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"रद्द कर दिया गया"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"पूरा हुआ"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"डाउनलोड विफल"</string>
+  <string name="msg_204249cd633a" formatted="false">"रोक दिया गया, सिस्टम पुनः प्रयास का इंतजार कर रहा है"</string>
+  <string name="msg_235d5f021172" formatted="false">"डाउनलोड हो रहा है"</string>
+  <string name="msg_efed99b86212" formatted="false">"डाउनलोड का इंतजार"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"आकार की पुष्टि होनी है"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"फ़ाइल डाउनलोड करें"</string>
+  <string name="msg_de32e20193ad" formatted="false">"समझ गया"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"ब्राउज़िंग इतिहास"</string>
+  <string name="msg_4e445f09300c" formatted="false">"हाल के 250 पृष्ठ केवल इस फोन पर संग्रहीत हैं। इनकॉग्निटो ब्राउज़िंग शामिल नहीं है।"</string>
+  <string name="msg_c24268c66266" formatted="false">"ब्राउज़िंग इतिहास साफ़ करें"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"कोई ब्राउज़िंग इतिहास नहीं है"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"कोई मेल खाने वाला पृष्ठ नहीं मिला"</string>
+  <string name="msg_539989302fd2" formatted="false">"सामान्य टैब में देखे गए पृष्ठ यहाँ दिखेंगे।"</string>
+  <string name="msg_3352ef9c5026" formatted="false">"इस ब्राउज़िंग इतिहास को हटाएं"</string>
+  <string name="msg_46afe15d4929" formatted="false">"ब्राउज़िंग इतिहास साफ़ करें?"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"स्थानीय ब्राउज़िंग और खोज इतिहास साफ़ किया जाएगा, बुकमार्क, पसंदीदा या वेबसाइट लॉगिन डेटा नहीं हटाया जाएगा।"</string>
+  <string name="msg_bce2377283c2" formatted="false">"साफ़ करें"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"रद्द करें"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"%1$s खोजें"</string>
+  <string name="msg_052052ba842e" formatted="false">"नया टैब"</string>
+  <string name="msg_778dda35c10f" formatted="false">"टैब स्नैपशॉट सहेजा नहीं जा सका, मौजूदा स्नैपशॉट रखा गया है"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"स्नैपशॉट अभी भी सहेजा जा रहा है, कृपया बाद में ऐप बंद करें"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"डाउनलोड फोन में रहेगा"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"फ़ाइल और सिस्टम डाउनलोड रिकॉर्ड इनकॉग्निटो टैब के साथ साफ़ नहीं होंगे। क्या आप डाउनलोड करना चाहते हैं?"</string>
+  <string name="msg_49e07d37a692" formatted="false">"टैब डेटा सहेजा नहीं जा सका, कृपया फोन की स्टोरेज जांचें"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"कृपया एक पंक्ति में अंग्रेज़ी अक्षर, संख्या और प्रतीक का उपयोग करें, अधिकतम 1,024 वर्ण"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"डेटा पृथक्करण वाले इनकॉग्निटो टैब के लिए Android System WebView अपडेट करें"</string>
+  <string name="msg_4369d178c9de" formatted="false">"अधिकतम 20 टैब खुले हो सकते हैं, कृपया अनावश्यक टैब बंद करें"</string>
+  <string name="msg_b860234cdca4" formatted="false">"पृथक इनकॉग्निटो सेशन नहीं बना सकता, कोई वेबपेज खुला नहीं है"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · कैश्ड इमेज"</string>
+  <string name="msg_b210350f38fc" formatted="false">"छवि"</string>
+  <string name="msg_2988ade50b61" formatted="false">"कस्टम स्क्रिप्ट निष्पादन विफल; SkyEye सेटिंग में संशोधन या अपवाद बदलें"</string>
+  <string name="msg_a782840b186d" formatted="false">"बाहरी ऐप रीडायरेक्शन"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"यह लिंक प्रारूप खोल नहीं सकता"</string>
+  <string name="msg_216baff9f183" formatted="false">"स्वचालित रीडायरेक्शन"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"ChengJing होमपेज"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"यह वेबसाइट एन्क्रिप्टेड कनेक्शन पूरा नहीं कर सकती, कृपया बाद में पुनः प्रयास करें।"</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"वेबपेज अस्थायी रूप से उपलब्ध नहीं है, कृपया नेटवर्क या URL जांचें और पुनः प्रयास करें।"</string>
+  <string name="msg_5e2122abec02" formatted="false">"प्रमाणपत्र की अवधि समाप्त हो गई है"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"प्रमाणपत्र अभी सक्रिय नहीं हुआ है"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"प्रमाणपत्र डोमेन मेल नहीं खाता"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"प्रमाणपत्र स्रोत विश्वसनीय नहीं है"</string>
+  <string name="msg_557874fe9910" formatted="false">"प्रमाणपत्र तिथि असामान्य है"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"प्रमाणपत्र सत्यापन विफल"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"इस वेबसाइट का प्रमाणपत्र सत्यापित नहीं हुआ, कनेक्शन बंद कर दिया गया है। कारण और वेबसाइट अपवाद सेटिंग देखने के लिए URL बार के कनेक्शन आइकन पर टैप करें।"</string>
+  <string name="msg_31648c936ef3" formatted="false">"वेब प्रक्रिया बंद हो गई है, कृपया यह टैब बंद करके पुनः खोलें।"</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"स्थानीय वेबपेज"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"वेबपेज छोड़ें?"</string>
+  <string name="msg_3bf1281815df" formatted="false">"वेबसाइट संदेश · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"छोड़ें"</string>
+  <string name="msg_20db9f87b860" formatted="false">"पुष्टि करें"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"इस पृष्ठ पर रहें"</string>
+  <string name="msg_e9ea75903633" formatted="false">"नई विंडो/पॉपअप"</string>
+  <string name="msg_2138c825b189" formatted="false">"इस संस्करण में वेबसाइटों को कैमरा और माइक्रोफोन उपयोग की अनुमति नहीं है"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"फ़ाइल चयनकर्ता उपलब्ध नहीं है"</string>
+  <string name="msg_beffea44da0c" formatted="false">"फ़ाइल चयनकर्ता खोलना संभव नहीं है"</string>
+  <string name="msg_ad37ef430462" formatted="false">"इस लिंक में डाउनलोड करने योग्य फ़ाइल नहीं है"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\nयह वेब कैश फ़ाइल है, डाउनलोड पूरा होने तक स्रोत टैब खुला रखें, रिफ्रेश न करें।"</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\nफ़ाइल और डाउनलोड रिकॉर्ड फोन में रहेंगे, इनकॉग्निटो टैब के साथ साफ़ नहीं होंगे।"</string>
+  <string name="msg_d71c2bea9463" formatted="false">"फ़ाइल डाउनलोड करें?"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"पहले वेबपेज खोलें, फिर बुकमार्क जोड़ें"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"पृष्ठ बदल गया है, कृपया पुनः प्रयास करें"</string>
+  <string name="msg_c0af0b409136" formatted="false">"बुकमार्क असफल: %1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"पहले कोई वेबसाइट खोलें, फिर SkyEye का उपयोग करें"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"अभी मूल वेबसाइट दिख रही है, कृपया पहले अपवाद समाप्त करें"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"पूर्ण SkyEye सक्षम करने के लिए Play Store से Android System WebView अपडेट करें"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"वेबपेज तैयार नहीं है, कृपया पुनः लोड करके प्रयास करें"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"यह नियम उपयोग नहीं किया जा सकता"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"इस पृष्ठ पर %1$s नहीं मिला, कृपया घटक पुनः चुनें"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"JavaScript सिंटैक्स त्रुटि: %1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"पूर्वावलोकन हटाया गया; पुष्टि के बाद \"सहेजें\" दबाएं"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"सहेजा गया, %1$s और इसके उपडोमेन लागू होंगे"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"अस्थायी रूप से मूल वेबसाइट दिखा रहे हैं; नियम अभी भी लागू हैं"</string>
+  <string name="msg_a4038cb71105" formatted="false">"SkyEye नियम पुनः लागू किया गया"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"पिछली बार सहेजा गया पुनर्स्थापित किया गया"</string>
+  <string name="msg_13256df2ec81" formatted="false">"पिछला पृष्ठ"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"अगला पृष्ठ"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"SkyEye"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"बुकमार्क प्रगति अपडेट करें"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"त्वरित बुकमार्क"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"बुकमार्क किया गया"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"अभी तक बुकमार्क नहीं किया गया"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"बुकमार्क और पढ़ने की स्थिति सहेजी गई"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"ब्राउज़र मेनू"</string>
+  <string name="msg_bcbd40877710" formatted="false">"वेबसाइट घटक"</string>
+  <string name="msg_8508e17dc836" formatted="false">"घटक नियम खाली है या बहुत लंबा है"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"कृपया घटक चयनकर्ता दर्ज करें, पूरी शैली नहीं"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"पूरे पृष्ठ को हटाया नहीं जा सकता, कृपया चयन सीमा कम करें"</string>
+  <string name="msg_2b76681815f4" formatted="false">"AI ने बहुत सारे घटकों को एक बार में संशोधित करने का सुझाव दिया है, कृपया छोटे क्षेत्र का वर्णन करें"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"AI समायोजन"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"AI ने मौजूद नहीं नियम को संशोधित करने का प्रयास किया"</string>
+  <string name="msg_af099dc62317" formatted="false">"एकल डोमेन पर अधिकतम 100 नियम"</string>
+  <string name="msg_6c1546728176" formatted="false">"घटक नियम समायोजित करें"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"केवल HTTPS वेबसाइट पर प्रमाणपत्र अपवाद सेट किया जा सकता है"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"सेटिंग सहेजने में विफल"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"सर्च इंजन सेटिंग सहेजने में विफल"</string>
+  <string name="msg_1615b8429815" formatted="false">"कस्टम सर्च इंजन सहेजने में विफल"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"मोबाइल सहेजने में विफल, नियम अभी तक सहेजे नहीं गए"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"वेबसाइट सेटिंग विलय पूरा नहीं हुआ, स्थानीय डेटा सुरक्षित रखा गया"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"ब्राउज़िंग इतिहास सहेजने में विफल, कृपया मोबाइल स्टोरेज जांचें"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"ChengJing ब्राउज़र"</string>
+  <string name="msg_71171b556a11" formatted="false">"वेबपेज,\nआपकी आदतों के अनुसार समायोजित।"</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"सामान्य ब्राउज़िंग के साथ SkyEye भी खोलें,\nनई शैलियाँ, कोड या घटक समायोजित करें।"</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"आज का उद्धरण"</string>
+  <string name="msg_27268090a840" formatted="false">"त्वरित पहुँच"</string>
+  <string name="msg_f06e679b9530" formatted="false">"विकिपीडिया"</string>
+  <string name="msg_217d775e8c90" formatted="false">"पढ़ना जारी रखें"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"बुकमार्क फ़ोल्डर"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"सभी बुकमार्क"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"चित्र साझा करें"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"सहेजने की अनुमति नहीं मिली, चित्र डाउनलोड नहीं हुआ"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"चित्र इनकॉग्निटो ब्राउज़िंग के बाहर सुरक्षित रहेंगे"</string>
+  <string name="msg_0816eeae6881" formatted="false">"डाउनलोड, क्लिपबोर्ड या चित्र प्राप्त करने वाले ऐप फ़ाइलें रख सकते हैं, जो इनकॉग्निटो टैब साफ़ नहीं करेंगे।"</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"जारी रखें"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"उपलब्ध चित्र प्राप्त नहीं हो सके, फ़ाइल सहेजी नहीं गई। कृपया बाद में फिर से लंबा दबाएं।"</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"पृष्ठ बदल गया है, कृपया चित्र पर फिर से लंबा दबाएं"</string>
+  <string name="msg_e409173288a1" formatted="false">"चित्र प्राप्त किया जा रहा है…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"अस्थायी चित्र नई टैब में खोला गया"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"चित्र कॉपी किया गया, समर्थित ऐप में पेस्ट करें"</string>
+  <string name="msg_8746e6a72700" formatted="false">"कृपया पिछली चित्र की सहेजने की अनुमति पूरी करें"</string>
+  <string name="msg_7151072d822c" formatted="false">"चित्र Downloads/ChengJing में डाउनलोड हो चुका है, \'डाउनलोड\' में देखें"</string>
+  <string name="msg_fb43036835f6" formatted="false">"सहेजने की अनुमति नहीं मिली, फ़ाइल डाउनलोड नहीं हुई"</string>
+  <string name="msg_18763274dfce" formatted="false">"कृपया डाउनलोड करने के लिए फ़ाइल पुनः चुनें"</string>
+  <string name="msg_38116168b889" formatted="false">"यह URL सिस्टम डाउनलोड सेवा को सौंपा नहीं जा सकता, कृपया मूल पृष्ठ पर पुनः डाउनलोड करें"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"कृपया पिछली फ़ाइल की सहेजने की अनुमति पूरी करें"</string>
+  <string name="msg_1022567a481f" formatted="false">"सहेजने की अनुमति खोलने में विफल, कृपया पुनः प्रयास करें"</string>
+  <string name="msg_067c7812968e" formatted="false">"ChengJing ब्राउज़र · चित्र डाउनलोड"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"ChengJing ब्राउज़र · फ़ाइल डाउनलोड"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"सिस्टम डाउनलोड कतार में जोड़ा गया, तीन-बिंदु मेनू के \'डाउनलोड\' में परिणाम देखें"</string>
+  <string name="msg_46248e4d3641" formatted="false">"फ़ाइल डाउनलोड में जोड़ने में विफल, कृपया स्टोरेज और सिस्टम डाउनलोड सेवा जांचें"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"ChengJing ब्राउज़र खोल रहा है"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"ChengJing"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"ब्राउज़र"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"वेबसाइट नियम संपादित करें"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"AI नियम संशोधन"</string>
+  <string name="msg_371d839ac65c" formatted="false">"थर्ड-पार्टी लाइसेंस"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"घटक कोड"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"SkyEye AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"वेबसाइट कनेक्शन"</string>
+  <string name="msg_930e319f7845" formatted="false">"गोपनीयता और डेटा"</string>
+  <string name="msg_0d8619aae051" formatted="false">"सेटिंग्स"</string>
+  <string name="msg_842433f0a425" formatted="false">"टैब"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"SkyEye सेटिंग्स"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"एक घटक चुनें"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"वेबसाइट संशोधन"</string>
+  <string name="msg_e13bbc197118" formatted="false">"कस्टम कोड"</string>
+  <string name="msg_634ad289a228" formatted="false">"एआई सहायता"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"ब्राउज़र पहचान"</string>
+  <string name="msg_14bd2c678335" formatted="false">"डिफ़ॉल्ट खोज इंजन"</string>
+  <string name="msg_905d98bd5535" formatted="false">"संरचित सूची"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"Google सिंक"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"डोमेन नियम"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"पृष्ठ पाठ खोजें"</string>
+  <string name="msg_9d08608859f8" formatted="false">"अवरोधित रिकॉर्ड"</string>
+  <string name="msg_9357d631d10f" formatted="false">"पिछले स्तर पर वापस जाएं"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"आपकी आदत के अनुसार ब्राउज़ करें"</string>
+  <string name="msg_de961bb8936f" formatted="false">"मेनू बंद करें"</string>
+  <string name="msg_60a53514eb92" formatted="false">"पसंदीदा"</string>
+  <string name="msg_97afce0d452c" formatted="false">"ब्राउज़िंग टूल"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"नया इनकॉग्निटो टैब खोलें"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"सामान्य टैब से अलग ब्राउज़िंग सत्र"</string>
+  <string name="msg_8dce3f317048" formatted="false">"ChengJing ब्राउज़र डाउनलोड आइटम देखें"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"ब्राउज़िंग डेटा हटाएं"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"समय सीमा और हटाने के आइटम चुनें"</string>
+  <string name="msg_431596791167" formatted="false">"वर्तमान पृष्ठ"</string>
+  <string name="msg_3e40d2036259" formatted="false">"वर्तमान पृष्ठ को पसंदीदा में जोड़ें"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"बुकमार्क में जोड़ें"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"बुकमार्क किए गए अनटैग्ड फ़ोल्डर"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"यह पृष्ठ पहले से बुकमार्क में है"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"साझा करें"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"Android सिस्टम शेयर का उपयोग करें"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"मोबाइल संस्करण वेबसाइट पर स्विच करें"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"डेस्कटॉप संस्करण वेबसाइट पर स्विच करें"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"SkyEye और वेबसाइट"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s हटाए गए नियम"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"SkyEye नियम पुनः लागू करें"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"अस्थायी रूप से मूल वेबसाइट दिखाएं"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"वर्तमान में मूल वेबसाइट दिख रही है"</string>
+  <string name="msg_43d22862b439" formatted="false">"इस डोमेन की सेटिंग्स अस्थायी रूप से रोकें"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"सभी डोमेन नियम"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"%1$s बार हस्तक्षेप अवरुद्ध किया गया"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"इस टैब का रिकॉर्ड देखें"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"प्राथमिकताएँ और डेटा"</string>
+  <string name="msg_e7ed17309495" formatted="false">"दिखावट, ब्राउज़िंग और AI सेटिंग्स"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"ChengJing ब्राउज़र %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"दिखावट"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"ब्राउज़िंग"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"पहले वेबपेज खोलें, फिर लिंक साझा करें"</string>
+  <string name="msg_9e2276893fae" formatted="false">"यह डिवाइस सिस्टम शेयर पैनल खोलने में असमर्थ है"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"सिस्टम इस पृष्ठ को अस्थायी रूप से साझा नहीं कर सकता"</string>
+  <string name="msg_beed38829f24" formatted="false">"इस स्क्रीन पर चित्र डाउनलोड सक्षम नहीं है"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"नए टैब में खोलें"</string>
+  <string name="msg_d55104374e08" formatted="false">"लिंक कॉपी करें"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"लिंक"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"नए टैब में चित्र खोलें"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"चित्र पूर्वावलोकन"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"चित्र कॉपी करें"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"चित्र डाउनलोड करें"</string>
+  <string name="msg_75136c12a08a" formatted="false">"चित्र URL प्राप्त नहीं हो सका, कृपया चित्र को फिर से लंबा दबाएं"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"चित्र लिंक कॉपी करें"</string>
+  <string name="msg_559552ccc661" formatted="false">"चित्र लिंक"</string>
+  <string name="msg_17d52a476d32" formatted="false">"%1$s कॉपी किया गया"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"सहेजने की अनुमति दी गई है, कृपया डाउनलोड करने के लिए फ़ाइल फिर से चुनें"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"स्रोत पृष्ठ बदल गया है, कृपया पुनः डाउनलोड करें"</string>
+  <string name="msg_167523d3b80d" formatted="false">"पहले से दो कैश फ़ाइलें डाउनलोड हो रही हैं, कृपया बाद में प्रयास करें"</string>
+  <string name="msg_57d25840bf76" formatted="false">"वेबपेज फ़ाइल डाउनलोड हो रही है, प्रगति देखने या रद्द करने के लिए \"डाउनलोड\" देखें; स्रोत टैब बनाए रखें"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"स्रोत पृष्ठ बदल गया है, डाउनलोड रोक दिया गया है"</string>
+  <string name="msg_13491974a87a" formatted="false">"Downloads/ChengJing में डाउनलोड किया गया, \"डाउनलोड\" में खोलें"</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"कैश फ़ाइल पढ़ने में समय समाप्त, कृपया स्रोत टैब बनाए रखें और पुनः डाउनलोड करें"</string>
+  <string name="msg_639f890d3c20" formatted="false">"रद्द किया गया; अधूरी फ़ाइल नहीं रखी गई"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"डाउनलोड पूरा नहीं हुआ, कृपया संग्रहण स्थान जांचें और पुनः प्रयास करें"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"स्रोत टैब बंद या पुनः लोड किया गया, डाउनलोड रोक दिया गया; अधूरी फ़ाइल नहीं रखी गई"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"सामग्री दर्ज करें"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"लंबे दबाव मेनू बंद करें"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"कृपया पहले Android System WebView अपडेट करें, फिर कुकी और वेबसाइट डेटा हटाएं।"</string>
+  <string name="msg_7877a2c231c9" formatted="false">"टैब परिवर्तन सहेजा नहीं जा सका"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"टैब स्नैपशॉट की सफाई अभी पूरी नहीं हुई है"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"चयनित ब्राउज़िंग डेटा हटा दिया गया है; कुकी, कैश और वेबसाइट डेटा पूरी तरह साफ़ हो चुका है"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"%1$s के चयनित ब्राउज़िंग डेटा हटा दिए गए हैं"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"वेबसाइट डेटा की सफाई पूरी होने की पुष्टि नहीं हुई है। कृपया बाद में पुनः प्रयास करें, या ऐप बंद करके फिर खोलें।"</string>
+  <string name="msg_f795969c320e" formatted="false">"हटाना पूरा नहीं हुआ, कुछ डेटा हटाए जा सकते हैं। कृपया पुनः प्रयास करें, या ऐप बंद करके फिर खोलें।"</string>
+  <string name="msg_6846f5758df9" formatted="false">"पिछले 15 मिनट"</string>
+  <string name="msg_789842abff7d" formatted="false">"वेबसाइट संसाधन"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"इस पृष्ठ पर प्रमाणपत्र त्रुटि हुई है, कनेक्शन के लक्ष्य की पहचान सत्यापित नहीं हो सकी। जब वेबसाइट अपवाद सक्षम नहीं होता, तो असामान्य कनेक्शन अवरुद्ध हो जाते हैं।\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"वेबसाइट अभी तक खुली नहीं है"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"वर्तमान में HTTPS एन्क्रिप्टेड कनेक्शन का उपयोग हो रहा है।"</string>
+  <string name="msg_c6905e1adffd" formatted="false">"HTTP कनेक्शन एन्क्रिप्टेड नहीं है, कोई मान्य वेबसाइट प्रमाणपत्र नहीं है।"</string>
+  <string name="msg_87178db80ada" formatted="false">"कनेक्शन जानकारी देखने के लिए पहले वेबसाइट खोलें।"</string>
+  <string name="msg_3e26c53efe37" formatted="false">"वर्तमान वेबसाइट"</string>
+  <string name="msg_9c5784103466" formatted="false">"पृष्ठ द्वारा उपयोग किए गए अन्य स्रोत"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"प्रमाणपत्र अपवाद की अनुमति दें"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"सक्रिय; पुनः आरंभ के बाद भी रहेगा"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"डिफ़ॉल्ट रूप से बंद, सत्यापन विफल होने पर कनेक्शन रोकें"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"केवल इस HTTPS होस्टनाम (और इसके विभिन्न पोर्ट) पर लागू होता है, अन्य सबडोमेन या तृतीय-पक्ष स्रोत शामिल नहीं हैं। आप इसे बंद करने तक यह बना रहेगा।"</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"प्रमाणपत्र अपवाद वेबसाइट पहचान सुरक्षा को कम करता है; यह सर्वर की एन्क्रिप्टेड कनेक्शन बनाने में असमर्थता को ठीक नहीं करता।"</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"क्या इस वेबसाइट के प्रमाणपत्र अपवाद की अनुमति दें?"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\nयह सेटिंग स्थायी रूप से बनी रहेगी जब तक आप इसे बंद न करें। वेबसाइट प्रमाणपत्र अमान्य या पहचान सत्यापित न हो पाने पर भी लोड हो सकता है; लॉगिन जानकारी और इनपुट सामग्री अप्रत्याशित पक्षों द्वारा प्राप्त हो सकती है। कृपया केवल जोखिम समझकर और स्वीकार करके ही सक्षम करें।"</string>
+  <string name="msg_d848bdedee10" formatted="false">"मैं समझता हूँ, इस वेबसाइट की अनुमति दें"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"सत्यापन बनाए रखें"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"एम्बेडेड फ़ाइल स्वरूप गलत है"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"एम्बेडेड फ़ाइल URL गलत है"</string>
+  <string name="msg_a5fc04346035" formatted="false">"एम्बेडेड डेटा URL बहुत बड़ा है, कृपया वेबसाइट की फ़ाइल डाउनलोड लिंक का उपयोग करें"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"एम्बेडेड फ़ाइल कोडिंग अधूरी है"</string>
+  <string name="msg_c74489c545f7" formatted="false">"एम्बेडेड फ़ाइल कोडिंग गलत है"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"समय सीमा"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s पृष्ठ, %2$s खोज रिकॉर्ड"</string>
+  <string name="msg_8394223e0a97" formatted="false">"अभी तक बंद नहीं किए गए टैब"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s सामान्य टैब · अंतिम ब्राउज़ समय के अनुसार बंद"</string>
+  <string name="msg_1f86b4081196" formatted="false">"कुकी, कैश और वेबसाइट डेटा"</string>
+  <string name="msg_c44aefb98491" formatted="false">"कोई समय सीमा नहीं · सभी साफ़ करें, वेबसाइट से लॉगआउट हो सकता है"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"साफ़ करने के लिए पहले Android System WebView अपडेट करें"</string>
+  <string name="msg_ab54697044d0" formatted="false">"समय सीमा ब्राउज़िंग इतिहास और टैब पर लागू होती है। कुकी, कैश और वेबसाइट डेटा केवल पूरी तरह साफ़ किए जा सकते हैं।"</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"पुराने संस्करण के बिना समय रिकॉर्ड किए गए डेटा के लिए, कृपया \"कोई समय सीमा नहीं\" चुनें।"</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"बुकमार्क, पसंदीदा, डाउनलोड फ़ाइलें और SkyEye सेटिंग्स सुरक्षित रहेंगी। इनकॉग्निटो डेटा के लिए इनकॉग्निटो टैब बंद करके साफ़ करें।"</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"हटाया जा रहा है…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"डेटा हटाएं"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"वर्तमान वेबसाइट · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"क्या प्रयास करना चाहते हैं? सीधे AI से पूछें"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"कुल विचार का वर्णन करें, चयनित घटकों तक सीमित नहीं"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"घटक पढ़ा नहीं जा सका, कृपया पुनः चयन करें"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\nवर्तमान में %2$s घटक मेल खाते हैं; सहेजने पर इसे %3$s और उपडोमेनों में इस संरचना वाले घटकों पर लागू किया जाएगा।"</string>
+  <string name="msg_16a3beab3f94" formatted="false">"घटक CSS गुण"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"घटक JavaScript"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// element वर्तमान नियम से मेल खाने वाला घटक है\nelement.setAttribute(\'title\', \'मेरा पढ़ने का सुझाव\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"घटक आंतरिक HTML"</string>
+  <string name="msg_f8ff75626431" formatted="false">"नया HTML जोड़ें (घटक के अंदर अंत में)"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;मेरा पढ़ने का सुझाव&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"%1$sHTML में स्क्रिप्ट निष्पादित नहीं होगी; इंटरैक्शन के लिए JavaScript का उपयोग करें। JS वेबपेज पढ़ सकता है या अनुरोध भेज सकता है, कृपया केवल समझे हुए कोड लागू करें।"</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"यह घटक के आंतरिक कंटेंट को बदल देगा, जिससे मूल इंटरैक्शन प्रभावित हो सकता है।"</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"CSS/JS/HTML किसी भी संयोजन में भरा जा सकता है।"</string>
+  <string name="msg_381994932dcc" formatted="false">"वेबपेज बदल गया है, कृपया पुनः चयन करें"</string>
+  <string name="msg_ac2471607490" formatted="false">"कृपया जोड़ने के लिए सामग्री भरें"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"वेबसाइट संशोधन सीमा तक पहुंच गया है, कृपया पहले सहेजे गए संशोधनों को व्यवस्थित करें"</string>
+  <string name="msg_9104269ef996" formatted="false">"सहेजा और लागू किया गया; SkyEye सेटिंग में पिछली सहेज को पुनर्स्थापित किया जा सकता है"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"घटक पढ़ा जा रहा है…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"सहेजें और लागू करें"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"मौजूदा संशोधनों को और बेहतर बनाएं"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"इस संशोधन की AI से जांच करें"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nAI इस पृष्ठ लोड, SkyEye लागू करने से पहले के HTML और वर्तमान संपादन को पढ़ेगा, फिर आपकी नई मांग के अनुसार नियम संशोधित करेगा।"</string>
+  <string name="msg_b654f1e4475a" formatted="false">"वेबसाइट CSS / JS / HTML"</string>
+  <string name="msg_b243a787a694" formatted="false">"वर्तमान वेबसाइट: %1$s\nआप पूरे लेआउट के लिए सुझाव दे सकते हैं। विश्लेषण वर्तमान खुले पृष्ठ की सीमित संरचना पर आधारित है, वेबसाइट के सभी पृष्ठों की जांच नहीं करता।"</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"चयनित घटक: %1$s\nघटक संशोधन इस चयनकर्ता को लक्षित करता है: %2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"इस बार आप कैसे समायोजन करना चाहते हैं?"</string>
+  <string name="msg_4df18c378546" formatted="false">"आप इस वेबसाइट में क्या बदलाव चाहते हैं?"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"इस घटक को कैसे बदलना है? कहाँ जांच करनी है?"</string>
+  <string name="msg_53c859901fee" formatted="false">"HTML फॉर्म सामग्री, स्क्रिप्ट और इवेंट गुणों को हटा देगा, अधिकतम %1$s अक्षर प्रदान करता है; इसमें पृष्ठ का टेक्स्ट शामिल हो सकता है, लेकिन अन्य पृष्ठों या बाद की गतिशील सामग्री को शामिल नहीं करता।"</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"CSS/HTML चयनित घटक पर लागू होगा; JavaScript के पास अभी भी पृष्ठ कोड का अधिकार है, कृपया वास्तविक प्रभाव क्षेत्र जांचें।"</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"Gemma 4 का स्थानीय विश्लेषण उपयोग करें, API Key की आवश्यकता नहीं है, इस विश्लेषण के वेब पेज संरचना, कोड और आवश्यकताएँ क्लाउड पर नहीं भेजी जाएंगी।"</string>
+  <string name="msg_b45dad973407" formatted="false">"इस बार डोमेन, साफ़ किए गए मूल HTML (संभवतः निजी पृष्ठ टेक्स्ट सहित), यह कस्टम नियम और नई आवश्यकताएँ OpenRouter और चयनित मॉडल प्रदाताओं को भेजी जाएंगी। कुकी या फॉर्म मान नहीं पढ़े जाएंगे।"</string>
+  <string name="msg_fbd9319f336c" formatted="false">"इस विश्लेषण में डोमेन, सीमित घटक संरचना, सहेजे गए कस्टम कोड और आपकी इनपुट आवश्यकताएँ OpenRouter और चयनित मॉडल प्रदाताओं को भेजी जाएंगी। कोड या प्रश्न में निजी सामग्री हो सकती है, कृपया पहले पुष्टि करें; कुकी, फॉर्म मान या लेख सामग्री स्वचालित रूप से नहीं पढ़ी जाएगी।"</string>
+  <string name="msg_87bc9921ff32" formatted="false">"इस विश्लेषण के लिए ऊपर दिए गए डेटा भेजने की सहमति दें"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"AI निष्पादन विधि चुनें"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"OpenRouter API Key सेट करें"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"वेब पेज बदल गया है, कृपया AI को पुनः खोलें"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"इस नियम का मूल HTML पढ़ा नहीं जा सका। कृपया उस घटक वाले पृष्ठ को खोलें, पुनः लोड करें और फिर प्रयास करें।"</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"पृष्ठ अभी तैयार नहीं है, कृपया पुनः लोड करके फिर प्रयास करें"</string>
+  <string name="msg_d1127956fd88" formatted="false">"वेब पेज बदल गया है, कृपया पुनः विश्लेषण करें"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"विश्लेषण रद्द कर दिया गया"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"विश्लेषण जारी है…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"Gemma 4 का उपयोग करके विश्लेषण करें"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"सुझाव भेजें और प्राप्त करें"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"विश्लेषण रद्द करें"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"AI सुझाव"</string>
+  <string name="msg_f8236285164f" formatted="false">"इस बार कोई लागू करने योग्य संशोधन उत्पन्न नहीं हुआ।"</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"सहेजने का दायरा: %1$s और इसके उपडोमेन। AI सुझाव आपकी साइट पर वास्तविक रूप से सत्यापित नहीं हुए हैं; कृपया कोड और परिवर्तनों की समीक्षा करें फिर लागू करें।"</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"संशोधन सामग्री संक्षिप्त करें"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"पूर्ण संशोधन सामग्री देखें"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"सेटिंग बदल गई है, कृपया पुनः विश्लेषण करें"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"AI सुझाव लागू किए गए हैं; SkyEye सेटिंग में पिछली सहेज को पुनर्स्थापित किया जा सकता है"</string>
+  <string name="msg_4522951c203c" formatted="false">"मूल नियम अपडेट करें और लागू करें"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"एक-क्लिक सुझाव लागू करें"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"पिछली सेटिंग पुनर्स्थापित की जा सकती है; प्रोग्राम द्वारा भेजे गए अनुरोध या वेबसाइट क्रियाएं वापस नहीं ली जा सकतीं।"</string>
+  <string name="msg_b727b2493599" formatted="false">"इस वेबसाइट की सेटिंग्स अधिक हैं, कृपया एकल घटक तक सीमित करें या क्लाउड मॉडल विश्लेषण चुनें।"</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"स्थानीय डेटा सहेजा गया है; अगली बार ऐप खोलने पर सिंक होगा, या \"तुरंत सिंक\" दबाएं।"</string>
+  <string name="msg_0d3a30703357" formatted="false">"Google अस्थायी रूप से व्यस्त है"</string>
+  <string name="msg_61b008bafedd" formatted="false">"कृपया बाद में पुनः प्रयास करें।%1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"Google प्राधिकरण पुनः पुष्टि आवश्यक है"</string>
+  <string name="msg_2a19048f4610" formatted="false">"कृपया \"तुरंत सिंक\" दबाकर प्राधिकरण पुनः पुष्टि करें। स्थानीय डेटा सहेजा गया है।"</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"Google सिंक अनुमति सीमित है"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"कृपया Google खाते की ऐप एक्सेस और व्यवस्थापक सेटिंग्स जांचें, फिर \"तुरंत सिंक\" दबाएं। स्थानीय डेटा सहेजा गया है।"</string>
+  <string name="msg_0108ca4bc750" formatted="false">"कृपया मूल Google खाता उपयोग करें"</string>
+  <string name="msg_5b29df305534" formatted="false">"इस फोन का सिंक डेटा किसी अन्य खाते से जुड़ा है, कृपया मूल खाता चुनें ताकि अन्य लोगों का डेटा मिश्रित न हो।"</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"Google कनेक्शन सुरक्षा सत्यापित नहीं हो सकी"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"कृपया फोन की तारीख, समय और नेटवर्क सेटिंग्स जांचें और पुनः प्रयास करें। स्थानीय डेटा सहेजा गया है।"</string>
+  <string name="msg_e813605409d0" formatted="false">"कनेक्शन धीमा है, सिंक पूरा नहीं हुआ"</string>
+  <string name="msg_328257927000" formatted="false">"सिंक पूरा नहीं हुआ"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"क्लाउड डेटा अभी पुष्टि नहीं हुआ है, स्थानीय डेटा सहेजा गया है। कृपया बाद में पुनः प्रयास करें; यदि समस्या बनी रहे, तो सहायता से संपर्क करें।"</string>
+  <string name="msg_e19c932091a7" formatted="false">"अधिकारिक संस्करण अस्थायी रूप से उपलब्ध नहीं, कृपया बाद में पुनः प्रयास करें।"</string>
+  <string name="msg_85284e05ae9e" formatted="false">"ब्राउज़िंग कोर"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"वर्तमान में Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"नवीनतम स्थिर संस्करण"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"खोज जारी है…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"कोई डेटा नहीं"</string>
+  <string name="msg_8b9b22849066" formatted="false">"अभी तक खोज नहीं हुई"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"वर्तमान में %1$s द्वारा प्रदान किया गया; Google द्वारा प्रकाशित %2$s स्थिर संस्करण के साथ तुलना।"</string>
+  <string name="msg_e5d3e9548003" formatted="false">"वर्तमान संस्करण सीधे तुलना योग्य नहीं है"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"अधिकारिक स्थिर संस्करण नया है, कोर अपडेट जांचें"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"वर्तमान कोर और आधिकारिक स्थिर संस्करण समान हैं"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"वर्तमान कोर संस्करण नया है"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"%1$s खोज समय:"</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"पिछला परिणाम सुरक्षित · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"खोज जारी है…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"संस्करण पुनः जांचें"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"अपडेट पृष्ठ खोलना असंभव, कृपया सिस्टम सेटिंग में WebView देखें।"</string>
+  <string name="msg_243aeef7919a" formatted="false">"कोर अपडेट पृष्ठ खोलें"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"अपडेट सिस्टम या स्टोर द्वारा प्रदान किया जाता है, संभवतः चरणबद्ध रूप से जारी।"</string>
+  <string name="msg_8e57db190d94" formatted="false">"अधिकारिक संस्करण डेटा उपलब्ध नहीं है"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"अधिकारिक संस्करण डेटा प्रारूप असामान्य है"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"सिस्टम WebView"</string>
+  <string name="msg_b7d90d419331" formatted="false">"पढ़ा नहीं जा सका"</string>
+  <string name="msg_737d4fde158c" formatted="false">"अधिकारिक संस्करण खोज अस्थायी रूप से कनेक्ट नहीं हो सका"</string>
+  <string name="msg_6090d27dccad" formatted="false">"अधिकारिक ने संस्करण डेटा वापस नहीं किया"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"संस्करण डेटा बहुत बड़ा है"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"संस्करण जानकारी सहेजने में विफल"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"इस लिंक को खोलने वाला कोई ऐप नहीं मिला, कृपया संबंधित ऐप इंस्टॉल करें।"</string>
+  <string name="msg_34b996e6bd60" formatted="false">"दूसरे ऐप में खोलें?"</string>
+  <string name="msg_140169f1183b" formatted="false">"आप ChengJing के इनकॉग्निटो ब्राउज़िंग से बाहर जा रहे हैं। अन्य ऐप इस लिंक और उपयोग रिकॉर्ड को सहेज सकते हैं।"</string>
+  <string name="msg_f290f9167ad0" formatted="false">"खोलें"</string>
+  <string name="msg_0db216962632" formatted="false">"बुकमार्क URL प्रारूप गलत है"</string>
+  <string name="msg_62b58243569c" formatted="false">"बुकमार्क पहचानकर्ता प्रारूप गलत है"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"बुकमार्क समय प्रारूप गलत है"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"बुकमार्क समय सीमा से बाहर है"</string>
+  <string name="msg_71a221e87e34" formatted="false">"बुकमार्क सिंक डेटा बहुत अधिक है, स्थानीय सामग्री सुरक्षित रखी गई है"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"बुकमार्क सिंक डेटा आकार सीमा से अधिक है"</string>
+  <string name="msg_220275e1f7de" formatted="false">"यह बुकमार्क सिंक प्रारूप पढ़ने के लिए ऐप अपडेट करना आवश्यक है"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"बुकमार्क सहेजना विफल रहा"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"खोज जारी है"</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"मिला नहीं"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"कृपया खोजने के लिए टेक्स्ट दर्ज करें"</string>
+  <string name="msg_28010afeecd8" formatted="false">"पृष्ठ खोजा जा रहा है"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"कोई मेल खाने वाला टेक्स्ट नहीं मिला"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"रिकॉर्ड %1$s में से %2$s"</string>
+  <string name="msg_d1989441806e" formatted="false">"पहले वेबपेज खोलें, फिर पृष्ठ टेक्स्ट खोजें"</string>
+  <string name="msg_c570255d2708" formatted="false">"कृपया पहले SkyEye छोड़ें, फिर पृष्ठ टेक्स्ट खोजें"</string>
+  <string name="msg_f782a6845afa" formatted="false">"पिछला मेल खाने वाला टेक्स्ट"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"अगला मेल खाने वाला टेक्स्ट"</string>
+  <string name="msg_f41b8847f832" formatted="false">"पृष्ठ खोज बंद करें"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B तैयार है"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"स्थानीय मॉडल अभी डाउनलोड नहीं हुआ है"</string>
+  <string name="msg_191155f69eeb" formatted="false">"स्थानीय मॉडल के लिए 64-बिट डिवाइस आवश्यक है"</string>
+  <string name="msg_301286dd890b" formatted="false">"स्थान कम है, कृपया लगभग 3 GB खाली स्टोरेज रखें"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"ChengJing · Gemma 4 स्थानीय मॉडल"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"लगभग 2.59 GB डाउनलोड; पूरा होने पर मॉडल की अखंडता जांची जाएगी"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"डाउनलोड कार्य मौजूद नहीं है, कृपया पुनः डाउनलोड करें"</string>
+  <string name="msg_24d557606dbb" formatted="false">"मॉडल की अखंडता जांची जा रही है…"</string>
+  <string name="msg_d46682705f49" formatted="false">"मॉडल डाउनलोड विफल ( %1$s ), कृपया पुनः डाउनलोड करें"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"डाउनलोड रुका हुआ है; कृपया Wi-Fi, नेटवर्क या स्टोरेज जांचें"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"Gemma 4 डाउनलोड हो रहा है · %1$s%%"</string>
+  <string name="msg_119f097a0356" formatted="false">"डाउनलोड पूरा नहीं हुआ"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"मॉडल अखंडता जांच विफल, कृपया हटाकर पुनः डाउनलोड करें"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"कृपया पहले Gemma 4 स्थानीय मॉडल डाउनलोड करें"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"मौजूदा मेमोरी कम है, कृपया कुछ टैब या अन्य ऐप बंद करें, फिर स्थानीय मॉडल का उपयोग करें।"</string>
+  <string name="msg_305f7b160fa8" formatted="false">"मॉडल प्रतिक्रिया बहुत लंबी है, कृपया प्रश्न सीमा कम करें"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"AI निष्पादन मोड"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · मोबाइल स्थानीय"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · क्लाउड मॉडल"</string>
+  <string name="msg_7397e02a13de" formatted="false">"स्थानीय मोड में API Key की जरूरत नहीं; क्लाउड मोड में आप सेवा प्रदाता के मॉडल चुन सकते हैं।"</string>
+  <string name="msg_770c4bcb536a" formatted="false">"पहली बार लगभग 2.59 GB मॉडल डाउनलोड करना होगा, लगभग 3 GB स्टोरेज खाली रखें। 64-बिट डिवाइस आवश्यक, कम से कम 6 GB मेमोरी सुझाई जाती है; विश्लेषण के दौरान फोन की बैटरी उपयोग होगी। डाउनलोड के बाद, विश्लेषण डेटा स्थानीय रूप से रहता है।"</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"मॉडल डाउनलोड रद्द करें"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"मॉडल की अखंडता जांच पूरी हो गई है, ऑफ़लाइन उपयोग के लिए तैयार है।"</string>
+  <string name="msg_1300b82064c4" formatted="false">"स्थान खाली करने के लिए मॉडल हटाएं"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"मोबाइल नेटवर्क पर डाउनलोड की अनुमति दें"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"Gemma 4 स्थानीय मॉडल डाउनलोड करें"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"यह डिवाइस स्थानीय निष्कर्षण का समर्थन नहीं करता, OpenRouter विकल्प चुनें।"</string>
+  <string name="msg_6cbc25f77915" formatted="false">"मॉडल: Google Gemma 4, Apache 2.0। मॉडल फ़ाइल Google दस्तावेज़ लिंक से LiteRT Community द्वारा डाउनलोड की गई।"</string>
+  <string name="msg_0cc2d828db73" formatted="false">"कृपया मान्य HTTP या HTTPS URL दर्ज करें"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"सहेजना पूरा नहीं हुआ, कृपया बाद में पुनः प्रयास करें"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"होमपेज सेटिंग"</string>
+  <string name="msg_d03a088f3260" formatted="false">"होमपेज बटन दिखाएं"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"URL बार के सामने रखें"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"होमपेज सेटिंग सहेजने में विफल"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"कस्टम URL"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"होमपेज URL"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"सहेजा गया"</string>
+  <string name="msg_0edd4290c301" formatted="false">"होमपेज सहेजें"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"इनकॉग्निटो पूर्वावलोकन के लिए पहले निर्यात की पुष्टि आवश्यक है"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"छवि 32 MB से बड़ी है, कृपया मूल साइट से डाउनलोड करें"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"इनकॉग्निटो सेशन बंद कर दिया गया है"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"प्राप्त सामग्री समर्थित छवि नहीं है, फ़ाइल सहेजी नहीं गई"</string>
+  <string name="msg_5f8355918e25" formatted="false">"छवि कैश विफल"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"छवि URL उपयोग योग्य नहीं है"</string>
+  <string name="msg_4926037b836c" formatted="false">"छवि रीडायरेक्शन उपयोग योग्य नहीं है"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"छवि डाउनलोड विफल (HTTP %1$s), फ़ाइल सहेजी नहीं गई"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"छवि में कोई सामग्री नहीं है"</string>
+  <string name="msg_cc6f13303851" formatted="false">"चित्र पुनर्निर्देशन की संख्या बहुत अधिक है, फ़ाइल सहेजी नहीं गई"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"चित्र 32 MB से अधिक है"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"चित्र कैश अमान्य हो गया है, कृपया मूल पृष्ठ पर वापस जाकर पुनः खोलें"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"चित्र पूर्वावलोकन बंद करें"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · दो अंगुलियों से ज़ूम करें, डबल टैप से बड़ा करें"</string>
+  <string name="msg_c660e164fa68" formatted="false">"यह वेबपेज कैश चित्र टैब है, ऐप पुनः खोलने पर सहेजा नहीं जाएगा। यदि रखना है तो डाउनलोड करें।"</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"चित्र, दो अंगुलियों से ज़ूम और खींचा जा सकता है"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"पिछले स्तर पर वापस जाएं"</string>
+  <string name="msg_607089b311be" formatted="false">"अवर्गीकृत"</string>
+  <string name="msg_e371aca7156b" formatted="false">"Chrome बुकमार्क आयात करें"</string>
+  <string name="msg_901fcc465532" formatted="false">"पसंदीदा बंद करें"</string>
+  <string name="msg_714be9fccc36" formatted="false">"बुकमार्क बंद करें"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s आइटम"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s बुकमार्क"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"पसंदीदा खोजें"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"सभी बुकमार्क और फ़ोल्डर खोजें"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"खोज साफ़ करें"</string>
+  <string name="msg_4220592340ad" formatted="false">"पसंदीदा में जोड़ा गया"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"पसंदीदा प्रगति अपडेट की गई"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"इस पसंदीदा की प्रगति अपडेट करें"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"एक और पसंदीदा सहेजा गया"</string>
+  <string name="msg_74894a77754e" formatted="false">"एक और नया जोड़ें"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"अध्याय URL और पढ़ने की स्थिति याद रखें, इस फोन में सहेजी गई।"</string>
+  <string name="msg_6d9532de6549" formatted="false">"अभी तक कोई पसंदीदा नहीं है"</string>
+  <string name="msg_9c88b8194478" formatted="false">"कोई मेल खाने वाला पसंदीदा नहीं मिला"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"पढ़ते समय मेनू से पसंदीदा जोड़ें, फ़ोल्डर चुनने की आवश्यकता नहीं।"</string>
+  <string name="msg_299775d315e8" formatted="false">"किसी अन्य नाम या URL से प्रयास करें।"</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · इस पृष्ठ का %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"पसंदीदा %1$s का नाम बदलें"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"पसंदीदा %1$s हटाएं"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"बुकमार्क › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"कोई मेल खाने वाला बुकमार्क नहीं मिला"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"यहाँ अभी तक कोई बुकमार्क नहीं है"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"खोज में सभी फ़ोल्डर शामिल होंगे।"</string>
+  <string name="msg_a581a0c5331f" formatted="false">"ऊपर दाईं ओर से Chrome बुकमार्क आयात कर सकते हैं।"</string>
+  <string name="msg_11ae55de6d31" formatted="false">"बुकमार्क %1$s संपादित करें"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"बुकमार्क %1$s हटाएं"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"इस फ़ोल्डर में जोड़ा गया"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"इस फ़ोल्डर में यह बुकमार्क पहले से है"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"वर्तमान वेबपेज जोड़ें"</string>
+  <string name="msg_c631952bb114" formatted="false">"निर्यात करें"</string>
+  <string name="msg_27001df08520" formatted="false">"बुकमार्क संपादित करें"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"पसंदीदा का नाम दें"</string>
+  <string name="msg_a5274f381305" formatted="false">"नाम"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"URL"</string>
+  <string name="msg_aabc6623539f" formatted="false">"फ़ोल्डर"</string>
+  <string name="msg_a2c701b369be" formatted="false">"पढ़ना / तकनीक"</string>
+  <string name="msg_b631887c06ef" formatted="false">"फ़ोल्डर स्तरों को \" / \" से अलग करें"</string>
+  <string name="msg_978626066ea1" formatted="false">"सहेजने में विफल, कृपया पुनः प्रयास करें"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"सहेजें"</string>
+  <string name="msg_9c9624b64441" formatted="false">"वेबसाइट स्थान"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"फोन का वेब घटक सीधे स्थान समर्थन नहीं करता, कृपया Android System WebView अपडेट करें।"</string>
+  <string name="msg_68f8f532449b" formatted="false">"इनकॉग्निटो अनुमति केवल सभी इनकॉग्निटो टैब बंद करने तक रहती है।"</string>
+  <string name="msg_db3dea807cf5" formatted="false">"केवल इस साइट पर लागू; अन्य साइटों के लिए अलग अनुमति चाहिए।"</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"बदलाव के बाद यह साइट पुनः लोड होगी, पूर्व स्थान अनुरोध तुरंत बंद हो जाएगा।"</string>
+  <string name="msg_d47077aa2c28" formatted="false">"फोन स्थान अनुमति"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"फोन स्थान सेवा सेटिंग"</string>
+  <string name="msg_824602facd05" formatted="false">"बुकमार्क फ़ाइल खोलने में असमर्थ"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"बुकमार्क फ़ाइल 8 MB से बड़ी है, कृपया भागों में आयात करें"</string>
+  <string name="msg_7193e8524414" formatted="false">"फ़ाइल में HTTP / HTTPS बुकमार्क नहीं मिला"</string>
+  <string name="msg_01fd7b112086" formatted="false">"%1$s बुकमार्क आयात करें?"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"फ़ोल्डर रखे जाएंगे; मौजूदा बुकमार्क दोहराए नहीं जाएंगे।"</string>
+  <string name="msg_20809c5d8596" formatted="false">"आयात करें"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"%1$s बुकमार्क आयात किए गए"</string>
+  <string name="msg_3778200c90e5" formatted="false">"ये बुकमार्क पहले ही आयात हो चुके हैं, दोहराए नहीं जाएंगे"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"आयात पूरा नहीं हुआ, कृपया बाद में पुनः प्रयास करें"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"आयात पूरा नहीं हुआ"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"फ़ाइल लिखने में असमर्थ"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"बुकमार्क निर्यात किए गए"</string>
+  <string name="msg_fef661198324" formatted="false">"बुकमार्क निर्यात विफल"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"असंग्रहीत पूर्वावलोकन रद्द कर दिया गया"</string>
+  <string name="msg_79606cdda212" formatted="false">"गुप्त ब्राउज़िंग"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s नियम · असंग्रहीत"</string>
+  <string name="msg_8d44a1395388" formatted="false">"SkyEye चालू है · वेबसाइट घटक पर टैप करें"</string>
+  <string name="msg_315a88f3155e" formatted="false">"SkyEye छोड़ें"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"अपवाद में · मूल वेबसाइट"</string>
+  <string name="msg_c550069b0749" formatted="false">"नियम पुनर्स्थापित करें"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"इस वेबसाइट से अस्थायी रूप से कनेक्ट नहीं हो पा रहा है"</string>
+  <string name="msg_70dd895b66db" formatted="false">"पुनः लोड करें"</string>
+  <string name="msg_ed51242141b1" formatted="false">"आपका चुनाव, आपके फोन पर रहता है।"</string>
+  <string name="msg_f1c970051cf5" formatted="false">"कोई डोमेन नियम अभी तक सहेजे नहीं गए।"</string>
+  <string name="msg_baeab929c3dd" formatted="false">"संपादित करने के लिए टैप करें · %1$s घटक संशोधन"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"इस टैब में कुल %1$s बार, हाल के 30 रिकॉर्ड रखे गए हैं।"</string>
+  <string name="msg_b3471f8f134f" formatted="false">"इस URL को स्वयं खोलें"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"घटक चयन जारी रखें"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"SkyEye खोलें・घटक चुनें"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"पिछला पूर्ववत करें"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"नियम सहेजें"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"घटक और कोड"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"फ्लोटिंग, छिपे और एम्बेडेड घटकों को देखें"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"सहेजे गए वेबसाइट संशोधन"</string>
+  <string name="msg_0590277f2647" formatted="false">"नियम पर टैप करें, संपादित करें या AI से समायोजन करें"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"वेबसाइट व्यवहार"</string>
+  <string name="msg_830509b36cfe" formatted="false">"पुनर्निर्देशन और पॉपअप रोकें"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"लॉगिन प्रक्रिया प्रभावित होने पर इसे बंद करें।"</string>
+  <string name="msg_7007cf22f796" formatted="false">"डोमेन सुरक्षा सेटिंग सहेजी गई"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"इस डोमेन सेटिंग को तब तक रोकें जब तक ऐप बंद न हो।"</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"पिछली बार सहेजे गए को पुनर्स्थापित करें"</string>
+  <string name="msg_97efebc05b15" formatted="false">"चयनित घटक · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · यह चयनकर्ता वर्तमान में %3$s घटकों से मेल खाता है"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"एम्बेडेड पेज का फ्रेम समायोजित किया जा सकता है; क्रॉस-ओरिजिन आंतरिक सामग्री यहाँ एक्सेस नहीं की जा सकती।"</string>
+  <string name="msg_2bc121aa5664" formatted="false">"इस घटक को कैसे संशोधित करना चाहते हैं?"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"कस्टम CSS / JS / HTML जोड़ें"</string>
+  <string name="msg_6791c9f39720" formatted="false">"शैली, इंटरैक्शन या पेज सामग्री जोड़ें"</string>
+  <string name="msg_704bb9551f08" formatted="false">"इस वेबसाइट घटक को हटाएं"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"पहले पूर्वावलोकन करें, फिर सहेजने का निर्णय लें"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"इस कोड को संशोधित करें"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"घटक के अंदर HTML संपादित करें"</string>
+  <string name="msg_31d97b13527a" formatted="false">"क्या मैंने सही संशोधन किया? कृपया AI से जांच करवाएं"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"केवल चयनित घटक के लिए संशोधन प्रस्तावित करें"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"बाहरी एक स्तर चुनें"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"अन्य घटक चुनें"</string>
+  <string name="msg_76ae194967b7" formatted="false">"वेबसाइट कोड"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"सहेजे गए कंटेंट को संपादित करें या AI को पुनः संशोधित करें"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"कस्टम घटक"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"HTML संपादित करें"</string>
+  <string name="msg_96f3303604ab" formatted="false">"कस्टम घटक कोड"</string>
+  <string name="msg_27688f7df99c" formatted="false">"छिपाए गए घटक"</string>
+  <string name="msg_215e19833aad" formatted="false">"%1$s पुनर्स्थापित करें"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"इस घटक को पुनर्स्थापित किया गया"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"संशोधन अभी तक सहेजे नहीं गए। SkyEye से घटक चुनें या वेबसाइट कोड जोड़ें।"</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"पृष्ठ स्क्रॉल पुनर्स्थापित करें"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"ओवरले हटाने के बाद भी स्क्रॉल न हो तो इसे चालू करें।"</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"नियम स्थानीय रूप से सहेजे जाते हैं। यदि डोमेन संरचना अपडेट होती है, तो पुनः चयन करें या AI से समायोजन करें।"</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"कोड इस डोमेन और सबडोमेन पर लागू होगा। JavaScript पेज पढ़ सकता है और नेटवर्क अनुरोध भेज सकता है, केवल विश्वसनीय सामग्री का उपयोग करें। अपवाद मोड लागू करना रोकता है।"</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"सहेजते समय वर्तमान SkyEye पूर्वावलोकन घटक संशोधन भी सहेजे जाएंगे।"</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"CSS शैली"</string>
+  <string name="msg_628f36411710" formatted="false">"// पेज सामग्री जोड़ें या समायोजित करें; प्रत्येक लोड पर एक बार निष्पादित करें"</string>
+  <string name="msg_b22612d48c02" formatted="false">"वेबसाइट में नया HTML जोड़ें (पेज के अंत में)"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;मेरी पढ़ने की टिप्स&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"पृष्ठ बदल गया है, कृपया संपादक बंद करके पुनः खोलें"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"सहेजा गया और पुनः लोड किया गया"</string>
+  <string name="msg_7106b4590cce" formatted="false">"सहेजने में विफल: %1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"मूलतः अदृश्य घटक सहित। अधिकतम 80 फ्लोटिंग, छिपे और एम्बेडेड घटक दिखाए जाएंगे।"</string>
+  <string name="msg_2111f387ba60" formatted="false">"इस प्रकार के घटक वर्तमान में नहीं मिले; आप अभी भी पेज पर सामान्य घटकों को सीधे टैप कर सकते हैं।"</string>
+  <string name="msg_167bc0947798" formatted="false">"मूलतः छिपा हुआ"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"फ्लोटिंग/फिक्स्ड घटक"</string>
+  <string name="msg_047f31f927fe" formatted="false">"एम्बेडेड पेज"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"थीम"</string>
+  <string name="msg_dee60aee2501" formatted="false">"हल्का"</string>
+  <string name="msg_a6b75d068032" formatted="false">"डार्क"</string>
+  <string name="msg_6df543c4a401" formatted="false">"सिस्टम"</string>
+  <string name="msg_381e6e45713f" formatted="false">"सिस्टम के अनुसार फोन की डार्क सेटिंग के अनुसार स्विच होगा।"</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"यूआरएल बार की स्थिति"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"यूआरएल बार ऊपर"</string>
+  <string name="msg_629f91b2430d" formatted="false">"यूआरएल बार नीचे"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"यूआरएल बार नीचे, SkyEye और नेविगेशन टूलबार ऊपर।"</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"यूआरएल बार ऊपर, SkyEye और नेविगेशन टूलबार नीचे।"</string>
+  <string name="msg_03c481a6ab85" formatted="false">"खोजें"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"वेबसाइट प्रदर्शन"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"ब्राउज़र पहचान (User-Agent)"</string>
+  <string name="msg_12acb73519ef" formatted="false">"मूल Android WebView"</string>
+  <string name="msg_0eac99137858" formatted="false">"कस्टम पहचान"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"Chrome मोबाइल संस्करण"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"डेटा और सिंक"</string>
+  <string name="msg_c7845aa27319" formatted="false">"उपयोग निर्देश"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"डेटा उपयोग, संग्रहण और हटाने के तरीके"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"SkyEye अभ्यास क्षेत्र"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"कंपोनेंट समायोजन, CSS और JS जोड़ने का अभ्यास करें"</string>
+  <string name="msg_f329c206f45a" formatted="false">"ChengJing Browser %1$s · Android संस्करण"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"OpenRouter कनेक्शन"</string>
+  <string name="msg_8831bba1231d" formatted="false">"की सुरक्षित रूप से संग्रहीत है"</string>
+  <string name="msg_454792f22b74" formatted="false">"अपने AI से लिंक करें"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"इस फोन में एन्क्रिप्टेड रूप में सुरक्षित"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"AI से SkyEye नियमों की जांच में सहायता लें"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"नई API Key दर्ज करें और बदलें"</string>
+  <string name="msg_349c23511e2e" formatted="false">"API Key एन्क्रिप्टेड रूप में संग्रहीत है"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"की संग्रहण विफल: %1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"API Key सहेजें"</string>
+  <string name="msg_308f90d89d99" formatted="false">"API Key हटा दी गई है"</string>
+  <string name="msg_4df897d4de83" formatted="false">"संग्रहीत API Key हटाएं"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"मॉडल"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"या मॉडल नाम स्वयं दर्ज करें"</string>
+  <string name="msg_33190323da75" formatted="false">"सभी श्रृंखलाओं के नवीनतम उपलब्ध सामान्य टेक्स्ट मॉडल प्राप्त किए गए हैं"</string>
+  <string name="msg_a822357ce405" formatted="false">"मॉडल अपडेट नहीं हो सका, मौजूदा विकल्प अभी भी उपयोगी हैं"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"अपडेट हो रहा है…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"नवीनतम मॉडल सूची अपडेट करें"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"विश्लेषण पर क्लिक करने पर OpenRouter कॉल होगा, लागत चुने गए मॉडल के अनुसार होगी। की वेबसाइट को नहीं दी जाएगी; भेजा गया डेटा OpenRouter और मॉडल प्रदाताओं द्वारा प्रबंधित होगा।"</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"बुकमार्क, संग्रह प्रगति और SkyEye सेटिंग्स अगले फोन में ले जाएं।"</string>
+  <string name="msg_dbf504aee158" formatted="false">"अंतिम पूर्णता:"</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"बुकमार्क, फ़ोल्डर, संग्रह और हटाने के रिकॉर्ड Google Drive के ऐप-विशिष्ट छिपे हुए स्थान में संग्रहीत होते हैं, आपकी अन्य फ़ाइलों तक पहुंच नहीं होती।"</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"संग्रह और पढ़ने की प्रगति"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"संग्रह का नाम, वर्तमान पढ़ी जा रही यूआरएल, पृष्ठ शीर्षक, स्क्रॉल स्थिति और पढ़ने का प्रतिशत एक साथ सिंक होगा। कृपया प्रत्येक डिवाइस पर संग्रह सिंक समर्थित संस्करण अपडेट करें।"</string>
+  <string name="msg_4c197d7a57af" formatted="false">"एक ही संग्रह में हाल ही में सहेजे गए पूर्ण रिकॉर्ड को प्राथमिकता दी जाएगी; नाम बदलना और हटाना भी सिंक होगा, उच्चतम पढ़ने के प्रतिशत को जबरदस्ती नहीं रखा जाएगा। खुले पृष्ठ को जबरदस्ती नहीं बदला जाएगा, अगली बार संग्रह से खोलते समय सिंक की गई स्थिति का उपयोग होगा।"</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"SkyEye वेबसाइट सेटिंग्स"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"सक्रिय करने पर, डोमेन, कंपोनेंट नियम, कस्टम CSS/JS/HTML और वेबसाइट व्यवहार सेटिंग्स आपके Google Drive में सिंक होंगी। कोड में निजी सामग्री हो सकती है, कृपया सुनिश्चित करें कि कोई पासवर्ड या की शामिल नहीं है।"</string>
+  <string name="msg_86b823816a78" formatted="false">"SkyEye वेबसाइट सेटिंग्स सिंक करें"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"एक ही वेबसाइट के लिए नवीनतम पूर्ण सेटिंग प्राथमिक होगी; हटाई गई सेटिंग भी हटाए गए रूप में रखी जाएगी। अन्य डिवाइस पर प्राप्त होने पर अगली बार वेबसाइट लोड करते समय लागू होगी। अस्थायी अपवाद और प्रमाणपत्र अपवाद केवल स्थानीय रहेंगे।"</string>
+  <string name="msg_d9c03b110d35" formatted="false">"लिंक करने पर, इस फोन के बुकमार्क और संग्रह आपके चुने हुए Google खाते के साथ विलय हो जाएंगे। ऐप खुलने पर, बुकमार्क संशोधन, संग्रह प्रगति सहेजना, नाम बदलना या हटाने के बाद स्वचालित सिंक होगा; ऑफ़लाइन होने पर पहले फोन में रहेगा, अगली बार कनेक्ट होने पर सिंक होगा।"</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"प्रक्रिया में…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"अभी सिंक करें"</string>
+  <string name="msg_aee33ff22038" formatted="false">"Google खाते से लिंक करें"</string>
+  <string name="msg_9746a274324c" formatted="false">"सिंक बंद करें और लॉग आउट करें"</string>
+  <string name="msg_b69bae05d706" formatted="false">"लॉग आउट करने पर स्थानीय और क्लाउड डेटा सुरक्षित रहेगा। स्थानीय सिंक डेटा पहली बार सिंक किए गए Google खाते से बंधा होता है, जिससे खाते बदलने पर अन्य लोगों का डेटा मिश्रित न हो।"</string>
+  <string name="msg_efb208e781f4" formatted="false">"कुछ वेबसाइटें पहचान जानकारी के आधार पर अलग-अलग लेआउट प्रदान करती हैं।"</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"Chrome मोबाइल संस्करण (डिफ़ॉल्ट)"</string>
+  <string name="msg_3138f64b4547" formatted="false">"कस्टम User-Agent"</string>
+  <string name="msg_b1c83027f591" formatted="false">"पूरा एकल पंक्ति User-Agent चिपकाएं"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"सहेजने के बाद वर्तमान पृष्ठ पुनः लोड होगा; नए या रिफ्रेश किए गए अन्य पृष्ठ भी इस सेटिंग का उपयोग करेंगे। वेबसाइट संभवतः अलग लेआउट का उपयोग कर सकती है, समर्थन वर्तमान ब्राउज़र कोर पर निर्भर है।"</string>
+  <string name="msg_73b390a73f19" formatted="false">"ब्राउज़र पहचान अपडेट हो गई है"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"सहेजना असफल"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"सहेजें और पुनः लोड करें"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"वर्तमान ब्राउज़र कोर: Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"अज्ञात"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"फोन की लोकेशन अभी तक प्राप्त नहीं हुई, कृपया बेहतर सिग्नल वाले स्थान पर जाएं और पुनः प्रयास करें।"</string>
+  <string name="msg_2e6933e93990" formatted="false">"फोन की लोकेशन स्रोत बंद है, कृपया सिस्टम लोकेशन सेवा जांचें।"</string>
+  <string name="msg_aa939329dc62" formatted="false">"फोन ने अभी तक लोकेशन अनुमति नहीं दी है।"</string>
+  <string name="msg_f4e900470989" formatted="false">"कोई वैध लोकेशन नहीं मिली, लोकेशन प्रतीक्षा समय समाप्त हो गया है।"</string>
+  <string name="msg_8e6878344350" formatted="false">"फोन में कोई उपलब्ध लोकेशन स्रोत नहीं है, कृपया सिस्टम लोकेशन सेवा जांचें।"</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"फोन की लोकेशन अनुमति बदल गई है, कृपया पुनः लोकेशन अनुरोध करें।"</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"इस पृष्ठ को स्थान अनुमति नहीं मिली है।"</string>
+  <string name="msg_c293d0f61960" formatted="false">"वर्तमान पृष्ठ अग्रभूमि में है।"</string>
+  <string name="msg_5677d9b33fef" formatted="false">"स्थान अनुरोध बहुत अधिक हैं, कृपया बाद में पुनः प्रयास करें।"</string>
+  <string name="msg_54e70324667a" formatted="false">"वेबसाइट और फोन स्थान अनुमति की प्रतीक्षा कर रहा है"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"इस वेबसाइट को फोन स्थान उपयोग करने की अनुमति अभी तक नहीं मिली है।"</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"फोन स्थान सेवा चालू नहीं है।"</string>
+  <string name="msg_e4222762e387" formatted="false">"फोन या वेबसाइट स्थान अनुमति वापस ले ली गई है।"</string>
+  <string name="msg_ea7546eddc85" formatted="false">"फोन को स्थान अनुरोध भेजा गया है, स्थान की प्रतीक्षा है"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"स्थान प्राप्त हो गया है, वर्तमान वेबसाइट को प्रदान किया गया है"</string>
+  <string name="msg_8116207548a5" formatted="false">"मॉडल सूची अपडेट नहीं कर सका (%1$s)"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"मॉडल सूची खाली है, कृपया बाद में पुनः प्रयास करें"</string>
+  <string name="msg_71eb343e162c" formatted="false">"कृपया पहले सेटिंग में OpenRouter API Key जोड़ें"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"कृपया मॉडल चुनें"</string>
+  <string name="msg_d3346c882f37" formatted="false">"API Key अमान्य है, कृपया पुनः दर्ज करें"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"OpenRouter कोटा समाप्त"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"अनुरोध बहुत बार हैं, कृपया बाद में पुनः प्रयास करें"</string>
+  <string name="msg_3861043f8477" formatted="false">"AI सेवा ने अनुरोध पूरा नहीं किया (%1$s), मूल नियम अपरिवर्तित रहेगा"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"कृपया पहले OpenRouter कुंजी और मॉडल सेट करें"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"API Key अमान्य है"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"अनुरोध बहुत बार हैं, कृपया बाद में पुनः प्रयास करें"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"AI सेवा ने अनुरोध पूरा नहीं किया (%1$s)"</string>
+  <string name="msg_4a16359069dd" formatted="false">"कृपया मान्य घटक चुनें"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"HTML संचालन विधि गलत है"</string>
+  <string name="msg_e714012d82ce" formatted="false">"कोड बहुत लंबा है, कृपया छोटे संशोधनों में विभाजित करें"</string>
+  <string name="msg_8579576181cb" formatted="false">"घटक CSS में सीधे गुण भरें, जैसे color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"बहुत अधिक सुझाव, कृपया समस्या का दायरा कम करें"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"घटक नियम गलत हैं"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI ने अस्तित्वहीन संशोधन निर्दिष्ट किया है"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI ने अस्तित्वहीन घटक नियम निर्दिष्ट किया है"</string>
+  <string name="msg_63b576365f0f" formatted="false">"घटक AI सुझाव चयन सीमा से बाहर है"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"घटक AI वेबसाइट स्तर सेटिंग्स को बदल नहीं सकता"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"AI घटक समायोजन"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"सुझाव सामग्री बहुत बड़ी है, कृपया दायरा कम करें"</string>
+  <string name="msg_8715000a9841" formatted="false">"वेबसाइट CSS अपडेट करें"</string>
+  <string name="msg_b350f6663586" formatted="false">"वेबसाइट JavaScript अपडेट करें"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"वेबसाइट में नया HTML अपडेट करें"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"संपादित करें"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"नया जोड़ें"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"घटक हटाएं: %1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"%1$s संशोधन पुनर्स्थापित करें"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"पृष्ठ स्क्रॉल सेटिंग समायोजित करें"</string>
+  <string name="msg_15766e2591bd" formatted="false">"कृपया नीचे संशोधन की पुष्टि करें"</string>
+  <string name="msg_64244a373f7b" formatted="false">"स्रोत टैब बंद या पुनः लोड हो गया है, डाउनलोड बंद हो गया; कृपया मूल पृष्ठ पर पुनः प्रयास करें"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"एम्बेडेड फ़ाइल बहुत बड़ी है"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"एम्बेडेड फ़ाइल स्वरूप गलत है, फ़ाइल सहेजी नहीं गई"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"यह कैश फ़ाइल पढ़ी नहीं जा सकी। कृपया मूल पृष्ठ पर पुनः प्रयास करें; विभाजित स्ट्रीमिंग या संरक्षित वीडियो के लिए वेबसाइट द्वारा प्रदान किए गए डाउनलोड विधि का उपयोग करें"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"वेब कैश डाउनलोड की वर्तमान सीमा 2 GB है, कृपया वेबसाइट के सीधे डाउनलोड लिंक का उपयोग करें"</string>
+  <string name="msg_533949b0c241" formatted="false">"एम्बेडेड फ़ाइल अधूरी है"</string>
+  <string name="msg_283a28e03a50" formatted="false">"कैश फ़ाइल अमान्य हो गई है, कृपया पुनः डाउनलोड करें"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"कैश फ़ाइल पढ़ने में विफल, कृपया पुनः डाउनलोड करें"</string>
+  <string name="msg_ffba3145db56" formatted="false">"डाउनलोड सामग्री का आकार गलत है"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"डाउनलोड सामग्री अधूरी है, फ़ाइल सहेजी नहीं गई"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"डाउनलोड स्थिति सहेजने में असमर्थ"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"पिछला डाउनलोड बीच में रुका, अधूरी फ़ाइल सहेजी नहीं गई; कृपया मूल पृष्ठ पर वापस जाकर पुनः डाउनलोड करें"</string>
+  <string name="msg_bcd36261f503" formatted="false">"डाउनलोड फ़ाइल सहेजने में विफल"</string>
+  <string name="msg_815187d9a1da" formatted="false">"डाउनलोड फ़ाइल पूरा करने में असमर्थ"</string>
+  <string name="msg_02beb82da20a" formatted="false">"डाउनलोड फ़ाइल बनाने में असमर्थ, कृपया संग्रहण स्थान जांचें"</string>
+  <string name="msg_bdd00d629528" formatted="false">"डाउनलोड फ़ाइल में लिखने में असमर्थ"</string>
+  <string name="msg_d3e09805962f" formatted="false">"डाउनलोड फ़ोल्डर बनाने में असमर्थ"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"एम्बेडेड छवि स्वरूप उपयोग योग्य नहीं है"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"एम्बेडेड छवि बहुत बड़ी है"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"एम्बेडेड छवि 32 MB से अधिक है"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"यह कैश छवि पढ़ी नहीं जा सकी, कृपया मूल पृष्ठ पर लंबा दबाएं"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"ऑनलाइन गोपनीयता नीति खोलें"</string>
+  <string name="msg_080988523f29" formatted="false">"इनकॉग्निटो सेशन बंद हो गया है; वेबसाइट डेटा सफाई पूरी नहीं हुई, कृपया ऐप बंद करके पुनः खोलें"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"यह नियम या पृष्ठ सामग्री बड़ी है, कृपया क्लाउड मॉडल विश्लेषण का उपयोग करें।"</string>
+  <string name="msg_5d279b988da8" formatted="false">"AI सुझाव इस नियम के संशोधन सीमा से बाहर है, कृपया पुनः अनुरोध प्रस्तुत करें"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"सुझाव कोड बहुत लंबा है, कृपया संशोधन सीमा कम करें"</string>
+  <string name="msg_272100161734" formatted="false">"CSS शैली अपडेट करें"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"JavaScript अपडेट करें"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"HTML सामग्री अपडेट करें"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"HTML लागू करने का तरीका समायोजित करें"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"कृपया संशोधित सामग्री की जाँच करें और फिर लागू करें"</string>
+  <string name="msg_997de297c6b3" formatted="false">"डाउनलोड रिकॉर्ड सहेजा नहीं जा सका"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"डाउनलोड फ़ाइल बनाने में असमर्थ"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"वेबपेज बदल गया है, कृपया इस नियम को फिर से खोलें"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"नियम अपडेट हो चुका है, कृपया इसे फिर से खोलें ताकि अन्य संशोधनों को ओवरराइट न किया जाए"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"नियम अन्य ऑपरेशन द्वारा अपडेट किया गया है, कृपया इसे फिर से खोलें"</string>
+  <string name="msg_30b5133da158" formatted="false">"संशोधन को और आगे बढ़ाएं"</string>
+  <string name="msg_dfb02399c259" formatted="false">"कृपया AI से इस नियम को संशोधित करें"</string>
+  <string name="msg_a73d81627121" formatted="false">"मूल HTML, वर्तमान कोड और आपके नए विचारों को मिलाएं"</string>
+  <string name="msg_6882b571d47c" formatted="false">"नीचे की सामग्री सीधे संपादित करें। सहेजने पर मूल नियम अपडेट होगा; अन्य वेबसाइट संशोधन सुरक्षित रहेंगे।"</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"कंपोनेंट के अंत में जोड़ें"</string>
+  <string name="msg_c7518df827c2" formatted="false">"कंपोनेंट सामग्री को प्रतिस्थापित करें"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"यह डोमेन और इसके उपडोमेनों पर लागू होता है। JavaScript पेज तक पहुँच सकता है या अनुरोध भेज सकता है, कृपया सामग्री की पुष्टि करें और फिर सहेजें।"</string>
+  <string name="msg_5ef814324284" formatted="false">"संपादित सामग्री बदल गई है, कृपया फिर से सहेजें"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"मूल नियम अपडेट किया गया और लागू किया गया"</string>
+  <string name="msg_f5272b216037" formatted="false">"इस नियम को हटाएं"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"क्या आप इस नियम को हटाना चाहते हैं?"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"%1$s हटा दिया जाएगा, अन्य सेटिंग्स सुरक्षित रहेंगी।"</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"इस वेबसाइट के कस्टम CSS, JavaScript और HTML"</string>
+  <string name="msg_60f997e432a2" formatted="false">"यह कंपोनेंट संशोधन"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"इस नियम को हटा दिया गया है"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"हटाएं"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"कस्टम सर्च इंजन का उपयोग किया गया है"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"वर्तमान में उपयोग हो रहा है · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"यूआरएल बार खोज · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"%1$s का उपयोग किया गया है"</string>
+  <string name="msg_02da895c96ea" formatted="false">"अपनी खोज विधि"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"कस्टम"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"अपने पसंदीदा खोज सेवा से कनेक्ट करें"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"किसी वेबसाइट पर एक बार खोजें, फिर URL में खोज शब्द को {query} से बदलें।"</string>
+  <string name="msg_83e506018140" formatted="false">"खोज URL टेम्पलेट"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} सुरक्षित रूप से एन्कोड किए गए खोज शब्द से बदला जाएगा"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"पूर्वावलोकन: %1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"सहेजें और उपयोग करें"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"क्लिक करके स्विच करें। केवल खोज सबमिट करने पर खोज शब्द चुनी गई सेवा को भेजा जाएगा।"</string>
+  <string name="msg_455ece81de56" formatted="false">"बायडू"</string>
+  <string name="msg_af8a52509166" formatted="false">"चीनी विकिपीडिया"</string>
+  <string name="msg_db79062a760b" formatted="false">"URL टेम्पलेट अभी सेट नहीं किया गया है"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"कृपया खोज URL टेम्पलेट दर्ज करें"</string>
+  <string name="msg_e2d127e64801" formatted="false">"URL टेम्पलेट 2,048 अक्षरों से अधिक नहीं हो सकता"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"URL टेम्पलेट एक पूर्ण एक-पंक्ति URL होना चाहिए"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"URL टेम्पलेट में कम से कम एक बार {query} शामिल होना चाहिए"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"{query} URL पथ या क्वेरी पैरामीटर में होना चाहिए"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"कृपया पूर्ण HTTPS URL दर्ज करें"</string>
+  <string name="msg_00f486ce580a" formatted="false">"खोज सामग्री की सुरक्षा के लिए केवल HTTPS का उपयोग किया जा सकता है"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"URL में उपयोगकर्ता नाम या पासवर्ड नहीं होना चाहिए"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"URL टेम्पलेट में # एंकर शामिल नहीं हो सकता"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"URL में मान्य होस्ट नाम होना चाहिए"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"वेबसाइट आइकन कैश हटाया नहीं जा सका"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"वेबसाइट सेटिंग्स की संख्या बहुत अधिक है"</string>
+  <string name="msg_a17da897bf76" formatted="false">"वेबसाइट सेटिंग्स 8 एमबी से अधिक हैं, कृपया बड़े कस्टम कोड को पहले व्यवस्थित करें"</string>
+  <string name="msg_51bb558b264b" formatted="false">"वेबसाइट सेटिंग्स स्नैपशॉट बहुत बड़ा है"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"वेबसाइट सेटिंग्स संस्करण असंगत है"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"वेबसाइट सेटिंग्स डोमेन या समय गलत है"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"वेबसाइट सेटिंग्स सीमा से अधिक है"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"सामान्य"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"इनकॉग्निटो"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"इनकॉग्निटो पेज थंबनेल नहीं बनाता, ब्राउज़िंग इतिहास में शामिल नहीं करता। सभी इनकॉग्निटो टैब बंद करने पर वेबसाइट डेटा साफ़ करें।"</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"एक इनकॉग्निटो ब्राउज़िंग शुरू करें"</string>
+  <string name="msg_de2a64702660" formatted="false">"अभी तक कोई सामान्य टैब नहीं है"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"सामान्य टैब से अलग लॉगिन स्थिति; वेबसाइट और नेटवर्क प्रदाता अभी भी आपकी गतिविधि पहचान सकते हैं।"</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"एक नया टैब जोड़ें ताकि आपकी अगली पढ़ाई के लिए अलग जगह हो।"</string>
+  <string name="msg_89d55dea3269" formatted="false">"गोपनीय पेज"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"टैब %1$s बंद करें"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"वर्तमान टैब · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"इस पल में, केवल इस पल में रहें।"</string>
+  <string name="msg_ec4537100d5f" formatted="false">"ब्राउज़िंग और खोज इतिहास सहेजा नहीं जाता, इनकॉग्निटो टैब पुनर्स्थापित नहीं होते। लॉगिन स्थिति सामान्य टैब से अलग, सभी इनकॉग्निटो टैब बंद करने पर कुकी, कैश और वेबसाइट डेटा साफ़ करें।"</string>
+  <string name="msg_c4759e2fd146" formatted="false">"इनकॉग्निटो का मतलब गुमनाम नहीं है। वेबसाइट, नियोक्ता या इंटरनेट प्रदाता अभी भी आपकी गतिविधि देख सकते हैं। आपने जो फाइलें डाउनलोड की हैं, जो बुकमार्क और संग्रहित आइटम हैं, वे सुरक्षित रहेंगे; सिस्टम शेयरिंग और AI अनुरोध चुनी गई सामग्री को संबंधित सेवाओं को भेजेंगे।"</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"टैब मेनू"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"सभी टैब बंद करें"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"सभी इनकॉग्निटो टैब बंद करें?"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"सभी सामान्य टैब बंद करें?"</string>
+  <string name="msg_1401b7462a88" formatted="false">"यह समूह के %1$s टैब बंद किए जाएंगे, दूसरे समूह को प्रभावित नहीं करेगा।"</string>
+  <string name="msg_9b14332369fd" formatted="false">"इनकॉग्निटो वेबसाइट डेटा सभी टैब बंद करने पर साफ़ हो जाएगा। डाउनलोड की गई फाइलें, बुकमार्क और संग्रहित आइटम सुरक्षित रहेंगे।"</string>
+  <string name="msg_e818d7092124" formatted="false">"ये टैब और स्नैपशॉट अगली बार शुरू करने पर पुनर्स्थापित नहीं होंगे; ब्राउज़िंग इतिहास, डाउनलोड फाइलें, बुकमार्क और संग्रहित आइटम सुरक्षित रहेंगे।"</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"सभी बंद करें"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"अभी तक स्थान अनुरोध नहीं किया गया"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"फोन ने अभी तक स्थान की अनुमति नहीं दी है; ऐप अनुमति सेटिंग्स वेबसाइट जानकारी से खोलें।"</string>
+  <string name="msg_b225c190262b" formatted="false">"फोन की स्थान सेवा चालू नहीं है, कृपया वेबसाइट जानकारी से स्थान सेटिंग चालू करें और फिर प्रयास करें।"</string>
+  <string name="msg_c706cb8f6217" formatted="false">"क्या इस वेबसाइट को आपका स्थान प्राप्त करने की अनुमति दें?"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\nवेबसाइट आपके स्थान का उपयोग नजदीकी स्थान जैसी सुविधाएं प्रदान करने के लिए कर सकती है। इसे पता बार की वेबसाइट जानकारी में बदला जा सकता है।"</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\nइनकॉग्निटो अनुमति केवल तब तक रहती है जब तक सभी इनकॉग्निटो टैब बंद न हो जाएं।"</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"स्थान की अनुमति दें"</string>
+  <string name="msg_e69e259269d3" formatted="false">"अभी अनुमति न दें"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"पिछला 1 घंटा"</string>
+  <string name="msg_322773403765" formatted="false">"पिछले 24 घंटे"</string>
+  <string name="msg_27905bacccf9" formatted="false">"पिछले 7 दिन"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"पिछले 4 सप्ताह"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"कोई समय सीमा नहीं"</string>
+  <string name="msg_b39b740c9370" formatted="false">"पूछें"</string>
+  <string name="msg_0bffd418918b" formatted="false">"अनुमति दें"</string>
+  <string name="msg_454b7b66304a" formatted="false">"ब्लॉक करें"</string>
+  <string name="language_title" formatted="false">"इंटरफ़ेस भाषा"</string>
+  <string name="language_system" formatted="false">"फोन भाषा के अनुसार"</string>
+  <string name="language_support" formatted="false">"पहली बार खोलने पर फोन भाषा के अनुसार दिखेगा; असमर्थित भाषाओं के लिए अंग्रेज़ी उपयोग होगी।"</string>
+  <string name="language_selected" formatted="false">"वर्तमान में उपयोग हो रही: %1$s"</string>
+  <string name="language_system_detail" formatted="false">"स्वचालित · %1$s"</string>
+  <string name="language_picker" formatted="false">"इंटरफ़ेस भाषा चुनें"</string>
+  <string name="language_note" formatted="false">"यह सेटिंग केवल ChengJing इंटरफ़ेस को बदलती है, वेबसाइट सामग्री का अनुवाद नहीं करती।"</string>
+  <string name="language_changed" formatted="false">"इंटरफ़ेस भाषा बदल दी गई है"</string>
+  <string name="language_native_hint" formatted="false">"प्रत्येक भाषा में मूल रूप से दिखाएं, ताकि परिचित भाषा आसानी से मिल सके।"</string>
+  <string name="home_quote_000" formatted="false">"गरज के बाद, हमेशा बारिश होती है"</string>
+  <string name="home_quote_001" formatted="false">"आज के बाद, कल होगा"</string>
+  <string name="home_quote_002" formatted="false">"कल के बाद, एक फिल्म है"</string>
+  <string name="home_quote_003" formatted="false">"गिरने पर खरीदो, बढ़ने पर बेचो, निवेश बस इतना सरल है"</string>
+  <string name="home_quote_004" formatted="false">"अगर आपको काम पसंद नहीं है, तो आपको छुट्टी बहुत पसंद होगी"</string>
+  <string name="home_quote_005" formatted="false">"जब तक आप मेहनत करते रहेंगे, आप पाएंगे कि चीजें और भी कठिन हो सकती हैं"</string>
+  <string name="home_quote_006" formatted="false">"पहाड़ के चोर को हराना आसान है, दिल के चोर को हराना मुश्किल"</string>
+  <string name="home_quote_007" formatted="false">"लगातार प्रयास करना जरूरी नहीं कि सफलता लाए, लेकिन हार मानना सच में बहुत आसान है"</string>
+  <string name="home_quote_008" formatted="false">"हर दिन एक कप कॉफी कम पियो, एक साल में आप 365 कप कम पीओगे"</string>
+  <string name="home_quote_009" formatted="false">"ज्यादा उलझो मत, तुम बस एक सोचने वाला बांस का डंठल हो"</string>
+  <string name="home_quote_010" formatted="false">"मुश्किलों से मत डरो, उनका सामना करो, फिर तुम पाओगे कि तुम उन्हें हल नहीं कर सकते"</string>
+  <string name="home_quote_011" formatted="false">"चीजों के असमान होने की चिंता मत करो, लोगों के मन के असंतुलन की चिंता करो"</string>
+  <string name="home_quote_012" formatted="false">"जब तुम्हें लगे कि तुम्हारे पास कुछ भी नहीं है, तो मत भूलो कि तुम्हारे पास थकान तो है"</string>
+  <string name="home_quote_013" formatted="false">"सोने से पहले फोन मत चलाओ, नहीं तो जल्दी ही पता चलेगा कि सुबह हो गई"</string>
+  <string name="home_quote_014" formatted="false">"कन्फ्यूशियस ने कहा: सज्जन अपने आप में खोजता है, छोटा व्यक्ति दूसरों में खोजता है"</string>
+  <string name="home_quote_015" formatted="false">"जहाज पुल तक पहुंचते-पहुंचते सीधा हो जाता है, अगर नहीं तो डूब गया"</string>
+  <string name="home_quote_016" formatted="false">"सफल लोगों में एक समानता होती है, वे सभी सफल हैं"</string>
+  <string name="home_quote_017" formatted="false">"रोओ मत, हँसो मत, समझो"</string>
+  <string name="home_quote_018" formatted="false">"जब तक तुम आगे बढ़ते रहोगे, तुम वहीं नहीं रुकोगे"</string>
+  <string name="home_quote_019" formatted="false">"भटकना, खोज की शुरुआत है"</string>
+  <string name="home_quote_020" formatted="false">"मेहनत हमेशा नजर नहीं आती, लेकिन एक बार आलस करते ही पकड़े जाते हो"</string>
+  <string name="home_quote_021" formatted="false">"असफलता सफलता की माँ है, लेकिन शायद तुम पिता को कभी नहीं पाओगे"</string>
+  <string name="home_quote_022" formatted="false">"स्वतंत्रता का मतलब है कि दूसरों को तुमसे नफरत हो"</string>
+  <string name="home_quote_023" formatted="false">"खुशी केवल दर्द का अस्थायी विराम है"</string>
+  <string name="home_quote_024" formatted="false">"जब तुम शुरू करने का फैसला करते हो, इसका मतलब है कि तुम अभी पूरा नहीं कर पाए"</string>
+  <string name="home_quote_025" formatted="false">"सफलता का कोई शॉर्टकट नहीं है, लेकिन कई लोग शॉर्टकट पर जाम में फंसे हैं"</string>
+  <string name="home_quote_026" formatted="false">"चिंता, स्वतंत्रता से उत्पन्न चक्कर है"</string>
+  <string name="home_quote_027" formatted="false">"जब तुम पहला कदम उठाओगे, तुम देखोगे कि दूसरा कदम अभी भी पीछे है"</string>
+  <string name="home_quote_028" formatted="false">"कृपया दूर हो जाओ, मेरी धूप मत रोकना"</string>
+  <string name="home_quote_029" formatted="false">"बोधि मूलतः कोई पेड़ नहीं है, स्पष्ट दर्पण भी कोई मंच नहीं है। मूलतः कोई वस्तु नहीं है, धूल कहाँ से लगेगी"</string>
+  <string name="home_quote_030" formatted="false">"आज की कठिनाइयाँ भविष्य की और कठिनाइयों की तैयारी हैं"</string>
+  <string name="home_quote_031" formatted="false">"राक्षस से लड़ने वाला सावधान रहे कि वह खुद राक्षस न बन जाए"</string>
+  <string name="home_quote_032" formatted="false">"जितना ऊँचा चढ़ोगे, उतना ही दर्दनाक गिरोगे"</string>
+  <string name="home_quote_033" formatted="false">"ज्ञान ही शक्ति है"</string>
+  <string name="home_quote_034" formatted="false">"अगर तुम दिल से करोगे, तो बुरा काम भी दिल से किया हुआ बुरा काम होगा"</string>
+  <string name="home_quote_035" formatted="false">"कभी-कभी सामान्य ज्ञान भी सामान्य ज्ञान नहीं होता"</string>
+  <string name="home_quote_036" formatted="false">"बच्चे अंधेरे से डरते हैं, यह स्वाभाविक है; असली त्रासदी है कि बड़े लोग रोशनी से डरते हैं"</string>
+  <string name="home_quote_037" formatted="false">"दुनिया के अंत की कल्पना करना पूंजीवाद के अंत की कल्पना करने से आसान है"</string>
+  <string name="home_quote_038" formatted="false">"जब तक तुम शर्मिंदा नहीं हो, शर्मिंदा वही हैं जो तुम पर हैं"</string>
+  <string name="home_quote_039" formatted="false">"हजार मील की यात्रा एक कदम से शुरू होती है"</string>
+  <string name="home_quote_040" formatted="false">"दूसरे लोग, यहीं नरक है"</string>
+  <string name="home_quote_041" formatted="false">"जब तक तुम मानक काफी नीचे रखोगे, हर सेकंड एक आश्चर्य होगा"</string>
+  <string name="home_quote_042" formatted="false">"हमें जो पीड़ा देती है वह अक्सर वास्तविकता नहीं, बल्कि कल्पना होती है"</string>
+  <string name="home_quote_043" formatted="false">"खुद पर बहुत कठोर मत बनो, आखिरकार दूसरे लोग तुम्हारे लिए कठोर होंगे"</string>
+  <string name="home_quote_044" formatted="false">"मुश्किलों में घबराओ मत, वैसे भी घबराने से कुछ नहीं होगा"</string>
+  <string name="home_quote_045" formatted="false">"चिंता में जन्म लेना, सुख में मरना"</string>
+  <string name="home_quote_046" formatted="false">"जब तक पेट भरा हो, भूखा नहीं रहोगे"</string>
+  <string name="home_quote_047" formatted="false">"जब महान मार्ग खो गया, तब दया और न्याय आए; जब चतुराई उभरी, तब बड़ा छल आया"</string>
+  <string name="home_quote_048" formatted="false">"कपड़े पहनने से पुराने हो जाते हैं, जब तक तुम नए न खरीदो"</string>
+  <string name="home_quote_049" formatted="false">"पानी उबलने के बाद, पानी उबलता है"</string>
+  <string name="home_quote_050" formatted="false">"समय की तुलना में स्थान बेहतर है, स्थान की तुलना में लोगों का मेल बेहतर है"</string>
+  <string name="home_quote_051" formatted="false">"जब तुम भी मुझे मिलने आओगे, तभी हमारी मुलाकात का मतलब होगा"</string>
+  <string name="home_quote_052" formatted="false">"दूसरे मुझे पागल कहते हैं, मैं दूसरों को देखता हूँ कि वे समझ पाते हैं"</string>
+  <string name="home_quote_053" formatted="false">"कठिनाइयों को सहो, तभी पता चलेगा कि और भी कठिनाइयाँ हैं"</string>
+  <string name="home_quote_054" formatted="false">"जब तक तुम जीवित हो, गलती करने का मौका है"</string>
+  <string name="home_quote_055" formatted="false">"तुम हवा की दिशा नियंत्रित नहीं कर सकते, लेकिन खिड़की बंद कर सकते हो"</string>
+  <string name="home_quote_056" formatted="false">"जीवन की सबसे अच्छी योजना अक्सर कोई योजना नहीं होती"</string>
+  <string name="home_quote_057" formatted="false">"कोई भी काम जब बार-बार किया जाए, तो वह दिनचर्या बन जाता है"</string>
+  <string name="home_quote_058" formatted="false">"जो कुछ भी दिखता है, वह सब भ्रम है; वेतन जमा सूचना को छोड़कर"</string>
+  <string name="home_quote_059" formatted="false">"तुम सोचते हो कि तुम चुन रहे हो, लेकिन एल्गोरिदम पहले से जानता है कि तुम क्या क्लिक करोगे"</string>
+  <string name="home_quote_060" formatted="false">"दुनिया बहुत बड़ी है, इतनी बड़ी कि तुम्हारी समस्या सूची में भी नहीं आती"</string>
+  <string name="home_quote_061" formatted="false">"मैं जन्मजात उपयोगी हूँ, हजारों सोने के सिक्के खर्च हो जाएं तो भी वापस आएंगे"</string>
+  <string name="home_quote_062" formatted="false">"चूंकि आ ही गए हो, तो पहले बैठ जाओ"</string>
+  <string name="home_quote_063" formatted="false">"पैसे से हल होने वाली समस्याओं के लिए पहले पैसे होने चाहिए"</string>
+  <string name="home_quote_064" formatted="false">"बिना लड़ाई के दुश्मन को झुकाना, सबसे अच्छी कला है"</string>
+  <string name="home_quote_065" formatted="false">"असफलता डरावनी नहीं है, डरावना है असफलता पर समीक्षा लिखना"</string>
+  <string name="home_quote_066" formatted="false">"जीवन छोटा है, इसलिए बहुत लंबी बैठकें ठीक नहीं"</string>
+  <string name="home_quote_067" formatted="false">"जीवन में कोई कदम व्यर्थ नहीं जाता, हर कदम गिना जाता है"</string>
+  <string name="home_quote_068" formatted="false">"चीजें आसान नहीं हुई हैं, तुम बस इसकी कठिनाई के आदी हो गए हो"</string>
+  <string name="home_quote_069" formatted="false">"महान ध्वनि में आवाज़ नहीं होती, महान हाथी का आकार नहीं होता, बड़े सम्मेलन में आमतौर पर कोई निष्कर्ष नहीं होता"</string>
+  <string name="home_quote_070" formatted="false">"एक-दूसरे को देखकर मुस्कुराना, दिल से घनिष्ठ होना"</string>
+  <string name="home_quote_071" formatted="false">"दूसरों को जीतने वाला ताकतवर है, खुद को जीतने वाला मजबूत है"</string>
+  <string name="home_quote_072" formatted="false">"आपकी कुर्सी, आपके बैठने के तरीके को तय करती है"</string>
+  <string name="home_quote_073" formatted="false">"सबसे बड़ी खुशी है, खुद को खुश साबित करने की जरूरत न होना"</string>
+  <string name="home_quote_074" formatted="false">"जीवन में जन्म से स्वतंत्र हैं, फिर भी हर जगह सदस्यता ले रहे हैं"</string>
+  <string name="home_quote_075" formatted="false">"अगर आपके पास आराम करने का समय नहीं है, तो आपका शरीर खुद आपके लिए डॉक्टर से अपॉइंटमेंट कर देगा"</string>
+  <string name="home_quote_076" formatted="false">"जीवन आपको बहुत कुछ सिखाएगा, लेकिन इसकी फीस आमतौर पर महंगी होती है"</string>
+  <string name="home_quote_077" formatted="false">"जीवन सिर्फ काला या सफेद नहीं है"</string>
+  <string name="home_quote_078" formatted="false">"श्रेष्ठता जल के समान है, जल सभी जीवों के लिए लाभकारी है और कभी प्रतिस्पर्धा नहीं करता"</string>
+  <string name="home_quote_079" formatted="false">"आपकी एक बात सुनना, एक महत्वपूर्ण बात सुनने के समान है"</string>
+  <string name="home_quote_080" formatted="false">"कोई भी काम जो करने लायक हो, उसे पहले सुरक्षित करना भी जरूरी है"</string>
+  <string name="home_quote_081" formatted="false">"दुनिया आपकी वजह से रुकती नहीं, इसलिए ज्यादा अपराधबोध महसूस करने की जरूरत नहीं"</string>
+  <string name="home_quote_082" formatted="false">"सबसे गहरी सच्चाई, जब स्पष्ट की जाती है तो अक्सर सरल होती है"</string>
+  <string name="home_quote_083" formatted="false">"जीवन में कोई भी अनुभव व्यर्थ नहीं होता"</string>
+  <string name="home_quote_084" formatted="false">"अगर आप गलती करने से डरते हैं, तो आप कई नई गलतियों को मिस कर देंगे"</string>
+  <string name="home_quote_085" formatted="false">"जीवन में अनगिनत संभावनाएं हैं, लेकिन आज सिर्फ एक बार जीना है"</string>
+  <string name="home_quote_086" formatted="false">"How are you？I\'m fine, thank you."</string>
+  <string name="home_quote_087" formatted="false">"बीता हुआ समय सुधार नहीं सकता, आने वाला समय अभी भी पकड़ा जा सकता है"</string>
+  <string name="home_quote_088" formatted="false">"खुद बनो"</string>
+  <string name="msg_485107965fef" formatted="false">"कंपोनेंट नियम प्रारूप सही नहीं है"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"पूरे पृष्ठ को हटाया नहीं जा सकता"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"वैध कंपोनेंट चयनकर्ता नहीं मिला"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"चयनित कंपोनेंट अब मौजूद नहीं है"</string>
+  <string name="msg_db7282021ef2" formatted="false">"मूल HTML तैयार नहीं है, कृपया पृष्ठ पुनः लोड करें और नियम फिर से खोलें"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"कंपोनेंट नहीं मिला"</string>
+  <string name="msg_837653b6c57e" formatted="false">"कंपोनेंट बहुत बड़ा है, कृपया छोटा क्षेत्र चुनें"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"SkyEye अभ्यास स्थल · ChengJing"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"ChengJing・SkyEye अभ्यास स्थल"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"स्थानीय डेमो वेबपेज"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"सामान्य सूचना बैनर · आप इसे रखने का विकल्प चुन सकते हैं"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"धीरे करें, ध्यान से देखें"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"वेबपेज को अपनी आदत के अनुसार सेट करें।"</string>
+  <string name="practice_8b7c761ab887" formatted="false">"यह मोबाइल में अभ्यास वेबपेज है। आप घटकों को समायोजित कर सकते हैं, साथ ही अपनी शैली और पृष्ठ सामग्री जोड़ सकते हैं।"</string>
+  <string name="practice_7e28a385715a" formatted="false">"टूलबार में \'SkyEye\' पर टैप करें, फिर घटक चुनें। यदि केवल टेक्स्ट चुना है, तो \'बाहर की एक परत चुनें\' दबाएं जब तक कि पूरा घटक चयनित न हो, फिर पूर्वावलोकन में हटाएं।"</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"वेबपेज का मुख्य पात्र वह सामग्री होनी चाहिए जिसे आप देखना चाहते हैं।"</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"अपनी कुछ सामग्री जोड़ें"</string>
+  <string name="practice_b4a4214feada" formatted="false">"SkyEye खोलें, \'नया CSS जोड़ें\' चुनें ताकि आप शैली समायोजित कर सकें। उदाहरण के लिए पैराग्राफ को अधिक खुला करने के लिए:"</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"\'नया JS जोड़ें\' चुनें, ताकि पृष्ठ पर पढ़ने की याद दिलाने वाला संदेश जोड़ा जा सके:"</string>
+  <string name="practice_9e58ae908fca" formatted="false">"हटाने के बाद क्या?"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"नियम सहेजें, फिर दूसरे पृष्ठ पर जाएं। भले ही घटक सामग्री अलग हो, यदि संरचना समान है, तो यह आपको परेशान नहीं करेगा।"</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"समान डोमेन के दूसरे पृष्ठ पर जाएं →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"आप मेनू में \'अस्थायी रूप से मूल वेबसाइट दिखाएं\' भी चुन सकते हैं, ताकि अस्थायी रूप से मूल साइट देख सकें। सभी नियम अभी भी मौजूद हैं, पुनः सेटिंग की आवश्यकता नहीं।"</string>
+  <string name="practice_66cf62365956" formatted="false">"मूल रूप से छिपा हुआ संकेत कंटेनर"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"डेमो फ्लोटिंग घटक"</string>
+  <string name="practice_e8b18630d135" formatted="false">"यह फ्लोटिंग ब्लॉक पढ़ने की सामग्री को रोक रहा है।"</string>
+  <string name="practice_975cfbbfce74" formatted="false">"SkyEye का उपयोग करके पूरे हरे क्षेत्र को हटाने का प्रयास करें।"</string>
+  <string name="practice_29692e6a4f70" formatted="false">"थोड़ा आराम करना याद रखें"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"घटक बंद करें"</string>
+  <string name="practice_df9256123dae" formatted="false">"नई सामग्री, फिर भी साफ-सुथरी।"</string>
+  <string name="practice_efbee8398901" formatted="false">"सामग्री बदले हुए घटक, फिर भी समान संरचना।"</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"दूसरा पृष्ठ · SkyEye अभ्यास स्थल"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"देर से लोड होने वाला संकेत घटक भी SkyEye द्वारा चुना जा सकता है।"</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

@@ -32,14 +32,14 @@ internal object PageSharing {
 internal fun BrowserController.shareCurrentPage():Boolean {
     val page=active
     val chooser=PageSharing.chooser(page?.url,page?.title.orEmpty())
-    if(chooser==null){notice="先開啟網頁，再分享連結";return false}
+    if(chooser==null){notice=bt(R.string.msg_1cba5bfa6f7a);return false}
     return try {
         if(context !is Activity)chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(chooser)
         sheet=""
         true // Opening the chooser does not mean the user completed a share.
-    }catch(_:android.content.ActivityNotFoundException){notice="此裝置無法開啟系統分享面板";false}
-    catch(_:SecurityException){notice="系統暫時無法分享這個頁面";false}
+    }catch(_:android.content.ActivityNotFoundException){notice=bt(R.string.msg_9e2276893fae);false}
+    catch(_:SecurityException){notice=bt(R.string.msg_5e1b8f022826);false}
 }
 
 /** The link destination and image source are different values for <a><img></a>. */
@@ -50,7 +50,7 @@ internal class PageContextMenu(
     private val tab:BrowserTab,
     private val download:(String,String,String)->Unit={url,page,agent->
         val host=controller.context as? MainActivity
-        if(host==null)controller.notice="此畫面無法啟動圖片下載"
+        if(host==null)controller.notice=bt(R.string.msg_beed38829f24)
         else controller.downloadFor(tab,url,page,agent)
         Unit
     },
@@ -107,37 +107,37 @@ internal class PageContextMenu(
         if(!valid(page,request))return
         val entries=mutableListOf<Pair<String,()->Unit>>()
         target.link?.let{link->
-            PageActionPolicy.shareUrl(link)?.let{safe->entries.add("在新分頁開啟" to {controller.newTab(safe)})}
-            entries.add("複製連結" to {copy(link,"連結")})
+            PageActionPolicy.shareUrl(link)?.let{safe->entries.add(bt(R.string.msg_b7d4526756b3) to {controller.newTab(safe)})}
+            entries.add(bt(R.string.msg_d55104374e08) to {copy(link,bt(R.string.msg_e9b3cec96921))})
         }
         if(target.isImage){
             val source=target.image?.let{PageImageSource(it,page,target.title,target.width,target.height)}
             fun perform(action:ImageAction){if(source!=null)(controller.context as? MainActivity)?.imageActions?.perform(tab,source,action)}
             if(source!=null){
-                entries.add("在新分頁開啟圖片" to {perform(ImageAction.NEW_TAB)})
-                entries.add("預覽圖片" to {perform(ImageAction.PREVIEW)})
-                entries.add("複製圖片" to {perform(ImageAction.COPY)})
+                entries.add(bt(R.string.msg_e4a47c1dba73) to {perform(ImageAction.NEW_TAB)})
+                entries.add(bt(R.string.msg_3b0e45edcfb7) to {perform(ImageAction.PREVIEW)})
+                entries.add(bt(R.string.msg_720b7e9d72fa) to {perform(ImageAction.COPY)})
             }
-            entries.add("下載圖片" to {
+            entries.add(bt(R.string.msg_b3436480e1ad) to {
                 val image=target.image
-                if(image.isNullOrBlank())controller.notice="無法取得圖片網址，請重新長按圖片"
+                if(image.isNullOrBlank())controller.notice=bt(R.string.msg_75136c12a08a)
                 else download(image,page,web.settings.userAgentString)
             })
             target.image?.let{image->
-                entries.add("分享圖片" to {perform(ImageAction.SHARE)})
-                PageActionPolicy.shareUrl(image)?.let{url->entries.add("複製圖片連結" to {copy(url,"圖片連結")})}
+                entries.add(bt(R.string.msg_750f7a0175cc) to {perform(ImageAction.SHARE)})
+                PageActionPolicy.shareUrl(image)?.let{url->entries.add(bt(R.string.msg_3c028eeb1e92) to {copy(url,bt(R.string.msg_559552ccc661))})}
             }
         }
         if(entries.isEmpty())return
         controller.prompts.cancel(dialog)
         val host=controller.context as? Activity
         if(host?.isFinishing==true||host?.isDestroyed==true)return
-        val icons=mapOf("在新分頁開啟" to Icons.Outlined.OpenInNew,"複製連結" to Icons.Outlined.Link,
-            "在新分頁開啟圖片" to Icons.Outlined.OpenInNew,"預覽圖片" to Icons.Outlined.ZoomIn,
-            "複製圖片" to Icons.Outlined.ContentCopy,"下載圖片" to Icons.Outlined.Download,
-            "分享圖片" to Icons.Outlined.Share,"複製圖片連結" to Icons.Outlined.Link)
+        val icons=mapOf(bt(R.string.msg_b7d4526756b3) to Icons.Outlined.OpenInNew,bt(R.string.msg_d55104374e08) to Icons.Outlined.Link,
+            bt(R.string.msg_e4a47c1dba73) to Icons.Outlined.OpenInNew,bt(R.string.msg_3b0e45edcfb7) to Icons.Outlined.ZoomIn,
+            bt(R.string.msg_720b7e9d72fa) to Icons.Outlined.ContentCopy,bt(R.string.msg_b3436480e1ad) to Icons.Outlined.Download,
+            bt(R.string.msg_750f7a0175cc) to Icons.Outlined.Share,bt(R.string.msg_3c028eeb1e92) to Icons.Outlined.Link)
         dialog=BrowserPrompt.Menu(
-            if(target.isImage)target.title.ifBlank{"圖片"}.take(120)else "連結",
+            if(target.isImage)target.title.ifBlank{bt(R.string.msg_b210350f38fc)}.take(120)else bt(R.string.msg_e9b3cec96921),
             android.net.Uri.parse(if(target.isImage)page else target.link?:page).host.orEmpty(),
             entries.map{(label,action)->BrowserMenuAction(label,icons.getValue(label),action)},tab.id,
             {valid(page,request)}
@@ -146,6 +146,6 @@ internal class PageContextMenu(
     private fun copy(value:String,label:String){
         (controller.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
             .setPrimaryClip(ClipData.newPlainText(label,value))
-        controller.notice="已複製$label"
+        controller.notice=bt(R.string.msg_17d52a476d32 ,label)
     }
 }

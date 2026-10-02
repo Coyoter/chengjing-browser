@@ -19,7 +19,7 @@ import kotlin.math.min
 
 internal data class ImageAsset(val file:File,val format:ImageFormat,val width:Int,val height:Int,val source:String,val title:String,val private:Boolean,val thumbnail:android.graphics.Bitmap) {
     fun uri(context:Context):Uri {
-        check(!private){"無痕預覽必須先確認匯出"}
+        check(!private){bt(R.string.msg_c6cc299c6086)}
         return FileProvider.getUriForFile(context,"${context.packageName}.images",file)
     }
 }
@@ -43,7 +43,7 @@ internal class ImageFiles(private val context:Context) {
         fun copyBounded(input:InputStream,output:OutputStream):Long {
             val buffer=ByteArray(32*1024);var count=0L
             while(true){val n=input.read(buffer);if(n<0)break;if(n==0)continue
-                count+=n;require(count<=MAX_BYTES){"圖片超過 32 MB，請改由原網站下載"};output.write(buffer,0,n)
+                count+=n;require(count<=MAX_BYTES){bt(R.string.msg_8623a1f0e320)};output.write(buffer,0,n)
             }
             return count
         }
@@ -63,12 +63,12 @@ internal class ImageFiles(private val context:Context) {
     }
     private fun part(private:Boolean)=synchronized(lock){
         val directory=if(private)privateDirectory else shared
-        check(!private||privateDirectory.name in activePrivate){"無痕工作階段已關閉"}
+        check(!private||privateDirectory.name in activePrivate){bt(R.string.msg_c3e2e856f163)}
         check(directory.isDirectory||directory.mkdirs())
         File(directory,UUID.randomUUID().toString()+".part")
     }
     private fun complete(file:File,source:String,title:String,suggestion:String,private:Boolean):ImageAsset {
-        val format=file.inputStream().use{ImageFormat.sniff(it.readBounded(512))}?:error("取得的內容不是支援的圖片，未儲存檔案")
+        val format=file.inputStream().use{ImageFormat.sniff(it.readBounded(512))}?:error(bt(R.string.msg_6f977695a0b4))
         var width=0;var height=0
         val checked=ImageDecoder.decodeBitmap(ImageDecoder.createSource(file)){decoder,info,_->
             width=info.size.width;height=info.size.height
@@ -78,15 +78,15 @@ internal class ImageFiles(private val context:Context) {
             decoder.allocator=ImageDecoder.ALLOCATOR_SOFTWARE
         }
         return synchronized(lock){
-            check(!private||privateDirectory.name in activePrivate){"無痕工作階段已關閉"}
+            check(!private||privateDirectory.name in activePrivate){bt(R.string.msg_c3e2e856f163)}
             val target=File(file.parentFile,format.filename(suggestion,UUID.randomUUID().toString().replace("-","")))
-            check(file.renameTo(target)){"圖片暫存失敗"}
+            check(file.renameTo(target)){bt(R.string.msg_5f8355918e25)}
             trim(target.parentFile!!,if(private)64L*1024*1024 else 128L*1024*1024,target)
             ImageAsset(target,format,width,height,source,title,private,checked)
         }
     }
     suspend fun fetchHttp(raw:String,page:String,agent:String,private:Boolean,cookies:(String)->String?):ImageAsset=withContext(Dispatchers.IO){
-        var url=PageActionPolicy.downloadUrl(raw)?:error("圖片網址無法使用")
+        var url=PageActionPolicy.downloadUrl(raw)?:error(bt(R.string.msg_e9ab41c49001))
         val file=part(private)
         try{
             repeat(6){
@@ -97,11 +97,11 @@ internal class ImageFiles(private val context:Context) {
                 cookies(url)?.takeIf{it.length<=32768&&it.none{c->c=='\r'||c=='\n'}}?.let{request.header("Cookie",it)}
                 client.newCall(request.build()).execute().use{response->
                     if(response.code in listOf(301,302,303,307,308)){
-                        url=response.header("Location")?.let{response.request.url.resolve(it)?.toString()}?.let{PageActionPolicy.downloadUrl(it)}?:error("圖片轉址無法使用")
+                        url=response.header("Location")?.let{response.request.url.resolve(it)?.toString()}?.let{PageActionPolicy.downloadUrl(it)}?:error(bt(R.string.msg_4926037b836c))
                     }else{
-                        check(response.isSuccessful){"圖片下載失敗（HTTP ${response.code}），未儲存檔案"}
-                        val body=response.body?:error("圖片沒有內容")
-                        require(body.contentLength()<=MAX_BYTES){"圖片超過 32 MB，請改由原網站下載"}
+                        check(response.isSuccessful){bt(R.string.msg_68887ba4cb54 ,response.code)}
+                        val body=response.body?:error(bt(R.string.msg_cb900a4bca66))
+                        require(body.contentLength()<=MAX_BYTES){bt(R.string.msg_8623a1f0e320)}
                         file.outputStream().use{out->body.byteStream().use{copyBounded(it,out)}}
                         currentCoroutineContext().ensureActive()
                         val suggestion=android.webkit.URLUtil.guessFileName(url,response.header("Content-Disposition"),response.header("Content-Type"))
@@ -109,11 +109,11 @@ internal class ImageFiles(private val context:Context) {
                     }
                 }
             }
-            error("圖片轉址次數過多，未儲存檔案")
+            error(bt(R.string.msg_cc6f13303851))
         }finally{file.delete()}
     }
     suspend fun fromBytes(bytes:ByteArray,source:String,title:String,private:Boolean):ImageAsset=withContext(Dispatchers.IO){
-        require(bytes.size<=MAX_BYTES){"圖片超過 32 MB"}
+        require(bytes.size<=MAX_BYTES){bt(R.string.msg_b5dacb71c9aa)}
         val file=part(private)
         try{file.writeBytes(bytes);currentCoroutineContext().ensureActive();complete(file,source,title,"image",private)}finally{file.delete()}
     }

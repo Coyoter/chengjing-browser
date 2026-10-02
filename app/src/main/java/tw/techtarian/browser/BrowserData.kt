@@ -32,7 +32,7 @@ object Domains {
     fun address(input:String,searchSettings:SearchSettings=SearchSettings())=resolve(input,searchSettings).url
 }
 
-data class ElementRule(val selector: String, val label: String = "網站元件") {
+data class ElementRule(val selector: String, val label: String = bt(R.string.msg_bcbd40877710)) {
     fun json() = JSONObject().put("selector", selector).put("label", label)
 }
 data class SiteRules(
@@ -51,7 +51,7 @@ data class SiteRules(
         fun from(j: JSONObject): SiteRules {
             val a = j.optJSONArray("rules") ?: JSONArray()
             return SiteRules(j.getString("domain"), (0 until a.length()).map {
-                val r = a.getJSONObject(it); ElementRule(r.getString("selector"), r.optString("label", "網站元件"))
+                val r = a.getJSONObject(it); ElementRule(r.getString("selector"), r.optString("label", bt(R.string.msg_bcbd40877710)))
             }, j.optString("css"), j.optString("js"), j.optBoolean("unlockScroll"), j.optBoolean("guard"), j.optString("html"),j.optJSONArray("edits")?.let{e->(0 until e.length()).map{PageEdit.from(e.getJSONObject(it))}}?:emptyList())
         }
     }
@@ -59,25 +59,25 @@ data class SiteRules(
 
 object RuleValidation {
     fun selectorError(selector: String): String? {
-        if (selector.isBlank() || selector.length > 1200) return "元件規則為空白或太長"
-        if (selector.contains(Regex("[{};\\n\\r]"))) return "請輸入元件選擇器，不是整段樣式"
-        if (selector.split(',').any { it.trim().lowercase() in setOf("*", "html", "body", ":root", "html > body", "html body") }) return "不能移除整個頁面，請縮小選取範圍"
+        if (selector.isBlank() || selector.length > 1200) return bt(R.string.msg_8508e17dc836)
+        if (selector.contains(Regex("[{};\\n\\r]"))) return bt(R.string.msg_4f4c77dbbb90)
+        if (selector.split(',').any { it.trim().lowercase() in setOf("*", "html", "body", ":root", "html > body", "html body") }) return bt(R.string.msg_badeeaf157fa)
         return null
     }
     fun parseAi(raw: String, current: SiteRules): AiProposal {
         val clean = raw.trim().removePrefix("```json").removePrefix("```").removeSuffix("```").trim()
         val j = JSONObject(clean)
         val add = j.optJSONArray("add") ?: JSONArray()
-        require(add.length() <= 12) { "AI 建議一次修改太多元件，請描述更小的範圍" }
+        require(add.length() <= 12) { bt(R.string.msg_2b76681815f4) }
         val additions = (0 until add.length()).map { i ->
-            val s = add.getString(i); require(selectorError(s) == null) { selectorError(s).orEmpty() }; ElementRule(s, "AI 調整")
+            val s = add.getString(i); require(selectorError(s) == null) { selectorError(s).orEmpty() }; ElementRule(s, bt(R.string.msg_e950f422e2e8))
         }
         val remove = j.optJSONArray("remove") ?: JSONArray()
         val removed = (0 until remove.length()).map { remove.getString(it) }
-        require(removed.all { s -> current.rules.any { it.selector == s } }) { "AI 嘗試修改不存在的規則" }
+        require(removed.all { s -> current.rules.any { it.selector == s } }) { bt(R.string.msg_c5d39f17ffa3) }
         val result = current.copy(rules = (current.rules.filterNot { it.selector in removed } + additions).distinctBy { it.selector }, unlockScroll = j.optBoolean("unlockScroll", current.unlockScroll))
-        require(result.rules.size <= 100) { "單一網域最多 100 條規則" }
-        return AiProposal(j.optString("explanation", "調整元件規則").take(2000), result, additions.map { it.selector }, removed)
+        require(result.rules.size <= 100) { bt(R.string.msg_af099dc62317) }
+        return AiProposal(j.optString("explanation", bt(R.string.msg_6c1546728176)).take(2000), result, additions.map { it.selector }, removed)
     }
 }
 data class AiProposal(val explanation: String, val result: SiteRules, val added: List<String>, val removed: List<String>)
@@ -91,11 +91,11 @@ class BrowserStore(context: Context) {
     private val prefs = context.getSharedPreferences("browser-v1", Context.MODE_PRIVATE)
     fun certificateException(url:String):Boolean = CertificateExceptions.site(url)?.let{site->prefs.getStringSet("certificate-exceptions",emptySet()).orEmpty().any{CertificateExceptions.site(it)==site}}?:false
     fun setCertificateException(url:String,enabled:Boolean){
-        val origin=requireNotNull(CertificateExceptions.site(url)){"只有 HTTPS 網站可設定憑證例外"}
+        val origin=requireNotNull(CertificateExceptions.site(url)){bt(R.string.msg_426ca8d0ebad)}
         val values=prefs.getStringSet("certificate-exceptions",emptySet()).orEmpty().toMutableSet()
         values.removeAll{CertificateExceptions.site(it)==origin}
         if(enabled)values.add(origin)
-        check(prefs.edit().putStringSet("certificate-exceptions",values).commit()){"設定儲存失敗"}
+        check(prefs.edit().putStringSet("certificate-exceptions",values).commit()){bt(R.string.msg_a8397d414a2b)}
     }
     // SharedPreferences alone cannot invalidate the parent settings composition.
     // Both the provider selector and its settings fields observe this single state.
@@ -133,12 +133,12 @@ class BrowserStore(context: Context) {
     val customSearchTemplate get()=customSearchTemplateState
     fun useSearchEngine(id:String){
         require(id in SearchEngines.ids&&id!="custom")
-        check(prefs.edit().putString("search-engine",id).commit()){ "搜尋引擎設定未能儲存" }
+        check(prefs.edit().putString("search-engine",id).commit()){ bt(R.string.msg_cbcde29f8851) }
         searchEngineState=id
     }
     fun useCustomSearch(raw:String){
         val template=SearchEngines.normalizeTemplate(raw)
-        check(prefs.edit().putString("custom-search-template",template).putString("search-engine","custom").commit()){ "自訂搜尋引擎未能儲存" }
+        check(prefs.edit().putString("custom-search-template",template).putString("search-engine","custom").commit()){ bt(R.string.msg_1615b8429815) }
         customSearchTemplateState=template;searchEngineState="custom"
     }
     fun all(): List<SiteRules> = prefs.all.keys.filter { it.startsWith("site:") }.mapNotNull { key ->
@@ -150,7 +150,7 @@ class BrowserStore(context: Context) {
         require(site.rules.all { RuleValidation.selectorError(it.selector) == null })
         require(site.css.length <= 50000 && site.js.length <= 50000 && site.html.length<=64000 && site.rules.size <= 100 && site.edits.size<=100)
         site.edits.forEach{it.validate()}
-        check(prefs.edit().putString("previous:${site.domain}", get(site.domain).json().toString()).putString("site:${site.domain}", site.json().toString()).putLong("site-clock:${site.domain}",maxOf(System.currentTimeMillis(),prefs.getLong("site-clock:${site.domain}",0)+1)).commit()) { "手機儲存失敗，規則尚未儲存" }
+        check(prefs.edit().putString("previous:${site.domain}", get(site.domain).json().toString()).putString("site:${site.domain}", site.json().toString()).putLong("site-clock:${site.domain}",maxOf(System.currentTimeMillis(),prefs.getLong("site-clock:${site.domain}",0)+1)).commit()) { bt(R.string.msg_7077c012cfb8) }
         onSiteChange?.invoke()
     }
     fun hasPrevious(domain: String) = prefs.contains("previous:$domain")
@@ -171,7 +171,7 @@ class BrowserStore(context: Context) {
                 edit.putString("site:$d",record.settings.json().toString()).putLong("site-clock:$d",record.modified)
             }
         }
-        check(edit.commit()){ "網站設定合併未完成，本機資料已保留" }
+        check(edit.commit()){ bt(R.string.msg_574b5c8feb9e) }
         return changed
     }
     val bookmarkStore = BookmarkStore(context)
@@ -201,7 +201,7 @@ class BrowserStore(context: Context) {
         check(prefs.edit()
             .putString("history",BrowsingHistoryFormat.pagesJson(historyPages().filterNot{window.contains(it.visitedAt)}))
             .putString("searches",BrowsingHistoryFormat.searchesJson(historySearches().filterNot{window.contains(it.searchedAt)}))
-            .commit()){"瀏覽記錄未能儲存，請檢查手機儲存空間"}
+            .commit()){bt(R.string.msg_5ec83f43e349)}
     }
     fun saveTabs(urls:List<String>,favoriteIds:List<String?> = emptyList(),previewKeys:List<String> = emptyList(),titles:List<String> = emptyList(),lastActiveTimes:List<Long> = emptyList(),openedExternally:List<Boolean> = emptyList()):Boolean {
         val links=JSONArray(urls.mapIndexed{i,url->JSONObject().put("url",url).put("id",favoriteIds.getOrNull(i)?:JSONObject.NULL)

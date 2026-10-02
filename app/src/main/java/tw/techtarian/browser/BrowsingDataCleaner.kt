@@ -17,7 +17,7 @@ internal class BrowsingDataCleaner(private val c:BrowserController) {
 
     fun clear(range:BrowsingTimeRange,selection:BrowsingDataSelection) {
         if(running||selection.isEmpty)return
-        if(selection.siteData&&!supportsSiteData){error="請先更新 Android System WebView，再刪除 Cookie 與網站資料。";return}
+        if(selection.siteData&&!supportsSiteData){error=bt(R.string.msg_1e7ffc2ced5b);return}
         val window=range.window(System.currentTimeMillis())
         val regular=c.tabs.filterNot{it.incognito}
         val closeIds=if(selection.tabs)regular.filter{window.contains(it.lastActiveAt)}.map{it.id}else emptyList()
@@ -41,14 +41,14 @@ internal class BrowsingDataCleaner(private val c:BrowserController) {
                     }
                 }
                 closeIds.forEach{c.closeTab(it)}
-                check(c.persistTabs()){"分頁變更未能儲存"}
-                check(c.previews.flush()){"分頁快照尚未清理完成"}
+                check(c.persistTabs()){bt(R.string.msg_7877a2c231c9)}
+                check(c.previews.flush()){bt(R.string.msg_4c3a35f40a7e)}
                 c.revision++
                 c.sheet=""
-                c.notice=if(selection.siteData)"已刪除所選瀏覽資料；Cookie、快取和網站資料已全部清除"else"已刪除${range.label}的所選瀏覽資料"
-            }catch(_:TimeoutCancellationException){error="網站資料清理尚未確認完成。請稍後重試，或關閉後重新開啟 App。"}
+                c.notice=if(selection.siteData)bt(R.string.msg_a39c04ab86b5)else bt(R.string.msg_fdf0acc4c115 ,range.label)
+            }catch(_:TimeoutCancellationException){error=bt(R.string.msg_6b6bc81cccc7)}
             catch(cancelled:CancellationException){throw cancelled}
-            catch(_:Exception){error="刪除未完成，部分資料可能已刪除。請重試，或關閉後重新開啟 App。"}
+            catch(_:Exception){error=bt(R.string.msg_f795969c320e)}
             finally{running=false}
         }
     }

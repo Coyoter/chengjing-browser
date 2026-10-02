@@ -28,28 +28,28 @@ import androidx.compose.ui.unit.sp
     fun save(){
         try{
             if(home.useCustom(draft)){draft=home.url;error=null;focus.clearFocus()}
-            else error="請輸入有效的 HTTP 或 HTTPS 網址"
-        }catch(_:Exception){error="儲存未完成，請稍後再試"}
+            else error=bt(R.string.msg_0cc2d828db73)
+        }catch(_:Exception){error=bt(R.string.msg_1e32449f1b19)}
     }
-    SettingsGroup("首頁設定"){
+    SettingsGroup(bt(R.string.msg_c907f8be4cbf)){
         Row(Modifier.fillMaxWidth().heightIn(min=56.dp),verticalAlignment=Alignment.CenterVertically){
             Column(Modifier.weight(1f).padding(end=12.dp)){
-                Text("顯示首頁按鈕",fontSize=16.sp)
-                Text("放在網址列前方",fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(bt(R.string.msg_d03a088f3260),fontSize=16.sp)
+                Text(bt(R.string.msg_7ada4cb90804),fontSize=12.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Switch(home.enabled,{value->
-                runCatching{home.updateEnabled(value)}.onFailure{c.notice="首頁設定未能儲存"}
+                runCatching{home.updateEnabled(value)}.onFailure{c.notice=bt(R.string.msg_75f48b05acb2)}
                 if(!value){choosingCustom=home.custom;draft=home.url;error=null;focus.clearFocus()}
-            },modifier=Modifier.testTag("home-button-switch").semantics{contentDescription="顯示首頁按鈕"})
+            },modifier=Modifier.testTag("home-button-switch").semantics{contentDescription=bt(R.string.msg_d03a088f3260)})
         }
         if(home.enabled){
             HorizontalDivider(color=MaterialTheme.colorScheme.outlineVariant.copy(alpha=.6f))
-            HomeChoice("澄境首頁",!choosingCustom,"home-default-choice"){
-                runCatching{home.useDefault()}.onSuccess{choosingCustom=false;error=null;focus.clearFocus()}.onFailure{c.notice="首頁設定未能儲存"}
+            HomeChoice(bt(R.string.msg_01e143a4ff67),!choosingCustom,"home-default-choice"){
+                runCatching{home.useDefault()}.onSuccess{choosingCustom=false;error=null;focus.clearFocus()}.onFailure{c.notice=bt(R.string.msg_75f48b05acb2)}
             }
-            HomeChoice("自訂網址",choosingCustom,"home-custom-choice"){choosingCustom=true}
+            HomeChoice(bt(R.string.msg_45285b97fd2f),choosingCustom,"home-custom-choice"){choosingCustom=true}
             if(choosingCustom){
-                OutlinedTextField(value=draft,onValueChange={draft=it;error=null},label={Text("首頁網址")},
+                OutlinedTextField(value=draft,onValueChange={draft=it;error=null},label={Text(bt(R.string.msg_d7b21d1b7ecc))},
                     placeholder={Text("https://example.com")},modifier=Modifier.fillMaxWidth().testTag("home-url-input"),
                     singleLine=true,isError=error!=null,
                     keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Uri,imeAction=ImeAction.Done),
@@ -57,7 +57,7 @@ import androidx.compose.ui.unit.sp
                 error?.let{Text(it,color=MaterialTheme.colorScheme.error,fontSize=12.sp,modifier=Modifier.testTag("home-url-error"))}
                 Button(onClick={save()},enabled=draft.isNotBlank()&&(!home.custom||HomePolicy.normalizeUrl(draft)!=home.url),
                     modifier=Modifier.fillMaxWidth().testTag("save-home-url"),shape=RoundedCornerShape(14.dp)){
-                    Text(if(home.custom&&HomePolicy.normalizeUrl(draft)==home.url)"已儲存"else"儲存首頁")
+                    Text(if(home.custom&&HomePolicy.normalizeUrl(draft)==home.url)bt(R.string.msg_2a4c3223c02b)else bt(R.string.msg_0edd4290c301))
                 }
             }
         }

@@ -46,7 +46,7 @@ internal class NativeWebsiteLocation(private val activity:MainActivity,private v
                 // getUrl() can be about:blank for app-loaded HTML with a real base origin.
                 // The framework's sourceOrigin plus this current-document proof are authoritative.
                 if(access?.optString("doc")!=doc||!access.optBoolean("allowed")||!permissions.canUse(tab,canonical)){
-                    replyError(reply,doc,json.optInt("id"),1,"此頁面未獲准使用定位。",true);return@evaluateJavascript
+                    replyError(reply,doc,json.optInt("id"),1,bt(R.string.msg_029a3a0a53c6),true);return@evaluateJavascript
                 }
                 receive(tab,canonical,doc,access.optBoolean("visible"),json,reply)
             }
@@ -64,12 +64,12 @@ internal class NativeWebsiteLocation(private val activity:MainActivity,private v
             "clear"->{remove(page,id);if(page.queries.isEmpty())permissions.cancelPermissionFor(tab.id);return}
             "get","watch"->{
                 if(id<=0)return
-                if(!foreground||!visible){replyError(reply,doc,id,2,"目前頁面不在前景。",false);return}
+                if(!foreground||!visible){replyError(reply,doc,id,2,bt(R.string.msg_c293d0f61960),false);return}
                 page.queries[id]?.let{if(it.approved)begin(page,it);return}
-                if(page.queries.size>=8){replyError(reply,doc,id,2,"定位請求過多，請稍後再試。",true);return}
+                if(page.queries.size>=8){replyError(reply,doc,id,2,bt(R.string.msg_5677d9b33fef),true);return}
                 page.queries[id]=Query(id,json.optString("op")=="watch",PositionOptions.from(json),reply)
                 if(page.authorizing)return
-                page.authorizing=true;permissions.status="等待網站與手機定位授權"
+                page.authorizing=true;permissions.status=bt(R.string.msg_54e70324667a)
                 val generation=page.generation
                 permissions.authorizeNative(tab,origin){_,allowed,_->
                     if(page.doc!=doc||page.generation!=generation)return@authorizeNative
@@ -77,7 +77,7 @@ internal class NativeWebsiteLocation(private val activity:MainActivity,private v
                     for(query in page.queries.values.toList()){
                         if(!allowed){
                             val code=if(permissions.locationEnabled())1 else 2
-                            error(page,query,code,if(code==1)"尚未允許這個網站使用手機位置。"else"手機定位服務尚未開啟。",true)
+                            error(page,query,code,if(code==1)bt(R.string.msg_6d8d68de97c0)else bt(R.string.msg_eebdc8ee14a1),true)
                         }else{query.approved=true;begin(page,query)}
                     }
                 }
@@ -88,16 +88,16 @@ internal class NativeWebsiteLocation(private val activity:MainActivity,private v
         permissions.canUse(page.tab,LocationOrigin.of(page.tab.url).orEmpty())
     private fun begin(page:Page,query:Query){
         if(!foreground||!query.approved||query.request!=null||!valid(page))return
-        if(!permissions.hasPermission()||permissions.choice(page.tab)!=LocationChoice.ALLOW){error(page,query,1,"手機或網站定位授權已撤回。",true);return}
-        if(!permissions.locationEnabled()){error(page,query,2,"手機定位服務尚未開啟。",true);return}
+        if(!permissions.hasPermission()||permissions.choice(page.tab)!=LocationChoice.ALLOW){error(page,query,1,bt(R.string.msg_e4222762e387),true);return}
+        if(!permissions.locationEnabled()){error(page,query,2,bt(R.string.msg_eebdc8ee14a1),true);return}
         lateinit var request:NativePositionRequest
         request=NativePositionRequest(activity,query.options,query.watch,
             onStarted={providers->
                 registrationCount+=providers.size
-                permissions.status="已向手機發出定位請求，正在等候位置"
+                permissions.status=bt(R.string.msg_ea7546eddc85)
             },onPosition={position->
                 if(foreground&&valid(page)&&page.queries[query.id]===query&&permissions.hasPermission()){
-                    permissions.status="已取得位置，已提供給目前網站"
+                    permissions.status=bt(R.string.msg_e950f1ba68b7)
                     reply(query.reply,JSONObject().put("doc",page.doc).put("id",query.id).put("type","position").put("position",position))
                 }else if(page.queries[query.id]===query){
                     remove(page,query.id)

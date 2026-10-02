@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
     var closingGroup by remember{mutableStateOf<Boolean?>(null)}
     Box {
         IconButton(onClick={expanded=!expanded},modifier=Modifier.size(48.dp).testTag("tab-overview-menu")) {
-            Icon(Icons.Outlined.MoreVert,"分頁選單",Modifier.size(24.dp))
+            Icon(Icons.Outlined.MoreVert,bt(R.string.msg_7608c8dde0f2),Modifier.size(24.dp))
         }
         // Keep native anchoring, focus and dismissal. Its list-padding is transparent:
         // only the single 48 dp action draws a surface, not a large empty menu panel.
@@ -51,7 +51,7 @@ import androidx.compose.ui.unit.sp
                         text={
                             Box(Modifier.fillMaxWidth().heightIn(min=48.dp),contentAlignment=Alignment.Center) {
                                 // Painting and accessibility use the same paragraph layout.
-                                Text(AnnotatedString("關閉所有分頁"),modifier=Modifier.testTag("close-all-tabs-label"),
+                                Text(AnnotatedString(bt(R.string.msg_aceae2b0bcbe)),modifier=Modifier.testTag("close-all-tabs-label"),
                                     style=MaterialTheme.typography.bodyMedium.copy(
                                         fontSize=15.sp,lineHeight=20.sp,textAlign=TextAlign.Center,
                                         platformStyle=PlatformTextStyle(includeFontPadding=false),
@@ -71,10 +71,10 @@ import androidx.compose.ui.unit.sp
         val count=c.tabs.count{it.incognito==group}
         AlertDialog(
             onDismissRequest={closingGroup=null},
-            title={Text(if(group)"關閉所有無痕分頁？"else"關閉所有一般分頁？")},
-            text={Text("將關閉這一組的 $count 個分頁，不影響另一組。"+
-                if(group)"無痕網站資料會在全部關閉後清理。下載檔案、書籤與收藏仍會保留。"
-                else "這些分頁與快照不會在下次啟動時還原；瀏覽記錄、下載檔案、書籤與收藏仍會保留。")},
+            title={Text(if(group)bt(R.string.msg_2a38b2e651df)else bt(R.string.msg_b9db1c9c0483))},
+            text={Text(bt(R.string.msg_1401b7462a88 ,count)+
+                if(group)bt(R.string.msg_9b14332369fd)
+                else bt(R.string.msg_e818d7092124))},
             confirmButton={TextButton(enabled=count>0,onClick={
                 val onlyGroup=c.tabs.all{it.incognito==group}
                 c.closeAllTabs(group)
@@ -82,8 +82,8 @@ import androidx.compose.ui.unit.sp
                 // After closing the whole session, show its fresh homepage instead of an
                 // apparently unclosed blank card. A surviving other group stays untouched.
                 if(onlyGroup)c.sheet=""
-            },modifier=Modifier.testTag("confirm-close-all-tabs")){Text("全部關閉")}},
-            dismissButton={TextButton(onClick={closingGroup=null},modifier=Modifier.testTag("cancel-close-all-tabs")){Text("取消")}}
+            },modifier=Modifier.testTag("confirm-close-all-tabs")){Text(bt(R.string.msg_9a4acf35cc0e))}},
+            dismissButton={TextButton(onClick={closingGroup=null},modifier=Modifier.testTag("cancel-close-all-tabs")){Text(bt(R.string.msg_2cd0f3be8738))}}
         )
     }
 }

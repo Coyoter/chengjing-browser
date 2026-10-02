@@ -10,9 +10,9 @@ data class Favorite(val id:String,val title:String,val pageTitle:String,val url:
     fun json()=JSONObject().put("id",id).put("title",title).put("pageTitle",pageTitle).put("url",url).put("scrollY",scrollY).put("progress",progress).put("updated",updated).put("deleted",deleted)
     companion object{
         fun from(j:JSONObject):Favorite{
-            val url=j.getString("url");require(url.toHttpUrlOrNull()!=null){"收藏網址格式不正確"}
-            val id=j.getString("id");require(id.isNotBlank()&&id.length<=256){"收藏識別碼格式不正確"}
-            val updated=j.getLong("updated");require(updated>=0&&updated<Long.MAX_VALUE-1){"收藏時間格式不正確"}
+            val url=j.getString("url");require(url.toHttpUrlOrNull()!=null){bt(R.string.msg_0db216962632)}
+            val id=j.getString("id");require(id.isNotBlank()&&id.length<=256){bt(R.string.msg_62b58243569c)}
+            val updated=j.getLong("updated");require(updated>=0&&updated<Long.MAX_VALUE-1){bt(R.string.msg_c78ccd6760d5)}
             return Favorite(id,j.getString("title"),j.optString("pageTitle",j.getString("title")),url,j.optDouble("scrollY",0.0).takeIf{it.isFinite()}?.coerceAtLeast(0.0)?:0.0,j.optDouble("progress",0.0).takeIf{it.isFinite()}?.coerceIn(0.0,1.0)?:0.0,updated,j.optBoolean("deleted",false))
         }
         fun capture(previous:Favorite?,url:String,pageTitle:String,scrollY:Double,progress:Double,now:Long=System.currentTimeMillis()):Favorite{
@@ -33,7 +33,7 @@ object FavoriteFormat{
     private val conflictOrder=compareBy<Favorite>({it.updated},{it.deleted},{it.url},{it.title},{it.pageTitle},{it.scrollY},{it.progress})
 
     fun nextTimestamp(previous:Long,now:Long=System.currentTimeMillis()):Long{
-        require(previous>=0&&previous<Long.MAX_VALUE-2&&now<Long.MAX_VALUE-1){"收藏時間超出範圍"}
+        require(previous>=0&&previous<Long.MAX_VALUE-2&&now<Long.MAX_VALUE-1){bt(R.string.msg_c70c31fb7a5a)}
         return maxOf(now,previous+1)
     }
     // The entire newer record wins, not the maximum progress: reading backwards is valid.
@@ -43,21 +43,21 @@ object FavoriteFormat{
         snapshots.forEach{rows->rows.forEach{row->
             val old=result[row.id]
             if(old==null||conflictOrder.compare(row,old)>0)result[row.id]=row
-            require(result.size<=MAX_RECORDS){"收藏同步資料過多，本機內容已保留"}
+            require(result.size<=MAX_RECORDS){bt(R.string.msg_71a221e87e34)}
         }}
         return result.values.sortedBy{it.id}
     }
     fun snapshot(rows:List<Favorite>):String{
         val raw=JSONObject().put("schema",1).put("favorites",JSONArray(merge(rows).map{it.json()})).toString()
-        require(raw.toByteArray(Charsets.UTF_8).size<=MAX_BYTES){"收藏同步資料超過大小限制"}
+        require(raw.toByteArray(Charsets.UTF_8).size<=MAX_BYTES){bt(R.string.msg_055d4e4e6b83)}
         return raw
     }
     fun read(raw:String):List<Favorite>{
-        require(raw.toByteArray(Charsets.UTF_8).size<=MAX_BYTES){"收藏同步資料超過大小限制"}
+        require(raw.toByteArray(Charsets.UTF_8).size<=MAX_BYTES){bt(R.string.msg_055d4e4e6b83)}
         val root=JSONObject(raw)
-        require(root.getInt("schema")==1){"此收藏同步格式需要更新 App 才能讀取"}
+        require(root.getInt("schema")==1){bt(R.string.msg_220275e1f7de)}
         val rows=root.getJSONArray("favorites")
-        require(rows.length()<=MAX_RECORDS){"收藏同步資料過多，本機內容已保留"}
+        require(rows.length()<=MAX_RECORDS){bt(R.string.msg_71a221e87e34)}
         return merge((0 until rows.length()).map{Favorite.from(rows.getJSONObject(it))})
     }
 }
@@ -79,7 +79,7 @@ class FavoriteStore(context:Context){
     private fun write(rows:List<Favorite>){
         val merged=FavoriteFormat.merge(rows)
         FavoriteFormat.snapshot(merged) // Validate size before changing any local data.
-        check(prefs.edit().putString("items",JSONArray(merged.map{it.json()}).toString()).commit()){ "收藏儲存失敗" }
+        check(prefs.edit().putString("items",JSONArray(merged.map{it.json()}).toString()).commit()){ bt(R.string.msg_a0eee4ccb58d) }
     }
     private fun nextTime(rows:List<Favorite>)=FavoriteFormat.nextTimestamp(rows.maxOfOrNull{it.updated}?:0)
     @Synchronized fun save(url:String,title:String,y:Double,progress:Double,updateId:String?=null,forceNew:Boolean=false):Favorite{

@@ -37,25 +37,25 @@ internal object PageImageReader {
         }}.getOrElse{PageImageSource(native,page,tab.title)}
     }
     fun dataBytes(url:String):ByteArray {
-        val comma=url.indexOf(',');require(comma in 5..1024){"內嵌圖片格式無法使用"}
-        require(url.length<=ImageFiles.MAX_BYTES*4+1024){"內嵌圖片過大"}
+        val comma=url.indexOf(',');require(comma in 5..1024){bt(R.string.msg_9a585fcf69ad)}
+        require(url.length<=ImageFiles.MAX_BYTES*4+1024){bt(R.string.msg_05eeb6b45987)}
         val data=url.substring(comma+1)
         return if(url.substring(0,comma).contains(";base64",true)){
-            require(data.length<=ImageFiles.MAX_BYTES*4/3+4096){"內嵌圖片超過 32 MB"}
+            require(data.length<=ImageFiles.MAX_BYTES*4/3+4096){bt(R.string.msg_3d8771b46b2e)}
             Base64.decode(android.net.Uri.decode(data),Base64.DEFAULT).also{require(it.size<=ImageFiles.MAX_BYTES)}
         }else{
             val out=ByteArrayOutputStream();var i=0
             while(i<data.length){
                 if(data[i]=='%'&&i+2<data.length){out.write(data.substring(i+1,i+3).toInt(16));i+=3}
                 else {out.write(data[i].toString().toByteArray(Charsets.UTF_8));i++}
-                require(out.size()<=ImageFiles.MAX_BYTES){"內嵌圖片超過 32 MB"}
+                require(out.size()<=ImageFiles.MAX_BYTES){bt(R.string.msg_3d8771b46b2e)}
             };out.toByteArray()
         }
     }
     /** Blob URLs only exist inside their creating browser session. No native JS bridge is exposed. */
     suspend fun blobBytes(tab:BrowserTab,url:String,isCurrent:()->Boolean):ByteArray=withTimeout(30_000){
         val key="__cj_image_"+UUID.randomUUID().toString().replace("-","")
-        fun checkPage(){check(isCurrent()){ "頁面已變更，請重新長按圖片" }}
+        fun checkPage(){check(isCurrent()){ bt(R.string.msg_a5515d1ae76e) }}
         checkPage()
         js(tab,"""(()=>{
             const key=${JSONObject.quote(key)},job={ready:false,error:false,data:''};window[key]=job;
@@ -69,11 +69,11 @@ internal object PageImageReader {
             while(true){
                 checkPage()
                 val state=JSONObject(js(tab,"(()=>{const j=window[${JSONObject.quote(key)}];return {ready:!!j?.ready,error:!j||j.error,length:j?.data.length||0}})()"))
-                check(!state.optBoolean("error")){"無法讀取這張暫存圖片，請在原頁重新長按"}
+                check(!state.optBoolean("error")){bt(R.string.msg_3170eabb0bc8)}
                 if(state.optBoolean("ready")){length=state.getInt("length");break}
                 delay(60)
             }
-            require(length<=ImageFiles.MAX_BYTES*4/3+4){"圖片超過 32 MB"}
+            require(length<=ImageFiles.MAX_BYTES*4/3+4){bt(R.string.msg_b5dacb71c9aa)}
             val out=ByteArrayOutputStream()
             for(offset in 0 until length step 65536){
                 checkPage()

@@ -22,27 +22,27 @@ internal class BrowserPageDownloads(private val activity:MainActivity) {
     private val permission=activity.activityResultRegistry.register("page-file-storage",activity,ActivityResultContracts.RequestPermission()){granted->
         val value=pending;pending=null
         if(granted&&value!=null)start(value)
-        else activity.controller.notice=if(granted)"儲存權限已允許，請重新選擇要下載的檔案"else"未允許儲存權限，檔案沒有下載"
+        else activity.controller.notice=if(granted)bt(R.string.msg_8f95e70a3afe)else bt(R.string.msg_fb43036835f6)
     }
     fun initialize(){if(recovery==null)recovery=activity.lifecycleScope.async(Dispatchers.IO){storage.recover()}}
     fun download(tab:BrowserTab,url:String,mime:String?,disposition:String?){
         val request=Request(tab,url,tab.url,tab.navigationGeneration,mime,disposition)
         if(Build.VERSION.SDK_INT<=28&&ContextCompat.checkSelfPermission(activity,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
-            if(pending!=null){activity.controller.notice="請先完成上一個檔案的儲存授權";return}
+            if(pending!=null){activity.controller.notice=bt(R.string.msg_d9832eb8413c);return}
             pending=request;permission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }else start(request)
     }
     private fun start(request:Request){
         val c=activity.controller
         fun valid()=request.tab in c.tabs&&request.tab.navigationGeneration==request.generation
-        if(!valid()){c.notice="來源頁面已變更，請重新下載";return}
-        if(jobs.size>=2){c.notice="目前已有兩項暫存檔案正在下載，請稍後再試";return}
+        if(!valid()){c.notice=bt(R.string.msg_ae8e0f51f1c5);return}
+        if(jobs.size>=2){c.notice=bt(R.string.msg_167523d3b80d);return}
         val id=ids.decrementAndGet();val now=System.currentTimeMillis()
         val source=if(request.tab.incognito)""else PageActionPolicy.shareUrl(request.page).orEmpty()
         var row=DownloadItem(id,DownloadFormat.filename(null,DownloadFormat.mime(request.mime).orEmpty()),source,DownloadFormat.mime(request.mime)?:"application/octet-stream",DownloadManager.STATUS_RUNNING,0,-1,createdAt=now)
         fun update(value:DownloadItem){val index=items.indexOfFirst{it.id==id};if(index>=0)items[index]=value;row=value}
         while(items.size>=20){val index=items.indexOfFirst{it.status!=DownloadManager.STATUS_RUNNING};if(index<0)break;items.removeAt(index)}
-        items.add(0,row);c.notice="正在下載網頁檔案，可在「下載」查看進度或取消；請保留來源分頁"
+        items.add(0,row);c.notice=bt(R.string.msg_57d25840bf76)
         val job=activity.lifecycleScope.launch(start=CoroutineStart.LAZY){
             val reader=PageFileReader(request.tab,::valid);var output:PageFileStorage.Pending?=null
             try{
@@ -59,16 +59,16 @@ internal class BrowserPageDownloads(private val activity:MainActivity) {
                     val time=android.os.SystemClock.elapsedRealtime()
                     if(time-last>=150||done==info.size){update(row.copy(done=done));last=time}
                 }
-                ensureActive();check(valid()){"來源頁面已變更，下載已停止"}
-                withContext(NonCancellable){output!!.finish();items.removeAll{it.id==id};c.notice="已下載至 Downloads/ChengJing，可在「下載」開啟"}
+                ensureActive();check(valid()){bt(R.string.msg_5f464f616c9a)}
+                withContext(NonCancellable){output!!.finish();items.removeAll{it.id==id};c.notice=bt(R.string.msg_13491974a87a)}
             }catch(_:TimeoutCancellationException){
-                val detail="讀取暫存檔案逾時，請保留來源分頁並重新下載"
+                val detail=bt(R.string.msg_e4726e5fe1e3)
                 update(row.copy(status=DownloadManager.STATUS_FAILED,detail=detail));c.notice=detail
             }catch(cancelled:CancellationException){
-                val detail=cancelled.message?.takeIf{it.any{ch->ch.code>127}}?:"已取消；未保留不完整檔案"
+                val detail=cancelled.message?.takeIf{it.any{ch->ch.code>127}}?:bt(R.string.msg_639f890d3c20)
                 update(row.copy(status=DownloadManager.STATUS_FAILED,detail=detail));throw cancelled
             }catch(error:Exception){
-                val detail=error.message?.takeIf{it.any{ch->ch.code>127}}?.take(200)?:"下載未完成，請檢查儲存空間並重試"
+                val detail=error.message?.takeIf{it.any{ch->ch.code>127}}?.take(200)?:bt(R.string.msg_5dfa3c652a61)
                 update(row.copy(status=DownloadManager.STATUS_FAILED,detail=detail));c.notice=detail
             }finally{
                 withContext(NonCancellable){runCatching{output?.abort()};reader.close()}
@@ -77,6 +77,6 @@ internal class BrowserPageDownloads(private val activity:MainActivity) {
         jobs[id]=request.tab.id to job;job.invokeOnCompletion{jobs.remove(id)};job.start()
     }
     fun cancel(id:Long){jobs[id]?.second?.cancel()}
-    fun cancelFor(tabId:Int){jobs.values.filter{it.first==tabId}.map{it.second}.forEach{it.cancel(CancellationException("來源分頁已關閉或重新載入，下載已停止；未保留不完整檔案"))};if(pending?.tab?.id==tabId)pending=null}
+    fun cancelFor(tabId:Int){jobs.values.filter{it.first==tabId}.map{it.second}.forEach{it.cancel(CancellationException(bt(R.string.msg_e9038135c8dd)))};if(pending?.tab?.id==tabId)pending=null}
     fun close(){jobs.values.map{it.second}.forEach{it.cancel()};pending=null}
 }

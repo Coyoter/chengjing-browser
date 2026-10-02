@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"再次搜尋"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"Google 帳戶"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"同步裝置快照過多，請聯絡支援"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"等待同步"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"尚未連結 Google"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"已取消 Google 授權"</string>
+  <string name="msg_37f027ce9096" formatted="false">"本機資料保持不變，之後可再按「立即同步」。"</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"等待網路連線"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"本機資料已保留，連線恢復後可按「立即同步」。"</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"需要重新登入 Google"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"請按「立即同步」確認 Google 帳戶。"</string>
+  <string name="msg_35b24a76557b" formatted="false">"Google 登入設定不相容"</string>
+  <string name="msg_f164f003f815" formatted="false">"請更新至最新版；若仍無法連結，請聯絡支援。"</string>
+  <string name="msg_ebfa487493ba" formatted="false">"Google 授權未完成"</string>
+  <string name="msg_9dba61428261" formatted="false">"請按「立即同步」再試一次。本機資料已保留。"</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"正在連結 Google…"</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"本機資料保持不變，請再試一次。"</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"正在同步書籤…"</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"連線已取消"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"雲端寫入回讀不一致，請重試"</string>
+  <string name="msg_9359e2513325" formatted="false">"正在同步收藏與閱讀進度…"</string>
+  <string name="msg_294092e535b2" formatted="false">"收藏與閱讀進度寫入回讀不一致，請重試"</string>
+  <string name="msg_f2e9df262458" formatted="false">"正在同步天眼網站設定…"</string>
+  <string name="msg_ef86e477373a" formatted="false">"天眼設定寫入回讀不一致，請重試"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"已同步 %1$s 個書籤、%2$s 個收藏與閱讀進度"</string>
+  <string name="msg_2830de0d843f" formatted="false">"、%1$s 個網站設定；重新載入頁面後套用"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"已停止同步，本機與雲端書籤、收藏均保留"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"書籤"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"書籤識別碼不正確"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"請輸入書籤網址"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"網址最多 16,000 字"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"請輸入以 https:// 或 http:// 開頭的網址"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"網址格式不正確"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"網址編碼後超過 16,000 字，請縮短網址"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"書籤檔案太大，請分批匯入（上限 8 MB）"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"一次最多匯入 20,000 個書籤"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;澄境書籤&lt;/TITLE&gt;&lt;H1&gt;澄境書籤&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"雲端書籤檔案過大"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"雲端書籤格式不相容"</string>
+  <string name="msg_40ad29b56199" formatted="false">"書籤儲存失敗"</string>
+  <string name="msg_a782f2754c83" formatted="false">"首頁"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"憑證例外已開啟，點擊查看"</string>
+  <string name="msg_7c24b540153b" formatted="false">"憑證異常，點擊查看"</string>
+  <string name="msg_58f5b551d138" formatted="false">"網站資訊"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"搜尋或輸入網址"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"前往"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"停止載入"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"重新整理"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"新增分頁"</string>
+  <string name="msg_75bc594490fc" formatted="false">"分頁，%1$s 個"</string>
+  <string name="msg_ad62e8203c00" formatted="false">"未命名檔案"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"下載尚未完成或檔案已移除"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"檔案已移除"</string>
+  <string name="msg_813f4217faf8" formatted="false">"開啟下載檔案"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"沒有可開啟此檔案的應用程式"</string>
+  <string name="msg_04c451cd747f" formatted="false">"檔案無法開啟，可能已被移動或刪除"</string>
+  <string name="msg_8d24156413ef" formatted="false">"暫時無法讀取系統下載，請稍後重試"</string>
+  <string name="msg_d477c75aa656" formatted="false">"下載"</string>
+  <string name="msg_4138d7e93958" formatted="false">"由澄境瀏覽器下載的圖片、影片、音訊與檔案。"</string>
+  <string name="msg_775f5ca1d653" formatted="false">"還沒有下載項目"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"找不到相符的下載"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"長按圖片、使用播放器的下載選單，或點擊網站的下載連結。"</string>
+  <string name="msg_d011ffe066da" formatted="false">"開啟 %1$s"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"取消 %1$s"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"已取消"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"已完成"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"下載失敗"</string>
+  <string name="msg_204249cd633a" formatted="false">"已暫停，等待系統重試"</string>
+  <string name="msg_235d5f021172" formatted="false">"下載中"</string>
+  <string name="msg_efed99b86212" formatted="false">"等待下載"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"大小待確認"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"下載檔案"</string>
+  <string name="msg_de32e20193ad" formatted="false">"知道了"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"瀏覽記錄"</string>
+  <string name="msg_4e445f09300c" formatted="false">"最近 250 個頁面，只保留在這支手機。無痕瀏覽不會加入。"</string>
+  <string name="msg_c24268c66266" formatted="false">"清除瀏覽記錄"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"尚無瀏覽記錄"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"找不到相符的頁面"</string>
+  <string name="msg_539989302fd2" formatted="false">"一般分頁瀏覽過的頁面會出現在這裡。"</string>
+  <string name="msg_3352ef9c5026" formatted="false">"移除此筆瀏覽記錄"</string>
+  <string name="msg_46afe15d4929" formatted="false">"清除瀏覽記錄？"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"將清除本機瀏覽與搜尋記錄，不會刪除書籤、收藏或網站登入資料。"</string>
+  <string name="msg_bce2377283c2" formatted="false">"清除"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"取消"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"搜尋%1$s"</string>
+  <string name="msg_052052ba842e" formatted="false">"新分頁"</string>
+  <string name="msg_778dda35c10f" formatted="false">"分頁快照未能儲存，既有快照已保留"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"快照仍在儲存中，請稍後再關閉應用程式"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"下載會保留在手機"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"檔案與系統下載紀錄不會隨無痕分頁清除。確定要下載嗎？"</string>
+  <string name="msg_49e07d37a692" formatted="false">"分頁資料未能儲存，請檢查手機儲存空間"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"請使用單行英文字母、數字與符號，最多 1,024 字"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"請更新 Android System WebView，才能使用資料隔離的無痕分頁"</string>
+  <string name="msg_4369d178c9de" formatted="false">"目前最多可開啟 20 個分頁，請先關閉不用的分頁"</string>
+  <string name="msg_b860234cdca4" formatted="false">"無法建立隔離的無痕工作階段，未開啟網頁"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · 暫存圖片"</string>
+  <string name="msg_b210350f38fc" formatted="false">"圖片"</string>
+  <string name="msg_2988ade50b61" formatted="false">"自訂程式執行失敗；可在天眼設定修改或切換例外"</string>
+  <string name="msg_a782840b186d" formatted="false">"外部 App 跳轉"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"此連結格式無法開啟"</string>
+  <string name="msg_216baff9f183" formatted="false">"自動跳轉"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"澄境首頁"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"這個網站無法完成加密連線，請稍後重試。"</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"網頁暫時無法開啟，請確認網路或網址後重試。"</string>
+  <string name="msg_5e2122abec02" formatted="false">"憑證已過期"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"憑證尚未生效"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"憑證網域不符"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"憑證來源不受信任"</string>
+  <string name="msg_557874fe9910" formatted="false">"憑證日期異常"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"憑證驗證未通過"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"這個網站的憑證未通過驗證，連線已停止。可點網址列的連線圖示查看原因與網站例外設定。"</string>
+  <string name="msg_31648c936ef3" formatted="false">"網頁程序已停止，請關閉這個分頁後重新開啟。"</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"本機網頁"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"離開網頁？"</string>
+  <string name="msg_3bf1281815df" formatted="false">"網站訊息 · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"離開"</string>
+  <string name="msg_20db9f87b860" formatted="false">"確定"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"留在此頁"</string>
+  <string name="msg_e9ea75903633" formatted="false">"新視窗／彈窗"</string>
+  <string name="msg_2138c825b189" formatted="false">"此版本尚未開放網站使用相機與麥克風"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"檔案選擇器不可用"</string>
+  <string name="msg_beffea44da0c" formatted="false">"無法開啟檔案選擇器"</string>
+  <string name="msg_ad37ef430462" formatted="false">"這個連結沒有提供可下載的檔案"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\n這是網頁暫存檔案，下載完成前請保留來源分頁，不要重新整理。"</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\n檔案與下載紀錄會保留在手機，不會隨無痕分頁清除。"</string>
+  <string name="msg_d71c2bea9463" formatted="false">"下載檔案？"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"先開啟網頁，再加入收藏"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"頁面已變更，請再試一次"</string>
+  <string name="msg_c0af0b409136" formatted="false">"收藏未完成：%1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"先開啟一個網站，再使用天眼"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"目前正在顯示原始網站，請先結束例外"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"請先在 Play 商店更新 Android System WebView，才能啟用完整天眼"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"網頁尚未準備好，請重新載入後再試"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"無法使用這條規則"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"目前頁面找不到 %1$s，請重新選取元件"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"JavaScript 語法有誤：%1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"已預覽移除；確認後按「儲存」"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"已儲存，將套用 %1$s 及其子網域"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"已暫時顯示原始網站；規則仍然保留"</string>
+  <string name="msg_a4038cb71105" formatted="false">"已恢復套用天眼規則"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"已復原上一次儲存"</string>
+  <string name="msg_13256df2ec81" formatted="false">"上一頁"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"下一頁"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"天眼"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"更新收藏進度"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"快速收藏"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"已收藏"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"尚未收藏"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"已保存收藏與閱讀位置"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"瀏覽器選單"</string>
+  <string name="msg_bcbd40877710" formatted="false">"網站元件"</string>
+  <string name="msg_8508e17dc836" formatted="false">"元件規則為空白或太長"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"請輸入元件選擇器，不是整段樣式"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"不能移除整個頁面，請縮小選取範圍"</string>
+  <string name="msg_2b76681815f4" formatted="false">"AI 建議一次修改太多元件，請描述更小的範圍"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"AI 調整"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"AI 嘗試修改不存在的規則"</string>
+  <string name="msg_af099dc62317" formatted="false">"單一網域最多 100 條規則"</string>
+  <string name="msg_6c1546728176" formatted="false">"調整元件規則"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"只有 HTTPS 網站可設定憑證例外"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"設定儲存失敗"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"搜尋引擎設定未能儲存"</string>
+  <string name="msg_1615b8429815" formatted="false">"自訂搜尋引擎未能儲存"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"手機儲存失敗，規則尚未儲存"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"網站設定合併未完成，本機資料已保留"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"瀏覽記錄未能儲存，請檢查手機儲存空間"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"澄境瀏覽器"</string>
+  <string name="msg_71171b556a11" formatted="false">"網頁，\n依你的習慣調整。"</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"照常瀏覽，也能打開天眼，\n新增樣式、程式碼或調整元件。"</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"今日一句"</string>
+  <string name="msg_27268090a840" formatted="false">"快速前往"</string>
+  <string name="msg_f06e679b9530" formatted="false">"維基百科"</string>
+  <string name="msg_217d775e8c90" formatted="false">"繼續閱讀"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"書籤資料夾"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"所有收藏"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"分享圖片"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"未允許儲存權限，圖片沒有下載"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"圖片會保留在無痕瀏覽之外"</string>
+  <string name="msg_0816eeae6881" formatted="false">"下載、剪貼簿或接收圖片的 App 可能保留檔案，不會隨無痕分頁清除。"</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"繼續"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"無法取得可用的圖片，未儲存檔案。請稍後重新長按。"</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"頁面已變更，請重新長按圖片"</string>
+  <string name="msg_e409173288a1" formatted="false">"正在取得圖片…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"已在新分頁開啟暫存圖片"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"已複製圖片，可貼到支援圖片的 App"</string>
+  <string name="msg_8746e6a72700" formatted="false">"請先完成上一張圖片的儲存授權"</string>
+  <string name="msg_7151072d822c" formatted="false">"圖片已下載至 Downloads/ChengJing，可在「下載」查看"</string>
+  <string name="msg_fb43036835f6" formatted="false">"未允許儲存權限，檔案沒有下載"</string>
+  <string name="msg_18763274dfce" formatted="false">"請重新選擇要下載的檔案"</string>
+  <string name="msg_38116168b889" formatted="false">"這個網址無法交給系統下載服務，請在原頁重新下載"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"請先完成上一個檔案的儲存授權"</string>
+  <string name="msg_1022567a481f" formatted="false">"無法開啟儲存授權，請重新嘗試"</string>
+  <string name="msg_067c7812968e" formatted="false">"澄境瀏覽器 · 圖片下載"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"澄境瀏覽器 · 檔案下載"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"已加入系統下載佇列，可在三點選單的「下載」查看結果"</string>
+  <string name="msg_46248e4d3641" formatted="false">"無法加入檔案下載，請檢查儲存空間及系統下載服務"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"正在開啟澄境瀏覽器"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"澄境"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"瀏覽器"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"編輯網站規則"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"AI 修訂規則"</string>
+  <string name="msg_371d839ac65c" formatted="false">"第三方授權"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"元件程式碼"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"天眼 AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"網站連線"</string>
+  <string name="msg_930e319f7845" formatted="false">"隱私與資料"</string>
+  <string name="msg_0d8619aae051" formatted="false">"設定"</string>
+  <string name="msg_842433f0a425" formatted="false">"分頁"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"天眼設定"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"選中一個元件"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"網站修改"</string>
+  <string name="msg_e13bbc197118" formatted="false">"自訂程式碼"</string>
+  <string name="msg_634ad289a228" formatted="false">"AI 協助"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"瀏覽器識別"</string>
+  <string name="msg_14bd2c678335" formatted="false">"預設搜尋引擎"</string>
+  <string name="msg_905d98bd5535" formatted="false">"結構清單"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"Google 同步"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"網域規則"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"尋找頁面文字"</string>
+  <string name="msg_9d08608859f8" formatted="false">"攔截紀錄"</string>
+  <string name="msg_9357d631d10f" formatted="false">"返回上一層"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"依你的習慣瀏覽"</string>
+  <string name="msg_de961bb8936f" formatted="false">"關閉選單"</string>
+  <string name="msg_60a53514eb92" formatted="false">"收藏"</string>
+  <string name="msg_97afce0d452c" formatted="false">"瀏覽工具"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"新增無痕分頁"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"與一般分頁分開的瀏覽工作階段"</string>
+  <string name="msg_8dce3f317048" formatted="false">"檢視澄境瀏覽器下載的項目"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"刪除瀏覽資料"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"選擇時間範圍與要刪除的項目"</string>
+  <string name="msg_431596791167" formatted="false">"目前頁面"</string>
+  <string name="msg_3e40d2036259" formatted="false">"收藏目前頁面"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"加入書籤"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"已加入書籤的未分類資料夾"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"這個頁面已在書籤裡"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"分享"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"使用 Android 系統分享"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"切換手機版網站"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"切換電腦版網站"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"天眼與網站"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s 條移除規則"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"恢復套用天眼規則"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"暫時顯示原始網站"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"目前顯示原始網站"</string>
+  <string name="msg_43d22862b439" formatted="false">"暫停此網域的設定"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"所有網域規則"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"已攔截 %1$s 次干擾"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"查看本分頁紀錄"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"偏好與資料"</string>
+  <string name="msg_e7ed17309495" formatted="false">"外觀、瀏覽與 AI 設定"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"澄境瀏覽器 %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"外觀"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"瀏覽"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"先開啟網頁，再分享連結"</string>
+  <string name="msg_9e2276893fae" formatted="false">"此裝置無法開啟系統分享面板"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"系統暫時無法分享這個頁面"</string>
+  <string name="msg_beed38829f24" formatted="false">"此畫面無法啟動圖片下載"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"在新分頁開啟"</string>
+  <string name="msg_d55104374e08" formatted="false">"複製連結"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"連結"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"在新分頁開啟圖片"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"預覽圖片"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"複製圖片"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"下載圖片"</string>
+  <string name="msg_75136c12a08a" formatted="false">"無法取得圖片網址，請重新長按圖片"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"複製圖片連結"</string>
+  <string name="msg_559552ccc661" formatted="false">"圖片連結"</string>
+  <string name="msg_17d52a476d32" formatted="false">"已複製%1$s"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"儲存權限已允許，請重新選擇要下載的檔案"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"來源頁面已變更，請重新下載"</string>
+  <string name="msg_167523d3b80d" formatted="false">"目前已有兩項暫存檔案正在下載，請稍後再試"</string>
+  <string name="msg_57d25840bf76" formatted="false">"正在下載網頁檔案，可在「下載」查看進度或取消；請保留來源分頁"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"來源頁面已變更，下載已停止"</string>
+  <string name="msg_13491974a87a" formatted="false">"已下載至 Downloads/ChengJing，可在「下載」開啟"</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"讀取暫存檔案逾時，請保留來源分頁並重新下載"</string>
+  <string name="msg_639f890d3c20" formatted="false">"已取消；未保留不完整檔案"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"下載未完成，請檢查儲存空間並重試"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"來源分頁已關閉或重新載入，下載已停止；未保留不完整檔案"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"輸入內容"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"關閉長按選單"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"請先更新 Android System WebView，再刪除 Cookie 與網站資料。"</string>
+  <string name="msg_7877a2c231c9" formatted="false">"分頁變更未能儲存"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"分頁快照尚未清理完成"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"已刪除所選瀏覽資料；Cookie、快取和網站資料已全部清除"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"已刪除%1$s的所選瀏覽資料"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"網站資料清理尚未確認完成。請稍後重試，或關閉後重新開啟 App。"</string>
+  <string name="msg_f795969c320e" formatted="false">"刪除未完成，部分資料可能已刪除。請重試，或關閉後重新開啟 App。"</string>
+  <string name="msg_6846f5758df9" formatted="false">"過去 15 分鐘"</string>
+  <string name="msg_789842abff7d" formatted="false">"網站資源"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"此頁面曾遇到憑證異常，無法確認該連線的對象身分。未開啟網站例外時，異常連線會被阻止。\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"尚未開啟網站"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"目前使用 HTTPS 加密連線。"</string>
+  <string name="msg_c6905e1adffd" formatted="false">"HTTP 連線未加密，沒有可驗證的網站憑證。"</string>
+  <string name="msg_87178db80ada" formatted="false">"先開啟網站，即可查看連線資訊。"</string>
+  <string name="msg_3e26c53efe37" formatted="false">"目前網站"</string>
+  <string name="msg_9c5784103466" formatted="false">"頁面使用的其他來源"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"允許憑證例外"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"已開啟；重新啟動後仍會保留"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"預設關閉，驗證失敗時停止連線"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"只套用此 HTTPS 主機名稱（包含其不同連接埠），不包含其他子網域或第三方來源。你關閉前會持續保留。"</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"憑證例外會降低網站身分驗證保障；它無法修復伺服器本身無法建立加密連線的問題。"</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"允許這個網站的憑證例外？"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\n這個設定會永久保留，直到你關閉。即使網站憑證失效或身分無法驗證，仍可能載入；登入資訊與輸入內容可能被非預期的對象取得。請只在你了解並接受風險時開啟。"</string>
+  <string name="msg_d848bdedee10" formatted="false">"我了解，允許此網站"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"保持驗證"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"內嵌檔案格式不正確"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"內嵌檔案網址不正確"</string>
+  <string name="msg_a5fc04346035" formatted="false">"內嵌資料網址過大，請使用網站的檔案下載連結"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"內嵌檔案編碼不完整"</string>
+  <string name="msg_c74489c545f7" formatted="false">"內嵌檔案編碼不正確"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"時間範圍"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s 個頁面、%2$s 筆搜尋記錄"</string>
+  <string name="msg_8394223e0a97" formatted="false">"尚未關閉的分頁"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s 個一般分頁 · 依最後瀏覽時間關閉"</string>
+  <string name="msg_1f86b4081196" formatted="false">"Cookie、快取和網站資料"</string>
+  <string name="msg_c44aefb98491" formatted="false">"不限時間 · 全部清除，可能會登出網站"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"請先更新 Android System WebView 才能清除"</string>
+  <string name="msg_ab54697044d0" formatted="false">"時間範圍適用於瀏覽記錄與分頁。Cookie、快取和網站資料只能全部清除。"</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"舊版未記錄時間的資料，請選「不限時間」刪除。"</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"保留書籤、收藏、下載檔案與天眼設定。無痕資料請關閉無痕分頁清除。"</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"刪除中…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"刪除資料"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"目前網站 · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"想做什麼嘗試？直接問 AI"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"描述整體想法，不限於所選元件"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"元件無法讀取，請重新選取"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\n目前符合 %2$s 個元件；儲存後套用至 %3$s 與子網域中符合此結構的元件。"</string>
+  <string name="msg_16a3beab3f94" formatted="false">"元件 CSS 屬性"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"元件 JavaScript"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// element 代表目前符合規則的元件\nelement.setAttribute(\'title\', \'我的閱讀提示\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"元件內部 HTML"</string>
+  <string name="msg_f8ff75626431" formatted="false">"新增 HTML（放在元件內最後方）"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;我的閱讀提醒&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"%1$sHTML 中的 script 不會執行；需要互動時請使用 JavaScript。JS 可讀取網頁或發出請求，請只套用你了解的內容。"</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"這會替換符合元件的內部內容，可能影響原本互動。"</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"CSS／JS／HTML 可任選填寫。"</string>
+  <string name="msg_381994932dcc" formatted="false">"網頁已變更，請重新選取"</string>
+  <string name="msg_ac2471607490" formatted="false">"請先填寫要新增的內容"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"網站修改已達上限，請先整理已儲存的修改"</string>
+  <string name="msg_9104269ef996" formatted="false">"已儲存並套用；可在天眼設定復原上一次儲存"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"正在讀取元件…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"儲存並套用"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"讓原本的修改更合心意"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"請 AI 檢查這項修改"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nAI 會讀取本次頁面載入、套用天眼前的 HTML 與目前編輯內容，再依你的新要求修訂這項規則。"</string>
+  <string name="msg_b654f1e4475a" formatted="false">"網站 CSS / JS / HTML"</string>
+  <string name="msg_b243a787a694" formatted="false">"目前網站：%1$s\n可對整體版面提出建議。分析依據是目前開啟頁面的有限結構，不代表已檢查網站所有頁面。"</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"所選元件：%1$s\n元件修改以這個選擇器為目標：%2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"這次想如何調整？"</string>
+  <string name="msg_4df18c378546" formatted="false">"你想讓這個網站有什麼變化？"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"這個元件想怎麼改？哪裡需要檢查？"</string>
+  <string name="msg_53c859901fee" formatted="false">"HTML 會移除表單內容、script 與事件屬性，最多提供 %1$s 個字元；可能包含頁面文字，不涵蓋其他頁面或後續動態內容。"</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"CSS／HTML 會套用到所選元件；JavaScript 仍具有頁面程式碼的權限，請檢查實際影響範圍。"</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"使用 Gemma 4 本機分析，不需要 API Key，這次分析的網頁結構、程式碼及需求不會傳送到雲端。"</string>
+  <string name="msg_b45dad973407" formatted="false">"本次會將網域、清理後的原始 HTML（可能包含私人頁面文字）、這項自訂規則與新要求，傳給 OpenRouter 及所選模型供應商。不讀取 Cookie 或表單值。"</string>
+  <string name="msg_fbd9319f336c" formatted="false">"本次分析會將網域、有限元件結構、已儲存的自訂程式碼及你輸入的需求，傳送給 OpenRouter 與所選模型供應商。程式碼或問題可能包含私人內容，請先確認；不主動讀取 Cookie、表單值或文章內文。"</string>
+  <string name="msg_87bc9921ff32" formatted="false">"同意傳送上述資料供本次分析"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"選擇 AI 執行方式"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"設定 OpenRouter API Key"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"網頁已變更，請重新開啟 AI"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"無法讀取這項規則的原始 HTML。請先開啟包含該元件的網頁，重新載入後再試。"</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"頁面尚未準備好，請重新載入後再試"</string>
+  <string name="msg_d1127956fd88" formatted="false">"網頁已變更，請重新分析"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"已取消分析"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"正在分析…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"使用 Gemma 4 分析"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"傳送並取得建議"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"取消分析"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"AI 建議"</string>
+  <string name="msg_f8236285164f" formatted="false">"這次沒有產生可套用的修改。"</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"儲存範圍：%1$s 及其子網域。AI 建議尚未在你的網站實際驗證；請查看程式碼與變更後再套用。"</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"收合修改內容"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"查看完整修改內容"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"設定已變更，請重新分析"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"已套用 AI 建議；可在天眼設定復原上一次儲存"</string>
+  <string name="msg_4522951c203c" formatted="false">"更新原規則並套用"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"一鍵套用建議"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"可復原上一份設定；程式已發出的請求或網站操作無法一併撤銷。"</string>
+  <string name="msg_b727b2493599" formatted="false">"這個網站的設定較多，請縮小到單一元件，或選用雲端模型分析。"</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"本機資料已保留；下次開啟 App 會再同步，也可按「立即同步」。"</string>
+  <string name="msg_0d3a30703357" formatted="false">"Google 暫時忙碌"</string>
+  <string name="msg_61b008bafedd" formatted="false">"稍後再試即可。%1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"需要重新確認 Google 授權"</string>
+  <string name="msg_2a19048f4610" formatted="false">"請按「立即同步」重新確認授權。本機資料已保留。"</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"Google 同步權限受限"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"請確認 Google 帳戶的應用程式存取權與管理員設定，再按「立即同步」。本機資料已保留。"</string>
+  <string name="msg_0108ca4bc750" formatted="false">"請使用原本的 Google 帳戶"</string>
+  <string name="msg_5b29df305534" formatted="false">"此手機的同步資料已綁定另一個帳戶，請選擇原本帳戶，避免混入其他人的資料。"</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"無法確認 Google 連線安全"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"請檢查手機日期時間與網路設定後再試。本機資料已保留。"</string>
+  <string name="msg_e813605409d0" formatted="false">"連線較慢，尚未完成同步"</string>
+  <string name="msg_328257927000" formatted="false">"同步未完成"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"雲端資料尚未通過確認，本機資料已保留。請稍後再試；若持續發生，請聯絡支援。"</string>
+  <string name="msg_e19c932091a7" formatted="false">"暫時查不到官方版本，請稍後重試。"</string>
+  <string name="msg_85284e05ae9e" formatted="false">"瀏覽核心"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"目前 Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"最新正式版"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"查詢中…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"暫無資料"</string>
+  <string name="msg_8b9b22849066" formatted="false">"尚未查詢"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"目前由 %1$s 提供；對照 Google 公布的 %2$s 正式版。"</string>
+  <string name="msg_e5d3e9548003" formatted="false">"目前版本無法直接比較"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"官方正式版較新，可檢查核心更新"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"目前核心與官方正式版相同"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"目前核心版本較新"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"%1$s查詢時間："</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"保留上次結果 · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"正在查詢…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"重新檢查版本"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"無法開啟更新頁，請在系統設定查看 WebView。"</string>
+  <string name="msg_243aeef7919a" formatted="false">"開啟核心更新頁"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"更新由系統或商店提供，可能分批推出。"</string>
+  <string name="msg_8e57db190d94" formatted="false">"官方尚未提供版本資料"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"官方版本資料格式異常"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"系統 WebView"</string>
+  <string name="msg_b7d90d419331" formatted="false">"無法讀取"</string>
+  <string name="msg_737d4fde158c" formatted="false">"官方版本查詢暫時無法連線"</string>
+  <string name="msg_6090d27dccad" formatted="false">"官方未回傳版本資料"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"版本資料過大"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"版本資訊儲存失敗"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"找不到可開啟此連結的 App，請確認已安裝對應的應用程式"</string>
+  <string name="msg_34b996e6bd60" formatted="false">"在其他 App 開啟？"</string>
+  <string name="msg_140169f1183b" formatted="false">"將離開澄境的無痕瀏覽。其他 App 可能保存這個連結與使用記錄。"</string>
+  <string name="msg_f290f9167ad0" formatted="false">"開啟"</string>
+  <string name="msg_0db216962632" formatted="false">"收藏網址格式不正確"</string>
+  <string name="msg_62b58243569c" formatted="false">"收藏識別碼格式不正確"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"收藏時間格式不正確"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"收藏時間超出範圍"</string>
+  <string name="msg_71a221e87e34" formatted="false">"收藏同步資料過多，本機內容已保留"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"收藏同步資料超過大小限制"</string>
+  <string name="msg_220275e1f7de" formatted="false">"此收藏同步格式需要更新 App 才能讀取"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"收藏儲存失敗"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"搜尋中"</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"找不到"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"請輸入要尋找的文字"</string>
+  <string name="msg_28010afeecd8" formatted="false">"正在搜尋頁面"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"找不到符合的文字"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"第 %1$s 筆，共 %2$s 筆"</string>
+  <string name="msg_d1989441806e" formatted="false">"先開啟網頁，再尋找頁面文字"</string>
+  <string name="msg_c570255d2708" formatted="false">"請先離開天眼，再尋找頁面文字"</string>
+  <string name="msg_f782a6845afa" formatted="false">"上一筆符合文字"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"下一筆符合文字"</string>
+  <string name="msg_f41b8847f832" formatted="false">"關閉頁面搜尋"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B 已就緒"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"尚未下載本機模型"</string>
+  <string name="msg_191155f69eeb" formatted="false">"本機模型需要 64 位元裝置"</string>
+  <string name="msg_301286dd890b" formatted="false">"空間不足，請先保留約 3 GB 可用儲存空間"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"澄境 · Gemma 4 本機模型"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"下載約 2.59 GB；完成後會核對模型完整性"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"下載工作已不存在，請重新下載"</string>
+  <string name="msg_24d557606dbb" formatted="false">"正在核對模型完整性…"</string>
+  <string name="msg_d46682705f49" formatted="false">"模型下載失敗（%1$s），請重新下載"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"下載已暫停；請確認 Wi-Fi、網路或儲存空間"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"正在下載 Gemma 4 · %1$s%%"</string>
+  <string name="msg_119f097a0356" formatted="false">"尚未完成下載"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"模型完整性檢查未通過，請刪除後重新下載"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"請先下載 Gemma 4 本機模型"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"目前可用記憶體不足，請先關閉部分分頁或其他 App，再使用本機模型。"</string>
+  <string name="msg_305f7b160fa8" formatted="false">"模型回覆過長，請縮小問題範圍"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"AI 執行方式"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · 手機本機"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · 雲端模型"</string>
+  <string name="msg_7397e02a13de" formatted="false">"本機模式不需要 API Key；雲端模式可自行選擇服務商提供的模型。"</string>
+  <string name="msg_770c4bcb536a" formatted="false">"初次需下載約 2.59 GB 模型，保留約 3 GB 儲存空間。需要 64 位元裝置，建議至少 6 GB 記憶體；分析時會使用手機電量。下載後，分析資料留在本機。"</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"取消模型下載"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"模型已完成完整性檢查，可離線使用。"</string>
+  <string name="msg_1300b82064c4" formatted="false">"移除模型以釋放空間"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"允許使用行動網路下載"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"下載 Gemma 4 本機模型"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"此裝置不支援本機推論，可選用 OpenRouter。"</string>
+  <string name="msg_6cbc25f77915" formatted="false">"模型：Google Gemma 4，Apache 2.0。模型檔下載自 Google 文件連結的 LiteRT Community。"</string>
+  <string name="msg_0cc2d828db73" formatted="false">"請輸入有效的 HTTP 或 HTTPS 網址"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"儲存未完成，請稍後再試"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"首頁設定"</string>
+  <string name="msg_d03a088f3260" formatted="false">"顯示首頁按鈕"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"放在網址列前方"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"首頁設定未能儲存"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"自訂網址"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"首頁網址"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"已儲存"</string>
+  <string name="msg_0edd4290c301" formatted="false">"儲存首頁"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"無痕預覽必須先確認匯出"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"圖片超過 32 MB，請改由原網站下載"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"無痕工作階段已關閉"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"取得的內容不是支援的圖片，未儲存檔案"</string>
+  <string name="msg_5f8355918e25" formatted="false">"圖片暫存失敗"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"圖片網址無法使用"</string>
+  <string name="msg_4926037b836c" formatted="false">"圖片轉址無法使用"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"圖片下載失敗（HTTP %1$s），未儲存檔案"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"圖片沒有內容"</string>
+  <string name="msg_cc6f13303851" formatted="false">"圖片轉址次數過多，未儲存檔案"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"圖片超過 32 MB"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"圖片暫存已失效，請回原頁重新開啟"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"關閉圖片預覽"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · 雙指縮放，雙擊放大"</string>
+  <string name="msg_c660e164fa68" formatted="false">"這是網頁暫存圖片分頁，重開 App 後不保留。需要保留請下載。"</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"圖片，可雙指縮放與拖曳"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"回上一層"</string>
+  <string name="msg_607089b311be" formatted="false">"未分類"</string>
+  <string name="msg_e371aca7156b" formatted="false">"匯入 Chrome 書籤"</string>
+  <string name="msg_901fcc465532" formatted="false">"關閉收藏"</string>
+  <string name="msg_714be9fccc36" formatted="false">"關閉書籤"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s 筆"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s 個書籤"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"搜尋收藏"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"搜尋全部書籤與資料夾"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"清除搜尋"</string>
+  <string name="msg_4220592340ad" formatted="false">"已加入收藏"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"已更新收藏進度"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"更新這筆收藏的進度"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"已另存一筆收藏"</string>
+  <string name="msg_74894a77754e" formatted="false">"另外新增一筆"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"記住章節網址與閱讀位置，保存在這支手機。"</string>
+  <string name="msg_6d9532de6549" formatted="false">"還沒有收藏"</string>
+  <string name="msg_9c88b8194478" formatted="false">"找不到符合的收藏"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"閱讀時從選單收藏，不需要選資料夾。"</string>
+  <string name="msg_299775d315e8" formatted="false">"換個名稱或網址試試。"</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · 本頁 %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"重新命名收藏 %1$s"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"刪除收藏 %1$s"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"書籤 › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"找不到符合的書籤"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"這裡還沒有書籤"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"搜尋會包含所有資料夾。"</string>
+  <string name="msg_a581a0c5331f" formatted="false">"可從右上角匯入 Chrome 書籤。"</string>
+  <string name="msg_11ae55de6d31" formatted="false">"編輯書籤 %1$s"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"刪除書籤 %1$s"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"已加入此資料夾"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"這個資料夾已有此書籤"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"加入目前網頁"</string>
+  <string name="msg_c631952bb114" formatted="false">"匯出"</string>
+  <string name="msg_27001df08520" formatted="false">"編輯書籤"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"命名收藏"</string>
+  <string name="msg_a5274f381305" formatted="false">"名稱"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"網址"</string>
+  <string name="msg_aabc6623539f" formatted="false">"資料夾"</string>
+  <string name="msg_a2c701b369be" formatted="false">"閱讀 / 科技"</string>
+  <string name="msg_b631887c06ef" formatted="false">"用「 / 」分隔資料夾層級"</string>
+  <string name="msg_978626066ea1" formatted="false">"儲存失敗，請再試一次"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"儲存"</string>
+  <string name="msg_9c9624b64441" formatted="false">"網站定位"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"手機的網頁元件尚不支援直接定位，請更新 Android System WebView。"</string>
+  <string name="msg_68f8f532449b" formatted="false">"無痕授權只保留到關閉全部無痕分頁。"</string>
+  <string name="msg_db3dea807cf5" formatted="false">"只套用此網站；其他網站需另行取得授權。"</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"變更後會重新載入這個網站，立即停止先前的定位請求。"</string>
+  <string name="msg_d47077aa2c28" formatted="false">"手機定位權限"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"手機定位服務設定"</string>
+  <string name="msg_824602facd05" formatted="false">"無法開啟書籤檔案"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"書籤檔案超過 8 MB，請分批匯入"</string>
+  <string name="msg_7193e8524414" formatted="false">"檔案中找不到 HTTP / HTTPS 書籤"</string>
+  <string name="msg_01fd7b112086" formatted="false">"匯入 %1$s 個書籤？"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"會保留資料夾；已存在的書籤不會重複新增。"</string>
+  <string name="msg_20809c5d8596" formatted="false">"匯入"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"已匯入 %1$s 個書籤"</string>
+  <string name="msg_3778200c90e5" formatted="false">"這些書籤已經匯入，不會重複新增"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"匯入未完成，請稍後再試"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"匯入未完成"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"無法寫入檔案"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"書籤已匯出"</string>
+  <string name="msg_fef661198324" formatted="false">"書籤匯出失敗"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"已取消尚未儲存的預覽"</string>
+  <string name="msg_79606cdda212" formatted="false">"無痕瀏覽"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s 條規則 · 尚未儲存"</string>
+  <string name="msg_8d44a1395388" formatted="false">"天眼已開啟 · 點選網站元件"</string>
+  <string name="msg_315a88f3155e" formatted="false">"離開天眼"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"例外中 · 原始網站"</string>
+  <string name="msg_c550069b0749" formatted="false">"恢復規則"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"暫時連不上這個網站"</string>
+  <string name="msg_70dd895b66db" formatted="false">"重新載入"</string>
+  <string name="msg_ed51242141b1" formatted="false">"你的選擇，留在你的手機。"</string>
+  <string name="msg_f1c970051cf5" formatted="false">"尚未儲存任何網域規則。"</string>
+  <string name="msg_baeab929c3dd" formatted="false">"點選編輯 · %1$s 項元件修改"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"本分頁共 %1$s 次，保留最近 30 筆。"</string>
+  <string name="msg_b3471f8f134f" formatted="false">"自行開啟此網址"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"繼續選取元件"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"開啟天眼・選取元件"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"撤回上一個"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"儲存規則"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"元件與程式碼"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"查看浮動、隱藏與內嵌元件"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"已儲存的網站修改"</string>
+  <string name="msg_0590277f2647" formatted="false">"點選規則，繼續編輯或請 AI 調整"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"網站行為"</string>
+  <string name="msg_830509b36cfe" formatted="false">"防止跳轉與彈窗"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"登入流程受影響時可關閉。"</string>
+  <string name="msg_7007cf22f796" formatted="false">"網域防護設定已儲存"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"暫停此網域設定，直到關閉 App。"</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"復原上一次儲存"</string>
+  <string name="msg_97efebc05b15" formatted="false">"所選元件 · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · 此選擇器目前符合 %3$s 個元件"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"內嵌頁面可調整外框；跨來源的內部內容無法在此存取。"</string>
+  <string name="msg_2bc121aa5664" formatted="false">"想怎麼修改這個元件？"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"新增自訂 CSS / JS / HTML"</string>
+  <string name="msg_6791c9f39720" formatted="false">"加入樣式、互動或頁面內容"</string>
+  <string name="msg_704bb9551f08" formatted="false">"移除此網站元件"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"先預覽，再選擇是否儲存"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"修改這段代碼"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"編輯元件內部 HTML"</string>
+  <string name="msg_31d97b13527a" formatted="false">"我這樣改對嗎？請 AI 檢查"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"僅針對所選元件提出修改"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"選取外面一層"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"改選其他元件"</string>
+  <string name="msg_76ae194967b7" formatted="false">"網站程式碼"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"編輯已儲存內容，或交給 AI 再修改"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"自訂元件"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"編輯 HTML"</string>
+  <string name="msg_96f3303604ab" formatted="false">"自訂元件程式碼"</string>
+  <string name="msg_27688f7df99c" formatted="false">"已隱藏的元件"</string>
+  <string name="msg_215e19833aad" formatted="false">"恢復 %1$s"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"已恢復這個元件"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"尚未儲存修改。可透過天眼選取元件，或新增網站程式碼。"</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"恢復頁面捲動"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"移除蓋版後仍無法捲動時，才開啟。"</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"規則保存在本機。網域的結構如果改版，可以重新選取或請 AI 調整。"</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"程式碼會套用到此網域及子網域。JavaScript 可讀取頁面並發出網路請求，請只使用信任的內容。例外模式會暫停套用。"</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"儲存時會一併保留目前天眼預覽的元件修改。"</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"CSS 樣式"</string>
+  <string name="msg_628f36411710" formatted="false">"// 新增或調整頁面內容；每次載入後執行一次"</string>
+  <string name="msg_b22612d48c02" formatted="false">"網站新增 HTML（放在頁面最後方）"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;我的閱讀提示&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"頁面已變更，請關閉後重新開啟編輯器"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"已儲存並重新載入"</string>
+  <string name="msg_7106b4590cce" formatted="false">"儲存失敗：%1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"包括原本看不見的元件。最多顯示 80 個浮動、隱藏及內嵌元件。"</string>
+  <string name="msg_2111f387ba60" formatted="false">"目前沒有找到這類元件；仍可直接點選網頁中的一般元件。"</string>
+  <string name="msg_167bc0947798" formatted="false">"原本隱藏"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"浮動／固定元件"</string>
+  <string name="msg_047f31f927fe" formatted="false">"內嵌頁面"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"主題"</string>
+  <string name="msg_dee60aee2501" formatted="false">"淺色"</string>
+  <string name="msg_a6b75d068032" formatted="false">"深色"</string>
+  <string name="msg_6df543c4a401" formatted="false">"系統"</string>
+  <string name="msg_381e6e45713f" formatted="false">"跟隨系統會依手機的深色設定切換。"</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"網址列位置"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"網址列在上方"</string>
+  <string name="msg_629f91b2430d" formatted="false">"網址列在下方"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"網址列在下方，天眼與導覽工具列在上方。"</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"網址列在上方，天眼與導覽工具列在下方。"</string>
+  <string name="msg_03c481a6ab85" formatted="false">"搜尋"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"網站顯示"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"瀏覽器識別（User-Agent）"</string>
+  <string name="msg_12acb73519ef" formatted="false">"原始 Android WebView"</string>
+  <string name="msg_0eac99137858" formatted="false">"自訂識別"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"Chrome 手機版"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"資料與同步"</string>
+  <string name="msg_c7845aa27319" formatted="false">"使用說明"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"資料用途、保存與刪除方式"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"天眼練習場"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"練習調整元件、新增 CSS 與 JS"</string>
+  <string name="msg_f329c206f45a" formatted="false">"澄境瀏覽器 %1$s · Android 版"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"OpenRouter 連線"</string>
+  <string name="msg_8831bba1231d" formatted="false">"金鑰已儲存"</string>
+  <string name="msg_454792f22b74" formatted="false">"連結你的 AI"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"已加密保存在這支手機"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"讓 AI 協助檢查天眼規則"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"輸入新的 API Key 以替換"</string>
+  <string name="msg_349c23511e2e" formatted="false">"API Key 已加密儲存"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"金鑰儲存失敗：%1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"儲存 API Key"</string>
+  <string name="msg_308f90d89d99" formatted="false">"API Key 已移除"</string>
+  <string name="msg_4df897d4de83" formatted="false">"移除已儲存的 API Key"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"模型"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"或自行輸入模型名稱"</string>
+  <string name="msg_33190323da75" formatted="false">"已取得各系列最新可用的一般文字模型"</string>
+  <string name="msg_a822357ce405" formatted="false">"無法更新模型，現有選項仍可使用"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"更新中…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"更新最新模型清單"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"按下分析才會呼叫 OpenRouter，費用依所選模型計算。金鑰不會交給網站；送出的資料會由 OpenRouter 與模型供應商處理。"</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"把書籤、收藏進度與天眼設定帶到下一支手機。"</string>
+  <string name="msg_dbf504aee158" formatted="false">"上次完成："</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"書籤、資料夾、收藏及刪除紀錄會存入 Google Drive 的應用程式專用隱藏空間，不會取得你其他檔案的存取權。"</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"收藏與閱讀進度"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"收藏的名稱、目前閱讀網址、頁面標題、捲動位置與閱讀百分比會一起同步。請在每支裝置更新至支援收藏同步的版本。"</string>
+  <string name="msg_4c197d7a57af" formatted="false">"同一收藏以最近儲存的完整紀錄為準；重新命名與刪除也會同步，不會強迫保留最高閱讀百分比。正在開啟的頁面不會被強制跳轉，下次從收藏開啟時使用同步後的位置。"</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"天眼網站設定"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"開啟後，網域、元件規則、自訂 CSS／JS／HTML 及網站行為設定會同步至你自己的 Google Drive。程式碼可能包含私人內容，請先確認沒有密碼或金鑰。"</string>
+  <string name="msg_86b823816a78" formatted="false">"同步天眼網站設定"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"同一網站以較新的完整設定為準；已清除的設定也會保留刪除狀態。其他裝置收到後，在下次載入網站時套用。暫時例外與憑證例外只留在本機。"</string>
+  <string name="msg_d9c03b110d35" formatted="false">"連結後，這支手機的書籤與收藏會與你選擇的 Google 帳戶合併。App 開啟時，以及修改書籤、儲存收藏進度、重新命名或刪除收藏後會自動同步；離線時先留在手機，下次連線再同步。"</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"處理中…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"立即同步"</string>
+  <string name="msg_aee33ff22038" formatted="false">"使用 Google 帳戶連結"</string>
+  <string name="msg_9746a274324c" formatted="false">"停止同步並登出"</string>
+  <string name="msg_b69bae05d706" formatted="false">"登出會保留本機與雲端資料。本機同步資料綁定首次同步的 Google 帳戶，避免切換帳戶時混入別人的資料。"</string>
+  <string name="msg_efb208e781f4" formatted="false">"有些網站會依識別資訊，提供不同的版型。"</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"Chrome 手機版（預設）"</string>
+  <string name="msg_3138f64b4547" formatted="false">"自訂 User-Agent"</string>
+  <string name="msg_b1c83027f591" formatted="false">"貼上完整的單行 User-Agent"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"儲存後會重新載入目前頁面；新開啟或重新整理的其他頁面也會使用這個設定。網站可能改用另一種版型，支援程度仍受目前瀏覽核心影響。"</string>
+  <string name="msg_73b390a73f19" formatted="false">"已更新瀏覽器識別"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"無法儲存"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"儲存並重新載入"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"目前瀏覽核心：Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"未知"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"手機定位尚未取得結果，請移至訊號較好的地方再試。"</string>
+  <string name="msg_2e6933e93990" formatted="false">"手機定位來源已關閉，請檢查系統定位服務。"</string>
+  <string name="msg_aa939329dc62" formatted="false">"手機尚未允許定位。"</string>
+  <string name="msg_f4e900470989" formatted="false">"沒有符合時效的位置，定位等候時間已結束。"</string>
+  <string name="msg_8e6878344350" formatted="false">"手機沒有可用的定位來源，請檢查系統定位服務。"</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"手機定位權限已變更，請重新要求定位。"</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"此頁面未獲准使用定位。"</string>
+  <string name="msg_c293d0f61960" formatted="false">"目前頁面不在前景。"</string>
+  <string name="msg_5677d9b33fef" formatted="false">"定位請求過多，請稍後再試。"</string>
+  <string name="msg_54e70324667a" formatted="false">"等待網站與手機定位授權"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"尚未允許這個網站使用手機位置。"</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"手機定位服務尚未開啟。"</string>
+  <string name="msg_e4222762e387" formatted="false">"手機或網站定位授權已撤回。"</string>
+  <string name="msg_ea7546eddc85" formatted="false">"已向手機發出定位請求，正在等候位置"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"已取得位置，已提供給目前網站"</string>
+  <string name="msg_8116207548a5" formatted="false">"無法更新模型清單（%1$s）"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"模型清單是空的，請稍後重試"</string>
+  <string name="msg_71eb343e162c" formatted="false">"請先在設定加入 OpenRouter API Key"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"請選擇模型"</string>
+  <string name="msg_d3346c882f37" formatted="false">"API Key 無效，請重新輸入"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"OpenRouter 額度不足"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"請求太頻繁，請稍後重試"</string>
+  <string name="msg_3861043f8477" formatted="false">"AI 服務未完成請求（%1$s），原本規則保持不變"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"請先設定 OpenRouter 金鑰與模型"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"API Key 無效"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"請求太頻繁，請稍後再試"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"AI 服務未完成請求（%1$s）"</string>
+  <string name="msg_4a16359069dd" formatted="false">"請選取有效元件"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"HTML 操作方式不正確"</string>
+  <string name="msg_e714012d82ce" formatted="false">"單次程式碼過長，請拆成較小的修改"</string>
+  <string name="msg_8579576181cb" formatted="false">"元件 CSS 請直接填寫屬性，例如 color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"一次建議過多，請縮小問題範圍"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"元件規則不正確"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI 指定不存在的修改"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI 指定不存在的元件規則"</string>
+  <string name="msg_63b576365f0f" formatted="false">"元件 AI 的建議超出選取範圍"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"元件 AI 不可改動網站層級設定"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"AI 元件調整"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"建議內容過大，請縮小範圍"</string>
+  <string name="msg_8715000a9841" formatted="false">"更新網站 CSS"</string>
+  <string name="msg_b350f6663586" formatted="false">"更新網站 JavaScript"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"更新網站新增 HTML"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"編輯"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"新增"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"移除元件：%1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"恢復 %1$s 項修改"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"調整頁面捲動設定"</string>
+  <string name="msg_15766e2591bd" formatted="false">"請確認下方修改內容"</string>
+  <string name="msg_64244a373f7b" formatted="false">"來源分頁已關閉或重新載入，下載已停止；請在原頁重試"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"內嵌檔案過大"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"內嵌檔案格式不正確，未儲存檔案"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"讀不到這份暫存檔案。請在原頁重試；分段串流或受保護影片需使用網站提供的下載方式"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"網頁暫存下載目前上限為 2 GB，請使用網站的直接下載連結"</string>
+  <string name="msg_533949b0c241" formatted="false">"內嵌檔案不完整"</string>
+  <string name="msg_283a28e03a50" formatted="false">"暫存檔案已失效，請重新下載"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"暫存檔案讀取失敗，請重新下載"</string>
+  <string name="msg_ffba3145db56" formatted="false">"下載內容大小不正確"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"下載內容不完整，未保留檔案"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"無法保存下載狀態"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"上次下載已中斷，未保留不完整檔案；請回原頁重新下載"</string>
+  <string name="msg_bcd36261f503" formatted="false">"下載檔案未能完成儲存"</string>
+  <string name="msg_815187d9a1da" formatted="false">"無法完成下載檔案"</string>
+  <string name="msg_02beb82da20a" formatted="false">"無法建立下載檔案，請檢查儲存空間"</string>
+  <string name="msg_bdd00d629528" formatted="false">"無法寫入下載檔案"</string>
+  <string name="msg_d3e09805962f" formatted="false">"無法建立下載資料夾"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"內嵌圖片格式無法使用"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"內嵌圖片過大"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"內嵌圖片超過 32 MB"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"無法讀取這張暫存圖片，請在原頁重新長按"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"開啟線上隱私權政策"</string>
+  <string name="msg_080988523f29" formatted="false">"無痕工作階段已關閉；網站資料清理未完成，請關閉並重新開啟 App"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"這項規則或頁面內容較多，請選用雲端模型分析。"</string>
+  <string name="msg_5d279b988da8" formatted="false">"AI 建議超出這項規則的修改範圍，請重新提出需求"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"建議程式碼過長，請縮小修改範圍"</string>
+  <string name="msg_272100161734" formatted="false">"更新 CSS 樣式"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"更新 JavaScript"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"更新 HTML 內容"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"調整 HTML 套用方式"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"請檢查修改內容後再套用"</string>
+  <string name="msg_997de297c6b3" formatted="false">"下載記錄未能儲存"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"無法建立下載檔案"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"網頁已變更，請重新開啟這項規則"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"規則已更新，請重新開啟，避免覆蓋其他修改"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"規則已由其他操作更新，請重新開啟"</string>
+  <string name="msg_30b5133da158" formatted="false">"讓修改更進一步"</string>
+  <string name="msg_dfb02399c259" formatted="false">"請 AI 修改這項規則"</string>
+  <string name="msg_a73d81627121" formatted="false">"結合原始 HTML、目前程式碼與你的新想法"</string>
+  <string name="msg_6882b571d47c" formatted="false">"可直接編輯下方內容。儲存會更新原規則；其他網站修改會保留。"</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"加在元件末尾"</string>
+  <string name="msg_c7518df827c2" formatted="false">"取代元件內容"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"適用此網域及子網域。JavaScript 可存取頁面或發出請求，請確認內容後再儲存。"</string>
+  <string name="msg_5ef814324284" formatted="false">"編輯內容已變更，請再次儲存"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"已更新原規則並套用"</string>
+  <string name="msg_f5272b216037" formatted="false">"刪除這項規則"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"刪除這項規則？"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"%1$s將移除，其他設定會保留。"</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"此網站的自訂 CSS、JavaScript 與 HTML"</string>
+  <string name="msg_60f997e432a2" formatted="false">"這項元件修改"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"已刪除這項規則"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"刪除"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"已改用自訂搜尋引擎"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"目前使用 · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"網址列搜尋 · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"已改用 %1$s"</string>
+  <string name="msg_02da895c96ea" formatted="false">"自己的搜尋方式"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"自訂"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"連接你習慣的搜尋服務"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"在想用的網站搜尋一次，再將網址裡的搜尋文字換成 {query}。"</string>
+  <string name="msg_83e506018140" formatted="false">"搜尋網址範本"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} 會換成已安全編碼的搜尋文字"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"澄境 瀏覽器"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"預覽：%1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"儲存並使用"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"點選即可切換。只有送出搜尋時，搜尋文字才會傳給所選服務。"</string>
+  <string name="msg_455ece81de56" formatted="false">"百度"</string>
+  <string name="msg_af8a52509166" formatted="false">"中文維基百科"</string>
+  <string name="msg_db79062a760b" formatted="false">"尚未設定網址範本"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"請輸入搜尋網址範本"</string>
+  <string name="msg_e2d127e64801" formatted="false">"網址範本不可超過 2,048 個字元"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"網址範本必須是完整的單行網址"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"網址範本必須包含一次 {query}"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"{query} 必須放在網址路徑或查詢參數中"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"請輸入完整的 HTTPS 網址"</string>
+  <string name="msg_00f486ce580a" formatted="false">"為保護搜尋內容，只能使用 HTTPS"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"網址不可包含帳號或密碼"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"網址範本不可包含 # 錨點"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"網址需要有效的主機名稱"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"網站圖示快取未能刪除"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"網站設定數量過多"</string>
+  <string name="msg_a17da897bf76" formatted="false">"網站設定超過 8 MB，請先整理較大的自訂程式碼"</string>
+  <string name="msg_51bb558b264b" formatted="false">"網站設定快照過大"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"網站設定版本不相容"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"網站設定網域或時間不正確"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"網站設定超過限制"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"一般"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"無痕"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"無痕頁面不產生縮圖、不加入瀏覽記錄。關閉全部無痕分頁後清理網站資料。"</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"開啟一段無痕瀏覽"</string>
+  <string name="msg_de2a64702660" formatted="false">"還沒有一般分頁"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"與一般分頁使用不同的登入狀態；網站與網路供應商仍可能辨識你的活動。"</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"新增分頁，讓接下來的閱讀有自己的位置。"</string>
+  <string name="msg_89d55dea3269" formatted="false">"私密頁面"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"關閉分頁 %1$s"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"目前分頁 · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"此刻，只留在此刻。"</string>
+  <string name="msg_ec4537100d5f" formatted="false">"不儲存瀏覽與搜尋記錄，不復原無痕分頁。登入狀態與一般分頁分開，關閉全部無痕分頁後清理 Cookie、快取與網站資料。"</string>
+  <string name="msg_c4759e2fd146" formatted="false">"無痕不等於匿名。網站、雇主或網路供應商仍可能看到你的活動。你主動下載的檔案、儲存的書籤與收藏會保留；系統分享及 AI 請求仍會把選擇的內容交給相關服務。"</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"分頁選單"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"關閉所有分頁"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"關閉所有無痕分頁？"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"關閉所有一般分頁？"</string>
+  <string name="msg_1401b7462a88" formatted="false">"將關閉這一組的 %1$s 個分頁，不影響另一組。"</string>
+  <string name="msg_9b14332369fd" formatted="false">"無痕網站資料會在全部關閉後清理。下載檔案、書籤與收藏仍會保留。"</string>
+  <string name="msg_e818d7092124" formatted="false">"這些分頁與快照不會在下次啟動時還原；瀏覽記錄、下載檔案、書籤與收藏仍會保留。"</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"全部關閉"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"尚未要求定位"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"手機尚未允許定位；可從網站資訊開啟 App 權限設定。"</string>
+  <string name="msg_b225c190262b" formatted="false">"手機定位服務尚未開啟，請從網站資訊開啟定位設定後再試。"</string>
+  <string name="msg_c706cb8f6217" formatted="false">"允許這個網站取得位置？"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\n網站可使用你的位置提供附近地點等功能。可在網址列的網站資訊變更。"</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\n無痕授權只保留到關閉全部無痕分頁。"</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"允許定位"</string>
+  <string name="msg_e69e259269d3" formatted="false">"暫不允許"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"過去 1 小時"</string>
+  <string name="msg_322773403765" formatted="false">"過去 24 小時"</string>
+  <string name="msg_27905bacccf9" formatted="false">"過去 7 天"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"過去 4 週"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"不限時間"</string>
+  <string name="msg_b39b740c9370" formatted="false">"詢問"</string>
+  <string name="msg_0bffd418918b" formatted="false">"允許"</string>
+  <string name="msg_454b7b66304a" formatted="false">"封鎖"</string>
+  <string name="language_title" formatted="false">"介面語言"</string>
+  <string name="language_system" formatted="false">"跟隨手機語言"</string>
+  <string name="language_support" formatted="false">"首次開啟會依手機語言顯示；未支援的語言使用英文。"</string>
+  <string name="language_selected" formatted="false">"目前使用：%1$s"</string>
+  <string name="language_system_detail" formatted="false">"自動 · %1$s"</string>
+  <string name="language_picker" formatted="false">"選擇介面語言"</string>
+  <string name="language_note" formatted="false">"此設定只改變澄境介面，不翻譯網站內容。"</string>
+  <string name="language_changed" formatted="false">"已切換介面語言"</string>
+  <string name="language_native_hint" formatted="false">"以各語言的原文顯示，方便找回熟悉的語言。"</string>
+  <string name="home_quote_000" formatted="false">"打雷之後，總會下雨"</string>
+  <string name="home_quote_001" formatted="false">"今天過後，就是明天了"</string>
+  <string name="home_quote_002" formatted="false">"明天過後，是一部電影"</string>
+  <string name="home_quote_003" formatted="false">"跌就買，漲就賣，投資就是這麼簡單"</string>
+  <string name="home_quote_004" formatted="false">"如果你不喜歡上班，那你應該會非常喜歡下班"</string>
+  <string name="home_quote_005" formatted="false">"只要你肯努力，你就會發現事情其實可以更難"</string>
+  <string name="home_quote_006" formatted="false">"破山中賊易，破心中賊難"</string>
+  <string name="home_quote_007" formatted="false">"堅持不一定成功，但放棄真的非常輕鬆"</string>
+  <string name="home_quote_008" formatted="false">"每天少喝一杯咖啡，一年下來你就能少喝 365 杯咖啡"</string>
+  <string name="home_quote_009" formatted="false">"別糾結了，你只是一根會思考的蘆葦"</string>
+  <string name="home_quote_010" formatted="false">"遇到困難不要怕，面對它，你就會發現你根本解決不了"</string>
+  <string name="home_quote_011" formatted="false">"不患物之不齊，患人之心不平"</string>
+  <string name="home_quote_012" formatted="false">"當你覺得自己一無所有，別忘了你還有滿滿的疲憊"</string>
+  <string name="home_quote_013" formatted="false">"睡前千萬不要滑手機，不然你很快就會發現天亮了"</string>
+  <string name="home_quote_014" formatted="false">"子曰：君子求諸己，小人求諸人"</string>
+  <string name="home_quote_015" formatted="false">"船到橋頭自然直，如果沒直，那就是沈了"</string>
+  <string name="home_quote_016" formatted="false">"成功的人往往都有一個共同點，那就是他們都成功了"</string>
+  <string name="home_quote_017" formatted="false">"不要哭，不要笑，要理解"</string>
+  <string name="home_quote_018" formatted="false">"只要你持續向前走，你就不會停在原地"</string>
+  <string name="home_quote_019" formatted="false">"迷路，才是探索的開始"</string>
+  <string name="home_quote_020" formatted="false">"努力不一定會被看見，但偷懶只要一次就會被抓到"</string>
+  <string name="home_quote_021" formatted="false">"失敗是成功之母，但你可能一直都找不到爸爸"</string>
+  <string name="home_quote_022" formatted="false">"所謂的自由，就是被別人討厭"</string>
+  <string name="home_quote_023" formatted="false">"幸福不過是痛苦的暫時停止"</string>
+  <string name="home_quote_024" formatted="false">"當你決定要開始的時候，代表你還沒有完成"</string>
+  <string name="home_quote_025" formatted="false">"成功沒有捷徑，但有很多人在捷徑上塞車"</string>
+  <string name="home_quote_026" formatted="false">"焦慮，是自由產生的眩暈"</string>
+  <string name="home_quote_027" formatted="false">"只要你跨出第一步，你就會發現第二步還在後面"</string>
+  <string name="home_quote_028" formatted="false">"請你走開，別擋住了我的陽光"</string>
+  <string name="home_quote_029" formatted="false">"菩提本無樹，明鏡亦非台。本來無一物，何處惹塵埃"</string>
+  <string name="home_quote_030" formatted="false">"你現在所受的苦，都是為了以後受更多的苦做準備"</string>
+  <string name="home_quote_031" formatted="false">"與怪物戰鬥的人，要小心自己不要成為怪物"</string>
+  <string name="home_quote_032" formatted="false">"爬得越高，摔得越痛"</string>
+  <string name="home_quote_033" formatted="false">"知識就是力量"</string>
+  <string name="home_quote_034" formatted="false">"只要你用心，就算做壞了也是用心做的壞事"</string>
+  <string name="home_quote_035" formatted="false">"常識有些時候不一定是常識"</string>
+  <string name="home_quote_036" formatted="false">"孩子害怕黑暗，情有可原；真正的悲劇，是成人害怕光明"</string>
+  <string name="home_quote_037" formatted="false">"想像世界末日，比想像資本主義的終結還要容易"</string>
+  <string name="home_quote_038" formatted="false">"只要你不尷尬，尷尬的就是別人"</string>
+  <string name="home_quote_039" formatted="false">"千里之行，始於足下"</string>
+  <string name="home_quote_040" formatted="false">"他人，即地獄"</string>
+  <string name="home_quote_041" formatted="false">"只要你把標準降得夠低，每一秒都是驚喜"</string>
+  <string name="home_quote_042" formatted="false">"折磨我們的往往不是現實，而是想像"</string>
+  <string name="home_quote_043" formatted="false">"不要對自己太苛刻，畢竟別人會幫你苛刻"</string>
+  <string name="home_quote_044" formatted="false">"遇到困難先別急，反正急了也沒用"</string>
+  <string name="home_quote_045" formatted="false">"生於憂患，死於安樂"</string>
+  <string name="home_quote_046" formatted="false">"只要吃飽，就不會挨餓"</string>
+  <string name="home_quote_047" formatted="false">"大道廢，有仁義；智慧出，有大偽"</string>
+  <string name="home_quote_048" formatted="false">"衣服穿久了就會舊，除非你買了新的"</string>
+  <string name="home_quote_049" formatted="false">"水滾了之後，水就是滾的"</string>
+  <string name="home_quote_050" formatted="false">"天時不如地利，地利不如人和"</string>
+  <string name="home_quote_051" formatted="false">"你也想見我的時候，我們的見面才有意義"</string>
+  <string name="home_quote_052" formatted="false">"別人笑我太瘋癲，我笑別人看得出來"</string>
+  <string name="home_quote_053" formatted="false">"吃得苦中苦，方知還有更苦"</string>
+  <string name="home_quote_054" formatted="false">"只要你活著，就還有機會繼續犯錯"</string>
+  <string name="home_quote_055" formatted="false">"你不能控制風向，但可以關窗"</string>
+  <string name="home_quote_056" formatted="false">"人生最好的安排，往往就是沒有安排"</string>
+  <string name="home_quote_057" formatted="false">"任何事情只要重複夠多次，都會變成例行公事"</string>
+  <string name="home_quote_058" formatted="false">"凡所有相，皆是虛妄；薪資入帳通知除外"</string>
+  <string name="home_quote_059" formatted="false">"你以為自己在選擇，其實演算法早就知道你會點哪個"</string>
+  <string name="home_quote_060" formatted="false">"世界很大，大到你的問題根本排不到前面"</string>
+  <string name="home_quote_061" formatted="false">"天生我材必有用，千金散盡還復來"</string>
+  <string name="home_quote_062" formatted="false">"既然來都來了，就先坐一下"</string>
+  <string name="home_quote_063" formatted="false">"能用錢解決的問題，都需要先有錢"</string>
+  <string name="home_quote_064" formatted="false">"不戰而屈人之兵，善之善者也"</string>
+  <string name="home_quote_065" formatted="false">"失敗並不可怕，可怕的是失敗還要寫檢討"</string>
+  <string name="home_quote_066" formatted="false">"人生苦短，所以不適合開太長的會"</string>
+  <string name="home_quote_067" formatted="false">"人生沒有白走的路，每一步都算步數"</string>
+  <string name="home_quote_068" formatted="false">"事情不是變簡單了，而是你習慣它很難"</string>
+  <string name="home_quote_069" formatted="false">"大音希聲，大象無形，大會議通常無結論"</string>
+  <string name="home_quote_070" formatted="false">"相視而笑，莫逆於心"</string>
+  <string name="home_quote_071" formatted="false">"勝人者有力，自勝者強"</string>
+  <string name="home_quote_072" formatted="false">"你的椅子，決定了你的坐姿"</string>
+  <string name="home_quote_073" formatted="false">"最大的幸福，是不需要證明自己幸福"</string>
+  <string name="home_quote_074" formatted="false">"人生而自由，卻到處都在登入會員"</string>
+  <string name="home_quote_075" formatted="false">"如果你沒有時間休息，身體會自己替你安排掛號"</string>
+  <string name="home_quote_076" formatted="false">"生活會教你很多事，學費通常不便宜"</string>
+  <string name="home_quote_077" formatted="false">"人生不是非黑即白"</string>
+  <string name="home_quote_078" formatted="false">"上善若水，水善利萬物而不爭"</string>
+  <string name="home_quote_079" formatted="false">"聽君一席話，如聽一席話"</string>
+  <string name="home_quote_080" formatted="false">"任何值得做的事，都值得先存檔"</string>
+  <string name="home_quote_081" formatted="false">"世界不會因為你而停止轉動，所以不用太有罪惡感"</string>
+  <string name="home_quote_082" formatted="false">"最深的道理，說穿了之後通常都很淺"</string>
+  <string name="home_quote_083" formatted="false">"人生沒有用不到的經歷"</string>
+  <string name="home_quote_084" formatted="false">"如果你害怕犯錯，就會錯過很多新的錯法"</string>
+  <string name="home_quote_085" formatted="false">"人生有無數可能，但今天只能過一次"</string>
+  <string name="home_quote_086" formatted="false">"How are you？I\'m fine, thank you."</string>
+  <string name="home_quote_087" formatted="false">"往者不可諫，來者猶可追"</string>
+  <string name="home_quote_088" formatted="false">"成為你自己"</string>
+  <string name="msg_485107965fef" formatted="false">"元件規則格式不正確"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"不能移除整個頁面"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"找不到有效的元件選擇器"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"所選元件已不存在"</string>
+  <string name="msg_db7282021ef2" formatted="false">"原始 HTML 尚未準備好，請重新載入頁面再開啟規則"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"找不到元件"</string>
+  <string name="msg_837653b6c57e" formatted="false">"元件過大，請選擇更小範圍"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"天眼練習場 · 澄境"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"澄境・天眼練習場"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"本機示範網頁"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"一般資訊橫幅 · 你可以選擇保留"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"慢一點，看清楚"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"把網頁調成習慣的樣子。"</string>
+  <string name="practice_8b7c761ab887" formatted="false">"這是手機裡的練習網頁。你可以調整元件，也能加入自己的樣式與頁面內容。"</string>
+  <string name="practice_7e28a385715a" formatted="false">"點工具列的「天眼」，開啟後點選元件。若只選到文字，按「選取外面一層」，直到框住整塊元件，再預覽移除。"</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"網頁的主角，應該是你想看的內容。"</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"新增一點自己的東西"</string>
+  <string name="practice_b4a4214feada" formatted="false">"打開天眼，選「新增 CSS」就能調整樣式。例如讓段落更寬鬆："</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"選「新增 JS」，可以在頁面加入閱讀提醒："</string>
+  <string name="practice_9e58ae908fca" formatted="false">"移除之後呢？"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"儲存規則，再前往第二頁。雖然元件內容不同，只要結構相同，它依然不會打擾你。"</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"前往同網域第二頁 →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"也可以點選單中的「暫時顯示原始網站」，暫時看回原始網站。所有規則都還在，不必重新設定。"</string>
+  <string name="practice_66cf62365956" formatted="false">"原本隱藏的提示容器"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"示範浮動元件"</string>
+  <string name="practice_e8b18630d135" formatted="false">"這個浮動區塊正在擋住閱讀內容。"</string>
+  <string name="practice_975cfbbfce74" formatted="false">"試著用天眼，移除整個綠色區塊。"</string>
+  <string name="practice_29692e6a4f70" formatted="false">"記得休息一下"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"關閉元件"</string>
+  <string name="practice_df9256123dae" formatted="false">"新的內容，一樣清爽。"</string>
+  <string name="practice_efbee8398901" formatted="false">"換了內容的元件，仍然是相同結構。"</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"第二頁 · 天眼練習場"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"延後載入的提示元件，也能被天眼選取。"</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

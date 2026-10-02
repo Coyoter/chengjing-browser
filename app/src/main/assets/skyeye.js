@@ -6,7 +6,8 @@
   // Scope native configuration before website scripts run. Retain trusted intrinsics for reconfiguration.
   const keep=Function.prototype.call.bind(Array.prototype.filter);
   const ends=Function.prototype.call.bind(String.prototype.endsWith);
-  const scopeConfig=value=>({sites:keep(value.sites||[],s=>location.hostname===s.domain||ends(location.hostname,'.'+s.domain)),exceptions:keep(value.exceptions||[],d=>location.hostname===d||ends(location.hostname,'.'+d))});
+  const scopeConfig=value=>({sites:keep(value.sites||[],s=>location.hostname===s.domain||ends(location.hostname,'.'+s.domain)),exceptions:keep(value.exceptions||[],d=>location.hostname===d||ends(location.hostname,'.'+d)),strings:value.strings||{}});
+  const message = source => config.strings[source] || source;
   let config = scopeConfig(__CJ_CONFIG__), enabled = false, selected = null, preview = null, raf = 0;
   let overlay, label, outlineStyle, observer, selectedBox;
   const marker = 'data-cj-removed';
@@ -91,12 +92,12 @@
     return found.filter(n=>!own.has(n));
   }
   function safe(selector) {
-    if (!selector || selector.length>1200 || /[{};\n\r]/.test(selector)) return {valid:false,error:'元件規則格式不正確'};
+    if (!selector || selector.length>1200 || /[{};\n\r]/.test(selector)) return {valid:false,error:message('元件規則格式不正確')};
     try {
       const nodes=query(selector);
-      if (nodes.some(n=>n === document.body || n === document.documentElement)) return {valid:false,error:'不能移除整個頁面'};
+      if (nodes.some(n=>n === document.body || n === document.documentElement)) return {valid:false,error:message('不能移除整個頁面')};
       return {valid:true,count:nodes.length,large:nodes.some(n=>n.getBoundingClientRect().height>innerHeight*.8 && n.getBoundingClientRect().width>innerWidth*.8)};
-    } catch (_) { return {valid:false,error:'找不到有效的元件選擇器'}; }
+    } catch (_) { return {valid:false,error:message('找不到有效的元件選擇器')}; }
   }
   const stable = value => value && value.length < 65 && !/^(active|hover|focus|selected|open|show|visible|hidden|is-|has-|css-|jsx-|sc-)/i.test(value) && !/[0-9a-f]{8,}|\d{5,}/i.test(value);
   function localSelector(el) {
@@ -222,7 +223,7 @@
   }
   function snapshot(scope) {
     let target=null;try{if(scope)target=query(scope)[0];}catch(_){}
-    if(scope&&!target)throw new Error("所選元件已不存在");
+    if(scope&&!target)throw new Error(message("所選元件已不存在"));
     const structural=roots().flatMap(r=>Array.from(r.querySelectorAll(r===document?'body *':'*'))).filter(el=>!own.has(el)&&!['SCRIPT','STYLE','LINK','META','NOSCRIPT','INPUT','TEXTAREA','OPTION'].includes(el.tagName)).filter(el=>!target||el===target||target.contains(el)).slice(0,350).map(el=>{
       const s=getComputedStyle(el);return {...describe(el),position:s.position,display:s.display,children:el.children.length};
     });
@@ -238,10 +239,10 @@
     inventory,snapshot,
     originalSource(scope){
       const source=scope?elementSources.get(scope):pageSource;
-      if(!source?.html)throw new Error('原始 HTML 尚未準備好，請重新載入頁面再開啟規則');
+      if(!source?.html)throw new Error(message('原始 HTML 尚未準備好，請重新載入頁面再開啟規則'));
       return JSON.stringify(source);
     },
-    innerHTML(s){const el=query(s)[0];if(!el)throw new Error("找不到元件");if(el.innerHTML.length>64000)throw new Error("元件過大，請選擇更小範圍");return el.innerHTML;},
+    innerHTML(s){const el=query(s)[0];if(!el)throw new Error(message("找不到元件"));if(el.innerHTML.length>64000)throw new Error(message("元件過大，請選擇更小範圍"));return el.innerHTML;},
     status(){return {enabled,removed:document.querySelectorAll('['+marker+']').length,domain:current()?.domain||'',selected:selected?describe(selected):null};}
   };
   Object.defineProperty(window,'__chengjingEye',{value:api,configurable:false,writable:false});

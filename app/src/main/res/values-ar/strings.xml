@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="msg_f9e84d906437" formatted="false">"البحث مرة أخرى"</string>
+  <string name="msg_d468ceb219bd" formatted="false">"حساب Google"</string>
+  <string name="msg_227b6f4ded40" formatted="false">"عدد لقطات الجهاز المتزامنة كبير جدًا، يرجى الاتصال بالدعم"</string>
+  <string name="msg_dafcef4ed8d5" formatted="false">"في انتظار المزامنة"</string>
+  <string name="msg_2e2e3c247ca5" formatted="false">"لم يتم ربط Google بعد"</string>
+  <string name="msg_c6f9473c2c9c" formatted="false">"تم إلغاء تفويض Google"</string>
+  <string name="msg_37f027ce9096" formatted="false">"البيانات المحلية لم تتغير، يمكنك الضغط على \"مزامنة الآن\" لاحقًا."</string>
+  <string name="msg_19e90c6c1d3f" formatted="false">"في انتظار اتصال الشبكة"</string>
+  <string name="msg_8b2696089cc7" formatted="false">"تم الاحتفاظ بالبيانات المحلية، يمكنك الضغط على \"مزامنة الآن\" عند استعادة الاتصال."</string>
+  <string name="msg_bd5e62a556e9" formatted="false">"مطلوب تسجيل دخول Google مرة أخرى"</string>
+  <string name="msg_a2e36b22184b" formatted="false">"يرجى الضغط على \"مزامنة الآن\" لتأكيد حساب Google."</string>
+  <string name="msg_35b24a76557b" formatted="false">"إعداد تسجيل دخول Google غير متوافق"</string>
+  <string name="msg_f164f003f815" formatted="false">"يرجى التحديث إلى أحدث إصدار؛ إذا استمرت المشكلة، يرجى الاتصال بالدعم."</string>
+  <string name="msg_ebfa487493ba" formatted="false">"تفويض Google غير مكتمل"</string>
+  <string name="msg_9dba61428261" formatted="false">"يرجى الضغط على \"مزامنة الآن\" والمحاولة مرة أخرى. تم الاحتفاظ بالبيانات المحلية."</string>
+  <string name="msg_9be5ef8015d0" formatted="false">"جارٍ ربط Google..."</string>
+  <string name="msg_c7df1fa0de19" formatted="false">"البيانات المحلية لم تتغير، يرجى المحاولة مرة أخرى."</string>
+  <string name="msg_d8ca2a7b780c" formatted="false">"جارٍ مزامنة العلامات المرجعية..."</string>
+  <string name="msg_5efd03b88ba6" formatted="false">"تم إلغاء الاتصال"</string>
+  <string name="msg_9aea4adf1970" formatted="false">"عدم تطابق في القراءة والكتابة السحابية، يرجى المحاولة مرة أخرى"</string>
+  <string name="msg_9359e2513325" formatted="false">"جارٍ مزامنة المفضلات وتقدم القراءة..."</string>
+  <string name="msg_294092e535b2" formatted="false">"عدم تطابق في القراءة والكتابة للمفضلات وتقدم القراءة، يرجى المحاولة مرة أخرى"</string>
+  <string name="msg_f2e9df262458" formatted="false">"جارٍ مزامنة إعدادات SkyEye للمواقع..."</string>
+  <string name="msg_ef86e477373a" formatted="false">"عدم تطابق في القراءة والكتابة لإعدادات SkyEye، يرجى المحاولة مرة أخرى"</string>
+  <string name="msg_5254767ec6b8" formatted="false">"تمت مزامنة %1$s علامة مرجعية، و%2$s مفضلات وتقدم قراءة"</string>
+  <string name="msg_2830de0d843f" formatted="false">"، %1$s إعداد موقع؛ سيتم التطبيق بعد إعادة تحميل الصفحة"</string>
+  <string name="msg_a241dbbf747f" formatted="false">"تم إيقاف المزامنة، تم الاحتفاظ بالعلامات المرجعية والمفضلات المحلية والسحابية"</string>
+  <string name="msg_1eb1e5b30e73" formatted="false">"العلامات المرجعية"</string>
+  <string name="msg_5629289d8a7e" formatted="false">"معرّف العلامة المرجعية غير صحيح"</string>
+  <string name="msg_d487b7f200d9" formatted="false">"يرجى إدخال عنوان URL للعلامة المرجعية"</string>
+  <string name="msg_2fe99f184b4e" formatted="false">"العنوان يصل إلى 16,000 حرف كحد أقصى"</string>
+  <string name="msg_edfa17cb068f" formatted="false">"يرجى إدخال عنوان يبدأ بـ https:// أو http://"</string>
+  <string name="msg_b8efbdc1ae19" formatted="false">"تنسيق العنوان غير صحيح"</string>
+  <string name="msg_dff55efd6b87" formatted="false">"بعد الترميز، تجاوز العنوان 16,000 حرف، يرجى تقصير العنوان"</string>
+  <string name="msg_3fc5c67e5c51" formatted="false">"حجم ملف العلامات المرجعية كبير جدًا، يرجى الاستيراد على دفعات (الحد الأقصى 8 ميغابايت)"</string>
+  <string name="msg_64f5f60d4647" formatted="false">"يمكن استيراد حتى 20,000 علامة مرجعية دفعة واحدة"</string>
+  <string name="msg_7f30348bc05e" formatted="false">"&lt;!DOCTYPE NETSCAPE-Bookmark-file-1&gt;\n&lt;META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\"&gt;\n&lt;TITLE&gt;علامات ChengJing المرجعية&lt;/TITLE&gt;&lt;H1&gt;علامات ChengJing المرجعية&lt;/H1&gt;\n&lt;DL&gt;&lt;p&gt;\n"</string>
+  <string name="msg_f17237028cc4" formatted="false">"ملف العلامات المرجعية السحابي كبير جدًا"</string>
+  <string name="msg_d2d3bff81d2d" formatted="false">"تنسيق العلامات المرجعية السحابي غير متوافق"</string>
+  <string name="msg_40ad29b56199" formatted="false">"فشل حفظ العلامات المرجعية"</string>
+  <string name="msg_a782f2754c83" formatted="false">"الصفحة الرئيسية"</string>
+  <string name="msg_b09f65e3a56e" formatted="false">"تم تفعيل استثناء الشهادة، انقر للعرض"</string>
+  <string name="msg_7c24b540153b" formatted="false">"شهادة غير صالحة، انقر للعرض"</string>
+  <string name="msg_58f5b551d138" formatted="false">"معلومات الموقع"</string>
+  <string name="msg_ac43b65a5965" formatted="false">"ابحث أو أدخل عنوان URL"</string>
+  <string name="msg_fa96079c3b2f" formatted="false">"اذهب"</string>
+  <string name="msg_f5d0ca4834db" formatted="false">"إيقاف التحميل"</string>
+  <string name="msg_5f451c71b46a" formatted="false">"إعادة التحميل"</string>
+  <string name="msg_a38d62ae74d4" formatted="false">"فتح تبويب جديد"</string>
+  <string name="msg_75bc594490fc" formatted="false">"تبويبات، %1$s"</string>
+  <string name="msg_ad62e8203c00" formatted="false">"ملف بدون اسم"</string>
+  <string name="msg_ff8fd6c6b9ab" formatted="false">"التنزيل لم يكتمل أو تم إزالة الملف"</string>
+  <string name="msg_53b79b2dbdd8" formatted="false">"تمت إزالة الملف"</string>
+  <string name="msg_813f4217faf8" formatted="false">"فتح ملف التنزيل"</string>
+  <string name="msg_15ae9c5747c0" formatted="false">"لا يوجد تطبيق لفتح هذا الملف"</string>
+  <string name="msg_04c451cd747f" formatted="false">"لا يمكن فتح الملف، قد تم نقله أو حذفه"</string>
+  <string name="msg_8d24156413ef" formatted="false">"لا يمكن قراءة التنزيلات النظامية مؤقتًا، يرجى المحاولة لاحقًا"</string>
+  <string name="msg_d477c75aa656" formatted="false">"تنزيل"</string>
+  <string name="msg_4138d7e93958" formatted="false">"الصور، الفيديوهات، الصوتيات والملفات التي تم تنزيلها بواسطة متصفح ChengJing."</string>
+  <string name="msg_775f5ca1d653" formatted="false">"لا توجد عناصر تنزيل حتى الآن"</string>
+  <string name="msg_007f2f5ca394" formatted="false">"لم يتم العثور على تنزيل مطابق"</string>
+  <string name="msg_d5b8f871bef6" formatted="false">"اضغط مطولًا على الصورة، استخدم قائمة التنزيل في مشغل الوسائط، أو انقر على رابط التنزيل في الموقع."</string>
+  <string name="msg_d011ffe066da" formatted="false">"فتح %1$s"</string>
+  <string name="msg_ff4b7178267f" formatted="false">"إلغاء %1$s"</string>
+  <string name="msg_a37778f17c5f" formatted="false">"تم الإلغاء"</string>
+  <string name="msg_f28461bb49c8" formatted="false">"تم الانتهاء"</string>
+  <string name="msg_c71d5c1216da" formatted="false">"فشل التنزيل"</string>
+  <string name="msg_204249cd633a" formatted="false">"موقوف مؤقتًا، في انتظار إعادة المحاولة من النظام"</string>
+  <string name="msg_235d5f021172" formatted="false">"جارٍ التنزيل"</string>
+  <string name="msg_efed99b86212" formatted="false">"في انتظار التنزيل"</string>
+  <string name="msg_13352b8fd7dd" formatted="false">"الحجم قيد التأكيد"</string>
+  <string name="msg_d8673fd7efab" formatted="false">"تنزيل الملف"</string>
+  <string name="msg_de32e20193ad" formatted="false">"تم"</string>
+  <string name="msg_0baa9a64e9b1" formatted="false">"سجل التصفح"</string>
+  <string name="msg_4e445f09300c" formatted="false">"آخر 250 صفحة محفوظة فقط على هذا الهاتف. لن يتم تضمين التصفح الخفي."</string>
+  <string name="msg_c24268c66266" formatted="false">"مسح سجل التصفح"</string>
+  <string name="msg_b2b9874c2118" formatted="false">"لا يوجد سجل تصفح"</string>
+  <string name="msg_eb41ae435db9" formatted="false">"لم يتم العثور على صفحات مطابقة"</string>
+  <string name="msg_539989302fd2" formatted="false">"الصفحات التي تم تصفحها في علامات التبويب العادية ستظهر هنا."</string>
+  <string name="msg_3352ef9c5026" formatted="false">"إزالة سجل التصفح هذا"</string>
+  <string name="msg_46afe15d4929" formatted="false">"مسح سجل التصفح؟"</string>
+  <string name="msg_40038fcf0ae7" formatted="false">"سيتم مسح سجل التصفح والبحث المحلي، ولن يتم حذف الإشارات المرجعية أو المفضلات أو بيانات تسجيل الدخول للمواقع."</string>
+  <string name="msg_bce2377283c2" formatted="false">"مسح"</string>
+  <string name="msg_2cd0f3be8738" formatted="false">"إلغاء"</string>
+  <string name="msg_0e65bfb6d2ae" formatted="false">"بحث في %1$s"</string>
+  <string name="msg_052052ba842e" formatted="false">"علامة تبويب جديدة"</string>
+  <string name="msg_778dda35c10f" formatted="false">"تعذر حفظ لقطة علامة التبويب، تم الاحتفاظ باللقطة الحالية"</string>
+  <string name="msg_243ab3a6c770" formatted="false">"اللقطة لا تزال قيد الحفظ، يرجى الانتظار قبل إغلاق التطبيق"</string>
+  <string name="msg_c64cba804f4c" formatted="false">"سيتم الاحتفاظ بالتنزيل على الهاتف"</string>
+  <string name="msg_569815e6ceb4" formatted="false">"سجل الملفات والتنزيلات النظامية لن يتم مسحه مع علامات التبويب الخفية. هل تريد المتابعة بالتنزيل؟"</string>
+  <string name="msg_49e07d37a692" formatted="false">"تعذر حفظ بيانات علامة التبويب، يرجى التحقق من مساحة التخزين في الهاتف"</string>
+  <string name="msg_0e1bfa10059d" formatted="false">"يرجى استخدام أحرف إنجليزية أحادية السطر، أرقام ورموز، حتى 1024 حرفًا"</string>
+  <string name="msg_98603eac2c1f" formatted="false">"يرجى تحديث Android System WebView لاستخدام علامات التبويب الخفية المعزولة"</string>
+  <string name="msg_4369d178c9de" formatted="false">"يمكن فتح حتى 20 علامة تبويب كحد أقصى، يرجى إغلاق علامات التبويب غير المستخدمة أولاً"</string>
+  <string name="msg_b860234cdca4" formatted="false">"تعذر إنشاء جلسة خفية معزولة، لم يتم فتح أي صفحة"</string>
+  <string name="msg_38e077277302" formatted="false">"%1$s · صورة مؤقتة"</string>
+  <string name="msg_b210350f38fc" formatted="false">"صورة"</string>
+  <string name="msg_2988ade50b61" formatted="false">"فشل تنفيذ البرنامج المخصص؛ يمكن تعديل أو تبديل الاستثناء في إعدادات SkyEye"</string>
+  <string name="msg_a782840b186d" formatted="false">"تحويل إلى تطبيق خارجي"</string>
+  <string name="msg_87f999fe4fd3" formatted="false">"تنسيق هذا الرابط لا يمكن فتحه"</string>
+  <string name="msg_216baff9f183" formatted="false">"إعادة توجيه تلقائية"</string>
+  <string name="msg_01e143a4ff67" formatted="false">"الصفحة الرئيسية لـ ChengJing"</string>
+  <string name="msg_7fa9669b644d" formatted="false">"يتعذر على هذا الموقع إتمام الاتصال المشفر، يرجى المحاولة لاحقًا."</string>
+  <string name="msg_91fdf6f9c33c" formatted="false">"الصفحة غير متاحة مؤقتًا، يرجى التحقق من الشبكة أو العنوان والمحاولة مجددًا."</string>
+  <string name="msg_5e2122abec02" formatted="false">"انتهت صلاحية الشهادة"</string>
+  <string name="msg_e7820bdc25e3" formatted="false">"الشهادة لم تصبح سارية بعد"</string>
+  <string name="msg_231cbdd2b560" formatted="false">"مجال الشهادة غير متطابق"</string>
+  <string name="msg_158f94fc2a3c" formatted="false">"مصدر الشهادة غير موثوق"</string>
+  <string name="msg_557874fe9910" formatted="false">"تاريخ الشهادة غير طبيعي"</string>
+  <string name="msg_e6ed408e0f8a" formatted="false">"فشل التحقق من الشهادة"</string>
+  <string name="msg_3ca921ad80a6" formatted="false">"شهادة هذا الموقع لم تجتز التحقق، تم إيقاف الاتصال. يمكن النقر على أيقونة الاتصال في شريط العنوان للاطلاع على السبب وإعدادات الاستثناء للموقع."</string>
+  <string name="msg_31648c936ef3" formatted="false">"توقف برنامج الصفحة، يرجى إغلاق هذه العلامة وإعادة فتحها."</string>
+  <string name="msg_8b044a42e0e2" formatted="false">"صفحة محلية"</string>
+  <string name="msg_e0eb3e5057cc" formatted="false">"مغادرة الصفحة؟"</string>
+  <string name="msg_3bf1281815df" formatted="false">"رسالة الموقع · %1$s"</string>
+  <string name="msg_70fbb6a5dbfa" formatted="false">"مغادرة"</string>
+  <string name="msg_20db9f87b860" formatted="false">"تأكيد"</string>
+  <string name="msg_a2cb5003004e" formatted="false">"البقاء في هذه الصفحة"</string>
+  <string name="msg_e9ea75903633" formatted="false">"نافذة جديدة / منبثقة"</string>
+  <string name="msg_2138c825b189" formatted="false">"هذا الإصدار لا يدعم استخدام الكاميرا والميكروفون للمواقع"</string>
+  <string name="msg_3fe646f9b847" formatted="false">"منتقي الملفات غير متاح"</string>
+  <string name="msg_beffea44da0c" formatted="false">"تعذر فتح منتقي الملفات"</string>
+  <string name="msg_ad37ef430462" formatted="false">"هذا الرابط لا يوفر ملفات قابلة للتنزيل"</string>
+  <string name="msg_f6082c7dc342" formatted="false">"\n\nهذه ملفات مؤقتة للويب، يرجى الاحتفاظ بصفحة المصدر وعدم إعادة التحميل حتى يكتمل التنزيل."</string>
+  <string name="msg_29eec08993b2" formatted="false">"\n\nالملفات وسجل التنزيلات ستبقى على الهاتف ولن تُحذف مع علامات التبويب الخفية."</string>
+  <string name="msg_d71c2bea9463" formatted="false">"تنزيل الملف؟"</string>
+  <string name="msg_471bd5d0a10b" formatted="false">"افتح الصفحة أولاً ثم أضف إلى المفضلة"</string>
+  <string name="msg_6846a5d84ad9" formatted="false">"تم تغيير الصفحة، يرجى المحاولة مرة أخرى"</string>
+  <string name="msg_c0af0b409136" formatted="false">"الإضافة إلى المفضلة لم تكتمل: %1$s"</string>
+  <string name="msg_6174d4e4a019" formatted="false">"افتح موقعًا أولاً ثم استخدم SkyEye"</string>
+  <string name="msg_3aa17e8a8d60" formatted="false">"يتم عرض الموقع الأصلي حاليًا، يرجى إنهاء الاستثناء أولاً"</string>
+  <string name="msg_91dcb6b2e4a7" formatted="false">"يرجى تحديث Android System WebView من Play Store لتفعيل SkyEye بالكامل"</string>
+  <string name="msg_80f5b5b18703" formatted="false">"الصفحة غير جاهزة، يرجى إعادة التحميل والمحاولة مجددًا"</string>
+  <string name="msg_4bf5b0db379a" formatted="false">"لا يمكن استخدام هذه القاعدة"</string>
+  <string name="msg_67eb218e5f40" formatted="false">"لم يتم العثور على %1$s في الصفحة الحالية، يرجى إعادة اختيار العنصر"</string>
+  <string name="msg_a9392bcaf61d" formatted="false">"خطأ في جافا سكريبت: %1$s"</string>
+  <string name="msg_e60ebf394403" formatted="false">"تمت المعاينة للإزالة؛ اضغط \"حفظ\" للتأكيد"</string>
+  <string name="msg_dc7f07415b2e" formatted="false">"تم الحفظ، سيتم تطبيق %1$s والنطاقات الفرعية الخاصة به"</string>
+  <string name="msg_edeb1a15813d" formatted="false">"يتم عرض الموقع الأصلي مؤقتًا؛ القاعدة لا تزال محفوظة"</string>
+  <string name="msg_a4038cb71105" formatted="false">"تم استعادة تطبيق قواعد SkyEye"</string>
+  <string name="msg_b3f41aaeb32b" formatted="false">"تم استعادة الحفظ الأخير"</string>
+  <string name="msg_13256df2ec81" formatted="false">"الصفحة السابقة"</string>
+  <string name="msg_ae9d525462f3" formatted="false">"الصفحة التالية"</string>
+  <string name="msg_9a5282c7dd65" formatted="false">"SkyEye"</string>
+  <string name="msg_20e1c9c1dc3d" formatted="false">"تحديث تقدم المفضلة"</string>
+  <string name="msg_ffe396ff08e7" formatted="false">"إضافة سريعة للمفضلة"</string>
+  <string name="msg_471dd4d7f869" formatted="false">"مضاف إلى المفضلة"</string>
+  <string name="msg_ec338ce1ab04" formatted="false">"غير مضاف إلى المفضلة"</string>
+  <string name="msg_b0e946efd4a1" formatted="false">"تم حفظ المفضلة وموقع القراءة"</string>
+  <string name="msg_f7e587d4b7a5" formatted="false">"قائمة المتصفح"</string>
+  <string name="msg_bcbd40877710" formatted="false">"مكونات الموقع"</string>
+  <string name="msg_8508e17dc836" formatted="false">"قاعدة المكون فارغة أو طويلة جداً"</string>
+  <string name="msg_4f4c77dbbb90" formatted="false">"يرجى إدخال محدد المكون، وليس نمطاً كاملاً"</string>
+  <string name="msg_badeeaf157fa" formatted="false">"لا يمكن إزالة الصفحة بأكملها، يرجى تقليل نطاق التحديد"</string>
+  <string name="msg_2b76681815f4" formatted="false">"يقترح AI تعديل عدد كبير من المكونات دفعة واحدة، يرجى وصف نطاق أصغر"</string>
+  <string name="msg_e950f422e2e8" formatted="false">"تعديل AI"</string>
+  <string name="msg_c5d39f17ffa3" formatted="false">"يحاول AI تعديل قاعدة غير موجودة"</string>
+  <string name="msg_af099dc62317" formatted="false">"حد أقصى 100 قاعدة لكل نطاق"</string>
+  <string name="msg_6c1546728176" formatted="false">"تعديل قواعد المكونات"</string>
+  <string name="msg_426ca8d0ebad" formatted="false">"يمكن فقط لمواقع HTTPS تعيين استثناءات الشهادة"</string>
+  <string name="msg_a8397d414a2b" formatted="false">"فشل حفظ الإعدادات"</string>
+  <string name="msg_cbcde29f8851" formatted="false">"فشل حفظ إعدادات محرك البحث"</string>
+  <string name="msg_1615b8429815" formatted="false">"فشل حفظ محرك البحث المخصص"</string>
+  <string name="msg_7077c012cfb8" formatted="false">"فشل الحفظ على الهاتف، القواعد لم تُحفظ"</string>
+  <string name="msg_574b5c8feb9e" formatted="false">"دمج إعدادات الموقع غير مكتمل، تم الاحتفاظ بالبيانات المحلية"</string>
+  <string name="msg_5ec83f43e349" formatted="false">"فشل حفظ سجل التصفح، يرجى التحقق من مساحة التخزين على الهاتف"</string>
+  <string name="msg_bb11ab4df9b9" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_71171b556a11" formatted="false">"الويب،\nمُعدّل حسب عاداتك."</string>
+  <string name="msg_a552a9de0ae4" formatted="false">"تصفح كالمعتاد، مع إمكانية فتح SkyEye،\nإضافة أنماط، أكواد أو تعديل المكونات."</string>
+  <string name="msg_e72c3ffa6baf" formatted="false">"اقتباس اليوم"</string>
+  <string name="msg_27268090a840" formatted="false">"انتقال سريع"</string>
+  <string name="msg_f06e679b9530" formatted="false">"ويكيبيديا"</string>
+  <string name="msg_217d775e8c90" formatted="false">"تابع القراءة"</string>
+  <string name="msg_b1d2dc2fb2e6" formatted="false">"مجلد العلامات"</string>
+  <string name="msg_2c2bc301657f" formatted="false">"كل المفضلات"</string>
+  <string name="msg_750f7a0175cc" formatted="false">"مشاركة الصورة"</string>
+  <string name="msg_fa2d8b273e18" formatted="false">"لم تُمنح أذونات الحفظ، لم يتم تنزيل الصورة"</string>
+  <string name="msg_7726f6cd3c6d" formatted="false">"الصور ستبقى خارج التصفح الخفي"</string>
+  <string name="msg_0816eeae6881" formatted="false">"قد تحتفظ التطبيقات التي تنزل أو تستقبل الصور بالملفات، ولن تُحذف مع تبويبات التصفح الخفي."</string>
+  <string name="msg_d9d1f08fa5ce" formatted="false">"استمر"</string>
+  <string name="msg_8cd51175b5f5" formatted="false">"لا يمكن الحصول على صورة متاحة، لم يتم حفظ الملف. يرجى المحاولة بالضغط المطول لاحقاً."</string>
+  <string name="msg_a5515d1ae76e" formatted="false">"تغيرت الصفحة، يرجى الضغط المطول على الصورة مجدداً"</string>
+  <string name="msg_e409173288a1" formatted="false">"جارٍ جلب الصورة…"</string>
+  <string name="msg_603b505d2fa0" formatted="false">"تم فتح الصورة المؤقتة في تبويب جديد"</string>
+  <string name="msg_d77ffc7471d9" formatted="false">"تم نسخ الصورة، يمكن لصقها في التطبيقات التي تدعم الصور"</string>
+  <string name="msg_8746e6a72700" formatted="false">"يرجى إكمال إذن الحفظ للصورة السابقة أولاً"</string>
+  <string name="msg_7151072d822c" formatted="false">"تم تنزيل الصورة إلى Downloads/ChengJing، يمكن مشاهدتها في \"التنزيلات\""</string>
+  <string name="msg_fb43036835f6" formatted="false">"لم تُمنح أذونات الحفظ، لم يتم تنزيل الملف"</string>
+  <string name="msg_18763274dfce" formatted="false">"يرجى إعادة اختيار الملف المراد تنزيله"</string>
+  <string name="msg_38116168b889" formatted="false">"لا يمكن تسليم هذا الرابط إلى خدمة التنزيل النظامية، يرجى إعادة التنزيل من الصفحة الأصلية"</string>
+  <string name="msg_d9832eb8413c" formatted="false">"يرجى إكمال إذن الحفظ للملف السابق أولاً"</string>
+  <string name="msg_1022567a481f" formatted="false">"تعذر فتح إذن الحفظ، يرجى المحاولة مجدداً"</string>
+  <string name="msg_067c7812968e" formatted="false">"ChengJing Browser · تنزيل الصور"</string>
+  <string name="msg_f0ffb8d77605" formatted="false">"ChengJing Browser · تنزيل الملفات"</string>
+  <string name="msg_4a9962f4b813" formatted="false">"تمت الإضافة إلى قائمة التنزيلات النظامية، يمكن مراجعة النتائج في \"التنزيلات\" ضمن قائمة النقاط الثلاث"</string>
+  <string name="msg_46248e4d3641" formatted="false">"تعذر إضافة الملف للتنزيل، يرجى التحقق من مساحة التخزين وخدمة التنزيل النظامية"</string>
+  <string name="msg_184fa0f9f597" formatted="false">"جارٍ فتح ChengJing Browser"</string>
+  <string name="msg_33adaf9128dd" formatted="false">"ChengJing"</string>
+  <string name="msg_44a8bcb30ad4" formatted="false">"المتصفح"</string>
+  <string name="msg_35376f24c4ad" formatted="false">"تعديل قواعد الموقع"</string>
+  <string name="msg_f3b8aca2eb95" formatted="false">"تعديل قواعد AI"</string>
+  <string name="msg_371d839ac65c" formatted="false">"تفويض طرف ثالث"</string>
+  <string name="msg_eb2f0ca08efb" formatted="false">"كود المكون"</string>
+  <string name="msg_8a8f2d7c399a" formatted="false">"SkyEye AI"</string>
+  <string name="msg_758380c7c9c7" formatted="false">"اتصال الموقع"</string>
+  <string name="msg_930e319f7845" formatted="false">"الخصوصية والبيانات"</string>
+  <string name="msg_0d8619aae051" formatted="false">"الإعدادات"</string>
+  <string name="msg_842433f0a425" formatted="false">"التبويبات"</string>
+  <string name="msg_320c5652f6d3" formatted="false">"إعدادات SkyEye"</string>
+  <string name="msg_559e4d37c3f8" formatted="false">"حدد مكوناً واحداً"</string>
+  <string name="msg_58f73b892e2d" formatted="false">"تعديل الموقع"</string>
+  <string name="msg_e13bbc197118" formatted="false">"كود مخصص"</string>
+  <string name="msg_634ad289a228" formatted="false">"مساعدة الذكاء الاصطناعي"</string>
+  <string name="msg_871eaa84c97d" formatted="false">"تمييز المتصفح"</string>
+  <string name="msg_14bd2c678335" formatted="false">"محرك البحث الافتراضي"</string>
+  <string name="msg_905d98bd5535" formatted="false">"قائمة الهيكل"</string>
+  <string name="msg_4d94c28a53c4" formatted="false">"مزامنة Google"</string>
+  <string name="msg_f6b20e44de57" formatted="false">"قواعد النطاق"</string>
+  <string name="msg_f7ff0dc054ff" formatted="false">"البحث عن نص في الصفحة"</string>
+  <string name="msg_9d08608859f8" formatted="false">"سجل الحجب"</string>
+  <string name="msg_9357d631d10f" formatted="false">"العودة للخلف"</string>
+  <string name="msg_59512d0db9fe" formatted="false">"تصفح حسب عاداتك"</string>
+  <string name="msg_de961bb8936f" formatted="false">"إغلاق القائمة"</string>
+  <string name="msg_60a53514eb92" formatted="false">"المفضلة"</string>
+  <string name="msg_97afce0d452c" formatted="false">"أدوات التصفح"</string>
+  <string name="msg_ce7454d53ff8" formatted="false">"فتح تبويب التصفح الخفي"</string>
+  <string name="msg_97e7dbfaf405" formatted="false">"جلسة تصفح منفصلة عن التبويبات العادية"</string>
+  <string name="msg_8dce3f317048" formatted="false">"عرض العناصر التي تم تنزيلها بواسطة متصفح ChengJing"</string>
+  <string name="msg_5f9f90a382dc" formatted="false">"حذف بيانات التصفح"</string>
+  <string name="msg_1b4a0f6f50a6" formatted="false">"اختر النطاق الزمني والعناصر المراد حذفها"</string>
+  <string name="msg_431596791167" formatted="false">"الصفحة الحالية"</string>
+  <string name="msg_3e40d2036259" formatted="false">"أضف الصفحة الحالية إلى المفضلة"</string>
+  <string name="msg_5a8cabc73328" formatted="false">"إضافة إلى العلامات"</string>
+  <string name="msg_8fad34a6f7cd" formatted="false">"مجلد غير مصنف للعلامات المضافة"</string>
+  <string name="msg_8aedb0dba45e" formatted="false">"هذه الصفحة موجودة بالفعل في العلامات"</string>
+  <string name="msg_7e564575eb7d" formatted="false">"مشاركة"</string>
+  <string name="msg_f6eb7ace16a3" formatted="false">"استخدام مشاركة نظام Android"</string>
+  <string name="msg_26cd04fd052a" formatted="false">"تبديل إلى نسخة الهاتف المحمول"</string>
+  <string name="msg_4fecc4be58d1" formatted="false">"تبديل إلى نسخة الكمبيوتر"</string>
+  <string name="msg_c74fe0d00aa6" formatted="false">"SkyEye والمواقع"</string>
+  <string name="msg_3c8d8e95e622" formatted="false">"%1$s قواعد محذوفة"</string>
+  <string name="msg_5fa19ec01126" formatted="false">"استعادة تطبيق قواعد SkyEye"</string>
+  <string name="msg_3603b8ca2f4f" formatted="false">"عرض الموقع الأصلي مؤقتًا"</string>
+  <string name="msg_4aaa7803adda" formatted="false">"يعرض الموقع الأصلي حاليًا"</string>
+  <string name="msg_43d22862b439" formatted="false">"إيقاف إعدادات هذا النطاق مؤقتًا"</string>
+  <string name="msg_d52aeefbc350" formatted="false">"جميع قواعد النطاقات"</string>
+  <string name="msg_1cd169ed0542" formatted="false">"تم حجب %1$s تدخل"</string>
+  <string name="msg_0056af6aa02d" formatted="false">"عرض سجل هذا التبويب"</string>
+  <string name="msg_6b0eef6c43e6" formatted="false">"التفضيلات والبيانات"</string>
+  <string name="msg_e7ed17309495" formatted="false">"المظهر، التصفح وإعدادات الذكاء الاصطناعي"</string>
+  <string name="msg_28f9da8f03eb" formatted="false">"متصفح ChengJing %1$s"</string>
+  <string name="msg_b70682d027ce" formatted="false">"المظهر"</string>
+  <string name="msg_b4f5be24078a" formatted="false">"التصفح"</string>
+  <string name="msg_1cba5bfa6f7a" formatted="false">"افتح الصفحة أولاً ثم شارك الرابط"</string>
+  <string name="msg_9e2276893fae" formatted="false">"هذا الجهاز لا يمكنه فتح لوحة المشاركة النظامية"</string>
+  <string name="msg_5e1b8f022826" formatted="false">"النظام غير قادر مؤقتًا على مشاركة هذه الصفحة"</string>
+  <string name="msg_beed38829f24" formatted="false">"لا يمكن بدء تنزيل الصورة في هذه الشاشة"</string>
+  <string name="msg_b7d4526756b3" formatted="false">"فتح في تبويب جديد"</string>
+  <string name="msg_d55104374e08" formatted="false">"نسخ الرابط"</string>
+  <string name="msg_e9b3cec96921" formatted="false">"الرابط"</string>
+  <string name="msg_e4a47c1dba73" formatted="false">"فتح الصورة في تبويب جديد"</string>
+  <string name="msg_3b0e45edcfb7" formatted="false">"معاينة الصورة"</string>
+  <string name="msg_720b7e9d72fa" formatted="false">"نسخ الصورة"</string>
+  <string name="msg_b3436480e1ad" formatted="false">"تنزيل الصورة"</string>
+  <string name="msg_75136c12a08a" formatted="false">"تعذر الحصول على عنوان URL للصورة، يرجى الضغط المطول على الصورة مرة أخرى"</string>
+  <string name="msg_3c028eeb1e92" formatted="false">"نسخ رابط الصورة"</string>
+  <string name="msg_559552ccc661" formatted="false">"رابط الصورة"</string>
+  <string name="msg_17d52a476d32" formatted="false">"تم النسخ %1$s"</string>
+  <string name="msg_8f95e70a3afe" formatted="false">"تم السماح بإذن التخزين، يرجى اختيار الملف الذي تريد تنزيله مرة أخرى"</string>
+  <string name="msg_ae8e0f51f1c5" formatted="false">"تم تغيير صفحة المصدر، يرجى إعادة التنزيل"</string>
+  <string name="msg_167523d3b80d" formatted="false">"هناك ملفان مؤقتان جاري تنزيلهما، يرجى المحاولة لاحقًا"</string>
+  <string name="msg_57d25840bf76" formatted="false">"جارٍ تنزيل ملف الويب، يمكنك متابعة التقدم أو الإلغاء في \"التنزيلات\"؛ يرجى الاحتفاظ بصفحة المصدر"</string>
+  <string name="msg_5f464f616c9a" formatted="false">"تم تغيير صفحة المصدر، تم إيقاف التنزيل"</string>
+  <string name="msg_13491974a87a" formatted="false">"تم التنزيل إلى Downloads/ChengJing، يمكنك الفتح من \"التنزيلات\""</string>
+  <string name="msg_e4726e5fe1e3" formatted="false">"انتهى وقت تحميل الملف المؤقت، يرجى الاحتفاظ بصفحة المصدر وإعادة التنزيل"</string>
+  <string name="msg_639f890d3c20" formatted="false">"تم الإلغاء؛ لم يتم الاحتفاظ بالملفات غير المكتملة"</string>
+  <string name="msg_5dfa3c652a61" formatted="false">"لم يكتمل التنزيل، يرجى التحقق من مساحة التخزين والمحاولة مرة أخرى"</string>
+  <string name="msg_e9038135c8dd" formatted="false">"تم إغلاق أو إعادة تحميل صفحة المصدر، تم إيقاف التنزيل؛ لم يتم الاحتفاظ بالملفات غير المكتملة"</string>
+  <string name="msg_1cf2c46210c9" formatted="false">"أدخل المحتوى"</string>
+  <string name="msg_b187dd0c2f23" formatted="false">"إغلاق قائمة الضغط المطول"</string>
+  <string name="msg_1e7ffc2ced5b" formatted="false">"يرجى تحديث Android System WebView أولاً، ثم حذف ملفات تعريف الارتباط وبيانات الموقع."</string>
+  <string name="msg_7877a2c231c9" formatted="false">"تعذر حفظ تغيير التبويب"</string>
+  <string name="msg_4c3a35f40a7e" formatted="false">"لم يتم الانتهاء من تنظيف لقطة التبويب بعد"</string>
+  <string name="msg_a39c04ab86b5" formatted="false">"تم حذف بيانات التصفح المحددة؛ تم مسح جميع ملفات تعريف الارتباط، التخزين المؤقت وبيانات الموقع"</string>
+  <string name="msg_fdf0acc4c115" formatted="false">"تم حذف بيانات التصفح المحددة لـ %1$s"</string>
+  <string name="msg_6b6bc81cccc7" formatted="false">"لم يتم تأكيد اكتمال تنظيف بيانات الموقع. يرجى المحاولة لاحقًا أو إغلاق التطبيق وإعادة فتحه."</string>
+  <string name="msg_f795969c320e" formatted="false">"لم يكتمل الحذف، قد تكون بعض البيانات قد حُذفت. يرجى المحاولة مرة أخرى أو إغلاق التطبيق وإعادة فتحه."</string>
+  <string name="msg_6846f5758df9" formatted="false">"آخر 15 دقيقة"</string>
+  <string name="msg_789842abff7d" formatted="false">"موارد الموقع"</string>
+  <string name="msg_cb0227da0af8" formatted="false">"واجهت هذه الصفحة مشكلة في الشهادة، ولا يمكن التحقق من هوية الاتصال. عند عدم تفعيل استثناءات الموقع، يتم حظر الاتصالات غير الآمنة.\n"</string>
+  <string name="msg_f215d1bff15a" formatted="false">"لم يتم فتح الموقع بعد"</string>
+  <string name="msg_ee33611e6daa" formatted="false">"الاتصال مشفر حالياً عبر HTTPS."</string>
+  <string name="msg_c6905e1adffd" formatted="false">"الاتصال عبر HTTP غير مشفر، ولا توجد شهادة موقع يمكن التحقق منها."</string>
+  <string name="msg_87178db80ada" formatted="false">"افتح الموقع أولاً لعرض معلومات الاتصال."</string>
+  <string name="msg_3e26c53efe37" formatted="false">"الموقع الحالي"</string>
+  <string name="msg_9c5784103466" formatted="false">"مصادر أخرى مستخدمة في الصفحة"</string>
+  <string name="msg_a1c2a2e33727" formatted="false">"السماح باستثناء الشهادة"</string>
+  <string name="msg_e5cf1ccb2b44" formatted="false">"مفعل؛ سيظل محفوظًا بعد إعادة التشغيل"</string>
+  <string name="msg_2307cd3ce0fd" formatted="false">"معطل افتراضيًا، إيقاف الاتصال عند فشل التحقق"</string>
+  <string name="msg_01c30bea5f57" formatted="false">"يطبق فقط على اسم مضيف HTTPS هذا (بما في ذلك منافذه المختلفة)، ولا يشمل النطاقات الفرعية أو المصادر الخارجية الأخرى. سيظل محفوظًا حتى تقوم بإيقافه."</string>
+  <string name="msg_f31de5ba2b03" formatted="false">"استثناء الشهادة يقلل من ضمان التحقق من هوية الموقع؛ ولا يصلح مشكلة عدم قدرة الخادم على إنشاء اتصال مشفر."</string>
+  <string name="msg_3a6a1d3ef14e" formatted="false">"هل تسمح باستثناء شهادة هذا الموقع؟"</string>
+  <string name="msg_41a1ffa83399" formatted="false">"%1$s\n\nسيتم الاحتفاظ بهذا الإعداد بشكل دائم حتى تقوم بإيقافه. قد يتم تحميل الموقع حتى لو كانت شهادة الموقع منتهية الصلاحية أو الهوية غير قابلة للتحقق؛ قد يتمكن أطراف غير متوقعة من الوصول إلى معلومات تسجيل الدخول والمحتوى المدخل. يرجى تفعيل هذا فقط إذا كنت تفهم وتقبل المخاطر."</string>
+  <string name="msg_d848bdedee10" formatted="false">"أنا أفهم، اسمح لهذا الموقع"</string>
+  <string name="msg_c58f37d7a445" formatted="false">"الحفاظ على التحقق"</string>
+  <string name="msg_dff17a885a0a" formatted="false">"تنسيق الملف المضمّن غير صحيح"</string>
+  <string name="msg_e9071d9f9b1a" formatted="false">"رابط الملف المضمّن غير صحيح"</string>
+  <string name="msg_a5fc04346035" formatted="false">"رابط بيانات مضمّنة كبير جدًا، يرجى استخدام رابط تنزيل الملف من الموقع"</string>
+  <string name="msg_5c9b07483f0c" formatted="false">"ترميز الملف المضمّن غير مكتمل"</string>
+  <string name="msg_c74489c545f7" formatted="false">"ترميز الملف المضمّن غير صحيح"</string>
+  <string name="msg_f2f22406c73c" formatted="false">"نطاق الوقت"</string>
+  <string name="msg_2a8cf901b0de" formatted="false">"%1$s صفحة، %2$s سجل بحث"</string>
+  <string name="msg_8394223e0a97" formatted="false">"التبويبات المفتوحة حاليًا"</string>
+  <string name="msg_18cfaeb0a53a" formatted="false">"%1$s تبويب عادي · مغلق حسب آخر وقت تصفح"</string>
+  <string name="msg_1f86b4081196" formatted="false">"ملفات تعريف الارتباط، التخزين المؤقت وبيانات الموقع"</string>
+  <string name="msg_c44aefb98491" formatted="false">"مسح كامل بدون تحديد وقت، قد يؤدي إلى تسجيل خروج من المواقع"</string>
+  <string name="msg_dceb1d80c179" formatted="false">"يرجى تحديث Android System WebView أولاً للحذف"</string>
+  <string name="msg_ab54697044d0" formatted="false">"نطاق الوقت ينطبق على سجل التصفح والتبويبات. ملفات تعريف الارتباط، التخزين المؤقت وبيانات الموقع يمكن حذفها كاملة فقط."</string>
+  <string name="msg_e3b65ee64f32" formatted="false">"البيانات القديمة التي لا تحتوي على طابع زمني، يرجى اختيار \"بدون تحديد وقت\" للحذف."</string>
+  <string name="msg_fec6ddf942c8" formatted="false">"يتم الاحتفاظ بالإشارات المرجعية، المفضلات، الملفات المحملة وإعدادات SkyEye. يرجى إغلاق التبويبات الخفية لمسح بيانات التصفح الخفي."</string>
+  <string name="msg_d2a1c725f6df" formatted="false">"جارٍ الحذف…"</string>
+  <string name="msg_6b0041cf4c37" formatted="false">"حذف البيانات"</string>
+  <string name="msg_ad1459efecaa" formatted="false">"الموقع الحالي · %1$s"</string>
+  <string name="msg_9cde4de25fb1" formatted="false">"ماذا تريد أن تجرب؟ اسأل AI مباشرة"</string>
+  <string name="msg_7a3bfa84b015" formatted="false">"وصف الفكرة العامة، ليس فقط المكونات المختارة"</string>
+  <string name="msg_15dd14db5d9f" formatted="false">"تعذر قراءة المكون، يرجى إعادة التحديد"</string>
+  <string name="msg_8ddd4dc4aaf0" formatted="false">"%1$s\nيتوافق حاليًا مع %2$s مكون؛ بعد الحفظ سيتم تطبيقه على %3$s والمكونات التي تطابق هذا الهيكل في النطاقات الفرعية."</string>
+  <string name="msg_16a3beab3f94" formatted="false">"خصائص CSS للمكون"</string>
+  <string name="msg_d69d4cc47d52" formatted="false">"جافا سكريبت للمكون"</string>
+  <string name="msg_1a751a7d6071" formatted="false">"// العنصر يمثل المكون الذي يطابق القاعدة حاليًا\nelement.setAttribute(\'title\', \'تلميح القراءة الخاص بي\');"</string>
+  <string name="msg_1bb0c8626773" formatted="false">"HTML الداخلي للمكون"</string>
+  <string name="msg_f8ff75626431" formatted="false">"إضافة HTML (توضع في نهاية المكون داخليًا)"</string>
+  <string name="msg_b3ef3187ef3f" formatted="false">"&lt;p&gt;تذكير القراءة الخاص بي&lt;/p&gt;"</string>
+  <string name="msg_b8412099e607" formatted="false">"لن يتم تنفيذ السكريبتات داخل HTML %1$s؛ استخدم JavaScript للتفاعل. يمكن لـ JS قراءة الصفحة أو إرسال طلبات، يرجى تطبيق ما تفهمه فقط."</string>
+  <string name="msg_f5b7ee522a1d" formatted="false">"سيحل هذا محل المحتوى الداخلي للمكون المطابق، وقد يؤثر على التفاعلات الأصلية."</string>
+  <string name="msg_39afab2bf5bd" formatted="false">"يمكن ملء CSS/JS/HTML حسب الرغبة."</string>
+  <string name="msg_381994932dcc" formatted="false">"تم تغيير الصفحة، يرجى إعادة التحديد"</string>
+  <string name="msg_ac2471607490" formatted="false">"يرجى ملء المحتوى المراد إضافته أولاً"</string>
+  <string name="msg_5d4fe5cb5542" formatted="false">"تم الوصول إلى الحد الأقصى لتعديلات الموقع، يرجى تنظيم التعديلات المحفوظة أولاً"</string>
+  <string name="msg_9104269ef996" formatted="false">"تم الحفظ والتطبيق؛ يمكن التراجع عن آخر حفظ في إعدادات SkyEye"</string>
+  <string name="msg_2261cfdbcec7" formatted="false">"جارٍ تحميل المكون…"</string>
+  <string name="msg_d5ae259c7a80" formatted="false">"حفظ وتطبيق"</string>
+  <string name="msg_1dad1543f3e3" formatted="false">"اجعل التعديلات الأصلية أكثر ملاءمة"</string>
+  <string name="msg_76cd2d1a88a1" formatted="false">"اطلب من AI مراجعة هذا التعديل"</string>
+  <string name="msg_20fa76a6bfbe" formatted="false">"%1$s\n%2$s\nسيقرأ AI تحميل الصفحة الحالي، HTML قبل تطبيق SkyEye والمحتوى الجاري تحريره، ثم يعدل القاعدة حسب طلبك الجديد."</string>
+  <string name="msg_b654f1e4475a" formatted="false">"CSS / JS / HTML للموقع"</string>
+  <string name="msg_b243a787a694" formatted="false">"الموقع الحالي: %1$s\nيمكن تقديم اقتراحات للواجهة العامة. التحليل يعتمد على الهيكل المحدود للصفحة المفتوحة حاليًا، ولا يعني فحص جميع صفحات الموقع."</string>
+  <string name="msg_ce9392b6fc9c" formatted="false">"المكون المحدد: %1$s\nتستهدف تعديلات المكون هذا المحدد: %2$s"</string>
+  <string name="msg_5dc364ad9d00" formatted="false">"كيف تريد التعديل هذه المرة؟"</string>
+  <string name="msg_4df18c378546" formatted="false">"ما التغييرات التي تريدها لهذا الموقع؟"</string>
+  <string name="msg_5f12497b6c2b" formatted="false">"كيف تريد تعديل هذا المكون؟ ما الذي يحتاج إلى فحص؟"</string>
+  <string name="msg_53c859901fee" formatted="false">"سيقوم HTML بإزالة محتوى النموذج، والسكريبت، وخصائص الأحداث، مع توفير حد أقصى يبلغ %1$s حرفًا؛ قد يتضمن نص الصفحة، لكنه لا يشمل صفحات أخرى أو محتوى ديناميكي لاحق."</string>
+  <string name="msg_4f5d3e651cf5" formatted="false">"سيتم تطبيق CSS/HTML على المكون المحدد؛ لا يزال JavaScript يمتلك صلاحيات كود الصفحة، يرجى التحقق من نطاق التأثير الفعلي."</string>
+  <string name="msg_cef6b9a5a9c1" formatted="false">"باستخدام Gemma 4 للتحليل المحلي، لا حاجة لمفتاح API، ولن يتم إرسال هيكل الصفحة، الكود، أو المتطلبات إلى السحابة في هذا التحليل."</string>
+  <string name="msg_b45dad973407" formatted="false">"سيتم إرسال النطاق، HTML الأصلي بعد التنظيف (قد يتضمن نصوص صفحات خاصة)، هذه القاعدة المخصصة والمتطلبات الجديدة إلى OpenRouter ومزود النموذج المختار. لا يتم قراءة ملفات تعريف الارتباط أو قيم النماذج."</string>
+  <string name="msg_fbd9319f336c" formatted="false">"سيتم إرسال النطاق، هيكل المكونات المحدود، الكود المخصص المحفوظ، والمتطلبات التي أدخلتها إلى OpenRouter ومزود النموذج المختار. قد يحتوي الكود أو المشكلة على محتوى خاص، يرجى التأكد أولاً؛ لا يتم قراءة ملفات تعريف الارتباط، قيم النماذج، أو محتوى المقالات تلقائيًا."</string>
+  <string name="msg_87bc9921ff32" formatted="false">"أوافق على إرسال البيانات المذكورة أعلاه لهذا التحليل"</string>
+  <string name="msg_ce48ba00d23c" formatted="false">"اختر طريقة تنفيذ AI"</string>
+  <string name="msg_74d0e7f413c2" formatted="false">"ضبط مفتاح OpenRouter API"</string>
+  <string name="msg_42ae55f2978a" formatted="false">"تم تغيير الصفحة، يرجى إعادة تشغيل AI"</string>
+  <string name="msg_6be0d29202fe" formatted="false">"لا يمكن قراءة HTML الأصلي لهذه القاعدة. يرجى فتح الصفحة التي تحتوي على هذا المكون، وإعادة التحميل ثم المحاولة مجددًا."</string>
+  <string name="msg_fe0a15f5444f" formatted="false">"الصفحة غير جاهزة بعد، يرجى إعادة التحميل والمحاولة مجددًا"</string>
+  <string name="msg_d1127956fd88" formatted="false">"تم تغيير الصفحة، يرجى إعادة التحليل"</string>
+  <string name="msg_5563d5c45cec" formatted="false">"تم إلغاء التحليل"</string>
+  <string name="msg_be9bf64f0d89" formatted="false">"جارٍ التحليل…"</string>
+  <string name="msg_d3e4febfceff" formatted="false">"تحليل باستخدام Gemma 4"</string>
+  <string name="msg_10c558a33a0a" formatted="false">"إرسال والحصول على الاقتراحات"</string>
+  <string name="msg_a9fcfe87238e" formatted="false">"إلغاء التحليل"</string>
+  <string name="msg_e0a3643f8aa1" formatted="false">"اقتراحات AI"</string>
+  <string name="msg_f8236285164f" formatted="false">"لم يتم إنشاء أي تعديلات قابلة للتطبيق هذه المرة."</string>
+  <string name="msg_dc34ed234d2d" formatted="false">"نطاق الحفظ: %1$s والنطاقات الفرعية التابعة له. لم يتم التحقق من اقتراحات AI فعليًا على موقعك؛ يرجى مراجعة الكود والتغييرات قبل التطبيق."</string>
+  <string name="msg_6a087b05fdd4" formatted="false">"طي محتوى التعديل"</string>
+  <string name="msg_b43c7448f51e" formatted="false">"عرض محتوى التعديل الكامل"</string>
+  <string name="msg_ec874e7b427c" formatted="false">"تم تغيير الإعدادات، يرجى إعادة التحليل"</string>
+  <string name="msg_b879f4dea69c" formatted="false">"تم تطبيق اقتراحات AI؛ يمكن التراجع عن آخر حفظ في إعدادات SkyEye"</string>
+  <string name="msg_4522951c203c" formatted="false">"تحديث القاعدة الأصلية وتطبيقها"</string>
+  <string name="msg_e0f0d077bf4d" formatted="false">"تطبيق الاقتراحات بنقرة واحدة"</string>
+  <string name="msg_a8bcdc2ed6f7" formatted="false">"يمكن التراجع عن الإعداد السابق؛ لا يمكن التراجع عن الطلبات التي أرسلها البرنامج أو عمليات الموقع."</string>
+  <string name="msg_b727b2493599" formatted="false">"إعدادات هذا الموقع كثيرة، يرجى تضييقها إلى مكون واحد، أو استخدام تحليل النموذج السحابي."</string>
+  <string name="msg_e7b33daf9a2d" formatted="false">"تم الاحتفاظ بالبيانات المحلية؛ سيتم المزامنة عند فتح التطبيق مرة أخرى، أو يمكنك الضغط على \"مزامنة الآن\"."</string>
+  <string name="msg_0d3a30703357" formatted="false">"جوجل مشغول مؤقتًا"</string>
+  <string name="msg_61b008bafedd" formatted="false">"حاول مرة أخرى لاحقًا. %1$s"</string>
+  <string name="msg_9fe553752239" formatted="false">"تحتاج إلى إعادة تأكيد تفويض Google"</string>
+  <string name="msg_2a19048f4610" formatted="false">"يرجى الضغط على \"مزامنة الآن\" لإعادة تأكيد التفويض. تم الاحتفاظ بالبيانات المحلية."</string>
+  <string name="msg_b212a1bec5a1" formatted="false">"صلاحيات مزامنة Google محدودة"</string>
+  <string name="msg_bdd0b148c46c" formatted="false">"يرجى التحقق من وصول التطبيق وإعدادات المسؤول لحساب Google، ثم اضغط \"مزامنة الآن\". تم الاحتفاظ بالبيانات المحلية."</string>
+  <string name="msg_0108ca4bc750" formatted="false">"يرجى استخدام حساب Google الأصلي"</string>
+  <string name="msg_5b29df305534" formatted="false">"تم ربط بيانات المزامنة لهذا الهاتف بحساب آخر، يرجى اختيار الحساب الأصلي لتجنب خلط بيانات أشخاص آخرين."</string>
+  <string name="msg_e8cda0bcb8d9" formatted="false">"تعذر تأكيد أمان اتصال Google"</string>
+  <string name="msg_84e4b5bb6ec9" formatted="false">"يرجى التحقق من تاريخ ووقت الهاتف وإعدادات الشبكة ثم المحاولة مجددًا. تم الاحتفاظ بالبيانات المحلية."</string>
+  <string name="msg_e813605409d0" formatted="false">"الاتصال بطيء، لم تكتمل المزامنة بعد"</string>
+  <string name="msg_328257927000" formatted="false">"المزامنة غير مكتملة"</string>
+  <string name="msg_f0ef4b5b4105" formatted="false">"لم يتم تأكيد بيانات السحابة بعد، تم الاحتفاظ بالبيانات المحلية. يرجى المحاولة لاحقًا؛ إذا استمر الأمر، يرجى الاتصال بالدعم."</string>
+  <string name="msg_e19c932091a7" formatted="false">"لا يمكن العثور على الإصدار الرسمي مؤقتًا، يرجى المحاولة لاحقًا."</string>
+  <string name="msg_85284e05ae9e" formatted="false">"محرك التصفح"</string>
+  <string name="msg_08a4dcb36197" formatted="false">"حاليًا Chromium"</string>
+  <string name="msg_870241d98eb8" formatted="false">"أحدث إصدار رسمي"</string>
+  <string name="msg_b8bf2f806c91" formatted="false">"جارٍ البحث…"</string>
+  <string name="msg_fb27d9cf6a63" formatted="false">"لا توجد بيانات مؤقتًا"</string>
+  <string name="msg_8b9b22849066" formatted="false">"لم يتم البحث بعد"</string>
+  <string name="msg_1fe80e799fd9" formatted="false">"مقدم حاليًا من %1$s؛ مقارنة بالإصدار الرسمي %2$s الذي نشرته Google."</string>
+  <string name="msg_e5d3e9548003" formatted="false">"الإصدار الحالي لا يمكن مقارنته مباشرة"</string>
+  <string name="msg_72b9cc4cb174" formatted="false">"الإصدار الرسمي أحدث، يمكن التحقق من تحديث المحرك"</string>
+  <string name="msg_de1fbbd2f6c0" formatted="false">"المحرك الحالي مطابق للإصدار الرسمي"</string>
+  <string name="msg_9b349d42dab8" formatted="false">"إصدار المحرك الحالي أحدث"</string>
+  <string name="msg_a616b4a608fc" formatted="false">"وقت الاستعلام: %1$s"</string>
+  <string name="msg_43f5b26eb0ca" formatted="false">"الاحتفاظ بالنتيجة السابقة · "</string>
+  <string name="msg_4f521b4e22a0" formatted="false">"جارٍ البحث…"</string>
+  <string name="msg_73d3eac9c403" formatted="false">"إعادة فحص الإصدار"</string>
+  <string name="msg_ff0bbcba22df" formatted="false">"تعذر فتح صفحة التحديث، يرجى التحقق من WebView في إعدادات النظام."</string>
+  <string name="msg_243aeef7919a" formatted="false">"فتح صفحة تحديث المحرك"</string>
+  <string name="msg_eb5b5c578249" formatted="false">"يتم توفير التحديث من النظام أو المتجر، وقد يتم طرحه تدريجيًا."</string>
+  <string name="msg_8e57db190d94" formatted="false">"لم تقدم الجهة الرسمية بيانات الإصدار بعد"</string>
+  <string name="msg_df93d17ea7a2" formatted="false">"تنسيق بيانات الإصدار الرسمي غير صحيح"</string>
+  <string name="msg_b4a2d538390f" formatted="false">"نظام WebView"</string>
+  <string name="msg_b7d90d419331" formatted="false">"تعذر القراءة"</string>
+  <string name="msg_737d4fde158c" formatted="false">"تعذر الاتصال مؤقتًا للاستعلام عن الإصدار الرسمي"</string>
+  <string name="msg_6090d27dccad" formatted="false">"لم ترجع الجهة الرسمية بيانات الإصدار"</string>
+  <string name="msg_3bbd188b2227" formatted="false">"بيانات الإصدار كبيرة جدًا"</string>
+  <string name="msg_f3ac0161d2ad" formatted="false">"فشل حفظ معلومات الإصدار"</string>
+  <string name="msg_cb4875469aaa" formatted="false">"لا يمكن العثور على تطبيق لفتح هذا الرابط، يرجى التأكد من تثبيت التطبيق المناسب"</string>
+  <string name="msg_34b996e6bd60" formatted="false">"فتح في تطبيق آخر؟"</string>
+  <string name="msg_140169f1183b" formatted="false">"ستغادر التصفح الخفي في ChengJing. قد يحتفظ التطبيق الآخر بهذا الرابط وسجل الاستخدام."</string>
+  <string name="msg_f290f9167ad0" formatted="false">"فتح"</string>
+  <string name="msg_0db216962632" formatted="false">"تنسيق عنوان الحفظ غير صحيح"</string>
+  <string name="msg_62b58243569c" formatted="false">"تنسيق معرف الحفظ غير صحيح"</string>
+  <string name="msg_c78ccd6760d5" formatted="false">"تنسيق وقت الحفظ غير صحيح"</string>
+  <string name="msg_c70c31fb7a5a" formatted="false">"وقت الحفظ خارج النطاق"</string>
+  <string name="msg_71a221e87e34" formatted="false">"بيانات مزامنة الحفظ كثيرة جداً، تم الاحتفاظ بالمحتوى المحلي"</string>
+  <string name="msg_055d4e4e6b83" formatted="false">"بيانات مزامنة الحفظ تتجاوز الحد الأقصى للحجم"</string>
+  <string name="msg_220275e1f7de" formatted="false">"تنسيق مزامنة الحفظ هذا يتطلب تحديث التطبيق للقراءة"</string>
+  <string name="msg_a0eee4ccb58d" formatted="false">"فشل حفظ الحفظ"</string>
+  <string name="msg_f4597bc5a2c9" formatted="false">"جارٍ البحث"</string>
+  <string name="msg_8d71eb661bb2" formatted="false">"غير موجود"</string>
+  <string name="msg_1599a1be38ac" formatted="false">"يرجى إدخال النص للبحث"</string>
+  <string name="msg_28010afeecd8" formatted="false">"جارٍ البحث في الصفحة"</string>
+  <string name="msg_5c1ebaf7a70b" formatted="false">"لا يوجد نص مطابق"</string>
+  <string name="msg_b9242dd83c2a" formatted="false">"العنصر %1$s من %2$s"</string>
+  <string name="msg_d1989441806e" formatted="false">"افتح الصفحة أولاً ثم ابحث عن النص"</string>
+  <string name="msg_c570255d2708" formatted="false">"يرجى الخروج من SkyEye أولاً ثم البحث في الصفحة"</string>
+  <string name="msg_f782a6845afa" formatted="false">"النص المطابق السابق"</string>
+  <string name="msg_f4e245ba6df0" formatted="false">"النص المطابق التالي"</string>
+  <string name="msg_f41b8847f832" formatted="false">"إغلاق بحث الصفحة"</string>
+  <string name="msg_d51c2c4b68a5" formatted="false">"Gemma 4 E2B جاهز"</string>
+  <string name="msg_a3fa6a7c4ade" formatted="false">"لم يتم تنزيل النموذج المحلي بعد"</string>
+  <string name="msg_191155f69eeb" formatted="false">"النموذج المحلي يتطلب جهاز 64 بت"</string>
+  <string name="msg_301286dd890b" formatted="false">"المساحة غير كافية، يرجى توفير حوالي 3 جيجابايت من مساحة التخزين المتاحة"</string>
+  <string name="msg_47c372fa46d0" formatted="false">"نموذج ChengJing · Gemma 4 المحلي"</string>
+  <string name="msg_fbf4a411952a" formatted="false">"التنزيل حوالي 2.59 جيجابايت؛ سيتم التحقق من سلامة النموذج بعد الانتهاء"</string>
+  <string name="msg_a73e367bf7e5" formatted="false">"مهمة التنزيل لم تعد موجودة، يرجى إعادة التنزيل"</string>
+  <string name="msg_24d557606dbb" formatted="false">"جارٍ التحقق من سلامة النموذج…"</string>
+  <string name="msg_d46682705f49" formatted="false">"فشل تنزيل النموذج (%1$s)، يرجى إعادة التنزيل"</string>
+  <string name="msg_4d3cc3455aba" formatted="false">"تم إيقاف التنزيل مؤقتاً؛ يرجى التحقق من Wi-Fi أو الشبكة أو مساحة التخزين"</string>
+  <string name="msg_4b01fe99a31d" formatted="false">"جارٍ تنزيل Gemma 4 · %1$s%%"</string>
+  <string name="msg_119f097a0356" formatted="false">"لم يكتمل التنزيل بعد"</string>
+  <string name="msg_b919f9f006b6" formatted="false">"فشل فحص سلامة النموذج، يرجى الحذف وإعادة التنزيل"</string>
+  <string name="msg_2b11bfcde893" formatted="false">"يرجى تنزيل نموذج Gemma 4 المحلي أولاً"</string>
+  <string name="msg_6f5224f357d7" formatted="false">"الذاكرة المتاحة غير كافية حالياً، يرجى إغلاق بعض علامات التبويب أو التطبيقات الأخرى قبل استخدام النموذج المحلي."</string>
+  <string name="msg_305f7b160fa8" formatted="false">"رد النموذج طويل جداً، يرجى تقليل نطاق السؤال"</string>
+  <string name="msg_70ba6da30f88" formatted="false">"طريقة تشغيل الذكاء الاصطناعي"</string>
+  <string name="msg_5e770f2435f5" formatted="false">"Gemma 4 · محلي على الهاتف"</string>
+  <string name="msg_c8f05005fd37" formatted="false">"OpenRouter · نموذج سحابي"</string>
+  <string name="msg_7397e02a13de" formatted="false">"الوضع المحلي لا يحتاج مفتاح API؛ الوضع السحابي يتيح اختيار النموذج من مزود الخدمة."</string>
+  <string name="msg_770c4bcb536a" formatted="false">"يحتاج التنزيل الأولي إلى حوالي 2.59 جيجابايت من النموذج، مع توفير حوالي 3 جيجابايت مساحة تخزين. يتطلب جهاز 64 بت، ويفضل ذاكرة 6 جيجابايت على الأقل؛ يستخدم طاقة الهاتف أثناء التحليل. بعد التنزيل، تبقى بيانات التحليل محلياً."</string>
+  <string name="msg_0e9aa6d873a0" formatted="false">"إلغاء تنزيل النموذج"</string>
+  <string name="msg_d2cbf779f4a2" formatted="false">"تم التحقق من سلامة النموذج، يمكن استخدامه دون اتصال."</string>
+  <string name="msg_1300b82064c4" formatted="false">"إزالة النموذج لتحرير المساحة"</string>
+  <string name="msg_28b9d535ae3d" formatted="false">"السماح بالتنزيل عبر شبكة الهاتف المحمول"</string>
+  <string name="msg_fe9c98caa8a4" formatted="false">"تنزيل نموذج Gemma 4 المحلي"</string>
+  <string name="msg_4d8ae165e6e6" formatted="false">"هذا الجهاز لا يدعم الاستدلال المحلي، يمكن اختيار OpenRouter."</string>
+  <string name="msg_6cbc25f77915" formatted="false">"النموذج: Google Gemma 4، Apache 2.0. تم تنزيل ملف النموذج من رابط مستندات Google لمجتمع LiteRT."</string>
+  <string name="msg_0cc2d828db73" formatted="false">"يرجى إدخال عنوان HTTP أو HTTPS صالح"</string>
+  <string name="msg_1e32449f1b19" formatted="false">"لم يكتمل الحفظ، يرجى المحاولة لاحقاً"</string>
+  <string name="msg_c907f8be4cbf" formatted="false">"إعدادات الصفحة الرئيسية"</string>
+  <string name="msg_d03a088f3260" formatted="false">"عرض زر الصفحة الرئيسية"</string>
+  <string name="msg_7ada4cb90804" formatted="false">"وضعه أمام شريط العناوين"</string>
+  <string name="msg_75f48b05acb2" formatted="false">"فشل حفظ إعدادات الصفحة الرئيسية"</string>
+  <string name="msg_45285b97fd2f" formatted="false">"عنوان مخصص"</string>
+  <string name="msg_d7b21d1b7ecc" formatted="false">"عنوان الصفحة الرئيسية"</string>
+  <string name="msg_2a4c3223c02b" formatted="false">"تم الحفظ"</string>
+  <string name="msg_0edd4290c301" formatted="false">"حفظ الصفحة الرئيسية"</string>
+  <string name="msg_c6cc299c6086" formatted="false">"يجب تأكيد التصدير أولاً للمعاينة الخفية"</string>
+  <string name="msg_8623a1f0e320" formatted="false">"الصورة تتجاوز 32 ميجابايت، يرجى التنزيل من الموقع الأصلي"</string>
+  <string name="msg_c3e2e856f163" formatted="false">"تم إغلاق جلسة التصفح الخفي"</string>
+  <string name="msg_6f977695a0b4" formatted="false">"المحتوى المستلم ليس صورة مدعومة، لم يتم حفظ الملف"</string>
+  <string name="msg_5f8355918e25" formatted="false">"فشل تخزين الصورة مؤقتاً"</string>
+  <string name="msg_e9ab41c49001" formatted="false">"رابط الصورة غير صالح"</string>
+  <string name="msg_4926037b836c" formatted="false">"إعادة توجيه الصورة غير صالحة"</string>
+  <string name="msg_68887ba4cb54" formatted="false">"فشل تنزيل الصورة (HTTP %1$s)، لم يتم حفظ الملف"</string>
+  <string name="msg_cb900a4bca66" formatted="false">"الصورة لا تحتوي على محتوى"</string>
+  <string name="msg_cc6f13303851" formatted="false">"عدد تحويلات الصورة كبير جدًا، لم يتم حفظ الملف"</string>
+  <string name="msg_b5dacb71c9aa" formatted="false">"الصورة تتجاوز 32 ميغابايت"</string>
+  <string name="msg_76d26aa8c33e" formatted="false">"انتهت صلاحية ذاكرة التخزين المؤقت للصورة، يرجى العودة إلى الصفحة الأصلية وإعادة الفتح"</string>
+  <string name="msg_18ff1017a7e0" formatted="false">"إغلاق معاينة الصورة"</string>
+  <string name="msg_b14f4f9c10dc" formatted="false">"%1$s × %2$s · %3$s · تكبير بإصبعين، انقر مزدوج للتكبير"</string>
+  <string name="msg_c660e164fa68" formatted="false">"هذه صفحة صور مؤقتة للويب، لن تبقى بعد إعادة فتح التطبيق. إذا كنت تريد الاحتفاظ بها، يرجى التنزيل."</string>
+  <string name="msg_9ef754f8e3fd" formatted="false">"الصورة، يمكن التكبير والسحب بإصبعين"</string>
+  <string name="msg_d5aecc70e422" formatted="false">"العودة للخلف"</string>
+  <string name="msg_607089b311be" formatted="false">"غير مصنف"</string>
+  <string name="msg_e371aca7156b" formatted="false">"استيراد إشارات Chrome"</string>
+  <string name="msg_901fcc465532" formatted="false">"إغلاق المفضلة"</string>
+  <string name="msg_714be9fccc36" formatted="false">"إغلاق الإشارات"</string>
+  <string name="msg_d1e037d6f243" formatted="false">"%1$s عنصر"</string>
+  <string name="msg_b4016776e423" formatted="false">"%1$s إشارة مرجعية"</string>
+  <string name="msg_6200fe0b2272" formatted="false">"بحث في المفضلات"</string>
+  <string name="msg_f9f0c177bd9a" formatted="false">"البحث في جميع الإشارات والمجلدات"</string>
+  <string name="msg_0c2d1a3aeaff" formatted="false">"مسح البحث"</string>
+  <string name="msg_4220592340ad" formatted="false">"تمت الإضافة إلى المفضلة"</string>
+  <string name="msg_2aedd851c6ea" formatted="false">"تم تحديث تقدم المفضلة"</string>
+  <string name="msg_e49810bb4ecf" formatted="false">"تحديث تقدم هذه المفضلة"</string>
+  <string name="msg_fcedb76bd215" formatted="false">"تم حفظ نسخة أخرى من المفضلة"</string>
+  <string name="msg_74894a77754e" formatted="false">"إضافة نسخة جديدة"</string>
+  <string name="msg_af1f0a81d5e6" formatted="false">"تذكر عنوان الفصل وموقع القراءة، محفوظ على هذا الهاتف."</string>
+  <string name="msg_6d9532de6549" formatted="false">"لا توجد مفضلات بعد"</string>
+  <string name="msg_9c88b8194478" formatted="false">"لم يتم العثور على مفضلات مطابقة"</string>
+  <string name="msg_8c9ca0c6c1a7" formatted="false">"يمكن حفظ المفضلات من القائمة أثناء القراءة دون اختيار مجلد."</string>
+  <string name="msg_299775d315e8" formatted="false">"جرب اسمًا أو عنوان URL مختلفًا."</string>
+  <string name="msg_703e48693dc4" formatted="false">"%1$s · هذه الصفحة %2$s%%"</string>
+  <string name="msg_f8e14a0fde6e" formatted="false">"إعادة تسمية المفضلة %1$s"</string>
+  <string name="msg_27e77e5a18e0" formatted="false">"حذف المفضلة %1$s"</string>
+  <string name="msg_c8e5535d82eb" formatted="false">"الإشارات › "</string>
+  <string name="msg_672959cfc33b" formatted="false">"لم يتم العثور على إشارات مطابقة"</string>
+  <string name="msg_b682d0e78eab" formatted="false">"لا توجد إشارات هنا بعد"</string>
+  <string name="msg_076e5d656ed2" formatted="false">"البحث يشمل جميع المجلدات."</string>
+  <string name="msg_a581a0c5331f" formatted="false">"يمكن استيراد إشارات Chrome من الزاوية العلوية اليمنى."</string>
+  <string name="msg_11ae55de6d31" formatted="false">"تحرير الإشارة %1$s"</string>
+  <string name="msg_769359dc3c3e" formatted="false">"حذف الإشارة %1$s"</string>
+  <string name="msg_8fe34ed575cd" formatted="false">"تمت الإضافة إلى هذا المجلد"</string>
+  <string name="msg_8793a7ffa47a" formatted="false">"هذا المجلد يحتوي بالفعل على هذه الإشارة"</string>
+  <string name="msg_6cd6b2d898cc" formatted="false">"إضافة الصفحة الحالية"</string>
+  <string name="msg_c631952bb114" formatted="false">"تصدير"</string>
+  <string name="msg_27001df08520" formatted="false">"تحرير الإشارات"</string>
+  <string name="msg_1b98d866b7c9" formatted="false">"تسمية المفضلة"</string>
+  <string name="msg_a5274f381305" formatted="false">"الاسم"</string>
+  <string name="msg_c09d6f8a398c" formatted="false">"عنوان URL"</string>
+  <string name="msg_aabc6623539f" formatted="false">"المجلد"</string>
+  <string name="msg_a2c701b369be" formatted="false">"قراءة / تقنية"</string>
+  <string name="msg_b631887c06ef" formatted="false">"استخدم \" / \" للفصل بين مستويات المجلدات"</string>
+  <string name="msg_978626066ea1" formatted="false">"فشل الحفظ، يرجى المحاولة مرة أخرى"</string>
+  <string name="msg_dba44ed3f54f" formatted="false">"حفظ"</string>
+  <string name="msg_9c9624b64441" formatted="false">"تحديد الموقع على الموقع"</string>
+  <string name="msg_88c8eedbe2ec" formatted="false">"مكون الويب على الهاتف لا يدعم التحديد المباشر، يرجى تحديث Android System WebView."</string>
+  <string name="msg_68f8f532449b" formatted="false">"تفويض التصفح الخفي يبقى فقط حتى إغلاق جميع علامات التصفح الخفي."</string>
+  <string name="msg_db3dea807cf5" formatted="false">"ينطبق فقط على هذا الموقع؛ المواقع الأخرى تحتاج إلى تفويض منفصل."</string>
+  <string name="msg_5eb5c24ef2b0" formatted="false">"سيتم إعادة تحميل هذا الموقع بعد التغيير، وسيتم إيقاف طلب التحديد السابق فورًا."</string>
+  <string name="msg_d47077aa2c28" formatted="false">"أذونات تحديد الموقع على الهاتف"</string>
+  <string name="msg_357f6ad5cd3b" formatted="false">"إعدادات خدمة تحديد الموقع على الهاتف"</string>
+  <string name="msg_824602facd05" formatted="false">"تعذر فتح ملف الإشارات"</string>
+  <string name="msg_0aae4ed21a92" formatted="false">"ملف الإشارات يتجاوز 8 ميغابايت، يرجى الاستيراد على دفعات"</string>
+  <string name="msg_7193e8524414" formatted="false">"لم يتم العثور على إشارات HTTP / HTTPS في الملف"</string>
+  <string name="msg_01fd7b112086" formatted="false">"استيراد %1$s إشارة؟"</string>
+  <string name="msg_d11135ca0ab4" formatted="false">"سيتم الاحتفاظ بالمجلدات؛ لن يتم تكرار الإشارات الموجودة."</string>
+  <string name="msg_20809c5d8596" formatted="false">"استيراد"</string>
+  <string name="msg_ef3ade3905f2" formatted="false">"تم استيراد %1$s إشارة"</string>
+  <string name="msg_3778200c90e5" formatted="false">"تم استيراد هذه الإشارات بالفعل، لن يتم تكرارها"</string>
+  <string name="msg_f7fbddb4f56e" formatted="false">"الاستيراد لم يكتمل، يرجى المحاولة لاحقًا"</string>
+  <string name="msg_06da96fbc1c9" formatted="false">"الاستيراد لم يكتمل"</string>
+  <string name="msg_90b894bfd26f" formatted="false">"تعذر كتابة الملف"</string>
+  <string name="msg_7377414b1f6d" formatted="false">"تم تصدير الإشارات"</string>
+  <string name="msg_fef661198324" formatted="false">"فشل تصدير الإشارات"</string>
+  <string name="msg_b3adc3b24fd6" formatted="false">"تم إلغاء المعاينة غير المحفوظة"</string>
+  <string name="msg_79606cdda212" formatted="false">"تصفح خاص"</string>
+  <string name="msg_c37a45eae0ca" formatted="false">"%1$s قواعد · غير محفوظة"</string>
+  <string name="msg_8d44a1395388" formatted="false">"تم تفعيل SkyEye · انقر على مكونات الموقع"</string>
+  <string name="msg_315a88f3155e" formatted="false">"الخروج من SkyEye"</string>
+  <string name="msg_b28cb43f9599" formatted="false">"في الاستثناء · الموقع الأصلي"</string>
+  <string name="msg_c550069b0749" formatted="false">"استعادة القواعد"</string>
+  <string name="msg_60db4174fe1b" formatted="false">"لا يمكن الاتصال بالموقع حالياً"</string>
+  <string name="msg_70dd895b66db" formatted="false">"إعادة التحميل"</string>
+  <string name="msg_ed51242141b1" formatted="false">"اختياراتك تبقى على هاتفك."</string>
+  <string name="msg_f1c970051cf5" formatted="false">"لم يتم حفظ أي قواعد نطاق بعد."</string>
+  <string name="msg_baeab929c3dd" formatted="false">"انقر للتعديل · تعديل %1$s مكونات"</string>
+  <string name="msg_a37dc280e3d8" formatted="false">"هذه الصفحة تحتوي على %1$s مرات، مع الاحتفاظ بآخر 30 سجلًا."</string>
+  <string name="msg_b3471f8f134f" formatted="false">"افتح هذا الرابط بنفسك"</string>
+  <string name="msg_d48d785df0f0" formatted="false">"تابع اختيار المكونات"</string>
+  <string name="msg_6579f0f4fbf3" formatted="false">"افتح SkyEye · اختر مكونات"</string>
+  <string name="msg_6595fa6d2a4f" formatted="false">"تراجع عن السابق"</string>
+  <string name="msg_cd2a4fc27eef" formatted="false">"حفظ القواعد"</string>
+  <string name="msg_bb52909d1d93" formatted="false">"المكونات والرموز"</string>
+  <string name="msg_35eeaf58d612" formatted="false">"عرض المكونات العائمة والمخفية والمضمنة"</string>
+  <string name="msg_a4d95a4ce539" formatted="false">"تعديلات الموقع المحفوظة"</string>
+  <string name="msg_0590277f2647" formatted="false">"انقر على القاعدة للاستمرار في التعديل أو طلب تعديل من AI"</string>
+  <string name="msg_1db1bf486d98" formatted="false">"سلوك الموقع"</string>
+  <string name="msg_830509b36cfe" formatted="false">"منع التحويلات والنوافذ المنبثقة"</string>
+  <string name="msg_6114c2b64ad4" formatted="false">"يمكن إيقافه إذا تأثر تسجيل الدخول."</string>
+  <string name="msg_7007cf22f796" formatted="false">"تم حفظ إعدادات حماية النطاق"</string>
+  <string name="msg_63ba28a2e7b0" formatted="false">"أوقف إعدادات هذا النطاق مؤقتًا حتى إغلاق التطبيق."</string>
+  <string name="msg_e2ddf71b1142" formatted="false">"استعادة آخر حفظ"</string>
+  <string name="msg_97efebc05b15" formatted="false">"المكونات المختارة · %1$s"</string>
+  <string name="msg_f36fed06504d" formatted="false">"%1$s × %2$s · هذا المحدد يطابق حالياً %3$s مكونات"</string>
+  <string name="msg_bf8f470b6f54" formatted="false">"يمكن تعديل إطار الصفحة المضمنة؛ لا يمكن الوصول إلى المحتوى الداخلي عبر مصادر مختلفة هنا."</string>
+  <string name="msg_2bc121aa5664" formatted="false">"كيف تريد تعديل هذا المكون؟"</string>
+  <string name="msg_d1d6117a0915" formatted="false">"أضف CSS / JS / HTML مخصص"</string>
+  <string name="msg_6791c9f39720" formatted="false">"أضف أنماطًا أو تفاعلات أو محتوى صفحة"</string>
+  <string name="msg_704bb9551f08" formatted="false">"إزالة مكون الموقع هذا"</string>
+  <string name="msg_cfe9a42f67d5" formatted="false">"عاين أولاً، ثم اختر الحفظ من عدمه"</string>
+  <string name="msg_5bc8760e7c08" formatted="false">"عدل هذا الرمز"</string>
+  <string name="msg_eb10b6a32675" formatted="false">"حرر HTML داخل المكون"</string>
+  <string name="msg_31d97b13527a" formatted="false">"هل هذا التعديل صحيح؟ اطلب من AI التحقق"</string>
+  <string name="msg_ce96b28b44db" formatted="false">"اقتراح تعديل للمكونات المختارة فقط"</string>
+  <string name="msg_2c0eb0d16c95" formatted="false">"اختر الطبقة الخارجية"</string>
+  <string name="msg_2b0197cc2a08" formatted="false">"اختر مكونًا آخر"</string>
+  <string name="msg_76ae194967b7" formatted="false">"رموز الموقع"</string>
+  <string name="msg_b5ac67412c4e" formatted="false">"حرر المحتوى المحفوظ أو دع AI يعيد التعديل"</string>
+  <string name="msg_d10980fb5a78" formatted="false">"مكونات مخصصة"</string>
+  <string name="msg_96bf25ee29d2" formatted="false">"تحرير HTML"</string>
+  <string name="msg_96f3303604ab" formatted="false">"رموز المكونات المخصصة"</string>
+  <string name="msg_27688f7df99c" formatted="false">"المكونات المخفية"</string>
+  <string name="msg_215e19833aad" formatted="false">"استعادة %1$s"</string>
+  <string name="msg_f9aa2d52b8f2" formatted="false">"تم استعادة هذا المكون"</string>
+  <string name="msg_4d38e86915a8" formatted="false">"لا توجد تعديلات محفوظة بعد. يمكنك اختيار مكونات عبر SkyEye أو إضافة رموز موقع."</string>
+  <string name="msg_60c4ef25cb60" formatted="false">"استعادة تمرير الصفحة"</string>
+  <string name="msg_96a669b3fccc" formatted="false">"شغّل فقط إذا لم تتمكن من التمرير بعد إزالة التراكب."</string>
+  <string name="msg_c6ee9069ad36" formatted="false">"القواعد محفوظة محليًا. إذا تغير هيكل النطاق، يمكنك إعادة الاختيار أو طلب تعديل من AI."</string>
+  <string name="msg_1e9b4e76ed63" formatted="false">"يتم تطبيق الرموز على هذا النطاق والنطاقات الفرعية. يمكن لـ JavaScript قراءة الصفحة وإرسال طلبات الشبكة، لذا استخدم المحتوى الموثوق فقط. وضع الاستثناء يوقف التطبيق مؤقتًا."</string>
+  <string name="msg_b2e95f75aae0" formatted="false">"سيتم حفظ تعديلات مكونات المعاينة الحالية في SkyEye عند الحفظ."</string>
+  <string name="msg_9e1d4222ab1b" formatted="false">"أنماط CSS"</string>
+  <string name="msg_628f36411710" formatted="false">"// أضف أو عدل محتوى الصفحة؛ ينفذ مرة واحدة بعد كل تحميل"</string>
+  <string name="msg_b22612d48c02" formatted="false">"HTML مضاف للموقع (يوضع في نهاية الصفحة)"</string>
+  <string name="msg_5bec1d40904a" formatted="false">"&lt;p&gt;نصيحتي للقراءة&lt;/p&gt;"</string>
+  <string name="msg_63cf6247c550" formatted="false">"تم تغيير الصفحة، يرجى إغلاق وإعادة فتح المحرر"</string>
+  <string name="msg_213c519f9a8d" formatted="false">"تم الحفظ وإعادة التحميل"</string>
+  <string name="msg_7106b4590cce" formatted="false">"فشل الحفظ: %1$s"</string>
+  <string name="msg_817f13599962" formatted="false">"يشمل المكونات غير المرئية أصلاً. يعرض حتى 80 مكونًا عائمًا، مخفيًا ومضمنًا."</string>
+  <string name="msg_2111f387ba60" formatted="false">"لم يتم العثور على هذا النوع من المكونات؛ يمكنك اختيار مكونات عادية من الصفحة مباشرة."</string>
+  <string name="msg_167bc0947798" formatted="false">"مخفي أصلاً"</string>
+  <string name="msg_dc2e23f523ad" formatted="false">"مكونات عائمة / ثابتة"</string>
+  <string name="msg_047f31f927fe" formatted="false">"صفحة مضمنة"</string>
+  <string name="msg_e9666224fbb7" formatted="false">"السمة"</string>
+  <string name="msg_dee60aee2501" formatted="false">"فاتح"</string>
+  <string name="msg_a6b75d068032" formatted="false">"داكن"</string>
+  <string name="msg_6df543c4a401" formatted="false">"النظام"</string>
+  <string name="msg_381e6e45713f" formatted="false">"سيتغير مع النظام بناءً على إعدادات الوضع الداكن في الهاتف."</string>
+  <string name="msg_4afb08d71d8d" formatted="false">"موقع شريط العنوان"</string>
+  <string name="msg_80a24fd604b8" formatted="false">"شريط العنوان في الأعلى"</string>
+  <string name="msg_629f91b2430d" formatted="false">"شريط العنوان في الأسفل"</string>
+  <string name="msg_b8b124ce8c68" formatted="false">"شريط العنوان في الأسفل، وSkyEye وشريط التنقل في الأعلى."</string>
+  <string name="msg_1ff1261a38e8" formatted="false">"شريط العنوان في الأعلى، وSkyEye وشريط التنقل في الأسفل."</string>
+  <string name="msg_03c481a6ab85" formatted="false">"بحث"</string>
+  <string name="msg_4052ba88aa30" formatted="false">"عرض الموقع"</string>
+  <string name="msg_586fbcc82bec" formatted="false">"تعريف المتصفح (User-Agent)"</string>
+  <string name="msg_12acb73519ef" formatted="false">"Android WebView الأصلي"</string>
+  <string name="msg_0eac99137858" formatted="false">"تعريف مخصص"</string>
+  <string name="msg_2a9edef138f8" formatted="false">"نسخة Chrome للهواتف"</string>
+  <string name="msg_93ad935f13c4" formatted="false">"البيانات والمزامنة"</string>
+  <string name="msg_c7845aa27319" formatted="false">"تعليمات الاستخدام"</string>
+  <string name="msg_56cb31e79eb1" formatted="false">"استخدام البيانات، الحفظ وطريقة الحذف"</string>
+  <string name="msg_e2bdb7ac0e1d" formatted="false">"ساحة تدريب SkyEye"</string>
+  <string name="msg_3a3d370702f1" formatted="false">"تدريب تعديل المكونات، إضافة CSS و JS"</string>
+  <string name="msg_f329c206f45a" formatted="false">"متصفح ChengJing %1$s · إصدار Android"</string>
+  <string name="msg_d7dd64f83835" formatted="false">"اتصال OpenRouter"</string>
+  <string name="msg_8831bba1231d" formatted="false">"تم حفظ المفتاح"</string>
+  <string name="msg_454792f22b74" formatted="false">"اربط ذكاءك الاصطناعي"</string>
+  <string name="msg_0b2e6e02b110" formatted="false">"محفوظ مشفرًا على هذا الهاتف"</string>
+  <string name="msg_b69f5d8ebb3b" formatted="false">"دع الذكاء الاصطناعي يساعد في فحص قواعد SkyEye"</string>
+  <string name="msg_a5cc92dedb6d" formatted="false">"أدخل مفتاح API جديد للاستبدال"</string>
+  <string name="msg_349c23511e2e" formatted="false">"تم حفظ مفتاح API مشفرًا"</string>
+  <string name="msg_9793d5aa34a9" formatted="false">"فشل حفظ المفتاح: %1$s"</string>
+  <string name="msg_c9937515f133" formatted="false">"حفظ مفتاح API"</string>
+  <string name="msg_308f90d89d99" formatted="false">"تمت إزالة مفتاح API"</string>
+  <string name="msg_4df897d4de83" formatted="false">"إزالة مفتاح API المحفوظ"</string>
+  <string name="msg_c98e118e0a43" formatted="false">"النموذج"</string>
+  <string name="msg_4e8050ee2fde" formatted="false">"أو أدخل اسم النموذج يدويًا"</string>
+  <string name="msg_33190323da75" formatted="false">"تم الحصول على أحدث نماذج النصوص العامة المتاحة لكل السلاسل"</string>
+  <string name="msg_a822357ce405" formatted="false">"تعذر تحديث النماذج، الخيارات الحالية لا تزال صالحة"</string>
+  <string name="msg_a0bacec44f47" formatted="false">"جارٍ التحديث…"</string>
+  <string name="msg_233cb3dae5da" formatted="false">"تحديث قائمة النماذج الأحدث"</string>
+  <string name="msg_8d8cdcd65552" formatted="false">"سيتم استدعاء OpenRouter فقط عند الضغط على التحليل، والتكلفة تعتمد على النموذج المختار. المفتاح لا يُرسل إلى الموقع؛ البيانات المرسلة تتم معالجتها بواسطة OpenRouter ومزود النموذج."</string>
+  <string name="msg_f1f50baf49b4" formatted="false">"انقل العلامات المرجعية، تقدم المفضلات وإعدادات SkyEye إلى هاتفك التالي."</string>
+  <string name="msg_dbf504aee158" formatted="false">"آخر إتمام:"</string>
+  <string name="msg_bb02b225cf7e" formatted="false">"يتم حفظ العلامات المرجعية، المجلدات، المفضلات وسجل الحذف في مساحة مخفية خاصة بالتطبيق على Google Drive، دون الوصول إلى ملفاتك الأخرى."</string>
+  <string name="msg_da8c7e82d56f" formatted="false">"المفضلات وتقدم القراءة"</string>
+  <string name="msg_462b5f8ed149" formatted="false">"يتم مزامنة اسم المفضلات، عنوان URL الحالي للقراءة، عنوان الصفحة، موضع التمرير ونسبة القراءة معًا. يرجى تحديث كل جهاز إلى إصدار يدعم مزامنة المفضلات."</string>
+  <string name="msg_4c197d7a57af" formatted="false">"يُعتمد على أحدث سجل كامل محفوظ لنفس المفضلة؛ إعادة التسمية والحذف تُزامن أيضًا، ولا يُجبر على الاحتفاظ بأعلى نسبة قراءة. الصفحات المفتوحة لا تُجبر على الانتقال، وعند الفتح التالي من المفضلات يُستخدم الموضع المتزامن."</string>
+  <string name="msg_bd81a5f18ff4" formatted="false">"إعدادات مواقع SkyEye"</string>
+  <string name="msg_55f5a4c4b0b3" formatted="false">"بعد التفعيل، ستتم مزامنة النطاقات، قواعد المكونات، CSS/JS/HTML المخصصة وإعدادات سلوك المواقع إلى Google Drive الخاص بك. قد تحتوي الأكواد على محتوى خاص، يرجى التأكد من عدم وجود كلمات مرور أو مفاتيح."</string>
+  <string name="msg_86b823816a78" formatted="false">"مزامنة إعدادات مواقع SkyEye"</string>
+  <string name="msg_da8b0b8c9bc6" formatted="false">"يُعتمد على أحدث إعداد كامل لنفس الموقع؛ الإعدادات المحذوفة تُحفظ كحالة حذف. الأجهزة الأخرى تطبقها عند تحميل الموقع التالي. الاستثناءات المؤقتة وشهادات الاستثناء تبقى محليًا فقط."</string>
+  <string name="msg_d9c03b110d35" formatted="false">"بعد الربط، ستُدمج العلامات المرجعية والمفضلات على هذا الهاتف مع حساب Google الذي تختاره. يتم المزامنة تلقائيًا عند فتح التطبيق، تعديل العلامات، حفظ تقدم المفضلات، إعادة التسمية أو الحذف؛ في وضع عدم الاتصال تُحفظ محليًا وتُزامن عند الاتصال التالي."</string>
+  <string name="msg_d166e71ff3ae" formatted="false">"جارٍ المعالجة…"</string>
+  <string name="msg_36e7a43a1c67" formatted="false">"مزامنة الآن"</string>
+  <string name="msg_aee33ff22038" formatted="false">"الربط بحساب Google"</string>
+  <string name="msg_9746a274324c" formatted="false">"إيقاف المزامنة وتسجيل الخروج"</string>
+  <string name="msg_b69bae05d706" formatted="false">"تسجيل الخروج يحتفظ بالبيانات المحلية والسحابية. بيانات المزامنة المحلية مرتبطة بحساب Google المستخدم أول مرة لتجنب خلط بيانات الآخرين عند تبديل الحسابات."</string>
+  <string name="msg_efb208e781f4" formatted="false">"بعض المواقع تقدم تصميمات مختلفة بناءً على معلومات التعريف."</string>
+  <string name="msg_7fd85e60aef6" formatted="false">"نسخة Chrome للهواتف (افتراضي)"</string>
+  <string name="msg_3138f64b4547" formatted="false">"تعريف User-Agent مخصص"</string>
+  <string name="msg_b1c83027f591" formatted="false">"الصق User-Agent الكامل في سطر واحد"</string>
+  <string name="msg_efa2a61e6723" formatted="false">"بعد الحفظ، سيتم إعادة تحميل الصفحة الحالية؛ الصفحات الجديدة أو المعاد تحميلها ستستخدم هذا الإعداد. قد يستخدم الموقع تصميمًا مختلفًا، ومدى الدعم يعتمد على نواة التصفح الحالية."</string>
+  <string name="msg_73b390a73f19" formatted="false">"تم تحديث تعريف المتصفح"</string>
+  <string name="msg_a51b36be9b6a" formatted="false">"تعذر الحفظ"</string>
+  <string name="msg_bb7b020c8cf9" formatted="false">"حفظ وإعادة تحميل"</string>
+  <string name="msg_7818a40d2a66" formatted="false">"نواة التصفح الحالية: Android WebView %1$s"</string>
+  <string name="msg_4d8c1c5b4283" formatted="false">"غير معروف"</string>
+  <string name="msg_770b5a444a9c" formatted="false">"لم يتم الحصول على موقع الهاتف بعد، يرجى الانتقال إلى مكان بإشارة أفضل والمحاولة مجددًا."</string>
+  <string name="msg_2e6933e93990" formatted="false">"مصدر تحديد موقع الهاتف مغلق، يرجى التحقق من خدمات تحديد الموقع في النظام."</string>
+  <string name="msg_aa939329dc62" formatted="false">"لم يتم السماح بتحديد موقع الهاتف بعد."</string>
+  <string name="msg_f4e900470989" formatted="false">"لا يوجد موقع صالح ضمن الوقت المحدد، انتهى وقت الانتظار لتحديد الموقع."</string>
+  <string name="msg_8e6878344350" formatted="false">"لا يوجد مصدر تحديد موقع متاح للهاتف، يرجى التحقق من خدمات تحديد الموقع في النظام."</string>
+  <string name="msg_356ea0bf2ed4" formatted="false">"تم تغيير أذونات تحديد موقع الهاتف، يرجى طلب تحديد الموقع مجددًا."</string>
+  <string name="msg_029a3a0a53c6" formatted="false">"لم يُسمح لهذه الصفحة باستخدام الموقع."</string>
+  <string name="msg_c293d0f61960" formatted="false">"الصفحة الحالية ليست في المقدمة."</string>
+  <string name="msg_5677d9b33fef" formatted="false">"طلبات الموقع كثيرة جدًا، يرجى المحاولة لاحقًا."</string>
+  <string name="msg_54e70324667a" formatted="false">"في انتظار إذن الموقع والوصول إلى الموقع على الهاتف"</string>
+  <string name="msg_6d8d68de97c0" formatted="false">"لم يتم السماح لهذا الموقع باستخدام موقع الهاتف بعد."</string>
+  <string name="msg_eebdc8ee14a1" formatted="false">"خدمة تحديد موقع الهاتف غير مفعلة."</string>
+  <string name="msg_e4222762e387" formatted="false">"تم سحب إذن الموقع للهاتف أو الموقع."</string>
+  <string name="msg_ea7546eddc85" formatted="false">"تم إرسال طلب تحديد الموقع إلى الهاتف، في انتظار الموقع"</string>
+  <string name="msg_e950f1ba68b7" formatted="false">"تم الحصول على الموقع وتم توفيره للموقع الحالي"</string>
+  <string name="msg_8116207548a5" formatted="false">"تعذر تحديث قائمة النماذج (%1$s)"</string>
+  <string name="msg_6fa3d7085cb9" formatted="false">"قائمة النماذج فارغة، يرجى المحاولة لاحقًا"</string>
+  <string name="msg_71eb343e162c" formatted="false">"يرجى إضافة مفتاح OpenRouter API في الإعدادات أولاً"</string>
+  <string name="msg_c4a91fccc5f8" formatted="false">"يرجى اختيار نموذج"</string>
+  <string name="msg_d3346c882f37" formatted="false">"مفتاح API غير صالح، يرجى الإدخال مجددًا"</string>
+  <string name="msg_4a0a5f736baf" formatted="false">"رصيد OpenRouter غير كافٍ"</string>
+  <string name="msg_7b374a51bd01" formatted="false">"طلبات كثيرة جدًا، يرجى المحاولة لاحقًا"</string>
+  <string name="msg_3861043f8477" formatted="false">"خدمة AI لم تكمل الطلب (%1$s)، القواعد الأصلية تبقى كما هي"</string>
+  <string name="msg_48e7e2f9730d" formatted="false">"يرجى إعداد مفتاح OpenRouter والنموذج أولاً"</string>
+  <string name="msg_2bb9385e15ab" formatted="false">"مفتاح API غير صالح"</string>
+  <string name="msg_fa3531ce1379" formatted="false">"طلبات كثيرة جدًا، يرجى المحاولة لاحقًا"</string>
+  <string name="msg_a6c761a16e12" formatted="false">"خدمة AI لم تكمل الطلب (%1$s)"</string>
+  <string name="msg_4a16359069dd" formatted="false">"يرجى اختيار مكون صالح"</string>
+  <string name="msg_792de2c8f51a" formatted="false">"طريقة تشغيل HTML غير صحيحة"</string>
+  <string name="msg_e714012d82ce" formatted="false">"الكود طويل جدًا في مرة واحدة، يرجى تقسيم التعديلات إلى أجزاء أصغر"</string>
+  <string name="msg_8579576181cb" formatted="false">"يرجى كتابة CSS للمكون مباشرة كخاصية، مثل color: #147a64;"</string>
+  <string name="msg_0dcef4dcf0f6" formatted="false">"اقتراحات كثيرة جدًا في مرة واحدة، يرجى تقليل نطاق المشكلة"</string>
+  <string name="msg_3f1c3cd04309" formatted="false">"قواعد المكون غير صحيحة"</string>
+  <string name="msg_5c5e2b9c6c03" formatted="false">"AI حدد تعديلًا غير موجود"</string>
+  <string name="msg_5138c822cde5" formatted="false">"AI حدد قاعدة مكون غير موجودة"</string>
+  <string name="msg_63b576365f0f" formatted="false">"اقتراح AI للمكون يتجاوز نطاق التحديد"</string>
+  <string name="msg_4e7c67b2a2aa" formatted="false">"AI للمكون لا يمكنه تعديل إعدادات مستوى الموقع"</string>
+  <string name="msg_bc7f51e47fb7" formatted="false">"تعديل مكون AI"</string>
+  <string name="msg_8eb2e7d88b06" formatted="false">"المحتوى المقترح كبير جدًا، يرجى تقليل النطاق"</string>
+  <string name="msg_8715000a9841" formatted="false">"تحديث CSS للموقع"</string>
+  <string name="msg_b350f6663586" formatted="false">"تحديث JavaScript للموقع"</string>
+  <string name="msg_ed10c621ac5e" formatted="false">"تحديث HTML المضاف للموقع"</string>
+  <string name="msg_e0d4485966bd" formatted="false">"تحرير"</string>
+  <string name="msg_0006d696d8e1" formatted="false">"إضافة"</string>
+  <string name="msg_1b20ab98e475" formatted="false">"إزالة المكون: %1$s"</string>
+  <string name="msg_c15c3f79a4b3" formatted="false">"استعادة %1$s تعديلات"</string>
+  <string name="msg_58a58537ea7e" formatted="false">"تعديل إعدادات تمرير الصفحة"</string>
+  <string name="msg_15766e2591bd" formatted="false">"يرجى تأكيد التعديلات أدناه"</string>
+  <string name="msg_64244a373f7b" formatted="false">"تم إغلاق أو إعادة تحميل صفحة المصدر، تم إيقاف التنزيل؛ يرجى المحاولة مجددًا في الصفحة الأصلية"</string>
+  <string name="msg_ca9b7c74ba11" formatted="false">"الملف المضمّن كبير جدًا"</string>
+  <string name="msg_1321c64c4bf3" formatted="false">"تنسيق الملف المضمّن غير صحيح، لم يتم حفظ الملف"</string>
+  <string name="msg_a7dbe0173896" formatted="false">"تعذر قراءة ملف التخزين المؤقت هذا. يرجى المحاولة مجددًا في الصفحة الأصلية؛ يجب استخدام طريقة التنزيل التي يوفرها الموقع للفيديوهات المحمية أو المتدفقة جزئيًا"</string>
+  <string name="msg_99c9e8673ecc" formatted="false">"حد التنزيل المؤقت للصفحة هو 2 جيجابايت، يرجى استخدام رابط التنزيل المباشر للموقع"</string>
+  <string name="msg_533949b0c241" formatted="false">"الملف المضمّن غير مكتمل"</string>
+  <string name="msg_283a28e03a50" formatted="false">"انتهت صلاحية ملف التخزين المؤقت، يرجى التنزيل مجددًا"</string>
+  <string name="msg_b6e88feeefd6" formatted="false">"فشل قراءة ملف التخزين المؤقت، يرجى التنزيل مجددًا"</string>
+  <string name="msg_ffba3145db56" formatted="false">"حجم المحتوى الذي تم تنزيله غير صحيح"</string>
+  <string name="msg_4ec5671c213d" formatted="false">"المحتوى الذي تم تنزيله غير مكتمل، لم يتم الاحتفاظ بالملف"</string>
+  <string name="msg_ad87668dfff8" formatted="false">"تعذر حفظ حالة التنزيل"</string>
+  <string name="msg_9dff40c961b0" formatted="false">"تم قطع التنزيل السابق، لم يتم الاحتفاظ بالملفات غير المكتملة؛ يرجى العودة إلى الصفحة الأصلية وإعادة التنزيل"</string>
+  <string name="msg_bcd36261f503" formatted="false">"تعذر إكمال حفظ ملف التنزيل"</string>
+  <string name="msg_815187d9a1da" formatted="false">"تعذر إكمال تنزيل الملف"</string>
+  <string name="msg_02beb82da20a" formatted="false">"تعذر إنشاء ملف التنزيل، يرجى التحقق من مساحة التخزين"</string>
+  <string name="msg_bdd00d629528" formatted="false">"تعذر كتابة ملف التنزيل"</string>
+  <string name="msg_d3e09805962f" formatted="false">"تعذر إنشاء مجلد التنزيل"</string>
+  <string name="msg_9a585fcf69ad" formatted="false">"تنسيق الصورة المضمّنة غير مدعوم"</string>
+  <string name="msg_05eeb6b45987" formatted="false">"الصورة المضمّنة كبيرة جدًا"</string>
+  <string name="msg_3d8771b46b2e" formatted="false">"الصورة المضمّنة تتجاوز 32 ميجابايت"</string>
+  <string name="msg_3170eabb0bc8" formatted="false">"تعذر قراءة هذه الصورة المؤقتة، يرجى الضغط المطول مجددًا في الصفحة الأصلية"</string>
+  <string name="msg_a326ad3c84c9" formatted="false">"فتح سياسة الخصوصية عبر الإنترنت"</string>
+  <string name="msg_080988523f29" formatted="false">"تم إغلاق جلسة التصفح الخفي؛ لم تكتمل عملية تنظيف بيانات الموقع، يرجى إغلاق التطبيق وإعادة فتحه"</string>
+  <string name="msg_57c0bf12f51c" formatted="false">"هذه القاعدة أو محتوى الصفحة كبير، يرجى استخدام نموذج السحابة للتحليل."</string>
+  <string name="msg_5d279b988da8" formatted="false">"اقتراح AI يتجاوز نطاق تعديل هذه القاعدة، يرجى تقديم طلب جديد"</string>
+  <string name="msg_4a1cb0ce14d7" formatted="false">"الكود المقترح طويل جدًا، يرجى تقليل نطاق التعديل"</string>
+  <string name="msg_272100161734" formatted="false">"تحديث أنماط CSS"</string>
+  <string name="msg_f0736c6283ef" formatted="false">"تحديث JavaScript"</string>
+  <string name="msg_bae793e0ca00" formatted="false">"تحديث محتوى HTML"</string>
+  <string name="msg_337e19f8aa55" formatted="false">"تعديل طريقة تطبيق HTML"</string>
+  <string name="msg_1999a9c0dc4b" formatted="false">"يرجى التحقق من التعديلات قبل التطبيق"</string>
+  <string name="msg_997de297c6b3" formatted="false">"تعذر حفظ سجل التنزيلات"</string>
+  <string name="msg_d277f1b778a4" formatted="false">"تعذر إنشاء ملف التنزيل"</string>
+  <string name="msg_9567c32b9a28" formatted="false">"تم تغيير الصفحة، يرجى إعادة فتح هذه القاعدة"</string>
+  <string name="msg_95bc4a80d511" formatted="false">"تم تحديث القاعدة، يرجى إعادة فتحها لتجنب الكتابة فوق تعديلات أخرى"</string>
+  <string name="msg_9ba6acba3917" formatted="false">"تم تحديث القاعدة بواسطة عملية أخرى، يرجى إعادة فتحها"</string>
+  <string name="msg_30b5133da158" formatted="false">"اجعل التعديل أكثر تقدمًا"</string>
+  <string name="msg_dfb02399c259" formatted="false">"يرجى تعديل هذه القاعدة باستخدام AI"</string>
+  <string name="msg_a73d81627121" formatted="false">"دمج HTML الأصلي، الكود الحالي، وأفكارك الجديدة"</string>
+  <string name="msg_6882b571d47c" formatted="false">"يمكنك تحرير المحتوى أدناه مباشرة. الحفظ سيحدث القاعدة الأصلية؛ تعديلات المواقع الأخرى ستُحتفظ بها."</string>
+  <string name="msg_f3a2be83fce5" formatted="false">"أضف في نهاية العنصر"</string>
+  <string name="msg_c7518df827c2" formatted="false">"استبدل محتوى العنصر"</string>
+  <string name="msg_d727b0d7f49a" formatted="false">"ينطبق على هذا النطاق والنطاقات الفرعية. يمكن لـ JavaScript الوصول إلى الصفحة أو إرسال طلبات، يرجى التأكد من المحتوى قبل الحفظ."</string>
+  <string name="msg_5ef814324284" formatted="false">"تم تعديل المحتوى، يرجى الحفظ مرة أخرى"</string>
+  <string name="msg_2a54a31cbd76" formatted="false">"تم تحديث القاعدة الأصلية وتطبيقها"</string>
+  <string name="msg_f5272b216037" formatted="false">"حذف هذه القاعدة"</string>
+  <string name="msg_c77c63dd2049" formatted="false">"هل تريد حذف هذه القاعدة؟"</string>
+  <string name="msg_0f0cc78443f7" formatted="false">"سيتم إزالة %1$s، وسيتم الاحتفاظ بالإعدادات الأخرى."</string>
+  <string name="msg_67867e6d6cc2" formatted="false">"CSS وJavaScript وHTML المخصصة لهذا الموقع"</string>
+  <string name="msg_60f997e432a2" formatted="false">"تعديل هذا العنصر"</string>
+  <string name="msg_eb52c71529f3" formatted="false">"تم حذف هذه القاعدة"</string>
+  <string name="msg_3c8f5b363ab3" formatted="false">"حذف"</string>
+  <string name="msg_52a8d83058e5" formatted="false">"تم التبديل إلى محرك بحث مخصص"</string>
+  <string name="msg_8cafe5b09384" formatted="false">"يتم الاستخدام حاليًا · %1$s"</string>
+  <string name="msg_2426fa40ef4a" formatted="false">"بحث شريط العنوان · %1$s"</string>
+  <string name="msg_be0567146f09" formatted="false">"تم التبديل إلى %1$s"</string>
+  <string name="msg_02da895c96ea" formatted="false">"طريقة البحث الخاصة بي"</string>
+  <string name="msg_1fe9883907ba" formatted="false">"مخصص"</string>
+  <string name="msg_bb6bc86decb3" formatted="false">"اتصل بخدمة البحث التي تفضلها"</string>
+  <string name="msg_dc995c2434f1" formatted="false">"ابحث مرة واحدة في الموقع الذي تريده، ثم استبدل نص البحث في العنوان بـ {query}."</string>
+  <string name="msg_83e506018140" formatted="false">"نموذج عنوان البحث"</string>
+  <string name="msg_af76c84d5e7a" formatted="false">"{query} سيتم استبداله بنص البحث المشفر بأمان"</string>
+  <string name="msg_900bf4297a3f" formatted="false">"ChengJing Browser"</string>
+  <string name="msg_d8c4a048d060" formatted="false">"معاينة: %1$s"</string>
+  <string name="msg_de86abbf6f8d" formatted="false">"حفظ واستخدام"</string>
+  <string name="msg_74bd6f0287b8" formatted="false">"انقر للتبديل. يتم إرسال نص البحث فقط عند تنفيذ البحث إلى الخدمة المختارة."</string>
+  <string name="msg_455ece81de56" formatted="false">"بايدو"</string>
+  <string name="msg_af8a52509166" formatted="false">"ويكيبيديا الصينية"</string>
+  <string name="msg_db79062a760b" formatted="false">"لم يتم تعيين نموذج العنوان بعد"</string>
+  <string name="msg_4d729b911aeb" formatted="false">"يرجى إدخال نموذج عنوان البحث"</string>
+  <string name="msg_e2d127e64801" formatted="false">"نموذج العنوان لا يمكن أن يتجاوز 2048 حرفًا"</string>
+  <string name="msg_a30e3ed7b9b0" formatted="false">"يجب أن يكون نموذج العنوان عنوانًا كاملاً في سطر واحد"</string>
+  <string name="msg_32c6fb7d1791" formatted="false">"يجب أن يحتوي نموذج العنوان على {query} مرة واحدة على الأقل"</string>
+  <string name="msg_cbb4e7972e49" formatted="false">"يجب وضع {query} في مسار العنوان أو معلمات الاستعلام"</string>
+  <string name="msg_2928c35bd1f9" formatted="false">"يرجى إدخال عنوان HTTPS كامل"</string>
+  <string name="msg_00f486ce580a" formatted="false">"لحماية محتوى البحث، يجب استخدام HTTPS فقط"</string>
+  <string name="msg_5a56b71bec4e" formatted="false">"العنوان لا يمكن أن يحتوي على اسم مستخدم أو كلمة مرور"</string>
+  <string name="msg_b7fdf7ea812f" formatted="false">"نموذج العنوان لا يمكن أن يحتوي على علامة # للمرساة"</string>
+  <string name="msg_a9d18f49f4b4" formatted="false">"العنوان يحتاج إلى اسم مضيف صالح"</string>
+  <string name="msg_0af0c63a1df0" formatted="false">"تعذر حذف ذاكرة التخزين المؤقت لأيقونة الموقع"</string>
+  <string name="msg_15e8ae2c7a9d" formatted="false">"عدد إعدادات المواقع كبير جدًا"</string>
+  <string name="msg_a17da897bf76" formatted="false">"إعدادات المواقع تتجاوز 8 ميغابايت، يرجى تنظيف الأكواد المخصصة الأكبر أولاً"</string>
+  <string name="msg_51bb558b264b" formatted="false">"لقطة إعدادات المواقع كبيرة جدًا"</string>
+  <string name="msg_a829f331a1b3" formatted="false">"إصدار إعدادات المواقع غير متوافق"</string>
+  <string name="msg_f2aebb82c978" formatted="false">"نطاق أو وقت إعدادات المواقع غير صحيح"</string>
+  <string name="msg_7efd8be0c197" formatted="false">"إعدادات المواقع تتجاوز الحد المسموح"</string>
+  <string name="msg_91e25f4ddc6f" formatted="false">"عادي"</string>
+  <string name="msg_d0d9f720ed65" formatted="false">"تصفح خاص"</string>
+  <string name="msg_87c6a9d4a825" formatted="false">"صفحات التصفح الخاص لا تنشئ معاينات ولا تضيف إلى سجل التصفح. يتم تنظيف بيانات المواقع عند إغلاق جميع صفحات التصفح الخاص."</string>
+  <string name="msg_b7c8e18bb813" formatted="false">"ابدأ جلسة تصفح خاص"</string>
+  <string name="msg_de2a64702660" formatted="false">"لا توجد صفحات عادية بعد"</string>
+  <string name="msg_bae05c66c03b" formatted="false">"تستخدم حالة تسجيل دخول مختلفة عن الصفحات العادية؛ قد تظل المواقع ومزودو الشبكة قادرين على التعرف على نشاطك."</string>
+  <string name="msg_8e0ae72065d1" formatted="false">"أضف صفحة جديدة لتخصيص مكان للقراءة القادمة."</string>
+  <string name="msg_89d55dea3269" formatted="false">"صفحة خاصة"</string>
+  <string name="msg_3cea311ebc49" formatted="false">"إغلاق الصفحة %1$s"</string>
+  <string name="msg_91ce40bce8fd" formatted="false">"الصفحة الحالية · %1$s"</string>
+  <string name="msg_71ab24c40404" formatted="false">"اللحظة، تبقى فقط في هذه اللحظة."</string>
+  <string name="msg_ec4537100d5f" formatted="false">"لا يتم حفظ سجل التصفح والبحث، ولا يمكن استعادة صفحات التصفح الخاص. حالة تسجيل الدخول منفصلة عن الصفحات العادية، ويتم تنظيف ملفات تعريف الارتباط والذاكرة المؤقتة وبيانات المواقع عند إغلاق جميع صفحات التصفح الخاص."</string>
+  <string name="msg_c4759e2fd146" formatted="false">"التصفح الخفي لا يعني التصفح المجهول. قد تظل المواقع وأصحاب العمل ومزودو الإنترنت قادرين على رؤية نشاطك. الملفات التي تقوم بتنزيلها يدويًا، والإشارات المرجعية والمفضلات التي تحفظها ستظل محفوظة؛ كما أن مشاركة النظام وطلبات الذكاء الاصطناعي ستنقل المحتوى المختار إلى الخدمات ذات الصلة."</string>
+  <string name="msg_7608c8dde0f2" formatted="false">"قائمة التبويبات"</string>
+  <string name="msg_aceae2b0bcbe" formatted="false">"إغلاق كل التبويبات"</string>
+  <string name="msg_2a38b2e651df" formatted="false">"هل تريد إغلاق كل التبويبات الخفية؟"</string>
+  <string name="msg_b9db1c9c0483" formatted="false">"هل تريد إغلاق كل التبويبات العادية؟"</string>
+  <string name="msg_1401b7462a88" formatted="false">"سيتم إغلاق %1$s تبويبات من هذه المجموعة فقط، ولن يؤثر ذلك على المجموعة الأخرى."</string>
+  <string name="msg_9b14332369fd" formatted="false">"سيتم مسح بيانات المواقع الخفية بعد إغلاق كل التبويبات. ستظل الملفات التي تم تنزيلها والإشارات المرجعية والمفضلات محفوظة."</string>
+  <string name="msg_e818d7092124" formatted="false">"هذه التبويبات واللقطات لن تُستعاد عند التشغيل التالي؛ مع الاحتفاظ بسجل التصفح، والملفات التي تم تنزيلها، والإشارات المرجعية والمفضلات."</string>
+  <string name="msg_9a4acf35cc0e" formatted="false">"إغلاق الكل"</string>
+  <string name="msg_89fe0a3e10b2" formatted="false">"لم يتم طلب الموقع لتحديد الموقع بعد"</string>
+  <string name="msg_d95cf1ab61c3" formatted="false">"الهاتف لم يسمح بتحديد الموقع بعد؛ يمكنك تفعيل أذونات التطبيق من معلومات الموقع للموقع."</string>
+  <string name="msg_b225c190262b" formatted="false">"خدمة تحديد الموقع في الهاتف غير مفعلة، يرجى تفعيلها من إعدادات الموقع في معلومات الموقع ثم حاول مرة أخرى."</string>
+  <string name="msg_c706cb8f6217" formatted="false">"هل تسمح لهذا الموقع بالحصول على موقعك؟"</string>
+  <string name="msg_1433f3722ead" formatted="false">"%1$s\n\nيمكن للموقع استخدام موقعك لتقديم ميزات مثل الأماكن القريبة. يمكنك تغييره من معلومات الموقع في شريط العنوان."</string>
+  <string name="msg_2a7b4e63b0f4" formatted="false">"\n\nتصريح التصفح الخفي يبقى فقط حتى إغلاق كل التبويبات الخفية."</string>
+  <string name="msg_b77fbff9e7eb" formatted="false">"السماح بتحديد الموقع"</string>
+  <string name="msg_e69e259269d3" formatted="false">"عدم السماح مؤقتًا"</string>
+  <string name="msg_243d5a95aaad" formatted="false">"الساعة الماضية"</string>
+  <string name="msg_322773403765" formatted="false">"آخر 24 ساعة"</string>
+  <string name="msg_27905bacccf9" formatted="false">"آخر 7 أيام"</string>
+  <string name="msg_7d5941c88cb3" formatted="false">"آخر 4 أسابيع"</string>
+  <string name="msg_75d9ba5b232a" formatted="false">"بدون تحديد وقت"</string>
+  <string name="msg_b39b740c9370" formatted="false">"سؤال"</string>
+  <string name="msg_0bffd418918b" formatted="false">"السماح"</string>
+  <string name="msg_454b7b66304a" formatted="false">"حظر"</string>
+  <string name="language_title" formatted="false">"لغة الواجهة"</string>
+  <string name="language_system" formatted="false">"اتباع لغة الهاتف"</string>
+  <string name="language_support" formatted="false">"يتم العرض أول مرة حسب لغة الهاتف؛ إذا لم تكن مدعومة، تُستخدم الإنجليزية."</string>
+  <string name="language_selected" formatted="false">"اللغة الحالية: %1$s"</string>
+  <string name="language_system_detail" formatted="false">"تلقائي · %1$s"</string>
+  <string name="language_picker" formatted="false">"اختر لغة الواجهة"</string>
+  <string name="language_note" formatted="false">"هذا الإعداد يغير واجهة ChengJing فقط، ولا يترجم محتوى المواقع."</string>
+  <string name="language_changed" formatted="false">"تم تغيير لغة الواجهة"</string>
+  <string name="language_native_hint" formatted="false">"يُعرض كل اسم لغة بلغته الأصلية لتسهيل العثور على لغتك المألوفة."</string>
+  <string name="home_quote_000" formatted="false">"بعد الرعد، دائماً تمطر"</string>
+  <string name="home_quote_001" formatted="false">"بعد اليوم، يأتي الغد"</string>
+  <string name="home_quote_002" formatted="false">"بعد الغد، هناك فيلم"</string>
+  <string name="home_quote_003" formatted="false">"اشترِ عند الهبوط، وبع عند الصعود، هكذا ببساطة هو الاستثمار"</string>
+  <string name="home_quote_004" formatted="false">"إذا كنت لا تحب العمل، فستحب وقت الانصراف كثيراً"</string>
+  <string name="home_quote_005" formatted="false">"طالما تجتهد، ستكتشف أن الأمور يمكن أن تكون أصعب"</string>
+  <string name="home_quote_006" formatted="false">"كسر اللص في الجبل سهل، لكن كسر اللص في القلب صعب"</string>
+  <string name="home_quote_007" formatted="false">"الإصرار لا يضمن النجاح، لكن الاستسلام سهل جداً"</string>
+  <string name="home_quote_008" formatted="false">"قلل فنجان القهوة يومياً، وستشرب 365 فنجاناً أقل في السنة"</string>
+  <string name="home_quote_009" formatted="false">"لا تتعقد، أنت مجرد قصبة تفكر"</string>
+  <string name="home_quote_010" formatted="false">"لا تخف من الصعوبات، واجهها لتكتشف أنك لا تستطيع حلها"</string>
+  <string name="home_quote_011" formatted="false">"لا تقلق من عدم تساوي الأشياء، بل من عدم استقرار القلوب"</string>
+  <string name="home_quote_012" formatted="false">"عندما تشعر أنك لا تملك شيئاً، لا تنس أنك مليء بالإرهاق"</string>
+  <string name="home_quote_013" formatted="false">"لا تستخدم الهاتف قبل النوم، وإلا ستجد الصباح قد أتى بسرعة"</string>
+  <string name="home_quote_014" formatted="false">"قال كونفوشيوس: الرجل النبيل يطلب من نفسه، والرجل الحقير يطلب من الآخرين"</string>
+  <string name="home_quote_015" formatted="false">"القارب يصل إلى الجسر ويستقيم، وإذا لم يستقم، فهو غارق"</string>
+  <string name="home_quote_016" formatted="false">"الناجحون يشتركون في شيء واحد، وهو أنهم نجحوا"</string>
+  <string name="home_quote_017" formatted="false">"لا تبكِ، لا تضحك، فقط افهم"</string>
+  <string name="home_quote_018" formatted="false">"طالما تمضي قدماً، لن تبقى في مكانك"</string>
+  <string name="home_quote_019" formatted="false">"الضياع هو بداية الاستكشاف"</string>
+  <string name="home_quote_020" formatted="false">"الاجتهاد قد لا يُرى، لكن الكسل يُكتشف من أول مرة"</string>
+  <string name="home_quote_021" formatted="false">"الفشل هو أم النجاح، لكنك قد لا تجد أباه أبداً"</string>
+  <string name="home_quote_022" formatted="false">"الحرية تعني أن يُكرهك الآخرون"</string>
+  <string name="home_quote_023" formatted="false">"السعادة ليست سوى توقف مؤقت للألم"</string>
+  <string name="home_quote_024" formatted="false">"عندما تقرر أن تبدأ، فهذا يعني أنك لم تنتهِ بعد"</string>
+  <string name="home_quote_025" formatted="false">"لا توجد طرق مختصرة للنجاح، لكن الكثيرين يعلقون في الاختصارات"</string>
+  <string name="home_quote_026" formatted="false">"القلق هو دوار الحرية"</string>
+  <string name="home_quote_027" formatted="false">"خطوتك الأولى تكشف أن الثانية ما زالت خلفك"</string>
+  <string name="home_quote_028" formatted="false">"من فضلك ابتعد، لا تحجب شمسي"</string>
+  <string name="home_quote_029" formatted="false">"بوذي: لا شجرة في البوذية، والمرآة ليست منصة. في الأصل لا شيء، فأين يعلق الغبار؟"</string>
+  <string name="home_quote_030" formatted="false">"المعاناة التي تمر بها الآن هي تحضير لمعاناة أكبر في المستقبل"</string>
+  <string name="home_quote_031" formatted="false">"من يحارب الوحوش، عليه أن يحذر ألا يصبح وحشاً"</string>
+  <string name="home_quote_032" formatted="false">"كلما تسلقت أعلى، كلما كان السقوط أكثر ألماً"</string>
+  <string name="home_quote_033" formatted="false">"المعرفة هي القوة"</string>
+  <string name="home_quote_034" formatted="false">"طالما تعمل بجد، حتى إن أخطأت فالأمر من جهدك"</string>
+  <string name="home_quote_035" formatted="false">"أحياناً ما يُعتبر من البديهيات ليس كذلك"</string>
+  <string name="home_quote_036" formatted="false">"الأطفال يخافون من الظلام وهذا مفهوم؛ المأساة الحقيقية أن يخاف الكبار من النور"</string>
+  <string name="home_quote_037" formatted="false">"تخيل نهاية العالم أسهل من تخيل نهاية الرأسمالية"</string>
+  <string name="home_quote_038" formatted="false">"طالما أنت لست محرجاً، فالحرج على الآخرين"</string>
+  <string name="home_quote_039" formatted="false">"رحلة الألف ميل تبدأ بخطوة"</string>
+  <string name="home_quote_040" formatted="false">"الآخرون هم الجحيم"</string>
+  <string name="home_quote_041" formatted="false">"إذا خفضت معاييرك بما فيه الكفاية، كل ثانية تصبح مفاجأة"</string>
+  <string name="home_quote_042" formatted="false">"ما يعذبنا غالباً ليس الواقع، بل الخيال"</string>
+  <string name="home_quote_043" formatted="false">"لا تكن قاسياً على نفسك، فالآخرون سيفعلون ذلك نيابة عنك"</string>
+  <string name="home_quote_044" formatted="false">"عندما تواجه صعوبة، لا تستعجل، فالاستعجال لا ينفع"</string>
+  <string name="home_quote_045" formatted="false">"الولادة في الشدائد، والموت في الراحة"</string>
+  <string name="home_quote_046" formatted="false">"طالما أكلت جيداً، فلن تجوع"</string>
+  <string name="home_quote_047" formatted="false">"عندما يضمحل الطريق، تظهر الرحمة والعدل؛ وعندما تظهر الحكمة، يظهر الخداع الكبير"</string>
+  <string name="home_quote_048" formatted="false">"الملابس تبلى مع الوقت، إلا إذا اشتريت جديدة"</string>
+  <string name="home_quote_049" formatted="false">"الماء يغلي، فالماء هو المغلي"</string>
+  <string name="home_quote_050" formatted="false">"الزمان أقل أهمية من المكان، والمكان أقل أهمية من الوحدة"</string>
+  <string name="home_quote_051" formatted="false">"حين تريد أن تراني، يكون لقاؤنا ذا معنى"</string>
+  <string name="home_quote_052" formatted="false">"الآخرون يضحكون على جنوني، وأنا أضحك لأنهم يرونه"</string>
+  <string name="home_quote_053" formatted="false">"من يتذوق مرارة المعاناة، يعرف أن هناك ما هو أكثر مرارة"</string>
+  <string name="home_quote_054" formatted="false">"طالما أنت حي، لا تزال لديك فرصة للخطأ"</string>
+  <string name="home_quote_055" formatted="false">"لا يمكنك التحكم في اتجاه الريح، لكن يمكنك إغلاق النافذة"</string>
+  <string name="home_quote_056" formatted="false">"أفضل ترتيب في الحياة هو عدم وجود ترتيب"</string>
+  <string name="home_quote_057" formatted="false">"أي شيء يتكرر كثيراً يصبح روتيناً"</string>
+  <string name="home_quote_058" formatted="false">"كل ما له شكل هو وهم؛ ما عدا إشعارات الراتب"</string>
+  <string name="home_quote_059" formatted="false">"تظن أنك تختار، لكن الخوارزمية تعرف ما ستضغط عليه"</string>
+  <string name="home_quote_060" formatted="false">"العالم كبير جداً، حتى أن مشاكلك ليست من الأولويات"</string>
+  <string name="home_quote_061" formatted="false">"وُلدت لأكون مفيداً، حتى وإن أنفقت ثروتي تعود إليّ"</string>
+  <string name="home_quote_062" formatted="false">"بما أنك هنا، اجلس قليلاً"</string>
+  <string name="home_quote_063" formatted="false">"المشاكل التي تحل بالمال تحتاج أولاً إلى المال"</string>
+  <string name="home_quote_064" formatted="false">"إجبار العدو على الاستسلام دون قتال هو أفضل الانتصارات"</string>
+  <string name="home_quote_065" formatted="false">"الفشل ليس مخيفاً، لكن المخيف أن تكتب تقريراً عنه"</string>
+  <string name="home_quote_066" formatted="false">"الحياة قصيرة، لذا لا تناسب الاجتماعات الطويلة"</string>
+  <string name="home_quote_067" formatted="false">"لا توجد خطوات ضائعة في الحياة، كل خطوة تُحسب"</string>
+  <string name="home_quote_068" formatted="false">"الأمور لم تصبح أسهل، بل اعتدت صعوبتها"</string>
+  <string name="home_quote_069" formatted="false">"الصوت العظيم لا يُسمع، والشكل العظيم لا يُرى، والاجتماعات الكبيرة عادة بلا نتائج"</string>
+  <string name="home_quote_070" formatted="false">"الابتسامة المتبادلة تعبر عن توافق القلوب"</string>
+  <string name="home_quote_071" formatted="false">"من يغلب الآخرين قوي، ومن يغلب نفسه أقوى"</string>
+  <string name="home_quote_072" formatted="false">"كرسيك يحدد وضع جلوسك"</string>
+  <string name="home_quote_073" formatted="false">"أعظم سعادة هي ألا تحتاج لإثبات سعادتك"</string>
+  <string name="home_quote_074" formatted="false">"الإنسان مولود حرًا، لكنه يسجل عضوية في كل مكان"</string>
+  <string name="home_quote_075" formatted="false">"إذا لم تجد وقتًا للراحة، سيجد جسدك موعدًا لك تلقائيًا"</string>
+  <string name="home_quote_076" formatted="false">"الحياة تعلمك الكثير، وغالبًا ما تكون رسوم الدروس مرتفعة"</string>
+  <string name="home_quote_077" formatted="false">"الحياة ليست أبيض أو أسود فقط"</string>
+  <string name="home_quote_078" formatted="false">"أفضل الخير كالماء، الماء ينفع كل شيء ولا يتصارع"</string>
+  <string name="home_quote_079" formatted="false">"كلامك مثل الاستماع إلى حكمة ثمينة"</string>
+  <string name="home_quote_080" formatted="false">"أي شيء يستحق القيام به، يستحق الحفظ أولًا"</string>
+  <string name="home_quote_081" formatted="false">"العالم لا يتوقف بسببك، فلا تشعر بالذنب كثيرًا"</string>
+  <string name="home_quote_082" formatted="false">"أعمق الحقائق تصبح بسيطة بعد شرحها"</string>
+  <string name="home_quote_083" formatted="false">"لا توجد تجارب بلا فائدة في الحياة"</string>
+  <string name="home_quote_084" formatted="false">"إذا خشيت الخطأ، ستفوتك طرق جديدة للخطأ"</string>
+  <string name="home_quote_085" formatted="false">"للحياة احتمالات لا حصر لها، لكن اليوم لا يتكرر"</string>
+  <string name="home_quote_086" formatted="false">"كيف حالك؟ أنا بخير، شكرًا لك."</string>
+  <string name="home_quote_087" formatted="false">"لا يمكن التراجع عما مضى، لكن يمكن اللحاق بما هو آت"</string>
+  <string name="home_quote_088" formatted="false">"كن نفسك"</string>
+  <string name="msg_485107965fef" formatted="false">"تنسيق قاعدة المكون غير صحيح"</string>
+  <string name="msg_8ace37cfd750" formatted="false">"لا يمكن إزالة الصفحة بأكملها"</string>
+  <string name="msg_8b9869b822e7" formatted="false">"تعذر العثور على محدد مكون صالح"</string>
+  <string name="msg_e120bd1bed88" formatted="false">"المكون المحدد لم يعد موجودًا"</string>
+  <string name="msg_db7282021ef2" formatted="false">"الـ HTML الأصلي غير جاهز، يرجى إعادة تحميل الصفحة ثم فتح القاعدة"</string>
+  <string name="msg_f3cfde65b6f6" formatted="false">"تعذر العثور على المكون"</string>
+  <string name="msg_837653b6c57e" formatted="false">"المكون كبير جدًا، يرجى اختيار نطاق أصغر"</string>
+  <string name="practice_f4545c2dec24" formatted="false">"ساحة تدريب SkyEye · ChengJing"</string>
+  <string name="practice_70fb7ec33bf3" formatted="false">"ChengJing · ساحة تدريب SkyEye"</string>
+  <string name="practice_59d3049f7a5d" formatted="false">"صفحة العرض التوضيحي المحلية"</string>
+  <string name="practice_c6d2f7f8dfcb" formatted="false">"شريط معلومات عام · يمكنك الاختيار للاحتفاظ به"</string>
+  <string name="practice_cd68af5545f5" formatted="false">"تمهل، وانظر بوضوح"</string>
+  <string name="practice_df5b2ae1f9a0" formatted="false">"اضبط الصفحة لتناسب عاداتك."</string>
+  <string name="practice_8b7c761ab887" formatted="false">"هذه صفحة تدريب على الهاتف. يمكنك تعديل المكونات وإضافة أنماطك ومحتوى صفحتك الخاص."</string>
+  <string name="practice_7e28a385715a" formatted="false">"انقر على \"SkyEye\" في شريط الأدوات، ثم اختر مكونًا. إذا اخترت نصًا فقط، اضغط \"اختر الطبقة الخارجية\" حتى تحيط الإطار بالمكون بالكامل، ثم عاين الإزالة."</string>
+  <string name="practice_aa9b81c8d7bd" formatted="false">"البطل في الصفحة هو المحتوى الذي تريد مشاهدته."</string>
+  <string name="practice_e2cdacad50b6" formatted="false">"أضف شيئًا خاصًا بك"</string>
+  <string name="practice_b4a4214feada" formatted="false">"افتح SkyEye، واختر \"إضافة CSS\" لتعديل الأنماط. مثلاً لجعل الفقرات أكثر اتساعًا:"</string>
+  <string name="practice_c1677b9f2cfc" formatted="false">"اختر \"إضافة JS\" لإضافة تذكير بالقراءة في الصفحة:"</string>
+  <string name="practice_9e58ae908fca" formatted="false">"ماذا بعد الإزالة؟"</string>
+  <string name="practice_53e5cbf48286" formatted="false">"احفظ القواعد، ثم انتقل إلى الصفحة الثانية. رغم اختلاف محتوى المكونات، طالما الهيكل نفسه، فلن يزعجك."</string>
+  <string name="practice_2ee86cac14a8" formatted="false">"اذهب إلى الصفحة الثانية في نفس النطاق →"</string>
+  <string name="practice_9fb9947e7dd1" formatted="false">"يمكنك أيضًا اختيار \"عرض الموقع الأصلي مؤقتًا\" من القائمة لرؤية الموقع الأصلي مؤقتًا. جميع القواعد تبقى دون الحاجة لإعادة الإعداد."</string>
+  <string name="practice_66cf62365956" formatted="false">"حاوية التلميحات المخفية أصلاً"</string>
+  <string name="practice_de3b679c32d3" formatted="false">"مكون عائم توضيحي"</string>
+  <string name="practice_e8b18630d135" formatted="false">"هذا المكون العائم يحجب محتوى القراءة."</string>
+  <string name="practice_975cfbbfce74" formatted="false">"حاول استخدام SkyEye لإزالة المنطقة الخضراء بالكامل."</string>
+  <string name="practice_29692e6a4f70" formatted="false">"تذكر أن تأخذ استراحة"</string>
+  <string name="practice_f6e5f9dc3c53" formatted="false">"إغلاق المكون"</string>
+  <string name="practice_df9256123dae" formatted="false">"محتوى جديد، بنفس النقاء."</string>
+  <string name="practice_efbee8398901" formatted="false">"مكون بمحتوى مختلف، لكنه بنفس الهيكل."</string>
+  <string name="practice_6ebf0d9dee84" formatted="false">"الصفحة الثانية · ساحة تدريب SkyEye"</string>
+  <string name="practice_40e3270ad4f8" formatted="false">"مكون تلميح يتم تحميله مؤخرًا، يمكن اختياره أيضًا بواسطة SkyEye."</string>
+  <string-array name="home_quotes">
+    <item>@string/home_quote_000</item>
+    <item>@string/home_quote_001</item>
+    <item>@string/home_quote_002</item>
+    <item>@string/home_quote_003</item>
+    <item>@string/home_quote_004</item>
+    <item>@string/home_quote_005</item>
+    <item>@string/home_quote_006</item>
+    <item>@string/home_quote_007</item>
+    <item>@string/home_quote_008</item>
+    <item>@string/home_quote_009</item>
+    <item>@string/home_quote_010</item>
+    <item>@string/home_quote_011</item>
+    <item>@string/home_quote_012</item>
+    <item>@string/home_quote_013</item>
+    <item>@string/home_quote_014</item>
+    <item>@string/home_quote_015</item>
+    <item>@string/home_quote_016</item>
+    <item>@string/home_quote_017</item>
+    <item>@string/home_quote_018</item>
+    <item>@string/home_quote_019</item>
+    <item>@string/home_quote_020</item>
+    <item>@string/home_quote_021</item>
+    <item>@string/home_quote_022</item>
+    <item>@string/home_quote_023</item>
+    <item>@string/home_quote_024</item>
+    <item>@string/home_quote_025</item>
+    <item>@string/home_quote_026</item>
+    <item>@string/home_quote_027</item>
+    <item>@string/home_quote_028</item>
+    <item>@string/home_quote_029</item>
+    <item>@string/home_quote_030</item>
+    <item>@string/home_quote_031</item>
+    <item>@string/home_quote_032</item>
+    <item>@string/home_quote_033</item>
+    <item>@string/home_quote_034</item>
+    <item>@string/home_quote_035</item>
+    <item>@string/home_quote_036</item>
+    <item>@string/home_quote_037</item>
+    <item>@string/home_quote_038</item>
+    <item>@string/home_quote_039</item>
+    <item>@string/home_quote_040</item>
+    <item>@string/home_quote_041</item>
+    <item>@string/home_quote_042</item>
+    <item>@string/home_quote_043</item>
+    <item>@string/home_quote_044</item>
+    <item>@string/home_quote_045</item>
+    <item>@string/home_quote_046</item>
+    <item>@string/home_quote_047</item>
+    <item>@string/home_quote_048</item>
+    <item>@string/home_quote_049</item>
+    <item>@string/home_quote_050</item>
+    <item>@string/home_quote_051</item>
+    <item>@string/home_quote_052</item>
+    <item>@string/home_quote_053</item>
+    <item>@string/home_quote_054</item>
+    <item>@string/home_quote_055</item>
+    <item>@string/home_quote_056</item>
+    <item>@string/home_quote_057</item>
+    <item>@string/home_quote_058</item>
+    <item>@string/home_quote_059</item>
+    <item>@string/home_quote_060</item>
+    <item>@string/home_quote_061</item>
+    <item>@string/home_quote_062</item>
+    <item>@string/home_quote_063</item>
+    <item>@string/home_quote_064</item>
+    <item>@string/home_quote_065</item>
+    <item>@string/home_quote_066</item>
+    <item>@string/home_quote_067</item>
+    <item>@string/home_quote_068</item>
+    <item>@string/home_quote_069</item>
+    <item>@string/home_quote_070</item>
+    <item>@string/home_quote_071</item>
+    <item>@string/home_quote_072</item>
+    <item>@string/home_quote_073</item>
+    <item>@string/home_quote_074</item>
+    <item>@string/home_quote_075</item>
+    <item>@string/home_quote_076</item>
+    <item>@string/home_quote_077</item>
+    <item>@string/home_quote_078</item>
+    <item>@string/home_quote_079</item>
+    <item>@string/home_quote_080</item>
+    <item>@string/home_quote_081</item>
+    <item>@string/home_quote_082</item>
+    <item>@string/home_quote_083</item>
+    <item>@string/home_quote_084</item>
+    <item>@string/home_quote_085</item>
+    <item>@string/home_quote_086</item>
+    <item>@string/home_quote_087</item>
+    <item>@string/home_quote_088</item>
+  </string-array>
+</resources>

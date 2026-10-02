@@ -43,6 +43,8 @@ jobs:
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
           echo "$ANDROID_HOME/emulator" >> "$GITHUB_PATH"
           "$ANDROID_HOME/platform-tools/adb" version
+      - name: Verify all bundled interface languages
+        run: python3 scripts/verify-localization.py
       - name: Compile QA app and instrumentation, run unit tests and lint
         run: |
           ./gradlew --no-daemon --stacktrace -PqaInstall=true :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug :release-smoke:assembleDebug
@@ -89,7 +91,7 @@ jobs:
         run: |
           adb install -r release-smoke/build/outputs/apk/debug/release-smoke-debug.apk
           ./gradlew --no-daemon --stacktrace -PqaInstall=true \
-            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.SyncRecoveryTest,tw.techtarian.browser.WebsiteLocationTest,tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.ImageActionsTest,tw.techtarian.browser.PageDownloadsTest,tw.techtarian.browser.AppearanceTest,tw.techtarian.browser.SearchEngineSettingsTest,tw.techtarian.browser.RuleEditingJourneyTest,tw.techtarian.browser.CollectionsPrivacyTest,tw.techtarian.browser.TabPreviewStoreTest,tw.techtarian.browser.TabPreviewPersistenceTest,tw.techtarian.browser.CloseAllTabsTest,tw.techtarian.browser.HomeSettingsTest,tw.techtarian.browser.BackNavigationTest,tw.techtarian.browser.ColdExternalBackNavigationTest,tw.techtarian.browser.HomeLayoutTest,tw.techtarian.browser.BrowsingDataTest,tw.techtarian.browser.ExternalLinksTest,tw.techtarian.browser.TabPreviewRenderingTest,tw.techtarian.browser.FindInPageTest,tw.techtarian.browser.AddressEditingTest \
+            -Pandroid.testInstrumentationRunnerArguments.class=tw.techtarian.browser.SyncRecoveryTest,tw.techtarian.browser.WebsiteLocationTest,tw.techtarian.browser.AiProviderSettingsTest,tw.techtarian.browser.FavoriteSyncStoreTest,tw.techtarian.browser.BrowserLaunchSurfaceTest,tw.techtarian.browser.PageActionsTest,tw.techtarian.browser.ImageActionsTest,tw.techtarian.browser.PageDownloadsTest,tw.techtarian.browser.AppearanceTest,tw.techtarian.browser.SearchEngineSettingsTest,tw.techtarian.browser.RuleEditingJourneyTest,tw.techtarian.browser.CollectionsPrivacyTest,tw.techtarian.browser.TabPreviewStoreTest,tw.techtarian.browser.TabPreviewPersistenceTest,tw.techtarian.browser.CloseAllTabsTest,tw.techtarian.browser.HomeSettingsTest,tw.techtarian.browser.BackNavigationTest,tw.techtarian.browser.ColdExternalBackNavigationTest,tw.techtarian.browser.HomeLayoutTest,tw.techtarian.browser.BrowsingDataTest,tw.techtarian.browser.ExternalLinksTest,tw.techtarian.browser.TabPreviewRenderingTest,tw.techtarian.browser.FindInPageTest,tw.techtarian.browser.AddressEditingTest,tw.techtarian.browser.LanguageSettingsTest \
             :app:connectedDebugAndroidTest
       - name: Verify thumbnails survive actual process restart and close-tab cleanup
         run: |
@@ -101,6 +103,11 @@ jobs:
           python3 scripts/test-browsing-data-restart.py
       - name: Verify direct Android location without Google Play Services
         run: python3 scripts/test-native-location.py
+      - name: Verify first-launch phone-language detection
+        run: |
+          adb shell pm clear tw.techtarian.browser.qa
+          adb shell am instrument -w -r -e testLocale system -e class tw.techtarian.browser.FirstLanguageLaunchTest tw.techtarian.browser.qa.test/tw.techtarian.browser.BrowserTestRunner | tee validation/first-language.txt
+          grep -F 'OK (1 test)' validation/first-language.txt
       - name: Collect source, previews and emulator diagnostics
         if: always()
         run: |

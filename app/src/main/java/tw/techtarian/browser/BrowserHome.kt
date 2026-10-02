@@ -38,40 +38,40 @@ import kotlinx.coroutines.delay
     var intro by remember(c.active?.id){mutableStateOf<Boolean?>(null)}
     LaunchedEffect(c.active?.id){intro=c.home.claimIntroduction()}
     val day=rememberHomeDate()
-    val quote=remember(day,intro){
+    val quote=remember(day,intro,AppLanguages.currentTag){
         if(intro==false)c.homeQuotes[HomePolicy.quoteIndex(c.home.quoteStart(day),day,c.homeQuotes.size)]else ""
     }
     val cs=MaterialTheme.colorScheme
     Column(Modifier.fillMaxSize().testTag("browser-home").verticalScroll(rememberScrollState()).padding(horizontal=28.dp,vertical=38.dp)){
-        Row(verticalAlignment=Alignment.CenterVertically){Image(painterResource(R.drawable.ic_launcher),"澄境瀏覽器",modifier=Modifier.size(56.dp));Spacer(Modifier.width(12.dp));Column(Modifier.weight(1f)){Text("澄境瀏覽器",fontWeight=FontWeight.SemiBold,fontSize=17.sp);Text("CHENGJING BROWSER",fontSize=9.sp,letterSpacing=1.6.sp,color=cs.onSurfaceVariant)}}
+        Row(verticalAlignment=Alignment.CenterVertically){Image(painterResource(R.drawable.ic_launcher),bt(R.string.msg_bb11ab4df9b9),modifier=Modifier.size(56.dp));Spacer(Modifier.width(12.dp));Column(Modifier.weight(1f)){Text(bt(R.string.msg_bb11ab4df9b9),fontWeight=FontWeight.SemiBold,fontSize=17.sp);Text("CHENGJING BROWSER",fontSize=9.sp,letterSpacing=1.6.sp,color=cs.onSurfaceVariant)}}
         Spacer(Modifier.height(40.dp))
         if(intro==true){
             Column(Modifier.testTag("home-introduction")){
-                DailyQuoteText("網頁，\n依你的習慣調整。")
+                DailyQuoteText(bt(R.string.msg_71171b556a11))
                 Spacer(Modifier.height(18.dp))
-                Text("照常瀏覽，也能打開天眼，\n新增樣式、程式碼或調整元件。",fontSize=15.sp,lineHeight=25.sp,color=cs.onSurfaceVariant)
+                Text(bt(R.string.msg_a552a9de0ae4),fontSize=15.sp,lineHeight=25.sp,color=cs.onSurfaceVariant)
             }
         }else if(intro==false){
             Column(Modifier.fillMaxWidth().heightIn(min=196.dp),verticalArrangement=Arrangement.spacedBy(20.dp)){
-                Text("今日一句",fontSize=11.sp,letterSpacing=2.sp,color=cs.primary)
+                Text(bt(R.string.msg_e72c3ffa6baf),fontSize=11.sp,letterSpacing=2.sp,color=cs.primary)
                 DailyQuoteText(quote)
             }
         }else Spacer(Modifier.height(196.dp))
         Spacer(Modifier.height(28.dp))
-        Text("快速前往",fontSize=12.sp,color=cs.onSurfaceVariant);Spacer(Modifier.height(10.dp))
+        Text(bt(R.string.msg_27268090a840),fontSize=12.sp,color=cs.onSurfaceVariant);Spacer(Modifier.height(10.dp))
         FlowRow(horizontalArrangement=Arrangement.spacedBy(12.dp)){
             AssistChip(onClick={c.navigate("https://www.google.com")},label={Text("Google")},leadingIcon={Icon(Icons.Outlined.Search,null,Modifier.size(16.dp))})
-            AssistChip(onClick={c.navigate("https://zh.wikipedia.org")},label={Text("維基百科")},leadingIcon={Icon(Icons.Outlined.Language,null,Modifier.size(16.dp))})
+            AssistChip(onClick={c.navigate("https://zh.wikipedia.org")},label={Text(bt(R.string.msg_f06e679b9530))},leadingIcon={Icon(Icons.Outlined.Language,null,Modifier.size(16.dp))})
         }
         val favoriteRevision=c.revision
         val recentFavorites=remember(favoriteRevision){c.favorites.all().take(3)}
         if(recentFavorites.isNotEmpty()){
-            Spacer(Modifier.height(18.dp));Text("繼續閱讀",fontSize=12.sp,color=cs.onSurfaceVariant)
+            Spacer(Modifier.height(18.dp));Text(bt(R.string.msg_217d775e8c90),fontSize=12.sp,color=cs.onSurfaceVariant)
             recentFavorites.forEach{favorite->Row(Modifier.fillMaxWidth().clickable{c.openFavorite(favorite)}.padding(vertical=12.dp),verticalAlignment=Alignment.CenterVertically){SiteIcon(c,favorite.url,28.dp);Spacer(Modifier.width(10.dp));Text(favorite.title,Modifier.weight(1f),fontSize=14.sp,maxLines=1,overflow=TextOverflow.Ellipsis)}}
         }
         FlowRow(horizontalArrangement=Arrangement.spacedBy(8.dp)){
-            TextButton(onClick={c.sheet="bookmarks"}){Icon(Icons.Outlined.Folder,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("書籤資料夾")}
-            TextButton(onClick={c.sheet="favorites"}){Icon(Icons.Outlined.StarOutline,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text("所有收藏")}
+            TextButton(onClick={c.sheet="bookmarks"}){Icon(Icons.Outlined.Folder,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text(bt(R.string.msg_b1d2dc2fb2e6))}
+            TextButton(onClick={c.sheet="favorites"}){Icon(Icons.Outlined.StarOutline,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text(bt(R.string.msg_2c2bc301657f))}
         }
     }
 }

@@ -24,20 +24,20 @@ internal class BrowserImageDownloads(private val activity:ComponentActivity,priv
         val request=pending
         pending=null
         if(granted&&request!=null)enqueue(request)
-        else if(!granted)notice("未允許儲存權限，檔案沒有下載")
-        else notice("請重新選擇要下載的檔案")
+        else if(!granted)notice(bt(R.string.msg_fb43036835f6))
+        else notice(bt(R.string.msg_18763274dfce))
     }
     fun download(rawUrl:String,page:String,userAgent:String,cookieHeader:String?=CookieManager.getInstance().getCookie(rawUrl),mimeHint:String?=null,disposition:String?=null,imageOnly:Boolean=true):Long? {
         val url=PageActionPolicy.downloadUrl(rawUrl)
         if(url==null){
-            notice("這個網址無法交給系統下載服務，請在原頁重新下載")
+            notice(bt(R.string.msg_38116168b889))
             return null
         }
         val request=Pending(url,page,userAgent,cookieHeader,mimeHint,disposition,imageOnly)
         if(Build.VERSION.SDK_INT<=28&&ContextCompat.checkSelfPermission(activity,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
-            if(pending!=null){notice("請先完成上一個檔案的儲存授權");return null}
+            if(pending!=null){notice(bt(R.string.msg_d9832eb8413c));return null}
             pending=request
-            try{permission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)}catch(_:IllegalStateException){pending=null;notice("無法開啟儲存授權，請重新嘗試")}
+            try{permission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)}catch(_:IllegalStateException){pending=null;notice(bt(R.string.msg_1022567a481f))}
             return null
         }
         return enqueue(request)
@@ -49,7 +49,7 @@ internal class BrowserImageDownloads(private val activity:ComponentActivity,priv
         val name=PageActionPolicy.safeFilename(guessed,UUID.randomUUID().toString().take(8))
         val request=DownloadManager.Request(Uri.parse(task.url))
             .setTitle(name)
-            .setDescription(if(task.imageOnly)"澄境瀏覽器 · 圖片下載"else"澄境瀏覽器 · 檔案下載")
+            .setDescription(if(task.imageOnly)bt(R.string.msg_067c7812968e)else bt(R.string.msg_f0ffb8d77605))
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,name)
         // When the path has no image extension, let the server's Content-Type decide.
@@ -58,7 +58,7 @@ internal class BrowserImageDownloads(private val activity:ComponentActivity,priv
         PageActionPolicy.referrer(task.page,task.url)?.let{request.addRequestHeader("Referer",it)}
         task.cookie?.takeIf{it.isNotBlank()&&it.length<=32768&&!it.contains('\r')&&!it.contains('\n')}?.let{request.addRequestHeader("Cookie",it)}
         val id=(activity.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(request)
-        notice("已加入系統下載佇列，可在三點選單的「下載」查看結果")
+        notice(bt(R.string.msg_4a9962f4b813))
         id
-    }catch(_:Exception){notice("無法加入檔案下載，請檢查儲存空間及系統下載服務");null}
+    }catch(_:Exception){notice(bt(R.string.msg_46248e4d3641));null}
 }

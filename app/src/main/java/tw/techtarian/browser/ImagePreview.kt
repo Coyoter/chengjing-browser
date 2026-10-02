@@ -48,23 +48,23 @@ import kotlin.math.sqrt
         runCatching{withContext(Dispatchers.IO){ImageDecoder.decodeDrawable(ImageDecoder.createSource(asset.file)){decoder,info,_->
             val scale=min(1.0,min(4096.0/maxOf(info.size.width,info.size.height),sqrt(4_000_000.0/(info.size.width.toDouble()*info.size.height))))
             decoder.setTargetSize(maxOf(1,(info.size.width*scale).toInt()),maxOf(1,(info.size.height*scale).toInt()))
-        }}}.onSuccess{drawable=it}.onFailure{error="圖片暫存已失效，請回原頁重新開啟"}
+        }}}.onSuccess{drawable=it}.onFailure{error=bt(R.string.msg_76d26aa8c33e)}
     }
     DisposableEffect(drawable){val animation=drawable as? AnimatedImageDrawable;animation?.start();onDispose{animation?.stop()}}
     Column(modifier.background(Color(0xff101315)).safeDrawingPadding().testTag("image-preview")){
         Row(Modifier.fillMaxWidth().padding(horizontal=8.dp),verticalAlignment=Alignment.CenterVertically){
-            Text("預覽圖片",Modifier.weight(1f).padding(12.dp),color=Color.White,style=MaterialTheme.typography.titleMedium)
-            IconButton(onClick=onClose){Icon(Icons.Outlined.Close,"關閉圖片預覽",tint=Color.White)}
+            Text(bt(R.string.msg_3b0e45edcfb7),Modifier.weight(1f).padding(12.dp),color=Color.White,style=MaterialTheme.typography.titleMedium)
+            IconButton(onClick=onClose){Icon(Icons.Outlined.Close,bt(R.string.msg_18ff1017a7e0),tint=Color.White)}
         }
         Box(Modifier.weight(1f).fillMaxWidth(),contentAlignment=Alignment.Center){
             if(error.isNotEmpty())Text(error,Modifier.padding(24.dp),color=Color.White)
             else if(drawable==null)CircularProgressIndicator()
             else AndroidView(factory={ZoomImageView(it)},update={it.show(drawable!!)},modifier=Modifier.fillMaxSize().testTag("image-preview-content"))
         }
-        Text("${asset.width} × ${asset.height} · ${asset.format.extension.uppercase()} · 雙指縮放，雙擊放大",Modifier.padding(horizontal=20.dp,vertical=8.dp),color=Color(0xffc3cbc7),style=MaterialTheme.typography.bodySmall)
-        if(temporaryTab)Text("這是網頁暫存圖片分頁，重開 App 後不保留。需要保留請下載。",Modifier.padding(horizontal=20.dp,vertical=4.dp),color=Color(0xffc3cbc7),style=MaterialTheme.typography.bodySmall)
+        Text(bt(R.string.msg_b14f4f9c10dc ,asset.width,asset.height,asset.format.extension.uppercase()),Modifier.padding(horizontal=20.dp,vertical=8.dp),color=Color(0xffc3cbc7),style=MaterialTheme.typography.bodySmall)
+        if(temporaryTab)Text(bt(R.string.msg_c660e164fa68),Modifier.padding(horizontal=20.dp,vertical=4.dp),color=Color(0xffc3cbc7),style=MaterialTheme.typography.bodySmall)
         Row(Modifier.fillMaxWidth().padding(bottom=8.dp),horizontalArrangement=Arrangement.SpaceEvenly){
-            listOf(ImageAction.COPY to "複製圖片",ImageAction.DOWNLOAD to "下載圖片",ImageAction.SHARE to "分享圖片").forEach{(action,label)->
+            listOf(ImageAction.COPY to bt(R.string.msg_720b7e9d72fa),ImageAction.DOWNLOAD to bt(R.string.msg_b3436480e1ad),ImageAction.SHARE to bt(R.string.msg_750f7a0175cc)).forEach{(action,label)->
                 TextButton(onClick={(c.context as MainActivity).imageActions.usePrepared(asset,action)},enabled=drawable!=null,
                     colors=ButtonDefaults.textButtonColors(contentColor=Color(0xff69dfc0),disabledContentColor=Color(0xffc3cbc7).copy(alpha=.38f))){Text(label)}
             }
@@ -83,7 +83,7 @@ private class ZoomImageView(context:android.content.Context):androidx.appcompat.
         override fun onScroll(e1:MotionEvent?,e2:MotionEvent,dx:Float,dy:Float):Boolean{if(!scale.isInProgress){transform.postTranslate(-dx,-dy);constrain()};return true}
         override fun onDoubleTap(e:MotionEvent):Boolean{if(current>minimum*1.1f)fit()else zoom(minimum*2.5f,e.x,e.y);return true}
     })
-    init{scaleType=ScaleType.MATRIX;contentDescription="圖片，可雙指縮放與拖曳"}
+    init{scaleType=ScaleType.MATRIX;contentDescription=bt(R.string.msg_9ef754f8e3fd)}
     fun show(value:android.graphics.drawable.Drawable){if(drawable!==value){setImageDrawable(value);fit()}}
     // Compose's AndroidView holder does not clip an ImageView's zoom matrix.
     // Clip in local canvas coordinates so the image cannot cover the controls.

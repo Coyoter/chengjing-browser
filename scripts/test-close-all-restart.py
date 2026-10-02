@@ -5,7 +5,7 @@ import re
 import subprocess
 
 package = "tw.techtarian.browser.qa"
-runner = package + ".test/androidx.test.runner.AndroidJUnitRunner"
+runner = package + ".test/tw.techtarian.browser.BrowserTestRunner"
 test = "tw.techtarian.browser.CloseAllColdRestartTest"
 out = Path("validation")
 out.mkdir(exist_ok=True)

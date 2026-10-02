@@ -38,10 +38,10 @@ import androidx.compose.ui.window.DialogProperties
         modifier=Modifier.testTag("delete-browsing-data-dialog"),
         containerColor=MaterialTheme.colorScheme.surface,
         properties=DialogProperties(dismissOnBackPress=!cleaner.running,dismissOnClickOutside=!cleaner.running),
-        title={Text("刪除瀏覽資料")},
+        title={Text(bt(R.string.msg_5f9f90a382dc))},
         text={
             Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)){
-                Text("時間範圍",style=MaterialTheme.typography.labelLarge)
+                Text(bt(R.string.msg_f2f22406c73c),style=MaterialTheme.typography.labelLarge)
                 Box{
                     OutlinedButton(onClick={expanded=true},enabled=!cleaner.running,modifier=Modifier.fillMaxWidth().testTag("browsing-data-time-range")){
                         Text(range.label,Modifier.weight(1f));Icon(Icons.Outlined.ArrowDropDown,null)
@@ -54,25 +54,25 @@ import androidx.compose.ui.window.DialogProperties
                         )}
                     }
                 }
-                DataChoice(Icons.Outlined.History,"瀏覽記錄","$pageCount 個頁面、$searchCount 筆搜尋記錄",history,!cleaner.running,"delete-history"){history=it}
-                DataChoice(Icons.Outlined.Tab,"尚未關閉的分頁","$tabCount 個一般分頁 · 依最後瀏覽時間關閉",tabs,!cleaner.running,"delete-tabs"){tabs=it}
+                DataChoice(Icons.Outlined.History,bt(R.string.msg_0baa9a64e9b1),bt(R.string.msg_2a8cf901b0de ,pageCount,searchCount),history,!cleaner.running,"delete-history"){history=it}
+                DataChoice(Icons.Outlined.Tab,bt(R.string.msg_8394223e0a97),bt(R.string.msg_18cfaeb0a53a ,tabCount),tabs,!cleaner.running,"delete-tabs"){tabs=it}
                 HorizontalDivider()
-                DataChoice(Icons.Outlined.Cookie,"Cookie、快取和網站資料",
-                    if(cleaner.supportsSiteData)"不限時間 · 全部清除，可能會登出網站"else"請先更新 Android System WebView 才能清除",
+                DataChoice(Icons.Outlined.Cookie,bt(R.string.msg_1f86b4081196),
+                    if(cleaner.supportsSiteData)bt(R.string.msg_c44aefb98491)else bt(R.string.msg_dceb1d80c179),
                     siteData,!cleaner.running&&cleaner.supportsSiteData,"delete-site-data"){siteData=it}
-                Text("時間範圍適用於瀏覽記錄與分頁。Cookie、快取和網站資料只能全部清除。",style=MaterialTheme.typography.bodySmall)
-                if(unknown&&range!=BrowsingTimeRange.ALL_TIME)Text("舊版未記錄時間的資料，請選「不限時間」刪除。",style=MaterialTheme.typography.bodySmall)
-                Text("保留書籤、收藏、下載檔案與天眼設定。無痕資料請關閉無痕分頁清除。",style=MaterialTheme.typography.bodySmall)
+                Text(bt(R.string.msg_ab54697044d0),style=MaterialTheme.typography.bodySmall)
+                if(unknown&&range!=BrowsingTimeRange.ALL_TIME)Text(bt(R.string.msg_e3b65ee64f32),style=MaterialTheme.typography.bodySmall)
+                Text(bt(R.string.msg_fec6ddf942c8),style=MaterialTheme.typography.bodySmall)
                 if(cleaner.running)LinearProgressIndicator(Modifier.fillMaxWidth().testTag("browsing-data-progress"))
                 if(cleaner.error.isNotEmpty())Text(cleaner.error,color=MaterialTheme.colorScheme.error,modifier=Modifier.testTag("browsing-data-error"))
             }
         },
         confirmButton={
             Button(onClick={cleaner.clear(range,BrowsingDataSelection(history,tabs,siteData))},enabled=!cleaner.running&&(history||tabs||siteData),modifier=Modifier.testTag("confirm-delete-browsing-data")){
-                Text(if(cleaner.running)"刪除中…"else"刪除資料")
+                Text(if(cleaner.running)bt(R.string.msg_d2a1c725f6df)else bt(R.string.msg_6b0041cf4c37))
             }
         },
-        dismissButton={TextButton(onClick={c.sheet=""},enabled=!cleaner.running){Text("取消")}}
+        dismissButton={TextButton(onClick={c.sheet=""},enabled=!cleaner.running){Text(bt(R.string.msg_2cd0f3be8738))}}
     )
 }
 

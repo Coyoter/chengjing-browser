@@ -40,6 +40,7 @@ public class OptimizedReleaseTest {
         fixture=new Fixture();
         // Disposable QA package only. Each scenario starts with no account or private data.
         assertTrue(device.executeShellCommand("pm clear " + APP).contains("Success"));
+        device.executeShellCommand("cmd locale set-app-locales "+APP+" --locales zh-TW");
         String method=testName.getMethodName();
         open(method.equals("scrolledImagePreviewSurvivesRestartAndBlankReload")?"reader":method.equals("imageDownloadPreviewCopyAndShareWorkInOptimizedRelease")||method.equals("appearanceFollowsAppChoiceAcrossSystemModes")?"image-actions":"one");
     }
@@ -138,7 +139,7 @@ public class OptimizedReleaseTest {
     }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(40,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(41,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -203,6 +204,7 @@ public class OptimizedReleaseTest {
     }
     @Test public void coldExternalRootBackAndProcessRestoreKeepOneInitialPage() throws Exception {
         assertTrue(device.executeShellCommand("pm clear "+APP).contains("Success"));
+        device.executeShellCommand("cmd locale set-app-locales "+APP+" --locales zh-TW");
         sourceApp("two");require(By.desc("open-browser-article")).click();require(By.text("R8 功能測試 two"));
         device.executeShellCommand("am force-stop "+APP);launcherOpen();require(By.text("R8 功能測試 two"));
         device.pressBack();require(By.text("快速前往"));assertEquals(APP,device.getCurrentPackageName());
@@ -230,6 +232,21 @@ public class OptimizedReleaseTest {
         device.executeShellCommand("am force-stop "+APP);launcherOpen();require(By.text("快速前往"));
         require(By.descStartsWith("分頁，")).click();require(By.text("一般 2"));require(By.text("R8 功能測試 one"));
         assertFalse(device.hasObject(By.text("R8 功能測試 two")));
+    }
+    @Test public void languageSelectionLocalizesTheMinifiedInterfaceAndPersists() throws Exception {
+        menu();click("設定");require(By.text("介面語言"));require(By.text("繁體中文")).click();
+        require(By.text("English")).click();require(By.text("Settings"));require(By.text("Interface language"));
+        require(By.text("English")).click();
+        UiObject2 korean=device.wait(Until.findObject(By.text("한국어")),3000);
+        assertNotNull("Language autonyms must remain accessible",korean);korean.click();
+        require(By.text("설정"));
+        device.executeShellCommand("am force-stop "+APP);launcherOpenLocalized("브라우저 메뉴");
+        require(By.text("R8 功能測試 one"));
+        require(By.desc("브라우저 메뉴")).click();click("설정");require(By.text("한국어"));
+    }
+    private void launcherOpenLocalized(String menuDescription) throws Exception {
+        device.executeShellCommand("am start -W -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -n "+APP+"/tw.techtarian.browser.MainActivity");
+        require(By.desc(menuDescription));
     }
     @Test public void savedRuleEditorAndAiRevisionEntryWorkInOptimizedRelease() throws Exception {
         click("天眼");require(By.text("R8 測試元件")).click();click("修改這段代碼");

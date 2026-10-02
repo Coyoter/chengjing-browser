@@ -19,7 +19,7 @@ import java.util.UUID
 internal class PageFileStorage(private val context:Context) {
     private val prefs=context.getSharedPreferences("page-download-pending-v1",Context.MODE_PRIVATE)
     private val catalog=SavedImageDownloads(context)
-    private fun remember(uri:Uri,value:JSONObject){check(prefs.edit().putString(uri.toString(),value.toString()).commit()){"無法保存下載狀態"}}
+    private fun remember(uri:Uri,value:JSONObject){check(prefs.edit().putString(uri.toString(),value.toString()).commit()){bt(R.string.msg_ad87668dfff8)}}
     private fun forget(uri:Uri){prefs.edit().remove(uri.toString()).commit()}
     suspend fun recover()=withContext(Dispatchers.IO){
         for((key,value) in prefs.all){
@@ -30,7 +30,7 @@ internal class PageFileStorage(private val context:Context) {
                         if(cursor.moveToFirst()){
                             if(cursor.getInt(0)==1){
                                 context.contentResolver.delete(uri,null,null)
-                                catalog.recordFile(row.getString("name"),row.optString("source"),row.getString("mime"),0,Uri.EMPTY,DownloadManager.STATUS_FAILED,"上次下載已中斷，未保留不完整檔案；請回原頁重新下載")
+                                catalog.recordFile(row.getString("name"),row.optString("source"),row.getString("mime"),0,Uri.EMPTY,DownloadManager.STATUS_FAILED,bt(R.string.msg_9dff40c961b0))
                             }
                             else catalog.recordFile(row.getString("name"),row.optString("source"),row.getString("mime"),cursor.getLong(1),uri)
                         }
@@ -49,13 +49,13 @@ internal class PageFileStorage(private val context:Context) {
         suspend fun finish():DownloadItem=withContext(Dispatchers.IO){
             output.close()
             val result=if(Build.VERSION.SDK_INT>=29&&legacy==null){
-                check(context.contentResolver.update(uri,ContentValues().apply{put(MediaStore.MediaColumns.IS_PENDING,0)},null,null)==1){"下載檔案未能完成儲存"}
+                check(context.contentResolver.update(uri,ContentValues().apply{put(MediaStore.MediaColumns.IS_PENDING,0)},null,null)==1){bt(R.string.msg_bcd36261f503)}
                 catalog.recordFile(name,source,mime,size,uri)
             }else{
                 val file=legacy!!;val target=File(file.parentFile,PageActionPolicy.safeFilename(name,UUID.randomUUID().toString().take(8)))
-                check(file.renameTo(target)){"無法完成下載檔案"}
+                check(file.renameTo(target)){bt(R.string.msg_815187d9a1da)}
                 try{
-                    @Suppress("DEPRECATION") val id=context.getSystemService(DownloadManager::class.java).addCompletedDownload(target.name,"澄境瀏覽器 · 檔案下載",true,mime,target.path,size,true)
+                    @Suppress("DEPRECATION") val id=context.getSystemService(DownloadManager::class.java).addCompletedDownload(target.name,bt(R.string.msg_f0ffb8d77605),true,mime,target.path,size,true)
                     DownloadItem(id,target.name,source,mime,DownloadManager.STATUS_SUCCESSFUL,size,size)
                 }catch(error:Exception){target.delete();throw error}
             }
@@ -74,17 +74,17 @@ internal class PageFileStorage(private val context:Context) {
             val uri=context.contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI,ContentValues().apply{
                 put(MediaStore.MediaColumns.DISPLAY_NAME,name);put(MediaStore.MediaColumns.MIME_TYPE,mime)
                 put(MediaStore.MediaColumns.RELATIVE_PATH,Environment.DIRECTORY_DOWNLOADS+"/ChengJing");put(MediaStore.MediaColumns.IS_PENDING,1)
-            })?:error("無法建立下載檔案，請檢查儲存空間")
+            })?:error(bt(R.string.msg_02beb82da20a))
             try{
                 remember(uri,meta)
                 val actual=context.contentResolver.query(uri,arrayOf(MediaStore.MediaColumns.DISPLAY_NAME),null,null,null)?.use{if(it.moveToFirst())it.getString(0)else null}?:name
                 if(actual!=name)remember(uri,meta.put("name",actual))
-                Pending(uri,context.contentResolver.openOutputStream(uri,"w")?:error("無法寫入下載檔案"),actual,mime,source,size).also{created=it}
+                Pending(uri,context.contentResolver.openOutputStream(uri,"w")?:error(bt(R.string.msg_bdd00d629528)),actual,mime,source,size).also{created=it}
             }
             catch(error:Exception){context.contentResolver.delete(uri,null,null);forget(uri);throw error}
         }else{
             @Suppress("DEPRECATION") val folder=File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"ChengJing")
-            check(folder.isDirectory||folder.mkdirs()){"無法建立下載資料夾"}
+            check(folder.isDirectory||folder.mkdirs()){bt(R.string.msg_d3e09805962f)}
             val file=File(folder,".cj-${UUID.randomUUID()}.part");val uri=Uri.fromFile(file)
             try{remember(uri,meta);Pending(uri,file.outputStream(),name,mime,source,size,file).also{created=it}}catch(error:Exception){file.delete();forget(uri);throw error}
         }

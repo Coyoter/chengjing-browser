@@ -1,0 +1,17 @@
+<!doctype html><html lang="ja" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>SkyEye練習場 · 澄境</title><style>
+*{box-sizing:border-box}body{margin:0;background:#faf9f5;color:#23362f;font-family:system-ui,sans-serif;line-height:1.8}header{padding:24px;border-bottom:1px solid #deded2;display:flex;justify-content:space-between;font-size:13px}main{padding:26px 24px 200px;max-width:700px;margin:auto}h1{font-size:30px;line-height:1.5;font-weight:500;margin:20px 0}p{font-size:16px}small{font-size:12px;color:#5b6e62}a{color:#147a64}.notice-banner{background:#e7e5d9;text-align:center;padding:10px;font-size:12px;color:#667365}.sample-overlay{position:fixed;bottom:18px;left:16px;right:16px;background:#183e32;color:#faf9f5;border-radius:18px;padding:20px;box-shadow:0 8px 40px #112b3344}.sample-overlay p{margin:4px 0;font-size:14px}.sample-overlay button{float:right;background:#ffffff18;color:white;border:0;border-radius:20px;padding:8px;font-size:14px}.hidden-panel{display:none}button{font:inherit}article{border-top:1px solid #deded2;margin-top:28px;padding-top:20px}blockquote{border-left:2px solid #147a64;margin:28px 0;padding-left:20px;color:#147a64}
+#late-panel{padding:20px;background:#e6eee8;border-radius:12px;margin:20px 0}
+@media(prefers-color-scheme:dark){body{background:#0f1513;color:#f2efe7}header,article{border-color:#394842}small{color:#b1b8b0}a,blockquote{color:#69dfc0}blockquote{border-color:#69dfc0}.notice-banner{background:#26332e;color:#b1b8b0}#late-panel{background:#26332e}.sample-overlay{background:#173f35}}
+</style></head><body>
+<header><strong>澄境・SkyEye練習場</strong><span>デモページ</span></header>
+<div id="notice-banner" class="notice-banner">一般情報バナー · 保存可能です</div>
+<main><small>ゆっくり見てください</small><h1>ウェブページを慣れた形に調整しましょう。</h1><p>これはスマホ内の練習用ページです。コンポーネントを調整したり、自分のスタイルや内容を追加できます。</p><p>ツールバーの「SkyEye」をタップし、開いたらコンポーネントを選択します。文字だけなら「外側を選択」を押し、コンポーネント全体が囲まれるまで繰り返し、プレビューで削除してください。</p><blockquote>ウェブページの主役は、あなたが見たい内容です。</blockquote><article id="reading-card"><h2>少し自分のものを追加しましょう</h2><p>SkyEyeを開き、「CSSを追加」を選ぶとスタイルを調整できます。例えば段落を広げるには：</p><pre style="white-space:pre-wrap">main { line-height: 2; }</pre><p>「JSを追加」を選ぶと、ページに読書リマインダーを入れられます：</p><pre style="white-space:pre-wrap">if (!document.getElementById("my-note")) {
+  const note = document.createElement("p");
+  note.id = "my-note";
+  note.textContent = "休憩も忘れずに";
+  document.querySelector("main").prepend(note);
+}</pre><h2>削除した後は？</h2><p>ルールを保存して、2ページ目へ。内容は違っても構造が同じなら邪魔されません。</p><p><a id="next-page" href="/second">同じドメインの2ページ目へ →</a></p><p>メニューの「一時的に元サイトを表示」を選ぶと、元のサイトを一時的に見られます。ルールはそのままで再設定不要です。</p></article><div id="dynamic-slot"></div></main>
+<div id="hidden-panel" class="hidden-panel">元は隠れていたヒントコンテナ</div>
+<aside id="sample-overlay" class="sample-overlay"><button id="close-panel" aria-label="コンポーネントを閉じる" onclick="this.closest('aside').remove()">×</button><small style="color:#afd3c2">デモの浮動コンポーネント</small><p id="panel-copy">この浮動ブロックが読書内容を遮っています。</p><small style="color:#afd3c2">SkyEyeで緑のブロック全体を削除してみましょう。</small></aside>
+<script>if(location.pathname.includes('second')){document.querySelector('h1').textContent="新しい内容もすっきりしています。";document.querySelector('#panel-copy').textContent="内容が変わっても構造は同じコンポーネントです。";document.title="2ページ目 · SkyEye練習場";}setTimeout(()=>{let n=document.createElement('div');n.id='late-panel';n.textContent="遅延読み込みのヒントコンポーネントもSkyEyeで選択可能です。";document.querySelector('#dynamic-slot').append(n)},2000);</script>
+</body></html>

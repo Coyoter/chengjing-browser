@@ -46,11 +46,11 @@ import kotlinx.coroutines.launch
 }
 
 internal fun panelTitle(page:String)=when(page){
-    "rule-editor"->"編輯網站規則";"rule-ai"->"AI 修訂規則"
-    "legal"->"第三方授權";"element-editor"->"元件程式碼";"develop-ai"->"天眼 AI";"connection"->"網站連線";"privacy"->"隱私與資料";"menu"->"澄境瀏覽器";"settings"->"設定";"tabs"->"分頁";"eye"->"天眼設定";"selection"->"選中一個元件"
-    "rules"->"網站修改";"code"->"自訂程式碼";"ai"->"AI 協助";"user-agent"->"瀏覽器識別";"search-engine"->"預設搜尋引擎"
-    "inventory"->"結構清單";"sync"->"Google 同步";"history"->"瀏覽記錄";"downloads"->"下載";"domains"->"網域規則"
-    "find"->"尋找頁面文字";"blocked"->"攔截紀錄";else->"澄境瀏覽器"
+    "rule-editor"->bt(R.string.msg_35376f24c4ad);"rule-ai"->bt(R.string.msg_f3b8aca2eb95)
+    "legal"->bt(R.string.msg_371d839ac65c);"element-editor"->bt(R.string.msg_eb2f0ca08efb);"develop-ai"->bt(R.string.msg_8a8f2d7c399a);"connection"->bt(R.string.msg_758380c7c9c7);"privacy"->bt(R.string.msg_930e319f7845);"menu"->bt(R.string.msg_bb11ab4df9b9);"settings"->bt(R.string.msg_0d8619aae051);"tabs"->bt(R.string.msg_842433f0a425);"eye"->bt(R.string.msg_320c5652f6d3);"selection"->bt(R.string.msg_559e4d37c3f8)
+    "rules"->bt(R.string.msg_58f73b892e2d);"code"->bt(R.string.msg_e13bbc197118);"ai"->bt(R.string.msg_634ad289a228);"user-agent"->bt(R.string.msg_871eaa84c97d);"search-engine"->bt(R.string.msg_14bd2c678335)
+    "inventory"->bt(R.string.msg_905d98bd5535);"sync"->bt(R.string.msg_4d94c28a53c4);"history"->bt(R.string.msg_0baa9a64e9b1);"downloads"->bt(R.string.msg_d477c75aa656);"domains"->bt(R.string.msg_f6b20e44de57)
+    "find"->bt(R.string.msg_f7ff0dc054ff);"blocked"->bt(R.string.msg_9d08608859f8);else->bt(R.string.msg_bb11ab4df9b9)
 }
 internal fun panelParent(page:String)=when(page){
     "rule-editor"->"rules";"rule-ai"->"rule-editor"
@@ -59,13 +59,13 @@ internal fun panelParent(page:String)=when(page){
 @Composable internal fun PanelHeader(c:BrowserController,onBack:()->Unit){
     val colors=MaterialTheme.colorScheme
     Row(Modifier.fillMaxWidth().testTag("panel-header").height(68.dp).padding(start=if(c.sheet=="menu")20.dp else 4.dp,end=8.dp),verticalAlignment=Alignment.CenterVertically){
-        if(c.sheet!="menu")IconButton(onClick=onBack){Icon(Icons.AutoMirrored.Outlined.ArrowBack,"返回上一層")}
+        if(c.sheet!="menu")IconButton(onClick=onBack){Icon(Icons.AutoMirrored.Outlined.ArrowBack,bt(R.string.msg_9357d631d10f))}
         Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)){
             Text(panelTitle(c.sheet),fontSize=20.sp,lineHeight=26.sp,fontWeight=FontWeight.SemiBold,maxLines=1,overflow=TextOverflow.Ellipsis)
-            if(c.sheet=="menu")Text(c.domain.ifBlank{"依你的習慣瀏覽"},fontSize=12.sp,lineHeight=16.sp,color=colors.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
+            if(c.sheet=="menu")Text(c.domain.ifBlank{bt(R.string.msg_59512d0db9fe)},fontSize=12.sp,lineHeight=16.sp,color=colors.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
         }
         if(c.sheet=="tabs")TabOverviewMenu(c)
-        else IconButton(onClick={c.sheet=""}){Icon(Icons.Outlined.Close,"關閉選單")}
+        else IconButton(onClick={c.sheet=""}){Icon(Icons.Outlined.Close,bt(R.string.msg_de961bb8936f))}
     }
 }
 @Composable internal fun MenuGroup(title:String,content:@Composable ColumnScope.()->Unit){
@@ -79,12 +79,12 @@ internal fun panelParent(page:String)=when(page){
 }
 @Composable internal fun MenuRow(icon:ImageVector,title:String,subtitle:String="",navigation:Boolean=true,action:()->Unit){
     val colors=MaterialTheme.colorScheme
-    Row(Modifier.fillMaxWidth().height(64.dp).testTag("menu-row:$title").clip(RoundedCornerShape(14.dp)).clickable(onClick=action).padding(horizontal=14.dp),verticalAlignment=Alignment.CenterVertically){
+    Row(Modifier.fillMaxWidth().heightIn(min=64.dp).testTag("menu-row:$title").clip(RoundedCornerShape(14.dp)).clickable(onClick=action).padding(horizontal=14.dp,vertical=12.dp),verticalAlignment=Alignment.CenterVertically){
         Box(Modifier.size(34.dp).background(colors.primary.copy(alpha=.08f),CircleShape),contentAlignment=Alignment.Center){Icon(icon,null,Modifier.size(20.dp),tint=colors.primary)}
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)){
-            Text(title,fontSize=15.sp,lineHeight=20.sp,maxLines=1,overflow=TextOverflow.Ellipsis)
-            if(subtitle.isNotEmpty())Text(subtitle,fontSize=12.sp,lineHeight=16.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=colors.onSurfaceVariant)
+            Text(title,fontSize=15.sp,lineHeight=20.sp)
+            if(subtitle.isNotEmpty())Text(subtitle,fontSize=12.sp,lineHeight=16.sp,color=colors.onSurfaceVariant)
         }
         if(navigation){Spacer(Modifier.width(8.dp));Icon(Icons.AutoMirrored.Outlined.KeyboardArrowRight,null,Modifier.size(18.dp),tint=colors.onSurfaceVariant)}
     }
@@ -93,47 +93,47 @@ internal fun panelParent(page:String)=when(page){
     Surface(modifier=modifier.height(76.dp).testTag("menu-shortcut:$label"),shape=RoundedCornerShape(16.dp),color=MaterialTheme.colorScheme.surface,onClick=action){
         Column(Modifier.fillMaxSize(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(7.dp,Alignment.CenterVertically)){
             Icon(icon,null,Modifier.size(23.dp),tint=MaterialTheme.colorScheme.primary)
-            Text(label,fontSize=12.sp,lineHeight=16.sp,maxLines=1,overflow=TextOverflow.Ellipsis)
+            Text(label,fontSize=12.sp,lineHeight=16.sp,maxLines=2,overflow=TextOverflow.Ellipsis)
         }
     }
 }
 @Composable internal fun BrowserMainMenu(c:BrowserController){
     val scope=rememberCoroutineScope();val tab=c.active;val store=c.store
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)){
-        Shortcut(Icons.Outlined.Add,"新增分頁",Modifier.weight(1f)){c.newTab(incognito=false);c.sheet=""}
-        Shortcut(Icons.Outlined.StarOutline,"收藏",Modifier.weight(1f)){c.sheet="favorites"}
-        Shortcut(Icons.Outlined.BookmarkBorder,"書籤",Modifier.weight(1f)){c.sheet="bookmarks"}
-        Shortcut(Icons.Outlined.History,"瀏覽記錄",Modifier.weight(1f)){c.sheet="history"}
+        Shortcut(Icons.Outlined.Add,bt(R.string.msg_a38d62ae74d4),Modifier.weight(1f)){c.newTab(incognito=false);c.sheet=""}
+        Shortcut(Icons.Outlined.StarOutline,bt(R.string.msg_60a53514eb92),Modifier.weight(1f)){c.sheet="favorites"}
+        Shortcut(Icons.Outlined.BookmarkBorder,bt(R.string.msg_1eb1e5b30e73),Modifier.weight(1f)){c.sheet="bookmarks"}
+        Shortcut(Icons.Outlined.History,bt(R.string.msg_0baa9a64e9b1),Modifier.weight(1f)){c.sheet="history"}
     }
-    MenuGroup("瀏覽工具"){
-        MenuRow(Icons.Outlined.PrivacyTip,"新增無痕分頁","與一般分頁分開的瀏覽工作階段",navigation=false){if(c.newTab(incognito=true)!=null)c.sheet=""}
-        MenuRow(Icons.Outlined.Download,"下載","檢視澄境瀏覽器下載的項目"){c.sheet="downloads"}
-        MenuRow(Icons.Outlined.DeleteOutline,"刪除瀏覽資料","選擇時間範圍與要刪除的項目"){c.sheet="clear-browsing-data"}
+    MenuGroup(bt(R.string.msg_97afce0d452c)){
+        MenuRow(Icons.Outlined.PrivacyTip,bt(R.string.msg_ce7454d53ff8),bt(R.string.msg_97e7dbfaf405),navigation=false){if(c.newTab(incognito=true)!=null)c.sheet=""}
+        MenuRow(Icons.Outlined.Download,bt(R.string.msg_d477c75aa656),bt(R.string.msg_8dce3f317048)){c.sheet="downloads"}
+        MenuRow(Icons.Outlined.DeleteOutline,bt(R.string.msg_5f9f90a382dc),bt(R.string.msg_1b4a0f6f50a6)){c.sheet="clear-browsing-data"}
     }
-    if(c.domain.isNotEmpty())MenuGroup("目前頁面"){
-        MenuRow(Icons.Outlined.Star,if(tab?.favoriteId!=null)"更新收藏進度"else"收藏目前頁面",tab?.favoriteId?.let{c.favorites.get(it)?.title}.orEmpty(),navigation=false){scope.launch{if(c.saveFavorite()!=null){c.notice="已保存收藏與閱讀位置";c.sheet=""}}}
-        MenuRow(Icons.Outlined.BookmarkAdd,"加入書籤",navigation=false){val count=store.bookmarkStore.add(tab!!.url,tab.title);c.revision++;c.notice=if(count>0)"已加入書籤的未分類資料夾"else"這個頁面已在書籤裡";c.sheet=""}
-        MenuRow(Icons.Outlined.Share,"分享","使用 Android 系統分享",navigation=false){c.shareCurrentPage()}
-        MenuRow(Icons.Outlined.Search,"尋找頁面文字",navigation=false){c.findInPage.open()}
-        MenuRow(Icons.Outlined.Computer,if(tab?.desktop==true)"切換手機版網站"else"切換電腦版網站",navigation=false){c.toggleDesktop();c.sheet=""}
+    if(c.domain.isNotEmpty())MenuGroup(bt(R.string.msg_431596791167)){
+        MenuRow(Icons.Outlined.Star,if(tab?.favoriteId!=null)bt(R.string.msg_20e1c9c1dc3d)else bt(R.string.msg_3e40d2036259),tab?.favoriteId?.let{c.favorites.get(it)?.title}.orEmpty(),navigation=false){scope.launch{if(c.saveFavorite()!=null){c.notice=bt(R.string.msg_b0e946efd4a1);c.sheet=""}}}
+        MenuRow(Icons.Outlined.BookmarkAdd,bt(R.string.msg_5a8cabc73328),navigation=false){val count=store.bookmarkStore.add(tab!!.url,tab.title);c.revision++;c.notice=if(count>0)bt(R.string.msg_8fad34a6f7cd)else bt(R.string.msg_8aedb0dba45e);c.sheet=""}
+        MenuRow(Icons.Outlined.Share,bt(R.string.msg_7e564575eb7d),bt(R.string.msg_f6eb7ace16a3),navigation=false){c.shareCurrentPage()}
+        MenuRow(Icons.Outlined.Search,bt(R.string.msg_f7ff0dc054ff),navigation=false){c.findInPage.open()}
+        MenuRow(Icons.Outlined.Computer,if(tab?.desktop==true)bt(R.string.msg_26cd04fd052a)else bt(R.string.msg_4fecc4be58d1),navigation=false){c.toggleDesktop();c.sheet=""}
     }
-    MenuGroup("天眼與網站"){
+    MenuGroup(bt(R.string.msg_c74fe0d00aa6)){
         if(c.domain.isNotEmpty()){
-            MenuRow(Icons.Outlined.Visibility,"天眼設定","${c.site.rules.size} 條移除規則"){c.sheet="eye"}
-            MenuRow(Icons.Outlined.Shield,if(c.isException)"恢復套用天眼規則"else"暫時顯示原始網站",if(c.isException)"目前顯示原始網站"else"暫停此網域的設定",navigation=false){c.sheet="";c.exception()}
+            MenuRow(Icons.Outlined.Visibility,bt(R.string.msg_320c5652f6d3),bt(R.string.msg_3c8d8e95e622 ,c.site.rules.size)){c.sheet="eye"}
+            MenuRow(Icons.Outlined.Shield,if(c.isException)bt(R.string.msg_5fa19ec01126)else bt(R.string.msg_3603b8ca2f4f),if(c.isException)bt(R.string.msg_4aaa7803adda)else bt(R.string.msg_43d22862b439),navigation=false){c.sheet="";c.exception()}
         }
-        MenuRow(Icons.Outlined.Tune,"所有網域規則"){c.sheet="domains"}
-        if((tab?.blockedTotal?:0)>0)MenuRow(Icons.Outlined.Shield,"已攔截 ${tab?.blockedTotal} 次干擾","查看本分頁紀錄"){tab?.blockedUnread=false;c.sheet="blocked"}
+        MenuRow(Icons.Outlined.Tune,bt(R.string.msg_d52aeefbc350)){c.sheet="domains"}
+        if((tab?.blockedTotal?:0)>0)MenuRow(Icons.Outlined.Shield,bt(R.string.msg_1cd169ed0542 ,tab?.blockedTotal),bt(R.string.msg_0056af6aa02d)){tab?.blockedUnread=false;c.sheet="blocked"}
     }
-    MenuGroup("偏好與資料"){
-        MenuRow(Icons.Outlined.Settings,"設定","外觀、瀏覽與 AI 設定"){c.sheet="settings"}
-        MenuRow(Icons.Outlined.CloudSync,"Google 同步"){c.sheet="sync"}
+    MenuGroup(bt(R.string.msg_6b0eef6c43e6)){
+        MenuRow(Icons.Outlined.Settings,bt(R.string.msg_0d8619aae051),bt(R.string.msg_e7ed17309495)){c.sheet="settings"}
+        MenuRow(Icons.Outlined.CloudSync,bt(R.string.msg_4d94c28a53c4)){c.sheet="sync"}
     }
-    Text("澄境瀏覽器 ${BuildConfig.VERSION_NAME}",Modifier.fillMaxWidth().padding(start=4.dp),fontSize=11.sp,lineHeight=16.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    Text(bt(R.string.msg_28f9da8f03eb ,BuildConfig.VERSION_NAME),Modifier.fillMaxWidth().padding(start=4.dp),fontSize=11.sp,lineHeight=16.sp,color=MaterialTheme.colorScheme.onSurfaceVariant)
 }
 @Composable internal fun SettingsCategories(category:String,onChange:(String)->Unit){
     Row(Modifier.fillMaxWidth().padding(horizontal=20.dp).padding(bottom=12.dp),horizontalArrangement=Arrangement.spacedBy(8.dp)){
-        listOf(Triple("appearance","外觀",Icons.Outlined.Palette),Triple("browsing","瀏覽",Icons.Outlined.Language),Triple("ai","AI",Icons.Outlined.AutoAwesome)).forEach{(id,label,icon)->
+        listOf(Triple("appearance",bt(R.string.msg_b70682d027ce),Icons.Outlined.Palette),Triple("browsing",bt(R.string.msg_b4f5be24078a),Icons.Outlined.Language),Triple("ai","AI",Icons.Outlined.AutoAwesome)).forEach{(id,label,icon)->
             val selected=category==id
             Surface(modifier=Modifier.weight(1f).height(48.dp).semantics{this.selected=selected;role=Role.Tab},onClick={onChange(id)},shape=RoundedCornerShape(12.dp),color=if(selected)MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface){
                 Row(Modifier.fillMaxSize(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp,Alignment.CenterHorizontally)){
@@ -157,7 +157,7 @@ internal fun panelParent(page:String)=when(page){
             }
             Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)){
                 if(selected)Icon(Icons.Outlined.Check,null,Modifier.size(13.dp),tint=colors.primary)
-                Text(label,fontSize=12.sp,lineHeight=16.sp,maxLines=1,overflow=TextOverflow.Ellipsis)
+                Text(label,fontSize=12.sp,lineHeight=16.sp,maxLines=2,overflow=TextOverflow.Ellipsis)
             }
         }
     }

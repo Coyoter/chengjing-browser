@@ -37,7 +37,7 @@ internal class NativePositionRequest(
     private val timeout=Runnable{
         if(!closed){
             if(!watch)close()
-            onError(3,"手機定位尚未取得結果，請移至訊號較好的地方再試。",!watch)
+            onError(3,bt(R.string.msg_770b5a444a9c),!watch)
             if(watch&&!closed)armTimeout()
         }
     }
@@ -50,7 +50,7 @@ internal class NativePositionRequest(
         override fun onProviderDisabled(provider:String){
             if(!closed&&registered.none{runCatching{manager.isProviderEnabled(it)}.getOrDefault(false)}){
                 if(!watch)close()
-                onError(2,"手機定位來源已關閉，請檢查系統定位服務。",!watch)
+                onError(2,bt(R.string.msg_2e6933e93990),!watch)
             }
         }
         override fun onProviderEnabled(provider:String){}
@@ -62,7 +62,7 @@ internal class NativePositionRequest(
         startedNanos=SystemClock.elapsedRealtimeNanos()
         precise=permitted(Manifest.permission.ACCESS_FINE_LOCATION)
         if(!permitted(Manifest.permission.ACCESS_FINE_LOCATION)&&!permitted(Manifest.permission.ACCESS_COARSE_LOCATION)){
-            close();onError(1,"手機尚未允許定位。",true);return
+            close();onError(1,bt(R.string.msg_aa939329dc62),true);return
         }
         val providers=providers()
         if(options.maximumAge>0){
@@ -74,7 +74,7 @@ internal class NativePositionRequest(
             if(cached!=null&&deliver(cached)&&!watch)return
         }
         if(closed)return
-        if(options.timeout==0L&&!watch){close();onError(3,"沒有符合時效的位置，定位等候時間已結束。",true);return}
+        if(options.timeout==0L&&!watch){close();onError(3,bt(R.string.msg_f4e900470989),true);return}
         register();if(!closed)armTimeout()
     }
     private fun providers():List<String>{
@@ -95,13 +95,13 @@ internal class NativePositionRequest(
         }
         if(registered.isEmpty()){
             if(!watch||denied)close()else main.postDelayed(retry,5000)
-            onError(if(denied)1 else 2,if(denied)"手機尚未允許定位。"else"手機沒有可用的定位來源，請檢查系統定位服務。",!watch||denied)
+            onError(if(denied)1 else 2,if(denied)bt(R.string.msg_aa939329dc62)else bt(R.string.msg_8e6878344350),!watch||denied)
         }else onStarted(activeProviders)
     }
     private fun deliver(location:Location):Boolean{
         if((precise&&!permitted(Manifest.permission.ACCESS_FINE_LOCATION))||
             (!permitted(Manifest.permission.ACCESS_FINE_LOCATION)&&!permitted(Manifest.permission.ACCESS_COARSE_LOCATION))){
-            close();onError(1,"手機定位權限已變更，請重新要求定位。",true);return false
+            close();onError(1,bt(R.string.msg_356ea0bf2ed4),true);return false
         }
         val lat=location.latitude;val lon=location.longitude;val accuracy=location.accuracy
         if(!lat.isFinite()||lat !in -90.0..90.0||!lon.isFinite()||lon !in -180.0..180.0||!location.hasAccuracy()||!accuracy.isFinite()||accuracy<0)return false
