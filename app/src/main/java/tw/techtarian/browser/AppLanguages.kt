@@ -30,15 +30,15 @@ internal object AppLanguages {
     }
     fun refresh(context:Context,readExternal:Boolean=true){
         val prefs=preferences(context)
-        var saved=prefs.getString("app-language","system").orEmpty().takeIf{AppLanguagePolicy.validChoice(it)}?:"system"
+        val stored=prefs.getString("app-language","system")
         val framework=AppCompatDelegate.getApplicationLocales()
         val frameworkTag=framework[0]?.let{AppLanguagePolicy.match(it)}
         val last=prefs.getString("language-applied",null)
-        // Respect language changes made in Android's per-app language screen as well as our picker.
-        if(readExternal&&((last==null&&!framework.isEmpty)||(last!=null&&frameworkTag!=last))){
-            saved=frameworkTag?:"system"
-            prefs.edit().putString("app-language",saved).apply()
-        }
+        // Before Android 13 AppCompat's locales are process-local, so empty at cold start.
+        // Only the persisted system per-app language can override our saved preference.
+        val saved=AppLanguagePolicy.restoreChoice(stored,last,frameworkTag,!framework.isEmpty,
+            readExternal&&android.os.Build.VERSION.SDK_INT>=33)
+        if(saved!=stored)prefs.edit().putString("app-language",saved).apply()
         choice=saved
         apply(context,if(saved=="system")systemTag(context)else saved)
     }

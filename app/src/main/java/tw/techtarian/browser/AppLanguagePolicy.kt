@@ -21,6 +21,11 @@ internal object AppLanguagePolicy {
     }
     fun resolve(locales:List<Locale>):String=locales.firstNotNullOfOrNull{match(it)}?:"en"
     fun validChoice(value:String)=value=="system"||languages.any{it.tag==value}
+    fun restoreChoice(saved:String?,last:String?,frameworkTag:String?,frameworkHasChoice:Boolean,readSystemChanges:Boolean):String {
+        val local=saved?.takeIf{validChoice(it)}?:"system"
+        return if(readSystemChanges&&((last==null&&frameworkHasChoice)||(last!=null&&frameworkTag!=last)))
+            frameworkTag?:"system" else local
+    }
     fun autonym(tag:String)=languages.firstOrNull{it.tag==tag}?.autonym?:"English"
     fun isRtl(tag:String)=tag in setOf("ar","ur")
     fun aiLanguage(tag:String)=when(tag){

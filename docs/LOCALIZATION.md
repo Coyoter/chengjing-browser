@@ -6,7 +6,7 @@
 
 `AppLanguagePolicy` 接受 zh-TW、zh-CN、en、ja、ko、fr、de、es、pt、ar、th、ru、hi、id、vi、bn、ur。中文依 Hant/Hans 字體和 TW/HK/MO 地區辨識；其他支援語言的地區變體對應到基礎語言，印尼文舊代碼 in 也可對應 id。手機語言列表第一個可支援的項目優先，皆不支援時採 en。
 
-`AppLanguages` 保存 browser-v1 的 app-language（預設 system）和 language-applied。跟隨手機模式在系統語言變更與回到前景時重新解析；Android 13 以上同步原生應用程式語言，較舊版本使用 AppCompat。locale/layoutDirection 設定變更由 Activity 處理，避免切換時重建 WebView 和遺失分頁。語言偏好不納入 Google 同步。
+`AppLanguages` 保存 browser-v1 的 app-language（預設 system）和 language-applied。跟隨手機模式在系統語言變更與回到前景時重新解析；Android 13 以上同步原生應用程式語言，較舊版本使用 AppCompat，程序冷啟動時以本機保存的選擇為準，不能把空的程序內語言狀態當成使用者重設語言。locale/layoutDirection 設定變更由 Activity 處理，避免切換時重建 WebView 和遺失分頁。語言偏好不納入 Google 同步。
 
 ## 資源與文字
 
@@ -24,3 +24,5 @@
 `python3 scripts/verify-localization.py` 驗證 17 組鍵值、位置參數、89 則語錄、練習頁與隱私政策、Android 字串長度及遺漏的中文 UI 字串。AppLanguagePolicyTest 驗證語言匹配、英文回退與 RTL。LanguageSettingsTest 驗證 17 種選項、分頁保存、語言保存、系統模式、深淺色下拉選單和長期狀態更新；FirstLanguageLaunchTest 在清除 QA 資料後另行執行。
 
 測試專用 BrowserTestRunner 讓舊回歸預設使用 zh-TW；首次啟動驗證以 testLocale=system 執行。獨立 R8 測試主機驗證正式最佳化版本的英文、韓文切換與程序重啟。所有測試只操作 .qa 套件，不清除正式使用者資料。
+
+Android 12L（API 32）的隔離模擬器另以 `scripts/test-legacy-language.py` 與獨立 LegacyLanguageTest 驗證實際 R8 APK：從介面選擇日文、烏爾都文後，真正停止並重開程序，語言仍保持。執行前以 `-PqaInstall=true` 建置 release APK 與 release-smoke 測試主機；測試只支援英文預設語言的舊版隔離模擬器。

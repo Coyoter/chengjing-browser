@@ -25,4 +25,13 @@ class AppLanguagePolicyTest {
         assertTrue(AppLanguagePolicy.isRtl("ar"));assertTrue(AppLanguagePolicy.isRtl("ur"))
         AppLanguagePolicy.languages.filter{it.tag !in setOf("ar","ur")}.forEach{assertFalse(AppLanguagePolicy.isRtl(it.tag))}
     }
+    @Test fun coldStartKeepsOlderAndroidPreferenceAndNewAndroidHonorsSystemLanguageChanges(){
+        assertEquals("ja",AppLanguagePolicy.restoreChoice("ja","ja",null,false,false))
+        assertEquals("ur",AppLanguagePolicy.restoreChoice("ur","ur",null,false,false))
+        assertEquals("system",AppLanguagePolicy.restoreChoice("system","en","en",true,true))
+        assertEquals("ko",AppLanguagePolicy.restoreChoice("ja","ja","ko",true,true))
+        assertEquals("system",AppLanguagePolicy.restoreChoice("ja","ja",null,false,true))
+        assertEquals("fr",AppLanguagePolicy.restoreChoice(null,null,"fr",true,true))
+        assertEquals("system",AppLanguagePolicy.restoreChoice("invalid",null,null,false,false))
+    }
 }
