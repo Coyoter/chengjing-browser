@@ -26,6 +26,6 @@ python3 scripts/build-private.py 可沿用本機 signing/browser.jks 與 signing
 
 scripts/publish-release.py 只處理已建置且版本、提交、雜湊相符的套件；本機直接執行發布腳本不會替代裝置回歸驗收，日常發布應使用有檢查閘門的 Android release workflow。
 
-Linux 一般回歸使用 Android 15（API 35），獨立 R8 正式版檢查維持 Android 16（API 36）。API 36 Linux 映像在獨立原生影片測試也會整台失聯，固定模擬器 36.3.10 無法解決，因此不再把固定該版本視為修正。測試仍完整保留，並保存連續 guest logcat 與主機診斷。
+Linux 一般回歸與獨立 R8 正式版檢查均使用 Android 16（API 36）。直接 SwiftShader GLES 在原生影片解碼時失聯，改成 ANGLE／SwiftShader 後影片可正常播放；測試以實際影片畫面範圍尋找原生選單按鈕，兼容不同 WebView 的無障礙父節點。完整保留影片下載斷言，並保存 guest logcat 與主機診斷。
 
 原生影片三點選單下載以獨立 instrumentation 呼叫先執行，之後再執行其他回歸；完整保留原測試的播放、選單和下載檔案斷言，獨立保存報告，避免繼承前面大量 Blob 與多次 WebView 建立的程序狀態。

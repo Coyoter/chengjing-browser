@@ -107,13 +107,27 @@ class PageDownloadsTest {
             val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
             val automation=InstrumentationRegistry.getInstrumentation().uiAutomation
             fun fresh(){automation.serviceInfo=automation.serviceInfo}
-            fun more()=(device.findObject(By.descContains("QA fixture video"))?:device.findObject(By.res("fixture-video")))?.let{video->
-                video.findObject(By.desc(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
-                    ?:video.findObject(By.text(java.util.regex.Pattern.compile("(?i).*(more|更多).*")))
+            val rect=JSONObject(eval("(()=>{const r=document.getElementById('fixture-video').getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,dpr:devicePixelRatio}})()"))
+            val origin=IntArray(2);ui.runOnUiThread{c.active!!.web.getLocationOnScreen(origin)}
+            val scale=rect.getDouble("dpr")
+            val bounds=android.graphics.Rect(origin[0]+(rect.getDouble("x")*scale).toInt(),origin[1]+(rect.getDouble("y")*scale).toInt(),origin[0]+((rect.getDouble("x")+rect.getDouble("w"))*scale).toInt(),origin[1]+((rect.getDouble("y")+rect.getDouble("h"))*scale).toInt())
+            val moreLabel=java.util.regex.Pattern.compile("(?i).*(more|更多).*")
+            fun more()=(device.findObjects(By.desc(moreLabel))+device.findObjects(By.text(moreLabel))).firstOrNull{node->val r=node.visibleBounds;bounds.contains(r.centerX(),r.centerY())}
+            // WebView versions expose the controls with different parent nodes. Locate the
+            // real accessible button within the actual video bounds, never the app toolbar.
+            fresh()
+            if(more()==null)device.click(bounds.left+(bounds.width()/10),bounds.top+(bounds.height()/3))
+            var overflow:androidx.test.uiautomator.UiObject2?=null
+            val controlsDeadline=SystemClock.elapsedRealtime()+5000
+            while(overflow==null&&SystemClock.elapsedRealtime()<controlsDeadline){
+                fresh();overflow=more();if(overflow==null)SystemClock.sleep(100)
             }
-            // The actual native player is fully buffered and played before opening its menu.
-            // A real HTTP document avoids the practice page's document replacement timing.
-            fresh();assertNotNull("Native overflow must exist",more());more()!!.click()
+            if(overflow==null){
+                PreviewFixture(ui).screenshot("native-video-controls-missing")
+                val xml=java.io.ByteArrayOutputStream();device.dumpWindowHierarchy(xml)
+                throw AssertionError("Native overflow must exist: "+xml.toString("UTF-8"))
+            }
+            overflow!!.click()
             PreviewFixture(ui).screenshot("native-video-menu-after-click")
             val label=java.util.regex.Pattern.compile("(?i)download( media)?|下載(媒體)?")
             var download:androidx.test.uiautomator.UiObject2?=null

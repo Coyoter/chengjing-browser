@@ -53,11 +53,11 @@ jobs:
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
           EMULATOR="$ANDROID_HOME/emulator/emulator"
-          "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
+          "$SDKMANAGER" "emulator" "system-images;android-36;google_apis;x86_64"
           sudo apt-get update -qq
           sudo apt-get install -y libpulse0
           "$EMULATOR" -version
-          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-35;google_apis;x86_64"
+          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-36;google_apis;x86_64"
           python3 - <<'PY'
           import os
           from pathlib import Path
@@ -69,7 +69,6 @@ jobs:
           "$EMULATOR" -list-avds | tee "$RUNNER_TEMP/avd-list.txt"
           grep -Fx chengjing-qa "$RUNNER_TEMP/avd-list.txt"
           sudo chmod a+rw /dev/kvm
-          # General regressions use Android 15; the independent R8 job covers Android 16.
           # ANGLE + SwiftShader avoids the direct GLES path that hangs at decoded-video buffers.
           # Keep real playback and download checks in this headless runner.
           "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -show-kernel -gpu swangle -feature -Vulkan,-HardwareDecoder > "$RUNNER_TEMP/emulator.log" 2>&1 &
