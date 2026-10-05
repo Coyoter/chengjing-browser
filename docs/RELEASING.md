@@ -12,7 +12,7 @@
 
 main 的版本檔或 release workflow 更新會觸發發布流程。也可手動執行 Android release，填入與目前 main 一致的 version。檢查包含 QA 單元測試、lint、APK／測試編譯及隔離模擬器回歸；全部成功且簽章設定存在後，才執行正式 release 單元測試、lint、APK/AAB 建置、簽章和 APK zip 對齊驗證。
 
-雲端 QA 模擬器使用 `-gpu swiftshader -feature -Vulkan,-HardwareDecoder`，以軟體 GLES 繪圖及 Android 軟體影片解碼執行測試。2026-10-02 的 Linux runner 在原生影片測試出現繪圖 color buffer 錯誤後整台模擬器失聯，因此依 [Android 官方的網頁繪圖相容性建議](https://developer.android.com/studio/run/emulator-troubleshooting?hl=en) 關閉 Vulkan，並改用 [目前支援的 SwiftShader 模式](https://developer.android.com/studio/run/emulator-acceleration)。這是針對測試環境的調整；影片播放、原生三點選單、下載確認及檔案內容核對仍完整執行，正式 APK 的影片及繪圖設定維持相同。[Android 模擬器的解碼設定](https://android.googlesource.com/platform/external/qemu/+/ba29194f97e72ffe770bd56e4e5c5c620598004b/android/data/advancedFeatures.ini)。
+雲端 QA 模擬器使用 `-gpu swiftshader_indirect -feature -Vulkan,-HardwareDecoder`，以軟體 GLES 繪圖及 Android 軟體影片解碼執行測試。2026-10-02 的 Linux runner 在原生影片測試出現繪圖 color buffer 錯誤後整台模擬器失聯，因此依 [Android 官方的網頁繪圖相容性建議](https://developer.android.com/studio/run/emulator-troubleshooting?hl=en) 關閉 Vulkan，並改用 [目前支援的 SwiftShader 模式](https://developer.android.com/studio/run/emulator-acceleration)。這是針對測試環境的調整；影片播放、原生三點選單、下載確認及檔案內容核對仍完整執行，正式 APK 的影片及繪圖設定維持相同。[Android 模擬器的解碼設定](https://android.googlesource.com/platform/external/qemu/+/ba29194f97e72ffe770bd56e4e5c5c620598004b/android/data/advancedFeatures.ini)。
 
 QA 編譯使用同一個 Gradle 程序執行 Kotlin，完成後釋放編譯記憶體；模擬器回歸階段將 Gradle 堆積限制為 1 GB。這只限制雲端測試工具，不改變正式 APK 的記憶體設定。驗證附件保留主機記憶體取樣與 kernel 記錄，以便區分應用斷言、模擬器錯誤及主機終止程序。
 
@@ -27,3 +27,5 @@ python3 scripts/build-private.py 可沿用本機 signing/browser.jks 與 signing
 scripts/publish-release.py 只處理已建置且版本、提交、雜湊相符的套件；本機直接執行發布腳本不會替代裝置回歸驗收，日常發布應使用有檢查閘門的 Android release workflow。
 
 Linux 一般回歸固定使用官方 36.3.10 模擬器（下載 build 14472402，SHA-256 c8ab9ffbc4c2d11c02e06e81a9d9f81970177dc5ab599e3a30eb08a4a5496a67），並使用 SwiftShader 軟體繪圖；37.2.12 在原生影片測試反覆失聯，未發現主機 OOM。固定版本不改動 APK，也不略過影片測試。來源：[官方版本封存](https://developer.android.com/studio/emulator_archive)。
+
+原生影片三點選單下載以獨立 instrumentation 呼叫先執行，之後再執行其他回歸；完整保留原測試的播放、選單和下載檔案斷言，獨立保存報告，避免繼承前面大量 Blob 與多次 WebView 建立的程序狀態。
