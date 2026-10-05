@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location" android:required="false" />
@@ -8,6 +9,8 @@
     <uses-feature android:name="android.hardware.location.network" android:required="false" />
     <!-- Resolve only web-link handlers; never request an inventory of installed apps. -->
     <queries>
+        <intent><action android:name="android.service.autofill.AutofillService" /></intent>
+        <intent><action android:name="android.support.customtabs.action.CustomTabsService" /></intent>
         <intent><action android:name="android.intent.action.VIEW" /><category android:name="android.intent.category.BROWSABLE" /><data android:scheme="https" android:host="*" /></intent>
         <intent><action android:name="android.intent.action.VIEW" /><category android:name="android.intent.category.BROWSABLE" /><data android:scheme="http" android:host="*" /></intent>
     </queries>

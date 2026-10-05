@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"पासवर्ड और ऑटोफिल"</string>
+  <string name="system_password_provider" formatted="false">"वर्तमान सेवा: %1$s"</string>
+  <string name="system_password_none" formatted="false">"ऑटोफिल सेवा अभी चयनित नहीं है"</string>
+  <string name="system_password_note" formatted="false">"फोन के पासवर्ड प्रबंधन सेवा का उपयोग करके खाते और पासवर्ड भरें; चुनी गई सेवा डिवाइसों के बीच सिंकिंग के लिए जिम्मेदार है।"</string>
+  <string name="system_password_choose" formatted="false">"सिस्टम पासवर्ड सेवा चुनें"</string>
+  <string name="system_password_compatibility" formatted="false">"सपोर्ट स्तर पासवर्ड सेवा और वेबसाइट पर निर्भर करता है। इनकॉग्निटो टैब में ऑटोफिल अक्षम है; Samsung Pass की वेबसाइट भराई केवल Samsung Internet तक सीमित है।"</string>
+  <string name="system_install_title" formatted="false">"ऐप इंस्टॉल करें"</string>
+  <string name="system_install_allowed" formatted="false">"डाउनलोड किए गए APK की इंस्टॉल अनुमति दी गई है"</string>
+  <string name="system_install_disabled" formatted="false">"डाउनलोड किए गए APK की इंस्टॉल अनुमति अभी नहीं दी गई है"</string>
+  <string name="system_install_note" formatted="false">"डाउनलोड सूची से APK खोलते समय Android इंस्टॉलर का उपयोग करें। हर इंस्टॉल के लिए आपकी पुष्टि आवश्यक है।"</string>
+  <string name="system_open_settings" formatted="false">"सिस्टम सेटिंग्स खोलें"</string>
+  <string name="system_install_prompt" formatted="false">"कृपया सिस्टम सेटिंग्स में ChengJing Browser को अज्ञात स्रोतों से ऐप इंस्टॉल करने की अनुमति दें। वापस आने पर इस APK की इंस्टॉल पुष्टि स्क्रीन खुलेगी।"</string>
+  <string name="system_install_denied" formatted="false">"इंस्टॉल अनुमति अभी प्राप्त नहीं हुई है, APK डाउनलोड सूची में सुरक्षित है।"</string>
+  <string name="system_install_failed" formatted="false">"इस APK को खोलना संभव नहीं है, कृपया फ़ाइल की पूर्णता और पहुँच की पुष्टि करें।"</string>
+  <string name="system_settings_unavailable" formatted="false">"इस फोन में खोलने के लिए कोई सिस्टम पेज उपलब्ध नहीं है।"</string>
+  <string name="system_google_title" formatted="false">"Google लॉगिन सहायता"</string>
+  <string name="system_google_option" formatted="false">"सिस्टम ब्राउज़र लॉगिन विकल्प प्रदान करें"</string>
+  <string name="system_google_note" formatted="false">"जब वेबसाइट Google लॉगिन मांगती है, तो सिस्टम ब्राउज़र में वेबसाइट पुनः खोलें और उस ब्राउज़र के मौजूदा लॉगिन स्थिति का उपयोग करें। लॉगिन उसी ब्राउज़र में पूरा होगा।"</string>
+  <string name="system_google_unavailable" formatted="false">"वर्तमान में कोई उपलब्ध Google Play सेवा या समर्थित सिस्टम ब्राउज़र नहीं है, वेब लॉगिन जारी रहेगा।"</string>
+  <string name="system_google_prompt" formatted="false">"सिस्टम ब्राउज़र में वर्तमान वेबसाइट पुनः खोलने के बाद, कृपया फिर से Google लॉगिन पर क्लिक करें। आप उस ब्राउज़र के मौजूदा Google लॉगिन स्थिति का उपयोग कर सकते हैं; लॉगिन उसी ब्राउज़र में पूरा होगा, और ChengJing का टैब बरकरार रहेगा।"</string>
+  <string name="system_google_open" formatted="false">"सिस्टम ब्राउज़र में जारी रखें"</string>
+  <string name="system_google_stay" formatted="false">"मौजूदा पेज पर रहें"</string>
 </resources>

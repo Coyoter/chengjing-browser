@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"Passwords &amp; Autofill"</string>
+  <string name="system_password_provider" formatted="false">"Current service: %1$s"</string>
+  <string name="system_password_none" formatted="false">"No autofill service selected"</string>
+  <string name="system_password_note" formatted="false">"Use your device’s password manager to fill in accounts and passwords; cross-device sync is handled by the chosen service."</string>
+  <string name="system_password_choose" formatted="false">"Select system password service"</string>
+  <string name="system_password_compatibility" formatted="false">"Support depends on the password service and website. Incognito disables autofill; Samsung Pass autofill works only with Samsung Internet."</string>
+  <string name="system_install_title" formatted="false">"Install App"</string>
+  <string name="system_install_allowed" formatted="false">"APK installation from downloads allowed"</string>
+  <string name="system_install_disabled" formatted="false">"APK installation from downloads not allowed"</string>
+  <string name="system_install_note" formatted="false">"APK files opened from downloads are installed via Android. Each install requires your confirmation."</string>
+  <string name="system_open_settings" formatted="false">"Open system settings"</string>
+  <string name="system_install_prompt" formatted="false">"Please allow ChengJing Browser to install unknown apps in system settings. After returning, the APK install confirmation will open."</string>
+  <string name="system_install_denied" formatted="false">"Installation permission not granted; APK remains in downloads."</string>
+  <string name="system_install_failed" formatted="false">"Cannot open this APK. Please ensure the file is complete and accessible."</string>
+  <string name="system_settings_unavailable" formatted="false">"This device does not provide an accessible system page."</string>
+  <string name="system_google_title" formatted="false">"Google Sign-In Assistance"</string>
+  <string name="system_google_option" formatted="false">"Offer system browser sign-in option"</string>
+  <string name="system_google_note" formatted="false">"When a site requests Google sign-in, it can reopen in the system browser to use existing sign-in there. Sign-in completes in that browser."</string>
+  <string name="system_google_unavailable" formatted="false">"No available Google Play services or supported system browser; continuing with web sign-in."</string>
+  <string name="system_google_prompt" formatted="false">"After reopening the current site in the system browser, please tap Google sign-in again. You can use the existing Google sign-in there; sign-in completes in that browser, and ChengJing tabs remain."</string>
+  <string name="system_google_open" formatted="false">"Continue in system browser"</string>
+  <string name="system_google_stay" formatted="false">"Stay on this page"</string>
 </resources>

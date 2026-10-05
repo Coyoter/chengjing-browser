@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"密碼與自動填入"</string>
+  <string name="system_password_provider" formatted="false">"目前服務：%1$s"</string>
+  <string name="system_password_none" formatted="false">"尚未選擇自動填入服務"</string>
+  <string name="system_password_note" formatted="false">"使用手機的密碼管理服務填入帳號與密碼；跨裝置同步由所選服務負責。"</string>
+  <string name="system_password_choose" formatted="false">"選擇系統密碼服務"</string>
+  <string name="system_password_compatibility" formatted="false">"支援程度取決於密碼服務與網站。無痕分頁停用自動填入；Samsung Pass 的網站填入限 Samsung Internet。"</string>
+  <string name="system_install_title" formatted="false">"安裝應用"</string>
+  <string name="system_install_allowed" formatted="false">"已允許安裝下載的 APK"</string>
+  <string name="system_install_disabled" formatted="false">"尚未允許安裝下載的 APK"</string>
+  <string name="system_install_note" formatted="false">"從下載清單開啟 APK 時交由 Android 安裝。每次安裝仍需你確認。"</string>
+  <string name="system_open_settings" formatted="false">"開啟系統設定"</string>
+  <string name="system_install_prompt" formatted="false">"請在系統設定中允許澄境瀏覽器安裝未知來源應用。返回後會開啟此 APK 的安裝確認畫面。"</string>
+  <string name="system_install_denied" formatted="false">"尚未取得安裝授權，APK 保留在下載清單。"</string>
+  <string name="system_install_failed" formatted="false">"無法開啟此 APK，請確認檔案完整且仍可存取。"</string>
+  <string name="system_settings_unavailable" formatted="false">"此手機未提供可開啟的系統頁面。"</string>
+  <string name="system_google_title" formatted="false">"Google 登入協助"</string>
+  <string name="system_google_option" formatted="false">"提供系統瀏覽器登入選項"</string>
+  <string name="system_google_note" formatted="false">"網站要求 Google 登入時，可在系統瀏覽器重新開啟網站，使用該瀏覽器已有的登入狀態。登入會在該瀏覽器完成。"</string>
+  <string name="system_google_unavailable" formatted="false">"目前沒有可用的 Google Play 服務或支援的系統瀏覽器，維持網頁登入。"</string>
+  <string name="system_google_prompt" formatted="false">"在系統瀏覽器重新開啟目前網站後，請再次點選 Google 登入。可使用該瀏覽器已有的 Google 登入狀態；登入會在該瀏覽器完成，澄境的分頁會保留。"</string>
+  <string name="system_google_open" formatted="false">"在系統瀏覽器繼續"</string>
+  <string name="system_google_stay" formatted="false">"留在原頁"</string>
 </resources>

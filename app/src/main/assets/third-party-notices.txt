@@ -27,6 +27,7 @@ androidx.arch.core:core-runtime:2.2.0
 The Apache Software License, Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
 
 androidx.autofill:autofill:1.0.0
+androidx.browser:browser:1.9.0
 The Apache Software License, Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
 
 androidx.collection:collection-jvm:1.5.0

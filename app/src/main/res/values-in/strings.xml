@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"Kata Sandi &amp; Isi Otomatis"</string>
+  <string name="system_password_provider" formatted="false">"Layanan saat ini: %1$s"</string>
+  <string name="system_password_none" formatted="false">"Belum memilih layanan isi otomatis"</string>
+  <string name="system_password_note" formatted="false">"Gunakan layanan pengelola kata sandi ponsel untuk mengisi akun dan kata sandi; sinkronisasi antar perangkat ditangani oleh layanan yang dipilih."</string>
+  <string name="system_password_choose" formatted="false">"Pilih layanan kata sandi sistem"</string>
+  <string name="system_password_compatibility" formatted="false">"Dukungan tergantung pada layanan kata sandi dan situs web. Mode penyamaran menonaktifkan isi otomatis; pengisian situs Samsung Pass terbatas pada Samsung Internet."</string>
+  <string name="system_install_title" formatted="false">"Pasang Aplikasi"</string>
+  <string name="system_install_allowed" formatted="false">"Pemasangan APK yang diunduh diizinkan"</string>
+  <string name="system_install_disabled" formatted="false">"Pemasangan APK yang diunduh belum diizinkan"</string>
+  <string name="system_install_note" formatted="false">"Saat membuka APK dari daftar unduhan, Android akan menangani pemasangan. Konfirmasi diperlukan setiap kali pemasangan."</string>
+  <string name="system_open_settings" formatted="false">"Buka Pengaturan Sistem"</string>
+  <string name="system_install_prompt" formatted="false">"Izinkan ChengJing Browser memasang aplikasi dari sumber tidak dikenal di pengaturan sistem. Setelah kembali, layar konfirmasi pemasangan APK ini akan muncul."</string>
+  <string name="system_install_denied" formatted="false">"Izin pemasangan belum diperoleh, APK tetap di daftar unduhan."</string>
+  <string name="system_install_failed" formatted="false">"Tidak dapat membuka APK ini, pastikan file lengkap dan masih dapat diakses."</string>
+  <string name="system_settings_unavailable" formatted="false">"Ponsel ini tidak menyediakan halaman sistem yang dapat dibuka."</string>
+  <string name="system_google_title" formatted="false">"Bantuan Masuk Google"</string>
+  <string name="system_google_option" formatted="false">"Sediakan opsi masuk browser sistem"</string>
+  <string name="system_google_note" formatted="false">"Saat situs meminta masuk Google, situs dapat dibuka ulang di browser sistem untuk menggunakan status masuk yang sudah ada. Masuk selesai di browser tersebut."</string>
+  <string name="system_google_unavailable" formatted="false">"Tidak ada layanan Google Play atau browser sistem yang didukung saat ini, tetap gunakan masuk web."</string>
+  <string name="system_google_prompt" formatted="false">"Setelah membuka ulang situs saat ini di browser sistem, klik masuk Google lagi. Gunakan status masuk Google yang sudah ada di browser tersebut; masuk selesai di browser itu, tab ChengJing tetap terbuka."</string>
+  <string name="system_google_open" formatted="false">"Lanjutkan di browser sistem"</string>
+  <string name="system_google_stay" formatted="false">"Tetap di halaman ini"</string>
 </resources>

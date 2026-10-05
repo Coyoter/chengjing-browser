@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"كلمات المرور والتعبئة التلقائية"</string>
+  <string name="system_password_provider" formatted="false">"الخدمة الحالية: %1$s"</string>
+  <string name="system_password_none" formatted="false">"لم يتم اختيار خدمة التعبئة التلقائية بعد"</string>
+  <string name="system_password_note" formatted="false">"استخدم خدمة إدارة كلمات المرور على هاتفك لتعبئة الحساب وكلمة المرور؛ تتم مزامنة عبر الأجهزة بواسطة الخدمة المختارة."</string>
+  <string name="system_password_choose" formatted="false">"اختر خدمة كلمات المرور للنظام"</string>
+  <string name="system_password_compatibility" formatted="false">"تعتمد درجة الدعم على خدمة كلمات المرور والموقع الإلكتروني. تعطيل التعبئة التلقائية في التصفح الخفي؛ تعبئة مواقع Samsung Pass مقتصرة على Samsung Internet."</string>
+  <string name="system_install_title" formatted="false">"تثبيت التطبيق"</string>
+  <string name="system_install_allowed" formatted="false">"تم السماح بتثبيت ملفات APK المحملة"</string>
+  <string name="system_install_disabled" formatted="false">"لم يتم السماح بتثبيت ملفات APK المحملة بعد"</string>
+  <string name="system_install_note" formatted="false">"يتم تثبيت ملفات APK التي تفتح من قائمة التنزيلات بواسطة Android. يتطلب التأكيد منك في كل مرة."</string>
+  <string name="system_open_settings" formatted="false">"افتح إعدادات النظام"</string>
+  <string name="system_install_prompt" formatted="false">"يرجى السماح لـ澄境浏览器 بتثبيت التطبيقات من مصادر غير معروفة في إعدادات النظام. بعد العودة، ستظهر شاشة تأكيد تثبيت هذا APK."</string>
+  <string name="system_install_denied" formatted="false">"لم يتم الحصول على إذن التثبيت بعد، ملف APK محفوظ في قائمة التنزيلات."</string>
+  <string name="system_install_failed" formatted="false">"تعذر فتح هذا الملف APK، يرجى التأكد من سلامة الملف وإمكانية الوصول إليه."</string>
+  <string name="system_settings_unavailable" formatted="false">"هذا الهاتف لا يوفر صفحة نظام يمكن فتحها."</string>
+  <string name="system_google_title" formatted="false">"مساعدة تسجيل الدخول إلى Google"</string>
+  <string name="system_google_option" formatted="false">"توفير خيار تسجيل الدخول عبر متصفح النظام"</string>
+  <string name="system_google_note" formatted="false">"عند طلب الموقع تسجيل الدخول إلى Google، يمكن إعادة فتح الموقع في متصفح النظام لاستخدام حالة تسجيل الدخول الموجودة فيه. يتم إكمال تسجيل الدخول في ذلك المتصفح."</string>
+  <string name="system_google_unavailable" formatted="false">"لا توجد حالياً خدمات Google Play أو متصفح نظام مدعوم، سيتم استخدام تسجيل الدخول عبر الويب."</string>
+  <string name="system_google_prompt" formatted="false">"بعد إعادة فتح الموقع الحالي في متصفح النظام، يرجى النقر مجدداً على تسجيل الدخول إلى Google. يمكن استخدام حالة تسجيل الدخول إلى Google الموجودة في ذلك المتصفح؛ يتم إكمال تسجيل الدخول هناك مع الاحتفاظ بتبويبات 澄境."</string>
+  <string name="system_google_open" formatted="false">"المتابعة في متصفح النظام"</string>
+  <string name="system_google_stay" formatted="false">"البقاء في الصفحة الحالية"</string>
 </resources>

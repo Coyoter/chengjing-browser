@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"Пароли и автозаполнение"</string>
+  <string name="system_password_provider" formatted="false">"Текущая служба: %1$s"</string>
+  <string name="system_password_none" formatted="false">"Служба автозаполнения не выбрана"</string>
+  <string name="system_password_note" formatted="false">"Используйте службу управления паролями телефона для заполнения логинов и паролей; синхронизацию между устройствами обеспечивает выбранная служба."</string>
+  <string name="system_password_choose" formatted="false">"Выбрать системную службу паролей"</string>
+  <string name="system_password_compatibility" formatted="false">"Уровень поддержки зависит от службы паролей и сайта. В режиме инкогнито автозаполнение отключено; заполнение сайтов Samsung Pass ограничено Samsung Internet."</string>
+  <string name="system_install_title" formatted="false">"Установка приложений"</string>
+  <string name="system_install_allowed" formatted="false">"Установка загруженных APK разрешена"</string>
+  <string name="system_install_disabled" formatted="false">"Установка загруженных APK не разрешена"</string>
+  <string name="system_install_note" formatted="false">"При открытии APK из списка загрузок установка выполняется через Android. Для каждой установки требуется ваше подтверждение."</string>
+  <string name="system_open_settings" formatted="false">"Открыть системные настройки"</string>
+  <string name="system_install_prompt" formatted="false">"Разрешите ChengJing Browser устанавливать приложения из неизвестных источников в системных настройках. После возврата откроется окно подтверждения установки этого APK."</string>
+  <string name="system_install_denied" formatted="false">"Разрешение на установку не получено, APK сохранён в списке загрузок."</string>
+  <string name="system_install_failed" formatted="false">"Не удалось открыть этот APK, проверьте целостность файла и доступность."</string>
+  <string name="system_settings_unavailable" formatted="false">"На этом устройстве нет доступных системных страниц для открытия."</string>
+  <string name="system_google_title" formatted="false">"Помощь с входом через Google"</string>
+  <string name="system_google_option" formatted="false">"Предлагать вход через системный браузер"</string>
+  <string name="system_google_note" formatted="false">"При запросе входа через Google сайт можно открыть заново в системном браузере, используя уже существующий вход в этом браузере. Вход будет выполнен в системном браузере."</string>
+  <string name="system_google_unavailable" formatted="false">"Нет доступных сервисов Google Play или поддерживаемого системного браузера, вход через веб-страницу сохранён."</string>
+  <string name="system_google_prompt" formatted="false">"После повторного открытия текущего сайта в системном браузере нажмите снова вход через Google. Можно использовать существующий вход Google в этом браузере; вход будет завершён там, вкладка ChengJing сохранится."</string>
+  <string name="system_google_open" formatted="false">"Продолжить в системном браузере"</string>
+  <string name="system_google_stay" formatted="false">"Остаться на странице"</string>
 </resources>

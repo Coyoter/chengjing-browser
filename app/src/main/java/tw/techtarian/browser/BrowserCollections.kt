@@ -47,6 +47,7 @@ internal class BrowserDownloads(private val context:Context) {
         return (result+SavedImageDownloads(context).list()).sortedByDescending{it.createdAt}
     }
     fun open(item:DownloadItem):String?=try {
+        if(PackageDownloads.isPackage(item)&&context is MainActivity){context.installPackage(item);return null}
         val uri=item.contentUri?.let{android.net.Uri.parse(it)}?:manager.getUriForDownloadedFile(item.id)?:error(bt(R.string.msg_ff8fd6c6b9ab))
         context.contentResolver.openFileDescriptor(uri,"r")?.use{}?:error(bt(R.string.msg_53b79b2dbdd8))
         val intent=Intent(Intent.ACTION_VIEW).setDataAndType(uri,item.mime.ifBlank{"*/*"})

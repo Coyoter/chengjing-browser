@@ -301,6 +301,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             builtInZoomControls=true;displayZoomControls=false
             safeBrowsingEnabled=true;mediaPlaybackRequiresUserGesture=true
         }
+        SystemAutofill.configure(web,incognito)
         if(incognito){
             web.settings.cacheMode=WebSettings.LOAD_NO_CACHE
             @Suppress("DEPRECATION")
@@ -356,6 +357,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(scope !in exceptions && store.get(scope).guard && !request.hasGesture() && !request.isRedirect && tab.url.isNotEmpty()) {
                     tab.blockedUrl=u;recordBlocked(tab,bt(R.string.msg_216baff9f183),u);return true
                 }
+                if(allowed&&(context as? MainActivity)?.googleBrowserLogin?.offer(tab,u)==true)return true
                 if(openExternalLink(tab,u,allowed))return true
                 tab.pendingUrl=u
                 return false
@@ -522,6 +524,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
         }
         PageContextMenu(this,tab).install()
+        SystemAutofill.cancel(context)
         tabs.add(tab);activeId=tab.id;updatePrivacyWindow()
         (context as? MainActivity)?.websiteLocation?.attach(tab)
         refreshScripts(listOf(tab),applyToPage=false)
@@ -579,7 +582,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             if(retry){tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}else tab.web.reload()
         }
     }
-    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;capturePreview(active);(context as? MainActivity)?.websiteLocation?.pauseFor(activeId);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;(context as? MainActivity)?.websiteLocation?.resumeFor(id);persistTabs();sheet="";updatePrivacyWindow()}
+    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;if(id!=activeId)SystemAutofill.cancel(context);capturePreview(active);(context as? MainActivity)?.websiteLocation?.pauseFor(activeId);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;(context as? MainActivity)?.websiteLocation?.resumeFor(id);persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
         (context as? MainActivity)?.websiteLocation?.detach(id)
         findInPage.closeFor(id)
@@ -589,6 +592,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         val tab=tabs.find{it.id==id}?:return
         previews.remove(tab.previewKey)
         tab.preview=null;tab.documentScript?.remove();tab.web.stopLoading()
+        if(id==activeId)SystemAutofill.cancel(context)
         (tab.refreshContainer.parent as? ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer.removeAllViews();tab.web.destroy();tabs.remove(tab)
         if(tab.incognito&&tabs.none{it.incognito}){privateSession.clear();(context as? MainActivity)?.imageActions?.clearPrivate();(context as? MainActivity)?.websiteLocation?.clearPrivate()}
         if(activeId==id)activeId=(tabs.lastOrNull{it.incognito==tab.incognito}?:tabs.lastOrNull())?.id?:0

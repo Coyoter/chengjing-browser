@@ -2,6 +2,7 @@ package tw.techtarian.browser.smoketests;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.SystemClock;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -139,7 +140,7 @@ public class OptimizedReleaseTest {
     }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(41,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(42,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -232,6 +233,13 @@ public class OptimizedReleaseTest {
         device.executeShellCommand("am force-stop "+APP);launcherOpen();require(By.text("快速前往"));
         require(By.descStartsWith("分頁，")).click();require(By.text("一般 2"));require(By.text("R8 功能測試 one"));
         assertFalse(device.hasObject(By.text("R8 功能測試 two")));
+    }
+    @Test public void systemIntegrationSettingsAndInstallPermissionSurviveOptimization() throws Exception {
+        assertTrue(java.util.Arrays.asList(target().getPackageManager().getPackageInfo(APP,PackageManager.GET_PERMISSIONS).requestedPermissions).contains("android.permission.REQUEST_INSTALL_PACKAGES"));
+        settings("瀏覽");click("選擇系統密碼服務");
+        assertTrue("System autofill settings must open",device.wait(Until.gone(By.text("密碼與自動填入")),10000));
+        device.pressBack();require(By.text("設定"));
+        findText("安裝應用");findText("Google 登入協助");
     }
     @Test public void languageSelectionLocalizesTheMinifiedInterfaceAndPersists() throws Exception {
         menu();click("設定");require(By.text("介面語言"));require(By.text("繁體中文")).click();

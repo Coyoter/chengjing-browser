@@ -62,6 +62,7 @@ class MainActivity:AppCompatActivity(){
     internal val imageDownloads=BrowserImageDownloads(this){message->if(::controller.isInitialized)controller.notice=message}
     internal val imageActions=BrowserImageActions(this)
     internal val pageDownloads=BrowserPageDownloads(this)
+    internal val googleBrowserLogin=GoogleBrowserLogin(this)
     internal val websiteLocation=WebsiteLocation(this)
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
@@ -84,6 +85,24 @@ class MainActivity:AppCompatActivity(){
     private val exportBookmarks=registerForActivityResult(ActivityResultContracts.CreateDocument("text/html")){uri->if(uri!=null)runCatching{contentResolver.openOutputStream(uri)?.use{it.write(BookmarkFormat.html(store.bookmarkStore.visible()).toByteArray())}?:error(bt(R.string.msg_90b894bfd26f))}.onSuccess{controller.notice=bt(R.string.msg_7377414b1f6d)}.onFailure{controller.notice=bt(R.string.msg_fef661198324)}}
     fun importBookmarks(){importBookmarks.launch(arrayOf("text/html","application/xhtml+xml","text/plain","application/octet-stream"))}
     fun exportBookmarks(){exportBookmarks.launch("ChengJing-Bookmarks.html")}
+    private var pendingPackage:DownloadItem?=null
+    private val installPermission=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        val item=pendingPackage;pendingPackage=null
+        if(item!=null&&PackageDownloads.allowed(this))installPackage(item)
+        else if(item!=null)controller.notice=bt(R.string.system_install_denied)
+    }
+    internal fun managePackagePermission(){installPermission.launch(PackageDownloads.settingsIntent(this))}
+    internal fun installPackage(item:DownloadItem){
+        if(!PackageDownloads.isPackage(item))return
+        if(!PackageDownloads.allowed(this)){
+            controller.prompts.confirm(bt(R.string.system_install_title),bt(R.string.system_install_prompt),bt(R.string.system_open_settings)){
+                pendingPackage=item
+                runCatching{managePackagePermission()}.onFailure{pendingPackage=null;controller.notice=bt(R.string.system_settings_unavailable)}
+            };return
+        }
+        runCatching{startActivity(PackageDownloads.installerIntent(PackageDownloads.contentUri(this,item)))}
+            .onFailure{controller.notice=bt(R.string.system_install_failed)}
+    }
     private val files=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->controller.fileCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result.resultCode,result.data));controller.fileCallback=null}
     override fun onCreate(savedInstanceState:Bundle?){
         delegate.localNightMode=BrowserAppearance.mode(BrowserAppearance.savedChoice(this))
@@ -117,6 +136,7 @@ class MainActivity:AppCompatActivity(){
                 if(savedInstanceState?.getBoolean("browser-launch-consumed")!=true||incomingIntentPending)acceptIncomingLink(intent)
                 browserReady=true
                 setContent { BrowserApp(controller,store) }
+                BrowserAutofillLayout.install(this)
                 if(lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED))bookmarkSync.resume()
             }
         }}
@@ -459,6 +479,7 @@ class MainActivity:AppCompatActivity(){
         }
         "browsing"->{
             HomeSettings(c)
+            SystemIntegrationSettings(c)
             MenuGroup(bt(R.string.msg_03c481a6ab85)){
                 MenuRow(Icons.Outlined.Search,bt(R.string.msg_14bd2c678335),"${SearchEngines.label(store.searchSettings)} · ${SearchEngines.description(store.searchSettings)}"){c.sheet="search-engine"}
             }

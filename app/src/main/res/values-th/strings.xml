@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"รหัสผ่านและการกรอกอัตโนมัติ"</string>
+  <string name="system_password_provider" formatted="false">"บริการปัจจุบัน: %1$s"</string>
+  <string name="system_password_none" formatted="false">"ยังไม่ได้เลือกบริการกรอกอัตโนมัติ"</string>
+  <string name="system_password_note" formatted="false">"ใช้บริการจัดการรหัสผ่านของโทรศัพท์ในการกรอกชื่อผู้ใช้และรหัสผ่าน; การซิงค์ข้ามอุปกรณ์ขึ้นอยู่กับบริการที่เลือก"</string>
+  <string name="system_password_choose" formatted="false">"เลือกบริการรหัสผ่านของระบบ"</string>
+  <string name="system_password_compatibility" formatted="false">"ระดับการรองรับขึ้นอยู่กับบริการรหัสผ่านและเว็บไซต์ การเปิดแท็บไม่ระบุตัวตนจะปิดการกรอกอัตโนมัติ; Samsung Pass กรอกข้อมูลเว็บไซต์ได้เฉพาะ Samsung Internet"</string>
+  <string name="system_install_title" formatted="false">"ติดตั้งแอป"</string>
+  <string name="system_install_allowed" formatted="false">"อนุญาตให้ติดตั้ง APK ที่ดาวน์โหลดแล้ว"</string>
+  <string name="system_install_disabled" formatted="false">"ยังไม่ได้อนุญาตให้ติดตั้ง APK ที่ดาวน์โหลดแล้ว"</string>
+  <string name="system_install_note" formatted="false">"เมื่อเปิด APK จากรายการดาวน์โหลด ระบบจะใช้ Android ในการติดตั้ง ต้องยืนยันทุกครั้งก่อนติดตั้ง"</string>
+  <string name="system_open_settings" formatted="false">"เปิดการตั้งค่าระบบ"</string>
+  <string name="system_install_prompt" formatted="false">"โปรดอนุญาตให้澄境瀏覽器ติดตั้งแอปจากแหล่งที่ไม่รู้จักในการตั้งค่าระบบ หลังกลับมาจะเปิดหน้าต่างยืนยันการติดตั้ง APK นี้"</string>
+  <string name="system_install_denied" formatted="false">"ยังไม่ได้รับอนุญาตให้ติดตั้ง APK ไฟล์ยังคงอยู่ในรายการดาวน์โหลด"</string>
+  <string name="system_install_failed" formatted="false">"ไม่สามารถเปิด APK นี้ได้ กรุณาตรวจสอบว่าไฟล์สมบูรณ์และยังเข้าถึงได้"</string>
+  <string name="system_settings_unavailable" formatted="false">"โทรศัพท์นี้ไม่มีหน้าระบบที่สามารถเปิดได้"</string>
+  <string name="system_google_title" formatted="false">"ช่วยเหลือการเข้าสู่ระบบ Google"</string>
+  <string name="system_google_option" formatted="false">"เสนอทางเลือกเข้าสู่ระบบผ่านเบราว์เซอร์ระบบ"</string>
+  <string name="system_google_note" formatted="false">"เมื่อเว็บไซต์ต้องการเข้าสู่ระบบ Google สามารถเปิดเว็บไซต์ในเบราว์เซอร์ระบบใหม่เพื่อใช้สถานะเข้าสู่ระบบที่มีอยู่ การเข้าสู่ระบบจะเสร็จสิ้นในเบราว์เซอร์นั้น"</string>
+  <string name="system_google_unavailable" formatted="false">"ไม่มีบริการ Google Play หรือเบราว์เซอร์ระบบที่รองรับในขณะนี้ จึงใช้การเข้าสู่ระบบผ่านเว็บต่อไป"</string>
+  <string name="system_google_prompt" formatted="false">"หลังจากเปิดเว็บไซต์ปัจจุบันในเบราว์เซอร์ระบบใหม่ กรุณาคลิกเข้าสู่ระบบ Google อีกครั้ง สามารถใช้สถานะเข้าสู่ระบบ Google ที่มีในเบราว์เซอร์นั้น การเข้าสู่ระบบจะเสร็จสิ้นในเบราว์เซอร์นั้น ขณะที่แท็บ澄境จะยังคงอยู่"</string>
+  <string name="system_google_open" formatted="false">"ดำเนินการต่อในเบราว์เซอร์ระบบ"</string>
+  <string name="system_google_stay" formatted="false">"อยู่ที่หน้าเดิม"</string>
 </resources>

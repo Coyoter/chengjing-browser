@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"パスワードと自動入力"</string>
+  <string name="system_password_provider" formatted="false">"現在のサービス：%1$s"</string>
+  <string name="system_password_none" formatted="false">"自動入力サービスが選択されていません"</string>
+  <string name="system_password_note" formatted="false">"スマートフォンのパスワード管理サービスを使ってアカウントとパスワードを入力します。デバイス間の同期は選択したサービスが担当します。"</string>
+  <string name="system_password_choose" formatted="false">"システムパスワードサービスを選択"</string>
+  <string name="system_password_compatibility" formatted="false">"対応状況はパスワードサービスとウェブサイトによります。シークレットモードでは自動入力が無効です。Samsung Passのウェブサイト入力はSamsung Internetに限定されます。"</string>
+  <string name="system_install_title" formatted="false">"アプリのインストール"</string>
+  <string name="system_install_allowed" formatted="false">"ダウンロードしたAPKのインストールが許可されています"</string>
+  <string name="system_install_disabled" formatted="false">"ダウンロードしたAPKのインストールが許可されていません"</string>
+  <string name="system_install_note" formatted="false">"ダウンロードリストからAPKを開くとAndroidがインストールを担当します。インストールごとに確認が必要です。"</string>
+  <string name="system_open_settings" formatted="false">"システム設定を開く"</string>
+  <string name="system_install_prompt" formatted="false">"システム設定で澄境瀏覽器の未知のアプリのインストールを許可してください。戻るとこのAPKのインストール確認画面が開きます。"</string>
+  <string name="system_install_denied" formatted="false">"インストール許可が得られていません。APKはダウンロードリストに残っています。"</string>
+  <string name="system_install_failed" formatted="false">"このAPKを開けません。ファイルが完全でアクセス可能か確認してください。"</string>
+  <string name="system_settings_unavailable" formatted="false">"この端末では開けるシステムページがありません。"</string>
+  <string name="system_google_title" formatted="false">"Googleログイン支援"</string>
+  <string name="system_google_option" formatted="false">"システムブラウザのログインオプションを提供"</string>
+  <string name="system_google_note" formatted="false">"サイトがGoogleログインを要求した場合、システムブラウザでサイトを再度開き、そのブラウザのログイン状態を利用します。ログインはそのブラウザで完了します。"</string>
+  <string name="system_google_unavailable" formatted="false">"利用可能なGoogle Playサービスまたは対応システムブラウザがありません。ウェブログインを維持します。"</string>
+  <string name="system_google_prompt" formatted="false">"システムブラウザで現在のサイトを再度開いた後、もう一度Googleログインを選択してください。そのブラウザのGoogleログイン状態を利用できます。ログインはそのブラウザで完了し、澄境のタブは保持されます。"</string>
+  <string name="system_google_open" formatted="false">"システムブラウザで続行"</string>
+  <string name="system_google_stay" formatted="false">"元のページに留まる"</string>
 </resources>

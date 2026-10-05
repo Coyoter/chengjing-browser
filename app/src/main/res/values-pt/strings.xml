@@ -1087,4 +1087,26 @@
     <item>@string/home_quote_087</item>
     <item>@string/home_quote_088</item>
   </string-array>
+  <string name="system_password_title" formatted="false">"Senha e Preenchimento Automático"</string>
+  <string name="system_password_provider" formatted="false">"Serviço atual: %1$s"</string>
+  <string name="system_password_none" formatted="false">"Nenhum serviço de preenchimento automático selecionado"</string>
+  <string name="system_password_note" formatted="false">"Use o serviço de gerenciamento de senhas do celular para preencher contas e senhas; a sincronização entre dispositivos é responsabilidade do serviço escolhido."</string>
+  <string name="system_password_choose" formatted="false">"Escolher serviço de senha do sistema"</string>
+  <string name="system_password_compatibility" formatted="false">"O suporte depende do serviço de senha e do site. O preenchimento automático é desativado em abas anônimas; o preenchimento em sites pelo Samsung Pass é limitado ao Samsung Internet."</string>
+  <string name="system_install_title" formatted="false">"Instalar Aplicativo"</string>
+  <string name="system_install_allowed" formatted="false">"Instalação de APKs baixados permitida"</string>
+  <string name="system_install_disabled" formatted="false">"Instalação de APKs baixados não permitida"</string>
+  <string name="system_install_note" formatted="false">"Ao abrir um APK da lista de downloads, o Android fará a instalação. Cada instalação ainda requer sua confirmação."</string>
+  <string name="system_open_settings" formatted="false">"Abrir configurações do sistema"</string>
+  <string name="system_install_prompt" formatted="false">"Permita que o ChengJing Browser instale aplicativos de fontes desconhecidas nas configurações do sistema. Após voltar, a tela de confirmação da instalação do APK será exibida."</string>
+  <string name="system_install_denied" formatted="false">"Permissão de instalação não concedida; o APK permanece na lista de downloads."</string>
+  <string name="system_install_failed" formatted="false">"Não foi possível abrir este APK. Verifique se o arquivo está completo e acessível."</string>
+  <string name="system_settings_unavailable" formatted="false">"Este dispositivo não oferece uma página de sistema acessível."</string>
+  <string name="system_google_title" formatted="false">"Assistência de Login Google"</string>
+  <string name="system_google_option" formatted="false">"Oferecer opção de login via navegador do sistema"</string>
+  <string name="system_google_note" formatted="false">"Quando um site solicitar login Google, ele pode ser reaberto no navegador do sistema para usar o estado de login já existente. O login será concluído nesse navegador."</string>
+  <string name="system_google_unavailable" formatted="false">"Nenhum serviço Google Play disponível ou navegador do sistema suportado; o login continuará na página web."</string>
+  <string name="system_google_prompt" formatted="false">"Após reabrir o site atual no navegador do sistema, clique novamente em login Google. O estado de login Google existente será usado; o login será concluído nesse navegador, mantendo a aba do ChengJing."</string>
+  <string name="system_google_open" formatted="false">"Continuar no navegador do sistema"</string>
+  <string name="system_google_stay" formatted="false">"Permanecer na página atual"</string>
 </resources>
