@@ -86,6 +86,14 @@ public class OptimizedReleaseTest {
         fail("Missing text: "+text);
         return null;
     }
+    private UiObject2 findTextContaining(String text) throws Exception {
+        for(int i=0;i<10;i++){
+            UiObject2 node=device.wait(Until.findObject(By.textContains(text)),700);
+            if(node!=null)return node;
+            device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*3/4,device.getDisplayWidth()/2,device.getDisplayHeight()/3,30);
+        }
+        fail("Missing text: "+text);return null;
+    }
     private void click(String text) throws Exception {
         findText(text);
         // A text node can become visible during an unfinished scroll. Wait, re-query,
@@ -223,7 +231,8 @@ public class OptimizedReleaseTest {
         require(By.desc("新增分頁")).click();require(By.text("快速前往"));
         UiObject2 address=require(By.clazz("android.widget.EditText"));address.click();device.waitForIdle();
         String url="http://127.0.0.1:"+fixture.port()+"/two";
-        address=require(By.clazz("android.widget.EditText"));address.setText(url);require(By.text(url));SystemClock.sleep(250);device.pressEnter();
+        address=require(By.clazz("android.widget.EditText"));address.setText(url);require(By.text(url));SystemClock.sleep(500);
+        device.executeShellCommand("input keyevent 66");
         require(By.text("R8 功能測試 two"));
         device.pressBack();require(By.text("快速前往"));require(By.desc("瀏覽器選單"));
         assertEquals("Page-root Back must first show the initial page",APP,device.getCurrentPackageName());
@@ -388,7 +397,7 @@ public class OptimizedReleaseTest {
         settings("瀏覽");click("預設搜尋引擎");click("自訂");
         UiObject2 template=require(By.clazz("android.widget.EditText"));template.setText("https://find.example/search?lang=zh-TW&q={query}");
         click("儲存並使用");require(By.desc("返回上一層")).click();
-        require(By.textContains("自訂 · find.example"));click("預設搜尋引擎");require(By.text("find.example"));
+        findTextContaining("自訂 · find.example");click("預設搜尋引擎");require(By.text("find.example"));
         device.executeShellCommand("mkdir -p /data/local/tmp/r8-smoke");
         device.executeShellCommand("screencap -p /data/local/tmp/r8-smoke/search-engine-custom.png");
     }
