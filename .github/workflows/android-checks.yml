@@ -53,17 +53,9 @@ jobs:
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
           EMULATOR="$ANDROID_HOME/emulator/emulator"
-          "$SDKMANAGER" "emulator" "system-images;android-36;google_apis;x86_64"
-          # Pin a released renderer; emulator 37 repeatedly drops this VM during native video.
-          curl -fsSL --retry 3 https://dl.google.com/android/repository/emulator-linux_x64-14472402.zip -o "$RUNNER_TEMP/emulator-stable.zip"
-          echo "c8ab9ffbc4c2d11c02e06e81a9d9f81970177dc5ab599e3a30eb08a4a5496a67  $RUNNER_TEMP/emulator-stable.zip" | sha256sum -c -
-          sudo apt-get update -qq
-          sudo apt-get install -y libpulse0
-          mkdir -p "$RUNNER_TEMP/emulator-stable"
-          unzip -q "$RUNNER_TEMP/emulator-stable.zip" -d "$RUNNER_TEMP/emulator-stable"
-          EMULATOR="$RUNNER_TEMP/emulator-stable/emulator/emulator"
+          "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
           "$EMULATOR" -version
-          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-36;google_apis;x86_64"
+          printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-35;google_apis;x86_64"
           python3 - <<'PY'
           import os
           from pathlib import Path
@@ -75,9 +67,9 @@ jobs:
           "$EMULATOR" -list-avds | tee "$RUNNER_TEMP/avd-list.txt"
           grep -Fx chengjing-qa "$RUNNER_TEMP/avd-list.txt"
           sudo chmod a+rw /dev/kvm
-          # Emulator 37's host video decoder can terminate the VM during native video playback.
-          # Use software graphics/codecs without Vulkan in this disposable runner; retain all real video/menu/download tests.
-          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader_indirect -feature -Vulkan,-HardwareDecoder > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          # General regressions use Android 15; the independent R8 job covers Android 16.
+          # Keep real playback and download checks on software rendering in this headless runner.
+          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader -feature -Vulkan,-HardwareDecoder > "$RUNNER_TEMP/emulator.log" 2>&1 &
           EMULATOR_PID=$!
           echo "$EMULATOR_PID" > "$RUNNER_TEMP/emulator.pid"
           (
