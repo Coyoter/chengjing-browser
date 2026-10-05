@@ -54,6 +54,8 @@ jobs:
           AVDMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
           EMULATOR="$ANDROID_HOME/emulator/emulator"
           "$SDKMANAGER" "emulator" "system-images;android-35;google_apis;x86_64"
+          sudo apt-get update -qq
+          sudo apt-get install -y libpulse0
           "$EMULATOR" -version
           printf 'no\n' | "$AVDMANAGER" create avd --force --name chengjing-qa --path "$ANDROID_AVD_HOME/chengjing-qa.avd" --package "system-images;android-35;google_apis;x86_64"
           python3 - <<'PY'
