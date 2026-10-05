@@ -70,8 +70,9 @@ jobs:
           grep -Fx chengjing-qa "$RUNNER_TEMP/avd-list.txt"
           sudo chmod a+rw /dev/kvm
           # General regressions use Android 15; the independent R8 job covers Android 16.
-          # Keep real playback and download checks on software rendering in this headless runner.
-          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -gpu swiftshader -feature -Vulkan,-HardwareDecoder > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          # ANGLE + SwiftShader avoids the direct GLES path that hangs at decoded-video buffers.
+          # Keep real playback and download checks in this headless runner.
+          "$EMULATOR" -avd chengjing-qa -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -memory 2048 -cores 2 -partition-size 2048 -show-kernel -gpu swangle -feature -Vulkan,-HardwareDecoder > "$RUNNER_TEMP/emulator.log" 2>&1 &
           EMULATOR_PID=$!
           echo "$EMULATOR_PID" > "$RUNNER_TEMP/emulator.pid"
           (
@@ -161,4 +162,5 @@ jobs:
             app/build/test-results/
             app/build/outputs/androidTest-results/
             app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/androidTest/debug/*.apk
             validation/
