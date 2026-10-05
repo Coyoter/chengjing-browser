@@ -25,3 +25,5 @@ scripts/publish-release.py 將 Tag 指向建置的精確提交，先建立 Draft
 python3 scripts/build-private.py 可沿用本機 signing/browser.jks 與 signing/password，同時產生 APK、AAB、Source.zip、BUILD.json、SHA256SUMS 到 release/<version>/。原有檔案不覆蓋。需 Java、Android SDK 36／build-tools 36.0.0，以及乾淨的已提交原始碼。
 
 scripts/publish-release.py 只處理已建置且版本、提交、雜湊相符的套件；本機直接執行發布腳本不會替代裝置回歸驗收，日常發布應使用有檢查閘門的 Android release workflow。
+
+Linux 一般回歸固定使用官方 36.3.10 模擬器（下載 build 14472402，SHA-256 c8ab9ffbc4c2d11c02e06e81a9d9f81970177dc5ab599e3a30eb08a4a5496a67），並使用 SwiftShader 軟體繪圖；37.2.12 在原生影片測試反覆失聯，未發現主機 OOM。固定版本不改動 APK，也不略過影片測試。來源：[官方版本封存](https://developer.android.com/studio/emulator_archive)。
