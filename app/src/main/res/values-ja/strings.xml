@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"インストール許可が得られていません。APKはダウンロードリストに残っています。"</string>
   <string name="system_install_failed" formatted="false">"このAPKを開けません。ファイルが完全でアクセス可能か確認してください。"</string>
   <string name="system_settings_unavailable" formatted="false">"この端末では開けるシステムページがありません。"</string>
-  <string name="system_google_title" formatted="false">"Googleログイン支援"</string>
-  <string name="system_google_option" formatted="false">"システムブラウザのログインオプションを提供"</string>
-  <string name="system_google_note" formatted="false">"サイトがGoogleログインを要求した場合、システムブラウザでサイトを再度開き、そのブラウザのログイン状態を利用します。ログインはそのブラウザで完了します。"</string>
-  <string name="system_google_unavailable" formatted="false">"利用可能なGoogle Playサービスまたは対応システムブラウザがありません。ウェブログインを維持します。"</string>
-  <string name="system_google_prompt" formatted="false">"システムブラウザで現在のサイトを再度開いた後、もう一度Googleログインを選択してください。そのブラウザのGoogleログイン状態を利用できます。ログインはそのブラウザで完了し、澄境のタブは保持されます。"</string>
-  <string name="system_google_open" formatted="false">"システムブラウザで続行"</string>
-  <string name="system_google_stay" formatted="false">"元のページに留まる"</string>
 </resources>

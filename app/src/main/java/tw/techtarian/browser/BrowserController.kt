@@ -357,7 +357,6 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 if(scope !in exceptions && store.get(scope).guard && !request.hasGesture() && !request.isRedirect && tab.url.isNotEmpty()) {
                     tab.blockedUrl=u;recordBlocked(tab,bt(R.string.msg_216baff9f183),u);return true
                 }
-                if(allowed&&(context as? MainActivity)?.googleBrowserLogin?.offer(tab,u)==true)return true
                 if(openExternalLink(tab,u,allowed))return true
                 tab.pendingUrl=u
                 return false

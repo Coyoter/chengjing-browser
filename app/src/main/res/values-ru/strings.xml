@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"Разрешение на установку не получено, APK сохранён в списке загрузок."</string>
   <string name="system_install_failed" formatted="false">"Не удалось открыть этот APK, проверьте целостность файла и доступность."</string>
   <string name="system_settings_unavailable" formatted="false">"На этом устройстве нет доступных системных страниц для открытия."</string>
-  <string name="system_google_title" formatted="false">"Помощь с входом через Google"</string>
-  <string name="system_google_option" formatted="false">"Предлагать вход через системный браузер"</string>
-  <string name="system_google_note" formatted="false">"При запросе входа через Google сайт можно открыть заново в системном браузере, используя уже существующий вход в этом браузере. Вход будет выполнен в системном браузере."</string>
-  <string name="system_google_unavailable" formatted="false">"Нет доступных сервисов Google Play или поддерживаемого системного браузера, вход через веб-страницу сохранён."</string>
-  <string name="system_google_prompt" formatted="false">"После повторного открытия текущего сайта в системном браузере нажмите снова вход через Google. Можно использовать существующий вход Google в этом браузере; вход будет завершён там, вкладка ChengJing сохранится."</string>
-  <string name="system_google_open" formatted="false">"Продолжить в системном браузере"</string>
-  <string name="system_google_stay" formatted="false">"Остаться на странице"</string>
 </resources>

@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"尚未取得安装授权，APK 保留在下载列表。"</string>
   <string name="system_install_failed" formatted="false">"无法打开此 APK，请确认文件完整且仍可访问。"</string>
   <string name="system_settings_unavailable" formatted="false">"此手机未提供可打开的系统页面。"</string>
-  <string name="system_google_title" formatted="false">"Google 登录协助"</string>
-  <string name="system_google_option" formatted="false">"提供系统浏览器登录选项"</string>
-  <string name="system_google_note" formatted="false">"网站要求 Google 登录时，可在系统浏览器重新打开网站，使用该浏览器已有的登录状态。登录会在该浏览器完成。"</string>
-  <string name="system_google_unavailable" formatted="false">"目前没有可用的 Google Play 服务或支持的系统浏览器，维持网页登录。"</string>
-  <string name="system_google_prompt" formatted="false">"在系统浏览器重新打开当前网站后，请再次点击 Google 登录。可使用该浏览器已有的 Google 登录状态；登录会在该浏览器完成，澄境的标签页会保留。"</string>
-  <string name="system_google_open" formatted="false">"在系统浏览器继续"</string>
-  <string name="system_google_stay" formatted="false">"留在原页"</string>
 </resources>

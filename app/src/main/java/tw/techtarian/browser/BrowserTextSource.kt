@@ -1014,12 +1014,5 @@ internal object BrowserTextSource {
         R.string.system_install_denied to "尚未取得安裝授權，APK 保留在下載清單。",
         R.string.system_install_failed to "無法開啟此 APK，請確認檔案完整且仍可存取。",
         R.string.system_settings_unavailable to "此手機未提供可開啟的系統頁面。",
-        R.string.system_google_title to "Google 登入協助",
-        R.string.system_google_option to "提供系統瀏覽器登入選項",
-        R.string.system_google_note to "網站要求 Google 登入時，可在系統瀏覽器重新開啟網站，使用該瀏覽器已有的登入狀態。登入會在該瀏覽器完成。",
-        R.string.system_google_unavailable to "目前沒有可用的 Google Play 服務或支援的系統瀏覽器，維持網頁登入。",
-        R.string.system_google_prompt to "在系統瀏覽器重新開啟目前網站後，請再次點選 Google 登入。可使用該瀏覽器已有的 Google 登入狀態；登入會在該瀏覽器完成，澄境的分頁會保留。",
-        R.string.system_google_open to "在系統瀏覽器繼續",
-        R.string.system_google_stay to "留在原頁",
     )
 }

@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"ยังไม่ได้รับอนุญาตให้ติดตั้ง APK ไฟล์ยังคงอยู่ในรายการดาวน์โหลด"</string>
   <string name="system_install_failed" formatted="false">"ไม่สามารถเปิด APK นี้ได้ กรุณาตรวจสอบว่าไฟล์สมบูรณ์และยังเข้าถึงได้"</string>
   <string name="system_settings_unavailable" formatted="false">"โทรศัพท์นี้ไม่มีหน้าระบบที่สามารถเปิดได้"</string>
-  <string name="system_google_title" formatted="false">"ช่วยเหลือการเข้าสู่ระบบ Google"</string>
-  <string name="system_google_option" formatted="false">"เสนอทางเลือกเข้าสู่ระบบผ่านเบราว์เซอร์ระบบ"</string>
-  <string name="system_google_note" formatted="false">"เมื่อเว็บไซต์ต้องการเข้าสู่ระบบ Google สามารถเปิดเว็บไซต์ในเบราว์เซอร์ระบบใหม่เพื่อใช้สถานะเข้าสู่ระบบที่มีอยู่ การเข้าสู่ระบบจะเสร็จสิ้นในเบราว์เซอร์นั้น"</string>
-  <string name="system_google_unavailable" formatted="false">"ไม่มีบริการ Google Play หรือเบราว์เซอร์ระบบที่รองรับในขณะนี้ จึงใช้การเข้าสู่ระบบผ่านเว็บต่อไป"</string>
-  <string name="system_google_prompt" formatted="false">"หลังจากเปิดเว็บไซต์ปัจจุบันในเบราว์เซอร์ระบบใหม่ กรุณาคลิกเข้าสู่ระบบ Google อีกครั้ง สามารถใช้สถานะเข้าสู่ระบบ Google ที่มีในเบราว์เซอร์นั้น การเข้าสู่ระบบจะเสร็จสิ้นในเบราว์เซอร์นั้น ขณะที่แท็บ澄境จะยังคงอยู่"</string>
-  <string name="system_google_open" formatted="false">"ดำเนินการต่อในเบราว์เซอร์ระบบ"</string>
-  <string name="system_google_stay" formatted="false">"อยู่ที่หน้าเดิม"</string>
 </resources>

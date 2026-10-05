@@ -248,7 +248,8 @@ public class OptimizedReleaseTest {
         settings("瀏覽");click("選擇系統密碼服務");
         assertTrue("System autofill settings must open",device.wait(Until.gone(By.text("密碼與自動填入")),10000));
         device.pressBack();require(By.text("設定"));
-        findText("安裝應用");findText("Google 登入協助");
+        findText("安裝應用");
+        assertFalse("Removed Google login assistance must not appear",device.hasObject(By.text("Google 登入協助")));
     }
     @Test public void languageSelectionLocalizesTheMinifiedInterfaceAndPersists() throws Exception {
         menu();click("設定");require(By.text("介面語言"));require(By.text("繁體中文")).click();

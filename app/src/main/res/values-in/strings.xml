@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"Izin pemasangan belum diperoleh, APK tetap di daftar unduhan."</string>
   <string name="system_install_failed" formatted="false">"Tidak dapat membuka APK ini, pastikan file lengkap dan masih dapat diakses."</string>
   <string name="system_settings_unavailable" formatted="false">"Ponsel ini tidak menyediakan halaman sistem yang dapat dibuka."</string>
-  <string name="system_google_title" formatted="false">"Bantuan Masuk Google"</string>
-  <string name="system_google_option" formatted="false">"Sediakan opsi masuk browser sistem"</string>
-  <string name="system_google_note" formatted="false">"Saat situs meminta masuk Google, situs dapat dibuka ulang di browser sistem untuk menggunakan status masuk yang sudah ada. Masuk selesai di browser tersebut."</string>
-  <string name="system_google_unavailable" formatted="false">"Tidak ada layanan Google Play atau browser sistem yang didukung saat ini, tetap gunakan masuk web."</string>
-  <string name="system_google_prompt" formatted="false">"Setelah membuka ulang situs saat ini di browser sistem, klik masuk Google lagi. Gunakan status masuk Google yang sudah ada di browser tersebut; masuk selesai di browser itu, tab ChengJing tetap terbuka."</string>
-  <string name="system_google_open" formatted="false">"Lanjutkan di browser sistem"</string>
-  <string name="system_google_stay" formatted="false">"Tetap di halaman ini"</string>
 </resources>

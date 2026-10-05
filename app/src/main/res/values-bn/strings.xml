@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"ইনস্টল অনুমতি পাওয়া যায়নি, APK ডাউনলোড তালিকায় রাখা হয়েছে।"</string>
   <string name="system_install_failed" formatted="false">"এই APK খুলতে পারছি না, দয়া করে ফাইল সম্পূর্ণ এবং অ্যাক্সেসযোগ্য আছে কিনা নিশ্চিত করুন।"</string>
   <string name="system_settings_unavailable" formatted="false">"এই ফোনে কোনো সিস্টেম পেজ খোলা যায় না।"</string>
-  <string name="system_google_title" formatted="false">"Google লগইন সহায়তা"</string>
-  <string name="system_google_option" formatted="false">"সিস্টেম ব্রাউজারে লগইন অপশন প্রদান করুন"</string>
-  <string name="system_google_note" formatted="false">"ওয়েবসাইট Google লগইন চাইলে, সিস্টেম ব্রাউজারে ওয়েবসাইট পুনরায় খুলুন এবং ওই ব্রাউজারের বিদ্যমান লগইন স্টেট ব্যবহার করুন। লগইন সেই ব্রাউজারে সম্পন্ন হবে।"</string>
-  <string name="system_google_unavailable" formatted="false">"বর্তমানে কোনো Google Play সেবা বা সমর্থিত সিস্টেম ব্রাউজার নেই, ওয়েব লগইন বজায় থাকবে।"</string>
-  <string name="system_google_prompt" formatted="false">"সিস্টেম ব্রাউজারে বর্তমান ওয়েবসাইট পুনরায় খুলুন, তারপর আবার Google লগইনে ক্লিক করুন। ওই ব্রাউজারের বিদ্যমান Google লগইন স্টেট ব্যবহার করা যাবে; লগইন সেই ব্রাউজারে সম্পন্ন হবে, ChengJing এর ট্যাব থাকবে।"</string>
-  <string name="system_google_open" formatted="false">"সিস্টেম ব্রাউজারে চালিয়ে যান"</string>
-  <string name="system_google_stay" formatted="false">"বর্তমান পৃষ্ঠায় থাকুন"</string>
 </resources>

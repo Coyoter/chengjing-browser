@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"No se ha concedido permiso de instalación; el APK permanece en la lista de descargas."</string>
   <string name="system_install_failed" formatted="false">"No se puede abrir este APK, verifica que el archivo esté completo y accesible."</string>
   <string name="system_settings_unavailable" formatted="false">"Este teléfono no ofrece una página del sistema que se pueda abrir."</string>
-  <string name="system_google_title" formatted="false">"Asistencia para inicio de sesión con Google"</string>
-  <string name="system_google_option" formatted="false">"Ofrecer opción de inicio de sesión con navegador del sistema"</string>
-  <string name="system_google_note" formatted="false">"Cuando un sitio web requiera inicio de sesión con Google, puede reabrirse en el navegador del sistema para usar el estado de sesión ya existente. El inicio de sesión se completará en ese navegador."</string>
-  <string name="system_google_unavailable" formatted="false">"No hay servicios de Google Play disponibles ni navegadores del sistema compatibles; se mantiene el inicio de sesión web."</string>
-  <string name="system_google_prompt" formatted="false">"Después de reabrir el sitio actual en el navegador del sistema, vuelve a pulsar iniciar sesión con Google. Se usará el estado de sesión de Google existente en ese navegador; el inicio de sesión se completará allí y la pestaña de ChengJing permanecerá."</string>
-  <string name="system_google_open" formatted="false">"Continuar en navegador del sistema"</string>
-  <string name="system_google_stay" formatted="false">"Permanecer en esta página"</string>
 </resources>

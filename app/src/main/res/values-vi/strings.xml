@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"Chưa được cấp quyền cài đặt, APK vẫn giữ trong danh sách tải về."</string>
   <string name="system_install_failed" formatted="false">"Không thể mở APK này, vui lòng kiểm tra tệp đầy đủ và còn truy cập được."</string>
   <string name="system_settings_unavailable" formatted="false">"Điện thoại này không cung cấp trang hệ thống có thể mở."</string>
-  <string name="system_google_title" formatted="false">"Hỗ trợ đăng nhập Google"</string>
-  <string name="system_google_option" formatted="false">"Cung cấp tùy chọn đăng nhập qua trình duyệt hệ thống"</string>
-  <string name="system_google_note" formatted="false">"Khi trang web yêu cầu đăng nhập Google, có thể mở lại trang trên trình duyệt hệ thống để dùng trạng thái đăng nhập đã có trên trình duyệt đó. Đăng nhập sẽ hoàn tất trên trình duyệt đó."</string>
-  <string name="system_google_unavailable" formatted="false">"Hiện không có dịch vụ Google Play hoặc trình duyệt hệ thống hỗ trợ, giữ đăng nhập trên web."</string>
-  <string name="system_google_prompt" formatted="false">"Sau khi mở lại trang hiện tại trên trình duyệt hệ thống, vui lòng nhấn đăng nhập Google lần nữa. Có thể dùng trạng thái đăng nhập Google đã có trên trình duyệt đó; đăng nhập sẽ hoàn tất trên trình duyệt đó, tab ChengJing sẽ được giữ lại."</string>
-  <string name="system_google_open" formatted="false">"Tiếp tục trên trình duyệt hệ thống"</string>
-  <string name="system_google_stay" formatted="false">"Ở lại trang hiện tại"</string>
 </resources>

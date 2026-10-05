@@ -48,6 +48,41 @@ class SystemIntegrationTest {
         ui.runOnIdle{ui.activity.applyAppearance("system")}
 
     }
+    @Test fun googleWebsiteLoginStaysInChengJingEvenWithLegacyAssistanceEnabled(){
+        val prefs=ui.activity.getSharedPreferences("browser-v1",0)
+        val existed=prefs.contains("google-browser-login")
+        val previous=prefs.getBoolean("google-browser-login",false)
+        prefs.edit().putBoolean("google-browser-login",true).commit()
+        try{
+            ui.runOnIdle{
+                c.sheet=""
+                val tab=c.newTab()!!
+                tab.url="https://example.invalid/login"
+                val entries=listOf("https://accounts.google.com/ServiceLogin","https://accounts.google.com/o/oauth2/v2/auth?client_id=fixture")
+                entries.forEach{entry->
+                    val request=object:android.webkit.WebResourceRequest{
+                        override fun getUrl()=Uri.parse(entry)
+                        override fun isForMainFrame()=true
+                        override fun isRedirect()=false
+                        override fun hasGesture()=true
+                        override fun getMethod()="GET"
+                        override fun getRequestHeaders()=emptyMap<String,String>()
+                    }
+                    assertFalse("Google login must continue in this WebView",tab.web.webViewClient.shouldOverrideUrlLoading(tab.web,request))
+                    assertEquals(entry,tab.pendingUrl)
+                    assertNull("No external browser assistance prompt",c.prompts.current)
+                }
+                c.sheet="settings"
+            }
+            ui.onNodeWithText("瀏覽").performClick()
+            ui.onNodeWithTag("system-google-login").assertDoesNotExist()
+            ui.onNodeWithText("Google 登入協助").assertDoesNotExist()
+        }finally{
+            val edit=prefs.edit()
+            if(existed)edit.putBoolean("google-browser-login",previous)else edit.remove("google-browser-login")
+            edit.commit()
+        }
+    }
     @Test fun userSelectedDownloadedApkReachesTheAndroidInstaller(){
         Assume.assumeTrue(android.os.Build.VERSION.SDK_INT>=29)
         val path=shell("pm path tw.techtarian.browser.smoketests").lineSequence().first().removePrefix("package:")

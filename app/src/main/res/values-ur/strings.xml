@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"انسٹالیشن کی اجازت حاصل نہیں ہوئی، APK ڈاؤن لوڈ لسٹ میں محفوظ ہے۔"</string>
   <string name="system_install_failed" formatted="false">"اس APK کو کھولا نہیں جا سکا، براہ کرم فائل کی سالمیت اور دستیابی کی تصدیق کریں۔"</string>
   <string name="system_settings_unavailable" formatted="false">"اس فون پر کوئی قابلِ کھولنے سسٹم صفحہ دستیاب نہیں ہے۔"</string>
-  <string name="system_google_title" formatted="false">"گوگل لاگ ان معاونت"</string>
-  <string name="system_google_option" formatted="false">"سسٹم براؤزر لاگ ان آپشن فراہم کریں"</string>
-  <string name="system_google_note" formatted="false">"جب ویب سائٹ گوگل لاگ ان کا مطالبہ کرے، تو سسٹم براؤزر میں ویب سائٹ دوبارہ کھولیں تاکہ اس براؤزر کے موجودہ لاگ ان اسٹیٹس کا استعمال کیا جا سکے۔ لاگ ان اسی براؤزر میں مکمل ہوگا۔"</string>
-  <string name="system_google_unavailable" formatted="false">"گوگل پلے سروسز یا سپورٹڈ سسٹم براؤزر دستیاب نہیں، ویب لاگ ان برقرار رکھا جائے گا۔"</string>
-  <string name="system_google_prompt" formatted="false">"موجودہ ویب سائٹ کو سسٹم براؤزر میں دوبارہ کھولنے کے بعد، دوبارہ گوگل لاگ ان پر کلک کریں۔ آپ اس براؤزر کے موجودہ گوگل لاگ ان اسٹیٹس استعمال کر سکتے ہیں؛ لاگ ان اسی براؤزر میں مکمل ہوگا، ChengJing کے ٹیب محفوظ رہیں گے۔"</string>
-  <string name="system_google_open" formatted="false">"سسٹم براؤزر میں جاری رکھیں"</string>
-  <string name="system_google_stay" formatted="false">"اصل صفحے پر رہیں"</string>
 </resources>

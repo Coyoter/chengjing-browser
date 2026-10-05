@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"Installationsberechtigung nicht erteilt, APK bleibt in der Download-Liste."</string>
   <string name="system_install_failed" formatted="false">"Diese APK kann nicht geöffnet werden. Bitte prüfen Sie, ob die Datei vollständig und zugänglich ist."</string>
   <string name="system_settings_unavailable" formatted="false">"Dieses Telefon bietet keine öffnungsfähige Systemseite an."</string>
-  <string name="system_google_title" formatted="false">"Google-Anmeldehilfe"</string>
-  <string name="system_google_option" formatted="false">"Option zur Anmeldung im Systembrowser anbieten"</string>
-  <string name="system_google_note" formatted="false">"Wenn eine Website Google-Anmeldung verlangt, kann die Website im Systembrowser neu geöffnet werden, um den dort vorhandenen Anmeldestatus zu nutzen. Die Anmeldung erfolgt im Systembrowser."</string>
-  <string name="system_google_unavailable" formatted="false">"Derzeit sind keine Google Play-Dienste oder unterstützte Systembrowser verfügbar, Anmeldung erfolgt über die Webseite."</string>
-  <string name="system_google_prompt" formatted="false">"Öffnen Sie die aktuelle Website im Systembrowser neu und klicken Sie erneut auf Google-Anmeldung. Sie können den vorhandenen Google-Anmeldestatus dieses Browsers nutzen; die Anmeldung erfolgt dort, während die ChengJing-Registerkarte erhalten bleibt."</string>
-  <string name="system_google_open" formatted="false">"Im Systembrowser fortfahren"</string>
-  <string name="system_google_stay" formatted="false">"Auf der aktuellen Seite bleiben"</string>
 </resources>

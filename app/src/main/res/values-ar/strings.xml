@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"لم يتم الحصول على إذن التثبيت بعد، ملف APK محفوظ في قائمة التنزيلات."</string>
   <string name="system_install_failed" formatted="false">"تعذر فتح هذا الملف APK، يرجى التأكد من سلامة الملف وإمكانية الوصول إليه."</string>
   <string name="system_settings_unavailable" formatted="false">"هذا الهاتف لا يوفر صفحة نظام يمكن فتحها."</string>
-  <string name="system_google_title" formatted="false">"مساعدة تسجيل الدخول إلى Google"</string>
-  <string name="system_google_option" formatted="false">"توفير خيار تسجيل الدخول عبر متصفح النظام"</string>
-  <string name="system_google_note" formatted="false">"عند طلب الموقع تسجيل الدخول إلى Google، يمكن إعادة فتح الموقع في متصفح النظام لاستخدام حالة تسجيل الدخول الموجودة فيه. يتم إكمال تسجيل الدخول في ذلك المتصفح."</string>
-  <string name="system_google_unavailable" formatted="false">"لا توجد حالياً خدمات Google Play أو متصفح نظام مدعوم، سيتم استخدام تسجيل الدخول عبر الويب."</string>
-  <string name="system_google_prompt" formatted="false">"بعد إعادة فتح الموقع الحالي في متصفح النظام، يرجى النقر مجدداً على تسجيل الدخول إلى Google. يمكن استخدام حالة تسجيل الدخول إلى Google الموجودة في ذلك المتصفح؛ يتم إكمال تسجيل الدخول هناك مع الاحتفاظ بتبويبات 澄境."</string>
-  <string name="system_google_open" formatted="false">"المتابعة في متصفح النظام"</string>
-  <string name="system_google_stay" formatted="false">"البقاء في الصفحة الحالية"</string>
 </resources>

@@ -22,10 +22,8 @@
 
 澄境自己的 Google Drive 同步原本即使用 GMS AuthorizationClient 原生授權；它授予澄境所需的 Drive 權限，無法替任意網站產生 Google 或網站登入 Cookie。Google 的 OAuth 用戶端／重新導向綁定網站的登入流程；[Google 登入政策](https://developers.google.com/identity/protocols/oauth2/policies) 也限制可注入程式碼及讀取 Cookie 的內嵌授權環境。因此不以 AccountManager 私有令牌、Cookie 匯入、偽造 Chrome 或 JavaScript 橋接模擬網站登入。
 
-1.13.0 在有可用 GMS 與獨立瀏覽器時，提供「Google 登入協助」。一般分頁由使用者動作進入確切的 accounts.google.com HTTPS 登入／授權入口時，可確認在系統瀏覽器重新開啟原網站，再點選 Google 登入。採 Custom Tabs、明確指定獨立瀏覽器套件；使用該瀏覽器自己的 Google 登入狀態，網站登入也在該瀏覽器完成。原澄境分頁保留，沒有跨瀏覽器搬移 OAuth state、登入 Cookie 或密碼。
-
-沒有 GMS、沒有支援的獨立瀏覽器、功能關閉或無痕分頁時，維持既有網頁流程。關閉協助提示會留在原頁。這是登入協助，不是「GMS 帳號選擇器讓澄境內所有網站直接登入」；個別網站仍可能拒絕 WebView OAuth。
+已移除 Google 網站登入時改用其他瀏覽器的提示、設定開關及跳轉流程。Google 登入網址沿用澄境內既有網頁流程；不會因這項登入協助而開啟其他瀏覽器。這項移除不代表已實作通用的原生 Google 網站登入，個別網站仍可能拒絕 WebView OAuth。澄境自己的 Google Drive 原生授權維持原有流程。
 
 ## 驗證
 
-SystemIntegrationTest 在隔離 QA 套件確認宣告權限、真實 APK 的系統確認畫面、實際 Android AutofillService 對網頁欄位的填入，以及無痕排除。測試服務僅提供本機測試網域的假帳密，從不使用使用者帳號。GoogleLoginPolicyTest 驗證確切 HTTPS Google 入口、仿冒網域／連接埠／登出排除，以及交由原網站重新開始登入的邊界。一般既有回歸與正式 R8 最佳化版檢查也必須通過。
+SystemIntegrationTest 在隔離 QA 套件確認宣告權限、真實 APK 的系統確認畫面、實際 Android AutofillService 對網頁欄位的填入，以及無痕排除。測試服務僅提供本機測試網域的假帳密，從不使用使用者帳號。SystemIntegrationTest 另確認 Google 登入網址交由澄境內網頁繼續處理、不顯示外部瀏覽器提示，即使舊版登入協助開關曾開啟也一樣。一般既有回歸與正式 R8 最佳化版檢查也必須通過。

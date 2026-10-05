@@ -1009,12 +1009,5 @@
   "system_install_prompt": "請在系統設定中允許澄境瀏覽器安裝未知來源應用。返回後會開啟此 APK 的安裝確認畫面。",
   "system_install_denied": "尚未取得安裝授權，APK 保留在下載清單。",
   "system_install_failed": "無法開啟此 APK，請確認檔案完整且仍可存取。",
-  "system_settings_unavailable": "此手機未提供可開啟的系統頁面。",
-  "system_google_title": "Google 登入協助",
-  "system_google_option": "提供系統瀏覽器登入選項",
-  "system_google_note": "網站要求 Google 登入時，可在系統瀏覽器重新開啟網站，使用該瀏覽器已有的登入狀態。登入會在該瀏覽器完成。",
-  "system_google_unavailable": "目前沒有可用的 Google Play 服務或支援的系統瀏覽器，維持網頁登入。",
-  "system_google_prompt": "在系統瀏覽器重新開啟目前網站後，請再次點選 Google 登入。可使用該瀏覽器已有的 Google 登入狀態；登入會在該瀏覽器完成，澄境的分頁會保留。",
-  "system_google_open": "在系統瀏覽器繼續",
-  "system_google_stay": "留在原頁"
+  "system_settings_unavailable": "此手機未提供可開啟的系統頁面。"
 }

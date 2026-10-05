@@ -62,7 +62,6 @@ class MainActivity:AppCompatActivity(){
     internal val imageDownloads=BrowserImageDownloads(this){message->if(::controller.isInitialized)controller.notice=message}
     internal val imageActions=BrowserImageActions(this)
     internal val pageDownloads=BrowserPageDownloads(this)
-    internal val googleBrowserLogin=GoogleBrowserLogin(this)
     internal val websiteLocation=WebsiteLocation(this)
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->

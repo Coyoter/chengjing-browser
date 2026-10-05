@@ -10,7 +10,6 @@
     <!-- Resolve only web-link handlers; never request an inventory of installed apps. -->
     <queries>
         <intent><action android:name="android.service.autofill.AutofillService" /></intent>
-        <intent><action android:name="android.support.customtabs.action.CustomTabsService" /></intent>
         <intent><action android:name="android.intent.action.VIEW" /><category android:name="android.intent.category.BROWSABLE" /><data android:scheme="https" android:host="*" /></intent>
         <intent><action android:name="android.intent.action.VIEW" /><category android:name="android.intent.category.BROWSABLE" /><data android:scheme="http" android:host="*" /></intent>
     </queries>

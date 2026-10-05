@@ -1102,11 +1102,4 @@
   <string name="system_install_denied" formatted="false">"Autorisation d’installation non accordée, l’APK reste dans la liste de téléchargements."</string>
   <string name="system_install_failed" formatted="false">"Impossible d’ouvrir cet APK, veuillez vérifier que le fichier est complet et accessible."</string>
   <string name="system_settings_unavailable" formatted="false">"Aucune page système accessible sur ce téléphone."</string>
-  <string name="system_google_title" formatted="false">"Assistance de connexion Google"</string>
-  <string name="system_google_option" formatted="false">"Proposer une option de connexion via le navigateur système"</string>
-  <string name="system_google_note" formatted="false">"Lorsque le site demande une connexion Google, il peut être rouvert dans le navigateur système pour utiliser la session Google déjà active. La connexion s’effectue dans ce navigateur."</string>
-  <string name="system_google_unavailable" formatted="false">"Aucun service Google Play ou navigateur système compatible disponible, connexion via la page web maintenue."</string>
-  <string name="system_google_prompt" formatted="false">"Après avoir rouvert le site dans le navigateur système, cliquez à nouveau sur Connexion Google. Vous pouvez utiliser la session Google active dans ce navigateur ; la connexion s’y termine, la page ChengJing reste ouverte."</string>
-  <string name="system_google_open" formatted="false">"Continuer dans le navigateur système"</string>
-  <string name="system_google_stay" formatted="false">"Rester sur la page actuelle"</string>
 </resources>

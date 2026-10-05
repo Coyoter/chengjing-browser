@@ -11,8 +11,8 @@ android {
         applicationId = if (qaInstall) "tw.techtarian.browser.qa" else "tw.techtarian.browser"
         minSdk = 28
         targetSdk = 36
-        versionCode = 42
-        versionName = "1.13.0"
+        versionCode = 43
+        versionName = "1.13.1"
         testInstrumentationRunner = "tw.techtarian.browser.BrowserTestRunner"
     }
     testBuildType = (project.findProperty("testBuildType") as? String) ?: "debug"
@@ -43,7 +43,6 @@ dependencies {
     implementation("com.google.ai.edge.litertlm:litertlm-android:0.17.0")
     implementation(platform("androidx.compose:compose-bom:2025.08.01"))
     implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("androidx.browser:browser:1.9.0")
     implementation("androidx.activity:activity-compose:1.11.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.4")
     implementation("androidx.compose.material3:material3")
