@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"タブデータの保存に失敗しました。端末の空き容量を確認してください。"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"英数字と記号の1行で、最大1,024文字を使用してください"</string>
   <string name="msg_98603eac2c1f" formatted="false">"データ分離されたシークレットタブを使用するには、Android System WebViewを更新してください"</string>
-  <string name="msg_4369d178c9de" formatted="false">"現在最大20タブまで開けます。不要なタブを閉じてください。"</string>
   <string name="msg_b860234cdca4" formatted="false">"分離されたシークレットセッションを作成できません。ページが開かれていません。"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · キャッシュ画像"</string>
   <string name="msg_b210350f38fc" formatted="false">"画像"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"確定"</string>
   <string name="msg_a2cb5003004e" formatted="false">"このページに留まる"</string>
   <string name="msg_e9ea75903633" formatted="false">"新しいウィンドウ／ポップアップ"</string>
-  <string name="msg_2138c825b189" formatted="false">"このバージョンではサイトのカメラとマイク使用はまだ許可されていません"</string>
   <string name="msg_3fe646f9b847" formatted="false">"ファイルセレクターは使用できません"</string>
   <string name="msg_beffea44da0c" formatted="false">"ファイルセレクターを開けません"</string>
   <string name="msg_ad37ef430462" formatted="false">"このリンクにはダウンロード可能なファイルがありません"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"インストール許可が得られていません。APKはダウンロードリストに残っています。"</string>
   <string name="system_install_failed" formatted="false">"このAPKを開けません。ファイルが完全でアクセス可能か確認してください。"</string>
   <string name="system_settings_unavailable" formatted="false">"この端末では開けるシステムページがありません。"</string>
+  <string name="web_permissions" formatted="false">"サイトの権限"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s が次の使用を求めています：%2$s。"</string>
+  <string name="web_camera" formatted="false">"カメラ"</string>
+  <string name="web_microphone" formatted="false">"マイク"</string>
+  <string name="web_protected_media" formatted="false">"保護されたメディア"</string>
+  <string name="web_midi" formatted="false">"MIDI デバイスの制御"</string>
+  <string name="web_permission_note" formatted="false">"カメラとマイクにはサイトと Android の許可が必要です。ここで権限を変更できます。シークレットの許可は全シークレットタブを閉じると消去されます。"</string>
+  <string name="web_app_permissions" formatted="false">"Android アプリの権限"</string>
+  <string name="web_choose_files" formatted="false">"ファイルを選択"</string>
+  <string name="web_take_photo" formatted="false">"写真を撮影"</string>
+  <string name="web_record_video" formatted="false">"動画を撮影"</string>
+  <string name="web_record_audio" formatted="false">"音声を録音"</string>
+  <string name="web_capture_error" formatted="false">"撮影または録音を開始できません。権限と対応アプリを確認してください。"</string>
+  <string name="web_third_party_cookies" formatted="false">"サードパーティ Cookie"</string>
+  <string name="web_cookie_note" formatted="false">"ログインや埋め込みに他サイトの Cookie が必要な場合、このサイトだけで許可できます。"</string>
 </resources>

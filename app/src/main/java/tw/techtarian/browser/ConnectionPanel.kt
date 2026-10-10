@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
     if(tab?.certificateWarning?.isNotBlank()==true)Text(tab.certificateWarning,color=MaterialTheme.colorScheme.error,fontSize=13.sp,lineHeight=20.sp)
     else Text(if(primary!=null)bt(R.string.msg_ee33611e6daa)else if(page.startsWith("http://"))bt(R.string.msg_c6905e1adffd)else bt(R.string.msg_87178db80ada),fontSize=13.sp)
     LocationPanel(c)
+    WebsitePermissionsPanel(c)
     val origins=(listOfNotNull(primary)+(c.active?.warnings?:CertificateWarnings.session).originsFor(page)).distinct()
     origins.forEach{origin->
         val enabled=c.store.certificateException(origin)

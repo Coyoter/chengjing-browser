@@ -130,7 +130,7 @@ internal class WebsiteLocation(private val activity:MainActivity){
         decisions.set(origin,tab.incognito,choice);c.revision++
         // Reload every affected document so an existing watch cannot outlive revocation.
         c.tabs.filter{it.incognito==tab.incognito&&LocationOrigin.of(it.url)==origin}.forEach{
-            cancelFor(it.id);it.web.reload()
+            cancelFor(it.id);if(!it.lazyRestore)it.web.reload()
         }
     }
     fun clearPrivate(){decisions.clearPrivate()}

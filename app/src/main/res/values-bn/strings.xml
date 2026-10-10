@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"ট্যাব ডেটা সংরক্ষণ ব্যর্থ হয়েছে, ফোনের স্টোরেজ পরীক্ষা করুন"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"এক লাইনের ইংরেজি অক্ষর, সংখ্যা ও চিহ্ন ব্যবহার করুন, সর্বোচ্চ ১,০২৪ অক্ষর"</string>
   <string name="msg_98603eac2c1f" formatted="false">"ডেটা বিচ্ছিন্ন ইনকগনিটো ট্যাব ব্যবহারের জন্য Android System WebView আপডেট করুন"</string>
-  <string name="msg_4369d178c9de" formatted="false">"বর্তমানে সর্বোচ্চ ২০টি ট্যাব খোলা যাবে, অনাবশ্যক ট্যাব বন্ধ করুন"</string>
   <string name="msg_b860234cdca4" formatted="false">"বিচ্ছিন্ন ইনকগনিটো সেশন তৈরি করা যায়নি, কোনো ওয়েবপেজ খোলা হয়নি"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · ক্যাশ করা ছবি"</string>
   <string name="msg_b210350f38fc" formatted="false">"ছবি"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"নিশ্চিত"</string>
   <string name="msg_a2cb5003004e" formatted="false">"এই পৃষ্ঠায় থাকুন"</string>
   <string name="msg_e9ea75903633" formatted="false">"নতুন উইন্ডো/পপআপ"</string>
-  <string name="msg_2138c825b189" formatted="false">"এই সংস্করণে ওয়েবসাইটে ক্যামেরা ও মাইক্রোফোন ব্যবহার খোলা হয়নি"</string>
   <string name="msg_3fe646f9b847" formatted="false">"ফাইল সিলেক্টর ব্যবহারযোগ্য নয়"</string>
   <string name="msg_beffea44da0c" formatted="false">"ফাইল সিলেক্টর খোলা যাচ্ছে না"</string>
   <string name="msg_ad37ef430462" formatted="false">"এই লিঙ্কে ডাউনলোডযোগ্য ফাইল নেই"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"ইনস্টল অনুমতি পাওয়া যায়নি, APK ডাউনলোড তালিকায় রাখা হয়েছে।"</string>
   <string name="system_install_failed" formatted="false">"এই APK খুলতে পারছি না, দয়া করে ফাইল সম্পূর্ণ এবং অ্যাক্সেসযোগ্য আছে কিনা নিশ্চিত করুন।"</string>
   <string name="system_settings_unavailable" formatted="false">"এই ফোনে কোনো সিস্টেম পেজ খোলা যায় না।"</string>
+  <string name="web_permissions" formatted="false">"সাইটের অনুমতি"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s ব্যবহার করতে চায়: %2$s."</string>
+  <string name="web_camera" formatted="false">"ক্যামেরা"</string>
+  <string name="web_microphone" formatted="false">"মাইক্রোফোন"</string>
+  <string name="web_protected_media" formatted="false">"সুরক্ষিত মিডিয়া"</string>
+  <string name="web_midi" formatted="false">"MIDI ডিভাইস নিয়ন্ত্রণ"</string>
+  <string name="web_permission_note" formatted="false">"ক্যামেরা ও মাইক্রোফোনের জন্য সাইট এবং Android-এর অনুমতি দরকার। এখানে বদলান; সব ব্যক্তিগত ট্যাব বন্ধ হলে ব্যক্তিগত অনুমতি মুছে যায়।"</string>
+  <string name="web_app_permissions" formatted="false">"Android অ্যাপের অনুমতি"</string>
+  <string name="web_choose_files" formatted="false">"ফাইল বাছুন"</string>
+  <string name="web_take_photo" formatted="false">"ছবি তুলুন"</string>
+  <string name="web_record_video" formatted="false">"ভিডিও রেকর্ড করুন"</string>
+  <string name="web_record_audio" formatted="false">"অডিও রেকর্ড করুন"</string>
+  <string name="web_capture_error" formatted="false">"রেকর্ডিং শুরু করা যায়নি। অনুমতি এবং সামঞ্জস্যপূর্ণ ক্যামেরা বা রেকর্ডিং অ্যাপ দেখুন।"</string>
+  <string name="web_third_party_cookies" formatted="false">"তৃতীয় পক্ষের কুকি"</string>
+  <string name="web_cookie_note" formatted="false">"লগইন বা এমবেড করা বিষয়বস্তুর অন্য সাইটের কুকি লাগলে শুধু এই সাইটে অনুমতি দিন।"</string>
 </resources>

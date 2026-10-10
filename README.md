@@ -2,7 +2,7 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前原始碼版本為 **1.13.1（versionCode 43）**：移除 Google 登入時改用其他瀏覽器的提示、開關與跳轉；保留下載 APK 的使用者安裝流程與系統密碼自動填入；保留 17 種介面語言與手機語言自動對應。正式版啟用 R8 混淆、程式碼與資源縮減；保留 AI 設定即時更新、收藏與閱讀進度同步、澄境風格啟動畫面、圖片長按下載，以及三點選單內的 Android 原生分享；第一層工具列已還原 1.2.0 設計。**程式碼合併不代表安裝檔已發布**；正式 APK/AAB 是否可下載，以 GitHub Releases 與對應 Android release 工作流程的成功結果為準。舊版附件不會被覆蓋。[1.13.1 更新說明](docs/releases/1.13.1.md) · [系統整合及限制](docs/SYSTEM-INTEGRATION.md) · [多語系維護](docs/LOCALIZATION.md) · [簽章與發布流程](docs/RELEASING.md) · [R8 驗證](docs/R8-RELEASE.md)
+目前原始碼版本為 **1.14.0（versionCode 44）**：補上相機、麥克風、受保護影音與 MIDI 網站權限，加入拍攝上傳、網站第三方 Cookie 例外，修正主動開啟新視窗，移除 20 個分頁上限，重開時按需載入舊分頁。保留 17 種語言、天眼、書籤／收藏同步、密碼填入與 APK 安裝。**GitHub Release 與 Google Play 提交、核准及上架是不同狀態**，以各自讀回結果為準。[1.14.0 更新說明](docs/releases/1.14.0.md) · [功能與核心限制清單](docs/BROWSER-COMPATIBILITY.md) · [系統整合](docs/SYSTEM-INTEGRATION.md) · [多語系](docs/LOCALIZATION.md) · [簽章與發布](docs/RELEASING.md)
 
 ## 安裝與使用
 

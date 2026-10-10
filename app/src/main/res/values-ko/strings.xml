@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"탭 데이터 저장 실패, 기기 저장 공간을 확인하세요"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"영문자, 숫자, 기호를 한 줄로 최대 1,024자까지 사용하세요"</string>
   <string name="msg_98603eac2c1f" formatted="false">"데이터 격리 시크릿 탭 사용을 위해 Android System WebView를 업데이트하세요"</string>
-  <string name="msg_4369d178c9de" formatted="false">"최대 20개 탭까지 열 수 있습니다. 사용하지 않는 탭을 닫아주세요."</string>
   <string name="msg_b860234cdca4" formatted="false">"격리된 시크릿 세션을 생성할 수 없습니다. 열린 웹페이지가 없습니다."</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · 임시 이미지"</string>
   <string name="msg_b210350f38fc" formatted="false">"이미지"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"확인"</string>
   <string name="msg_a2cb5003004e" formatted="false">"이 페이지에 머무르기"</string>
   <string name="msg_e9ea75903633" formatted="false">"새 창/팝업"</string>
-  <string name="msg_2138c825b189" formatted="false">"이 버전에서는 사이트의 카메라 및 마이크 사용이 허용되지 않습니다"</string>
   <string name="msg_3fe646f9b847" formatted="false">"파일 선택기를 사용할 수 없습니다"</string>
   <string name="msg_beffea44da0c" formatted="false">"파일 선택기를 열 수 없습니다"</string>
   <string name="msg_ad37ef430462" formatted="false">"이 링크에는 다운로드 가능한 파일이 없습니다"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"설치 권한이 없으므로 APK가 다운로드 목록에 남아 있습니다."</string>
   <string name="system_install_failed" formatted="false">"이 APK를 열 수 없습니다. 파일이 완전하고 접근 가능한지 확인하세요."</string>
   <string name="system_settings_unavailable" formatted="false">"이 휴대폰에서는 열 수 있는 시스템 페이지가 제공되지 않습니다."</string>
+  <string name="web_permissions" formatted="false">"사이트 권한"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s에서 다음 기능을 사용하려고 합니다: %2$s."</string>
+  <string name="web_camera" formatted="false">"카메라"</string>
+  <string name="web_microphone" formatted="false">"마이크"</string>
+  <string name="web_protected_media" formatted="false">"보호된 미디어"</string>
+  <string name="web_midi" formatted="false">"MIDI 기기 제어"</string>
+  <string name="web_permission_note" formatted="false">"카메라와 마이크는 사이트 및 Android 권한이 필요합니다. 여기서 변경할 수 있으며, 비공개 권한은 모든 비공개 탭을 닫으면 삭제됩니다."</string>
+  <string name="web_app_permissions" formatted="false">"Android 앱 권한"</string>
+  <string name="web_choose_files" formatted="false">"파일 선택"</string>
+  <string name="web_take_photo" formatted="false">"사진 촬영"</string>
+  <string name="web_record_video" formatted="false">"동영상 촬영"</string>
+  <string name="web_record_audio" formatted="false">"음성 녹음"</string>
+  <string name="web_capture_error" formatted="false">"촬영 또는 녹음을 열 수 없습니다. 권한과 호환 앱을 확인하세요."</string>
+  <string name="web_third_party_cookies" formatted="false">"서드 파티 쿠키"</string>
+  <string name="web_cookie_note" formatted="false">"로그인이나 삽입 콘텐츠에 다른 사이트 쿠키가 필요하면 이 사이트에서만 허용하세요."</string>
 </resources>

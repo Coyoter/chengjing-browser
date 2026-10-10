@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"Dữ liệu tab không thể lưu, vui lòng kiểm tra dung lượng lưu trữ điện thoại"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"Vui lòng sử dụng chữ cái, số và ký hiệu tiếng Anh một dòng, tối đa 1.024 ký tự"</string>
   <string name="msg_98603eac2c1f" formatted="false">"Vui lòng cập nhật Android System WebView để sử dụng tab ẩn danh cách ly dữ liệu"</string>
-  <string name="msg_4369d178c9de" formatted="false">"Hiện tại có thể mở tối đa 20 tab, vui lòng đóng các tab không dùng trước"</string>
   <string name="msg_b860234cdca4" formatted="false">"Không thể tạo phiên làm việc ẩn danh cách ly, chưa mở trang web"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · Ảnh tạm"</string>
   <string name="msg_b210350f38fc" formatted="false">"Ảnh"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"Xác nhận"</string>
   <string name="msg_a2cb5003004e" formatted="false">"Ở lại trang này"</string>
   <string name="msg_e9ea75903633" formatted="false">"Cửa sổ mới / Popup"</string>
-  <string name="msg_2138c825b189" formatted="false">"Phiên bản này chưa cho phép trang web sử dụng camera và micro"</string>
   <string name="msg_3fe646f9b847" formatted="false">"Bộ chọn tệp không khả dụng"</string>
   <string name="msg_beffea44da0c" formatted="false">"Không thể mở bộ chọn tệp"</string>
   <string name="msg_ad37ef430462" formatted="false">"Liên kết này không cung cấp tệp để tải xuống"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"Chưa được cấp quyền cài đặt, APK vẫn giữ trong danh sách tải về."</string>
   <string name="system_install_failed" formatted="false">"Không thể mở APK này, vui lòng kiểm tra tệp đầy đủ và còn truy cập được."</string>
   <string name="system_settings_unavailable" formatted="false">"Điện thoại này không cung cấp trang hệ thống có thể mở."</string>
+  <string name="web_permissions" formatted="false">"Quyền của trang web"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s muốn sử dụng: %2$s."</string>
+  <string name="web_camera" formatted="false">"Máy ảnh"</string>
+  <string name="web_microphone" formatted="false">"Micrô"</string>
+  <string name="web_protected_media" formatted="false">"Nội dung được bảo vệ"</string>
+  <string name="web_midi" formatted="false">"Điều khiển thiết bị MIDI"</string>
+  <string name="web_permission_note" formatted="false">"Máy ảnh và micrô cần quyền của trang web và Android. Đổi tại đây; quyền riêng tư bị xóa khi đóng mọi thẻ riêng tư."</string>
+  <string name="web_app_permissions" formatted="false">"Quyền ứng dụng Android"</string>
+  <string name="web_choose_files" formatted="false">"Chọn tệp"</string>
+  <string name="web_take_photo" formatted="false">"Chụp ảnh"</string>
+  <string name="web_record_video" formatted="false">"Quay video"</string>
+  <string name="web_record_audio" formatted="false">"Ghi âm"</string>
+  <string name="web_capture_error" formatted="false">"Không thể bắt đầu ghi. Hãy kiểm tra quyền và ứng dụng máy ảnh hoặc ghi âm tương thích."</string>
+  <string name="web_third_party_cookies" formatted="false">"Cookie bên thứ ba"</string>
+  <string name="web_cookie_note" formatted="false">"Nếu đăng nhập hoặc nội dung nhúng cần cookie từ trang khác, chỉ cho phép tại trang này."</string>
 </resources>

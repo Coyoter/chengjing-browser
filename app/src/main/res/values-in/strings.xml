@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"Data tab gagal disimpan, periksa ruang penyimpanan ponsel"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"Gunakan huruf, angka, dan simbol satu baris, maksimal 1.024 karakter"</string>
   <string name="msg_98603eac2c1f" formatted="false">"Perbarui Android System WebView untuk menggunakan tab penyamaran dengan isolasi data"</string>
-  <string name="msg_4369d178c9de" formatted="false">"Maksimal 20 tab dapat dibuka, tutup tab yang tidak digunakan terlebih dahulu"</string>
   <string name="msg_b860234cdca4" formatted="false">"Tidak dapat membuat sesi penyamaran terisolasi, tidak ada halaman yang dibuka"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · Gambar cache"</string>
   <string name="msg_b210350f38fc" formatted="false">"Gambar"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"Konfirmasi"</string>
   <string name="msg_a2cb5003004e" formatted="false">"Tetap di halaman ini"</string>
   <string name="msg_e9ea75903633" formatted="false">"Jendela baru / popup"</string>
-  <string name="msg_2138c825b189" formatted="false">"Versi ini belum mengizinkan situs menggunakan kamera dan mikrofon"</string>
   <string name="msg_3fe646f9b847" formatted="false">"Pemilih berkas tidak tersedia"</string>
   <string name="msg_beffea44da0c" formatted="false">"Tidak dapat membuka pemilih berkas"</string>
   <string name="msg_ad37ef430462" formatted="false">"Tautan ini tidak menyediakan berkas untuk diunduh"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"Izin pemasangan belum diperoleh, APK tetap di daftar unduhan."</string>
   <string name="system_install_failed" formatted="false">"Tidak dapat membuka APK ini, pastikan file lengkap dan masih dapat diakses."</string>
   <string name="system_settings_unavailable" formatted="false">"Ponsel ini tidak menyediakan halaman sistem yang dapat dibuka."</string>
+  <string name="web_permissions" formatted="false">"Izin situs"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s ingin menggunakan: %2$s."</string>
+  <string name="web_camera" formatted="false">"Kamera"</string>
+  <string name="web_microphone" formatted="false">"Mikrofon"</string>
+  <string name="web_protected_media" formatted="false">"Media terlindungi"</string>
+  <string name="web_midi" formatted="false">"Kontrol perangkat MIDI"</string>
+  <string name="web_permission_note" formatted="false">"Kamera dan mikrofon memerlukan izin situs dan Android. Ubah di sini; izin privat dihapus saat semua tab privat ditutup."</string>
+  <string name="web_app_permissions" formatted="false">"Izin aplikasi Android"</string>
+  <string name="web_choose_files" formatted="false">"Pilih berkas"</string>
+  <string name="web_take_photo" formatted="false">"Ambil foto"</string>
+  <string name="web_record_video" formatted="false">"Rekam video"</string>
+  <string name="web_record_audio" formatted="false">"Rekam audio"</string>
+  <string name="web_capture_error" formatted="false">"Tidak dapat memulai pengambilan. Periksa izin dan aplikasi kamera atau perekam yang kompatibel."</string>
+  <string name="web_third_party_cookies" formatted="false">"Cookie pihak ketiga"</string>
+  <string name="web_cookie_note" formatted="false">"Jika login atau konten tersemat memerlukan cookie situs lain, izinkan hanya untuk situs ini."</string>
 </resources>

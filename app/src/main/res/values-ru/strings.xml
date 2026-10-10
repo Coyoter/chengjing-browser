@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"Не удалось сохранить данные вкладки, проверьте свободное место на устройстве"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"Используйте однострочные латинские буквы, цифры и символы, максимум 1024 знака"</string>
   <string name="msg_98603eac2c1f" formatted="false">"Обновите Android System WebView для использования изолированных вкладок инкогнито"</string>
-  <string name="msg_4369d178c9de" formatted="false">"Максимум открытых вкладок — 20, закройте ненужные"</string>
   <string name="msg_b860234cdca4" formatted="false">"Не удалось создать изолированную сессию инкогнито, нет открытых страниц"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · Кэшированное изображение"</string>
   <string name="msg_b210350f38fc" formatted="false">"Изображение"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"Подтвердить"</string>
   <string name="msg_a2cb5003004e" formatted="false">"Остаться на странице"</string>
   <string name="msg_e9ea75903633" formatted="false">"Новое окно/всплывающее окно"</string>
-  <string name="msg_2138c825b189" formatted="false">"В этой версии сайт не может использовать камеру и микрофон"</string>
   <string name="msg_3fe646f9b847" formatted="false">"Выбор файла недоступен"</string>
   <string name="msg_beffea44da0c" formatted="false">"Не удалось открыть выбор файла"</string>
   <string name="msg_ad37ef430462" formatted="false">"По этой ссылке нет доступных для загрузки файлов"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"Разрешение на установку не получено, APK сохранён в списке загрузок."</string>
   <string name="system_install_failed" formatted="false">"Не удалось открыть этот APK, проверьте целостность файла и доступность."</string>
   <string name="system_settings_unavailable" formatted="false">"На этом устройстве нет доступных системных страниц для открытия."</string>
+  <string name="web_permissions" formatted="false">"Разрешения сайта"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s хочет использовать: %2$s."</string>
+  <string name="web_camera" formatted="false">"Камера"</string>
+  <string name="web_microphone" formatted="false">"Микрофон"</string>
+  <string name="web_protected_media" formatted="false">"Защищённые материалы"</string>
+  <string name="web_midi" formatted="false">"Управление устройствами MIDI"</string>
+  <string name="web_permission_note" formatted="false">"Камера и микрофон требуют разрешений сайта и Android. Измените их здесь; приватные разрешения удаляются при закрытии всех приватных вкладок."</string>
+  <string name="web_app_permissions" formatted="false">"Разрешения Android"</string>
+  <string name="web_choose_files" formatted="false">"Выбрать файлы"</string>
+  <string name="web_take_photo" formatted="false">"Сделать фото"</string>
+  <string name="web_record_video" formatted="false">"Записать видео"</string>
+  <string name="web_record_audio" formatted="false">"Записать звук"</string>
+  <string name="web_capture_error" formatted="false">"Не удалось начать запись. Проверьте разрешения и совместимое приложение камеры или записи."</string>
+  <string name="web_third_party_cookies" formatted="false">"Сторонние файлы cookie"</string>
+  <string name="web_cookie_note" formatted="false">"Если для входа или встроенных материалов нужны сторонние cookie, разрешите их только для этого сайта."</string>
 </resources>

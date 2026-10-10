@@ -221,7 +221,7 @@ class BrowserStore(context: Context) {
                 row?.takeUnless{it.isNull("id")}?.optString("id")?.takeIf{it.isNotBlank()},row?.optLong("lastActiveAt",0)?.coerceAtLeast(0)?:0,row?.optBoolean("openedExternally",false)?:false)
         }
     }
-    fun tabs(): List<String> = runCatching { val a = JSONArray(prefs.getString("tabs", "[]")); (0 until a.length()).map { a.getString(it) }.filter { it.isEmpty() || it.toHttpUrlOrNull() != null }.take(20) }.getOrDefault(emptyList())
+    fun tabs(): List<String> = runCatching { val a = JSONArray(prefs.getString("tabs", "[]")); (0 until a.length()).map { a.getString(it) }.filter { it.isEmpty() || it.toHttpUrlOrNull() != null } }.getOrDefault(emptyList())
     fun tabFavoriteLinks():List<Pair<String,String?>> = runCatching{
         val rows=JSONArray(prefs.getString("tab-favorite-links","[]"))
         (0 until rows.length()).map{val j=rows.getJSONObject(it);j.optString("url") to if(j.isNull("id"))null else j.optString("id").takeIf{it.isNotEmpty()}}

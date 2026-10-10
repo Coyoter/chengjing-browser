@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"No se pudo guardar la información de la pestaña, verifique el espacio de almacenamiento del teléfono"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"Use solo letras, números y símbolos en una línea, hasta 1,024 caracteres"</string>
   <string name="msg_98603eac2c1f" formatted="false">"Actualice Android System WebView para usar pestañas de incógnito con aislamiento de datos"</string>
-  <string name="msg_4369d178c9de" formatted="false">"Puede abrir hasta 20 pestañas; cierre las que no use primero"</string>
   <string name="msg_b860234cdca4" formatted="false">"No se puede crear una sesión de incógnito aislada, no hay páginas abiertas"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · Imagen en caché"</string>
   <string name="msg_b210350f38fc" formatted="false">"Imagen"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"Confirmar"</string>
   <string name="msg_a2cb5003004e" formatted="false">"Permanecer en esta página"</string>
   <string name="msg_e9ea75903633" formatted="false">"Nueva ventana/ventana emergente"</string>
-  <string name="msg_2138c825b189" formatted="false">"Esta versión aún no permite que los sitios usen cámara y micrófono"</string>
   <string name="msg_3fe646f9b847" formatted="false">"Selector de archivos no disponible"</string>
   <string name="msg_beffea44da0c" formatted="false">"No se puede abrir el selector de archivos"</string>
   <string name="msg_ad37ef430462" formatted="false">"Este enlace no ofrece archivos para descargar"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"No se ha concedido permiso de instalación; el APK permanece en la lista de descargas."</string>
   <string name="system_install_failed" formatted="false">"No se puede abrir este APK, verifica que el archivo esté completo y accesible."</string>
   <string name="system_settings_unavailable" formatted="false">"Este teléfono no ofrece una página del sistema que se pueda abrir."</string>
+  <string name="web_permissions" formatted="false">"Permisos del sitio"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s quiere usar: %2$s."</string>
+  <string name="web_camera" formatted="false">"Cámara"</string>
+  <string name="web_microphone" formatted="false">"Micrófono"</string>
+  <string name="web_protected_media" formatted="false">"Contenido protegido"</string>
+  <string name="web_midi" formatted="false">"Control de dispositivos MIDI"</string>
+  <string name="web_permission_note" formatted="false">"La cámara y el micrófono requieren permisos del sitio y de Android. Cámbialos aquí; los permisos privados se borran al cerrar todas las pestañas privadas."</string>
+  <string name="web_app_permissions" formatted="false">"Permisos de Android"</string>
+  <string name="web_choose_files" formatted="false">"Elegir archivos"</string>
+  <string name="web_take_photo" formatted="false">"Tomar foto"</string>
+  <string name="web_record_video" formatted="false">"Grabar vídeo"</string>
+  <string name="web_record_audio" formatted="false">"Grabar audio"</string>
+  <string name="web_capture_error" formatted="false">"No se pudo iniciar la captura. Revisa los permisos y una aplicación de captura compatible."</string>
+  <string name="web_third_party_cookies" formatted="false">"Cookies de terceros"</string>
+  <string name="web_cookie_note" formatted="false">"Si el inicio de sesión o el contenido integrado necesita otras cookies, permítelas solo para este sitio."</string>
 </resources>

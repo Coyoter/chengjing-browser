@@ -11,8 +11,8 @@ android {
         applicationId = if (qaInstall) "tw.techtarian.browser.qa" else "tw.techtarian.browser"
         minSdk = 28
         targetSdk = 36
-        versionCode = 43
-        versionName = "1.13.1"
+        versionCode = 44
+        versionName = "1.14.0"
         testInstrumentationRunner = "tw.techtarian.browser.BrowserTestRunner"
     }
     testBuildType = (project.findProperty("testBuildType") as? String) ?: "debug"

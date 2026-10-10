@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"ٹیب کا ڈیٹا محفوظ نہیں ہو سکا، براہ کرم فون کی اسٹوریج چیک کریں"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"براہ کرم ایک لائن میں انگریزی حروف، اعداد اور علامات استعمال کریں، زیادہ سے زیادہ 1,024 حروف"</string>
   <string name="msg_98603eac2c1f" formatted="false">"ڈیٹا آئسولیشن کے لیے Android System WebView کو اپ ڈیٹ کریں تاکہ انکگنیٹو ٹیبز استعمال کر سکیں"</string>
-  <string name="msg_4369d178c9de" formatted="false">"زیادہ سے زیادہ 20 ٹیبز کھولے جا سکتے ہیں، براہ کرم غیر ضروری ٹیبز بند کریں"</string>
   <string name="msg_b860234cdca4" formatted="false">"آئسولیٹڈ انکگنیٹو سیشن نہیں بنایا جا سکا، کوئی ویب پیج نہیں کھولا گیا"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · عارضی تصویر"</string>
   <string name="msg_b210350f38fc" formatted="false">"تصویر"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"تصدیق کریں"</string>
   <string name="msg_a2cb5003004e" formatted="false">"اس صفحے پر رہیں"</string>
   <string name="msg_e9ea75903633" formatted="false">"نیا ونڈو/پاپ اپ"</string>
-  <string name="msg_2138c825b189" formatted="false">"اس ورژن میں سائٹ کو کیمرہ اور مائیکروفون کی اجازت نہیں ہے"</string>
   <string name="msg_3fe646f9b847" formatted="false">"فائل سلیکٹر دستیاب نہیں"</string>
   <string name="msg_beffea44da0c" formatted="false">"فائل سلیکٹر کھولا نہیں جا سکا"</string>
   <string name="msg_ad37ef430462" formatted="false">"اس لنک میں ڈاؤن لوڈ کے لیے کوئی فائل فراہم نہیں کی گئی"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"انسٹالیشن کی اجازت حاصل نہیں ہوئی، APK ڈاؤن لوڈ لسٹ میں محفوظ ہے۔"</string>
   <string name="system_install_failed" formatted="false">"اس APK کو کھولا نہیں جا سکا، براہ کرم فائل کی سالمیت اور دستیابی کی تصدیق کریں۔"</string>
   <string name="system_settings_unavailable" formatted="false">"اس فون پر کوئی قابلِ کھولنے سسٹم صفحہ دستیاب نہیں ہے۔"</string>
+  <string name="web_permissions" formatted="false">"سائٹ کی اجازتیں"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s یہ استعمال کرنا چاہتا ہے: %2$s."</string>
+  <string name="web_camera" formatted="false">"کیمرہ"</string>
+  <string name="web_microphone" formatted="false">"مائیکروفون"</string>
+  <string name="web_protected_media" formatted="false">"محفوظ میڈیا"</string>
+  <string name="web_midi" formatted="false">"MIDI ڈیوائس کنٹرول"</string>
+  <string name="web_permission_note" formatted="false">"کیمرہ اور مائیکروفون کو سائٹ اور Android کی اجازت درکار ہے۔ یہاں تبدیل کریں؛ تمام نجی ٹیب بند ہونے پر نجی اجازتیں مٹ جاتی ہیں۔"</string>
+  <string name="web_app_permissions" formatted="false">"Android ایپ کی اجازتیں"</string>
+  <string name="web_choose_files" formatted="false">"فائلیں منتخب کریں"</string>
+  <string name="web_take_photo" formatted="false">"تصویر لیں"</string>
+  <string name="web_record_video" formatted="false">"ویڈیو ریکارڈ کریں"</string>
+  <string name="web_record_audio" formatted="false">"آڈیو ریکارڈ کریں"</string>
+  <string name="web_capture_error" formatted="false">"ریکارڈنگ شروع نہیں ہو سکی۔ اجازتیں اور موافق کیمرہ یا ریکارڈنگ ایپ دیکھیں۔"</string>
+  <string name="web_third_party_cookies" formatted="false">"تیسرے فریق کی کوکیز"</string>
+  <string name="web_cookie_note" formatted="false">"اگر لاگ ان یا ایمبیڈ مواد کو دوسری سائٹ کی کوکیز درکار ہوں تو صرف اس سائٹ کے لیے اجازت دیں۔"</string>
 </resources>

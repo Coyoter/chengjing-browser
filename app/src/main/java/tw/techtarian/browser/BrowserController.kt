@@ -29,6 +29,7 @@ class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false
     internal var previewGeneration=0L
     internal var lastActiveAt=System.currentTimeMillis()
     internal var restoringNavigation=false
+    internal var lazyRestore=false
     internal var suppressHistoryUntilNavigation=false
     internal val externalGesture=ExternalLinkGesture{android.os.SystemClock.elapsedRealtime()}
     internal var externalOpenerId:Int?=null
@@ -149,8 +150,6 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     var editingHtml by mutableStateOf(false)
     var blockedCount by mutableIntStateOf(0)
     val exceptions = mutableStateListOf<String>()
-    var fileCallback: ValueCallback<Array<Uri>>? = null
-    var chooseFiles: ((Intent) -> Unit)? = null
     var fullScreenView by mutableStateOf<android.view.View?>(null)
     private var fullScreenCallback: WebChromeClient.CustomViewCallback? = null
     private var nextId = 1
@@ -193,7 +192,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         // Retire the old document instead of reconfiguring its DOM immediately before unloading it.
         affected.forEach{it.web.selecting=false;it.refreshContainer.isEnabled=true;it.refreshContainer.isRefreshing=false;it.web.stopLoading();it.error=""}
         refreshScripts(affected,applyToPage=false)
-        affected.forEach{it.pendingUrl=it.url;it.web.reload()}
+        affected.filterNot{it.lazyRestore}.forEach{it.pendingUrl=it.url;it.web.reload()}
     }
     fun persistTabs():Boolean {
         if(destroyed||restoringTabs)return false
@@ -241,6 +240,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 createTab(record.url,false,record)
             }
         }finally{restoringTabs=false}
+        active?.let{activateRestoredTab(it)}
         if(persistTabs())previews.retainOnly(tabs.mapNotNull{it.previewKey}.toSet())
     }
     fun newTab(url:String="",incognito:Boolean=active?.incognito==true):BrowserTab?=createTab(url,incognito,null)
@@ -254,9 +254,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     @SuppressLint("SetJavaScriptEnabled")
     private fun createTab(url:String,incognito:Boolean,restored:SavedBrowserTab?,image:ImageAsset?=null,openedExternally:Boolean=false):BrowserTab? {
         if(incognito&&!privateSession.supported){sheet="";notice=bt(R.string.msg_98603eac2c1f);return null}
-        if(tabs.size>=20){notice=bt(R.string.msg_4369d178c9de);return null}
         capturePreview(active)
         (context as? MainActivity)?.websiteLocation?.pauseFor(activeId)
+        (context as? MainActivity)?.websitePermissions?.cancelFor(activeId)
+        (context as? MainActivity)?.websiteFiles?.cancelFor(activeId)
         stopEye()
         val web=SelectionWebView(context)
         if(incognito)try{privateSession.attach(web)}catch(_:Exception){web.destroy();notice=bt(R.string.msg_b860234cdca4);return null}
@@ -309,7 +310,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             web.importantForAutofill=android.view.View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
             if(android.os.Build.VERSION.SDK_INT>=30)web.importantForContentCapture=android.view.View.IMPORTANT_FOR_CONTENT_CAPTURE_NO_EXCLUDE_DESCENDANTS
         }
-        cookiesFor(tab).setAcceptThirdPartyCookies(web,false)
+        cookiesFor(tab).setAcceptThirdPartyCookies(web,(context as? MainActivity)?.websitePermissions?.thirdPartyCookies(tab)==true)
         if(WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) {
             // Deliberately read-only messages. Page code cannot save rules, open URLs or access the key.
             WebViewCompat.addWebMessageListener(web,"ChengJingSelection",setOf("*")) { _, message, origin, mainFrame, _ ->
@@ -363,6 +364,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
                 (context as? MainActivity)?.websiteLocation?.cancelFor(tab.id)
+                (context as? MainActivity)?.websitePermissions?.cancelFor(tab.id)
+                (context as? MainActivity)?.websiteFiles?.cancelFor(tab.id)
                 if(tab !in tabs)return
                 if(web.selecting){view.stopLoading();return}
                 (context as? MainActivity)?.pageDownloads?.cancelFor(tab.id)
@@ -375,6 +378,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 tab.previewCommitted=false
                 // Keep the last successful thumbnail during reload, offline restore and errors.
                 tab.url=if(url=="about:blank")""else url
+                cookiesFor(tab).setAcceptThirdPartyCookies(web,(context as? MainActivity)?.websitePermissions?.thirdPartyCookies(tab)==true)
                 tab.pendingUrl=url;tab.error="";tab.blockedUrl=""
                 if(url=="about:blank"){
                     tab.title=bt(R.string.msg_01e143a4ff67);tab.previewGeneration++;tab.preview=null
@@ -461,6 +465,8 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
             override fun onRenderProcessGone(view:WebView,detail:RenderProcessGoneDetail):Boolean {
                 (context as? MainActivity)?.websiteLocation?.cancelFor(tab.id)
+                (context as? MainActivity)?.websitePermissions?.cancelFor(tab.id)
+                (context as? MainActivity)?.websiteFiles?.cancelFor(tab.id)
                 findInPage.closeFor(tab.id)
                 tab.refreshContainer.isRefreshing=false
                 tab.error=bt(R.string.msg_31648c936ef3);return true
@@ -491,22 +497,25 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {
                 if(web.selecting) return false
-                val scope=Domains.scope(tab.url)
-                if(!isUserGesture || (scope !in exceptions && store.get(scope).guard)) {recordBlocked(tab,bt(R.string.msg_e9ea75903633));return false}
+                if(!isUserGesture) {recordBlocked(tab,bt(R.string.msg_e9ea75903633));return false}
                 val child=newTab(incognito=tab.incognito) ?: return false
                 child.externalGesture.popupFromClick();child.externalOpenerId=tab.id
                 (resultMsg.obj as WebView.WebViewTransport).webView=child.web;resultMsg.sendToTarget();return true
             }
-            override fun onPermissionRequest(request:PermissionRequest){request.deny();notice=bt(R.string.msg_2138c825b189)}
+            override fun onPermissionRequest(request:PermissionRequest){
+                val permissions=(context as? MainActivity)?.websitePermissions
+                if(permissions!=null)permissions.request(tab,request)else request.deny()
+            }
+            override fun onPermissionRequestCanceled(request:PermissionRequest){(context as? MainActivity)?.websitePermissions?.canceled(request)}
             override fun onGeolocationPermissionsShowPrompt(origin:String,callback:GeolocationPermissions.Callback){
                 val location=(context as? MainActivity)?.websiteLocation
                 if(location!=null)location.request(tab,origin,callback)else callback.invoke(origin,false,false)
             }
             override fun onGeolocationPermissionsHidePrompt(){(context as? MainActivity)?.websiteLocation?.hideLegacyPrompt(tab.id)}
             override fun onShowFileChooser(webView:WebView,callback:ValueCallback<Array<Uri>>,params:FileChooserParams):Boolean {
-                if(web.selecting){callback.onReceiveValue(null);return true}
-                fileCallback?.onReceiveValue(null);fileCallback=callback
-                runCatching { chooseFiles?.invoke(params.createIntent()) ?: error(bt(R.string.msg_3fe646f9b847)) }.onFailure {fileCallback?.onReceiveValue(null);fileCallback=null;notice=bt(R.string.msg_beffea44da0c)};return true
+                val files=(context as? MainActivity)?.websiteFiles
+                if(files==null){callback.onReceiveValue(null);return true}
+                return files.choose(tab,callback,params)
             }
             override fun onShowCustomView(view:android.view.View,callback:CustomViewCallback){if(fullScreenView!=null){callback.onCustomViewHidden();return};stopEye();sheet="";(context as? android.app.Activity)?.let{activity->activity.currentFocus?.clearFocus();(activity.getSystemService(Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager).hideSoftInputFromWindow(activity.window.decorView.windowToken,0)};fullScreenView=view;fullScreenCallback=callback}
             override fun onHideCustomView(){exitFullscreen()}
@@ -527,7 +536,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         tabs.add(tab);activeId=tab.id;updatePrivacyWindow()
         (context as? MainActivity)?.websiteLocation?.attach(tab)
         refreshScripts(listOf(tab),applyToPage=false)
-        if(url.isNotEmpty()){tab.pendingUrl=url;web.loadUrl(url)}
+        if(url.isNotEmpty()){
+            if(restored!=null)tab.lazyRestore=true else {tab.pendingUrl=url;web.loadUrl(url)}
+        }
         persistTabs();return tab
     }
     fun exitFullscreen(){val callback=fullScreenCallback;fullScreenCallback=null;fullScreenView=null;callback?.onCustomViewHidden()}
@@ -535,6 +546,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         val resolution=Domains.resolve(input,store.searchSettings);val url=resolution.url;if(url.isEmpty())return
         active?.imageContent=null
         active?.restoringNavigation=false
+        active?.lazyRestore=false
         active?.externalGesture?.reset()
         recordSearchFor(active,input,url,resolution.search);revision++
         stopEye();sheet="";active?.error="";active?.favoriteId=fromFavorite?.id;active?.favoriteRestore=fromFavorite;active?.favoriteRestoreTouchSequence=active?.web?.touchSequence?:0L;active?.pendingUrl=url;active?.web?.loadUrl(url)
@@ -581,9 +593,14 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             if(retry){tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}else tab.web.reload()
         }
     }
-    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;if(id!=activeId)SystemAutofill.cancel(context);capturePreview(active);(context as? MainActivity)?.websiteLocation?.pauseFor(activeId);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;(context as? MainActivity)?.websiteLocation?.resumeFor(id);persistTabs();sheet="";updatePrivacyWindow()}
+    private fun activateRestoredTab(tab:BrowserTab){
+        if(tab.lazyRestore){tab.lazyRestore=false;tab.pendingUrl=tab.url;tab.web.loadUrl(tab.url)}
+    }
+    fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;if(id!=activeId)SystemAutofill.cancel(context);capturePreview(active);if(id!=activeId){(context as? MainActivity)?.websitePermissions?.cancelFor(activeId);(context as? MainActivity)?.websiteFiles?.cancelFor(activeId)};(context as? MainActivity)?.websiteLocation?.pauseFor(activeId);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;activateRestoredTab(tab);(context as? MainActivity)?.websiteLocation?.resumeFor(id);persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
         (context as? MainActivity)?.websiteLocation?.detach(id)
+        (context as? MainActivity)?.websitePermissions?.cancelFor(id)
+        (context as? MainActivity)?.websiteFiles?.cancelFor(id)
         findInPage.closeFor(id)
         (context as? MainActivity)?.pageDownloads?.cancelFor(id)
         prompts.closeFor(id)
@@ -593,8 +610,9 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         tab.preview=null;tab.documentScript?.remove();tab.web.stopLoading()
         if(id==activeId)SystemAutofill.cancel(context)
         (tab.refreshContainer.parent as? ViewGroup)?.removeView(tab.refreshContainer);tab.refreshContainer.removeAllViews();tab.web.destroy();tabs.remove(tab)
-        if(tab.incognito&&tabs.none{it.incognito}){privateSession.clear();(context as? MainActivity)?.imageActions?.clearPrivate();(context as? MainActivity)?.websiteLocation?.clearPrivate()}
+        if(tab.incognito&&tabs.none{it.incognito}){privateSession.clear();(context as? MainActivity)?.imageActions?.clearPrivate();(context as? MainActivity)?.websiteLocation?.clearPrivate();(context as? MainActivity)?.websitePermissions?.clearPrivate();(context as? MainActivity)?.websiteFiles?.clearPrivate()}
         if(activeId==id)activeId=(tabs.lastOrNull{it.incognito==tab.incognito}?:tabs.lastOrNull())?.id?:0
+        active?.let{activateRestoredTab(it)}
         (context as? MainActivity)?.websiteLocation?.resumeFor(activeId)
         if(tabs.isEmpty()&&replaceLast)newTab(incognito=false)
         persistTabs();updatePrivacyWindow()
@@ -660,5 +678,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)bt(R.string.msg_edeb1a15813d)else bt(R.string.msg_a4038cb71105)
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice=bt(R.string.msg_b3f41aaeb32b)}}
-    fun destroy(){if(destroyed)return;findInPage.close();destroyed=true;prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();fileCallback?.onReceiveValue(null);mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
+    fun destroy(){if(destroyed)return;findInPage.close();destroyed=true;prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }

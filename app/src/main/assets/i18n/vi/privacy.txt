@@ -59,3 +59,6 @@ Chỉ khi trang web yêu cầu vị trí và bạn cho phép trang cùng quyền
 
 Định vị trực tiếp Android (1.11.1)
 Sau khi được cấp quyền trang web và Android, ChengJing trực tiếp yêu cầu vị trí từ GPS, mạng hoặc nguồn định vị hợp nhất hệ thống Android, rồi cung cấp cho trang hiện tại. Trang có thể yêu cầu vị trí một lần hoặc liên tục; hủy, chuyển trang, đóng tab và rời nền sẽ dừng yêu cầu. Yêu cầu một lần thường chờ tối đa hai phút, có thể ngắn hơn theo trang. Mô-đun định vị chỉ dùng tọa độ trong bộ nhớ tạm thời, không ghi hoặc đồng bộ khác. Vị trí hiển thị trên trang vẫn là nội dung web, ảnh thu nhỏ tab thường giữ nội dung hiển thị theo quy tắc hiện có, tab ẩn danh không tạo ảnh thu nhỏ. Hệ thống có thể lưu vị trí gần nhất; chỉ dùng trong thời hạn trang chấp nhận rõ ràng. Nguyên tắc cấp quyền định vị trang, cách ly ẩn danh và không đồng bộ Google/AI vẫn giữ nguyên.
+
+Quyền của trang web (1.14.0)
+Trang web chỉ dùng máy ảnh và micrô sau khi có quyền của trang và Android. Trang web xử lý nội dung và tệp đã chọn, không gửi cho nhà phát triển, đồng bộ Google Drive hay AI. Tệp chụp lưu tạm trên máy: tệp thường hơn 24 giờ được dọn khi khởi động hoặc chụp lần sau; tệp riêng tư khi đóng mọi thẻ riêng tư hoặc khởi động lại. Trang và thiết bị xử lý giấy phép nội dung bảo vệ. Quyền và cookie bên thứ ba chỉ lưu trên máy; lựa chọn riêng tư không lưu lâu dài.

@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"标签数据未能保存，请检查手机存储空间"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"请使用单行英文字母、数字与符号，最多 1,024 字"</string>
   <string name="msg_98603eac2c1f" formatted="false">"请更新 Android System WebView，才能使用数据隔离的无痕标签"</string>
-  <string name="msg_4369d178c9de" formatted="false">"目前最多可开启 20 个标签，请先关闭不用的标签"</string>
   <string name="msg_b860234cdca4" formatted="false">"无法建立隔离的无痕工作会话，未开启网页"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · 缓存图片"</string>
   <string name="msg_b210350f38fc" formatted="false">"图片"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"确定"</string>
   <string name="msg_a2cb5003004e" formatted="false">"留在此页"</string>
   <string name="msg_e9ea75903633" formatted="false">"新窗口／弹窗"</string>
-  <string name="msg_2138c825b189" formatted="false">"此版本尚未开放网站使用相机与麦克风"</string>
   <string name="msg_3fe646f9b847" formatted="false">"文件选择器不可用"</string>
   <string name="msg_beffea44da0c" formatted="false">"无法打开文件选择器"</string>
   <string name="msg_ad37ef430462" formatted="false">"这个链接没有提供可下载的文件"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"尚未取得安装授权，APK 保留在下载列表。"</string>
   <string name="system_install_failed" formatted="false">"无法打开此 APK，请确认文件完整且仍可访问。"</string>
   <string name="system_settings_unavailable" formatted="false">"此手机未提供可打开的系统页面。"</string>
+  <string name="web_permissions" formatted="false">"网站权限"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s 想使用：%2$s。"</string>
+  <string name="web_camera" formatted="false">"相机"</string>
+  <string name="web_microphone" formatted="false">"麦克风"</string>
+  <string name="web_protected_media" formatted="false">"受保护的影音"</string>
+  <string name="web_midi" formatted="false">"MIDI 设备控制"</string>
+  <string name="web_permission_note" formatted="false">"相机与麦克风须经网站及 Android 授权。可在此更改网站权限；无痕授权会在所有无痕标签页关闭后清除。"</string>
+  <string name="web_app_permissions" formatted="false">"手机应用权限"</string>
+  <string name="web_choose_files" formatted="false">"选择文件"</string>
+  <string name="web_take_photo" formatted="false">"拍照"</string>
+  <string name="web_record_video" formatted="false">"录像"</string>
+  <string name="web_record_audio" formatted="false">"录音"</string>
+  <string name="web_capture_error" formatted="false">"无法打开拍摄或录音工具，请确认已授权且手机已安装对应应用。"</string>
+  <string name="web_third_party_cookies" formatted="false">"第三方 Cookie"</string>
+  <string name="web_cookie_note" formatted="false">"若登录或嵌入内容需要其他网站的 Cookie，可仅为此网站开启。"</string>
 </resources>

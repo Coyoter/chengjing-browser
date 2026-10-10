@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"Les données de l’onglet n’ont pas pu être enregistrées, veuillez vérifier l’espace de stockage du téléphone"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"Veuillez utiliser une seule ligne de lettres anglaises, chiffres et symboles, jusqu’à 1 024 caractères"</string>
   <string name="msg_98603eac2c1f" formatted="false">"Veuillez mettre à jour Android System WebView pour utiliser les onglets privés avec isolation des données"</string>
-  <string name="msg_4369d178c9de" formatted="false">"Vous pouvez ouvrir jusqu’à 20 onglets au maximum, veuillez fermer ceux inutilisés d’abord"</string>
   <string name="msg_b860234cdca4" formatted="false">"Impossible de créer une session privée isolée, aucune page ouverte"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · Image en cache"</string>
   <string name="msg_b210350f38fc" formatted="false">"Image"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"Confirmer"</string>
   <string name="msg_a2cb5003004e" formatted="false">"Rester sur cette page"</string>
   <string name="msg_e9ea75903633" formatted="false">"Nouvelle fenêtre / Pop-up"</string>
-  <string name="msg_2138c825b189" formatted="false">"Cette version ne permet pas encore aux sites d’utiliser la caméra et le microphone"</string>
   <string name="msg_3fe646f9b847" formatted="false">"Sélecteur de fichiers indisponible"</string>
   <string name="msg_beffea44da0c" formatted="false">"Impossible d’ouvrir le sélecteur de fichiers"</string>
   <string name="msg_ad37ef430462" formatted="false">"Ce lien ne propose aucun fichier à télécharger"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"Autorisation d’installation non accordée, l’APK reste dans la liste de téléchargements."</string>
   <string name="system_install_failed" formatted="false">"Impossible d’ouvrir cet APK, veuillez vérifier que le fichier est complet et accessible."</string>
   <string name="system_settings_unavailable" formatted="false">"Aucune page système accessible sur ce téléphone."</string>
+  <string name="web_permissions" formatted="false">"Autorisations du site"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s souhaite utiliser : %2$s."</string>
+  <string name="web_camera" formatted="false">"Caméra"</string>
+  <string name="web_microphone" formatted="false">"Microphone"</string>
+  <string name="web_protected_media" formatted="false">"Contenus protégés"</string>
+  <string name="web_midi" formatted="false">"Contrôle des appareils MIDI"</string>
+  <string name="web_permission_note" formatted="false">"La caméra et le microphone nécessitent les autorisations du site et d’Android. Modifiez-les ici ; les autorisations privées sont effacées à la fermeture de tous les onglets privés."</string>
+  <string name="web_app_permissions" formatted="false">"Autorisations Android"</string>
+  <string name="web_choose_files" formatted="false">"Choisir des fichiers"</string>
+  <string name="web_take_photo" formatted="false">"Prendre une photo"</string>
+  <string name="web_record_video" formatted="false">"Enregistrer une vidéo"</string>
+  <string name="web_record_audio" formatted="false">"Enregistrer du son"</string>
+  <string name="web_capture_error" formatted="false">"Impossible de démarrer la capture. Vérifiez les autorisations et la présence d’une application compatible."</string>
+  <string name="web_third_party_cookies" formatted="false">"Cookies tiers"</string>
+  <string name="web_cookie_note" formatted="false">"Si la connexion ou les contenus intégrés nécessitent des cookies tiers, autorisez-les uniquement pour ce site."</string>
 </resources>

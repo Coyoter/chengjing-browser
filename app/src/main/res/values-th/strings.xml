@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"ไม่สามารถบันทึกข้อมูลแท็บได้ กรุณาตรวจสอบพื้นที่เก็บข้อมูลโทรศัพท์"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"ใช้ตัวอักษรภาษาอังกฤษ ตัวเลข และสัญลักษณ์บรรทัดเดียว สูงสุด 1,024 ตัวอักษร"</string>
   <string name="msg_98603eac2c1f" formatted="false">"กรุณาอัปเดต Android System WebView เพื่อใช้โหมดไม่ระบุตัวตนแบบแยกข้อมูล"</string>
-  <string name="msg_4369d178c9de" formatted="false">"เปิดแท็บได้สูงสุด 20 แท็บ กรุณาปิดแท็บที่ไม่ใช้ก่อน"</string>
   <string name="msg_b860234cdca4" formatted="false">"ไม่สามารถสร้างเซสชันไม่ระบุตัวตนแบบแยกข้อมูลได้ ไม่มีหน้าเว็บเปิดอยู่"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · รูปภาพแคช"</string>
   <string name="msg_b210350f38fc" formatted="false">"รูปภาพ"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"ตกลง"</string>
   <string name="msg_a2cb5003004e" formatted="false">"อยู่ในหน้านี้"</string>
   <string name="msg_e9ea75903633" formatted="false">"หน้าต่างใหม่/ป๊อปอัป"</string>
-  <string name="msg_2138c825b189" formatted="false">"เวอร์ชันนี้ยังไม่เปิดให้เว็บไซต์ใช้กล้องและไมโครโฟน"</string>
   <string name="msg_3fe646f9b847" formatted="false">"ตัวเลือกไฟล์ไม่พร้อมใช้งาน"</string>
   <string name="msg_beffea44da0c" formatted="false">"ไม่สามารถเปิดตัวเลือกไฟล์ได้"</string>
   <string name="msg_ad37ef430462" formatted="false">"ลิงก์นี้ไม่มีไฟล์ให้ดาวน์โหลด"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"ยังไม่ได้รับอนุญาตให้ติดตั้ง APK ไฟล์ยังคงอยู่ในรายการดาวน์โหลด"</string>
   <string name="system_install_failed" formatted="false">"ไม่สามารถเปิด APK นี้ได้ กรุณาตรวจสอบว่าไฟล์สมบูรณ์และยังเข้าถึงได้"</string>
   <string name="system_settings_unavailable" formatted="false">"โทรศัพท์นี้ไม่มีหน้าระบบที่สามารถเปิดได้"</string>
+  <string name="web_permissions" formatted="false">"สิทธิ์ของเว็บไซต์"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s ต้องการใช้: %2$s."</string>
+  <string name="web_camera" formatted="false">"กล้อง"</string>
+  <string name="web_microphone" formatted="false">"ไมโครโฟน"</string>
+  <string name="web_protected_media" formatted="false">"สื่อที่มีการป้องกัน"</string>
+  <string name="web_midi" formatted="false">"ควบคุมอุปกรณ์ MIDI"</string>
+  <string name="web_permission_note" formatted="false">"กล้องและไมโครโฟนต้องได้รับสิทธิ์จากเว็บไซต์และ Android เปลี่ยนได้ที่นี่ สิทธิ์ส่วนตัวจะล้างเมื่อปิดแท็บส่วนตัวทั้งหมด"</string>
+  <string name="web_app_permissions" formatted="false">"สิทธิ์แอป Android"</string>
+  <string name="web_choose_files" formatted="false">"เลือกไฟล์"</string>
+  <string name="web_take_photo" formatted="false">"ถ่ายภาพ"</string>
+  <string name="web_record_video" formatted="false">"บันทึกวิดีโอ"</string>
+  <string name="web_record_audio" formatted="false">"บันทึกเสียง"</string>
+  <string name="web_capture_error" formatted="false">"เริ่มถ่ายหรือบันทึกไม่ได้ โปรดตรวจสอบสิทธิ์และแอปกล้องหรือบันทึกที่รองรับ"</string>
+  <string name="web_third_party_cookies" formatted="false">"คุกกี้ของบุคคลที่สาม"</string>
+  <string name="web_cookie_note" formatted="false">"หากการเข้าสู่ระบบหรือเนื้อหาฝังต้องใช้คุกกี้จากเว็บอื่น อนุญาตได้เฉพาะเว็บไซต์นี้"</string>
 </resources>

@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"تعذر حفظ بيانات علامة التبويب، يرجى التحقق من مساحة التخزين في الهاتف"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"يرجى استخدام أحرف إنجليزية أحادية السطر، أرقام ورموز، حتى 1024 حرفًا"</string>
   <string name="msg_98603eac2c1f" formatted="false">"يرجى تحديث Android System WebView لاستخدام علامات التبويب الخفية المعزولة"</string>
-  <string name="msg_4369d178c9de" formatted="false">"يمكن فتح حتى 20 علامة تبويب كحد أقصى، يرجى إغلاق علامات التبويب غير المستخدمة أولاً"</string>
   <string name="msg_b860234cdca4" formatted="false">"تعذر إنشاء جلسة خفية معزولة، لم يتم فتح أي صفحة"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · صورة مؤقتة"</string>
   <string name="msg_b210350f38fc" formatted="false">"صورة"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"تأكيد"</string>
   <string name="msg_a2cb5003004e" formatted="false">"البقاء في هذه الصفحة"</string>
   <string name="msg_e9ea75903633" formatted="false">"نافذة جديدة / منبثقة"</string>
-  <string name="msg_2138c825b189" formatted="false">"هذا الإصدار لا يدعم استخدام الكاميرا والميكروفون للمواقع"</string>
   <string name="msg_3fe646f9b847" formatted="false">"منتقي الملفات غير متاح"</string>
   <string name="msg_beffea44da0c" formatted="false">"تعذر فتح منتقي الملفات"</string>
   <string name="msg_ad37ef430462" formatted="false">"هذا الرابط لا يوفر ملفات قابلة للتنزيل"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"لم يتم الحصول على إذن التثبيت بعد، ملف APK محفوظ في قائمة التنزيلات."</string>
   <string name="system_install_failed" formatted="false">"تعذر فتح هذا الملف APK، يرجى التأكد من سلامة الملف وإمكانية الوصول إليه."</string>
   <string name="system_settings_unavailable" formatted="false">"هذا الهاتف لا يوفر صفحة نظام يمكن فتحها."</string>
+  <string name="web_permissions" formatted="false">"أذونات الموقع"</string>
+  <string name="web_permission_prompt" formatted="false">"يريد %1$s استخدام: %2$s."</string>
+  <string name="web_camera" formatted="false">"الكاميرا"</string>
+  <string name="web_microphone" formatted="false">"الميكروفون"</string>
+  <string name="web_protected_media" formatted="false">"الوسائط المحمية"</string>
+  <string name="web_midi" formatted="false">"التحكم بأجهزة MIDI"</string>
+  <string name="web_permission_note" formatted="false">"تتطلب الكاميرا والميكروفون إذن الموقع وAndroid. غيّر الأذونات هنا؛ تُحذف الأذونات الخاصة عند إغلاق جميع علامات التبويب الخاصة."</string>
+  <string name="web_app_permissions" formatted="false">"أذونات تطبيق Android"</string>
+  <string name="web_choose_files" formatted="false">"اختيار ملفات"</string>
+  <string name="web_take_photo" formatted="false">"التقاط صورة"</string>
+  <string name="web_record_video" formatted="false">"تسجيل فيديو"</string>
+  <string name="web_record_audio" formatted="false">"تسجيل صوت"</string>
+  <string name="web_capture_error" formatted="false">"تعذر بدء الالتقاط. تحقق من الأذونات وتوفر تطبيق متوافق للتصوير أو التسجيل."</string>
+  <string name="web_third_party_cookies" formatted="false">"ملفات تعريف الارتباط للجهات الخارجية"</string>
+  <string name="web_cookie_note" formatted="false">"إذا احتاج تسجيل الدخول أو المحتوى المضمّن إلى ملفات من مواقع أخرى، اسمح بها لهذا الموقع فقط."</string>
 </resources>

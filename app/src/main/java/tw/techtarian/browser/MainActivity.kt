@@ -63,6 +63,8 @@ class MainActivity:AppCompatActivity(){
     internal val imageActions=BrowserImageActions(this)
     internal val pageDownloads=BrowserPageDownloads(this)
     internal val websiteLocation=WebsiteLocation(this)
+    internal val websitePermissions=WebsitePermissions(this)
+    internal val websiteFiles=WebsiteFiles(this)
     private val consent=registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()){result->bookmarkSync.consent(result.data)}
     private val importBookmarks=registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->
         if(uri!=null)lifecycleScope.launch(kotlinx.coroutines.Dispatchers.IO){
@@ -102,12 +104,12 @@ class MainActivity:AppCompatActivity(){
         runCatching{startActivity(PackageDownloads.installerIntent(PackageDownloads.contentUri(this,item)))}
             .onFailure{controller.notice=bt(R.string.system_install_failed)}
     }
-    private val files=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->controller.fileCallback?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result.resultCode,result.data));controller.fileCallback=null}
     override fun onCreate(savedInstanceState:Bundle?){
         delegate.localNightMode=BrowserAppearance.mode(BrowserAppearance.savedChoice(this))
         super.onCreate(savedInstanceState);AppLanguages.initialize(this);setTheme(R.style.AppTheme);enableEdgeToEdge()
         updateSplashTheme(BrowserAppearance.savedChoice(this))
         androidx.core.content.ContextCompat.registerReceiver(this,languageReceiver,android.content.IntentFilter(Intent.ACTION_LOCALE_CHANGED),androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED)
+        websiteFiles.initialize()
         imageActions.initialize()
         pageDownloads.initialize()
         if(android.os.Build.VERSION.SDK_INT>=31)splashScreen.setOnExitAnimationListener{it.remove()}
@@ -118,7 +120,6 @@ class MainActivity:AppCompatActivity(){
         store=BrowserStore(this);controller=BrowserController(this,store)
         bookmarkSync=BookmarkSync(this,store.bookmarkStore)
         bookmarkSync.launchConsent={consent.launch(it)}
-        controller.chooseFiles={files.launch(it)}
         val systemDark=(resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES
         val dark=systemDark
         val launch=BrowserLaunchSurface(this,dark)
@@ -211,7 +212,7 @@ class MainActivity:AppCompatActivity(){
     }
     override fun onResume(){super.onResume();refreshLanguageFromDevice();websiteLocation.resume();if(browserReady){if(controller.tabs.isEmpty())controller.newTab(incognito=false);if(::bookmarkSync.isInitialized)bookmarkSync.resume()}}
     override fun onDestroy(){
-        runCatching{unregisterReceiver(languageReceiver)};if(::bookmarkSync.isInitialized)bookmarkSync.destroy();websiteLocation.close();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
+        runCatching{unregisterReceiver(languageReceiver)};if(::bookmarkSync.isInitialized)bookmarkSync.destroy();websiteLocation.close();websitePermissions.close();websiteFiles.close();pageDownloads.close();imageActions.close();if(::controller.isInitialized)controller.destroy();super.onDestroy()}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

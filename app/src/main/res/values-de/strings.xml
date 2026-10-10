@@ -93,7 +93,6 @@
   <string name="msg_49e07d37a692" formatted="false">"Tab-Daten konnten nicht gespeichert werden, bitte prüfen Sie den Gerätespeicher"</string>
   <string name="msg_0e1bfa10059d" formatted="false">"Bitte verwenden Sie eine einzelne Zeile mit Buchstaben, Zahlen und Symbolen, maximal 1.024 Zeichen"</string>
   <string name="msg_98603eac2c1f" formatted="false">"Bitte aktualisieren Sie Android System WebView, um isolierte Inkognito-Tabs zu verwenden"</string>
-  <string name="msg_4369d178c9de" formatted="false">"Es können maximal 20 Tabs geöffnet sein, bitte schließen Sie nicht benötigte Tabs"</string>
   <string name="msg_b860234cdca4" formatted="false">"Isolierte Inkognito-Sitzung konnte nicht erstellt werden, keine Webseite geöffnet"</string>
   <string name="msg_38e077277302" formatted="false">"%1$s · Zwischengespeichertes Bild"</string>
   <string name="msg_b210350f38fc" formatted="false">"Bild"</string>
@@ -119,7 +118,6 @@
   <string name="msg_20db9f87b860" formatted="false">"Bestätigen"</string>
   <string name="msg_a2cb5003004e" formatted="false">"Auf dieser Seite bleiben"</string>
   <string name="msg_e9ea75903633" formatted="false">"Neues Fenster/Popup"</string>
-  <string name="msg_2138c825b189" formatted="false">"Diese Version erlaubt Websites noch nicht, Kamera und Mikrofon zu verwenden"</string>
   <string name="msg_3fe646f9b847" formatted="false">"Dateiauswahl nicht verfügbar"</string>
   <string name="msg_beffea44da0c" formatted="false">"Dateiauswahl konnte nicht geöffnet werden"</string>
   <string name="msg_ad37ef430462" formatted="false">"Dieser Link bietet keine herunterladbaren Dateien"</string>
@@ -1102,4 +1100,19 @@
   <string name="system_install_denied" formatted="false">"Installationsberechtigung nicht erteilt, APK bleibt in der Download-Liste."</string>
   <string name="system_install_failed" formatted="false">"Diese APK kann nicht geöffnet werden. Bitte prüfen Sie, ob die Datei vollständig und zugänglich ist."</string>
   <string name="system_settings_unavailable" formatted="false">"Dieses Telefon bietet keine öffnungsfähige Systemseite an."</string>
+  <string name="web_permissions" formatted="false">"Website-Berechtigungen"</string>
+  <string name="web_permission_prompt" formatted="false">"%1$s möchte Folgendes verwenden: %2$s."</string>
+  <string name="web_camera" formatted="false">"Kamera"</string>
+  <string name="web_microphone" formatted="false">"Mikrofon"</string>
+  <string name="web_protected_media" formatted="false">"Geschützte Medien"</string>
+  <string name="web_midi" formatted="false">"MIDI-Gerätesteuerung"</string>
+  <string name="web_permission_note" formatted="false">"Kamera und Mikrofon benötigen Website- und Android-Berechtigungen. Hier ändern; private Freigaben werden beim Schließen aller privaten Tabs gelöscht."</string>
+  <string name="web_app_permissions" formatted="false">"Android-App-Berechtigungen"</string>
+  <string name="web_choose_files" formatted="false">"Dateien auswählen"</string>
+  <string name="web_take_photo" formatted="false">"Foto aufnehmen"</string>
+  <string name="web_record_video" formatted="false">"Video aufnehmen"</string>
+  <string name="web_record_audio" formatted="false">"Audio aufnehmen"</string>
+  <string name="web_capture_error" formatted="false">"Aufnahme konnte nicht gestartet werden. Prüfen Sie Berechtigungen und eine kompatible Aufnahme-App."</string>
+  <string name="web_third_party_cookies" formatted="false">"Drittanbieter-Cookies"</string>
+  <string name="web_cookie_note" formatted="false">"Falls Anmeldung oder eingebettete Inhalte andere Cookies benötigen, erlauben Sie sie nur für diese Website."</string>
 </resources>

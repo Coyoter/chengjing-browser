@@ -24,7 +24,7 @@ internal sealed class BrowserPrompt(
     val title:String,val owner:Int?,val valid:()->Boolean,val onCancel:()->Unit
 ) {
     class Menu(title:String,val subtitle:String,val actions:List<BrowserMenuAction>,owner:Int,
-               valid:()->Boolean):BrowserPrompt(title,owner,valid,{})
+               valid:()->Boolean,onCancel:()->Unit={}):BrowserPrompt(title,owner,valid,onCancel)
     class Confirm(title:String,val message:String,val confirmLabel:String,val confirm:()->Unit,
                   val cancelLabel:String,owner:Int?,valid:()->Boolean,onCancel:()->Unit,
                   val input:String?=null,val submit:((String)->Unit)?=null,
