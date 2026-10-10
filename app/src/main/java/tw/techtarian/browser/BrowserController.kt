@@ -280,7 +280,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
         }
         web.addOnAttachStateChangeListener(object:android.view.View.OnAttachStateChangeListener{
-            override fun onViewAttachedToWindow(view:android.view.View){requestPreviewFrame(tab)}
+            override fun onViewAttachedToWindow(view:android.view.View){requestPreviewFrame(tab);refreshWebAccessibility(tab)}
             override fun onViewDetachedFromWindow(view:android.view.View){}
         })
         web.addOnLayoutChangeListener{_,left,top,right,bottom,oldLeft,oldTop,oldRight,oldBottom->
@@ -432,6 +432,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 findInPage.pageFinished(tab)
                 if(tab.url==url)tab.previewCommitted=true
                 requestPreviewFrame(tab)
+                refreshWebAccessibility(tab)
                 // Fallback remains usable on older WebView; document-start protection requires an update.
                 if(!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT))view.evaluateJavascript(script.replace("__CJ_CONFIG__",config(tab.url)),null)
             }
@@ -540,6 +541,20 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             if(restored!=null)tab.lazyRestore=true else {tab.pendingUrl=url;web.loadUrl(url)}
         }
         persistTabs();return tab
+    }
+    /** Invalidate the old document's virtual accessibility nodes without moving focus. */
+    private fun refreshWebAccessibility(tab:BrowserTab){
+        tab.web.post{
+            if(tab !in tabs||tab.id!=activeId||!tab.web.isAttachedToWindow)return@post
+            val manager=context.getSystemService(android.view.accessibility.AccessibilityManager::class.java)
+            if(manager?.isEnabled!=true)return@post
+            val root=tab.web.rootView
+            @Suppress("DEPRECATION")
+            val event=android.view.accessibility.AccessibilityEvent.obtain(android.view.accessibility.AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED)
+            event.contentChangeTypes=android.view.accessibility.AccessibilityEvent.CONTENT_CHANGE_TYPE_SUBTREE
+            event.setSource(root)
+            root.sendAccessibilityEventUnchecked(event)
+        }
     }
     fun exitFullscreen(){val callback=fullScreenCallback;fullScreenCallback=null;fullScreenView=null;callback?.onCustomViewHidden()}
     fun navigate(input:String,fromFavorite:Favorite?=null) {

@@ -126,16 +126,7 @@ public class OptimizedReleaseTest {
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
 
     @Test public void findInPageKeepsWebContentVisibleAndNavigatesNativeMatches() throws Exception {
-        launchPage("find-page");
-        UiObject2 document=require(By.clazz("android.webkit.WebView"));
-        android.graphics.Rect bounds=document.getVisibleBounds();
-        // A newly attached WebView can retain stale accessibility focus from the
-        // old tab. Give this document a real touch before reading its virtual text.
-        device.click(bounds.centerX(),bounds.top+Math.min(48,bounds.height()/4));
-        UiObject2 visibleText=device.wait(Until.findObject(By.textContains("搜尋針甲")),5000);
-        if(visibleText==null)visibleText=device.wait(Until.findObject(By.descContains("搜尋針甲")),5000);
-        assertNotNull("The rendered fixture text must be accessible",visibleText);
-        assertTrue("The fixture text must be visible",visibleText.getVisibleBounds().height()>0);
+        launchPage("find-page");require(By.text("搜尋針甲 SearchNeedle"));
         menu();
         UiObject2 findAction=null;
         for(int i=0;i<20&&findAction==null;i++){
