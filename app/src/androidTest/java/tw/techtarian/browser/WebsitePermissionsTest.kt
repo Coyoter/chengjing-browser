@@ -106,6 +106,22 @@ class WebsitePermissionsTest{
         assertEquals(listOf(PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID),request.granted)
         assertNull(c.prompts.current);assertEquals("",c.notice)
     }
+    @Test fun backgroundPlaybackAndAlreadyApprovedMediaRemainAvailableWithoutNewPrompts(){
+        val tab=load();val origin=LocationOrigin.of(tab.url)!!
+        InstrumentationRegistry.getInstrumentation().uiAutomation.grantRuntimePermission(ui.activity.packageName,Manifest.permission.CAMERA)
+        InstrumentationRegistry.getInstrumentation().uiAutomation.grantRuntimePermission(ui.activity.packageName,Manifest.permission.RECORD_AUDIO)
+        val drm=Request(origin,arrayOf(PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID))
+        val media=Request(origin,arrayOf(PermissionRequest.RESOURCE_VIDEO_CAPTURE,PermissionRequest.RESOURCE_AUDIO_CAPTURE))
+        ui.runOnIdle{
+            permissions.decisions.set(origin,WebsiteResource.CAMERA,false,LocationChoice.ALLOW)
+            permissions.decisions.set(origin,WebsiteResource.MICROPHONE,false,LocationChoice.ALLOW)
+            c.newTab()
+            permissions.request(tab,drm);permissions.request(tab,media)
+        }
+        assertEquals(listOf(PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID),drm.granted)
+        assertEquals(setOf(PermissionRequest.RESOURCE_VIDEO_CAPTURE,PermissionRequest.RESOURCE_AUDIO_CAPTURE),media.granted!!.toSet())
+        assertNull(c.prompts.current);assertEquals("",c.notice)
+    }
     @Test fun midiCanBeAllowedAndPendingCaptureCannotFollowNavigation(){
         val tab=load();val origin=LocationOrigin.of(tab.url)!!
         val midi=Request(origin,arrayOf(PermissionRequest.RESOURCE_MIDI_SYSEX))

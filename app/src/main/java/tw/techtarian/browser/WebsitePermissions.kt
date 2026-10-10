@@ -65,7 +65,7 @@ internal class WebsitePermissions(private val activity:MainActivity){
     fun hasPermission(resource:WebsiteResource)=resource.androidPermission?.let{
         ContextCompat.checkSelfPermission(activity,it)==PackageManager.PERMISSION_GRANTED
     }?:true
-    private fun valid(p:Pending)=!p.done&&p.tab in c.tabs&&p.tab.id==c.activeId&&
+    private fun valid(p:Pending,requireActive:Boolean=true)=!p.done&&p.tab in c.tabs&&(!requireActive||p.tab.id==c.activeId)&&
         p.tab.navigationGeneration==p.generation&&p.tab.url==p.page&&!p.tab.web.selecting&&
         LocationOrigin.of(p.page)!=null&&p.tab.error.isEmpty()&&p.tab.certificateWarning.isBlank()&&
         !c.store.certificateException(p.page)&&!c.store.certificateException(p.origin)&&
@@ -94,11 +94,23 @@ internal class WebsitePermissions(private val activity:MainActivity){
     fun request(tab:BrowserTab,request:PermissionRequest){
         val origin=LocationOrigin.of(request.origin.toString())
         val resources=request.resources.mapNotNull{WebsiteResource.of(it)}.distinct()
-        if(origin==null||resources.isEmpty()||runtimeInFlight||!activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)){
+        if(origin==null||resources.isEmpty()){
             request.deny();return
         }
         val p=Pending(tab,request,origin,tab.url,tab.navigationGeneration,resources)
-        if(!valid(p)){request.deny();return}
+        if(!valid(p,requireActive=false)){request.deny();return}
+        val alreadyAllowed=resources.filter{decisions.get(origin,it,tab.incognito)==LocationChoice.ALLOW}
+        val needsConsent=resources.any{decisions.get(origin,it,tab.incognito)==LocationChoice.ASK}
+        val needsAndroid=alreadyAllowed.any{!hasPermission(it)}
+        if(!needsConsent&&!needsAndroid){
+            // Protected playback and previously approved media must not depend on the
+            // selected tab. New camera/mic use still needs a foreground app.
+            val visible=activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
+            finish(p,alreadyAllowed.filter{it.androidPermission==null||visible});return
+        }
+        if(runtimeInFlight||!valid(p)||!activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)){
+            request.deny();return
+        }
         pending?.let{cancelFor(it.tab.id)}
         pending=p
         val asked=resources.filter{decisions.get(origin,it,tab.incognito)==LocationChoice.ASK}
