@@ -146,6 +146,16 @@ public class OptimizedReleaseTest {
         require(By.desc("關閉頁面搜尋")).click();require(By.desc("瀏覽器選單"));
         assertFalse(device.hasObject(By.desc("關閉頁面搜尋")));
     }
+    @Test public void cameraAndMicrophoneRecordActualMediaInOptimizedRelease() throws Exception {
+        launchPage("media");require(By.text("Record QA media")).click();
+        require(By.text("網站權限"));require(By.text("允許")).click();
+        for(int i=0;i<3;i++){
+            UiObject2 allow=device.wait(Until.findObject(By.res(java.util.regex.Pattern.compile(".*:id/permission_allow_foreground_only_button"))),4000);
+            if(allow!=null)allow.click();
+        }
+        require(By.text("Recorded QA media"));
+        assertEquals(APP,device.getCurrentPackageName());
+    }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
         assertEquals(44,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
@@ -550,6 +560,9 @@ public class OptimizedReleaseTest {
                     String html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>R8 功能測試 "+page+"</title></head><body style='margin:24px;font:18px sans-serif'><h1>R8 功能測試 "+page+"</h1><button id='r8-target' style='width:100%;padding:24px;margin:20px 0'>R8 測試元件</button><p>只使用本機合成內容，不接觸真實帳號。</p></body></html>";
                     html=html.replace("</body>","<p><a href='chengjing-test://open/r8?id=custom'>Open linked app</a></p><p><a href='intent://open/r8?id=intent#Intent;scheme=chengjing-test;package=tw.techtarian.browser.smoketests;end'>Open intent app</a></p></body>");
                     if(first!=null&&first.contains("/location"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Location fixture</title></head><body><button style='padding:24px' onclick=\"navigator.geolocation.getCurrentPosition(p=>{document.getElementById('result').textContent='Location verified';fetch('/location-result?latitude='+p.coords.latitude+'&amp;longitude='+p.coords.longitude)},e=>document.getElementById('result').textContent='Location denied '+e.code,{enableHighAccuracy:true,timeout:20000,maximumAge:0})\">Locate QA</button><p id='result' role='status' aria-live='polite'>Location ready</p><script>Object.getPrototypeOf(navigator.geolocation).getCurrentPosition=()=>{};</script></body></html>";
+                    if(first!=null&&first.contains("/media")){
+                        html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'></head><body><button style='padding:24px' onclick=\"navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(s=>{const valid=s.getAudioTracks().length===1&amp;&amp;s.getVideoTracks().length===1;const chunks=[];const r=new MediaRecorder(s);r.ondataavailable=e=>chunks.push(e.data);r.onstop=()=>{document.getElementById('result').textContent=valid&amp;&amp;new Blob(chunks).size>0?'Recorded QA media':'Empty QA media';s.getTracks().forEach(t=>t.stop())};r.start();setTimeout(()=>r.stop(),1200)}).catch(e=>document.getElementById('result').textContent='Media error '+e.name)\">Record QA media</button><p id='result' aria-live='polite'>Media ready</p></body></html>";
+                    }
                     if(first!=null&&first.contains("/find-page")){
                         html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>頁內搜尋測試</title></head><body style='margin:20px;font:20px sans-serif'><h1>邊看網頁，邊找文字</h1><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:300px'></div></body></html>";
                     }
