@@ -30,7 +30,7 @@ class BrowserCompatibilityTest{
         server=MockWebServer().apply{dispatcher=object:Dispatcher(){override fun dispatch(request:RecordedRequest):MockResponse{
             val path=request.path.orEmpty();visits.add(path)
             if(path=="/upload")uploadedBytes.set(request.bodySize)
-            return MockResponse().setHeader("Content-Type","text/html; charset=utf-8").setBody("""<title>Browser QA $path</title><meta name="viewport" content="width=device-width,initial-scale=1"><a id="popup" target="_blank" href="/popup">Open popup QA</a>
+            return MockResponse().setHeader("Content-Type","text/html; charset=utf-8").setHeader("Cache-Control","no-store").setBody("""<title>Browser QA $path</title><meta name="viewport" content="width=device-width,initial-scale=1"><a id="popup" target="_blank" href="/popup">Open popup QA</a>
                 <p><input id="photo" type="file" accept="image/*" capture="environment" onchange="const f=this.files[0];window.photoResult={name:f.name,size:f.size,type:f.type};const data=new FormData();data.append('photo',f);fetch('/upload',{method:'POST',body:data}).then(r=>window.uploaded=r.ok)"></p>""")
         }};start()}
     }
@@ -55,12 +55,12 @@ class BrowserCompatibilityTest{
         ui.runOnIdle{c.checkpointTabs();assertEquals(25,c.store.tabs().size)}
         visits.clear()
         ui.activityRule.scenario.recreate()
-        ui.waitUntil(20000){c.tabs.size==25&&c.active?.title=="Browser QA /page-25"}
+        ui.waitUntil(20000){c.tabs.size==25&&c.active?.title=="Browser QA /page-25"&&c.active?.pendingUrl?.isEmpty()==true&&visits.contains("/page-25")}
         assertEquals(25,c.store.tabs().size)
         assertEquals(listOf("/page-25"),visits.filter{it.startsWith("/page-")})
         assertEquals(24,c.tabs.count{it.lazyRestore})
         ui.runOnIdle{c.switchTab(c.tabs.first().id)}
-        ui.waitUntil(10000){c.active?.title=="Browser QA /page-1"}
+        ui.waitUntil(10000){c.active?.title=="Browser QA /page-1"&&c.active?.pendingUrl?.isEmpty()==true&&visits.contains("/page-1")}
         assertEquals(setOf("/page-25","/page-1"),visits.filter{it.startsWith("/page-")}.toSet())
         ui.runOnIdle{assertNotNull(c.newTab())}
         assertEquals(26,c.tabs.size)

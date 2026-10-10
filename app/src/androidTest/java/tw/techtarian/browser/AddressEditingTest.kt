@@ -71,9 +71,12 @@ class AddressEditingTest {
         event(MotionEvent.ACTION_DOWN,start)
         try {
             if(holdMillis>0){ui.mainClock.advanceTimeBy(holdMillis);SystemClock.sleep(holdMillis)}
-            for(step in 1..15){event(MotionEvent.ACTION_MOVE,start+(target-start)*(step/15f));ui.waitForIdle()}
+            for(step in 1..15){event(MotionEvent.ACTION_MOVE,start+(target-start)*(step/15f));SystemClock.sleep(16);ui.waitForIdle()}
             for(step in 1..url.length*2){
                 event(MotionEvent.ACTION_MOVE,target+Offset(if(step%2==0)1f else 0f,0f))
+                // Android input/IME and selection auto-scroll use real VSYNC time,
+                // independently of Compose's auto-advancing test clock.
+                SystemClock.sleep(16)
                 ui.waitForIdle()
                 if(done())break
             }
