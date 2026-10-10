@@ -126,7 +126,16 @@ public class OptimizedReleaseTest {
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
 
     @Test public void findInPageKeepsWebContentVisibleAndNavigatesNativeMatches() throws Exception {
-        launchPage("find-page");require(By.text("搜尋針甲 SearchNeedle"));
+        launchPage("find-page");
+        // This scenario opens a second WebView through an external intent. Give
+        // the displayed page an ordinary user tap before inspecting its virtual
+        // accessibility children; UIAutomator can retain the first page's nodes.
+        UiObject2 displayedPage=require(By.clazz("android.webkit.WebView"));
+        android.graphics.Rect pageBounds=displayedPage.getVisibleBounds();
+        // Tap above the first match: native find starts near the last tap position.
+        device.click(pageBounds.centerX(),pageBounds.top+16);
+        device.waitForIdle();
+        require(By.text("搜尋針甲 SearchNeedle"));
         menu();
         UiObject2 findAction=null;
         for(int i=0;i<20&&findAction==null;i++){
