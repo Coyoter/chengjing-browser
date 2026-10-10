@@ -126,8 +126,34 @@ public class OptimizedReleaseTest {
     private void closeMenu() {require(By.desc("關閉選單")).click();require(By.desc("瀏覽器選單"));}
 
     @Test public void findInPageKeepsWebContentVisibleAndNavigatesNativeMatches() throws Exception {
-        launchPage("find-page");require(By.text("搜尋針甲 SearchNeedle"));
-        menu();click("尋找頁面文字");
+        launchPage("find-page");
+        UiObject2 document=require(By.clazz("android.webkit.WebView"));
+        android.graphics.Rect bounds=document.getVisibleBounds();
+        // A newly attached WebView can retain stale accessibility focus from the
+        // old tab. Give this document a real touch before reading its virtual text.
+        device.click(bounds.centerX(),bounds.top+Math.min(48,bounds.height()/4));
+        UiObject2 visibleText=device.wait(Until.findObject(By.textContains("搜尋針甲")),5000);
+        if(visibleText==null)visibleText=device.wait(Until.findObject(By.descContains("搜尋針甲")),5000);
+        assertNotNull("The rendered fixture text must be accessible",visibleText);
+        assertTrue("The fixture text must be visible",visibleText.getVisibleBounds().height()>0);
+        menu();
+        UiObject2 findAction=null;
+        for(int i=0;i<20&&findAction==null;i++){
+            device.waitForIdle();findAction=device.findObject(By.text("尋找頁面文字"));
+            if(findAction==null)findAction=device.findObject(By.descContains("尋找頁面文字"));
+            if(findAction==null){
+                // Short, slow drags cannot fling past this middle-of-menu row.
+                int y=device.getDisplayHeight()*3/4;
+                device.swipe(device.getDisplayWidth()/2,y,device.getDisplayWidth()/2,y-120,60);
+            }
+        }
+        assertNotNull("Find-in-page menu action must be visible",findAction);
+        device.waitForIdle();SystemClock.sleep(300);
+        findAction=device.findObject(By.text("尋找頁面文字"));
+        if(findAction==null)findAction=device.findObject(By.descContains("尋找頁面文字"));
+        assertNotNull("Re-query the settled menu action",findAction);
+        while(findAction!=null&&!findAction.isClickable())findAction=findAction.getParent();
+        assertNotNull(findAction);findAction.click();device.waitForIdle();
         assertTrue(device.wait(Until.gone(By.desc("關閉選單")),5000));
         UiObject2 input=require(By.clazz("android.widget.EditText"));
         input.setText("搜尋針甲");

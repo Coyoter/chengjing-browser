@@ -54,7 +54,12 @@ class SearchEngineSettingsTest {
         input.performTextReplacement("https://find.example/search?lang=zh-TW&q={query}")
         ui.onNodeWithTag("custom-search-preview").assertExists()
         ui.runOnIdle{assertEquals("https://find.example/search?lang=zh-TW&q=%E6%BE%84%E5%A2%83%20%E7%80%8F%E8%A6%BD%E5%99%A8",SearchEngines.searchUrl("澄境 瀏覽器",SearchSettings("custom","https://find.example/search?lang=zh-TW&q={query}")))}
+        // The editor is inside a dialog window; close its keyboard through the
+        // focused test root rather than the Activity's unrelated window token.
+        androidx.test.espresso.Espresso.closeSoftKeyboard()
+        ui.waitForIdle()
         ui.onNodeWithTag("save-custom-search").performScrollTo().assertIsDisplayed().assertIsEnabled().performClick()
+        ui.waitUntil(5000){store.searchEngine=="custom"}
         ui.runOnIdle{assertEquals("custom",store.searchEngine);assertEquals("find.example",SearchEngines.description(store.searchSettings))}
         screenshot("02-custom-dark-ready")
         ui.activityRule.scenario.recreate()
