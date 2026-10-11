@@ -21,6 +21,7 @@ class SyncRecoveryTest{
     private val snapshots=ConcurrentHashMap<String,String>()
     private val failures=AtomicInteger()
     private val patches=AtomicInteger()
+    private val uploadPaths=java.util.concurrent.ConcurrentLinkedQueue<String>()
     private var failureCode=503
     private var slow=false
     @Before fun setup(){
@@ -34,7 +35,9 @@ class SyncRecoveryTest{
         snapshots["favorites"]=FavoriteFormat.snapshot(c.favorites.records())
         snapshots["sites"]=SiteSettingsFormat.write(c.store.siteRecords())
         server.dispatcher=object:Dispatcher(){override fun dispatch(request:RecordedRequest):MockResponse{
-            if(failures.getAndUpdate{maxOf(0,it-1)}>0)return if(slow)MockResponse().setBody("late").setBodyDelay(700,TimeUnit.MILLISECONDS)
+            // A real read timeout is still forced, without imposing a 200 ms
+            // deadline on unrelated successful responses during cold emulator startup.
+            if(failures.getAndUpdate{maxOf(0,it-1)}>0)return if(slow)MockResponse().setBody("late").setBodyDelay(2500,TimeUnit.MILLISECONDS)
                 else MockResponse().setResponseCode(failureCode)
             val path=request.requestUrl!!.encodedPath
             val body=when{
@@ -44,7 +47,7 @@ class SyncRecoveryTest{
                     val kind=when{q.contains(FavoriteFormat.TAG)->"favorites";q.contains(SiteSettingsFormat.TAG)->"sites";else->"bookmarks"}
                     JSONObject().put("files",JSONArray().put(JSONObject().put("id",kind).put("appProperties",JSONObject().put("device",device)))).toString()
                 }
-                request.method=="PATCH"->{val id=path.substringAfterLast('/');snapshots[id]=request.body.readUtf8();patches.incrementAndGet();"""{"id":"$id"}"""}
+                request.method=="PATCH"->{val id=path.substringAfterLast('/');snapshots[id]=request.body.readUtf8();uploadPaths.add(path);patches.incrementAndGet();"""{"id":"$id"}"""}
                 else->snapshots[path.substringAfterLast('/')]?:error("Unexpected fixture request")
             }
             return MockResponse().setBody(body)
@@ -52,7 +55,7 @@ class SyncRecoveryTest{
         server.start()
         val endpoint=server.url("/").toString()
         ui.runOnIdle{
-            ui.activity.bookmarkSync=BookmarkSync(ui.activity,store){token->BookmarkDrive(token,DriveTransport(DriveTransport.client().newBuilder().readTimeout(200,TimeUnit.MILLISECONDS).build()){0},endpoint)}
+            ui.activity.bookmarkSync=BookmarkSync(ui.activity,store){token->BookmarkDrive(token,DriveTransport(DriveTransport.client().newBuilder().readTimeout(1000,TimeUnit.MILLISECONDS).build()){0},endpoint)}
         }
     }
     @After fun cleanup(){ui.runOnIdle{sync.disconnect();store.replace(emptyList());store.accountId="";store.accountLabel="";store.lastSync=0;c.sheet=""};server.shutdown()}
@@ -63,7 +66,7 @@ class SyncRecoveryTest{
         slow=true;failures.set(1);start();finished()
         assertTrue(sync.status+": "+sync.details,sync.connected);assertTrue(store.lastSync>123);assertEquals("",sync.details)
         assertEquals(store.all(),BookmarkFormat.readSnapshot(snapshots.getValue("bookmarks")))
-        assertEquals(1,patches.get())
+        assertEquals("Unexpected uploads: $uploadPaths",1,patches.get())
         val before=server.requestCount
         ui.runOnIdle{sync.resume()};ui.waitForIdle();assertEquals(before,server.requestCount)
         start();finished();assertEquals("Unchanged snapshots must not be uploaded again",1,patches.get())
