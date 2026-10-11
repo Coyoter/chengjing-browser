@@ -42,6 +42,13 @@ class RuleEditingJourneyTest {
     private fun openFirst(){main{c.sheet="rules"}
         ui.onNodeWithText(first.selector).performScrollTo().performClick();ui.onNodeWithTag("saved-rule-css").assertExists()
     }
+    private fun saveEditedRule(){
+        // Text replacement opens the real dialog IME asynchronously. Close it
+        // before scrolling/tapping a button whose bounds otherwise move mid-tap.
+        androidx.test.espresso.Espresso.closeSoftKeyboard()
+        ui.waitForIdle()
+        ui.onNodeWithTag("save-rule").performScrollTo().assertIsEnabled().performClick()
+    }
     private fun analyze(){
         ui.onNodeWithText("請 AI 修改這項規則").performScrollTo().performClick()
         ui.onNodeWithTag("developer-ai-problem").performTextReplacement("改成藍色，保留原本內容")
@@ -62,7 +69,7 @@ class RuleEditingJourneyTest {
         openFirst();assertEquals(2,c.site.edits.size)
         screenshot("editor-light")
         ui.onNodeWithTag("saved-rule-html").performScrollTo().assertTextContains(first.html).performTextReplacement("<b id='saved-note'>手動修訂</b>")
-        ui.onNodeWithTag("save-rule").performScrollTo().performClick()
+        saveEditedRule()
         until{eval("document.querySelector('#saved-note')?.textContent")=="\"手動修訂\""}
         assertEquals(listOf("editable","keep"),c.site.edits.map{it.id});assertEquals(second,c.site.edits[1]);assertEquals(first.css,c.site.edits[0].css)
         ui.activityRule.scenario.recreate();until{eval("document.querySelector('#saved-note')?.textContent")=="\"手動修訂\""}
@@ -100,7 +107,7 @@ class RuleEditingJourneyTest {
     @Test fun manualEditingDoesNotRequireTheSavedElementOnThisPage(){
         eval("document.querySelector('#notice-banner').remove()")
         openFirst();ui.onNodeWithTag("saved-rule-css").performTextReplacement("color: blue;")
-        ui.onNodeWithTag("save-rule").performScrollTo().performClick()
+        saveEditedRule()
         until{c.site.edits[0].css=="color: blue;"};assertEquals(second,c.site.edits[1])
     }
     @Test fun domainsOpenSavedRulesAndWebsiteRevisionPreservesElementEdits(){
