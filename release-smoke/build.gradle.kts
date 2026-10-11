@@ -14,5 +14,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test:runner:1.7.0")
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
+    // Only the independent QA host emits synthetic fused fixes; :app stays uninstrumented.
+    implementation("com.google.android.gms:play-services-location:21.4.0")
     // Intentionally no dependency on :app, Compose, or LiteRT-LM.
 }

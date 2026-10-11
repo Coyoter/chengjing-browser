@@ -14,6 +14,7 @@ METHODS = (
     "systemIntegrationSettingsAndInstallPermissionSurviveOptimization",
     "cameraAndMicrophoneRecordActualMediaInOptimizedRelease",
     "languageSelectionLocalizesTheMinifiedInterfaceAndPersists",
+    "googleFusedLocationWorksWhenAndroidProvidersAreSilentInOptimizedRelease",
     "websiteLocationRequiresConsentAndReturnsCoordinatesInOptimizedRelease",
     "findInPageKeepsWebContentVisibleAndNavigatesNativeMatches",
     "installedReleaseIsActuallyObfuscatedAndNotDebuggable",

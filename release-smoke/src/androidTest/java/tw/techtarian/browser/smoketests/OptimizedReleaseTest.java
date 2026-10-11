@@ -546,6 +546,40 @@ public class OptimizedReleaseTest {
             assertFalse(device.hasObject(By.text("允許定位")));
         }finally{running.set(false);gps.join(1000);manager.removeTestProvider("gps");manager.removeTestProvider("network");}
     }
+    @Test @SuppressWarnings("deprecation") public void googleFusedLocationWorksWhenAndroidProvidersAreSilentInOptimizedRelease() throws Exception {
+        Context hostContext=InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String host=hostContext.getPackageName();
+        for(String pkg:new String[]{APP,host})for(String permission:new String[]{"android.permission.ACCESS_COARSE_LOCATION","android.permission.ACCESS_FINE_LOCATION"})
+            device.executeShellCommand("pm grant "+pkg+" "+permission);
+        device.executeShellCommand("cmd location set-location-enabled true");
+        device.executeShellCommand("appops set "+host+" android:mock_location allow");
+        android.location.LocationManager manager=hostContext.getSystemService(android.location.LocationManager.class);
+        com.google.android.gms.location.FusedLocationProviderClient client=com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(hostContext);
+        java.util.List<String> providers=new java.util.ArrayList<>();
+        boolean mocked=false;
+        try{
+            for(String provider:new String[]{"gps","network","fused"}){
+                manager.addTestProvider(provider,false,false,false,false,true,true,true,android.location.Criteria.POWER_LOW,android.location.Criteria.ACCURACY_FINE);
+                manager.setTestProviderEnabled(provider,true);providers.add(provider);
+            }
+            com.google.android.gms.tasks.Tasks.await(client.setMockMode(true),10,java.util.concurrent.TimeUnit.SECONDS);mocked=true;
+            launchPage("location");require(By.text("Location ready"));click("Locate QA");click("允許定位");
+            double[] received=null;
+            long deadline=SystemClock.elapsedRealtime()+15000;
+            while(received==null&&SystemClock.elapsedRealtime()<deadline){
+                android.location.Location point=new android.location.Location("fused");
+                point.setLatitude(25.033);point.setLongitude(121.5654);point.setAccuracy(12);
+                point.setTime(System.currentTimeMillis());point.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
+                com.google.android.gms.tasks.Tasks.await(client.setMockLocation(point),5,java.util.concurrent.TimeUnit.SECONDS);
+                received=fixture.locations.poll(500,java.util.concurrent.TimeUnit.MILLISECONDS);
+            }
+            assertNotNull("Only the real Google fused client emits this test position; Android providers stay silent",received);
+            assertEquals(25.033,received[0],.0001);assertEquals(121.5654,received[1],.0001);
+        }finally{
+            if(mocked)com.google.android.gms.tasks.Tasks.await(client.setMockMode(false),10,java.util.concurrent.TimeUnit.SECONDS);
+            for(String provider:providers)manager.removeTestProvider(provider);
+        }
+    }
     private void verifyLocationCallback() throws Exception {
         // Verify the page's real JS callback through its local HTTP result endpoint;
         // WebView accessibility text can lag behind already-painted DOM updates.
