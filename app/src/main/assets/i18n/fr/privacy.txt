@@ -62,3 +62,6 @@ Après autorisation site et Android, ChengJing demande directement la position a
 
 Autorisations du site (1.14.0)
 Les sites n’accèdent à la caméra et au microphone qu’après autorisation du site et d’Android. Le site traite les médias et fichiers choisis, sans envoi au développeur, à la synchronisation Google Drive ou à l’IA. Les captures sont temporaires : après 24 heures, nettoyage au prochain démarrage ou à la prochaine capture ; en privé, à la fermeture de tous les onglets privés ou au prochain démarrage. Le site et le système multimédia gèrent les licences des contenus protégés. Les permissions et choix de cookies tiers restent sur l’appareil ; les choix privés ne sont pas persistants.
+
+Sources de localisation des sites (1.14.1)
+Après autorisation du site et d’Android, ChengJing peut combiner la localisation fusionnée de Google Play avec les sources GPS/réseau Android. Ces dernières fonctionnent aussi sans Google. Les services Google suivent les réglages du téléphone et la politique de confidentialité de Google. Les demandes sont limitées au site au premier plan et cessent lors d’une annulation, navigation ou mise en arrière-plan. L’âge maximal autorisé par le site est respecté. Aucune permission de localisation en arrière-plan n’est ajoutée ; le développeur ne conserve ni ne synchronise les coordonnées.

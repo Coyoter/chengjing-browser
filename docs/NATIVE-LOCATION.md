@@ -6,6 +6,14 @@
 
 1.11.1 在支援 document-start script 與 WebMessageListener 的 WebView 中，將頂層網站的 `getCurrentPosition`、`watchPosition`、`clearWatch` 接到 Android `LocationManager`。GPS、network 與可用的 Android system fused provider 分別請求；不使用 Play Services 的 FusedLocationProviderClient。某一融合定位供應者失效，不會阻止直接 GPS／網路請求。較舊 WebView 保留原本路徑，網站資訊提供更新提示。
 
+## 1.14.1：補上 Google Play 服務融合定位
+
+使用者再次回報 Chrome 能定位、澄境逾時。原來的直接定位測試只證明 Android provider 收到測試座標後能交回網頁，沒有涵蓋 Google Play 服務可提供位置、直接 provider 卻沒有更新的情境；不能以先前的模擬 GPS 成功認定原手機問題已解決。
+
+1.14.1 透過 `FusedLocationProviderClient` 增加可選的定位來源，與原有 GPS／network／系統 fused 同時工作。Google 服務缺少、停用、失效或遲遲不回應，都不取消直接來源。高精度要求不強制等待 GPS 才交出有效網路位置；回傳精度仍如實提供給網站。網站接受近期位置時，以單調時鐘檢查實際時效；`maximumAge=0` 仍拒絕歷史位置。網站 timeout 保持原設定，成功、取消、換頁、離開前景及撤回授權時移除所有來源的請求。Google 定位註冊若在取消後才完成，也會再次移除，不留背景請求。
+
+`HybridPositionTest` 驗證來源互相備援、近期與過期位置、timeout、取消及持續定位的停止。`PlayServicesLocationTest` 使用真正的 Google API 測試模式，在直接 provider 沒有回報時將測試座標交回真正 WebView；opt-in 公開網頁測試使用原垃圾桶頁面及其 12 秒 timeout／30 秒 maximumAge，核對「定位完成」與最近五個地點。另保留停用 Google 服務的直接定位整合測試。這些是模擬器與測試座標證據，尚非使用者手機的實機接收結果。
+
 ## 授權與資料邊界
 
 - 訊息必須是有限長度的字串，來自安全來源與目前頂層框架。以 WebView 提供的 sourceOrigin 比對目前頁面，並回讀 document-start 時建立的不可改寫文件識別與 Permissions-Policy 描述；不信任網頁自行提供的來源或允許旗標。
@@ -27,5 +35,7 @@
 ## 參考
 
 - [Android LocationManager](https://developer.android.com/reference/android/location/LocationManager)
+- [Google 融合定位](https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient)
+- [定位請求與近期位置、精度等待設定](https://developers.google.com/android/reference/com/google/android/gms/location/LocationRequest.Builder)
 - [WebView 的來源與框架驗證](https://developer.android.com/reference/androidx/webkit/WebViewCompat#addWebMessageListener(android.webkit.WebView,java.lang.String,java.util.Set%3Cjava.lang.String%3E,androidx.webkit.WebViewCompat.WebMessageListener))
 - [Chromium 定位供應者選擇](https://github.com/chromium/chromium/blob/main/services/device/geolocation/android/java/src/org/chromium/device/geolocation/LocationProviderFactory.java)

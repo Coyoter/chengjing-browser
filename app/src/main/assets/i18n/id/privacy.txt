@@ -62,3 +62,6 @@ Setelah mendapat izin situs dan Android, ChengJing langsung meminta lokasi dari 
 
 Izin situs (1.14.0)
 Situs memakai kamera dan mikrofon hanya setelah izin situs dan Android. Media dan berkas pilihan diproses situs, bukan dikirim ke pengembang, sinkronisasi Google Drive atau AI. Hasil tangkapan disimpan sementara secara lokal: berkas biasa lebih dari 24 jam dibersihkan saat mulai atau mengambil berikutnya; berkas privat saat semua tab privat ditutup atau mulai berikutnya. Lisensi media terlindungi ditangani situs dan perangkat. Izin dan cookie pihak ketiga tetap lokal; pilihan privat tidak disimpan permanen.
+
+Sumber lokasi situs (1.14.1)
+Setelah izin situs dan Android diberikan, ChengJing dapat memakai lokasi gabungan Google Play bersama GPS/jaringan Android. Sumber langsung tetap tersedia tanpa Google. Layanan lokasi Google mengikuti pengaturan perangkat dan kebijakan privasi Google. Permintaan hanya berjalan untuk situs di latar depan dan berhenti saat dibatalkan, berpindah halaman atau masuk latar belakang. Usia maksimum lokasi yang diterima situs tetap dipatuhi. Tidak ada izin lokasi latar belakang tambahan; pengembang tidak menyimpan atau menyinkronkan koordinat.

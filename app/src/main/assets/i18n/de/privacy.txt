@@ -60,3 +60,6 @@ Nach Erteilung der Website- und Android-Berechtigung fordert ChengJing Standortd
 
 Website-Berechtigungen (1.14.0)
 Websites nutzen Kamera und Mikrofon erst nach Website- und Android-Freigabe. Medien und gewählte Dateien verarbeitet die Website; keine Übertragung an Entwickler, Google-Drive-Synchronisierung oder KI. Aufnahmen bleiben temporär lokal: reguläre Dateien über 24 Stunden werden beim nächsten Start oder Aufnehmen gelöscht, private beim Schließen aller privaten Tabs oder nächsten Start. Website und Gerätesystem verwalten geschützte Medien und Lizenzen. Website- und Drittanbieter-Cookie-Einstellungen bleiben lokal; private Einstellungen werden nicht dauerhaft gespeichert.
+
+Standortquellen für Websites (1.14.1)
+Nach Zustimmung für Website und Android kann ChengJing die kombinierte Standortbestimmung der Google Play-Dienste zusammen mit Android-GPS/Netzwerk nutzen. Direkte Quellen bleiben ohne Google verfügbar. Für Google-Standortdienste gelten Geräteeinstellungen und Googles Datenschutzerklärung. Anfragen laufen nur für Websites im Vordergrund und enden bei Abbruch, Navigation oder Wechsel in den Hintergrund. Das von der Website erlaubte Höchstalter wird eingehalten. Keine zusätzliche Hintergrundberechtigung; der Entwickler speichert oder synchronisiert keine Koordinaten.

@@ -62,3 +62,6 @@ Sau khi được cấp quyền trang web và Android, ChengJing trực tiếp y�
 
 Quyền của trang web (1.14.0)
 Trang web chỉ dùng máy ảnh và micrô sau khi có quyền của trang và Android. Trang web xử lý nội dung và tệp đã chọn, không gửi cho nhà phát triển, đồng bộ Google Drive hay AI. Tệp chụp lưu tạm trên máy: tệp thường hơn 24 giờ được dọn khi khởi động hoặc chụp lần sau; tệp riêng tư khi đóng mọi thẻ riêng tư hoặc khởi động lại. Trang và thiết bị xử lý giấy phép nội dung bảo vệ. Quyền và cookie bên thứ ba chỉ lưu trên máy; lựa chọn riêng tư không lưu lâu dài.
+
+Nguồn vị trí cho trang web (1.14.1)
+Sau khi trang web và Android được cấp quyền, ChengJing có thể kết hợp vị trí hợp nhất của Google Play với GPS/mạng Android. Nguồn trực tiếp vẫn hoạt động khi không có Google. Dịch vụ vị trí Google tuân theo cài đặt thiết bị và chính sách quyền riêng tư của Google. Yêu cầu chỉ chạy cho trang web ở tiền cảnh, dừng khi hủy, chuyển trang hoặc vào nền. Tuân thủ tuổi tối đa của vị trí do trang web cho phép. Không thêm quyền vị trí nền; nhà phát triển không lưu hay đồng bộ tọa độ.

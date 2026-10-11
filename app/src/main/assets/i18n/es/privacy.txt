@@ -62,3 +62,6 @@ Con autorización del sitio y Android, ChengJing solicita ubicación directament
 
 Permisos del sitio (1.14.0)
 Los sitios usan cámara y micrófono solo tras los permisos del sitio y Android. El sitio procesa los medios y archivos elegidos; no se envían al desarrollador, a la sincronización de Google Drive ni a la IA. Las capturas son temporales: los archivos normales de más de 24 horas se eliminan al iniciar o capturar de nuevo; los privados, al cerrar todas las pestañas privadas o al reiniciar. El sitio y el dispositivo gestionan las licencias protegidas. Los permisos y cookies de terceros quedan en el dispositivo; las elecciones privadas no se guardan permanentemente.
+
+Fuentes de ubicación de los sitios (1.14.1)
+Con permiso del sitio y de Android, ChengJing puede combinar la ubicación fusionada de Google Play con GPS/red de Android. Las fuentes directas siguen disponibles sin Google. Los servicios de ubicación de Google se rigen por la configuración del dispositivo y su política de privacidad. Las solicitudes solo operan para sitios en primer plano y terminan al cancelar, navegar o pasar a segundo plano. Se respeta la antigüedad máxima admitida por el sitio. No se añade permiso de ubicación en segundo plano; el desarrollador no guarda ni sincroniza coordenadas.

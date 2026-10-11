@@ -62,3 +62,6 @@ With site and Android permission granted, ChengJing directly requests location f
 
 Site permissions (1.14.0)
 Websites can use the camera or microphone only after site and Android permission. Audio, video and files you choose to upload are handled by the current website, not sent to the developer, Google Drive sync or AI services. Captures use local temporary files; regular files older than 24 hours are cleaned on the next start or capture, and private captures are cleaned when all private tabs close or on the next start. Protected media identification and licensing are handled by the website and device media system. Site permissions and third-party cookie choices stay on this device; private choices are not persisted.
+
+Website location sources (1.14.1)
+After website and Android consent, ChengJing may use Google Play services fused location alongside Android GPS/network providers. Direct providers remain available without Google services. Google location services follow device settings and Google’s privacy policy. Requests run only for a foreground website and stop on cancellation, navigation or leaving the foreground. Positions must meet the website’s maximum age. No background location permission is added; the developer does not store or sync coordinates.

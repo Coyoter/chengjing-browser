@@ -20,16 +20,19 @@ internal data class PositionOptions(val highAccuracy:Boolean=false,val timeout:L
     }
 }
 
-/** Explicit Android providers: no WebView or Google Play location dependency. Main-thread owned. */
+/** Race optional Play Services with independent Android providers. Main-thread owned. */
 internal class NativePositionRequest(
     private val context:Context,private val options:PositionOptions,private val watch:Boolean,
     private val onStarted:(Set<String>)->Unit,private val onPosition:(JSONObject)->Unit,
-    private val onError:(Int,String,Boolean)->Unit
+    private val onError:(Int,String,Boolean)->Unit,
+    private val supplemental:SupplementalPositionSource?=PlayServicesPositionSource.create(context)
 ):AutoCloseable{
     private val manager=context.getSystemService(LocationManager::class.java)
     private val main=Handler(Looper.getMainLooper())
     private val registered=linkedSetOf<String>()
-    val activeProviders:Set<String> get()=registered.toSet()
+    private var supplementalActive=false
+    private var supplementalAttempted=false
+    val activeProviders:Set<String> get()=registered.toSet()+if(supplementalActive)setOf("play-services-fused")else emptySet()
     private var closed=false
     private var precise=false
     private var startedNanos=0L
@@ -44,11 +47,10 @@ internal class NativePositionRequest(
     private val retry=Runnable{if(!closed)register()}
     private val listener=object:LocationListener{
         override fun onLocationChanged(location:Location){
-            if(closed||location.elapsedRealtimeNanos<startedNanos||location.elapsedRealtimeNanos<=lastFixNanos)return
-            deliver(location)
+            receive(location)
         }
         override fun onProviderDisabled(provider:String){
-            if(!closed&&registered.none{runCatching{manager.isProviderEnabled(it)}.getOrDefault(false)}){
+            if(!closed&&!supplementalActive&&registered.none{runCatching{manager.isProviderEnabled(it)}.getOrDefault(false)}){
                 if(!watch)close()
                 onError(2,bt(R.string.msg_2e6933e93990),!watch)
             }
@@ -93,10 +95,35 @@ internal class NativePositionRequest(
                 registered.add(provider)
             }catch(_:SecurityException){denied=true}catch(_:RuntimeException){}
         }
-        if(registered.isEmpty()){
+        if(!supplementalAttempted&&supplemental!=null){
+            supplementalAttempted=true;supplementalActive=true
+            var starting=true
+            supplemental.start(options,::receive){
+                if(!closed){
+                    supplementalActive=false
+                    // One failed source must not cancel another source's pending fix.
+                    if(!starting&&registered.isEmpty())unavailable(false)
+                }
+            }
+            starting=false
+        }
+        if(closed)return
+        if(activeProviders.isEmpty())unavailable(denied)else onStarted(activeProviders)
+    }
+    private fun unavailable(denied:Boolean){
+        if(closed)return
+        if(registered.isEmpty()&&!supplementalActive){
             if(!watch||denied)close()else main.postDelayed(retry,5000)
             onError(if(denied)1 else 2,if(denied)bt(R.string.msg_aa939329dc62)else bt(R.string.msg_8e6878344350),!watch||denied)
-        }else onStarted(activeProviders)
+        }
+    }
+    private fun receive(location:Location){
+        if(closed||location.elapsedRealtimeNanos<=lastFixNanos)return
+        val age=SystemClock.elapsedRealtimeNanos()-location.elapsedRealtimeNanos
+        if(age<0)return
+        if(location.elapsedRealtimeNanos<startedNanos&&
+            (options.maximumAge==0L||age/1_000_000>options.maximumAge))return
+        deliver(location)
     }
     private fun deliver(location:Location):Boolean{
         if((precise&&!permitted(Manifest.permission.ACCESS_FINE_LOCATION))||
@@ -120,6 +147,7 @@ internal class NativePositionRequest(
     override fun close(){
         if(closed)return
         closed=true;main.removeCallbacksAndMessages(null)
+        supplementalActive=false;supplemental?.close()
         // Also remove a transport whose registration reply failed after the service accepted it.
         runCatching{manager.removeUpdates(listener)}
         registered.clear()
