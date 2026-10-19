@@ -1,2 +1,3 @@
-Added optional on-device Gemma 4 E2B without an API key.
-Immersive fullscreen video, website icons for saved links, and local address-bar history suggestions.
+Improved new-window and web browsing behavior to keep unexpected pages from opening alongside your clicks.
+
+If a page you need is held when "Prevent redirects and pop-ups" is enabled, go to "Block Records" and choose "Open in New Tab" to continue your original action.

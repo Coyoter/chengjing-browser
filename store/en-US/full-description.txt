@@ -1,6 +1,7 @@
-ChengJing Browser brings everyday browsing and webpage customization together.
+ChengJing Browser makes webpage customization easy and integrates seamlessly with Sky Eye developer tools. View the current page's structure, choose the elements you want to adjust, add custom styles, interactions or content, and save your personal settings. These adjustments only change how pages appear in ChengJing; they do not change the website's original server-side code.
 
-Sky Eye developer tools visualize the current page's DOM structure. Select an element to add CSS, JavaScript or HTML, edit its inner HTML, or remove the element from your own view. Save domain settings and restore the original site or the previous saved settings whenever needed. These changes affect your browser, not the website's server source code.
+Your window and navigation settings
+Choose whether to enable "Prevent redirects and pop-ups" for each website. Text links, image links and website redirects remain available. Open a window you need from "Block Records" using "Open in New Tab" to continue your original action.
 
 Optional AI assistance
 Describe changes for the website, or ask AI to focus on one selected element. Review the proposed changes and apply them with one tap. AI uses a limited structural snapshot of the current page, your saved customization code and your request; it does not inspect every page of the website. Choose on-device Gemma 4 E2B without an API key, or OpenRouter. The local model requires a separate download of about 2.59 GB, a compatible 64-bit device and sufficient storage and memory. OpenRouter requires your own API key and provider fees may apply; consent is requested before each cloud analysis. AI suggestions may be incorrect.
@@ -11,4 +12,4 @@ Tabs, local address-bar history suggestions, immersive fullscreen video, in-page
 Data and compatibility
 Most browser data is stored locally. Optional Google sync uses only this app's private Drive app-data space. In-app privacy information explains data use and deletion. The browser uses your device's Android System WebView; engine updates come from its provider. Some sites and embedded elements have compatibility or access restrictions. Saved customizations may need adjustment when a site changes. Custom JavaScript has webpage-code capabilities; use code you understand.
 
-The app interface is currently in Traditional Chinese.
+The app interface supports 17 languages.
