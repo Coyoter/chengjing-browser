@@ -34,6 +34,7 @@ class BrowserTab(val id:Int,val web:SelectionWebView,val incognito:Boolean=false
     internal val externalGesture=ExternalLinkGesture{android.os.SystemClock.elapsedRealtime()}
     internal var externalOpenerId:Int?=null
     internal var openedExternally=false
+    internal var acceptedPopupTouch=-1L
     var preview by mutableStateOf<Bitmap?>(null)
     internal var imageContent by mutableStateOf<ImageAsset?>(null)
     val warnings=if(incognito)CertificateWarnings()else CertificateWarnings.session
@@ -71,6 +72,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     internal val browsingDataCleaner=BrowsingDataCleaner(this)
     private var restoringTabs=false
     private var destroyed=false
+    private data class DeferredWindow(val owner:BrowserTab,val generation:Long,val message:Message,val event:BlockedEvent)
+    private data class LinkWindow(val owner:BrowserTab,val generation:Long,val href:String,val touch:Long,var rejected:Boolean=false)
+    private val deferredWindows=mutableMapOf<Int,DeferredWindow>()
+    private val linkWindows=mutableMapOf<BrowserTab,LinkWindow>()
     val tabs = mutableStateListOf<BrowserTab>()
     internal val findInPage=FindInPage(this)
     private var currentTabId by mutableIntStateOf(0)
@@ -218,10 +223,86 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         tabs.forEach{it.web.settings.userAgentString=currentUserAgent(it.desktop)}
         revision++;reload()
     }
-    private fun recordBlocked(tab:BrowserTab,kind:String,url:String=""){
+    private fun recordBlocked(tab:BrowserTab,kind:String,url:String=""):BlockedEvent{
         blockedCount++;tab.blockedTotal++;tab.blockedUnread=true
-        tab.blockedEvents.add(0,BlockedEvent(kind,url.take(4000)))
+        val event=BlockedEvent(kind,url.take(4000));tab.blockedEvents.add(0,event)
         if(tab.blockedEvents.size>30)tab.blockedEvents.removeAt(tab.blockedEvents.lastIndex)
+        return event
+    }
+    private fun finishWindow(message:Message,child:BrowserTab?){
+        (message.obj as WebView.WebViewTransport).webView=child?.web
+        message.sendToTarget()
+    }
+    private fun cancelDeferredWindow(owner:Int){
+        deferredWindows.remove(owner)?.let{mainHandler.removeCallbacksAndMessages(it);it.event.openWindow=null;finishWindow(it.message,null)}
+    }
+    private fun cancelWindows(owner:Int){
+        cancelDeferredWindow(owner)
+        linkWindows.filterValues{it.owner.id==owner}.keys.toList().forEach{discardLinkWindow(it)}
+    }
+    private fun discardLinkWindow(tab:BrowserTab){
+        val pending=linkWindows.remove(tab)?:return
+        mainHandler.removeCallbacksAndMessages(pending)
+        tab.documentScript?.remove();tab.web.stopLoading();tab.refreshContainer.removeAllViews();tab.web.destroy()
+    }
+    private fun showPopup(tab:BrowserTab){
+        capturePreview(active)
+        (context as? MainActivity)?.websiteLocation?.pauseFor(activeId)
+        (context as? MainActivity)?.websitePermissions?.cancelFor(activeId)
+        (context as? MainActivity)?.websiteFiles?.cancelFor(activeId)
+        stopEye();SystemAutofill.cancel(context)
+        tabs.add(tab);activeId=tab.id;sheet="";updatePrivacyWindow()
+        (context as? MainActivity)?.websiteLocation?.attach(tab)
+        refreshScripts(listOf(tab),applyToPage=false);persistTabs()
+    }
+    /** Admit the original WebView only when its first destination is the native tapped href. */
+    private fun admitLinkWindow(tab:BrowserTab,url:String):Boolean{
+        val pending=linkWindows[tab]?:return tab in tabs
+        if(url=="about:blank")return false
+        val owner=pending.owner
+        if(!destroyed&&owner in tabs&&owner.id==activeId&&owner.navigationGeneration==pending.generation&&
+            owner.web.touchSequence==pending.touch&&owner.acceptedPopupTouch!=pending.touch&&
+            Uri.parse(url).normalizeScheme()==Uri.parse(pending.href).normalizeScheme()){
+            owner.acceptedPopupTouch=pending.touch;linkWindows.remove(tab);mainHandler.removeCallbacksAndMessages(pending);showPopup(tab);return true
+        }
+        if(!pending.rejected){
+            pending.rejected=true
+            if(owner in tabs)recordBlocked(owner,bt(R.string.msg_e9ea75903633),url)
+            // Chromium may consume the click on the ad and refuse the anchor's default window
+            // before onCreateWindow is even called. Follow the actual native href in that case.
+            // Give a normal default window a short chance to arrive, so we never open it twice.
+            mainHandler.postAtTime({
+                if(linkWindows[tab]===pending){
+                    if(!destroyed&&owner in tabs&&owner.id==activeId&&owner.navigationGeneration==pending.generation&&
+                        owner.web.touchSequence==pending.touch&&owner.acceptedPopupTouch!=pending.touch){
+                        owner.acceptedPopupTouch=pending.touch;linkWindows.remove(tab);mainHandler.removeCallbacksAndMessages(pending)
+                        showPopup(tab);tab.web.loadUrl(pending.href)
+                    }else discardLinkWindow(tab)
+                }
+            },pending,android.os.SystemClock.uptimeMillis()+100)
+        }
+        return false
+    }
+    private fun receiveWindow(owner:BrowserTab,message:Message,href:String?=null){
+        val child=createTab("",owner.incognito,null,popup=href?.let{LinkWindow(owner,owner.navigationGeneration,it,owner.web.touchSequence)})
+        if(child!=null){sheet="";child.externalGesture.popupFromClick();child.externalOpenerId=owner.id}
+        finishWindow(message,child)
+    }
+    private fun nativeWindowHref(raw:String?,page:String):String?=
+        PageActionPolicy.resolve(raw,page)?.takeIf{ExternalLinkPolicy.isWeb(Uri.parse(it).scheme)}
+    private fun deferWindow(owner:BrowserTab,message:Message){
+        val event=recordBlocked(owner,bt(R.string.msg_e9ea75903633))
+        val pending=DeferredWindow(owner,owner.navigationGeneration,message,event)
+        deferredWindows[owner.id]=pending
+        event.openWindow={
+            if(deferredWindows[owner.id]===pending){
+                deferredWindows.remove(owner.id);mainHandler.removeCallbacksAndMessages(pending);event.openWindow=null
+                if(!destroyed&&owner in tabs&&owner.navigationGeneration==pending.generation)receiveWindow(owner,message)
+                else finishWindow(message,null)
+            }
+        }
+        // Bound native pending contents; navigation/closing also releases them immediately.
+        mainHandler.postAtTime({if(deferredWindows[owner.id]===pending)cancelWindows(owner.id)},pending,android.os.SystemClock.uptimeMillis()+120_000)
     }
     fun toggleDesktop(){
         active?.let{tab->
@@ -252,18 +333,21 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     internal fun newImageTab(image:ImageAsset,incognito:Boolean):BrowserTab?=createTab("",incognito,null,image)
     @SuppressLint("SetJavaScriptEnabled")
-    private fun createTab(url:String,incognito:Boolean,restored:SavedBrowserTab?,image:ImageAsset?=null,openedExternally:Boolean=false):BrowserTab? {
+    private fun createTab(url:String,incognito:Boolean,restored:SavedBrowserTab?,image:ImageAsset?=null,openedExternally:Boolean=false,popup:LinkWindow?=null):BrowserTab? {
         if(incognito&&!privateSession.supported){sheet="";notice=bt(R.string.msg_98603eac2c1f);return null}
-        capturePreview(active)
+        if(popup==null){capturePreview(active)
         (context as? MainActivity)?.websiteLocation?.pauseFor(activeId)
         (context as? MainActivity)?.websitePermissions?.cancelFor(activeId)
         (context as? MainActivity)?.websiteFiles?.cancelFor(activeId)
-        stopEye()
+        stopEye()}
         val web=SelectionWebView(context)
         if(incognito)try{privateSession.attach(web)}catch(_:Exception){web.destroy();notice=bt(R.string.msg_b860234cdca4);return null}
         // Discard WebView trust decisions from older versions; only saved site choices apply.
         web.clearSslPreferences()
         val tab=BrowserTab(nextId++,web,incognito,if(incognito)null else restored?.key?:TabPreviewStore.newKey())
+        // WebView retains only one native pending popup. Release it before the next page
+        // gesture creates another, rather than cancelling after that new request exists.
+        web.onPageTouch={cancelDeferredWindow(tab.id)}
         tab.url=url
         tab.openedExternally=restored?.openedExternally?:openedExternally
         tab.imageContent=image
@@ -342,6 +426,10 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 return null
             }
             override fun shouldOverrideUrlLoading(view:WebView, request:WebResourceRequest):Boolean {
+                if(tab in linkWindows){
+                    if(!request.isForMainFrame)return true
+                    if(!admitLinkWindow(tab,request.url.toString()))return true
+                }
                 if(tab !in tabs)return true
                 if(web.selecting) return true
                 val u=request.url.toString()
@@ -363,10 +451,12 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 return false
             }
             override fun onPageStarted(view:WebView,url:String,favicon:Bitmap?) {
+                if(tab in linkWindows&&!admitLinkWindow(tab,url)){view.stopLoading();return}
                 (context as? MainActivity)?.websiteLocation?.cancelFor(tab.id)
                 (context as? MainActivity)?.websitePermissions?.cancelFor(tab.id)
                 (context as? MainActivity)?.websiteFiles?.cancelFor(tab.id)
                 if(tab !in tabs)return
+                cancelWindows(tab.id)
                 if(web.selecting){view.stopLoading();return}
                 (context as? MainActivity)?.pageDownloads?.cancelFor(tab.id)
                 if(!tab.restoringNavigation)tab.lastActiveAt=System.currentTimeMillis()
@@ -497,11 +587,34 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 persistTabs()
             }
             override fun onCreateWindow(view:WebView,isDialog:Boolean,isUserGesture:Boolean,resultMsg:Message):Boolean {
-                if(web.selecting) return false
-                if(!isUserGesture) {recordBlocked(tab,bt(R.string.msg_e9ea75903633));return false}
-                val child=newTab(incognito=tab.incognito) ?: return false
-                child.externalGesture.popupFromClick();child.externalOpenerId=tab.id
-                (resultMsg.obj as WebView.WebViewTransport).webView=child.web;resultMsg.sendToTarget();return true
+                if(web.selecting||tab !in tabs||tab.id!=activeId) return false
+                cancelDeferredWindow(tab.id)
+                val scope=Domains.scope(tab.url)
+                if(scope in exceptions||!store.get(scope).guard){
+                    if(!isUserGesture){recordBlocked(tab,bt(R.string.msg_e9ea75903633));return false}
+                    receiveWindow(tab,resultMsg);return true
+                }
+                val hit=web.hitTestResult
+                // A hijacker can consume Chromium's gesture flag before the real anchor opens.
+                // Only the exact native href may still be admitted, once per physical touch.
+                val fresh=web.lastTouchAt>0&&tab.acceptedPopupTouch!=web.touchSequence&&
+                    android.os.SystemClock.elapsedRealtime()-web.lastTouchAt in 0..2000
+                if(fresh&&hit.type==WebView.HitTestResult.SRC_ANCHOR_TYPE){
+                    val href=nativeWindowHref(hit.extra,tab.url)
+                    if(href!=null){receiveWindow(tab,resultMsg,href);return true}
+                }
+                if(fresh&&hit.type==WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE){
+                    val generation=tab.navigationGeneration
+                    val handler=android.os.Handler(android.os.Looper.getMainLooper()){resolved->
+                        val href=nativeWindowHref(resolved.data.getString("url"),tab.url)
+                        if(tab !in tabs||tab.navigationGeneration!=generation)finishWindow(resultMsg,null)
+                        else if(href!=null)receiveWindow(tab,resultMsg,href)else deferWindow(tab,resultMsg)
+                        true
+                    }
+                    web.requestFocusNodeHref(handler.obtainMessage());return true
+                }
+                if(!isUserGesture){recordBlocked(tab,bt(R.string.msg_e9ea75903633));return false}
+                deferWindow(tab,resultMsg);return true
             }
             override fun onPermissionRequest(request:PermissionRequest){
                 val permissions=(context as? MainActivity)?.websitePermissions
@@ -533,6 +646,11 @@ class BrowserController(val context: Context, val store: BrowserStore) {
             }
         }
         PageContextMenu(this,tab).install()
+        if(popup!=null){
+            linkWindows[tab]=popup
+            mainHandler.postAtTime({discardLinkWindow(tab)},popup,android.os.SystemClock.uptimeMillis()+10_000)
+            return tab
+        }
         SystemAutofill.cancel(context)
         tabs.add(tab);activeId=tab.id;updatePrivacyWindow()
         (context as? MainActivity)?.websiteLocation?.attach(tab)
@@ -613,6 +731,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     }
     fun switchTab(id:Int){val tab=tabs.find{it.id==id}?:return;if(id!=activeId)SystemAutofill.cancel(context);capturePreview(active);if(id!=activeId){(context as? MainActivity)?.websitePermissions?.cancelFor(activeId);(context as? MainActivity)?.websiteFiles?.cancelFor(activeId)};(context as? MainActivity)?.websiteLocation?.pauseFor(activeId);stopEye();tab.lastActiveAt=System.currentTimeMillis();activeId=id;activateRestoredTab(tab);(context as? MainActivity)?.websiteLocation?.resumeFor(id);persistTabs();sheet="";updatePrivacyWindow()}
     fun closeTab(id:Int,replaceLast:Boolean=true){
+        cancelWindows(id)
         (context as? MainActivity)?.websiteLocation?.detach(id)
         (context as? MainActivity)?.websitePermissions?.cancelFor(id)
         (context as? MainActivity)?.websiteFiles?.cancelFor(id)
@@ -693,5 +812,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         notice=if(d in exceptions)bt(R.string.msg_edeb1a15813d)else bt(R.string.msg_a4038cb71105)
     }
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice=bt(R.string.msg_b3f41aaeb32b)}}
-    fun destroy(){if(destroyed)return;findInPage.close();destroyed=true;prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
+    fun destroy(){if(destroyed)return;findInPage.close();destroyed=true;deferredWindows.keys.toList().forEach{cancelWindows(it)};linkWindows.keys.toList().forEach{discardLinkWindow(it)};prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }

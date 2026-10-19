@@ -2,7 +2,7 @@
 
 以 Android Chromium WebView 瀏覽網站，透過「天眼」調整元件、加入 CSS 樣式或 JavaScript 頁面內容，再保存同網域設定。介面提供淺色、深色、跟隨系統與上下網址列配置。
 
-目前原始碼版本為 **1.14.1（versionCode 45）**：網站定位同時嘗試可用的 Google Play 服務融合定位與 Android GPS／網路來源，改善只有單一路徑等待而逾時的情況；Google 服務不可用時仍可直接定位。保留 1.14.0 的網站權限、拍攝上傳、Cookie 例外與分頁改善，以及 17 種語言、天眼、同步、密碼填入和 APK 安裝。**GitHub Release 與 Google Play 提交、核准及上架是不同狀態**，以各自讀回結果為準。[1.14.1 更新說明](docs/releases/1.14.1.md) · [功能與核心限制清單](docs/BROWSER-COMPATIBILITY.md) · [系統整合](docs/SYSTEM-INTEGRATION.md) · [多語系](docs/LOCALIZATION.md) · [簽章與發布](docs/RELEASING.md)
+目前原始碼版本為 **1.14.2（versionCode 46）**：修正播放按鈕附帶廣告視窗繞過防護的問題，保留正常文字與圖片連結、伺服器轉址，並可從攔截紀錄接續正常腳本／表單的新視窗。保留 1.14.1 的 Google 與 Android 並行定位，以及網站權限、拍攝上傳、Cookie 例外、分頁改善與 17 種語言。**GitHub Release 與 Google Play 提交、核准及上架是不同狀態**，以各自讀回結果為準。[1.14.2 更新說明](docs/releases/1.14.2.md) · [功能與核心限制清單](docs/BROWSER-COMPATIBILITY.md) · [系統整合](docs/SYSTEM-INTEGRATION.md) · [多語系](docs/LOCALIZATION.md) · [簽章與發布](docs/RELEASING.md)
 
 ## 安裝與使用
 

@@ -13,6 +13,7 @@ TEST = HOST + ".OptimizedReleaseTest"
 METHODS = (
     "systemIntegrationSettingsAndInstallPermissionSurviveOptimization",
     "cameraAndMicrophoneRecordActualMediaInOptimizedRelease",
+    "popupGuardBlocksPlayAdsWithoutBreakingLinksOrManualWindows",
     "languageSelectionLocalizesTheMinifiedInterfaceAndPersists",
     "googleFusedLocationWorksWhenAndroidProvidersAreSilentInOptimizedRelease",
     "websiteLocationRequiresConsentAndReturnsCoordinatesInOptimizedRelease",

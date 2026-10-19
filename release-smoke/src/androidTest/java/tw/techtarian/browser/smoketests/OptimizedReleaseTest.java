@@ -74,6 +74,18 @@ public class OptimizedReleaseTest {
         assertNotNull("Missing UI: "+selector,node);
         return node;
     }
+    private UiObject2 freshPopupText(String text) {
+        long until=SystemClock.uptimeMillis()+20000;
+        do {
+            // A new WebView can occupy the old one's bounds. Refresh the test client's
+            // node cache instead of accepting a stale tree from before the tab switch.
+            if(android.os.Build.VERSION.SDK_INT>=34)InstrumentationRegistry.getInstrumentation().getUiAutomation().clearCache();
+            UiObject2 node=device.findObject(By.text(text));
+            if(node!=null)return node;
+            SystemClock.sleep(100);
+        }while(SystemClock.uptimeMillis()<until);
+        fail("Missing current popup content: "+text);return null;
+    }
     private UiObject2 findText(String text) throws Exception {
         for(int i=0;i<7;i++){
             device.waitForIdle();
@@ -182,9 +194,26 @@ public class OptimizedReleaseTest {
         require(By.text("Recorded QA media"));
         assertEquals(APP,device.getCurrentPackageName());
     }
+    @Test public void popupGuardBlocksPlayAdsWithoutBreakingLinksOrManualWindows() throws Exception {
+        launchPage("popup-main");require(By.text("Play popup QA"));
+        menu();click("天眼設定");
+        UiObject2 row=findText("防止跳轉與彈窗"),toggle=null;
+        while(row!=null&&toggle==null){toggle=row.findObject(By.checkable(true));row=row.getParent();}
+        assertNotNull("Popup protection switch must be reachable",toggle);
+        if(!toggle.isChecked())toggle.click();
+        assertTrue(toggle.isChecked());closeMenu();
+        require(By.text("Play popup QA")).click();require(By.text("Playing popup QA"));
+        assertEquals("Blocked popup must not request the ad",0,fixture.popupAdRequests);
+        menu();click("已攔截 1 次干擾");click("在新分頁開啟");
+        freshPopupText("Ad QA destination");assertEquals(1,fixture.popupAdRequests);
+        require(By.descStartsWith("分頁，")).click();click("Popup guard QA");freshPopupText("Playing popup QA");
+        require(By.text("Article QA link")).click();
+        freshPopupText("Article QA destination");
+        assertEquals("Normal link must not reopen an ad",1,fixture.popupAdRequests);
+    }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(45,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(46,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -593,6 +622,7 @@ public class OptimizedReleaseTest {
         private final Thread worker;
         private volatile boolean running=true;
         volatile boolean emptyReader=false;
+        volatile int popupAdRequests=0;
         private final byte[] image;
         final byte[] video;
         final byte[] pdf="%PDF-1.7\nQA fixture\n%%EOF".getBytes(StandardCharsets.UTF_8);
@@ -623,6 +653,9 @@ public class OptimizedReleaseTest {
                     if(first!=null&&first.contains("/media")){
                         html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'></head><body><button style='padding:24px' onclick=\"navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(s=>{const valid=s.getAudioTracks().length===1&amp;&amp;s.getVideoTracks().length===1;const chunks=[];const r=new MediaRecorder(s);r.ondataavailable=e=>chunks.push(e.data);r.onstop=()=>{document.getElementById('result').textContent=valid&amp;&amp;new Blob(chunks).size>0?'Recorded QA media':'Empty QA media';s.getTracks().forEach(t=>t.stop())};r.start();setTimeout(()=>r.stop(),1200)}).catch(e=>document.getElementById('result').textContent='Media error '+e.name)\">Record QA media</button><p id='result' aria-live='polite'>Media ready</p></body></html>";
                     }
+                    if(first!=null&&first.contains("/popup-main"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Popup guard QA</title></head><body><button style='padding:24px' onclick=\"document.getElementById('status').textContent='Playing popup QA';window.open('/popup-ad')\">Play popup QA</button><p id='status'>Playback ready</p><a style='display:block;padding:24px' href='/popup-article' target='_blank'>Article QA link</a></body></html>";
+                    if(first!=null&&first.contains("/popup-ad")){popupAdRequests++;html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Ad popup QA</title></head><body style='padding:24px;font:20px sans-serif'><p role='status' aria-live='polite'>Ad QA destination</p></body></html>";}
+                    if(first!=null&&first.contains("/popup-article"))html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Article popup QA</title></head><body style='padding:24px;font:20px sans-serif'><p role='status' aria-live='polite'>Article QA destination</p></body></html>";
                     if(first!=null&&first.contains("/find-page")){
                         html="<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>頁內搜尋測試</title></head><body style='margin:20px;font:20px sans-serif'><h1>邊看網頁，邊找文字</h1><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:900px'></div><p>搜尋針甲 SearchNeedle</p><div style='height:300px'></div></body></html>";
                     }

@@ -365,6 +365,7 @@ class MainActivity:AppCompatActivity(){
                                     Text(event.kind,fontWeight=FontWeight.SemiBold)
                                     Text(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT).format(java.util.Date(event.time)),fontSize=12.sp,color=cs.onSurfaceVariant)
                                     if(event.url.isNotEmpty())Text(event.url,fontSize=12.sp,maxLines=3,overflow=TextOverflow.Ellipsis,color=cs.onSurfaceVariant)
+                                    event.openWindow?.let{open->TextButton(onClick=open){Text(bt(R.string.msg_b7d4526756b3))}}
                                     if(event.url.startsWith("https://")||event.url.startsWith("http://"))TextButton(onClick={c.navigate(event.url)}){Text(bt(R.string.msg_b3471f8f134f))}
                                 }
                             }
