@@ -2,7 +2,7 @@
 
 最自由的瀏覽器，順暢瀏覽網頁時，還能隨心打造專屬介面！內建「天眼開發者工具」，讓你自由自訂樣式、互動與個人化網站設定。
 
-目前原始碼版本為 **1.14.2（versionCode 46）**：最佳化開新視窗與網頁瀏覽的體驗，避免干擾頁面伴隨點擊時彈跳出現。開啟「防止跳轉與彈窗」後，若有頁面被意外攔截，可直接至「攔截紀錄」點選「在新分頁開啟」，順暢接續原本的操作。 保留既有定位、網站權限、拍攝上傳、Cookie 例外、分頁功能與 17 種語言。**GitHub Release 與 Google Play 提交、核准及上架是不同狀態**，以各自讀回結果為準。[1.14.2 更新說明](docs/releases/1.14.2.md) · [功能與核心限制清單](docs/BROWSER-COMPATIBILITY.md) · [系統整合](docs/SYSTEM-INTEGRATION.md) · [多語系](docs/LOCALIZATION.md) · [簽章與發布](docs/RELEASING.md)
+目前原始碼版本為 **1.15.0（versionCode 47）**：新增「安裝為網頁應用程式」功能，可將目前瀏覽的頁面釘選到主畫面，自由選擇「獨立應用程式」、「精簡視窗」或「瀏覽器捷徑」模式，並於獨立視窗自動套用您的天眼自訂設定，同時提供「網頁應用程式」集中管理清單。保留既有開新視窗防護、定位、網站權限、拍攝上傳、Cookie 例外、分頁功能與 17 種語言。**GitHub Release 與 Google Play 提交、核准及上架是不同狀態**，以各自讀回結果為準。[1.15.0 更新說明](docs/releases/1.15.0.md) · [功能與核心限制清單](docs/BROWSER-COMPATIBILITY.md) · [系統整合](docs/SYSTEM-INTEGRATION.md) · [多語系](docs/LOCALIZATION.md) · [簽章與發布](docs/RELEASING.md)
 
 ## 安裝與使用
 

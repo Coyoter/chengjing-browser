@@ -35,5 +35,19 @@
                 <data android:scheme="https" /><data android:scheme="http" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".WebAppActivity"
+            android:theme="@style/AppTheme"
+            android:exported="true"
+            android:documentLaunchMode="intoExisting"
+            android:autoRemoveFromRecents="false"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|keyboardHidden|uiMode|locale|layoutDirection">
+            <intent-filter>
+                <action android:name="tw.techtarian.browser.action.OPEN_WEB_APP" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="chengjing-webapp" android:host="app" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"No se pudo iniciar la captura. Revisa los permisos y una aplicación de captura compatible."</string>
   <string name="web_third_party_cookies" formatted="false">"Cookies de terceros"</string>
   <string name="web_cookie_note" formatted="false">"Si el inicio de sesión o el contenido integrado necesita otras cookies, permítelas solo para este sitio."</string>
+  <string name="webapp_menu_install" formatted="false">"Instalar como aplicación web"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"Fijar en la pantalla de inicio y abrir como app"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"Instalada · Toca para actualizar o volver a fijar"</string>
+  <string name="webapp_panel_title" formatted="false">"Aplicaciones web"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"Administra aplicaciones web y accesos directos"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$s instaladas"</string>
+  <string name="webapp_dialog_title" formatted="false">"Instalar como aplicación web"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"Actualizar aplicación web"</string>
+  <string name="webapp_name_label" formatted="false">"Nombre de la aplicación"</string>
+  <string name="webapp_name_placeholder" formatted="false">"Nombre para la pantalla de inicio"</string>
+  <string name="webapp_mode_heading" formatted="false">"Modo de apertura"</string>
+  <string name="webapp_mode_standalone" formatted="false">"App independiente"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"Oculta las barras del navegador en una ventana propia y mantiene tus ajustes de SkyEye."</string>
+  <string name="webapp_mode_minimal" formatted="false">"Ventana compacta"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"Ventana propia con barra superior mínima para recargar o abrir en ChengJing al instante."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"Acceso directo"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"Crea un acceso directo en el inicio que abre esta página en una pestaña de ChengJing."</string>
+  <string name="webapp_incognito_note" formatted="false">"Estás en una pestaña privada. La aplicación instalada usará datos normales sin información de la sesión privada."</string>
+  <string name="webapp_action_install" formatted="false">"Instalar"</string>
+  <string name="webapp_action_update" formatted="false">"Guardar"</string>
+  <string name="webapp_action_pin" formatted="false">"Fijar en pantalla de inicio"</string>
+  <string name="webapp_action_edit" formatted="false">"Editar"</string>
+  <string name="webapp_action_open_browser" formatted="false">"Abrir en ChengJing"</string>
+  <string name="webapp_action_remove" formatted="false">"Eliminar"</string>
+  <string name="webapp_action_home" formatted="false">"Ir al inicio de la app"</string>
+  <string name="webapp_action_copy_url" formatted="false">"Copiar URL actual"</string>
+  <string name="webapp_action_more" formatted="false">"Más opciones"</string>
+  <string name="webapp_action_close" formatted="false">"Cerrar ventana"</string>
+  <string name="webapp_notice_pinned" formatted="false">"Solicitud de instalación enviada: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"Aplicación web actualizada: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"Guardada en Aplicaciones web, pero tu launcher no admite fijar accesos directos automáticamente"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"No se pudo fijar en el inicio; guardada en Aplicaciones web"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"Esta página no se puede instalar como aplicación web"</string>
+  <string name="webapp_notice_removed" formatted="false">"Aplicación web eliminada: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL copiada"</string>
+  <string name="webapp_notice_not_found" formatted="false">"No se encontró esta aplicación web; es posible que haya sido eliminada"</string>
+  <string name="webapp_empty_title" formatted="false">"Sin aplicaciones web"</string>
+  <string name="webapp_empty_desc" formatted="false">"Abre cualquier sitio y elige «Instalar como aplicación web» en el menú para fijarlo en tu pantalla de inicio."</string>
+  <string name="webapp_remove_title" formatted="false">"Eliminar aplicación web"</string>
+  <string name="webapp_remove_message" formatted="false">"¿Eliminar «%1$s» de ChengJing? También se desactivará su acceso directo en la pantalla de inicio."</string>
+  <string name="webapp_edit_title" formatted="false">"Editar aplicación web"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"Esta aplicación web se eliminó de ChengJing Browser"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"Fuera del dominio de la app"</string>
+  <string name="webapp_clear_name" formatted="false">"Borrar nombre"</string>
 </resources>

@@ -211,9 +211,32 @@ public class OptimizedReleaseTest {
         freshPopupText("Article QA destination");
         assertEquals("Normal link must not reopen an ad",1,fixture.popupAdRequests);
     }
+    @Test public void installWebAppAndManageItInOptimizedRelease() throws Exception {
+        menu();
+        click("安裝為網頁應用程式");
+        require(By.text("開啟方式"));
+        click("精簡視窗");
+        click("安裝");
+        // Dismiss Android launcher pin confirmation dialog if the emulator launcher displays one.
+        for (int i = 0; i < 15; i++) {
+            if (!APP.equals(device.getCurrentPackageName())) {
+                device.pressBack();
+                SystemClock.sleep(400);
+                break;
+            }
+            SystemClock.sleep(150);
+        }
+        require(By.desc("瀏覽器選單"));
+        menu();
+        click("網頁應用程式");
+        require(By.text("精簡視窗"));
+        click("精簡視窗");
+        require(By.text("R8 測試元件"));
+        require(By.desc("更多選項"));
+    }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(46,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(47,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }

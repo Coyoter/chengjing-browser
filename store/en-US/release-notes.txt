@@ -1,3 +1,3 @@
-Improved new-window and web browsing behavior to keep unexpected pages from opening alongside your clicks.
+Added "Install as Web App": pin any current page to your home screen as a Standalone App (hiding browser toolbars in its own window while keeping your SkyEye customizations), a Minimal Window, or a Browser Shortcut.
 
-If a page you need is held when "Prevent redirects and pop-ups" is enabled, go to "Block Records" and choose "Open in New Tab" to continue your original action.
+You can also manage installed web apps from the menu to re-pin, edit names and open modes, or open them in ChengJing.

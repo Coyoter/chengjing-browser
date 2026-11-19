@@ -66,6 +66,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     val gemma=GemmaLocal(context.applicationContext)
     val icons=SiteIcons(context.applicationContext)
     val favorites=FavoriteStore(context)
+    internal val webApps=WebAppStore(context)
     internal val home=HomePreferences(context,existingUser=store.tabs().isNotEmpty()||store.history().isNotEmpty())
     internal val homeQuotes:List<String> get()=AppLanguages.resources()?.getStringArray(R.array.home_quotes)?.toList()?:context.assets.open("home-quotes.txt").bufferedReader(Charsets.UTF_8).use{it.readLines()}.filter{it.isNotBlank()}
     internal val previews=TabPreviewStore(context)
@@ -171,7 +172,7 @@ class BrowserController(val context: Context, val store: BrowserStore) {
         val bypass=exceptions.filter{host==null||Domains.matches(host,it)}
         return JSONObject().put("strings",messages()).put("sites",JSONArray(sites.map{it.json()})).put("exceptions",JSONArray(bypass)).toString()
     }
-    private fun messages():JSONObject=JSONObject().put("元件規則格式不正確",bt(R.string.msg_485107965fef)).put("不能移除整個頁面",bt(R.string.msg_8ace37cfd750)).put("找不到有效的元件選擇器",bt(R.string.msg_8b9869b822e7)).put("所選元件已不存在",bt(R.string.msg_e120bd1bed88)).put("原始 HTML 尚未準備好，請重新載入頁面再開啟規則",bt(R.string.msg_db7282021ef2)).put("找不到元件",bt(R.string.msg_f3cfde65b6f6)).put("元件過大，請選擇更小範圍",bt(R.string.msg_837653b6c57e))
+    private fun messages():JSONObject=skyEyeMessages()
     fun refreshLanguage(){
         refreshScripts(applyToPage=false)
         val text=messages()
@@ -814,3 +815,5 @@ class BrowserController(val context: Context, val store: BrowserStore) {
     fun restoreRules(domain:String){if(store.undo(domain)){reloadSite(domain);notice=bt(R.string.msg_b3f41aaeb32b)}}
     fun destroy(){if(destroyed)return;findInPage.close();destroyed=true;deferredWindows.keys.toList().forEach{cancelWindows(it)};linkWindows.keys.toList().forEach{discardLinkWindow(it)};prompts.cancel();browsingDataCleaner.close();exitFullscreen();gemma.close();icons.close();mainHandler.removeCallbacksAndMessages(null);tabs.forEach{it.preview=null;it.documentScript?.remove();it.web.stopLoading();(it.refreshContainer.parent as? ViewGroup)?.removeView(it.refreshContainer);it.refreshContainer.removeAllViews();it.web.destroy()};tabs.clear();privateSession.clear()}
 }
+
+internal fun skyEyeMessages():JSONObject=JSONObject().put("元件規則格式不正確",bt(R.string.msg_485107965fef)).put("不能移除整個頁面",bt(R.string.msg_8ace37cfd750)).put("找不到有效的元件選擇器",bt(R.string.msg_8b9869b822e7)).put("所選元件已不存在",bt(R.string.msg_e120bd1bed88)).put("原始 HTML 尚未準備好，請重新載入頁面再開啟規則",bt(R.string.msg_db7282021ef2)).put("找不到元件",bt(R.string.msg_f3cfde65b6f6)).put("元件過大，請選擇更小範圍",bt(R.string.msg_837653b6c57e))

@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"Tidak dapat memulai pengambilan. Periksa izin dan aplikasi kamera atau perekam yang kompatibel."</string>
   <string name="web_third_party_cookies" formatted="false">"Cookie pihak ketiga"</string>
   <string name="web_cookie_note" formatted="false">"Jika login atau konten tersemat memerlukan cookie situs lain, izinkan hanya untuk situs ini."</string>
+  <string name="webapp_menu_install" formatted="false">"Pasang sebagai Aplikasi Web"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"Sematkan ke layar utama dan buka seperti aplikasi"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"Terpasang · Ketuk untuk perbarui atau sematkan lagi"</string>
+  <string name="webapp_panel_title" formatted="false">"Aplikasi Web"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"Kelola aplikasi web terpasang dan pintasan layar utama"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$s terpasang"</string>
+  <string name="webapp_dialog_title" formatted="false">"Pasang sebagai Aplikasi Web"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"Perbarui Aplikasi Web"</string>
+  <string name="webapp_name_label" formatted="false">"Nama aplikasi"</string>
+  <string name="webapp_name_placeholder" formatted="false">"Masukkan nama untuk layar utama"</string>
+  <string name="webapp_mode_heading" formatted="false">"Mode buka"</string>
+  <string name="webapp_mode_standalone" formatted="false">"Aplikasi Mandiri"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"Menyembunyikan bilah browser di jendela khusus sambil tetap menerapkan kustomisasi SkyEye Anda."</string>
+  <string name="webapp_mode_minimal" formatted="false">"Jendela Ringkas"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"Jendela khusus dengan bilah atas minimalis untuk muat ulang cepat atau buka di ChengJing."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"Pintasan Browser"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"Membuat pintasan layar utama yang langsung membuka halaman ini di tab ChengJing."</string>
+  <string name="webapp_incognito_note" formatted="false">"Anda berada di tab penyamaran. Aplikasi web yang dipasang akan dibuka memakai data penjelajahan biasa."</string>
+  <string name="webapp_action_install" formatted="false">"Pasang"</string>
+  <string name="webapp_action_update" formatted="false">"Simpan &amp; Perbarui"</string>
+  <string name="webapp_action_pin" formatted="false">"Sematkan ke layar utama"</string>
+  <string name="webapp_action_edit" formatted="false">"Edit pengaturan"</string>
+  <string name="webapp_action_open_browser" formatted="false">"Buka di ChengJing"</string>
+  <string name="webapp_action_remove" formatted="false">"Hapus"</string>
+  <string name="webapp_action_home" formatted="false">"Kembali ke beranda aplikasi"</string>
+  <string name="webapp_action_copy_url" formatted="false">"Salin URL saat ini"</string>
+  <string name="webapp_action_more" formatted="false">"Opsi lainnya"</string>
+  <string name="webapp_action_close" formatted="false">"Tutup jendela"</string>
+  <string name="webapp_notice_pinned" formatted="false">"Permintaan penyematan dikirim: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"Aplikasi web diperbarui: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"Disimpan ke Aplikasi Web, tetapi peluncur ini tidak mendukung penyematan pintasan otomatis"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"Tidak dapat menyematkan ke layar utama; disimpan di daftar Aplikasi Web"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"Halaman ini tidak dapat dipasang sebagai aplikasi web"</string>
+  <string name="webapp_notice_removed" formatted="false">"Aplikasi web dihapus: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL disalin"</string>
+  <string name="webapp_notice_not_found" formatted="false">"Aplikasi web ini tidak ditemukan dan mungkin telah dihapus"</string>
+  <string name="webapp_empty_title" formatted="false">"Belum ada aplikasi web"</string>
+  <string name="webapp_empty_desc" formatted="false">"Buka situs web mana saja lalu pilih ‘Pasang sebagai Aplikasi Web’ di menu untuk menyematkannya ke layar utama."</string>
+  <string name="webapp_remove_title" formatted="false">"Hapus Aplikasi Web"</string>
+  <string name="webapp_remove_message" formatted="false">"Hapus %1$s dari ChengJing? Pintasan yang ada di layar utama juga akan dinonaktifkan."</string>
+  <string name="webapp_edit_title" formatted="false">"Edit Aplikasi Web"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"Aplikasi web ini telah dihapus dari ChengJing Browser"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"Di luar domain aplikasi"</string>
+  <string name="webapp_clear_name" formatted="false">"Hapus nama"</string>
 </resources>

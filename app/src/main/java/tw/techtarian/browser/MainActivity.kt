@@ -324,11 +324,12 @@ class MainActivity:AppCompatActivity(){
         if(c.sheet in setOf("bookmarks","favorites"))LibraryScreen(c)
         c.imagePreview?.let{ImagePreviewDialog(c,it)}
         if(c.sheet=="clear-browsing-data")DeleteBrowsingDataDialog(c)
-        if(c.sheet in setOf("tabs","history","downloads"))BrowserPanel(c){
+        if(c.sheet=="install-webapp")InstallWebAppDialog(c)
+        if(c.sheet in setOf("tabs","history","downloads","web-apps"))BrowserPanel(c){
             PanelHeader(c){c.sheet="menu"}
-            when(c.sheet){"tabs"->TabOverview(c);"history"->HistoryScreen(c);"downloads"->DownloadsScreen(c)}
+            when(c.sheet){"tabs"->TabOverview(c);"history"->HistoryScreen(c);"downloads"->DownloadsScreen(c);"web-apps"->WebAppsScreen(c)}
         }
-        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites","tabs","history","downloads","clear-browsing-data")){
+        if(c.sheet.isNotEmpty()&&c.sheet !in setOf("bookmarks","favorites","tabs","history","downloads","web-apps","clear-browsing-data","install-webapp")){
             BrowserPanel(c){
                     PanelHeader(c){c.sheet=panelTrail.dropLast(1).lastOrNull()?:panelParent(c.sheet)}
                     if(c.sheet=="settings")SettingsCategories(settingsCategory){settingsCategory=it}

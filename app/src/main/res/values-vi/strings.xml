@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"Không thể bắt đầu ghi. Hãy kiểm tra quyền và ứng dụng máy ảnh hoặc ghi âm tương thích."</string>
   <string name="web_third_party_cookies" formatted="false">"Cookie bên thứ ba"</string>
   <string name="web_cookie_note" formatted="false">"Nếu đăng nhập hoặc nội dung nhúng cần cookie từ trang khác, chỉ cho phép tại trang này."</string>
+  <string name="webapp_menu_install" formatted="false">"Cài đặt làm ứng dụng web"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"Ghim lên màn hình chính và mở như ứng dụng"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"Đã cài đặt · Chạm để cập nhật hoặc ghim lại"</string>
+  <string name="webapp_panel_title" formatted="false">"Ứng dụng web"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"Quản lý ứng dụng web đã cài đặt và lối tắt"</string>
+  <string name="webapp_panel_count" formatted="false">"Đã cài %1$s ứng dụng"</string>
+  <string name="webapp_dialog_title" formatted="false">"Cài đặt làm ứng dụng web"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"Cập nhật ứng dụng web"</string>
+  <string name="webapp_name_label" formatted="false">"Tên ứng dụng"</string>
+  <string name="webapp_name_placeholder" formatted="false">"Nhập tên hiển thị trên màn hình chính"</string>
+  <string name="webapp_mode_heading" formatted="false">"Chế độ mở"</string>
+  <string name="webapp_mode_standalone" formatted="false">"Ứng dụng độc lập"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"Ẩn thanh công cụ trình duyệt trong cửa sổ riêng và giữ nguyên tùy chỉnh SkyEye của bạn."</string>
+  <string name="webapp_mode_minimal" formatted="false">"Cửa sổ gọn nhẹ"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"Cửa sổ riêng với thanh trên tối giản giúp tải lại nhanh hoặc mở trong ChengJing."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"Lối tắt trình duyệt"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"Tạo lối tắt trên màn hình chính để mở trực tiếp trang này trong thẻ ChengJing."</string>
+  <string name="webapp_incognito_note" formatted="false">"Bạn đang ở thẻ ẩn danh. Ứng dụng web sau khi cài đặt sẽ mở bằng dữ liệu duyệt web thông thường."</string>
+  <string name="webapp_action_install" formatted="false">"Cài đặt"</string>
+  <string name="webapp_action_update" formatted="false">"Lưu &amp; Cập nhật"</string>
+  <string name="webapp_action_pin" formatted="false">"Ghim lên màn hình chính"</string>
+  <string name="webapp_action_edit" formatted="false">"Chỉnh sửa"</string>
+  <string name="webapp_action_open_browser" formatted="false">"Mở trong ChengJing"</string>
+  <string name="webapp_action_remove" formatted="false">"Xóa"</string>
+  <string name="webapp_action_home" formatted="false">"Về trang chính ứng dụng"</string>
+  <string name="webapp_action_copy_url" formatted="false">"Sao chép URL hiện tại"</string>
+  <string name="webapp_action_more" formatted="false">"Tùy chọn khác"</string>
+  <string name="webapp_action_close" formatted="false">"Đóng cửa sổ"</string>
+  <string name="webapp_notice_pinned" formatted="false">"Đã gửi yêu cầu ghim lên màn hình chính: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"Đã cập nhật ứng dụng web: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"Đã lưu vào Ứng dụng web, nhưng trình khởi chạy này không hỗ trợ tự ghim lối tắt"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"Không thể ghim lên màn hình chính; đã lưu vào danh sách Ứng dụng web"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"Không thể cài đặt trang này làm ứng dụng web"</string>
+  <string name="webapp_notice_removed" formatted="false">"Đã xóa ứng dụng web: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"Đã sao chép URL"</string>
+  <string name="webapp_notice_not_found" formatted="false">"Không tìm thấy ứng dụng web này, có thể đã bị xóa"</string>
+  <string name="webapp_empty_title" formatted="false">"Chưa có ứng dụng web nào"</string>
+  <string name="webapp_empty_desc" formatted="false">"Mở trang web bất kỳ và chọn ‘Cài đặt làm ứng dụng web’ trong menu để ghim lên màn hình chính."</string>
+  <string name="webapp_remove_title" formatted="false">"Xóa ứng dụng web"</string>
+  <string name="webapp_remove_message" formatted="false">"Xóa %1$s khỏi ChengJing? Lối tắt hiện có trên màn hình chính cũng sẽ bị vô hiệu hóa."</string>
+  <string name="webapp_edit_title" formatted="false">"Chỉnh sửa ứng dụng web"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"Ứng dụng web này đã bị xóa khỏi ChengJing Browser"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"Ngoài tên miền ứng dụng"</string>
+  <string name="webapp_clear_name" formatted="false">"Xóa tên"</string>
 </resources>

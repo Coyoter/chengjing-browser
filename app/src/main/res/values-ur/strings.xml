@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"ریکارڈنگ شروع نہیں ہو سکی۔ اجازتیں اور موافق کیمرہ یا ریکارڈنگ ایپ دیکھیں۔"</string>
   <string name="web_third_party_cookies" formatted="false">"تیسرے فریق کی کوکیز"</string>
   <string name="web_cookie_note" formatted="false">"اگر لاگ ان یا ایمبیڈ مواد کو دوسری سائٹ کی کوکیز درکار ہوں تو صرف اس سائٹ کے لیے اجازت دیں۔"</string>
+  <string name="webapp_menu_install" formatted="false">"ویب ایپ کے طور پر انسٹال کریں"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"ہوم اسکرین پر پن کریں اور ایپ کی طرح کھولیں"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"انسٹال ہے · اپ ڈیٹ یا دوبارہ پن کرنے کے لیے ٹیپ کریں"</string>
+  <string name="webapp_panel_title" formatted="false">"ویب ایپس"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"انسٹال شدہ ویب ایپس اور ہوم اسکرین شارٹ کٹس کا نظم کریں"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$s انسٹال شدہ"</string>
+  <string name="webapp_dialog_title" formatted="false">"ویب ایپ کے طور پر انسٹال کریں"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"ویب ایپ اپ ڈیٹ کریں"</string>
+  <string name="webapp_name_label" formatted="false">"ایپ کا نام"</string>
+  <string name="webapp_name_placeholder" formatted="false">"ہوم اسکرین کے لیے نام درج کریں"</string>
+  <string name="webapp_mode_heading" formatted="false">"کھولنے کا انداز"</string>
+  <string name="webapp_mode_standalone" formatted="false">"علیحدہ ایپ"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"براؤزر ٹول بار چھپا کر علیحدہ ونڈو میں کھولتا ہے اور آپ کی SkyEye ترتیبات لاگو رکھتا ہے۔"</string>
+  <string name="webapp_mode_minimal" formatted="false">"مختصر ونڈو"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"علیحدہ ونڈو میں ایک سادہ اوپری بار رکھتا ہے تاکہ ریفریش کرنا یا ChengJing میں کھولنا آسان ہو۔"</string>
+  <string name="webapp_mode_shortcut" formatted="false">"براؤزر شارٹ کٹ"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"ہوم اسکرین پر شارٹ کٹ بناتا ہے جو اس صفحے کو براہ راست ChengJing ٹیب میں کھولتا ہے۔"</string>
+  <string name="webapp_incognito_note" formatted="false">"آپ نجی ٹیب میں ہیں۔ انسٹال شدہ ویب ایپ نجی سیشن کے بغیر عام براؤزنگ ڈیٹا کے ساتھ کھلے گی۔"</string>
+  <string name="webapp_action_install" formatted="false">"انسٹال کریں"</string>
+  <string name="webapp_action_update" formatted="false">"محفوظ اور اپ ڈیٹ کریں"</string>
+  <string name="webapp_action_pin" formatted="false">"ہوم اسکرین پر پن کریں"</string>
+  <string name="webapp_action_edit" formatted="false">"ترتیبات میں ترمیم"</string>
+  <string name="webapp_action_open_browser" formatted="false">"ChengJing میں کھولیں"</string>
+  <string name="webapp_action_remove" formatted="false">"ہٹائیں"</string>
+  <string name="webapp_action_home" formatted="false">"ایپ کے ہوم پر واپس جائیں"</string>
+  <string name="webapp_action_copy_url" formatted="false">"موجودہ URL کاپی کریں"</string>
+  <string name="webapp_action_more" formatted="false">"مزید اختیارات"</string>
+  <string name="webapp_action_close" formatted="false">"ونڈو بند کریں"</string>
+  <string name="webapp_notice_pinned" formatted="false">"ہوم اسکرین انسٹال درخواست بھیج دی گئی: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"ویب ایپ اپ ڈیٹ ہو گئی: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"ویب ایپس کی فہرست میں محفوظ ہو گئی، لیکن یہ لانچر خودکار شارٹ کٹ پن کی سہولت نہیں دیتا"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"ہوم اسکرین پر پن نہیں ہو سکا؛ ویب ایپس کی فہرست میں محفوظ کر دیا گیا"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"یہ صفحہ ویب ایپ کے طور پر انسٹال نہیں کیا جا سکتا"</string>
+  <string name="webapp_notice_removed" formatted="false">"ویب ایپ ہٹا دی گئی: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL کاپی ہو گیا"</string>
+  <string name="webapp_notice_not_found" formatted="false">"یہ ویب ایپ نہیں ملی، ممکن ہے اسے ہٹا دیا گیا ہو"</string>
+  <string name="webapp_empty_title" formatted="false">"کوئی ویب ایپ انسٹال نہیں ہے"</string>
+  <string name="webapp_empty_desc" formatted="false">"کوئی بھی ویب سائٹ کھولیں اور مینو سے ‘ویب ایپ کے طور پر انسٹال کریں’ منتخب کریں تاکہ اسے ہوم اسکرین پر پن کیا جا سکے۔"</string>
+  <string name="webapp_remove_title" formatted="false">"ویب ایپ ہٹائیں"</string>
+  <string name="webapp_remove_message" formatted="false">"کیا %1$s کو ChengJing سے ہٹانا ہے؟ ہوم اسکرین پر موجود اس کا پرانا شارٹ کٹ بھی غیر فعال ہو جائے گا۔"</string>
+  <string name="webapp_edit_title" formatted="false">"ویب ایپ میں ترمیم"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"یہ ویب ایپ ChengJing Browser سے ہٹا دی گئی ہے"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"ایپ ڈومین سے باہر"</string>
+  <string name="webapp_clear_name" formatted="false">"نام صاف کریں"</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.AddToHomeScreen
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.*
@@ -49,7 +50,7 @@ internal fun panelTitle(page:String)=when(page){
     "rule-editor"->bt(R.string.msg_35376f24c4ad);"rule-ai"->bt(R.string.msg_f3b8aca2eb95)
     "legal"->bt(R.string.msg_371d839ac65c);"element-editor"->bt(R.string.msg_eb2f0ca08efb);"develop-ai"->bt(R.string.msg_8a8f2d7c399a);"connection"->bt(R.string.msg_758380c7c9c7);"privacy"->bt(R.string.msg_930e319f7845);"menu"->bt(R.string.msg_bb11ab4df9b9);"settings"->bt(R.string.msg_0d8619aae051);"tabs"->bt(R.string.msg_842433f0a425);"eye"->bt(R.string.msg_320c5652f6d3);"selection"->bt(R.string.msg_559e4d37c3f8)
     "rules"->bt(R.string.msg_58f73b892e2d);"code"->bt(R.string.msg_e13bbc197118);"ai"->bt(R.string.msg_634ad289a228);"user-agent"->bt(R.string.msg_871eaa84c97d);"search-engine"->bt(R.string.msg_14bd2c678335)
-    "inventory"->bt(R.string.msg_905d98bd5535);"sync"->bt(R.string.msg_4d94c28a53c4);"history"->bt(R.string.msg_0baa9a64e9b1);"downloads"->bt(R.string.msg_d477c75aa656);"domains"->bt(R.string.msg_f6b20e44de57)
+    "inventory"->bt(R.string.msg_905d98bd5535);"sync"->bt(R.string.msg_4d94c28a53c4);"history"->bt(R.string.msg_0baa9a64e9b1);"downloads"->bt(R.string.msg_d477c75aa656);"domains"->bt(R.string.msg_f6b20e44de57);"web-apps"->bt(R.string.webapp_panel_title)
     "find"->bt(R.string.msg_f7ff0dc054ff);"blocked"->bt(R.string.msg_9d08608859f8);else->bt(R.string.msg_bb11ab4df9b9)
 }
 internal fun panelParent(page:String)=when(page){
@@ -105,14 +106,19 @@ internal fun panelParent(page:String)=when(page){
         Shortcut(Icons.Outlined.BookmarkBorder,bt(R.string.msg_1eb1e5b30e73),Modifier.weight(1f)){c.sheet="bookmarks"}
         Shortcut(Icons.Outlined.History,bt(R.string.msg_0baa9a64e9b1),Modifier.weight(1f)){c.sheet="history"}
     }
+    val webAppCount=remember(c.webApps.revision,c.revision){c.webApps.list().size}
+    val existingWebApp=remember(tab?.url,c.webApps.revision,c.revision){c.webApps.findByUrl(tab?.url)}
+    val installableWebApp=remember(tab?.url){WebAppPolicy.installableUrl(tab?.url)!=null}
     MenuGroup(bt(R.string.msg_97afce0d452c)){
         MenuRow(Icons.Outlined.PrivacyTip,bt(R.string.msg_ce7454d53ff8),bt(R.string.msg_97e7dbfaf405),navigation=false){if(c.newTab(incognito=true)!=null)c.sheet=""}
+        MenuRow(Icons.Outlined.Apps,bt(R.string.webapp_panel_title),if(webAppCount>0)bt(R.string.webapp_panel_count,webAppCount)else bt(R.string.webapp_panel_subtitle)){c.sheet="web-apps"}
         MenuRow(Icons.Outlined.Download,bt(R.string.msg_d477c75aa656),bt(R.string.msg_8dce3f317048)){c.sheet="downloads"}
         MenuRow(Icons.Outlined.DeleteOutline,bt(R.string.msg_5f9f90a382dc),bt(R.string.msg_1b4a0f6f50a6)){c.sheet="clear-browsing-data"}
     }
     if(c.domain.isNotEmpty())MenuGroup(bt(R.string.msg_431596791167)){
         MenuRow(Icons.Outlined.Star,if(tab?.favoriteId!=null)bt(R.string.msg_20e1c9c1dc3d)else bt(R.string.msg_3e40d2036259),tab?.favoriteId?.let{c.favorites.get(it)?.title}.orEmpty(),navigation=false){scope.launch{if(c.saveFavorite()!=null){c.notice=bt(R.string.msg_b0e946efd4a1);c.sheet=""}}}
         MenuRow(Icons.Outlined.BookmarkAdd,bt(R.string.msg_5a8cabc73328),navigation=false){val count=store.bookmarkStore.add(tab!!.url,tab.title);c.revision++;c.notice=if(count>0)bt(R.string.msg_8fad34a6f7cd)else bt(R.string.msg_8aedb0dba45e);c.sheet=""}
+        if(installableWebApp)MenuRow(Icons.AutoMirrored.Outlined.AddToHomeScreen,bt(R.string.webapp_menu_install),if(existingWebApp!=null)bt(R.string.webapp_menu_installed_subtitle)else bt(R.string.webapp_menu_install_subtitle),navigation=false){c.sheet="install-webapp"}
         MenuRow(Icons.Outlined.Share,bt(R.string.msg_7e564575eb7d),bt(R.string.msg_f6eb7ace16a3),navigation=false){c.shareCurrentPage()}
         MenuRow(Icons.Outlined.Search,bt(R.string.msg_f7ff0dc054ff),navigation=false){c.findInPage.open()}
         MenuRow(Icons.Outlined.Computer,if(tab?.desktop==true)bt(R.string.msg_26cd04fd052a)else bt(R.string.msg_4fecc4be58d1),navigation=false){c.toggleDesktop();c.sheet=""}

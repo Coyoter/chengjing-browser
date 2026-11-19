@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"রেকর্ডিং শুরু করা যায়নি। অনুমতি এবং সামঞ্জস্যপূর্ণ ক্যামেরা বা রেকর্ডিং অ্যাপ দেখুন।"</string>
   <string name="web_third_party_cookies" formatted="false">"তৃতীয় পক্ষের কুকি"</string>
   <string name="web_cookie_note" formatted="false">"লগইন বা এমবেড করা বিষয়বস্তুর অন্য সাইটের কুকি লাগলে শুধু এই সাইটে অনুমতি দিন।"</string>
+  <string name="webapp_menu_install" formatted="false">"ওয়েব অ্যাপ হিসেবে ইনস্টল করুন"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"হোম স্ক্রিনে পিন করুন এবং অ্যাপের মতো খুলুন"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"ইনস্টল করা আছে · আপডেট বা পুনরায় পিন করতে ট্যাপ করুন"</string>
+  <string name="webapp_panel_title" formatted="false">"ওয়েব অ্যাপ"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"ইনস্টল করা ওয়েব অ্যাপ ও হোম স্ক্রিন শর্টকাট পরিচালনা করুন"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$sটি ইনস্টল করা"</string>
+  <string name="webapp_dialog_title" formatted="false">"ওয়েব অ্যাপ হিসেবে ইনস্টল করুন"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"ওয়েব অ্যাপ আপডেট করুন"</string>
+  <string name="webapp_name_label" formatted="false">"অ্যাপের নাম"</string>
+  <string name="webapp_name_placeholder" formatted="false">"হোম স্ক্রিনে দেখানোর নাম লিখুন"</string>
+  <string name="webapp_mode_heading" formatted="false">"খোলার ধরন"</string>
+  <string name="webapp_mode_standalone" formatted="false">"স্বতন্ত্র অ্যাপ"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"ব্রাউজারের টুলবার লুকিয়ে আলাদা উইন্ডোতে খোলে এবং আপনার SkyEye কাস্টমাইজেশন বজায় রাখে।"</string>
+  <string name="webapp_mode_minimal" formatted="false">"সংক্ষিপ্ত উইন্ডো"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"আলাদা উইন্ডোতে হালকা শীর্ষ বার রাখে যাতে দ্রুত রিফ্রেশ বা ChengJing-এ খোলা যায়।"</string>
+  <string name="webapp_mode_shortcut" formatted="false">"ব্রাউজার শর্টকাট"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"হোম স্ক্রিনে একটি শর্টকাট যোগ করে যা এই পৃষ্ঠাটি সরাসরি ChengJing ট্যাবে খোলে।"</string>
+  <string name="webapp_incognito_note" formatted="false">"আপনি প্রাইভেট ট্যাবে আছেন। ইনস্টল করা ওয়েব অ্যাপ প্রাইভেট সেশন ছাড়া সাধারণ ব্রাউজিং ডেটা দিয়ে খুলবে।"</string>
+  <string name="webapp_action_install" formatted="false">"ইনস্টল করুন"</string>
+  <string name="webapp_action_update" formatted="false">"সংরক্ষণ ও আপডেট"</string>
+  <string name="webapp_action_pin" formatted="false">"হোম স্ক্রিনে পিন করুন"</string>
+  <string name="webapp_action_edit" formatted="false">"সেটিংস সম্পাদনা"</string>
+  <string name="webapp_action_open_browser" formatted="false">"ChengJing-এ খুলুন"</string>
+  <string name="webapp_action_remove" formatted="false">"সরান"</string>
+  <string name="webapp_action_home" formatted="false">"অ্যাপ হোমে ফিরুন"</string>
+  <string name="webapp_action_copy_url" formatted="false">"বর্তমান URL কপি করুন"</string>
+  <string name="webapp_action_more" formatted="false">"আরও বিকল্প"</string>
+  <string name="webapp_action_close" formatted="false">"উইন্ডো বন্ধ করুন"</string>
+  <string name="webapp_notice_pinned" formatted="false">"হোম স্ক্রিনে ইনস্টলের অনুরোধ পাঠানো হয়েছে: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"ওয়েব অ্যাপ আপডেট করা হয়েছে: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"ওয়েব অ্যাপ তালিকায় সংরক্ষিত হয়েছে, তবে এই লঞ্চার স্বয়ংক্রিয় শর্টকাট পিন সমর্থন করে না"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"হোম স্ক্রিনে পিন করা যায়নি; ওয়েব অ্যাপ তালিকায় সংরক্ষিত হয়েছে"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"এই পৃষ্ঠাটি ওয়েব অ্যাপ হিসেবে ইনস্টল করা যাবে না"</string>
+  <string name="webapp_notice_removed" formatted="false">"ওয়েব অ্যাপ সরানো হয়েছে: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL কপি করা হয়েছে"</string>
+  <string name="webapp_notice_not_found" formatted="false">"এই ওয়েব অ্যাপটি পাওয়া যায়নি, এটি সম্ভবত সরানো হয়েছে"</string>
+  <string name="webapp_empty_title" formatted="false">"কোনো ওয়েব অ্যাপ ইনস্টল করা নেই"</string>
+  <string name="webapp_empty_desc" formatted="false">"যেকোনো ওয়েবসাইট খুলে মেনু থেকে ‘ওয়েব অ্যাপ হিসেবে ইনস্টল করুন’ বেছে নিন এবং হোম স্ক্রিনে পিন করুন।"</string>
+  <string name="webapp_remove_title" formatted="false">"ওয়েব অ্যাপ সরান"</string>
+  <string name="webapp_remove_message" formatted="false">"ChengJing থেকে %1$s সরাতে চান? হোম স্ক্রিনের পুরোনো শর্টকাটটিও নিষ্ক্রিয় হয়ে যাবে।"</string>
+  <string name="webapp_edit_title" formatted="false">"ওয়েব অ্যাপ সম্পাদনা"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"এই ওয়েব অ্যাপটি ChengJing Browser থেকে সরানো হয়েছে"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"অ্যাপ ডোমেইনের বাইরে"</string>
+  <string name="webapp_clear_name" formatted="false">"নাম মুছুন"</string>
 </resources>

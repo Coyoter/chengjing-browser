@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"撮影または録音を開始できません。権限と対応アプリを確認してください。"</string>
   <string name="web_third_party_cookies" formatted="false">"サードパーティ Cookie"</string>
   <string name="web_cookie_note" formatted="false">"ログインや埋め込みに他サイトの Cookie が必要な場合、このサイトだけで許可できます。"</string>
+  <string name="webapp_menu_install" formatted="false">"ウェブアプリとしてインストール"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"ホーム画面に追加してアプリのように開く"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"インストール済み · タップして更新または再追加"</string>
+  <string name="webapp_panel_title" formatted="false">"ウェブアプリ"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"インストール済みのウェブアプリとショートカットを管理"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$s 件インストール済み"</string>
+  <string name="webapp_dialog_title" formatted="false">"ウェブアプリとしてインストール"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"ウェブアプリを更新"</string>
+  <string name="webapp_name_label" formatted="false">"アプリ名"</string>
+  <string name="webapp_name_placeholder" formatted="false">"ホーム画面に表示する名前を入力"</string>
+  <string name="webapp_mode_heading" formatted="false">"開き方"</string>
+  <string name="webapp_mode_standalone" formatted="false">"独立アプリ"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"ブラウザのツールバーを隠して独立ウィンドウで開き、天眼のカスタム設定をそのまま適用します。"</string>
+  <string name="webapp_mode_minimal" formatted="false">"シンプルウィンドウ"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"独立ウィンドウにスリムな上部バーを残し、更新や澄境での編集をすぐに行えます。"</string>
+  <string name="webapp_mode_shortcut" formatted="false">"ショートカット"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"ホーム画面にショートカットを作成し、澄境のタブで直接開きます。"</string>
+  <string name="webapp_incognito_note" formatted="false">"シークレットタブを開いています。インストール後のウェブアプリは通常データで開かれ、シークレット情報は含まれません。"</string>
+  <string name="webapp_action_install" formatted="false">"インストール"</string>
+  <string name="webapp_action_update" formatted="false">"保存して更新"</string>
+  <string name="webapp_action_pin" formatted="false">"ホーム画面に追加"</string>
+  <string name="webapp_action_edit" formatted="false">"設定を編集"</string>
+  <string name="webapp_action_open_browser" formatted="false">"澄境で開く"</string>
+  <string name="webapp_action_remove" formatted="false">"削除"</string>
+  <string name="webapp_action_home" formatted="false">"アプリのホームへ戻る"</string>
+  <string name="webapp_action_copy_url" formatted="false">"現在のURLをコピー"</string>
+  <string name="webapp_action_more" formatted="false">"その他のオプション"</string>
+  <string name="webapp_action_close" formatted="false">"ウィンドウを閉じる"</string>
+  <string name="webapp_notice_pinned" formatted="false">"ホーム画面への追加をリクエストしました：%1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"ウェブアプリを更新しました：%1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"「ウェブアプリ」一覧に保存しましたが、このホーム画面は自動追加に対応していません"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"ホーム画面に追加できなかったため、「ウェブアプリ」一覧に保存しました"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"このページはウェブアプリとしてインストールできません"</string>
+  <string name="webapp_notice_removed" formatted="false">"ウェブアプリを削除しました：%1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URLをコピーしました"</string>
+  <string name="webapp_notice_not_found" formatted="false">"このウェブアプリが見つかりません。削除された可能性があります"</string>
+  <string name="webapp_empty_title" formatted="false">"ウェブアプリはありません"</string>
+  <string name="webapp_empty_desc" formatted="false">"任意のサイトを開き、メニューから「ウェブアプリとしてインストール」を選ぶと、ホーム画面に追加して独立ウィンドウで使えます。"</string>
+  <string name="webapp_remove_title" formatted="false">"ウェブアプリを削除"</string>
+  <string name="webapp_remove_message" formatted="false">"「%1$s」を澄境から削除しますか？ホーム画面のショートカットも無効になります。"</string>
+  <string name="webapp_edit_title" formatted="false">"ウェブアプリを編集"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"このウェブアプリは澄境ブラウザから削除されました"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"アプリ外のドメインです"</string>
+  <string name="webapp_clear_name" formatted="false">"名前をクリア"</string>
 </resources>

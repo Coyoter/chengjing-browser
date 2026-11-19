@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"تعذر بدء الالتقاط. تحقق من الأذونات وتوفر تطبيق متوافق للتصوير أو التسجيل."</string>
   <string name="web_third_party_cookies" formatted="false">"ملفات تعريف الارتباط للجهات الخارجية"</string>
   <string name="web_cookie_note" formatted="false">"إذا احتاج تسجيل الدخول أو المحتوى المضمّن إلى ملفات من مواقع أخرى، اسمح بها لهذا الموقع فقط."</string>
+  <string name="webapp_menu_install" formatted="false">"التثبيت كتطبيق ويب"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"تثبيت على الشاشة الرئيسية وفتحه كتطبيق"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"مثبّت · انقر للتحديث أو إعادة التثبيت"</string>
+  <string name="webapp_panel_title" formatted="false">"تطبيقات الويب"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"إدارة تطبيقات الويب والاختصارات المثبّتة"</string>
+  <string name="webapp_panel_count" formatted="false">"مثبّت: %1$s"</string>
+  <string name="webapp_dialog_title" formatted="false">"التثبيت كتطبيق ويب"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"تحديث تطبيق الويب"</string>
+  <string name="webapp_name_label" formatted="false">"اسم التطبيق"</string>
+  <string name="webapp_name_placeholder" formatted="false">"أدخل اسمًا للشاشة الرئيسية"</string>
+  <string name="webapp_mode_heading" formatted="false">"طريقة الفتح"</string>
+  <string name="webapp_mode_standalone" formatted="false">"تطبيق مستقل"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"يخفي أشرطة المتصفح في نافذة مستقلة مع تطبيق تخصيصات SkyEye الخاصة بك."</string>
+  <string name="webapp_mode_minimal" formatted="false">"نافذة مبسّطة"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"نافذة مستقلة مع شريط علوي مدمج للتحديث أو الفتح السريع في ChengJing."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"اختصار المتصفح"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"ينشئ اختصارًا على الشاشة الرئيسية يفتح هذه الصفحة مباشرة في تبويب داخل ChengJing."</string>
+  <string name="webapp_incognito_note" formatted="false">"أنت في تبويب خاص. سيُفتح تطبيق الويب المثبّت باستخدام بيانات التصفح العادية دون بيانات الجلسة الخاصة."</string>
+  <string name="webapp_action_install" formatted="false">"تثبيت"</string>
+  <string name="webapp_action_update" formatted="false">"حفظ وتحديث"</string>
+  <string name="webapp_action_pin" formatted="false">"تثبيت على الشاشة الرئيسية"</string>
+  <string name="webapp_action_edit" formatted="false">"تعديل الإعدادات"</string>
+  <string name="webapp_action_open_browser" formatted="false">"فتح في ChengJing"</string>
+  <string name="webapp_action_remove" formatted="false">"إزالة"</string>
+  <string name="webapp_action_home" formatted="false">"الصفحة الرئيسية للتطبيق"</string>
+  <string name="webapp_action_copy_url" formatted="false">"نسخ الرابط الحالي"</string>
+  <string name="webapp_action_more" formatted="false">"مزيد من الخيارات"</string>
+  <string name="webapp_action_close" formatted="false">"إغلاق النافذة"</string>
+  <string name="webapp_notice_pinned" formatted="false">"تم إرسال طلب التثبيت على الشاشة الرئيسية: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"تم تحديث تطبيق الويب: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"تم الحفظ في قائمة تطبيقات الويب، لكن المشغّل الحالي لا يدعم تثبيت الاختصارات تلقائيًا"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"تعذّر التثبيت على الشاشة الرئيسية؛ تم الحفظ في تطبيقات الويب"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"لا يمكن تثبيت هذه الصفحة كتطبيق ويب"</string>
+  <string name="webapp_notice_removed" formatted="false">"تمت إزالة تطبيق الويب: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"تم نسخ الرابط"</string>
+  <string name="webapp_notice_not_found" formatted="false">"تعذّر العثور على تطبيق الويب هذا، ربما تمت إزالته"</string>
+  <string name="webapp_empty_title" formatted="false">"لا توجد تطبيقات ويب مثبّتة"</string>
+  <string name="webapp_empty_desc" formatted="false">"افتح أي موقع واختر «التثبيت كتطبيق ويب» من القائمة لتثبيته على الشاشة الرئيسية وفتحه في نافذة مستقلة."</string>
+  <string name="webapp_remove_title" formatted="false">"إزالة تطبيق الويب"</string>
+  <string name="webapp_remove_message" formatted="false">"هل تريد إزالة %1$s من ChengJing؟ سيتم تعطيل الاختصار الموجود على الشاشة الرئيسية أيضًا."</string>
+  <string name="webapp_edit_title" formatted="false">"تعديل تطبيق الويب"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"تمت إزالة تطبيق الويب هذا من ChengJing Browser"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"خارج نطاق التطبيق الأصلي"</string>
+  <string name="webapp_clear_name" formatted="false">"مسح الاسم"</string>
 </resources>

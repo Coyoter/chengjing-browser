@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"เริ่มถ่ายหรือบันทึกไม่ได้ โปรดตรวจสอบสิทธิ์และแอปกล้องหรือบันทึกที่รองรับ"</string>
   <string name="web_third_party_cookies" formatted="false">"คุกกี้ของบุคคลที่สาม"</string>
   <string name="web_cookie_note" formatted="false">"หากการเข้าสู่ระบบหรือเนื้อหาฝังต้องใช้คุกกี้จากเว็บอื่น อนุญาตได้เฉพาะเว็บไซต์นี้"</string>
+  <string name="webapp_menu_install" formatted="false">"ติดตั้งเป็นเว็บแอป"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"ปักหมุดไว้ที่หน้าจอหลักและเปิดใช้งานเหมือนแอป"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"ติดตั้งแล้ว · แตะเพื่ออัปเดตหรือปักหมุดอีกครั้ง"</string>
+  <string name="webapp_panel_title" formatted="false">"เว็บแอป"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"จัดการเว็บแอปที่ติดตั้งและทางลัดบนหน้าจอหลัก"</string>
+  <string name="webapp_panel_count" formatted="false">"ติดตั้งแล้ว %1$s รายการ"</string>
+  <string name="webapp_dialog_title" formatted="false">"ติดตั้งเป็นเว็บแอป"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"อัปเดตเว็บแอป"</string>
+  <string name="webapp_name_label" formatted="false">"ชื่อแอป"</string>
+  <string name="webapp_name_placeholder" formatted="false">"ป้อนชื่อที่จะแสดงบนหน้าจอหลัก"</string>
+  <string name="webapp_mode_heading" formatted="false">"รูปแบบการเปิด"</string>
+  <string name="webapp_mode_standalone" formatted="false">"แอปแยกต่างหาก"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"ซ่อนแถบเครื่องมือเบราว์เซอร์ในหน้าต่างแยก และใช้การปรับแต่ง SkyEye ของคุณโดยอัตโนมัติ"</string>
+  <string name="webapp_mode_minimal" formatted="false">"หน้าต่างกะทัดรัด"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"หน้าต่างแยกพร้อมแถบด้านบนแบบเรียบง่าย เพื่อรีเฟรชหรือเปิดใน ChengJing ได้สะดวก"</string>
+  <string name="webapp_mode_shortcut" formatted="false">"ทางลัดเบราว์เซอร์"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"สร้างทางลัดบนหน้าจอหลักเพื่อเปิดหน้านี้ในแท็บ ChengJing โดยตรง"</string>
+  <string name="webapp_incognito_note" formatted="false">"คุณอยู่ในแท็บไม่ระบุตัวตน เว็บแอปที่ติดตั้งจะเปิดด้วยข้อมูลการท่องเว็บปกติโดยไม่มีข้อมูลชั่วคราว"</string>
+  <string name="webapp_action_install" formatted="false">"ติดตั้ง"</string>
+  <string name="webapp_action_update" formatted="false">"บันทึกและอัปเดต"</string>
+  <string name="webapp_action_pin" formatted="false">"ปักหมุดที่หน้าจอหลัก"</string>
+  <string name="webapp_action_edit" formatted="false">"แก้ไขการตั้งค่า"</string>
+  <string name="webapp_action_open_browser" formatted="false">"เปิดใน ChengJing"</string>
+  <string name="webapp_action_remove" formatted="false">"ลบออก"</string>
+  <string name="webapp_action_home" formatted="false">"กลับหน้าแรกของแอป"</string>
+  <string name="webapp_action_copy_url" formatted="false">"คัดลอก URL ปัจจุบัน"</string>
+  <string name="webapp_action_more" formatted="false">"ตัวเลือกเพิ่มเติม"</string>
+  <string name="webapp_action_close" formatted="false">"ปิดหน้าต่าง"</string>
+  <string name="webapp_notice_pinned" formatted="false">"ส่งคำขอเพิ่มลงหน้าจอหลักแล้ว: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"อัปเดตเว็บแอปแล้ว: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"บันทึกไว้ในรายการเว็บแอปแล้ว แต่หน้าจอหลักปัจจุบันไม่รองรับการสร้างทางลัดอัตโนมัติ"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"ไม่สามารถปักหมุดที่หน้าจอหลักได้ บันทึกไว้ในรายการเว็บแอปแล้ว"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"ไม่สามารถติดตั้งหน้านี้เป็นเว็บแอปได้"</string>
+  <string name="webapp_notice_removed" formatted="false">"ลบเว็บแอปแล้ว: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"คัดลอก URL แล้ว"</string>
+  <string name="webapp_notice_not_found" formatted="false">"ไม่พบเว็บแอปนี้ อาจถูกลบออกไปแล้ว"</string>
+  <string name="webapp_empty_title" formatted="false">"ยังไม่ได้ติดตั้งเว็บแอป"</string>
+  <string name="webapp_empty_desc" formatted="false">"เปิดเว็บไซต์ใดก็ได้แล้วเลือก ‘ติดตั้งเป็นเว็บแอป’ จากเมนู เพื่อปักหมุดไว้ที่หน้าจอหลักและใช้งานแบบหน้าต่างแยก"</string>
+  <string name="webapp_remove_title" formatted="false">"ลบเว็บแอป"</string>
+  <string name="webapp_remove_message" formatted="false">"ต้องการลบ %1$s ออกจาก ChengJing หรือไม่? ทางลัดเดิมบนหน้าจอหลักจะถูกปิดใช้งานด้วย"</string>
+  <string name="webapp_edit_title" formatted="false">"แก้ไขเว็บแอป"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"เว็บแอปนี้ถูกลบออกจาก ChengJing Browser แล้ว"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"ออกนอกโดเมนของแอปแล้ว"</string>
+  <string name="webapp_clear_name" formatted="false">"ล้างชื่อ"</string>
 </resources>

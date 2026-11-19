@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"Aufnahme konnte nicht gestartet werden. Prüfen Sie Berechtigungen und eine kompatible Aufnahme-App."</string>
   <string name="web_third_party_cookies" formatted="false">"Drittanbieter-Cookies"</string>
   <string name="web_cookie_note" formatted="false">"Falls Anmeldung oder eingebettete Inhalte andere Cookies benötigen, erlauben Sie sie nur für diese Website."</string>
+  <string name="webapp_menu_install" formatted="false">"Als Web-App installieren"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"Auf dem Startbildschirm anheften und wie eine App öffnen"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"Installiert · Tippen zum Aktualisieren oder Anheften"</string>
+  <string name="webapp_panel_title" formatted="false">"Web-Apps"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"Installierte Web-Apps und Verknüpfungen verwalten"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$s installiert"</string>
+  <string name="webapp_dialog_title" formatted="false">"Als Web-App installieren"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"Web-App aktualisieren"</string>
+  <string name="webapp_name_label" formatted="false">"App-Name"</string>
+  <string name="webapp_name_placeholder" formatted="false">"Namen für den Startbildschirm eingeben"</string>
+  <string name="webapp_mode_heading" formatted="false">"Öffnungsmodus"</string>
+  <string name="webapp_mode_standalone" formatted="false">"Eigenständige App"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"Blendet Browserleisten in einem eigenen Fenster aus und übernimmt Ihre SkyEye-Anpassungen."</string>
+  <string name="webapp_mode_minimal" formatted="false">"Kompaktfenster"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"Eigenes Fenster mit dezenter Kopfleiste zum schnellen Aktualisieren oder Öffnen in ChengJing."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"Verknüpfung"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"Erstellt eine Startbildschirm-Verknüpfung, die diese Seite in einem ChengJing-Tab öffnet."</string>
+  <string name="webapp_incognito_note" formatted="false">"Sie befinden sich im privaten Tab. Die installierte Web-App nutzt normale Browserdaten ohne private Sitzungsdaten."</string>
+  <string name="webapp_action_install" formatted="false">"Installieren"</string>
+  <string name="webapp_action_update" formatted="false">"Speichern"</string>
+  <string name="webapp_action_pin" formatted="false">"Auf Startbildschirm anheften"</string>
+  <string name="webapp_action_edit" formatted="false">"Bearbeiten"</string>
+  <string name="webapp_action_open_browser" formatted="false">"In ChengJing öffnen"</string>
+  <string name="webapp_action_remove" formatted="false">"Entfernen"</string>
+  <string name="webapp_action_home" formatted="false">"Zur App-Startseite"</string>
+  <string name="webapp_action_copy_url" formatted="false">"Aktuelle URL kopieren"</string>
+  <string name="webapp_action_more" formatted="false">"Weitere Optionen"</string>
+  <string name="webapp_action_close" formatted="false">"Fenster schließen"</string>
+  <string name="webapp_notice_pinned" formatted="false">"Anheften angefordert: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"Web-App aktualisiert: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"In Web-Apps gespeichert, aber dieser Launcher unterstützt kein automatisches Anheften"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"Konnte nicht angeheftet werden; in Web-Apps gespeichert"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"Diese Seite kann nicht als Web-App installiert werden"</string>
+  <string name="webapp_notice_removed" formatted="false">"Web-App entfernt: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL kopiert"</string>
+  <string name="webapp_notice_not_found" formatted="false">"Diese Web-App wurde nicht gefunden oder bereits entfernt"</string>
+  <string name="webapp_empty_title" formatted="false">"Keine Web-Apps installiert"</string>
+  <string name="webapp_empty_desc" formatted="false">"Öffnen Sie eine Website und wählen Sie im Menü „Als Web-App installieren“, um sie im eigenen Fenster zu nutzen."</string>
+  <string name="webapp_remove_title" formatted="false">"Web-App entfernen"</string>
+  <string name="webapp_remove_message" formatted="false">"„%1$s“ aus ChengJing entfernen? Die zugehörige Startbildschirm-Verknüpfung wird deaktiviert."</string>
+  <string name="webapp_edit_title" formatted="false">"Web-App bearbeiten"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"Diese Web-App wurde aus ChengJing Browser entfernt"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"Außerhalb der App-Domain"</string>
+  <string name="webapp_clear_name" formatted="false">"Namen löschen"</string>
 </resources>

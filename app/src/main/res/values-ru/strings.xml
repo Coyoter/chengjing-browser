@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"Не удалось начать запись. Проверьте разрешения и совместимое приложение камеры или записи."</string>
   <string name="web_third_party_cookies" formatted="false">"Сторонние файлы cookie"</string>
   <string name="web_cookie_note" formatted="false">"Если для входа или встроенных материалов нужны сторонние cookie, разрешите их только для этого сайта."</string>
+  <string name="webapp_menu_install" formatted="false">"Установить как веб-приложение"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"Закрепить на главном экране и открывать как приложение"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"Установлено · Нажмите для обновления или закрепления"</string>
+  <string name="webapp_panel_title" formatted="false">"Веб-приложения"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"Управление установленными веб-приложениями и ярлыками"</string>
+  <string name="webapp_panel_count" formatted="false">"Установлено: %1$s"</string>
+  <string name="webapp_dialog_title" formatted="false">"Установить как веб-приложение"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"Обновить веб-приложение"</string>
+  <string name="webapp_name_label" formatted="false">"Название приложения"</string>
+  <string name="webapp_name_placeholder" formatted="false">"Введите название для главного экрана"</string>
+  <string name="webapp_mode_heading" formatted="false">"Режим открытия"</string>
+  <string name="webapp_mode_standalone" formatted="false">"Отдельное окно"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"Скрывает панели браузера в отдельном окне и сохраняет ваши настройки SkyEye."</string>
+  <string name="webapp_mode_minimal" formatted="false">"Компактное окно"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"Отдельное окно с тонкой верхней панелью для быстрого обновления и перехода в ChengJing."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"Ярлык браузера"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"Создаёт ярлык на главном экране для открытия этой страницы во вкладке ChengJing."</string>
+  <string name="webapp_incognito_note" formatted="false">"Вы в приватной вкладке. Установленное веб-приложение будет открываться с обычными данными без приватной сессии."</string>
+  <string name="webapp_action_install" formatted="false">"Установить"</string>
+  <string name="webapp_action_update" formatted="false">"Сохранить"</string>
+  <string name="webapp_action_pin" formatted="false">"Закрепить на экране"</string>
+  <string name="webapp_action_edit" formatted="false">"Изменить"</string>
+  <string name="webapp_action_open_browser" formatted="false">"Открыть в ChengJing"</string>
+  <string name="webapp_action_remove" formatted="false">"Удалить"</string>
+  <string name="webapp_action_home" formatted="false">"На главную приложения"</string>
+  <string name="webapp_action_copy_url" formatted="false">"Копировать URL"</string>
+  <string name="webapp_action_more" formatted="false">"Ещё"</string>
+  <string name="webapp_action_close" formatted="false">"Закрыть окно"</string>
+  <string name="webapp_notice_pinned" formatted="false">"Запрос на добавление на экран отправлен: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"Веб-приложение обновлено: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"Сохранено в «Веб-приложения», но ваш лаунчер не поддерживает автоматическое закрепление ярлыков"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"Не удалось закрепить на главном экране; сохранено в «Веб-приложения»"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"Эту страницу нельзя установить как веб-приложение"</string>
+  <string name="webapp_notice_removed" formatted="false">"Веб-приложение удалено: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL скопирован"</string>
+  <string name="webapp_notice_not_found" formatted="false">"Веб-приложение не найдено; возможно, оно было удалено"</string>
+  <string name="webapp_empty_title" formatted="false">"Нет установленных веб-приложений"</string>
+  <string name="webapp_empty_desc" formatted="false">"Откройте любой сайт и выберите «Установить как веб-приложение» в меню, чтобы закрепить его на главном экране."</string>
+  <string name="webapp_remove_title" formatted="false">"Удалить веб-приложение"</string>
+  <string name="webapp_remove_message" formatted="false">"Удалить «%1$s» из ChengJing? Связанный ярлык на главном экране также будет отключён."</string>
+  <string name="webapp_edit_title" formatted="false">"Изменить веб-приложение"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"Это веб-приложение удалено из ChengJing Browser"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"За пределами домена приложения"</string>
+  <string name="webapp_clear_name" formatted="false">"Очистить название"</string>
 </resources>

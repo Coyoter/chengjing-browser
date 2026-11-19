@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"Could not open capture or recording. Check permissions and install a compatible camera or recording app."</string>
   <string name="web_third_party_cookies" formatted="false">"Third-party cookies"</string>
   <string name="web_cookie_note" formatted="false">"If sign-in or embedded content needs cookies from other sites, allow them for this site only."</string>
+  <string name="webapp_menu_install" formatted="false">"Install as Web App"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"Pin to home screen and open like an app"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"Installed · Tap to update or pin again"</string>
+  <string name="webapp_panel_title" formatted="false">"Web Apps"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"Manage installed web apps and home screen shortcuts"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$s installed"</string>
+  <string name="webapp_dialog_title" formatted="false">"Install as Web App"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"Update Web App"</string>
+  <string name="webapp_name_label" formatted="false">"App name"</string>
+  <string name="webapp_name_placeholder" formatted="false">"Enter a name for the home screen"</string>
+  <string name="webapp_mode_heading" formatted="false">"Open mode"</string>
+  <string name="webapp_mode_standalone" formatted="false">"Standalone App"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"Hides browser toolbars in a dedicated app window while keeping your SkyEye customizations."</string>
+  <string name="webapp_mode_minimal" formatted="false">"Minimal Window"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"Dedicated app window with a compact top bar for quick refresh and opening in ChengJing."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"Browser Shortcut"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"Adds a home screen shortcut that opens this page directly in a ChengJing tab."</string>
+  <string name="webapp_incognito_note" formatted="false">"You are in a private tab. The installed web app will open using regular browsing data without private session data."</string>
+  <string name="webapp_action_install" formatted="false">"Install"</string>
+  <string name="webapp_action_update" formatted="false">"Save &amp; Update"</string>
+  <string name="webapp_action_pin" formatted="false">"Pin to home screen"</string>
+  <string name="webapp_action_edit" formatted="false">"Edit settings"</string>
+  <string name="webapp_action_open_browser" formatted="false">"Open in ChengJing"</string>
+  <string name="webapp_action_remove" formatted="false">"Remove"</string>
+  <string name="webapp_action_home" formatted="false">"Back to app home"</string>
+  <string name="webapp_action_copy_url" formatted="false">"Copy current URL"</string>
+  <string name="webapp_action_more" formatted="false">"More options"</string>
+  <string name="webapp_action_close" formatted="false">"Close window"</string>
+  <string name="webapp_notice_pinned" formatted="false">"Home screen install requested: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"Updated web app: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"Saved to Web Apps, but this launcher does not support pinning shortcuts automatically"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"Could not pin to home screen; saved to Web Apps list"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"This page cannot be installed as a web app"</string>
+  <string name="webapp_notice_removed" formatted="false">"Removed web app: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL copied"</string>
+  <string name="webapp_notice_not_found" formatted="false">"This web app could not be found and may have been removed"</string>
+  <string name="webapp_empty_title" formatted="false">"No web apps installed"</string>
+  <string name="webapp_empty_desc" formatted="false">"Open any website and choose Install as Web App from the menu to pin it to your home screen and browse in a clean window."</string>
+  <string name="webapp_remove_title" formatted="false">"Remove Web App"</string>
+  <string name="webapp_remove_message" formatted="false">"Remove %1$s from ChengJing? Its existing home screen shortcut will also be disabled."</string>
+  <string name="webapp_edit_title" formatted="false">"Edit Web App"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"This web app was removed from ChengJing Browser"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"Outside app domain"</string>
+  <string name="webapp_clear_name" formatted="false">"Clear name"</string>
 </resources>

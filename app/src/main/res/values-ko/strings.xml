@@ -1115,4 +1115,48 @@
   <string name="web_capture_error" formatted="false">"촬영 또는 녹음을 열 수 없습니다. 권한과 호환 앱을 확인하세요."</string>
   <string name="web_third_party_cookies" formatted="false">"서드 파티 쿠키"</string>
   <string name="web_cookie_note" formatted="false">"로그인이나 삽입 콘텐츠에 다른 사이트 쿠키가 필요하면 이 사이트에서만 허용하세요."</string>
+  <string name="webapp_menu_install" formatted="false">"웹 앱으로 설치"</string>
+  <string name="webapp_menu_install_subtitle" formatted="false">"홈 화면에 고정하여 앱처럼 열기"</string>
+  <string name="webapp_menu_installed_subtitle" formatted="false">"설치됨 · 탭하여 설정 업데이트 또는 다시 고정"</string>
+  <string name="webapp_panel_title" formatted="false">"웹 앱"</string>
+  <string name="webapp_panel_subtitle" formatted="false">"설치된 웹 앱 및 홈 화면 바로가기 관리"</string>
+  <string name="webapp_panel_count" formatted="false">"%1$s개 설치됨"</string>
+  <string name="webapp_dialog_title" formatted="false">"웹 앱으로 설치"</string>
+  <string name="webapp_dialog_update_title" formatted="false">"웹 앱 업데이트"</string>
+  <string name="webapp_name_label" formatted="false">"앱 이름"</string>
+  <string name="webapp_name_placeholder" formatted="false">"홈 화면에 표시할 이름 입력"</string>
+  <string name="webapp_mode_heading" formatted="false">"열기 방식"</string>
+  <string name="webapp_mode_standalone" formatted="false">"독립 앱"</string>
+  <string name="webapp_mode_standalone_desc" formatted="false">"브라우저 도구 모음을 숨기고 독립 창으로 열며 천안 사용자 설정을 그대로 적용합니다."</string>
+  <string name="webapp_mode_minimal" formatted="false">"간편 창"</string>
+  <string name="webapp_mode_minimal_desc" formatted="false">"독립 창에 간결한 상단 바를 유지해 새로고침이나 브라우저에서 열기를 빠르게 실행합니다."</string>
+  <string name="webapp_mode_shortcut" formatted="false">"브라우저 바로가기"</string>
+  <string name="webapp_mode_shortcut_desc" formatted="false">"홈 화면 바로가기를 만들어 탭하면 청경 브라우저 탭에서 바로 엽니다."</string>
+  <string name="webapp_incognito_note" formatted="false">"시크릿 탭입니다. 설치된 웹 앱은 시크릿 임시 데이터 없이 일반 브라우징 데이터로 열립니다."</string>
+  <string name="webapp_action_install" formatted="false">"설치"</string>
+  <string name="webapp_action_update" formatted="false">"저장 및 업데이트"</string>
+  <string name="webapp_action_pin" formatted="false">"홈 화면에 고정"</string>
+  <string name="webapp_action_edit" formatted="false">"설정 편집"</string>
+  <string name="webapp_action_open_browser" formatted="false">"청경에서 열기"</string>
+  <string name="webapp_action_remove" formatted="false">"삭제"</string>
+  <string name="webapp_action_home" formatted="false">"앱 홈으로 이동"</string>
+  <string name="webapp_action_copy_url" formatted="false">"현재 URL 복사"</string>
+  <string name="webapp_action_more" formatted="false">"더보기"</string>
+  <string name="webapp_action_close" formatted="false">"창 닫기"</string>
+  <string name="webapp_notice_pinned" formatted="false">"홈 화면 설치 요청을 보냈습니다: %1$s"</string>
+  <string name="webapp_notice_updated" formatted="false">"웹 앱이 업데이트되었습니다: %1$s"</string>
+  <string name="webapp_notice_saved_no_pin" formatted="false">"웹 앱 목록에 저장했지만 현재 런처는 자동 바로가기 고정을 지원하지 않습니다"</string>
+  <string name="webapp_notice_pin_failed" formatted="false">"홈 화면에 고정할 수 없어 웹 앱 목록에 저장했습니다"</string>
+  <string name="webapp_notice_invalid_page" formatted="false">"이 페이지는 웹 앱으로 설치할 수 없습니다"</string>
+  <string name="webapp_notice_removed" formatted="false">"웹 앱을 삭제했습니다: %1$s"</string>
+  <string name="webapp_notice_copied" formatted="false">"URL이 복사되었습니다"</string>
+  <string name="webapp_notice_not_found" formatted="false">"이 웹 앱을 찾을 수 없습니다. 삭제되었을 수 있습니다"</string>
+  <string name="webapp_empty_title" formatted="false">"설치된 웹 앱이 없습니다"</string>
+  <string name="webapp_empty_desc" formatted="false">"원하는 웹사이트에서 메뉴의 ‘웹 앱으로 설치’를 선택하면 홈 화면에 고정해 독립 창으로 쾌적하게 사용할 수 있습니다."</string>
+  <string name="webapp_remove_title" formatted="false">"웹 앱 삭제"</string>
+  <string name="webapp_remove_message" formatted="false">"‘%1$s’을(를) 청경에서 삭제할까요? 홈 화면의 기존 바로가기도 비활성화됩니다."</string>
+  <string name="webapp_edit_title" formatted="false">"웹 앱 편집"</string>
+  <string name="webapp_disabled_shortcut" formatted="false">"이 웹 앱은 청경 브라우저에서 삭제되었습니다"</string>
+  <string name="webapp_external_scope_hint" formatted="false">"앱 도메인 외부"</string>
+  <string name="webapp_clear_name" formatted="false">"이름 지우기"</string>
 </resources>
