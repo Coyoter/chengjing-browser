@@ -1,2 +1,2 @@
-• Dedicated Reload button: replaced pull-to-refresh with a Reload button right next to Back and Forward on the toolbar, preventing accidental reloads while scrolling up and down through webpages.
+• Classic centered Sky Eye toolbar & no pull-to-refresh: restored the symmetric 5-button toolbar with Sky Eye strictly centered, using the existing address bar reload button while keeping pull-to-refresh disabled for uninterrupted scrolling.
 • Added "Install as Web App": pin any current page to your home screen as a Standalone App, Minimal Window, or Browser Shortcut.

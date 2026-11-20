@@ -134,7 +134,7 @@ class CloseAllTabsTest {
         f.screenshot("close-all-confirm-dark")
         ui.onNodeWithTag("cancel-close-all-tabs").performClick()
         ui.runOnIdle{c.sheet=""}
-        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(6)
+        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(5)
         ui.onNodeWithTag("share-current-page").assertDoesNotExist()
         ui.runOnIdle{c.store.theme="system"}
     }

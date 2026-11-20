@@ -2,7 +2,7 @@
 
 最自由的瀏覽器，順暢瀏覽網頁時，還能隨心打造專屬介面！內建「天眼開發者工具」，讓你自由自訂樣式、互動與個人化網站設定。
 
-目前原始碼版本為 **1.15.2（versionCode 49）**：移除下拉重新整理手勢，改於工具列「上一頁、下一頁」右側提供專屬「重新整理」按鈕，徹底避免在網頁上下滑動時誤觸重整；同時包含「安裝為網頁應用程式」與集中管理功能。保留既有開新視窗防護、定位、網站權限、拍攝上傳、Cookie 例外、分頁功能與 17 種語言。**GitHub Release 與 Google Play 提交、核准及上架是不同狀態**，以各自讀回結果為準。[1.15.2 更新說明](docs/releases/1.15.2.md) · [功能與核心限制清單](docs/BROWSER-COMPATIBILITY.md) · [系統整合](docs/SYSTEM-INTEGRATION.md) · [多語系](docs/LOCALIZATION.md) · [簽章與發布](docs/RELEASING.md)
+目前原始碼版本為 **1.15.3（versionCode 50）**：恢復「天眼」正中央對齊的經典五鍵對稱工具列，統一使用網址列既有的重新整理按鈕，並取消下拉重新整理手勢；同時包含「安裝為網頁應用程式」與集中管理功能。保留既有開新視窗防護、定位、網站權限、拍攝上傳、Cookie 例外、分頁功能與 17 種語言。**GitHub Release 與 Google Play 提交、核准及上架是不同狀態**，以各自讀回結果為準。[1.15.3 更新說明](docs/releases/1.15.3.md) · [功能與核心限制清單](docs/BROWSER-COMPATIBILITY.md) · [系統整合](docs/SYSTEM-INTEGRATION.md) · [多語系](docs/LOCALIZATION.md) · [簽章與發布](docs/RELEASING.md)
 
 ## 安裝與使用
 

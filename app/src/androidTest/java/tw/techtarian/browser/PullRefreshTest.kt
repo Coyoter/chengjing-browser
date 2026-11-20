@@ -40,16 +40,19 @@ class PullRefreshTest {
         Assume.assumeTrue(ui.activity.packageName.endsWith(".qa"))
     }
 
-    @Test fun toolbarReloadButtonIsRightOfForwardAndPullDownNeverReloads() {
+    @Test fun skyEyeRemainsCenteredWithoutExtraToolbarReloadAndPullDownNeverReloads() {
         open()
+        val controlsBounds = ui.onNodeWithTag("browser-controls").fetchSemanticsNode().boundsInRoot
         val backBounds = ui.onNodeWithContentDescription("上一頁").fetchSemanticsNode().boundsInRoot
         val forwardBounds = ui.onNodeWithContentDescription("下一頁").fetchSemanticsNode().boundsInRoot
-        val reloadBounds = ui.onNodeWithTag("controls-reload").assertIsDisplayed().fetchSemanticsNode().boundsInRoot
+        ui.onNodeWithTag("controls-reload").assertDoesNotExist()
+        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(5)
         val eyeBounds = ui.onNode(hasText("天眼") and hasAnyAncestor(hasTestTag("browser-controls"))).fetchSemanticsNode().boundsInRoot
 
+        assertEquals("Sky Eye must be horizontally centered", controlsBounds.center.x, eyeBounds.center.x, 1.5f)
+        assertEquals("Sky Eye must be vertically centered", controlsBounds.center.y, eyeBounds.center.y, 1.5f)
         assertTrue("Forward must be right of Back", forwardBounds.left >= backBounds.right - 2f)
-        assertTrue("Reload button must sit immediately to the right of Back/Forward", reloadBounds.left >= forwardBounds.right - 2f)
-        assertTrue("Reload button must sit to the left of Sky Eye", reloadBounds.right <= eyeBounds.left + 2f)
+        assertTrue("Forward must be left of Sky Eye", forwardBounds.right <= eyeBounds.left + 2f)
 
         for (bottom in listOf(false, true)) {
             main { c.sheet = "settings" }
@@ -63,8 +66,8 @@ class PullRefreshTest {
             Thread.sleep(500)
             assertEquals("Pulling down must not reload the page", before, eval("performance.timeOrigin"))
 
-            // Clicking the dedicated Reload button right of Back/Forward reloads the page cleanly.
-            ui.onNodeWithTag("controls-reload").performClick()
+            // Clicking the existing Address Bar Reload button reloads the page cleanly.
+            ui.onNodeWithContentDescription("重新整理").performClick()
             until { eval("performance.timeOrigin") != before && eval("document.readyState") == "\"complete\"" }
         }
     }

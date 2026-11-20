@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 
 /**
  * Plain WebView host container without pull-to-refresh gesture interception.
- * Page reloading is triggered explicitly via the toolbar Reload button.
+ * Page reloading is triggered explicitly via the address bar reload button.
  */
 class RefreshWebContainer(context: Context, web: SelectionWebView) : FrameLayout(context) {
     var isRefreshing: Boolean = false

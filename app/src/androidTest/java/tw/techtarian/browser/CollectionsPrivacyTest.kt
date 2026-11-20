@@ -30,7 +30,7 @@ class CollectionsPrivacyTest {
         ui.runOnIdle{assertTrue("The validation WebView must exercise profile isolation and deletion, not skip privacy tests",c.privateSession.supported)}
     }
     @Test fun menuExposesCollectionsWithoutChangingFirstLayer(){
-        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(6)
+        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(5)
         ui.onNodeWithTag("share-current-page").assertDoesNotExist()
         ui.onNodeWithContentDescription("瀏覽器選單").performClick()
         ui.onNodeWithTag("menu-row:下載").performScrollTo().assertIsDisplayed()
