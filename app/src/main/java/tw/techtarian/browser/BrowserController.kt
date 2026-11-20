@@ -467,7 +467,6 @@ class BrowserController(val context: Context, val store: BrowserStore) {
                 tab.navigationGeneration++
                 tab.previewReady=false
                 tab.previewCommitted=false
-                web.resetDomScrollState()
                 // Keep the last successful thumbnail during reload, offline restore and errors.
                 tab.url=if(url=="about:blank")""else url
                 cookiesFor(tab).setAcceptThirdPartyCookies(web,(context as? MainActivity)?.websitePermissions?.thirdPartyCookies(tab)==true)

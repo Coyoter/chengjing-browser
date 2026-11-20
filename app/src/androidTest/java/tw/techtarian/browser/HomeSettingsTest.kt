@@ -42,7 +42,7 @@ class HomeSettingsTest {
         val home=ui.onNodeWithTag("home-button").assertIsDisplayed().fetchSemanticsNode().boundsInRoot
         val address=ui.onNodeWithTag("address-capsule").fetchSemanticsNode().boundsInRoot
         assertTrue(home.right<=address.left)
-        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(5)
+        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(6)
         settings();ui.onNodeWithTag("home-button-switch").performClick()
         ui.onNodeWithTag("home-custom-choice").assertDoesNotExist()
         ui.runOnIdle{c.sheet=""};ui.onNodeWithTag("home-button").assertDoesNotExist()

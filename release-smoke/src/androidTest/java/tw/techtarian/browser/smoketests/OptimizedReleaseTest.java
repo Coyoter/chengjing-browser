@@ -236,7 +236,7 @@ public class OptimizedReleaseTest {
     }
     @Test public void installedReleaseIsActuallyObfuscatedAndNotDebuggable() throws Exception {
         assertEquals(0,target().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
-        assertEquals(48,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
+        assertEquals(49,target().getPackageManager().getPackageInfo(APP,0).getLongVersionCode());
         try {type("tw.techtarian.browser.BrowserStore");fail("Unobfuscated application class still present");}
         catch(ClassNotFoundException expected) { }
     }
@@ -320,7 +320,8 @@ public class OptimizedReleaseTest {
         UiObject2 address=require(By.clazz("android.widget.EditText"));address.click();device.waitForIdle();
         String url="http://127.0.0.1:"+fixture.port()+"/two";
         address=require(By.clazz("android.widget.EditText"));address.setText(url);require(By.text(url));SystemClock.sleep(500);
-        device.executeShellCommand("input keyevent 66");
+        UiObject2 go=device.findObject(By.desc("前往"));
+        if(go!=null)go.click();else device.executeShellCommand("input keyevent 66");
         require(By.text("R8 功能測試 two"));
         device.pressBack();require(By.text("快速前往"));require(By.desc("瀏覽器選單"));
         assertEquals("Page-root Back must first show the initial page",APP,device.getCurrentPackageName());

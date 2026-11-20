@@ -268,7 +268,6 @@ class WebAppActivity : AppCompatActivity() {
             }
 
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
-                web.resetDomScrollState()
                 currentUrl = url
                 errorMessage = ""
                 certificateWarning = warnings.messageFor(url)

@@ -102,7 +102,8 @@ class PageActionsTest {
         ui.onNodeWithTag("browser-controls").assertIsDisplayed().assertHeightIsEqualTo(64.dp)
         ui.onNodeWithTag("share-current-page").assertDoesNotExist()
         ui.onNodeWithContentDescription("分享目前網頁").assertDoesNotExist()
-        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(5)
+        ui.onAllNodes(hasClickAction() and hasAnyAncestor(hasTestTag("browser-controls"))).assertCountEquals(6)
+        ui.onNodeWithTag("controls-reload").assertIsDisplayed()
         val eye=ui.onNode(hasText("天眼") and hasAnyAncestor(hasTestTag("browser-controls")))
             .assertIsDisplayed().fetchSemanticsNode().boundsInRoot
         assertTrue("Sky Eye must be the original horizontal capsule, not a round 48dp button",eye.width>eye.height*1.5f)

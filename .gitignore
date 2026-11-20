@@ -19,3 +19,5 @@ qa/screenshots-final/
 qa/
 validation/
 validation-r8/
+__pycache__/
+*.pyc

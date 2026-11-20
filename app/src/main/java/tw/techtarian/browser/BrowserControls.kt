@@ -21,17 +21,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 
-/** Preserve the v1.2.0 first-level toolbar. Sharing belongs only in the overflow menu. */
+/** First-level toolbar with Back, Forward, Reload, Sky Eye, Quick Favorite, and Menu. */
 @Composable internal fun BrowserControls(c:BrowserController,onAction:()->Unit) {
     val cs=MaterialTheme.colorScheme
     val active=c.active
     c.revision
     val pageFavorite=c.favorites.forPage(active?.url.orEmpty())
+    val loading=(active?.progress?:100)<100
+    val canReload=active?.let{it.imageContent==null&&it.url.isNotEmpty()}==true
     val scope=rememberCoroutineScope()
     Surface(color=cs.surface){
         Row(Modifier.fillMaxWidth().testTag("browser-controls").height(64.dp).padding(horizontal=8.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically){
             Tool(Icons.AutoMirrored.Outlined.ArrowBack,bt(R.string.msg_13256df2ec81),active?.let{it.imageContent==null&&!it.isInitialNewTab()}==true){c.backInBrowser()}
             Tool(Icons.AutoMirrored.Outlined.ArrowForward,bt(R.string.msg_ae9d525462f3),active?.canForward==true){c.stopEye();active?.web?.goForward()}
+            Tool(
+                icon=if(loading)Icons.Outlined.Close else Icons.Outlined.Refresh,
+                label=if(loading)bt(R.string.msg_f5d0ca4834db)else bt(R.string.msg_5f451c71b46a),
+                enabled=canReload,
+                modifier=Modifier.testTag("controls-reload"),
+            ){
+                onAction()
+                if(loading){active?.web?.stopLoading();active?.refreshContainer?.isRefreshing=false}
+                else c.reload()
+            }
             FilledTonalButton(onClick={onAction();c.beginEye()},contentPadding=PaddingValues(horizontal=18.dp,vertical=10.dp)){
                 Icon(Icons.Outlined.Visibility,null,Modifier.size(20.dp));Spacer(Modifier.width(8.dp));Text(bt(R.string.msg_9a5282c7dd65),fontWeight=FontWeight.SemiBold)
                 if(c.site.rules.isNotEmpty()){Spacer(Modifier.width(6.dp));Text("${c.site.rules.size}",fontSize=12.sp)}

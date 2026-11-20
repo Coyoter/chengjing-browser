@@ -1,2 +1,2 @@
-• Refined pull-to-refresh sensitivity: detects both page and nested scrollable text containers so scrolling back up to read earlier content no longer triggers accidental reloads. Pull-to-refresh now activates only when genuinely at the top with no further scroll room.
+• Dedicated Reload button: replaced pull-to-refresh with a Reload button right next to Back and Forward on the toolbar, preventing accidental reloads while scrolling up and down through webpages.
 • Added "Install as Web App": pin any current page to your home screen as a Standalone App, Minimal Window, or Browser Shortcut.
