@@ -69,6 +69,79 @@
   }
   const own = new WeakSet(), injected = new WeakMap(), observed = new WeakSet();
   const channel = window.ChengJingSelection;
+  const scrollBridge = window.ChengJingScroll;
+  const scrolledElements = new Set();
+  let lastReportedCanScroll = null;
+  function notifyScroll(canUp, scrolling) {
+    const normalized = !!canUp;
+    if (scrolling || normalized !== lastReportedCanScroll) {
+      lastReportedCanScroll = normalized;
+      try { scrollBridge?.onDomScrollState(normalized, !!scrolling); } catch (_) {}
+    }
+  }
+  function isWindowScrolled() {
+    if ((window.scrollY || window.pageYOffset || 0) > 1) return true;
+    const se = document.scrollingElement || document.documentElement;
+    if (se && se.scrollTop > 1) return true;
+    if (document.body && document.body.scrollTop > 1) return true;
+    return false;
+  }
+  function elementBlocksPull(el) {
+    if (!el || el.nodeType !== 1 || own.has(el)) return false;
+    if (el.scrollTop > 1) return true;
+    const tag = el.localName;
+    if ((tag === 'textarea' || tag === 'select' || el.isContentEditable) && el.scrollHeight > el.clientHeight + 1 && el.scrollTop > 0) return true;
+    try {
+      const style = getComputedStyle(el);
+      const ob = style.overscrollBehaviorY;
+      if (ob === 'none' || ob === 'contain') return true;
+      const ta = style.touchAction;
+      if (ta === 'none' || ta === 'pan-x') return true;
+    } catch (_) {}
+    return false;
+  }
+  function anyTrackedElementScrolled(clientX, clientY) {
+    const hasPoint = typeof clientX === 'number' && typeof clientY === 'number';
+    for (const el of Array.from(scrolledElements)) {
+      if (!el.isConnected || el.scrollTop <= 1) {
+        scrolledElements.delete(el);
+        continue;
+      }
+      const r = el.getBoundingClientRect();
+      if (r.width < 1 || r.height < 1) continue;
+      if (!hasPoint) return true;
+      if (clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom) return true;
+    }
+    return false;
+  }
+  function computeCanScrollUp(event) {
+    if (isWindowScrolled()) return true;
+    const touch = event?.touches?.[0] || event?.changedTouches?.[0];
+    const cx = touch ? touch.clientX : undefined;
+    const cy = touch ? touch.clientY : undefined;
+    if (anyTrackedElementScrolled(cx, cy)) return true;
+    if (event && typeof event.composedPath === 'function') {
+      for (const node of event.composedPath()) {
+        if (node instanceof Element && elementBlocksPull(node)) {
+          if (node.scrollTop > 1) scrolledElements.add(node);
+          return true;
+        }
+      }
+    }
+    if (typeof cx === 'number' && typeof cy === 'number' && typeof document.elementsFromPoint === 'function') {
+      for (const hit of document.elementsFromPoint(cx, cy)) {
+        let cur = hit;
+        while (cur && cur !== document.body && cur !== document.documentElement) {
+          if (elementBlocksPull(cur)) {
+            if (cur.scrollTop > 1) scrolledElements.add(cur);
+            return true;
+          }
+          cur = cur.parentElement || cur.getRootNode()?.host;
+        }
+      }
+    }
+    return false;
+  }
   const send = data => { try { channel?.postMessage(JSON.stringify(data)); } catch (_) {} };
   const matchesDomain = (host, domain) => host === domain || ends(host,'.' + domain);
   const current = () => {
@@ -250,7 +323,21 @@
   document.addEventListener('click',intercept,true);
   document.addEventListener('pointerdown',e=>{if(enabled){e.stopImmediatePropagation();}},true);
   document.addEventListener('submit',e=>{if(enabled){e.preventDefault();e.stopImmediatePropagation();}},true);
-  window.addEventListener('scroll',()=>{if(enabled){drawSelected();drawFrames();}},{passive:true,capture:true});
+  window.addEventListener('scroll',e=>{
+    const t=e.target;
+    if(t instanceof Element){
+      if(t.scrollTop>1)scrolledElements.add(t);
+      else scrolledElements.delete(t);
+    }
+    notifyScroll(isWindowScrolled()||anyTrackedElementScrolled(),true);
+    if(enabled){drawSelected();drawFrames();}
+  },{passive:true,capture:true});
+  window.addEventListener('touchstart',e=>{notifyScroll(computeCanScrollUp(e),false);},{passive:true,capture:true});
+  window.addEventListener('touchstart',e=>{if(e.defaultPrevented)notifyScroll(true,true);},{passive:true,capture:false});
+  window.addEventListener('touchmove',e=>{if(e.defaultPrevented||computeCanScrollUp(e))notifyScroll(true,true);},{passive:true,capture:false});
+  window.addEventListener('touchend',e=>{notifyScroll(computeCanScrollUp(e),false);},{passive:true,capture:true});
+  window.addEventListener('touchcancel',e=>{notifyScroll(computeCanScrollUp(e),false);},{passive:true,capture:true});
+  notifyScroll(isWindowScrolled(),false);
   window.addEventListener('resize',schedule);
   const ready=()=>{
     pageSource=sourceHTML(document.body||document.documentElement);
